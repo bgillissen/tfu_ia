@@ -19,5 +19,5 @@ if ( PARAMS_AO_enable == 1 ) then { AO_thread = [] execVM "ia\ao\thread.sqf"; };
 if ( PARAMS_FOB_enable == 1 ) then { FOB_thread = [] execVM "ia\fob\thread.sqf"; };
 if ( PARAMS_Side_enable == 1 ) then { SIDE_thread = [] execVM "ia\side\thread.sqf"; };
 
-//Headless Clients  Load balancing
+//Headless clients load balancing
 [] execVM "feats\loadBalance\server.sqf";

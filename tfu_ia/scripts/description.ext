@@ -39,7 +39,7 @@ class Params {
 
 //------------------------- Includes
 #include "settings.hpp";
-#include format["maps\%1.hpp", toLower(worldName)];
+#include format["ia\maps\%1.hpp", toLower(worldName)];
 #include "feats\intro\dialog.hpp"
 #include "feats\vas\menu.hpp"
 #include "feats\vehicleCrew\common.hpp"

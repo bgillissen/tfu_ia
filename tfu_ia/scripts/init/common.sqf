@@ -6,7 +6,7 @@ Description:
 	This script is executed by main init once on all context (server, headless client, player)
 */
 
-//define paramaters variables
+//define parameters variables
 for [ {_i = 0}, {_i < count(paramsArray)}, {_i = _i + 1} ] do {
 	call compile format
 	[
@@ -15,9 +15,6 @@ for [ {_i = 0}, {_i < count(paramsArray)}, {_i = _i + 1} ] do {
 		(paramsArray select _i)
 	];
 };
-
-//define settings
-call compile preprocessFile "settings.sqf";
 
 //initialize assets arrays
 UNIT_pilot = [];
