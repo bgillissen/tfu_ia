@@ -62,3 +62,9 @@ Description:
 #define REWARD_blufor false
 #define REWARD_usaf true
 #define REWARD_afrf false
+
+//revive,
+#define REVIVE_distance 500
+#define REVIVE_needFaks 1
+#define REVIVE_bleedout 900
+#define REVIVE_disableRespawn 0

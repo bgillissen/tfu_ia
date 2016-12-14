@@ -30,6 +30,8 @@ call compile preprocessFile "feats\earPlugs\player.sqf";
 call compile preprocessFile "feats\squadHint\player.sqf";
 //voiceControl
 call compile preprocessFile "feats\voiceControl\player.sqf";
+//revive
+call compile preprocessFile "feats\revive\player.sqf";
 //vehicleCrew HUD
 [] execVM "feats\vehicleCrew\thread.sqf";
 //vonHint

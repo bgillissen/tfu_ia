@@ -44,8 +44,8 @@ class Params {
 #include "feats\vas\menu.hpp"
 #include "feats\vehicleCrew\common.hpp"
 #include "feats\viewDistance\dialog.hpp"
-	#include "scripts\=BTC=_revive\=BTC=_respawn.h"			// BTC medic revive system
-
+#include "feats\revive\dialog.hpp"
+	
 //------------------------- Functions
 class CfgFunctions {
 	#include "common\cfgFunctions.hpp"
@@ -55,15 +55,14 @@ class CfgFunctions {
 	#include "feats\vehicleRespawn\cfgFunctions.hpp"
 	#include "feats\viewDistance\cfgFunctions.hpp"
 	#include "feats\voiceControl\cfgFunctions.hpp"
-		#include "functions\cfgfunctions.hpp"			// Integrated I&A functions
+	#include "ia\cfgFunctions.hpp"
+	#include "ia\ao\cfgFunctions.hpp"
+	#include "ia\fob\cfgFunctions.hpp"
+	#include "ia\side\cfgFunctions.hpp"
 };
 
 class RscTitles {
 	#include "feats\vehicleCrew\rscTitles.hpp"
-};
-
-class faction {
-	#include "scripts\misc\factionResistance.hpp"
 };
 
 //------------------------- Notifications

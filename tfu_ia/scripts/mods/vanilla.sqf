@@ -53,7 +53,7 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards"];
 #define VANILLA_at []
 #define VANILLA_marksman []
 #define VANILLA_sniper []
-#define VANILLA_medic []
+#define VANILLA_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F", "O_medic_F", "I_medic_F", "O_recon_medic_f"]
 #define VANILLA_officer []
 #define VANILLA_arti []
 

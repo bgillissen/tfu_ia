@@ -14,10 +14,14 @@ Description:
 //BIS group management
 ["Initialize", [true]] call BIS_fnc_dynamicGroups;
 
+//revive
+call compile preprocessFile "feats\revive\server.sqf";
+
+//Headless clients load balancing
+[] execVM "feats\loadBalance\server.sqf";
+
 //Invade & Annex Missions
 if ( PARAMS_AO_enable == 1 ) then { AO_thread = [] execVM "ia\ao\thread.sqf"; };
 if ( PARAMS_FOB_enable == 1 ) then { FOB_thread = [] execVM "ia\fob\thread.sqf"; };
 if ( PARAMS_Side_enable == 1 ) then { SIDE_thread = [] execVM "ia\side\thread.sqf"; };
 
-//Headless clients load balancing
-[] execVM "feats\loadBalance\server.sqf";
