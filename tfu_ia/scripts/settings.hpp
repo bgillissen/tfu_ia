@@ -4,7 +4,7 @@
 //vonHint feature
 #define TSADDR "ts.taskforceunicorn.com"
 
-//tfar radio frequency preset feature
+//radioFreq preset feature
 #define TFAR_SR_FREQ_1 "300"
 #define TFAR_SR_FREQ_2 "310"
 #define TFAR_SR_FREQ_3 "320"
@@ -48,3 +48,10 @@
 #define REWARD_blufor false
 #define REWARD_usaf true
 #define REWARD_afrf false
+
+//voiceControl
+#define VC_disabled [6]
+#define VC_players [3,4,5]
+#define VC_groupleader [2,3,4,5]
+#define VC_admins [0,1,2,3,4,5]
+#define VC_adminList []

@@ -19,7 +19,6 @@ enableDebugConsole = 1;									// 0 = disabled. 1 = admins, 2 = everybody. 0 is
 allowFunctionsLog = 0; 									// Log functions to .rpt. disabled with 0
 
 //------------------------- Misc
-disableChannels[] = {6};								// 0 = Global, 1 = Side, 2 = Command, 3 = Group, 4 = Vehicle, 5 = Direct, 6 = System. Admin/server/BattlEye can still use Global. 
 disabledAI = 1;											// No AI in playable units
 aiKills = 0; 											// disable scorelist for AI players
 enableItemsDropping = 0; 								// disabled with 0
@@ -31,40 +30,43 @@ Respawn = 3;											// 0 = none. 1 = bird. 2 = instant where died. 3 = base o
 RespawnDelay = 4;										// Delay prior to respawn, ensure longer than BTC revive delay.
 RespawnDialog = 0;										// default = 1. show respawn timer and scoreboard when killed.
 
-//------------------------- Includes / Functions
-#include "settings.hpp";
-#include format["maps\%1.hpp", toLower(worldName)];
-#include "feats\intro\dialogs.hpp"
-#include "feats\vehicleCrew\common.hpp"
-	#include "scripts\VAS\menu.hpp" 						// VAS
-	#include "scripts\taw_vd\dialog.hpp" 					// TAW View Distance
-	#include "scripts\=BTC=_revive\=BTC=_respawn.h"			// BTC medic revive system
-	#include "scripts\voice_control\voiceControl.cpp"		// Voice Control
-
-class CfgFunctions {
-	#include "common\cfgFunctions.hpp"
-	#include "feats\vehicleRespawn\cfgFunctions.hpp"
-		#include "functions\cfgfunctions.hpp"			// Integrated I&A functions
-		#include "scripts\VAS\cfgfunctions.hpp"			// VAS
-		#include "scripts\taw_vd\CfgFunctions.hpp"		// View distance
-};
-
-class RscTitles {
-	#include "feats\vehicleCrew\namesleft.hpp"
-};
-
-class faction {
-	#include "scripts\misc\factionResistance.hpp"
-};
-
+//------------------------- Parameters
 class Params {
 	#include "ao\params.hpp"
 	#include "side\params.hpp"
 	#include "feats\params.hpp"
 };
 
-//------------------------- Notifications
+//------------------------- Includes
+#include "settings.hpp";
+#include format["maps\%1.hpp", toLower(worldName)];
+#include "feats\intro\dialog.hpp"
+#include "feats\vas\menu.hpp"
+#include "feats\vehicleCrew\common.hpp"
+#include "feats\viewDistance\dialog.hpp"
+	#include "scripts\=BTC=_revive\=BTC=_respawn.h"			// BTC medic revive system
 
+//------------------------- Functions
+class CfgFunctions {
+	#include "common\cfgFunctions.hpp"
+	#include "feats\radioFreq\cfgFunctions.hpp"
+	#include "feats\va\cfgFunctions.hpp"
+	#include "feats\vas\cfgFunctions.hpp"
+	#include "feats\vehicleRespawn\cfgFunctions.hpp"
+	#include "feats\viewDistance\cfgFunctions.hpp"
+	#include "feats\voiceControl\cfgFunctions.hpp"
+		#include "functions\cfgfunctions.hpp"			// Integrated I&A functions
+};
+
+class RscTitles {
+	#include "feats\vehicleCrew\rscTitles.hpp"
+};
+
+class faction {
+	#include "scripts\misc\factionResistance.hpp"
+};
+
+//------------------------- Notifications
 class CfgNotifications {
 	class Default {
 		title = ""; 			// Tile displayed as text on black background. Filled by arguments.

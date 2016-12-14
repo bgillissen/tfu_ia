@@ -22,12 +22,14 @@ if ( PARAMS_intro == 1 ) then _handle = createdialog "SRV_RULES";
 ["InitializePlayer", [player, true]] call BIS_fnc_dynamicGroups;
 //Restrict arty computer
 call compile preprocessFile "feats\restrictArty\player.sqf"; };
-//TFAR radio freq preset
-call compile preprocessFile "feats\tfar\player.sqf"; };
+//radioFreq
+call compile preprocessFile "feats\radioFreq\player.sqf"; };
 //earPlugs
 call compile preprocessFile "feats\earPlugs\player.sqf";
 //squadHint
 call compile preprocessFile "feats\squadHint\player.sqf";
+//voiceControl
+call compile preprocessFile "feats\voiceControl\player.sqf";
 //vehicleCrew HUD
 [] execVM "feats\vehicleCrew\thread.sqf";
 //vonHint
@@ -44,5 +46,3 @@ call compile preprocessFile "feats\squadHint\player.sqf";
 [] execVM "feats\restrictTank\thread.sqf";
 //mapTracker
 [] execVM "feats\mapTracker\thread.sqf";
-//voiceControl
-[] execVM "feats\voiceControl\thread.sqf";

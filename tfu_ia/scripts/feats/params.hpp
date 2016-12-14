@@ -40,7 +40,7 @@ class supplyDrop {
 	default = 1;
 };
 
-class radioFreqPreset {
+class radioFreq {
 	title = "Preset TFAR Radio Frequencies";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};
@@ -112,6 +112,13 @@ class restrictPlane {
 
 class restrictTank {
 	title = "Restrict Tanks to crew slots";
+	values[] = {0,1};
+	texts[] = {"Disabled","Enabled"};
+	default = 1;
+};
+
+class voiceControl {
+	title = "Voice Over Network channel control";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};
 	default = 1;
