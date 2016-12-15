@@ -40,11 +40,11 @@ class Params {
 //------------------------- Includes
 #include "settings.hpp";
 #include format["ia\maps\%1.hpp", toLower(worldName)];
-#include "feats\intro\dialog.hpp"
-#include "feats\vas\menu.hpp"
-#include "feats\vehicleCrew\common.hpp"
-#include "feats\viewDistance\dialog.hpp"
-#include "feats\revive\dialog.hpp"
+#include "feats\intro\include.hpp"
+#include "feats\vas\include.hpp"
+#include "feats\vehicleCrew\include.hpp"
+#include "feats\viewDistance\include.hpp"
+#include "feats\revive\include.hpp"
 
 class RscTitles {
 	#include "feats\vehicleCrew\rscTitles.hpp"
@@ -77,6 +77,6 @@ class CfgNotifications {
 		priority = 0;
 		difficulty[] = {};
 	};
-	#include "ao\notifications.hpp"
-	#include "side\notifications.hpp"
+	#include "ao\cfgNotifications.hpp"
+	#include "side\cfgNotifications.hpp"
 };

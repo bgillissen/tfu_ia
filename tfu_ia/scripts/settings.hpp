@@ -103,35 +103,3 @@ Description:
 #define IA_carSkill 3
 #define IA_airSkill 3
 #define IA_garrisonSkill 1
-
-//folder, server, client, headless
-//0: none, 1: call, 2: spawn
-#define FEATS [\
-				["baseProtection", 0, 1, 0],\
-				["cleanup", 2, 0, 0],\
-				["dynBillboards", 0, 0, 0],\
-				["earPlugs", 0, 1, 0],\
-				["filteredArsenal", 0, 1, 0],\
-				["gearRestrictions", 0, 2, 0],\
-				["groupManagement", 1, 1, 0],\
-				["intro", 0, 1, 0],\
-				["loadBalance", 2, 0, 0],\
-				["mapTracker", 0, 2, 0],\
-				["radioFreq", 0, 1, 0],\
-				["restrictArty", 0, 1, 0],\
-				["restrictHeli", 0, 1, 0],\
-				["restrictPlane", 0, 1, 0],\
-				["restrictTank", 0, 1, 0],\
-				["revive",  1, 1, 0],\
-				["squadHint",  0, 1, 0],\
-				["supplyCrate",  0, 0, 0],\
-				["supplyDrop",  0, 1, 0],\
-				["va",  0, 0, 0],\
-				["vas",  0, 0, 0],\
-				["vehicleCrew", 0, 2, 0],\
-				["vehicleRespawn", 0, 0, 0],\
-				["viewDistance", 0, 1, 0],\
-				["voiceControl", 2, 1, 0],\
-				["vonHint", 0, 2, 0],\
-				["zeusMission", 0, 0, 0]\
-			]
