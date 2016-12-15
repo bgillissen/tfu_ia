@@ -11,7 +11,7 @@ Description:
 	call compile format ["PARAMS_%1 = %2", (configName ((missionConfigFile >> "Params") select _forEachIndex)), (paramsArray _x)];
 } forEach(paramsArray);
 
-//Know feaTures
+//define known features and how/where they must be init
 #define FEATS [\//folder, server, player, headless (0: none, 1: call, 2: spawn)
 				["baseProtection", 0, 1, 0],\
 				["cleanup", 2, 0, 0],\
