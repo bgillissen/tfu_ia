@@ -1,4 +1,4 @@
-class AO_enable {
+class AO {
 	title = "Main AO";
 	values[] = {1,0};
 	texts[] = {"Enabled","Disabled"};
@@ -12,7 +12,7 @@ class AO_cas
 	default = 1;
 };
 
-class AO_enemyLeftThreshhold {
+class AO_unitThreshold {
 	title = "Main AO Enemy Left Threshold";
 	values[] = {1,2,3,4,5,6,7,8,9,10};
 	texts[] = {"1","2","3","4","5","6","7","8","9","10"};
@@ -40,11 +40,39 @@ class AO_groupPatrol {
 	default = 5;
 };
 
-class AO_SniperPatrol {
+class AO_sniperPatrol {
 	title = "Sniper Teams Patrolling Main AO";
 	values[] = {0,1,2,3,4};
 	texts[] = {"Disabled,1,2,3,4};
 	default = 3;
+};
+
+class AO_aaPatrol {
+	title = "AA Vehicles Patrolling Main AO";
+	values[] = {0,1,2,3,4,5};
+	texts[] = {"Disabled", 1,2,3,4,5};
+	default = 2;
+};
+
+class AO_tankPatrol {
+	title = "Tank Patrolling Main AO";
+	values[] = {0,1,2,3};
+	texts[] = {"Disabled,1,2,3};
+	default = 2;
+};
+
+class AO_apcPatrol {
+	title = "APC Patrolling Main AO";
+	values[] = {0,1,2,3};
+	texts[] = {"Disabled,1,2,3};
+	default = 2;
+};
+
+class AO_carPatrol {
+	title = "Car Patrolling Main AO";
+	values[] = {0,1,2,3};
+	texts[] = {"Disabled,1,2,3};
+	default = 2;
 };
 
 class AO_statics {
@@ -60,20 +88,6 @@ class AO_overwatchPatrol {
 	texts[] = {"Disabled",1,2,3,4,5,6,7,8};
 	default = 4;
 };	
-
-class AO_vehPatrol {
-	title = "Vehicles Patrolling Main AO";
-	values[] = {0,1,2,3,4,5,6,7};
-	texts[] = {"Disabled",1,2,3,4,5,6,7};
-	default = 3;
-};
-
-class AO_aaPatrol {
-	title = "AA Vehicles Patrolling Main AO";
-	values[] = {0,1,2,3,4,5};
-	texts[] = {"Disabled", 1,2,3,4,5};
-	default = 2;
-};		
 
 class AO_airPatrolProb {
 	title = "% Chance Of Air Vehicle Patrolling Main AO";

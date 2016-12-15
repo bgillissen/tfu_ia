@@ -35,15 +35,24 @@ VEH_except_heli = [];
 VEH_except_plane = [];
 VEH_except_tank = [];
 VEH_uav = [];
+IA_radioTower = [];
+IA_pilot = [];
+IA_cas = [];
+IA_patrolGroups []
+IA_sniperGroups []
+IA_aaTank []
+IA_arti []
+IA_statics []
+IA_tank []
+IA_apc []
+IA_car []
+IA_airPatrol []
+IA_garrison = [];
 
 //detect loaded Mods
 call compile preprocessFile "mods\vanilla.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "????") ) then { 
-	call compile preprocessFile "mods\tfar.sqf"; 
-};
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then { 
-	call compile preprocessFile "mods\rhs.sqf"; 
-};
-if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then { 
-	call compile preprocessFile "mods\ace.sqf"; 
-};
+if ( isClass(configFile >> "CfgPatches" >> "????") ) then call compile preprocessFile "mods\tfar.sqf";
+if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsUSAF.sqf";
+if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsAFRF.sqf"; 
+if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsGREF.sqf";
+if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace.sqf";

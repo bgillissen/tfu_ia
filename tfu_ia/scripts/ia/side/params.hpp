@@ -1,4 +1,4 @@
-class Side_enable {
+class SIDE {
 	title = "Enable Side Objectives?";
 	values[] = {1,0};
 	texts[] = {"Enabled","Disabled"};

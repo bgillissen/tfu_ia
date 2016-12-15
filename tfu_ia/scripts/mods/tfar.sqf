@@ -4,7 +4,7 @@ Author:
 	Ben
 Description:
 	Run once by server and players.
-	define tfar gears we are going to use.
+	define tfar settings and the gears we are going to use.
 */
 
 #define MOD_tfar true;
@@ -28,6 +28,4 @@ TF_terrain_interception_coefficient = 1;
 
 #define TFAR_SR ["tf_anprc152"]
 
-[[], [], [], [], [], [], [], [], [], [], [], [], TFAR_LR, TFAR_SR, [], [], [], []] call common_fnc_implentAssets;
-
-call compile preprocessFile "feats\tfar\common.sqf";
+[[], [], [TFAR_LR, TFAR_SR, [], []], [], [], [], []] call common_fnc_implentAssets;

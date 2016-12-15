@@ -7,7 +7,8 @@ Description:
 	define vanilla assets we are going to use, roles/gears for restrictions, vehicles rewards/features/restrictions
 */
 
-private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards"];
+private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
+         "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
 
 #define MOD_vanilla true;
 
@@ -69,21 +70,41 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards"];
 
 #define OPFOR_rewards = []
 
+//------------------------------------------------------------ IA RadioTowers
+
+#define VANILLA_RT ["Land_TTowerBig_2_F"]
+
 //------------------------------------------------------------ BLUFOR IA Units
 
+#define BLUFOR_pilot []
+#define BLUFOR_crew []
+#define BLUFOR_cas []
 #define BLUFOR_patrolGroups []
 #define BLUFOR_sniperGroups []
-#define BLUFOR_AA []
-#define BLUFOR_statics []
-#define BLUFOR_VEH []
+#define BLUFOR_aaTank []
+#define BLUFOR_arti []
+#define BLUFOR_static []
+#define BLUFOR_tank []
+#define BLUFOR_apc []
+#define BLUFOR_car []
+#define BLUFOR_airPatrol []
+#define BLUFOR_garrison []
 
 //------------------------------------------------------------ OPFOR IA Units
 
+#define OPFOR_pilot []
+#define OPFOR_crew []
+#define OPFOR_cas []
 #define OPFOR_patrolGroups []
 #define OPFOR_sniperGroups []
-#define OPFOR_AA []
-#define OPFOR_statics []
-#define OPFOR_VEH []
+#define OPFOR_aaTank []
+#define OPFOR_arti []
+#define OPFOR_static []
+#define OPFOR_tank []
+#define OPFOR_apc []
+#define OPFOR_car []
+#define OPFOR_airPatrol []
+#define OPFOR_garrison []
 
 //------------------------------------------------------------ IMPLENTING ASSETS
 
@@ -94,25 +115,71 @@ _ammo = [];
 _rewards = [];
 _uav = [];
 
-if ( VA_blufor_backpacks ) then { _backpacks = BLUFOR_backpacks; };
-if ( VA_blufor_items ) then { _items = BLUFOR_items; };
+if ( VA_blufor_backpacks ) then { _backpacks append BLUFOR_backpacks; };
+if ( VA_blufor_items ) then { _items append BLUFOR_items; };
 if ( VA_blufor_weapons ) then { 
-	_weapons = BLUFOR_weapons;
-	_ammo = BLUFOR_ammo;
+	_weapons append BLUFOR_weapons;
+	_ammo append BLUFOR_ammo;
 };
-if ( VA_opfor_backpacks ) then { _backpacks = _backpacks + OPFOR_backpacks; };
-if ( VA_opfor_items ) then { _items = _items + OPFOR_items; };
+if ( VA_opfor_backpacks ) then { _backpacks append OPFOR_backpacks; };
+if ( VA_opfor_items ) then { _items append OPFOR_items; };
 if ( VA_opfor_weapons ) then { 
-	_weapons = _weapons + OPFOR_weapons;
-	_ammo = _ammo + OPFOR_ammo;
+	_weapons append OPFOR_weapons;
+	_ammo append OPFOR_ammo;
 };
 
-if ( REWARD_blufor ) then { _rewards = BLUFOR_rewards; };
-if ( REWARD_opfor ) then { _rewards = _rewards + OPFOR_rewards; };
+if ( REWARD_blufor ) then { _rewards append BLUFOR_rewards; };
+if ( REWARD_opfor ) then { _rewards append OPFOR_rewards; };
+
+if ( IA_spawnVanilla ) then {
+	if ( PLAYER_SIDE == "blufor" ) then {
+		_iaPilot = OPFOR_pilot;
+		_iaCrew = OPFOR_crew;
+		_iaCAS = OPFOR_cas;
+		_iaPGroup = OPFOR_patrolGroup;
+		_iaSGroup = OPFOR_sniperGroup;
+		_iaArti = OPFOR_arti;
+		_iaAA = OPFOR_aaTank;
+		_iaStatic = OPFOR_static;
+		_iaTank = OPFOR_tank;
+		_iaAPC = OPFOR_apc;
+		_iaCar = OPFOR_car;
+		_iaAir = OPFOR_airPatrol;
+		_iaGarrison = OPFOR_garrison;
+	} else {
+		_iaPilot = BLUFOR_pilot;
+		_iaCrew = BLUFOR_crew;
+		_iaCAS = BLUFOR_cas;
+		_iaSGroup = BLUFOR_sniperGroup;
+		_iaArti = BLUFOR_arti;
+		_iaAA = BLUFOR_aaTank;
+		_iaStatic = BLUFOR_static;
+		_iaTank = BLUFOR_tank;
+		_iaAPC = BLUFOR_apc;
+		_iaCar = BLUFOR_car;
+		_iaAir = BLUFOR_airPatrol;
+		_iaGarrison = BLUFOR_garrison;
+	};
+} else {
+	_iaPilot = [];
+	_iaCrew = [];
+	_iaCAS = [];
+	_iaPGroup = [];
+	_iaSGroup = [];
+	_iaArti = [];
+	_iaAA = [];
+	_iaStatic = [];
+	_iaTank = [];
+	_iaAPC = [];
+	_iaCar = [];
+	_iaAir = [];
+	_iaGarrison = [];
+};
 
 [
-	VANILLA_pilot, VANILLA_crew, VANILLA_mg, VANILLA_at, VANILLA_marksman, VANILLA_sniper, VANILLA_medic, VANILLA_officer, VANILLA_arti,
-	VANILLA_exception_heli, VANILLA_exception_plane, VANILLA_exception_tank,
-	_backpacks, _items, _weapons, _ammo,
-	VANILLA_supplyDrop, _rewards, VANILLA_UAV
+	[VANILLA_pilot, VANILLA_crew, VANILLA_mg, VANILLA_at, VANILLA_marksman, VANILLA_sniper, VANILLA_medic, VANILLA_officer, VANILLA_arti],
+	[VANILLA_exception_heli, VANILLA_exception_plane, VANILLA_exception_tank],
+	[_backpacks, _items, _weapons, _ammo],
+	VANILLA_supplyDrop, _rewards, VANILLA_UAV, 
+	[VANILLA_RadioTower, _iaPilot, _iaCrew, _iaCAS, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
 ] call common_fnc_implentAssets;

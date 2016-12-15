@@ -7,13 +7,13 @@ Description:
 	This script add the key binding to plugs in/out the earplugs
 */
 
-if ( PARAMS_hearPlugs == 0 ) then { exitWith{}; };
+if ( PARAMS_hearPlugs == 0 ) then exitWith{};
 
 hearPlug_state = 0; 
 
 hearPlug_swapSate = {
 	params ["_keyCode"];
-	if ( _keycode != 197 ) then { exitWith{}; };        
+	if ( _keycode != 197 ) then exitWith{};        
  	switch (hearPlug_state) do {
     	case 1: { hearPlug_state = 0; 2 fadeSound 1; player groupChat 'EarPlugs removed'; };
 		case 0: { hearPlug_state = 1; 2 fadeSound 0.2; player groupChat 'Earplugs fitted';  };
