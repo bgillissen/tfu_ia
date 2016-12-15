@@ -75,7 +75,7 @@ class AO_carPatrol {
 	default = 2;
 };
 
-class AO_statics {
+class AO_static {
 	title = "Static Weapons in the Main AO";
 	values[] = {0,1,2,3,4,5};
 	texts[] = {"Disabled",1,2,3,4,5};

@@ -60,7 +60,6 @@ class CfgFunctions {
 	#include "feats\viewDistance\cfgFunctions.hpp"
 	#include "feats\voiceControl\cfgFunctions.hpp"
 	#include "feats\zeusMission\cfgFunctions.hpp"
-	#include "ia\cfgFunctions.hpp"
 	#include "ia\ao\cfgFunctions.hpp"
 	#include "ia\fob\cfgFunctions.hpp"
 	#include "ia\side\cfgFunctions.hpp"

@@ -11,9 +11,6 @@ Description:
 #define CTXT_PLAYER false
 #define CTXT "SERVER"
 
-//BIS group management
-["Initialize", [true]] call BIS_fnc_dynamicGroups;
-
 if ( (IND_ARE_ENEMY && PLAYER_SIDE == "blufor") || (!IND_ARE_ENEMY && PLAYER_SIDE == "opfor") ) then {
 	//ind against west
 	independent setFriend [east, 1];
@@ -28,11 +25,8 @@ if ( (IND_ARE_ENEMY && PLAYER_SIDE == "blufor") || (!IND_ARE_ENEMY && PLAYER_SID
 	west setFriend [independent, 1];
 };
 
-//revive
-call compile preprocessFile "feats\revive\server.sqf";
-
-//Headless clients load balancing
-[] execVM "feats\loadBalance\server.sqf";
+//features init
+[] call common_fnc_featInit;
 
 //Invade & Annex Missions
 zeusMission = false;

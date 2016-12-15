@@ -48,7 +48,7 @@ if ( count _ia > 0 ) then  {
 	if (count _ia select 5 > 0) then IA_sniperGroups append _ia select 5;
 	if (count _ia select 6 > 0) then IA_aaTank append _ia select 6;
 	if (count _ia select 7 > 0) then IA_arti append _ia select 7;
-	if (count _ia select 8 > 0) then IA_statics append _ia select 8;
+	if (count _ia select 8 > 0) then IA_static append _ia select 8;
 	if (count _ia select 9 > 0) then IA_tank append _ia select 9;
 	if (count _ia select 10 > 0) then IA_apc append _ia select 10;
 	if (count _ia select 11 > 0) then IA_car append _ia select 11;
