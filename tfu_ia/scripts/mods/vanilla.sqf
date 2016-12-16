@@ -27,6 +27,13 @@ private ["_backpacks", "_weapons", "_ammo", "_items", "_rewards",
 #define OPFOR_ammo []
 #define OPFOR_items []
 
+//------------------------------------------------------------ COMMON ASSETS
+
+#define VANILLA_backpacks []
+#define VANILLA_weapons []
+#define VANILLA_ammo []
+#define VANILLA_items []
+
 //------------------------------------------------------------ GEAR RESTRICTIONS
 
 #define VANILLA_restricted_launcher []
@@ -41,23 +48,29 @@ private ["_backpacks", "_weapons", "_ammo", "_items", "_rewards",
 						 
 #define BLUFOR_cargoBackpacks []
 #define BLUFOR_cargoWeapons []
-#define BLUFOR_cargoAmmo [["SatchelCharge_Remote_Mag", 5],\
-						  ["DemoCharge_Remote_Mag", 10]]
-#define BLUFOR_cargoItems [["Laserdesignator", 5],\
-						   ["Laserbatteries", 5],\
-						   ["MineDetector", 5],\
-						   ["NVGoggles", 5],\
-						   ["FirstAidKit", 20],\
-						   ["Medikit", 3],\
-						   ["ToolKit", 3]]
+#define BLUFOR_cargoAmmo []]
+#define BLUFOR_cargoItems []
 
 //------------------------------------------------------------ OPFOR CARGO
 
 #define OPFOR_cargoBackpacks []
 #define OPFOR_cargoWeapons []
-#define OPFOR_cargoAmmo [["SatchelCharge_Remote_Mag", 5],\
-			   		  	 ["DemoCharge_Remote_Mag", 10]]
-#define OPFOR_cargoItems BLUFOR_cargoItems
+#define OPFOR_cargoAmmo []
+#define OPFOR_cargoItems []
+
+//------------------------------------------------------------ COMMON CARGO
+						 
+#define VANILLA_cargoBackpacks []
+#define VANILLA_cargoWeapons []
+#define VANILLA_cargoAmmo [["SatchelCharge_Remote_Mag", 5],\
+						   ["DemoCharge_Remote_Mag", 10]]
+#define VANILLA_cargoItems [["Laserdesignator", 5],\
+						    ["Laserbatteries", 5],\
+						    ["MineDetector", 5],\
+						    ["NVGoggles", 5],\
+						    ["FirstAidKit", 20],\
+						    ["Medikit", 3],\
+						    ["ToolKit", 3]]
 
 //------------------------------------------------------------ VEHICLE EXCEPTION
 
@@ -132,14 +145,14 @@ private ["_backpacks", "_weapons", "_ammo", "_items", "_rewards",
 
 //------------------------------------------------------------ IMPLENTING ASSETS
 
-_backpacks = [];
-_items = [];
-_weapons = [];
-_ammo = [];
-_cargoBackpacks = [];
-_cargoItems = [];
-_cargoWeapons = [];
-_cargoAmmo = [];
+_backpacks = VANILLA_backpacks;
+_items = VANILLA_items;
+_weapons = VANILLA_weapons;
+_ammo = VANILLA_ammo;
+_cargoBackpacks = VANILLA_cargoBackpacks;;
+_cargoItems = VANILLA_cargoItems;;
+_cargoWeapons = VANILLA_cargoWeapons;;
+_cargoAmmo = VANILLA_cargoAmmo;;
 _rewards = [];
 
 if ( VA_blufor_backpacks ) then { 

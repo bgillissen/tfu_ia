@@ -26,7 +26,7 @@ if ( (IND_ARE_ENEMY && PLAYER_SIDE == "blufor") || (!IND_ARE_ENEMY && PLAYER_SID
 };
 
 //features init
-[] call common_fnc_featInit;
+[CTXT, "init"] call common_fnc_featInit;
 
 //Invade & Annex Missions
 zeusMission = false;

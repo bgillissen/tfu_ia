@@ -53,6 +53,7 @@ class RscTitles {
 //------------------------- Functions
 class CfgFunctions {
 	#include "common\cfgFunctions.hpp"
+	#include "feats\dynBillboards\cfgFunctions.hpp"
 	#include "feats\radioFreq\cfgFunctions.hpp"
 	#include "feats\va\cfgFunctions.hpp"
 	#include "feats\vas\cfgFunctions.hpp"

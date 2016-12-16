@@ -12,35 +12,36 @@ Description:
 } forEach(paramsArray);
 
 //define known features and how/where they must be init
-#define FEATS [\//folder, server, player, headless (0: none, 1: call, 2: spawn)
-				["baseProtection", 0, 1, 0],\
-				["cleanup", 2, 0, 0],\
-				["dynBillboards", 0, 0, 0],\
-				["earPlugs", 0, 1, 0],\
-				["filteredArsenal", 0, 1, 0],\
-				["gearRestrictions", 0, 2, 0],\
-				["groupManagement", 1, 1, 0],\
-				["intro", 0, 1, 0],\
-				["loadBalance", 2, 0, 0],\
-				["mapTracker", 0, 2, 0],\
-				["radioFreq", 0, 1, 0],\
-				["restrictArty", 0, 1, 0],\
-				["restrictHeli", 0, 1, 0],\
-				["restrictPlane", 0, 1, 0],\
-				["restrictTank", 0, 1, 0],\
-				["revive",  1, 1, 0],\
-				["squadHint",  0, 1, 0],\
-				["supplyCrate",  0, 0, 0],\
-				["supplyDrop",  0, 1, 0],\
-				["va",  0, 0, 0],\
-				["vas",  0, 0, 0],\
-				["vehicleCrew", 0, 2, 0],\
-				/*["vehicleRespawn", 0, 0, 0],\*/
-				["vehicleRespawn2", 2, 0, 0],\
-				["viewDistance", 0, 1, 0],\
-				["voiceControl", 2, 1, 0],\
-				["vonHint", 0, 2, 0],\
-				["zeusMission", 0, 0, 0]\
+#define FEATS [\//folder, server[init,onRespawn], player[init,onRespawn], headless[init,onRespawn] (0: none, 1: call, 2: spawn)
+				["baseProtection", 	[0,0], [1,0], [0,0]],\
+				["cleanup", 		[2,0], [0,0], [0,0]],\
+				["dynBillboards", 	[0,0], [0,1], [0,0]],\
+				["earPlugs", 		[0,0], [1,0], [0,0]],\
+				["fatigue", 		[0,0], [0,1], [0,0]],\
+				["filteredArsenal", [0,0], [1,0], [0,0]],\
+				["gearRestrictions",[0,0], [2,0], [0,0]],\
+				["groupManagement", [1,0], [1,0], [0,0]],\
+				["intro", 			[0,0], [1,0], [0,0]],\
+				["loadBalance", 	[2,0], [0,0], [0,0]],\
+				["mapTracker", 		[0,0], [2,0], [0,0]],\
+				["radioFreq", 		[0,0], [1,1], [0,0]],\
+				["restrictArty", 	[0,0], [1,0], [0,0]],\
+				["restrictHeli", 	[0,0], [1,0], [0,0]],\
+				["restrictPlane", 	[0,0], [1,0], [0,0]],\
+				["restrictTank", 	[0,0], [1,0], [0,0]],\
+				["revive",  		[1,0], [1,0], [0,0]],\
+				["squadHint",  		[0,0], [1,0], [0,0]],\
+				["supplyCrate",  	[0,0], [0,0], [0,0]],\
+				["supplyDrop",  	[0,0], [1,1], [0,0]],\
+				["va",  			[0,0], [0,0], [0,0]],\
+				["vas",  			[0,0], [0,0], [0,0]],\
+				["vehicleCrew", 	[0,0], [2,0], [0,0]],\
+			  /*["vehicleRespawn",	[0,0], [0,0], [0,0]],\*/
+				["vehicleRespawn2", [2,0], [0,0], [0,0]],\
+				["viewDistance", 	[0,0], [1,0], [0,0]],\
+				["voiceControl", 	[2,0], [1,0], [0,0]],\
+				["vonHint", 		[0,0], [2,0], [0,0]],\
+				["zeusMission", 	[0,0], [0,0], [0,0]]\
 			]
 
 //initialize assets arrays

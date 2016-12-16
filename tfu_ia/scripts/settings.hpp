@@ -17,6 +17,12 @@ Description:
 //vonHint, displayed teamSpeak address
 #define TSADDR "ts.taskforceunicorn.com"
 
+//dynBillboards, mode (random or string)
+#define DB_left "random"
+#define DB_right "random"
+#define DB_path "media\billboards\%1.paa"
+#define DB_totRandom 6
+
 //radioFreq, Frequencies for the radio channels
 #define TFAR_SR_FREQ_1 "300"
 #define TFAR_SR_FREQ_2 "310"

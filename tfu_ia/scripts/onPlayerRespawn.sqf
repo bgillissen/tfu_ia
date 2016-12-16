@@ -9,16 +9,7 @@ Description:
 waitUntil {!isNull player};
 waitUntil {player == player};
 
-//fatigue param
-if (PARAMS_Fatigue == 0) then { player enableFatigue FALSE; };
-
-//add supplyDrop action
-if (PARAMS_supplyDrop == 1) then { call supplyDrop_onRespawn; };
-
-#ifdef MOD_tfar
-	//to be sure the anprc152 has not been replaced
-	if ( PARAMS_radioFreqPreset == 1 ) then { call tfar_onRespawn; };
-#endif
-
-//replace right billboards texture
-call compile preprocessFile "feats\dynBillboards\onRespawn.sqf";
+//features onRespawn local
+[CTXT, "onRespawn"] call common_fnc_featInit;
+//features onRespawn server
+["SERVER", "onRespawn"] call common_fnc_featInit;

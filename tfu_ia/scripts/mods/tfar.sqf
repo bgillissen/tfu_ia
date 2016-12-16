@@ -9,6 +9,10 @@ Description:
 
 #define MOD_tfar true;
 
+//force right billboard to display our tfar tips
+#undef DB_right
+#define DB_right "tfar"
+
 //so player do not spawn with longrange radio as backpacks
 tf_no_auto_long_range_radio = true;
 
