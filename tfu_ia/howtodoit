@@ -30,7 +30,7 @@ to do that i need :
 	in map settings assign a bearing to each markers  (can maybe use the bearing of the markers)
 	pick randomly a vehicle in the pool for each markers during server init
 	setup the vehicle (unlimited ammo, no fuel, no damage, locked, clear cargo, camo, model)
-	setup the gunner (skill)
+	setup the gunner (side, skill)
 
 5 - dynamic base atmosphere feature (dynBaseAtmo) to spawn the locked vehicle, npc, object in base
  	need markers placed in the mission (BA_loc1, BA_loc2, ...)
