@@ -7,7 +7,8 @@ Description:
 	define vanilla assets we are going to use, roles/gears for restrictions, vehicles rewards/features/restrictions
 */
 
-private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
+private ["_backpacks", "_weapons", "_ammo", "_items", "_rewards",
+         "_cargoBackpacks", "_cargoWeapons", "_cargoAmmo", "_cargoItems",
          "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
 
 #define MOD_vanilla true;
@@ -36,6 +37,28 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
 #define VANILLA_restricted_sScope []
 #define VANILLA_restricted_oScope []
 
+//------------------------------------------------------------ BLUFOR CARGO
+						 
+#define BLUFOR_cargoBackpacks []
+#define BLUFOR_cargoWeapons []
+#define BLUFOR_cargoAmmo [["SatchelCharge_Remote_Mag", 5],\
+						  ["DemoCharge_Remote_Mag", 10]]
+#define BLUFOR_cargoItems [["Laserdesignator", 5],\
+						   ["Laserbatteries", 5],\
+						   ["MineDetector", 5],\
+						   ["NVGoggles", 5],\
+						   ["FirstAidKit", 20],\
+						   ["Medikit", 3],\
+						   ["ToolKit", 3]]
+
+//------------------------------------------------------------ OPFOR CARGO
+
+#define OPFOR_cargoBackpacks []
+#define OPFOR_cargoWeapons []
+#define OPFOR_cargoAmmo [["SatchelCharge_Remote_Mag", 5],\
+			   		  	 ["DemoCharge_Remote_Mag", 10]]
+#define OPFOR_cargoItems BLUFOR_cargoItems
+
 //------------------------------------------------------------ VEHICLE EXCEPTION
 
 #define VANILLA_exception_heli []
@@ -61,6 +84,7 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
 //------------------------------------------------------------ SUPPLY DROP
 
 #define VANILLA_supplyDrop []
+#define VANILLA_supplyCrates []
 
 //------------------------------------------------------------ BLUFOR REWARDS
 
@@ -112,24 +136,44 @@ _backpacks = [];
 _items = [];
 _weapons = [];
 _ammo = [];
+_cargoBackpacks = [];
+_cargoItems = [];
+_cargoWeapons = [];
+_cargoAmmo = [];
 _rewards = [];
-_uav = [];
 
-if ( VA_blufor_backpacks ) then { _backpacks append BLUFOR_backpacks; };
-if ( VA_blufor_items ) then { _items append BLUFOR_items; };
+if ( VA_blufor_backpacks ) then { 
+	_backpacks append BLUFOR_backpacks; 
+	_cargoBackpacks append BLUFOR_cargoBackpacks;
+};
+if ( VA_blufor_items ) then { 
+	_items append BLUFOR_items;
+	_cargoItems append BLUFOR_cargoItems; 
+};
 if ( VA_blufor_weapons ) then { 
 	_weapons append BLUFOR_weapons;
 	_ammo append BLUFOR_ammo;
+	_cargoWeapons append BLUFOR_cargoWeapons;
+	_cargoAmmo append BLUFOR_cargoAmmo;
 };
-if ( VA_opfor_backpacks ) then { _backpacks append OPFOR_backpacks; };
-if ( VA_opfor_items ) then { _items append OPFOR_items; };
+if ( VA_opfor_backpacks ) then { 
+	_backpacks append OPFOR_backpacks; 
+	_cargoBackpacks append OPFOR_cargoBackpacks;
+};
+if ( VA_opfor_items ) then { 
+	_items append OPFOR_items; 
+	_cargoItems append OPFOR_cargoItems;
+};
 if ( VA_opfor_weapons ) then { 
 	_weapons append OPFOR_weapons;
 	_ammo append OPFOR_ammo;
+	_cargoWeapons append OPFOR_cargoWeapons;
+	_cargoAmmo append OPFOR_cargoAmmo;
 };
 
 if ( REWARD_blufor ) then { _rewards append BLUFOR_rewards; };
 if ( REWARD_opfor ) then { _rewards append OPFOR_rewards; };
+
 
 if ( IA_spawnVanilla ) then {
 	if ( PLAYER_SIDE == "blufor" ) then {
@@ -180,6 +224,7 @@ if ( IA_spawnVanilla ) then {
 	[VANILLA_pilot, VANILLA_crew, VANILLA_mg, VANILLA_at, VANILLA_marksman, VANILLA_sniper, VANILLA_medic, VANILLA_officer, VANILLA_arti],
 	[VANILLA_exception_heli, VANILLA_exception_plane, VANILLA_exception_tank],
 	[_backpacks, _items, _weapons, _ammo],
-	VANILLA_supplyDrop, _rewards, VANILLA_UAV, 
+	[_cargoBackpacks, _cargoItems, _cargoWeapons, _cargoAmmo],
+	[VANILLA_supplyDrop, VANILLA_supplyCrates], _rewards, VANILLA_UAV, 
 	[VANILLA_RadioTower, _iaPilot, _iaCrew, _iaCAS, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
 ] call common_fnc_implentAssets;

@@ -8,9 +8,10 @@ Description:
 */
 
 private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
+         "_cargoBackpacks", "_cargoWeapons", "_cargoAmmo", "_cargoItems",
          "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
 
-#define MOD_rhs true;
+#define MOD_rhsGREF true;
 
 //------------------------------------------------------------ GEAR
 
@@ -35,6 +36,13 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
 #define GREF_exception_plane []
 #define GREF_exception_tank []
 
+//------------------------------------------------------------ CARGO
+						 
+#define GREF_cargoBackpacks []
+#define GREF_cargoWeapons []
+#define GREF_cargoAmmo []
+#define GREF_cargoItems []
+
 //------------------------------------------------------------ UNIT CLASSES FOR RESTRICTIONS
 
 #define GREF_pilot []
@@ -48,12 +56,10 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
 #define GREF_arti ["rhsusf_army_ocp_fso",\
 			 	  "rhsusf_army_ocp_crewman"]
 
-//------------------------------------------------------------ SUPPLY DROP VEHICLES
+//------------------------------------------------------------ SUPPLY DROP
 
-#define GREF_supplyDrop ["RHS_UH60M",\ 
-						 "RHS_CH_47F_10",\ 
-						 "rhsusf_CH53E_USMC_D",\ 
-						 "RHS_C130J"]
+#define GREF_supplyDrop []
+#define GREF_supplyCrates []
 
 //------------------------------------------------------------ REWARDS
 
@@ -85,13 +91,25 @@ _backpacks = [];
 _items = [];
 _weapons = [];
 _ammo = [];
+_cargoBackpacks = [];
+_cargoItems = [];
+_cargoWeapons = [];
+_cargoAmmo = [];
 _rewards = [];
 
-if ( VA_gref_backpacks ) then { _backpacks append _backpacks; };
-if ( VA_gref_items ) then { _items append AFRF_items; };
+if ( VA_gref_backpacks ) then { 
+	_backpacks append _backpacks;
+	_cargoBackpacks append GREF_cargoBackpacks;
+};
+if ( VA_gref_items ) then { 
+	_items append AFRF_items; 
+	_cargoItems append GREF_cargoItems;
+};
 if ( VA_gref_weapons ) then { 
 	_weapons append GREF_weapons;
 	_ammo append GREF_ammo;
+	_cargoWeapons append GREF_cargoWeapons;
+	_cargoAmmo append GREF_cargoAmmo;
 };
 
 if ( REWARD_gref ) then { _rewards append GREF_rewards; };
@@ -130,6 +148,7 @@ if ( IA_spawnGREF && IND_ARE_ENEMY ) then {
 	[GREF_pilot, GREF_crew, GREF_mg, GREF_at, GREF_marksman, GREF_sniper, GREF_medic, GREF_officer, GREF_arti],
 	[GREF_exception_heli, GREF_exception_plane, GREF_exception_tank],
 	[_backpacks, _items, _weapons, _ammo],
-	GREF_supplyDrop, _rewards, [], 
+	[_cargoBackpacks, _cargoItems, _cargoWeapons, _cargoAmmo],
+	[GREF_supplyDrop, GREF_supplyCrates], _rewards, [], 
 	[GREF_RT, _iaPilot, _iaCrew, _iaCAS, _iaPGroup, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
 ] call common_fnc_implentAssets;

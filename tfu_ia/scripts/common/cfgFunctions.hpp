@@ -20,6 +20,7 @@ class common {
 		class globalSideChat { file="common\globalSideChat.sqf"; };
 		class implentAssets { file="common\implentAssets.sqf"; };
 		class featInit { file="common\featInit.sqf"; };
+		class setCargo { file="common\setCargo.sqf"; };
 		class setSkill { file="common\setSkill.sqf"; };
 	};
 };

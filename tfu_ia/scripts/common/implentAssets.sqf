@@ -6,7 +6,7 @@ Description:
 	This is used to append the assets added by a loaded mod to our list of available assets.
 */
 
-param ["_units", "_veh", "_va", "_supplyDrop", "_rewards" , "_uav", "_ia"];
+param ["_units", "_veh", "_va", "_cargo", "_supply", "_rewards" , "_uav", "_ia"];
 
 if ( count _units > 0 ) then  {
 	if (count _units select 0 > 0) then UNIT_pilot append _units select 0;
@@ -21,9 +21,9 @@ if ( count _units > 0 ) then  {
 };
 
 if ( count _veh > 0 ) then  {
-	if (count _veh select 0 > 0) then VEH_except_heli append _veh select 0;
-	if (count _veh select 1 > 0) then VEH_except_plane append _veh select 1;
-	if (count _veh select 2 > 0) then VEH_except_tank append _veh select 2;
+	if (count _veh select 0 > 0) then VEH_allowed_heli append _veh select 0;
+	if (count _veh select 1 > 0) then VEH_allowed_plane append _veh select 1;
+	if (count _veh select 2 > 0) then VEH_allowed_tank append _veh select 2;
 };
 
 if ( (PARAMS_filterArsenal == 1) && (count _va > 0) ) then {
@@ -33,7 +33,17 @@ if ( (PARAMS_filterArsenal == 1) && (count _va > 0) ) then {
 	if (count _va select 3 > 0) then VA_ammo append _va select 3;
 };
 
-if ( PARAMS_supplyDrop == 1 && (count _supplyDrop > 0) then { VEH_supplyDrop append _supplyDrop; };
+if ( count _cargo > 0) then {
+	if (count _cargo select 0 > 0) then CARGO_backpacks append _cargo select 0;
+	if (count _cargo select 1 > 0) then CARGO_items append _cargo select 1; 
+	if (count _cargo select 2 > 0) then CARGO_weapons append _cargo select 2;
+	if (count _cargo select 3 > 0) then CARGO_ammo append _cargo select 3;
+};
+
+if ( PARAMS_supplyDrop == 1 && count _supply > 0 ) then {
+	if (count (_supply select 0) > 0) then VEH_supplyDrop append (_supply select 0);
+	if (count (_supply select 1) > 0) then VEH_supplyCrates append (_supply select 1);
+};
 
 if ( (PARAMS_SIDE == 1 || PARAMS_FOB == 1) && (count _rewards > 0) ) then { VEH_rewards append _rewards; };
 

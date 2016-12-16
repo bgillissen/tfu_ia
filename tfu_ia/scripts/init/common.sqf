@@ -35,7 +35,8 @@ Description:
 				["va",  0, 0, 0],\
 				["vas",  0, 0, 0],\
 				["vehicleCrew", 0, 2, 0],\
-				["vehicleRespawn", 0, 0, 0],\
+				/*["vehicleRespawn", 0, 0, 0],\*/
+				["vehicleRespawn2", 2, 0, 0],\
 				["viewDistance", 0, 1, 0],\
 				["voiceControl", 2, 1, 0],\
 				["vonHint", 0, 2, 0],\
@@ -52,15 +53,20 @@ UNIT_sniper = [];
 UNIT_medic = [];
 UNIT_officer = [];
 UNIT_arti = [];
+
 VA_backpacks = [];
 VA_items = [];
 VA_weapons = [];
 VA_ammo = [];
-VEH_rewards = [];
-VEH_except_heli = [];
-VEH_except_plane = [];
-VEH_except_tank = [];
+
+VEH_allowed_heli = [];
+VEH_allowed_plane = [];
+VEH_allowed_tank = [];
 VEH_uav = [];
+VEH_rewards = [];
+VEH_supplyDrop = [];
+VEH_supplyCrates = [];
+
 IA_radioTower = [];
 IA_pilot = [];
 IA_cas = [];
