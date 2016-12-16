@@ -82,7 +82,7 @@ IA_car []
 IA_airPatrol []
 IA_garrison = [];
 
-//detect loaded Mods
+//load detected mods assets
 call compile preprocessFile "mods\vanilla.sqf";
 if ( isClass(configFile >> "CfgPatches" >> "????") ) then call compile preprocessFile "mods\tfar.sqf";
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsUSAF.sqf";

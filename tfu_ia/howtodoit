@@ -1,0 +1,101 @@
+
+HOWTO one mission by map for all mods combo [[+TFAR][+RHS][+ACE]]
+to do that i need :
+1 - to only place vanilla BLUFOR units in the editor
+		change base npc to player side on server init
+		change player side on player init
+		
+2 - a dynamic Loadout feature (dynLoadout) to change units loadout on player init
+	  	need a list of roles (hq, sl, tl, medic, etc...)
+	  	foreach roles each mod append things into each slot, so needed slots :
+	  		uniform, inUniform, backpack, inBackpack, vest, inVest, helmet, launcher, launcherOptic, 
+	  		sideArm, sideArmSupressor, sideArmOptic, weapon, weaponSupressor, weaponOptic, weaponHandle, weaponAcc
+	  		comm, terminal, bino, nv
+	  	mods must be able to blacklist items (ex: ace blacklist faks, medikit, toolKit) 
+
+3 - dynamic base assets feature (dynBaseAsset) to spawn the vehicles available to players on server init
+		need a list of markers in the map (BV_loc1, BV_loc2)
+		in mod settings add vehicles to their pool type, so needed pools : 
+			BV_car, BV_apc, BV_tank,  BV_placeCAS, BV_placeAA, BV_planeTransport
+			BV_heliSmall, BV_heliMedium, BV_heliMedEvac, BV_heliBig, BV_heliAttack, 
+			BV_boatSmall, BV_boatAttack, BV_boatBig 
+		in map settings assign vehicles markers to base vehicle pools and set a bearing
+		pick randomly a vehicle in assigned pool for each markers during server init
+		setup the vehicle (cargo)
+		append to vehicle monitor stack
+		
+4 - dynamic base defence feature (dynBaseDefence) to spawn the AA tank in base
+	need a list of markers in the map (BD_loc1, BB_loc2)
+	in mod settings add vehicles to the pool (BD_pool)
+	in map settings assign a bearing a to each markers
+	pick randomly a vehicle in the pool for each markers during server init
+	setup the vehicle (unlimited ammo, no fuel, no damage, locked)
+
+5 - dynamicly enable/configure ACE modules on server init ???
+
+6 - in server config
+
+class Missions
+{
+	class Tanoa_Blufor
+	{
+		template = "ia.Tanoa";
+		difficulty="Custom";
+		class Params
+		{
+			Side = "blufor";
+			Arsenal_blufor_backpacks = 1;
+			Arsenal_blufor_weapons = 1;
+			Arsenal_blufor_items = 1;
+			Arsenal_opfor_backpacks = 0;
+			Arsenal_opfor_weapons = 0;
+			Arsenal_opfor_items = 0;
+			Arsenal_usaf_backpacks = 1;
+			Arsenal_usaf_weapons = 1;
+			Arsenal_usaf_items = 1;
+			Arsenal_afrf_backpacks = 0;
+			Arsenal_afrf_weapons = 0;
+			Arsenal_afrf_items = 0;
+			Arsenal_gref_backpacks = 0;
+			Arsenal_gref_weapons = 0;
+			Arsenal_gref_items = 0;
+			Reward_opfor = 0;	//0:no, 1:yes, 2:if rhs_afrf is not loaded
+			Reward_blufor = 2;	//0:no, 1:yes, 2:if rhs_usaf is not loaded
+			Reward_usaf = 1;
+			Reward_afrf = 0;
+			Reward_gref = 0;
+		};
+	};
+	
+	class Tanoa_Opfor
+	{
+		template = "ia.Tanoa";
+		difficulty="Custom";
+		class Params
+		{
+			Side = "opfor";
+			Arsenal_blufor_backpacks = 0;
+			Arsenal_blufor_weapons = 0;
+			Arsenal_blufor_items = 0;
+			Arsenal_opfor_backpacks = 1;
+			Arsenal_opfor_weapons = 1;
+			Arsenal_opfor_items = 1;
+			Arsenal_usaf_backpacks = 0;
+			Arsenal_usaf_weapons = 0;
+			Arsenal_usaf_items = 0;
+			Arsenal_afrf_backpacks = 1;
+			Arsenal_afrf_weapons = 1;
+			Arsenal_afrf_items = 1;
+			Arsenal_gref_backpacks = 0;
+			Arsenal_gref_weapons = 0;
+			Arsenal_gref_items = 0;
+			Reward_opfor = 2;	//0:no, 1:yes, 2:yes if rhs_afrf is not loaded
+			Reward_blufor = 0;	//0:no, 1:yes, 2:yes if rhs_usaf is not loaded
+			Reward_usaf = 0;
+			Reward_afrf = 1;
+			Reward_gref = 0;
+		};
+	};
+
+	//same as above for Altis and Stratis, just change the class and the template
+};
