@@ -8,7 +8,7 @@ Description:
 */
 
 param ["_obj", "_mode"];
-private ["_bill", "texture"];
+private ["_bill"];
 
 if ( isNil "DB_list" ) then {
 	DB_list = [];
@@ -22,5 +22,5 @@ if ( _mode == "random" ) then {
 	_obj setObjectTexture [0, format[DB_path, _bill]];
 	DB_queue = DB_queue - [_bill];
 } else {
-	_obj etObjectTexture [0, DB_path, _mode];
+	_obj etObjectTexture [0, format[DB_path, _mode]];
 };
