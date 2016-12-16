@@ -4,7 +4,7 @@ Author:
 	Ben
 Description:
 	this script is executed once on all context (server, headless client, player)
-	it defines the features settings
+	it only define settings
 */
 
 //Players side (blufor / opfor)

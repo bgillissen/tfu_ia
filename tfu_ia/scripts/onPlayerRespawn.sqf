@@ -9,7 +9,7 @@ Description:
 waitUntil {!isNull player};
 waitUntil {player == player};
 
-//features onRespawn local
+//features onRespawn (player side)(local)
 [CTXT, "onRespawn"] call common_fnc_featInit;
-//features onRespawn server
+//features onRespawn (server side)(remote)
 ["SERVER", "onRespawn"] call common_fnc_featInit;

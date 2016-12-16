@@ -8,7 +8,7 @@ Description:
 */
 
 param ["_ctxt", "_where"];
-private ["_key", "_file", "_source", "_switch", "_script"];
+private ["_key", "_prepend", "_switch", "_script"];
 
 if ( !isNil "FEAT_INIT" ) then exitWith{};
 
@@ -18,19 +18,19 @@ switch(_ctxt) do {
 	case "HEADLESS" : { _key = 3; };
 };
 
-_file = "";
+_prepend = "";
 if ( _where == "onRespawn" ) then _file = "OnRespawn";
 		
 {
 	if ( _where == "onRespawn" && CTXT != "PLAYER" ) then continue;
-	_source = _x select _key;
-	if ( _where == "init" ) then _switch = _source select 0;
-	if ( _where == "onRespawn" ) then _switch = _source select 1;
+	_switch = 0;
+	if ( _where == "init" ) then _switch = _x select _key select 0;
+	if ( _where == "onRespawn" ) then _switch = _x select _key select 1;
 	
 	switch( _switch ) do {
 		case 0 : { };
 		case 1 : { 
-					_script = format["feats\%1\%2%3.sqf", (_x select 0), toLower(_ctxt), _file];
+					_script = format["feats\%1\%2%3.sqf", (_x select 0), toLower(_ctxt), _prepend];
 					if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
 						[[player], _script, false, false, true] call BIS_fnc_MP;
 					} else {
@@ -38,7 +38,7 @@ if ( _where == "onRespawn" ) then _file = "OnRespawn";
 					};
 				 };
 		case 2 : { 
-					format["feats\%1\%2%3Thread.sqf", (_x select 0), toLower(_ctxt), _file]
+					_script = format["feats\%1\%2%3Thread.sqf", (_x select 0), toLower(_ctxt), _prepend]
 					if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
 						[[player], _script, false, false, false] call BIS_fnc_MP;
 					} else {
