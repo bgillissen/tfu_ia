@@ -1,9 +1,10 @@
 /*
 @filename: onPlayerRespawn.sqf
 Author:
-	Ben
+	ben
 Description:
-	This file is executed on player side each time player (re)spawn.
+	run on player side by game engine when player (re)spawn
+	launch or spawn scripts required by features
 */
 
 waitUntil {!isNull player};

@@ -1,3 +1,4 @@
+
 //------------------------- On Load
 author = ben;
 onLoadName = "TFU - RHS Invade & Annex";
@@ -32,19 +33,40 @@ RespawnDialog = 0;
 
 //------------------------- Parameters
 class Params {
-	#include "ao\params.hpp"
-	#include "side\params.hpp"
-	#include "feats\params.hpp"
+	#include "params.hpp"
+	#include "feats\baseProtection\params.hpp"
+	#include "feats\earPlugs\params.hpp"
+	#include "feats\fatigue\params.hpp"
+	#include "feats\gearRestrictions\params.hpp"
+	#include "feats\groupManagement\params.hpp"
+	#include "feats\iaAO\params.hpp"
+	#include "feats\iaFOB\params.hpp"
+	#include "feats\iaSIDE\params.hpp"
+	#include "feats\intro\params.hpp"
+	#include "feats\loadBalance\params.hpp"
+	#include "feats\mapTracker\params.hpp"
+	#include "feats\radioFreq\params.hpp"
+	#include "feats\restrictArty\params.hpp"
+	#include "feats\side\params.hpp"
+	#include "feats\squadHint\params.hpp"
+	#include "feats\supplyDrop\params.hpp"
+	#include "feats\va\params.hpp"
+	#include "feats\vas\params.hpp"
+	#include "feats\vehicleCrew\params.hpp"
+	#include "feats\vehicleRespawn\params.hpp"
+	#include "feats\vehicleRestrictions\params.hpp"
+	#include "feats\vonHint\params.hpp"
+	#include "feats\voiceControl\params.hpp"
 };
 
 //------------------------- Includes
-#include "settings.hpp";
-#include format["ia\maps\%1.hpp", toLower(worldName)];
-#include "feats\intro\include.hpp"
-#include "feats\vas\include.hpp"
-#include "feats\vehicleCrew\include.hpp"
-#include "feats\viewDistance\include.hpp"
-#include "feats\revive\include.hpp"
+#include "settings.hpp"
+#include "mods\ace\include.hpp"
+#include "mods\rhsAFRF\include.hpp"
+#include "mods\rhsGREF\include.hpp"
+#include "mods\rhsUSAF\include.hpp"
+#include "mods\tfar\include.hpp"
+#include "feats\include.hpp"
 
 class RscTitles {
 	#include "feats\vehicleCrew\rscTitles.hpp"
@@ -78,6 +100,6 @@ class CfgNotifications {
 		priority = 0;
 		difficulty[] = {};
 	};
-	#include "ao\cfgNotifications.hpp"
-	#include "side\cfgNotifications.hpp"
+	#include "feats\iaAO\cfgNotifications.hpp"
+	#include "feats\iaSIDE\cfgNotifications.hpp"
 };

@@ -1,31 +1,31 @@
 /*
-@filename: feats\vehicleRespawn\server.sqf
+@filename: feats\vehicleRespawn\setup.sqf
 Author:
 	Ben
 Description:
-	Run by server each time a vehicle need to respawn.
+	run by server each time a destroyed vehicle respawn.
 */
 
 param ["_veh"];
 private ["_type"];
+
 _type = typeOf _veh;
 
-if (isNull _u) exitWith {};
-
 //add to Zeus
-{_x addCuratorEditableObjects [[_veh],false];} count allCurators;
+{
+	_x addCuratorEditableObjects [[_veh],false];
+} count allCurators;
 
 //add supplyDrop support
-if (_type in supplyDropVeh) then {
-	_veh setVariable ["supplyDrop", TRUE, TRUE];
+if (_type in VEH_supplyDrop) then {
+	_veh setVariable ["supplyDrop", true, true];
 };
 
 //UAV respawn fixer
-if (_type in uavVeh) then {
-	{deleteVehicle _x;} count (crew _veh);
-	[_veh] spawn {
-		_veh = _this select 0;
-		sleep 2;
-		createVehicleCrew _veh;
-	};
+if (_type in VEH_uav) then {
+	{
+		deleteVehicle _x;
+	} forEach(crew _veh);
+	sleep 2;
+	createVehicleCrew _veh;
 };

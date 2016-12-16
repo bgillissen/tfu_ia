@@ -4,45 +4,30 @@ Author:
 	Ben
 Description:
 	This script is executed by main init once on all context (server, headless client, player)
+	define PARAMS_... vars, player_side, assets arrays
+	init and implent the detected mods
 */
 
-//define parameters variables
+//copy mission parameters object properties into variables
 {
 	call compile format ["PARAMS_%1 = %2", (configName ((missionConfigFile >> "Params") select _forEachIndex)), (paramsArray _x)];
 } forEach(paramsArray);
 
-//define known features and how/where they must be init
-#define FEATS [\//folder, server[init,onRespawn], player[init,onRespawn], headless[init,onRespawn] (0: none, 1: call, 2: spawn)
-				["baseProtection", 	[0,0], [1,0], [0,0]],\
-				["cleanup", 		[2,0], [0,0], [0,0]],\
-				["dynBillboards", 	[0,0], [0,1], [0,0]],\
-				["earPlugs", 		[0,0], [1,0], [0,0]],\
-				["fatigue", 		[0,0], [0,1], [0,0]],\
-				["filteredArsenal", [0,0], [1,0], [0,0]],\
-				["gearRestrictions",[0,0], [2,0], [0,0]],\
-				["groupManagement", [1,0], [1,0], [0,0]],\
-				["intro", 			[0,0], [1,0], [0,0]],\
-				["loadBalance", 	[2,0], [0,0], [0,0]],\
-				["mapTracker", 		[0,0], [2,0], [0,0]],\
-				["radioFreq", 		[0,0], [1,1], [0,0]],\
-				["restrictArty", 	[0,0], [1,0], [0,0]],\
-				["restrictHeli", 	[0,0], [1,0], [0,0]],\
-				["restrictPlane", 	[0,0], [1,0], [0,0]],\
-				["restrictTank", 	[0,0], [1,0], [0,0]],\
-				["revive",  		[1,0], [1,0], [0,0]],\
-				["squadHint",  		[0,0], [1,0], [0,0]],\
-				["supplyCrate",  	[0,0], [0,0], [0,0]],\
-				["supplyDrop",  	[0,0], [1,1], [0,0]],\
-				["va",  			[0,0], [0,0], [0,0]],\
-				["vas",  			[0,0], [0,0], [0,0]],\
-				["vehicleCrew", 	[0,0], [2,0], [0,0]],\
-			  /*["vehicleRespawn",	[0,0], [0,0], [0,0]],\*/
-				["vehicleRespawn2", [2,0], [0,0], [0,0]],\
-				["viewDistance", 	[0,0], [1,0], [0,0]],\
-				["voiceControl", 	[2,0], [1,0], [0,0]],\
-				["vonHint", 		[0,0], [2,0], [0,0]],\
-				["zeusMission", 	[0,0], [0,0], [0,0]]\
-			]
+//check what is the players side
+if ( PARAMS_side == 1 ) then {
+	#define PLAYER_SIDE west;
+} else {
+	#define PLAYER_SIDE east;
+}
+
+//check if independent are ennemy to players
+if ( PARAMS_indSide == 1 ) then {
+	#define IND_ARE_ENEMY true
+} else {
+	#define IND_ARE_ENEMY false
+}
+//define current map setting
+call compile preprocessFile format["maps\%1.sqf", toLower(worldName)];
 
 //initialize assets arrays
 UNIT_pilot = [];
@@ -82,10 +67,17 @@ IA_car []
 IA_airPatrol []
 IA_garrison = [];
 
-//load detected mods assets
+//detect loaded mods and init them
+if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace\init.sqf";
+if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsAFRF\init.sqf"; 
+if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsGREF\init.sqf";
+if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsUSAF\init.sqf";
+if ( isClass(configFile >> "CfgPatches" >> "????") ) then call compile preprocessFile "mods\tfar\init.sqf";
+
+//implent detected mods
 call compile preprocessFile "mods\vanilla.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "????") ) then call compile preprocessFile "mods\tfar.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsUSAF.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsAFRF.sqf"; 
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsGREF.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace.sqf";
+if ( MOD_ace ) then call compile preprocessFile "mods\ace\implent.sqf";
+if ( MOD_rhsAFRF ) then call compile preprocessFile "mods\rhsAFRF\implent.sqf"; 
+if ( MOD_rhsGREF ) then call compile preprocessFile "mods\rhsGREF\implent.sqf";
+if ( MOD_rhsUSAF ) then call compile preprocessFile "mods\rhsUSAF\implent.sqf";
+if ( MOD_tfar ) then call compile preprocessFile "mods\tfar\implent.sqf";

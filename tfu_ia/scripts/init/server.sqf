@@ -11,7 +11,8 @@ Description:
 #define CTXT_PLAYER false
 #define CTXT "SERVER"
 
-if ( (IND_ARE_ENEMY && PLAYER_SIDE == "blufor") || (!IND_ARE_ENEMY && PLAYER_SIDE == "opfor") ) then {
+//change independent friendship according to parameters
+if ( (IND_ARE_ENEMY && PLAYER_SIDE == west) || (!IND_ARE_ENEMY && PLAYER_SIDE == east) ) then {
 	//ind against west
 	independent setFriend [east, 1];
 	east setFriend [independent, 1];
@@ -25,11 +26,5 @@ if ( (IND_ARE_ENEMY && PLAYER_SIDE == "blufor") || (!IND_ARE_ENEMY && PLAYER_SID
 	west setFriend [independent, 1];
 };
 
-//features init
+//features call/spawn
 [CTXT, "init"] call common_fnc_featInit;
-
-//Invade & Annex Missions
-zeusMission = false;
-if ( PARAMS_AO == 1 ) then [] execVM "ia\ao\thread.sqf";
-if ( PARAMS_FOB == 1 ) then [] execVM "ia\fob\thread.sqf";
-if ( PARAMS_SIDE == 1 ) then [] execVM "ia\side\thread.sqf";

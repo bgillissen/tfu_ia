@@ -3,15 +3,13 @@
 Author:
 	Ben
 Description:
-	this script is executed once on all context (server, headless client, player)
-	it only define settings
+	included by game engine (description.ext)
+	it defines features settings that could not be set by mission parameters
 */
 
-//Players side (blufor / opfor)
-#define PLAYER_SIDE "blufor"
-
-//independent are ennemy with player side
-#define IND_ARE_ENEMY true
+//needed to lock the server while server side features are loading
+#define srvCMDpass "honeybadger";
+#define unlockDelay 15;
 
 //squadHint, squad name that will trigger a globalHint when a player join
 #define SQUAD "Task Force Unicorn"
