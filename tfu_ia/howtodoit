@@ -1,7 +1,7 @@
 
 HOWTO one mission by map for all mods combo [[+TFAR][+RHS][+ACE]]
 to do that i need :
-1 - to only place vanilla BLUFOR units in the editor
+1 - only place vanilla BLUFOR units in the editor
 		change base npc to player side on server init
 		change player side on player init
 		
@@ -25,20 +25,36 @@ to do that i need :
 		append it to vehicle monitor stack
 		
 4 - dynamic base defence feature (dynBaseDefence) to spawn the AA tank in base
-	need markers placed in the mission (BD_loc1, BB_loc2)
+	need markers placed in the mission (BD_loc1, BD_loc2,...)
 	in mod settings add vehicles to the pool (BD_pool)
-	in map settings assign a bearing a to each markers  (can maybe use the bearing of the markers)
+	in map settings assign a bearing to each markers  (can maybe use the bearing of the markers)
 	pick randomly a vehicle in the pool for each markers during server init
 	setup the vehicle (unlimited ammo, no fuel, no damage, locked, clear cargo, camo, model)
+	setup the gunner (skill)
 
-5 - dynamic base atmosphere feature (dynBaseAtmo) to spawn the locked vehicle in base
- 	need markers placed in the mission (BA_loc1, BB_loc2)
- 	in mod settings add vehicles to the pools (BA_medical, BA_repair, BA_fuel)
-	in map settings assign a bearing a to each markers (can maybe use the bearing of the markers)
-	pick randomly a vehicle in the pool for each markers during server init
-	setup the vehicle (no damage, no simulation, simple object, camo, model)
+5 - dynamic base atmosphere feature (dynBaseAtmo) to spawn the locked vehicle, npc, object in base
+ 	need markers placed in the mission (BA_loc1, BA_loc2, ...)
+ 	for vehicle :
+ 		in mission editor, place markers, and give it a varname
+ 		in mod settings add vehicles to the pools (BA_medical, BA_repair, BA_fuel)
+		in map settings assign a bearing to each markers (can maybe use the bearing of the markers) and some roles if needed
+		pick randomly a vehicle in the pool for each markers during server init
+		setup the vehicle (no damage, no simulation, simple object, camo, model)
+	for npc :
+		in mission editor, place a BLUFOR (naked) unit, and give it a varname
+		in map settings define the list of npcs and assign some roles to each
+		in mod settings assign a loadout to those roles
+		setup the npc (side, loadout)
+		each feats will be able to add actions to those npc
+	for object :
+		in mission editor, place the object and give it a varname
+		in map settings define the list of object and assign some roles to each
+		roles are :
+			arsenal, viewDistance, supplyOfficer, zeusControl
+	the features server init will take care of adding the actions to each "things" using that role
 	
-6 - dynamicly enable/configure ACE modules on server init ???
+6 - dynamicly enable/configure ACE modules on server init 
+		in description.ext via an include, see @ http://ace3mod.com/wiki/framework/settings-framework.html#loading-up-the-server-config
 
 7 - in server config
 
