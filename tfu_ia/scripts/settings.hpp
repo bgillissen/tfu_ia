@@ -9,38 +9,42 @@ Description:
 
 //Players side (blufor / opfor)
 #define PLAYER_SIDE "blufor"
+
 //independent are ennemy with player side
 #define IND_ARE_ENEMY true
+
 //squadHint, squad name that will trigger a globalHint when a player join
 #define SQUAD "Task Force Unicorn"
 
 //vonHint, displayed teamSpeak address
 #define TSADDR "ts.taskforceunicorn.com"
 
-//dynBillboards, mode (random or string)
-#define DB_left "random"
-#define DB_right "random"
+//dynBillboards
+#define DB_left Bill_1
+#define DB_leftMode "random"
+#define DB_right Bill_2
+#define DB_rightMode "random"
 #define DB_path "media\billboards\%1.paa"
 #define DB_totRandom 6
 
-//radioFreq, Frequencies for the radio channels
-#define TFAR_SR_FREQ_1 "300"
-#define TFAR_SR_FREQ_2 "310"
-#define TFAR_SR_FREQ_3 "320"
-#define TFAR_SR_FREQ_4 "330"
-#define TFAR_SR_FREQ_5 "340"
-#define TFAR_SR_FREQ_6 "350"
-#define TFAR_SR_FREQ_7 "360"
-#define TFAR_SR_FREQ_8 "370"
-#define TFAR_LR_FREQ_1 "50"
-#define TFAR_LR_FREQ_2 "60"
-#define TFAR_LR_FREQ_3 "70"
-#define TFAR_LR_FREQ_4 "80"
-#define TFAR_LR_FREQ_5 "90"
-#define TFAR_LR_FREQ_6 "100"
-#define TFAR_LR_FREQ_7 "110"
-#define TFAR_LR_FREQ_8 "120"
-#define TFAR_LR_FREQ_9 "130"
+//radioFreq, short/long range channel frequencies
+#define RF_SR_FREQ_1 "300"
+#define RF_SR_FREQ_2 "310"
+#define RF_SR_FREQ_3 "320"
+#define RF_SR_FREQ_4 "330"
+#define RF_SR_FREQ_5 "340"
+#define RF_SR_FREQ_6 "350"
+#define RF_SR_FREQ_7 "360"
+#define RF_SR_FREQ_8 "370"
+#define RF_LR_FREQ_1 "50"
+#define RF_LR_FREQ_2 "60"
+#define RF_LR_FREQ_3 "70"
+#define RF_LR_FREQ_4 "80"
+#define RF_LR_FREQ_5 "90"
+#define RF_LR_FREQ_6 "100"
+#define RF_LR_FREQ_7 "110"
+#define RF_LR_FREQ_8 "120"
+#define RF_LR_FREQ_9 "130"
 
 //voiceControl, which channel is allowed to who
 #define VC_disabled [6]

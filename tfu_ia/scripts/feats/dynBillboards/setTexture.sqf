@@ -22,5 +22,5 @@ if ( _mode == "random" ) then {
 	_obj setObjectTexture [0, format[DB_path, _bill]];
 	DB_queue = DB_queue - [_bill];
 } else {
-	_obj etObjectTexture [0, format[DB_path, _mode]];
+	_obj setObjectTexture [0, format[DB_path, _mode]];
 };
