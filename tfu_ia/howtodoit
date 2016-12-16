@@ -14,26 +14,33 @@ to do that i need :
 	  	mods must be able to blacklist items (ex: ace blacklist faks, medikit, toolKit) 
 
 3 - dynamic base assets feature (dynBaseAsset) to spawn the vehicles available to players on server init
-		need a list of markers in the map (BV_loc1, BV_loc2)
+		need markers placed in the mission (BV_loc1, BV_loc2)
 		in mod settings add vehicles to their pool type, so needed pools : 
 			BV_car, BV_apc, BV_tank,  BV_placeCAS, BV_placeAA, BV_planeTransport
 			BV_heliSmall, BV_heliMedium, BV_heliMedEvac, BV_heliBig, BV_heliAttack, 
 			BV_boatSmall, BV_boatAttack, BV_boatBig 
-		in map settings assign vehicles markers to base vehicle pools and set a bearing
+		in map settings assign vehicles markers to base vehicle pools and set a bearing (can maybe use the bearing of the markers)
 		pick randomly a vehicle in assigned pool for each markers during server init
-		setup the vehicle (cargo)
-		append to vehicle monitor stack
+		setup the vehicle (cargo, camo, model)
+		append it to vehicle monitor stack
 		
 4 - dynamic base defence feature (dynBaseDefence) to spawn the AA tank in base
-	need a list of markers in the map (BD_loc1, BB_loc2)
+	need markers placed in the mission (BD_loc1, BB_loc2)
 	in mod settings add vehicles to the pool (BD_pool)
-	in map settings assign a bearing a to each markers
+	in map settings assign a bearing a to each markers  (can maybe use the bearing of the markers)
 	pick randomly a vehicle in the pool for each markers during server init
-	setup the vehicle (unlimited ammo, no fuel, no damage, locked)
+	setup the vehicle (unlimited ammo, no fuel, no damage, locked, clear cargo, camo, model)
 
-5 - dynamicly enable/configure ACE modules on server init ???
+5 - dynamic base atmosphere feature (dynBaseAtmo) to spawn the locked vehicle in base
+ 	need markers placed in the mission (BA_loc1, BB_loc2)
+ 	in mod settings add vehicles to the pools (BA_medical, BA_repair, BA_fuel)
+	in map settings assign a bearing a to each markers (can maybe use the bearing of the markers)
+	pick randomly a vehicle in the pool for each markers during server init
+	setup the vehicle (no damage, no simulation, simple object, camo, model)
+	
+6 - dynamicly enable/configure ACE modules on server init ???
 
-6 - in server config
+7 - in server config
 
 class Missions
 {
