@@ -26,5 +26,7 @@ if ( (IND_ARE_ENEMY && PLAYER_SIDE == west) || (!IND_ARE_ENEMY && PLAYER_SIDE ==
 	west setFriend [independent, 1];
 };
 
-//features call/spawn
-[CTXT, "init"] call common_fnc_featInit;
+//features init call/spawn
+[CTXT, "init"] call core_fnc_featEvents;
+//registering feature's onLeave eventHandler
+addMissionEventHandler ["HandleDisconnect",{[CTXT, "onLeave", _this] call core_fnc_featEvents;}];

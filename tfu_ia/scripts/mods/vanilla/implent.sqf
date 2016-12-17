@@ -7,55 +7,97 @@ Description:
 	implent vanilla assets
 */
 
-private ["_backpacks", "_weapons", "_ammo", "_items", "_rewards",
-         "_cargoBackpacks", "_cargoWeapons", "_cargoAmmo", "_cargoItems",
+private ["_backpacks", "_items", "_weapons", "_ammo",
+         "_cargoBackpacks", "_cargoItems", "_cargoWeapons", "_cargoAmmo",
+         "_conf", "_rewards",
          "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
 
-_backpacks = VANILLA_backpacks;
-_items = VANILLA_items;
-_weapons = VANILLA_weapons;
-_ammo = VANILLA_ammo;
-_cargoBackpacks = VANILLA_cargoBackpacks;;
-_cargoItems = VANILLA_cargoItems;;
-_cargoWeapons = VANILLA_cargoWeapons;;
-_cargoAmmo = VANILLA_cargoAmmo;;
+_backpacks = AV_backpacks;
+_items = AV_items;
+_weapons = AV_weapons;
+_ammo = AV_ammo;
+_cargoBackpacks = CV_backpacks;
+_cargoItems = CV_items;
+_cargoWeapons = CV_weapons;
+_cargoAmmo = CV_ammo;
+
+_conf = ["Arsenal_vb_backpacks"] call core_fnc_getConf;
+if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then { 
+	_backpacks append AVB_backpacks; 
+	_cargoBackpacks append CVB_backpacks;
+};
+_conf = ["Arsenal_vb_items"] call core_fnc_getConf;
+if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then { 
+	_items append AVB_items;
+	_cargoItems append CVB_items; 
+};
+_conf = ["Arsenal_vb_weapons"] call core_fnc_getConf;
+if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then { 
+	_weapons append AVB_weapons;
+	_ammo append AVB_ammo;
+	_cargoWeapons append CVB_weapons;
+	_cargoAmmo append CVB_ammo;
+};
+
+_conf = ["Arsenal_vo_backpacks"] call core_fnc_getConf;
+if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then { 
+	_backpacks append AVO_backpacks; 
+	_cargoBackpacks append CVO_backpacks;
+};
+_conf = ["Arsenal_vo_items"] call core_fnc_getConf;
+if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then { 
+	_items append AVO_items; 
+	_cargoItems append CVO_items;
+};
+_conf = ["Arsenal_vo_weapons"] call core_fnc_getConf;
+if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
+	_weapons append AVO_weapons;
+	_ammo append AVO_ammo;
+	_cargoWeapons append CVO_weapons;
+	_cargoAmmo append CVO_ammo;
+};
+
+[_backpacks, _items, _weapons, _ammo] call common_fnc_implentArsenal;
+_backpacks = nil;
+_items = nil;
+_weapons = nil;
+_ammo = nil;
+
+[_cargoBackpacks, _cargoItems, _cargoWeapons, _cargoAmmo] call common_fnc_implentCargo;
+_cargoBackpacks = nil;
+_cargoItems = nil;
+_cargoWeapons = nil;
+_cargoAmmo = nil;
+
 _rewards = [];
-
-if ( ["Arsenal_vb_backpacks"] call core_fnc_getConf ) then { 
-	_backpacks append VB_backpacks; 
-	_cargoBackpacks append VB_cargoBackpacks;
+_conf = ["Reward_vb"] call core_fnc_getConf;
+if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
+	_rewards append RVB; 
 };
-if ( ["Arsenal_vb_items"] call core_fnc_getConf ) then { 
-	_items append VB_items;
-	_cargoItems append VB_cargoItems; 
-};
-if ( ["Arsenal_vb_weapons"] call core_fnc_getConf ) then { 
-	_weapons append VB_weapons;
-	_ammo append VB_ammo;
-	_cargoWeapons append VB_cargoWeapons;
-	_cargoAmmo append VB_cargoAmmo;
-};
-if ( ["Arsenal_vo_backpacks"] call core_fnc_getConf ) then { 
-	_backpacks append VO_backpacks; 
-	_cargoBackpacks append VO_cargoBackpacks;
-};
-if ( ["Arsenal_vo_items"] call core_fnc_getConf == 1) then { 
-	_items append VO_items; 
-	_cargoItems append VO_cargoItems;
-};
-if ( ["Arsenal_vo_weapons"] call core_fnc_getConf ) then { 
-	_weapons append VO_weapons;
-	_ammo append VO_ammo;
-	_cargoWeapons append VO_cargoWeapons;
-	_cargoAmmo append VO_cargoAmmo;
+_conf = ["Reward_vo"] call core_fnc_getConf;
+if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
+	_rewards append RVO; 
 };
 
-if ( ["Reward_vb"] call core_fnc_getConf ) then { _rewards append VB_rewards; };
-if ( ["Reward_vo"] call core_fnc_getConf ) then { _rewards append VO_rewards; };
+[_rewards] call common_fnc_implentReward;
+_rewards = nil;
 
-
-if ( ["Spawn_vanilla"] call core_fnc_getConf ) then {
-	if ( PLAYER_SIDE == west ) then {
+_iaPilot = [];
+_iaCrew = [];
+_iaCAS = [];
+_iaPGroup = [];
+_iaSGroup = [];
+_iaArti = [];
+_iaAA = [];
+_iaStatic = [];
+_iaTank = [];
+_iaAPC = [];
+_iaCar = [];
+_iaAir = [];
+_iaGarrison = [];
+_conf = ["Spawn_vanilla"] call core_fnc_getConf;
+if ( PLAYER_SIDE == west ) then {
+	if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
 		_iaPilot = VO_pilot;
 		_iaCrew = VO_crew;
 		_iaCAS = VO_cas;
@@ -69,7 +111,9 @@ if ( ["Spawn_vanilla"] call core_fnc_getConf ) then {
 		_iaCar = VO_car;
 		_iaAir = VO_airPatrol;
 		_iaGarrison = VO_garrison;
-	} else {
+	};
+} else {
+	if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
 		_iaPilot = VB_pilot;
 		_iaCrew = VB_crew;
 		_iaCAS = VB_cas;
@@ -82,28 +126,90 @@ if ( ["Spawn_vanilla"] call core_fnc_getConf ) then {
 		_iaCar = VB_car;
 		_iaAir = VB_airPatrol;
 		_iaGarrison = VB_garrison;
-	};
-} else {
-	_iaPilot = [];
-	_iaCrew = [];
-	_iaCAS = [];
-	_iaPGroup = [];
-	_iaSGroup = [];
-	_iaArti = [];
-	_iaAA = [];
-	_iaStatic = [];
-	_iaTank = [];
-	_iaAPC = [];
-	_iaCar = [];
-	_iaAir = [];
-	_iaGarrison = [];
+	};	
 };
 
-[
-	[VANILLA_pilot, VANILLA_crew, VANILLA_mg, VANILLA_at, VANILLA_marksman, VANILLA_sniper, VANILLA_medic, VANILLA_officer, VANILLA_arti],
-	[VANILLA_exception_heli, VANILLA_exception_plane, VANILLA_exception_tank],
-	[_backpacks, _items, _weapons, _ammo],
-	[_cargoBackpacks, _cargoItems, _cargoWeapons, _cargoAmmo],
-	[VANILLA_supplyDrop, VANILLA_supplyCrates], _rewards, VANILLA_UAV, 
-	[VANILLA_RadioTower, _iaPilot, _iaCrew, _iaCAS, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
-] call common_fnc_implentAssets;
+[VANILLA_RT, _iaPilot, _iaCrew, _iaCAS, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison] call common_fnc_implentSpawn;
+_iaPilot = nil;
+_iaCrew = nil;
+_iaCAS = nil;
+_iaPGroup = nil;
+_iaSGroup = nil;
+_iaArti = nil;
+_iaAA = nil;
+_iaStatic = nil;
+_iaTank = nil;
+_iaAPC = nil;
+_iaCar = nil;
+_iaAir = nil;
+
+_bvCar = []; 
+_bvAPC = []; 
+_bvTank = [];
+_bvPlaneCAS = [];
+_bvPlaneAA = [];
+_bvPlaneTransport = [];
+_bvHeliSmall = [];
+_bvHeliMedium = [];
+_bvHeliMedEvac = [];
+_bvHeliBig = [];
+_bvHeliAttack = []; 
+_bvBoatSmall = [];
+_bvBoatAttack = [];
+_bvBoatBig = [];
+_conf = ["BaseVehicle_vanilla"] call core_fnc_getConf;
+if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
+	_bvCar append BVVB_car; 
+	_bvAPC append BVVB_apc; 
+	_bvTank append BVVB_tank;
+	_bvPlaneCAS append BVVB_planeCAS;
+	_bvPlaneAA append BVVB_planeAA;
+	_bvPlaneTransport append BVVB_planeTransport;
+	_bvHeliSmall append BVVB_heliSmall;
+	_bvHeliMedium append BVVB_heliMedium;
+	_bvHeliMedEvac append BVVB_heliMedEvac;
+	_bvHeliBig append BVVB_heliBig;
+	_bvHeliAttack append BVVB_heliAttack; 
+	_bvBoatSmall append BVVB_boatSmall;
+	_bvBoatAttack append BVVB_boatAttack;
+	_bvBoatBig append BVVB_boatBig;
+};
+if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
+	_bvCar append BVVO_car; 
+	_bvAPC append BVVO_apc; 
+	_bvTank append BVVO_tank;
+	_bvPlaneCAS append BVVO_planeCAS;
+	_bvPlaneAA append BVVO_planeAA;
+	_bvPlaneTransport append BVVO_planeTransport;
+	_bvHeliSmall append BVVO_heliSmall;
+	_bvHeliMedium append BVVO_heliMedium;
+	_bvHeliMedEvac append BVVO_heliMedEvac;
+	_bvHeliBig append BVVO_heliBig;
+	_bvHeliAttack append BVVO_heliAttack; 
+	_bvBoatSmall append BVVO_boatSmall;
+	_bvBoatAttack append BVVO_boatAttack;
+	_bvBoatBig append BVVO_boatBig;
+};
+
+[_bvCar, _bvAPC, _bvTank, _bvPlaceCAS, _bvPlaneAA, _bvPlaneTransport, _bvHeliSmall, _bvHeliMedium, _bvHeliMedEvac, _bvHeliBig, _bvHeliAttack, _bvBoatSmall, _bvBoatAttack, _bvBoatBig] call common_fnc_implentBaseVehicle;
+_bvCar = nil; 
+_bvAPC = nil; 
+_bvTank = nil;
+_bvPlaneCAS = nil;
+_bvPlaneAA = nil;
+_bvPlaneTransport = nil;
+_bvHeliSmall = nil;
+_bvHeliMedium = nil;
+_bvHeliMedEvac = nil;
+_bvHeliBig = nil;
+_bvHeliAttack = nil; 
+_bvBoatSmall = nil;
+_bvBoatAttack = nil;
+_bvBoatBig = nil;
+
+[VANILLA_supplyDrop, VANILLA_supplyCrates] call implentSupply;
+[VANILLA_UAV] call implentUAV;
+
+[RGV_launcher, RGV_MG, RGV_mRifle, RGV_mScope, RGV_sRifle, RGV_sScope, RGV_oScope] call implentRestrictedGear;
+
+[AVV_heli, AVV_plane, AVV_tank] call implentAllowedVehicle;

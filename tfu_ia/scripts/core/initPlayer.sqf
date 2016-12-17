@@ -16,4 +16,4 @@ waitUntil {!isNull player};
 waitUntil {player == player};
 
 //features init
-[CTXT, "init"] call common_fnc_featInit;
+[CTXT, "init"] call core_fnc_featEvents;

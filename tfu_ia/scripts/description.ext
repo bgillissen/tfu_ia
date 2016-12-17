@@ -104,3 +104,8 @@ class CfgNotifications {
 	#include "feats\iaAO\_cfgNotifications.hpp"
 	#include "feats\iaSIDE\_cfgNotifications.hpp"
 };
+
+//------------------------- to allow our curator list to be downloaded
+class CfgCommands {
+       allowedHTMLLoadURIs = {"http://taskforceunicorn.com/api/curators"};
+];

@@ -2,7 +2,6 @@
 HOWTO one mission by map for all mods combo [[+TFAR][+RHS][+ACE]] and with the ability to be BLUFOR or OPFOR
 to do that i need :
 1 - only place vanilla BLUFOR units in the editor
-		change base npc to player side on server init
 		change player side on player init
 		
 2 - a dynamic Loadout feature (dynLoadout) to change units loadout on player init
@@ -67,21 +66,6 @@ class Missions
 		class Params
 		{
 			Side = "blufor";
-			Arsenal_blufor_backpacks = 1;
-			Arsenal_blufor_weapons = 1;
-			Arsenal_blufor_items = 1;
-			Arsenal_opfor_backpacks = 0;
-			Arsenal_opfor_weapons = 0;
-			Arsenal_opfor_items = 0;
-			Arsenal_usaf_backpacks = 1;
-			Arsenal_usaf_weapons = 1;
-			Arsenal_usaf_items = 1;
-			Arsenal_afrf_backpacks = 0;
-			Arsenal_afrf_weapons = 0;
-			Arsenal_afrf_items = 0;
-			Arsenal_gref_backpacks = 0;
-			Arsenal_gref_weapons = 0;
-			Arsenal_gref_items = 0;
 			Reward_opfor = 0;	//0:no, 1:yes, 2:if rhs_afrf is not loaded
 			Reward_blufor = 2;	//0:no, 1:yes, 2:if rhs_usaf is not loaded
 			Reward_usaf = 1;
@@ -97,21 +81,6 @@ class Missions
 		class Params
 		{
 			Side = "opfor";
-			Arsenal_blufor_backpacks = 0;
-			Arsenal_blufor_weapons = 0;
-			Arsenal_blufor_items = 0;
-			Arsenal_opfor_backpacks = 1;
-			Arsenal_opfor_weapons = 1;
-			Arsenal_opfor_items = 1;
-			Arsenal_usaf_backpacks = 0;
-			Arsenal_usaf_weapons = 0;
-			Arsenal_usaf_items = 0;
-			Arsenal_afrf_backpacks = 1;
-			Arsenal_afrf_weapons = 1;
-			Arsenal_afrf_items = 1;
-			Arsenal_gref_backpacks = 0;
-			Arsenal_gref_weapons = 0;
-			Arsenal_gref_items = 0;
 			Reward_opfor = 2;	//0:no, 1:yes, 2:yes if rhs_afrf is not loaded
 			Reward_blufor = 0;	//0:no, 1:yes, 2:yes if rhs_usaf is not loaded
 			Reward_usaf = 0;
@@ -124,20 +93,24 @@ class Missions
 };
 
 
-Naming Convention
-
+GLOBAL VAR POOLS
+----------------
 allowed units (those units can wear some restricted gear and/or drive/gun some restricted vehicles)
 	AU_[pilot, crew, mg, at, marksman, sniper, medic, officer, arti]
-restricted gears (only some units can wear those gear)
-	RG_[launcher, mg, mRifle, mScope, sRifle, sScope, oScope]
 allowed vehicle (any unit can drive/gun those vehicles)
 	AV_[heli, plane, tank]
+restricted gears (only some units can wear those gear)
+	RG_[launcher, mg, mRifle, mScope, sRifle, sScope, oScope]
 arsenal (available gears)  
 	A_[backpacks, items, weapons, ammo]
+cargo (available in supplyDrop crates)  
+	C_[backpacks, items, weapons, ammo]
+rewards (vehicle available as rewards)
+	REWARDS	
 spawn (units/groups/vehicles/objects we are going to spawn in the missions)  
 	S_[radioTower, pilot, crew, cas, patrolGroups, sniperGroups, aaTank, arti, statics, tank, 
 	   apc, car, airPatrol, garrison]
-role gear (default gear provided to player on first spawn)
+role loadout (default gear provided to player on first spawn)
 	RL_[hq, sl, tl, medic, lmg, hmg, assHMG, at, assAT, sniper, marksman, repair, demo, engineer,
 		grenadier, rifleman, jtac, pilot, mortar]
 base atmosphere

@@ -1,5 +1,5 @@
 /*
-@filename: mods\vanilla\include.hpp
+@filename: mods\vanilla\_include.hpp
 Author:
 	Ben
 Description:
@@ -7,132 +7,166 @@ Description:
 	define vanilla assets
 */
 
-//------------------------------------------------------------ BLUFOR ASSETS
+//------------------------------------------------------------ ALLOWED UNITS
 
-#define VB_backpacks []
-#define VB_weapons []
-#define VB_ammo []
-#define VB_items []
+#define AU_pilot []
+#define AU_crew []
+#define AU_mg []
+#define AU_at []
+#define AU_marksman []
+#define AU_sniper []
+#define AU_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
+#define AU_officer []
+#define AU_arti []
 
-//------------------------------------------------------------ OPFOR ASSETS
+//------------------------------------------------------------ Arsenal Vanilla BLUFOR
 
-#define VO_backpacks []
-#define VO_weapons []
-#define VO_ammo []
-#define VO_items []
+#define AVB_backpacks []
+#define AVB_weapons []
+#define AVB_ammo []
+#define AVB_items []
 
-//------------------------------------------------------------ COMMON ASSETS
+//------------------------------------------------------------ Arsenal Vanilla OPFOR
 
-#define VANILLA_backpacks []
-#define VANILLA_weapons []
-#define VANILLA_ammo []
-#define VANILLA_items []
+#define AVO_backpacks []
+#define AVO_weapons []
+#define AVO_ammo []
+#define AVO_items []
 
-//------------------------------------------------------------ GEAR RESTRICTIONS
+//------------------------------------------------------------ Arsenal Vanilla (common)
 
-#define VANILLA_restricted_launcher []
-#define VANILLA_restricted_MG []
-#define VANILLA_restricted_mRifle []
-#define VANILLA_restricted_mScope []
-#define VANILLA_restricted_sRifle []
-#define VANILLA_restricted_sScope []
-#define VANILLA_restricted_oScope []
+#define AV_backpacks []
+#define AV_weapons []
+#define AV_ammo []
+#define AV_items []
 
-//------------------------------------------------------------ BLUFOR CARGO
+//------------------------------------------------------------ Restricted Gear Vanilla
+
+#define RGV_launcher []
+#define RGV_MG []
+#define RGV_mRifle []
+#define RGV_mScope []
+#define RGV_sRifle []
+#define RGV_sScope []
+#define RGV_oScope []
+
+//------------------------------------------------------------ Cargo Vanilla BLUFOR
 						 
-#define VB_cargoBackpacks []
-#define VB_cargoWeapons []
-#define VB_cargoAmmo []]
-#define VB_cargoItems []
+#define CVB_backpacks []
+#define CVB_weapons []
+#define CVB_ammo []]
+#define CVB_items []
 
-//------------------------------------------------------------ OPFOR CARGO
+//------------------------------------------------------------ Cargo Vanilla OPFOR
 
-#define VO_cargoBackpacks []
-#define VO_cargoWeapons []
-#define VO_cargoAmmo []
-#define VO_cargoItems []
+#define CVO_backpacks []
+#define CVO_weapons []
+#define CVO_ammo []
+#define CVO_items []
 
-//------------------------------------------------------------ COMMON CARGO
+//------------------------------------------------------------ Cargo Vanilla (common)
 						 
-#define VANILLA_cargoBackpacks []
-#define VANILLA_cargoWeapons []
-#define VANILLA_cargoAmmo [["SatchelCharge_Remote_Mag", 5],\
-						   ["DemoCharge_Remote_Mag", 10]]
-#define VANILLA_cargoItems [["Laserdesignator", 5],\
-						    ["Laserbatteries", 5],\
-						    ["MineDetector", 5],\
-						    ["NVGoggles", 5],\
-						    ["FirstAidKit", 20],\
-						    ["Medikit", 3],\
-						    ["ToolKit", 3]]
+#define CV_backpacks []
+#define CV_weapons []
+#define CV_ammo [["SatchelCharge_Remote_Mag", 5],\
+				 ["DemoCharge_Remote_Mag", 10]]
+#define CV_items [["Laserdesignator", 5],\
+				  ["Laserbatteries", 5],\
+				  ["MineDetector", 5],\
+				  ["NVGoggles", 5],\
+				  ["FirstAidKit", 20],\
+				  ["Medikit", 3],\
+				  ["ToolKit", 3]]
 
-//------------------------------------------------------------ VEHICLE EXCEPTION
+//------------------------------------------------------------ Allowed Vehicles Vanilla
 
-#define VANILLA_exception_heli []
-#define VANILLA_exception_plane []
-#define VANILLA_exception_tank []
+#define AVV_heli []
+#define AVV_plane []
+#define AVV_tank []
 
-//------------------------------------------------------------ UAV
+//------------------------------------------------------------ Vanilla UAV
 
 #define VANILLA_UAV ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
 
-//------------------------------------------------------------ UNITS CLASSES
-
-#define VANILLA_pilot []
-#define VANILLA_crew []
-#define VANILLA_mg []
-#define VANILLA_at []
-#define VANILLA_marksman []
-#define VANILLA_sniper []
-#define VANILLA_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F", "O_medic_F", "I_medic_F", "O_recon_medic_f"]
-#define VANILLA_officer []
-#define VANILLA_arti []
-
-//------------------------------------------------------------ SUPPLY DROP
+//------------------------------------------------------------ Vanilla supplyDrop
 
 #define VANILLA_supplyDrop []
 #define VANILLA_supplyCrates []
 
-//------------------------------------------------------------ BLUFOR REWARDS
+//------------------------------------------------------------ Rewards Vanilla BLUFOR
 
-#define VB_rewards = []
+#define RVB = []
 
-//------------------------------------------------------------ OPFOR REWARDS
+//------------------------------------------------------------ Rewards Vanilla OPFOR
 
-#define VO_rewards = []
+#define RVO = []
 
-//------------------------------------------------------------ IA RadioTowers
+//------------------------------------------------------------ Vanilla RadioTower
 
 #define VANILLA_RT ["Land_TTowerBig_2_F"]
 
-//------------------------------------------------------------ BLUFOR IA Units
+//------------------------------------------------------------ Spawn Vanilla BLUFOR
 
-#define VB_pilot []
-#define VB_crew []
-#define VB_cas []
-#define VB_patrolGroups []
-#define VB_sniperGroups []
-#define VB_aaTank []
-#define VB_arti []
-#define VB_static []
-#define VB_tank []
-#define VB_apc []
-#define VB_car []
-#define VB_airPatrol []
-#define VB_garrison []
+#define SVB_pilot []
+#define SVB_crew []
+#define SVB_cas []
+#define SVB_patrolGroups []
+#define SVB_sniperGroups []
+#define SVB_aaTank []
+#define SVB_arti []
+#define SVB_static []
+#define SVB_tank []
+#define SVB_apc []
+#define SVB_car []
+#define SVB_airPatrol []
+#define SVB_garrison []
 
-//------------------------------------------------------------ OPFOR IA Units
+//------------------------------------------------------------ Spawn Vanilla OPFOR
 
-#define VO_pilot []
-#define VO_crew []
-#define VO_cas []
-#define VO_patrolGroups []
-#define VO_sniperGroups []
-#define VO_aaTank []
-#define VO_arti []
-#define VO_static []
-#define VO_tank []
-#define VO_apc []
-#define VO_car []
-#define VO_airPatrol []
-#define VO_garrison []
+#define SVO_pilot []
+#define SVO_crew []
+#define SVO_cas []
+#define SVO_patrolGroups []
+#define SVO_sniperGroups []
+#define SVO_aaTank []
+#define SVO_arti []
+#define SVO_static []
+#define SVO_tank []
+#define SVO_apc []
+#define SVO_car []
+#define SVO_airPatrol []
+#define SVO_garrison []
+
+//------------------------------------------------------------ Base Vehicles Vanilla BLUFOR
+
+#define BVVB_car []
+#define BVVB_apc []
+#define BVVB_tank []
+#define BVVB_planeCAS []
+#define BVVB_planeAA []
+#define BVVB_planeTransport []
+#define BVVB_heliSmall []
+#define BVVB_heliMedium []
+#define BVVB_heliMedEvac []
+#define BVVB_heliBig []
+#define BVVB_heliAttack []
+#define BVVB_boatSmall []
+#define BVVB_boatAttack []
+#define BVVB_boatBig []
+
+//------------------------------------------------------------ Base Vehicles Vanilla OPFOR
+
+#define BVVO_car []
+#define BVVO_apc []
+#define BVVO_tank []
+#define BVVO_planeCAS []
+#define BVVO_planeAA []
+#define BVVO_planeTransport []
+#define BVVO_heliSmall []
+#define BVVO_heliMedium []
+#define BVVO_heliMedEvac []
+#define BVVO_heliBig []
+#define BVVO_heliAttack []
+#define BVVO_boatSmall []
+#define BVVO_boatAttack []
+#define BVVO_boatBig []

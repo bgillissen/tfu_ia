@@ -4,11 +4,9 @@ Author:
 	ben
 Description:
 	run on server side by game engine when player join
-	just add player to zeus
+	launch or spawn scripts required by features
 */
 
 param ["_player"];
 
-{
-     _x addCuratorEditableObjects [[_player],true];
-} forEach allCurators;
+[CTXT, "onJoin", [_player]] call common_fnc_featInit;

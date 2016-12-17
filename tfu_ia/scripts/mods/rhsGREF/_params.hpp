@@ -1,7 +1,7 @@
 class Spawn_gref {
-	title = "RHS GREF units spawn";
+	title = "Missions spawn RHS GREF units";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
 class Arsenal_gref_backpacks {

@@ -17,6 +17,14 @@ Description:
 //vonHint, displayed teamSpeak address
 #define TSADDR "ts.taskforceunicorn.com"
 
+//curator url (space separated list of steamID), don't forget to change the description.ext ;)
+#define CURATOR_url "http://taskforcunicorn.com/api/curators"
+#define CURATOR_slot 4	//MUST BE SMALLER OR EGAL TO THE NUMBER OF GAME MASTER MODULE PLACED ON MAP
+#define CURATOR_noSlotMsg "No more free Zeus slot available (%1 / %2)."
+#define CURATOR_ascendMsg "%3 has ascend, %1 / %2 slots."
+#define CURATOR_failedMsg "%1 has tryed to ascend."
+#define CURATOR_descendMsg "%3 has descend, %1 / %2 slots."
+
 //dynBillboards
 #define DB_left Bill_1
 #define DB_leftMode "random"

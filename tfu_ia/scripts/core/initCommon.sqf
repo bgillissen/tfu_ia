@@ -14,58 +14,77 @@ Description:
 } forEach(paramsArray);
 
 //check what is the players side
-if ( PARAMS_side == 1 ) then {
-	#define PLAYER_SIDE west;
-} else {
-	#define PLAYER_SIDE east;
-}
+PLAYER_SIDE  = east;
+if ( ["side"] call core_fnc_getConf ) then PLAYER_SIDE = west;
 
 //check if independent are ennemy to players
-if ( PARAMS_indSide == 1 ) then {
-	#define IND_ARE_ENEMY true
-} else {
-	#define IND_ARE_ENEMY false
-}
+IND_ARE_ENEMY = ( ["indEnemy"] call core_fnc_getConf );
+
 //define current map setting
-call compile preprocessFile format["maps\%1.sqf", toLower(worldName)];
+call compile preprocessFile format["maps\%1.sqf", worldName];
 
 //initialize assets arrays
-UNIT_pilot = [];
-UNIT_crew  = [];
-UNIT_mg = [];
-UNIT_at = [];
-UNIT_marksman = [];
-UNIT_sniper = [];
-UNIT_medic = [];
-UNIT_officer = [];
-UNIT_arti = [];
+BLACKLIST = [[],[],[],[],[],[],[]];
 
-VA_backpacks = [];
-VA_items = [];
-VA_weapons = [];
-VA_ammo = [];
+A_backpacks = [];
+A_items = [];
+A_weapons = [];
+A_ammo = [];
 
-VEH_allowed_heli = [];
-VEH_allowed_plane = [];
-VEH_allowed_tank = [];
-VEH_uav = [];
-VEH_rewards = [];
-VEH_supplyDrop = [];
-VEH_supplyCrates = [];
+C_backpacks = [];
+C_items = [];
+C_weapons = [];
+C_ammo = [];
 
-IA_radioTower = [];
-IA_pilot = [];
-IA_cas = [];
-IA_patrolGroups []
-IA_sniperGroups []
-IA_aaTank []
-IA_arti []
-IA_statics []
-IA_tank []
-IA_apc []
-IA_car []
-IA_airPatrol []
-IA_garrison = [];
+AU_pilot = [];
+AU_crew  = [];
+AU_mg = [];
+AU_at = [];
+AU_marksman = [];
+AU_sniper = [];
+AU_medic = [];
+AU_officer = [];
+AU_arti = [];
+
+AV_heli = [];
+AV_plane = [];
+AV_tank = [];
+
+BV_car = []; 
+BV_apc = []; 
+BV_tank = [];
+BV_planeCAS = [];
+BV_planeAA = [];
+BV_planeTransport = [];
+BV_heliSmall = [];
+BV_heliMedium = [];
+BV_heliMedEvac = [];
+BV_heliBig = [];
+BV_heliAttack = []; 
+BV_boatSmall = [];
+BV_boatAttack = [];
+BV_boatBig = [];
+
+UAV = [];
+
+REWARDS = [];
+
+SUPPLY_drop = [];
+SUPPLY_crates = [];
+
+S_radioTower = [];
+S_pilot = [];
+S_cas = [];
+S_patrolGroups = [];
+S_sniperGroups = [];
+S_aaTank = [];
+S_arti = [];
+S_statics = [];
+S_tank = [];
+S_apc = [];
+S_car = [];
+S_airPatrol = [];
+S_garrison = [];
 
 #define ROLES ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", "pilot", "mortar"];
 
@@ -75,6 +94,8 @@ if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preproc
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsGREF\init.sqf";
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsUSAF\init.sqf";
 if ( isClass(configFile >> "CfgPatches" >> "????") ) then call compile preprocessFile "mods\tfar\init.sqf";
+
+call common_fnc_arsenalAuto;
 
 //implent detected mods
 call compile preprocessFile "mods\vanilla.sqf";

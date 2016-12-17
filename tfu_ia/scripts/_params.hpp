@@ -5,7 +5,7 @@ class side {
 	default = 1;
 };
 
-class indSide {
+class indEnemy {
 	title = "Independent are enemy to players";
 	values[] = {1,0};
 	texts[] = {"true", "false"};
@@ -14,6 +14,13 @@ class indSide {
 
 class filterArsenal {
 	title = "Filtered Arsenal";
+	values[] = {0,1};
+	texts[] = {"Disabled","Enabled"};
+	default = 1;
+};
+
+class ArsenalAuto {
+	title = "Automatic Arsenal Gear Selection";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};
 	default = 1;

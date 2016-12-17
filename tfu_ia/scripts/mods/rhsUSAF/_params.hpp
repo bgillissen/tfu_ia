@@ -1,7 +1,7 @@
 class Spawn_usaf {
-	title = "RHS USAF units spawn";
+	title = "Missions spawn RHS USAF units";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
 class Arsenal_usaf_backpacks {

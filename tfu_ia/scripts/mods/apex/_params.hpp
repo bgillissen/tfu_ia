@@ -1,8 +1,8 @@
 class Spawn_apex {
-	title = "Apex units spawn";
-	values[] = {1,0};
-	texts[] = {"true", "false"};
-	default = 1;
+	title = "Missions spawn apex units";
+	values[] = {0,1,2,3};
+	texts[] = {"no", "yes", "yes, if no RHS", "yes, if no RHS and map is Tanoa"};
+	default = 3;
 };
 
 class Arsenal_ab_backpacks {
@@ -48,9 +48,16 @@ class Arsenal_ao_items {
 	texts[] = {"true", "false"};
 	default = 1;
 };
+
 class Reward_ao {
 	title = "Apex OPFOR rewards";
-	values[] = {1,0};
-	texts[] = {"true", "false"};
-	default = 1;
+	values[] = {0,1,2,3};
+	texts[] = {"no", "yes", "yes, if no RHS AFRF", "yes, if no RHS AFRF and map is Tanoa"};
+	default = 3;
+};
+class Reward_ab {
+	title = "Apex BLUFOR rewards";
+	values[] = {0,1,2,3};
+	texts[] = {"no", "yes", "yes, if no RHS USAF", "yes, if no RHS USAF and map is Tanoa"};
+	default = 3;
 };

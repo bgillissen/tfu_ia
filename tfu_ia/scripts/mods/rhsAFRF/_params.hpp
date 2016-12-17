@@ -1,7 +1,7 @@
 class Spawn_afrf {
-	title = "RHS AFRF units spawn";
+	title = "Missions spawn RHS AFRF units";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
 class Arsenal_afrf_backpacks {
