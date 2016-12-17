@@ -1,5 +1,5 @@
 /*
-@filename: init\server.sqf
+@filename: core\initServer.sqf
 Author:
 	Ben
 Description:

@@ -1,5 +1,5 @@
 /*
-@filename: init\common.sqf
+@filename: core\initCommon.sqf
 Author:
 	Ben
 Description:

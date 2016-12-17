@@ -1,5 +1,5 @@
 /*
-@filename: init\player.sqf
+@filename: core\initPlayer.sqf
 Author:
 	Ben
 Description:

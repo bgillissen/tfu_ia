@@ -1,5 +1,5 @@
 /*
-@filename: init\headless.sqf
+@filename: core\initHeadless.sqf
 Author:
 	Ben
 Description:
