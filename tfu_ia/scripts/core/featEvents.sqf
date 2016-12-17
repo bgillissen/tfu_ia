@@ -21,10 +21,10 @@ switch(_ctxt) do {
 	case "HEADLESS" : { _key = 3; };
 };
 
-_prepend = "";
-if ( _when == "onRespawn" ) then _file = "OnRespawn";
-if ( _when == "onJoin" ) then _file = "OnJoin";
-if ( _when == "onLeave" ) then _file = "OnLeave";
+_append = "";
+if ( _when == "onRespawn" ) then _append = "OnRespawn";
+if ( _when == "onJoin" ) then _append = "OnJoin";
+if ( _when == "onLeave" ) then _append = "OnLeave";
 
 {
 	_switch = 0;
@@ -36,7 +36,7 @@ if ( _when == "onLeave" ) then _file = "OnLeave";
 	switch( _switch ) do {
 		case 0 : { };
 		case 1 : { 
-					_script = format["feats\%1\%2%3.sqf", (_x select 0), toLower(_ctxt), _prepend];
+					_script = format["feats\%1\%2%3.sqf", (_x select 0), toLower(_ctxt), _append];
 					if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
 						[_param, _script, false, false, true] call BIS_fnc_MP;
 					} else {
@@ -44,7 +44,7 @@ if ( _when == "onLeave" ) then _file = "OnLeave";
 					};
 				 };
 		case 2 : { 
-					_script = format["feats\%1\%2%3Thread.sqf", (_x select 0), toLower(_ctxt), _prepend]
+					_script = format["feats\%1\%2%3Thread.sqf", (_x select 0), toLower(_ctxt), _append]
 					if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
 						[_param, _script, false, false, false] call BIS_fnc_MP;
 					} else {
