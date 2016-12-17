@@ -9,8 +9,6 @@ Description:
 	define settings for the revive feature
 */
 
-#ifndef MOD_ace
-
 BTC_r_new_system    = 0; 											//WIP - set 1 to activate it
 BTC_r_wait_for_revive = 1;											//If BTC_r_new_system set to 1 you can choose if you want or not a revive time available after death (Similar to wounding system in ACE)
 BTC_r_action        = 0;											//[NOT IMPLEMENTED] - 0 if you don't want the healing animation (ACE style), 1 if you want the animations (You can't stop the animation)
@@ -18,10 +16,10 @@ BTC_r_med_fa        = 1;											//0 for only first aid kit, 1 if you don't ha
 BTC_r_cpr_time      = 20;
 BTC_r_trans_ratio   = 100;
 BTC_revive_time_min = 3;
-BTC_revive_time_max = REVIVE_bleedout;
+BTC_revive_time_max = ["Revive_bleedout"] call core_fnc_getConf;
 BTC_who_can_revive  = UNIT_medic;
 BTC_loop_check      = 1;
-BTC_disable_respawn = REVIVE_disableRespawn;
+BTC_disable_respawn = ["Revive_noRespawn"] call core_fnc_getConf;
 BTC_respawn_gear    = 1;
 BTC_active_lifes    = 10;
 BTC_lifes           = 999;
@@ -36,7 +34,7 @@ BTC_respawn_time    = 3;
 BTC_active_mobile   = 0;											//Active mobile respawn (You have to put in map the vehicle and give it a name. Then you have to add one object per side to move to the mobile (BTC_base_flag_west,BTC_base_flag_east) - (1 = yes, 0 = no))
 BTC_mobile_respawn  = 0;											//Active the mobile respawn fnc (1 = yes, 0 = no)
 BTC_mobile_respawn_time = 30;										//Secs delay for mobile vehicle to respawn
-BTC_need_first_aid = REVIVE_needFaks;								//You need a first aid kit to revive (1 = yes, 0 = no)
+BTC_need_first_aid = ["Revive_needFaks"] call core_fnc_getConf;		//You need a first aid kit to revive (1 = yes, 0 = no)
 BTC_pvp = 0; 														//(disable the revive option for the enemy)
 
 call compile preprocessFile "feats\revive\functions.sqf";
@@ -51,5 +49,3 @@ BTC_objects_actions_west = [];					// this is the object name
 BTC_objects_actions_east = [];
 BTC_objects_actions_guer = [];
 BTC_objects_actions_civ  = [];
-
-#endif

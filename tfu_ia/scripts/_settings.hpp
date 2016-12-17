@@ -54,20 +54,12 @@ Description:
 
 //supplyDrop
 #define SD_minAltitude 40
-#define SD_maxCrate 3 //*
-#define SD_coolDown 600	//*
 #define SD_msgFrom "HQ"
 #define SD_msgAvail "Supply Drop is available."
 #define SD_msgDeployed "Supply Drop has been deployed."
 #define SD_checkDelay 20
-#define_SD_smoke =  "SmokeShellPurple";	//*
-#define SD_light =  "Chemlight_blue";	//*
-
-//revive
-#define REVIVE_distance 500
-#define REVIVE_needFaks 1		//*
-#define REVIVE_bleedout 900		//*
-#define REVIVE_disableRespawn 0
+#define_SD_smoke =  "SmokeShellPurple";
+#define SD_light =  "Chemlight_blue";
 
 //vehicleRespaw
 #define VR_distanceFromSpawn 150

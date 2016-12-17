@@ -67,7 +67,7 @@ IA_car []
 IA_airPatrol []
 IA_garrison = [];
 
-#define ROLES ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", "pilot", "support"];
+#define ROLES ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", "pilot", "mortar"];
 
 //detect loaded mods and init them
 if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace\init.sqf";

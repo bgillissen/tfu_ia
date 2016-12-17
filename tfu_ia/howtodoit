@@ -27,7 +27,7 @@ to do that i need :
 4 - dynamic base defence feature (dynBaseDefence) to spawn the AA tank in base
 	need markers placed in the mission (BD_loc1, BD_loc2,...)
 	in mod settings add vehicles to the pool (BD_pool)
-	in map settings assign a bearing to each markers  (can maybe use the bearing of the markers)
+	in map settings assign a bearing to each markers  (BD_markers) (can maybe use the bearing of the markers)
 	pick randomly a vehicle in the pool for each markers during server init
 	setup the vehicle (unlimited ammo, no fuel, no damage, locked, clear cargo, camo, model)
 	setup the gunner (side, skill)
@@ -37,18 +37,18 @@ to do that i need :
  	for vehicle :
  		in mission editor, place markers, and give it a varname
  		in mod settings add vehicles to the pools (BA_medical, BA_repair, BA_fuel)
-		in map settings assign a bearing to each markers (can maybe use the bearing of the markers) and some roles if needed
+		in map settings assign a bearing to each markers (BA_veh)(can maybe use the bearing of the markers) and some roles if needed
 		pick randomly a vehicle in the pool for each markers during server init
 		setup the vehicle (no damage, no simulation, simple object, camo, model)
 	for npc :
 		in mission editor, place a BLUFOR (naked) unit, and give it a varname
-		in map settings define the list of npcs and assign some roles to each
+		in map settings define the list of npcs and assign some roles to each (BA_npc)
 		in mod settings assign a loadout to those roles
 		setup the npc (side, loadout)
 		each feats will be able to add actions to those npc
 	for object :
 		in mission editor, place the object and give it a varname
-		in map settings define the list of object and assign some roles to each
+		in map settings define the list of object and assign some roles to each (BA_obj)
 		roles are :
 			arsenal, viewDistance, supplyOfficer, zeusControl
 	the features server init will take care of adding the actions to each "things" using that role
@@ -122,3 +122,24 @@ class Missions
 
 	//same as above for Altis and Stratis, just change the class and the template
 };
+
+
+Naming Convention
+
+allowed units (those units can wear some restricted gear and/or drive/gun some restricted vehicles)
+	AU_[pilot, crew, mg, at, marksman, sniper, medic, officer, arti]
+restricted gears (only some units can wear those gear)
+	RG_[launcher, mg, mRifle, mScope, sRifle, sScope, oScope]
+allowed vehicle (any unit can drive/gun those vehicles)
+	AV_[heli, plane, tank]
+arsenal (available gears)  
+	A_[backpacks, items, weapons, ammo]
+spawn (units/groups/vehicles/objects we are going to spawn in the missions)  
+	S_[radioTower, pilot, crew, cas, patrolGroups, sniperGroups, aaTank, arti, statics, tank, 
+	   apc, car, airPatrol, garrison]
+role gear (default gear provided to player on first spawn)
+	RL_[hq, sl, tl, medic, lmg, hmg, assHMG, at, assAT, sniper, marksman, repair, demo, engineer,
+		grenadier, rifleman, jtac, pilot, mortar]
+base atmosphere
+	BA_[vehicle, npc, object]		
+

@@ -42,8 +42,8 @@ Description:
 			]
 
 //some features need also an include
-#include "feats\intro\include.hpp"
-#include "feats\vas\include.hpp"
-#include "feats\vehicleCrew\include.hpp"
-#include "feats\viewDistance\include.hpp"
-#include "feats\revive\include.hpp"
+#include "feats\intro\_include.hpp"
+#include "feats\vas\_include.hpp"
+#include "feats\vehicleCrew\_include.hpp"
+#include "feats\viewDistance\_include.hpp"
+#include "feats\revive\_include.hpp"

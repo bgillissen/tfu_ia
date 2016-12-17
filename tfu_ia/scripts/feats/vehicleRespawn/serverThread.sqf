@@ -9,13 +9,14 @@ Description:
 	
 */
 
-private ["_queue", "_veh", "_delay", "_type", "_pos", "_dir", "_id", "_inqueue", "_new"];
+private ["dist", "_queue", "_veh", "_delay", "_type", "_pos", "_dir", "_id", "_inqueue", "_new"];
 
+_dist = ["VehicleRespawn_distance"] call core_fnc_getConf;
 _queue = [];
 
 while {true} do {
 	
-	sleep VEHRESPAWN_checkDelay;
+	sleep VR_checkDelay;
 	
 	if ( isNil "VEHRESPAWN" ) then continue;
 	if ( (count VEHRESPAWN) == 0 ) then continue;
@@ -45,8 +46,8 @@ while {true} do {
 			_queue append [_forEachIndex, (time + _delay)];
 		} else {
 			if ((count (crew _veh)) == 0) then {
-				if ((_veh distance _pos) > VEHRESPAWN_distanceFromSpawn) then {
-					if (({(_veh distance _x) < PARAMS_VehicleRespawnDistance} count (allPlayers - entities "HeadlessClient_F")) < 1) then {
+				if ((_veh distance _pos) > VR_distanceFromSpawn) then {
+					if (({(_veh distance _x) < _dist} count (allPlayers - entities "HeadlessClient_F")) < 1) then {
 						_queue append [_forEachIndex, (time + _delay)];
 					};
 				};
