@@ -9,17 +9,17 @@ Description:
 
 //------------------------------------------------------------ BLUFOR ASSETS
 
-#define BLUFOR_backpacks []
-#define BLUFOR_weapons []
-#define BLUFOR_ammo []
-#define BLUFOR_items []
+#define VB_backpacks []
+#define VB_weapons []
+#define VB_ammo []
+#define VB_items []
 
 //------------------------------------------------------------ OPFOR ASSETS
 
-#define OPFOR_backpacks []
-#define OPFOR_weapons []
-#define OPFOR_ammo []
-#define OPFOR_items []
+#define VO_backpacks []
+#define VO_weapons []
+#define VO_ammo []
+#define VO_items []
 
 //------------------------------------------------------------ COMMON ASSETS
 
@@ -40,17 +40,17 @@ Description:
 
 //------------------------------------------------------------ BLUFOR CARGO
 						 
-#define BLUFOR_cargoBackpacks []
-#define BLUFOR_cargoWeapons []
-#define BLUFOR_cargoAmmo []]
-#define BLUFOR_cargoItems []
+#define VB_cargoBackpacks []
+#define VB_cargoWeapons []
+#define VB_cargoAmmo []]
+#define VB_cargoItems []
 
 //------------------------------------------------------------ OPFOR CARGO
 
-#define OPFOR_cargoBackpacks []
-#define OPFOR_cargoWeapons []
-#define OPFOR_cargoAmmo []
-#define OPFOR_cargoItems []
+#define VO_cargoBackpacks []
+#define VO_cargoWeapons []
+#define VO_cargoAmmo []
+#define VO_cargoItems []
 
 //------------------------------------------------------------ COMMON CARGO
 						 
@@ -95,11 +95,11 @@ Description:
 
 //------------------------------------------------------------ BLUFOR REWARDS
 
-#define BLUFOR_rewards = []
+#define VB_rewards = []
 
 //------------------------------------------------------------ OPFOR REWARDS
 
-#define OPFOR_rewards = []
+#define VO_rewards = []
 
 //------------------------------------------------------------ IA RadioTowers
 
@@ -107,32 +107,32 @@ Description:
 
 //------------------------------------------------------------ BLUFOR IA Units
 
-#define BLUFOR_pilot []
-#define BLUFOR_crew []
-#define BLUFOR_cas []
-#define BLUFOR_patrolGroups []
-#define BLUFOR_sniperGroups []
-#define BLUFOR_aaTank []
-#define BLUFOR_arti []
-#define BLUFOR_static []
-#define BLUFOR_tank []
-#define BLUFOR_apc []
-#define BLUFOR_car []
-#define BLUFOR_airPatrol []
-#define BLUFOR_garrison []
+#define VB_pilot []
+#define VB_crew []
+#define VB_cas []
+#define VB_patrolGroups []
+#define VB_sniperGroups []
+#define VB_aaTank []
+#define VB_arti []
+#define VB_static []
+#define VB_tank []
+#define VB_apc []
+#define VB_car []
+#define VB_airPatrol []
+#define VB_garrison []
 
 //------------------------------------------------------------ OPFOR IA Units
 
-#define OPFOR_pilot []
-#define OPFOR_crew []
-#define OPFOR_cas []
-#define OPFOR_patrolGroups []
-#define OPFOR_sniperGroups []
-#define OPFOR_aaTank []
-#define OPFOR_arti []
-#define OPFOR_static []
-#define OPFOR_tank []
-#define OPFOR_apc []
-#define OPFOR_car []
-#define OPFOR_airPatrol []
-#define OPFOR_garrison []
+#define VO_pilot []
+#define VO_crew []
+#define VO_cas []
+#define VO_patrolGroups []
+#define VO_sniperGroups []
+#define VO_aaTank []
+#define VO_arti []
+#define VO_static []
+#define VO_tank []
+#define VO_apc []
+#define VO_car []
+#define VO_airPatrol []
+#define VO_garrison []

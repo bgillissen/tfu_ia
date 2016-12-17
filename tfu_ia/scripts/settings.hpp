@@ -4,14 +4,14 @@ Author:
 	Ben
 Description:
 	included by game engine (description.ext)
-	it defines features settings that could not be set by mission parameters
+	it defines features settings that can't be set by mission parameters
 */
 
-//needed to lock the server while server side features are loading
+//init, needed to lock the server while server side features are loading
 #define srvCMDpass "honeybadger";
 #define unlockDelay 15;
 
-//squadHint, squad name that will trigger a globalHint when a player join
+//squadHint, squad name that will trigger a globalHint when one of his members join
 #define SQUAD "Task Force Unicorn"
 
 //vonHint, displayed teamSpeak address
@@ -54,43 +54,19 @@ Description:
 
 //supplyDrop
 #define SD_minAltitude 40
-#define SD_maxCrate 3
-#define SD_coolDown 600
+#define SD_maxCrate 3 //*
+#define SD_coolDown 600	//*
 #define SD_msgFrom "HQ"
 #define SD_msgAvail "Supply Drop is available."
 #define SD_msgDeployed "Supply Drop has been deployed."
 #define SD_checkDelay 20
-#define_SD_smoke =  "SmokeShellPurple";
-#define SD_light =  "Chemlight_blue";
+#define_SD_smoke =  "SmokeShellPurple";	//*
+#define SD_light =  "Chemlight_blue";	//*
 
-//va and vas, control which assets will be included in the arsenal
-#define VA_blufor_backpacks true
-#define VA_blufor_weapons true
-#define VA_blufor_items true
-#define VA_opfor_backpacks false
-#define VA_opfor_weapons false
-#define VA_opfor_items false
-#define VA_usaf_backpacks true
-#define VA_usaf_weapons true
-#define VA_usaf_items true
-#define VA_afrf_backpacks false
-#define VA_afrf_weapons false
-#define VA_afrf_items false
-#define VA_gref_backpacks false
-#define VA_gref_weapons false
-#define VA_gref_items false
-
-//rewards, control which assets will be available in the reward pool
-#define REWARD_opfor false
-#define REWARD_blufor false
-#define REWARD_usaf true
-#define REWARD_afrf false
-#define REWARD_gref false
-
-//revive,
+//revive
 #define REVIVE_distance 500
-#define REVIVE_needFaks 1
-#define REVIVE_bleedout 900
+#define REVIVE_needFaks 1		//*
+#define REVIVE_bleedout 900		//*
 #define REVIVE_disableRespawn 0
 
 //vehicleRespaw
@@ -98,10 +74,6 @@ Description:
 #define VR_checkDelay 20
 
 //invade & annex
-#define IA_spawnVanilla false
-#define IA_spawnUSAF true
-#define IA_spawnAFRF true
-#define IA_spawnGREF true
 #define IA_loopDelay 20
 #define IA_checkDelay 5
 #define IA_newAOHint "<t align='center' size='2.2'>New Target</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/>We did a good job with the last target, lads. I want to see the same again. Get yourselves over to %1 and take them all down!<br/><br/>Remember to take down that radio tower to stop the enemy from calling in CAS."

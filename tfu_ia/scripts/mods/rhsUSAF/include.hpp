@@ -94,5 +94,25 @@ Description:
 #define USAF_airPatrol []
 #define USAF_garrison []
 						
-//------------------------------------------------------------ IMPLENTING ASSETS
+//------------------------------------------------------------ LOADOUTS
+
+#define USAF_LO_hq [["uniform", ["inUniform1", "inUniform2"]],
+				    ["vest", ["inVest1", "inVest2"]],
+                    ["backpack", ["inBackpack1", "inBackpack2"]],
+                    ["sideArm", "sideArmSuppressor", "sideArmOptic"],
+                    ["weapon", "weaponSuppressor", "weaponOptic", "weaponHandle", "weaponAcc"],
+                    ["launcher", "launcherOptic"],
+                    "helmet", "comm", "terminal", "bino", "nv"];
+#define USAF_LO_sl []
+#define USAF_LO_tl []
+#define USAF_LO_medic[]
+#define USAF_LO_lmg []
+#define USAF_LO_assLMG []
+#define USAF_LO_hmg []
+#define USAF_LO_assHMG []
+#define USAF_LO_at []
+#define USAF_LO_assAT []
+#define USAF_LO_sniper []
+#define USAF_LO_marksman []
+
 

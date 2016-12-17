@@ -1,5 +1,5 @@
 /*
-@filename: mods\vanilla.sqf
+@filename: mods\vanilla\implent.sqf
 Author:
 	Ben
 Description:
@@ -21,67 +21,67 @@ _cargoWeapons = VANILLA_cargoWeapons;;
 _cargoAmmo = VANILLA_cargoAmmo;;
 _rewards = [];
 
-if ( VA_blufor_backpacks ) then { 
-	_backpacks append BLUFOR_backpacks; 
-	_cargoBackpacks append BLUFOR_cargoBackpacks;
+if ( ["Arsenal_vb_backpacks"] call core_fnc_getConf ) then { 
+	_backpacks append VB_backpacks; 
+	_cargoBackpacks append VB_cargoBackpacks;
 };
-if ( VA_blufor_items ) then { 
-	_items append BLUFOR_items;
-	_cargoItems append BLUFOR_cargoItems; 
+if ( ["Arsenal_vb_items"] call core_fnc_getConf ) then { 
+	_items append VB_items;
+	_cargoItems append VB_cargoItems; 
 };
-if ( VA_blufor_weapons ) then { 
-	_weapons append BLUFOR_weapons;
-	_ammo append BLUFOR_ammo;
-	_cargoWeapons append BLUFOR_cargoWeapons;
-	_cargoAmmo append BLUFOR_cargoAmmo;
+if ( ["Arsenal_vb_weapons"] call core_fnc_getConf ) then { 
+	_weapons append VB_weapons;
+	_ammo append VB_ammo;
+	_cargoWeapons append VB_cargoWeapons;
+	_cargoAmmo append VB_cargoAmmo;
 };
-if ( VA_opfor_backpacks ) then { 
-	_backpacks append OPFOR_backpacks; 
-	_cargoBackpacks append OPFOR_cargoBackpacks;
+if ( ["Arsenal_vo_backpacks"] call core_fnc_getConf ) then { 
+	_backpacks append VO_backpacks; 
+	_cargoBackpacks append VO_cargoBackpacks;
 };
-if ( VA_opfor_items ) then { 
-	_items append OPFOR_items; 
-	_cargoItems append OPFOR_cargoItems;
+if ( ["Arsenal_vo_items"] call core_fnc_getConf == 1) then { 
+	_items append VO_items; 
+	_cargoItems append VO_cargoItems;
 };
-if ( VA_opfor_weapons ) then { 
-	_weapons append OPFOR_weapons;
-	_ammo append OPFOR_ammo;
-	_cargoWeapons append OPFOR_cargoWeapons;
-	_cargoAmmo append OPFOR_cargoAmmo;
+if ( ["Arsenal_vo_weapons"] call core_fnc_getConf ) then { 
+	_weapons append VO_weapons;
+	_ammo append VO_ammo;
+	_cargoWeapons append VO_cargoWeapons;
+	_cargoAmmo append VO_cargoAmmo;
 };
 
-if ( REWARD_blufor ) then { _rewards append BLUFOR_rewards; };
-if ( REWARD_opfor ) then { _rewards append OPFOR_rewards; };
+if ( ["Reward_vb"] call core_fnc_getConf ) then { _rewards append VB_rewards; };
+if ( ["Reward_vo"] call core_fnc_getConf ) then { _rewards append VO_rewards; };
 
 
-if ( IA_spawnVanilla ) then {
-	if ( PLAYER_SIDE == "blufor" ) then {
-		_iaPilot = OPFOR_pilot;
-		_iaCrew = OPFOR_crew;
-		_iaCAS = OPFOR_cas;
-		_iaPGroup = OPFOR_patrolGroup;
-		_iaSGroup = OPFOR_sniperGroup;
-		_iaArti = OPFOR_arti;
-		_iaAA = OPFOR_aaTank;
-		_iaStatic = OPFOR_static;
-		_iaTank = OPFOR_tank;
-		_iaAPC = OPFOR_apc;
-		_iaCar = OPFOR_car;
-		_iaAir = OPFOR_airPatrol;
-		_iaGarrison = OPFOR_garrison;
+if ( ["Spawn_vanilla"] call core_fnc_getConf ) then {
+	if ( PLAYER_SIDE == west ) then {
+		_iaPilot = VO_pilot;
+		_iaCrew = VO_crew;
+		_iaCAS = VO_cas;
+		_iaPGroup = VO_patrolGroup;
+		_iaSGroup = VO_sniperGroup;
+		_iaArti = VO_arti;
+		_iaAA = VO_aaTank;
+		_iaStatic = VO_static;
+		_iaTank = VO_tank;
+		_iaAPC = VO_apc;
+		_iaCar = VO_car;
+		_iaAir = VO_airPatrol;
+		_iaGarrison = VO_garrison;
 	} else {
-		_iaPilot = BLUFOR_pilot;
-		_iaCrew = BLUFOR_crew;
-		_iaCAS = BLUFOR_cas;
-		_iaSGroup = BLUFOR_sniperGroup;
-		_iaArti = BLUFOR_arti;
-		_iaAA = BLUFOR_aaTank;
-		_iaStatic = BLUFOR_static;
-		_iaTank = BLUFOR_tank;
-		_iaAPC = BLUFOR_apc;
-		_iaCar = BLUFOR_car;
-		_iaAir = BLUFOR_airPatrol;
-		_iaGarrison = BLUFOR_garrison;
+		_iaPilot = VB_pilot;
+		_iaCrew = VB_crew;
+		_iaCAS = VB_cas;
+		_iaSGroup = VB_sniperGroup;
+		_iaArti = VB_arti;
+		_iaAA = VB_aaTank;
+		_iaStatic = VB_static;
+		_iaTank = VB_tank;
+		_iaAPC = VB_apc;
+		_iaCar = VB_car;
+		_iaAir = VB_airPatrol;
+		_iaGarrison = VB_garrison;
 	};
 } else {
 	_iaPilot = [];

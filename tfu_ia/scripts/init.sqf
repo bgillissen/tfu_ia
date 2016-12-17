@@ -4,20 +4,20 @@ Author:
 	Ben
 Description:
 	run on server side by game engine on mission start
-	lock the server, call scripts depending on the context (server, headless, player), unlock the server
+	lock the server, call init functions depending on the context (server, headless, player), unlock the server
 */
 
 private ["_srvCMD"];
 
 _srvCMD =  srvCMDpass serverCommand "#lock";
 
-call compile preprocessFile "init\common.sqf";
+call core_fnc_initCommon;
 
-if ( isServer ) then call compile preprocessFile "init\server.sqf";
+if ( isServer ) then call core_fnc_initServer;
 
-if ( !isServer && !hasInterface ) then call compile preprocessFile "init\headless.sqf";
+if ( !isServer && !hasInterface ) then call core_fnc_initHeadless;
 
-if ( !isServer && hasInterface ) then call compile preprocessFile "init\player.sqf";
+if ( !isServer && hasInterface ) then call core_fnc_initPlayer;
 
 sleep unlockDelay;
 

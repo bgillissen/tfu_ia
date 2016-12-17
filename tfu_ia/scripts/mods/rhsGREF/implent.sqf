@@ -21,24 +21,24 @@ _cargoWeapons = [];
 _cargoAmmo = [];
 _rewards = [];
 
-if ( VA_gref_backpacks ) then { 
+if ( ["Arsenal_gref_backpacks"] call core_fnc_getConf ) then { 
 	_backpacks append _backpacks;
 	_cargoBackpacks append GREF_cargoBackpacks;
 };
-if ( VA_gref_items ) then { 
+if ( ["Arsenal_gref_items"] call core_fnc_getConf ) then { 
 	_items append AFRF_items; 
 	_cargoItems append GREF_cargoItems;
 };
-if ( VA_gref_weapons ) then { 
+if ( ["Arsenal_gref_weapons"] call core_fnc_getConf ) then { 
 	_weapons append GREF_weapons;
 	_ammo append GREF_ammo;
 	_cargoWeapons append GREF_cargoWeapons;
 	_cargoAmmo append GREF_cargoAmmo;
 };
 
-if ( REWARD_gref ) then { _rewards append GREF_rewards; };
+if ( ["Reward_gref"] call core_fnc_getConf ) then { _rewards append GREF_rewards; };
 
-if ( IA_spawnGREF && IND_ARE_ENEMY ) then {
+if ( ["Spawn_gref"] call core_fnc_getConf && IND_ARE_ENEMY ) then {
 	_iaPilot = GREF_pilot;
 	_iaCrew = GREF_crew;
 	_iaCAS = GREF_cas;

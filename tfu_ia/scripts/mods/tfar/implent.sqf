@@ -20,7 +20,7 @@ TF_give_microdagr_to_soldier = false;
 //To reduce the terrain interception coefficient
 TF_terrain_interception_coefficient = 1;
 
-if ( PLAYER_SIDE == "blufor" ) then {				 	 	 
+if ( PLAYER_SIDE == west ) then {				 	 	 
 	[[], [], [TFAR_BLUFOR_LR, TFAR_BLUFOR_SR, [], []], [], [], [], [], []] call common_fnc_implentAssets;
 } else {
 	[[], [], [TFAR_OPFOR_LR, TFAR_OPFOR_SR, [], []], [], [], [], [], []] call common_fnc_implentAssets;

@@ -1,8 +1,8 @@
 
 //------------------------- On Load
 author = ben;
-onLoadName = "TFU - RHS Invade & Annex";
-onLoadMission = "Welcome back to Task Force Unicorn Invade and Annex RHS";
+onLoadName = "TFU - Invade & Annex";
+onLoadMission = "Welcome back to Task Force Unicorn Invade and Annex";
 onLoadIntro = "";
 onLoadIntroTime = 0;
 onLoadMissionTime = 0;
@@ -74,6 +74,7 @@ class RscTitles {
 	
 //------------------------- Functions
 class CfgFunctions {
+	#include "core\cfgFunctions.hpp"
 	#include "common\cfgFunctions.hpp"
 	#include "feats\dynBillboards\cfgFunctions.hpp"
 	#include "feats\radioFreq\cfgFunctions.hpp"

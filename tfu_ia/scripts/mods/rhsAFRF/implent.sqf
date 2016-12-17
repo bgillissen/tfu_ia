@@ -21,24 +21,24 @@ _cargoWeapons = [];
 _cargoAmmo = [];
 _rewards = [];
 
-if ( VA_afrf_backpacks ) then { 
+if ( ["Arsenal_afrf_backpacks"] call core_fnc_getConf ) then { 
 	_backpacks append AFRF_backpacks; 
 	_cargoBackpacks append AFRF_cargoBackpacks;
 };
-if ( VA_afrf_items ) then {
+if ( ["Arsenal_afrf_items"] call core_fnc_getConf ) then {
 	_items append AFRF_items; 
 	_cargoItems append AFRF_cargoItems;
 };
-if ( VA_afrf_weapons ) then { 
+if ( ["Arsenal_afrf_weapons"] call core_fnc_getConf ) then { 
 	_weapons append AFRF_weapons;
 	_ammo append AFRF_ammo;
 	_cargoWeapons append AFRF_cargoWeapons;
 	_cargoAmmo append AFRF_cargoAmmo;
 };
 
-if ( REWARD_afrf ) then { _rewards append AFRF_rewards; };
+if ( ["Reward_afrf"] call core_fnc_getConf ) then { _rewards append AFRF_rewards; };
 
-if ( IA_spawnAFRF && PLAYER_SIDE == "blufor" ) then {
+if ( ["Spawn_afrf"] call core_fnc_getConf && PLAYER_SIDE == west ) then {
 	_iaPilot = AFRF_pilot;
 	_iaCrew = AFRF_crew;
 	_iaCAS = AFRF_cas;
