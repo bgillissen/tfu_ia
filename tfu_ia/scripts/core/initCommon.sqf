@@ -7,6 +7,42 @@ Description:
 	set player side, set independant friendship, init assets containers, init and implent detected mods
 */
 
+//our global vars
+#define U 0
+#define RG 1
+#define A 2
+#define C 3
+#define SD 4
+#define AV 5
+#define BV 6
+#define S 7
+#define RL 8
+#define GV [\
+			//allowed units (those placed in mission editor as playable units)
+			["U", ["pilot", "crew", "mg", "at", "marksman", "sniper", "medic", "officer", "arti"]],\
+			//restricted gear categories
+			["RG", ["launcher", "mg", "sRfile", "mRifle", "sScope", "mScope", "oScope"]],\
+			//arsenal types
+			["A", ["backpacks", "items", "weapons", "ammo"]],\
+			//cargo types
+			["C", ["backpacks", "items", "weapons", "ammo"]],\
+			//supply drop
+			["SD", ["gears", "crates"]],\
+			//allowed Vehicle types
+			["AV", ["heli", "plane", "tank"]],\
+			//base vehicle types
+			["BV", ["car", "apc", "tank", "planeCAS", "planeAA", "planeTransport",\ 
+			        "heliSmall", "heliMedium", "heliMedEvac", "heliBig", "heliAttack",\
+			        "boatSmall", "boatAttack", "boatBig"]],\
+			//spawn types
+			["S", ["radioTower", "pGroup", "sGroup", "pilot", "crew", "officer", "garrison",\
+			       "aa", "arti", "static", "cas", "tank", "apc", "car", "aPatrol"]],\
+			//roles loadout
+			["RL", ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper",\ 
+			        "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac",\ 
+			        "pilot", "mortar"]]\	
+           ];
+
 //check what is the players side
 PLAYER_SIDE  = east;
 if ( ["side"] call core_fnc_getConf ) then PLAYER_SIDE = west;
@@ -14,93 +50,24 @@ if ( ["side"] call core_fnc_getConf ) then PLAYER_SIDE = west;
 //check if independent are ennemy to players
 IND_ARE_ENEMY = ( ["indEnemy"] call core_fnc_getConf );
 
-//define current map setting
+{
+    param ["_prefix", "_keys"];
+    {
+    	missionNamespace setVariable [format["%1_%2", _prefix, _x], [], false];
+	} count _keys;
+} count GV;
+
+//blacklisted things pool
+missionNamespace setVariable ["BLACKLIST", [[],[],[],[],[],[],[]], false];
+
+//uav
+missionNamespace setVariable ["UAV", [], false];
+
+//revards
+missionNamespace setVariable ["REWARDS", [], false];
+
+//define current map settings
 call compile preprocessFile format["maps\%1.sqf", worldName];
-
-//initialize assets arrays
-BLACKLIST = [[],[],[],[],[],[],[]];
-
-A_backpacks = [];
-A_items = [];
-A_weapons = [];
-A_ammo = [];
-
-C_backpacks = [];
-C_items = [];
-C_weapons = [];
-C_ammo = [];
-
-AU_pilot = [];
-AU_crew  = [];
-AU_mg = [];
-AU_at = [];
-AU_marksman = [];
-AU_sniper = [];
-AU_medic = [];
-AU_officer = [];
-AU_arti = [];
-
-AV_heli = [];
-AV_plane = [];
-AV_tank = [];
-
-BV_car = []; 
-BV_apc = []; 
-BV_tank = [];
-BV_planeCAS = [];
-BV_planeAA = [];
-BV_planeTransport = [];
-BV_heliSmall = [];
-BV_heliMedium = [];
-BV_heliMedEvac = [];
-BV_heliBig = [];
-BV_heliAttack = []; 
-BV_boatSmall = [];
-BV_boatAttack = [];
-BV_boatBig = [];
-
-UAV = [];
-
-REWARDS = [];
-
-SUPPLY_drop = [];
-SUPPLY_crates = [];
-
-S_radioTower = [];
-S_pilot = [];
-S_cas = [];
-S_patrolGroups = [];
-S_sniperGroups = [];
-S_aaTank = [];
-S_arti = [];
-S_statics = [];
-S_tank = [];
-S_apc = [];
-S_car = [];
-S_airPatrol = [];
-S_garrison = [];
-
-RL_hq = [];
-RL_sl = [];
-RL_tl = [];
-RL_medic = [];
-RL_lmg = [];
-RL_hmg = [];
-RL_assHMG = [];
-RL_at = [];
-RL_assAT = [];
-RL_sniper = [];
-RL_marksman = [];
-RL_repair = [];
-RL_demo = [];
-RL_engineer = [];
-RL_grenadier = [];
-RL_rifleman = [];
-RL_jtac = [];
-RL_pilot = [];
-RL_mortar = [];
-
-//#define ROLES ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", "pilot", "mortar"];
 
 //detect loaded mods and init them
 if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace\init.sqf";

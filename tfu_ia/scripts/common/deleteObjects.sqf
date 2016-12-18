@@ -5,32 +5,34 @@ Author:
 Description:
 	it remove the objects given 
 */
+
 param ["_objects"];
-private ["_obj", "_isGroup"];
+
 {
 	if (typeName _x == "GROUP") then {
 		{
-			if (vehicle _x != _x) then deleteVehicle (vehicle _x);
+			if ( !(isNull objectParent _x) ) then deleteVehicle (vehicle _x);
         	deleteVehicle _x;
-		} forEach (units _x);
+		} count (units _x);
 	} else {
-		if (vehicle _x != _x) then {
+		if ( !(isNull objectParent _x) ) then {
 			deleteVehicle (vehicle _x);
-		};
-		if !(_x isKindOf "Man") then {
-			{ deleteVehicle _x; } forEach (crew _x);
+			if ( !(_x isKindOf "Man") ) then {
+				{ deleteVehicle _x; } count (crew _x);
+			};
 		};
 		deleteVehicle _x;
 	};
-} forEach (_objects);
-
-for "_c" from 0 to (count _objects) do {
-	_obj = _objects select _c;
-	if (_obj in allGroups) then {
+} count _objects;
+/* not sure why this is needed....
+{
+	if (_x in allGroups) then {
 		{
 			if (!isNull _x) then { deleteVehicle _x; };
-		} forEach (units _obj);
+		} count (units _x);
 	} else {
-		if (!isNull _obj) then { deleteVehicle _obj; };
+		if (!isNull _x) then { deleteVehicle _x; };
 	};
-};
+} count _objects;
+}
+*/

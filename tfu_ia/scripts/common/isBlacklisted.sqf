@@ -3,21 +3,22 @@
 Author:
 	Ben
 Description:
-	tell if the given item is blacklist in the given category
+	tell if the given item is blacklisted in the given category
 */
 
-param ["_class", "_category"];
-private ["_key"];
+param ["_item", "_cat"];
+private ["_key", "_out"];
 
-switch(_category){
-	case "backpack": { _key = 0; };
-	case "item": { _key = 1; };
-	case "weapon": { _key = 2; };
-	case "ammo": { _key = 3; };
-	case "unit": { _key = 4; };
-	case "vehicle": { _key = 5; };
-	case "object": { _key = 6; };
-	case "group": { _key = 7; };
-}
+_key = nil;
+if ( _cat == 'backpack' ) then { _key = 0; };
+if ( _cat == 'item' ) then { _key = 1; };
+if ( _cat == 'weapon' ) then { _key = 2; };
+if ( _cat == 'ammo' ) then { _key = 3; };
+if ( _cat == 'unit' ) then { _key = 4; };
+if ( _cat == 'vehicle' ) then { _key = 5; };
+if ( _cat == 'object' ) then { _key = 6; };
+if ( _cat == 'group' ) then { _key = 7; };
 
-(_item in (BLACKLIST select _key))
+if ( !isNil "_key" ) exitWith { (_item in (BLACKLIST select _key)) };
+
+false

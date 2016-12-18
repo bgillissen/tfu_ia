@@ -7,18 +7,6 @@ Description:
 	define vanilla assets
 */
 
-//------------------------------------------------------------ UNITS
-
-#define U_pilot []
-#define U_crew []
-#define U_mg []
-#define U_at []
-#define U_marksman []
-#define U_sniper []
-#define U_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
-#define U_officer []
-#define U_arti []
-
 //------------------------------------------------------------ Arsenal Vanilla BLUFOR
 
 #define AVB_backpacks []
@@ -86,12 +74,29 @@ Description:
 
 //------------------------------------------------------------ Vanilla UAV
 
-#define VANILLA_UAV ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
+#define V_UAV ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
 
-//------------------------------------------------------------ Vanilla supplyDrop
+//------------------------------------------------------------ supplyDrop Vanilla BLUFOR
 
-#define VANILLA_supplyDrop []
-#define VANILLA_supplyCrates []
+#define SDVB_backpacks []
+#define SDVB_items []
+#define SDVB_weapons []
+#define SDVB_ammo []
+
+//------------------------------------------------------------ supplyDrop Vanilla OPFOR
+
+#define SDVO_backpacks []
+#define SDVO_items []
+#define SDVO_weapons []
+#define SDVO_ammo []
+
+//------------------------------------------------------------ supplyDrop Vanilla (common)
+
+#define SDV_backpacks []
+#define SDV_items []
+#define SDV_weapons []
+#define SDV_ammo []
+#define SDV_crates []
 
 //------------------------------------------------------------ Rewards Vanilla BLUFOR
 
@@ -101,9 +106,9 @@ Description:
 
 #define RVO = []
 
-//------------------------------------------------------------ Vanilla RadioTower
+//------------------------------------------------------------ RadioTower Vanilla
 
-#define VANILLA_RT ["Land_TTowerBig_2_F"]
+#define RTV ["Land_TTowerBig_2_F"]
 
 //------------------------------------------------------------ Spawn Vanilla BLUFOR
 

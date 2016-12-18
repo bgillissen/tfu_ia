@@ -1,4 +1,4 @@
-class gearRestrictions {
+class restrictGear {
 	title = "Gear Restrictions";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};

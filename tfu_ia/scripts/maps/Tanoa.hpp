@@ -7,6 +7,17 @@ Description:
 	it defines the available AO zones/markers, base assets markers for the Tanoa map
 */
 
+#define U_hPilot []
+#define U_jPilot []
+#define U_crew []
+#define U_mg []
+#define U_at []
+#define U_marksman []
+#define U_sniper []
+#define U_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
+#define U_officer []
+#define U_arti []
+
 #define AO_zones [\
 					["bala",3],\
 					["main",3],\

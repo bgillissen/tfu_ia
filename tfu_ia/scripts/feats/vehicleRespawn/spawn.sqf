@@ -25,12 +25,9 @@ if (!isNull _veh) then {
 	};
 	deleteVehicle _veh; 
 };
-_veh = createVehicle [_type, _pos, [], 0, "NONE"];
-waitUntil {
-	sleep 0.1;
-	!isNull _veh
-};
+_veh = createVehicle [_type, [0,0,0], [], 0, "NONE"];
 _veh setDir _dir;
+_veh setPos _pos;
 
 [_veh] call vehicleRespawn_fnc_setup;
 

@@ -3,12 +3,11 @@
 Author:
 	Ben
 Description:
-	This script is executed on all context (server, headless client, player)
+	run on all context
 	it help to determine if something got to be implented
 */
 
 param["_conf", "_side", "_modRule", "_mapRule"];
-private ["_bool"];
 
 if ( _conf typeName == "BOOL" ) then exitWith{ _conf };
 

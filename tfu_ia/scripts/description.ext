@@ -68,32 +68,21 @@ class CfgFunctions {
 	#include "feats\_cfgFunctions.hpp"
 	
 };
+
+//------------------------- Whitelisted Remote Functions
 class CfgRemoteExec
 {
-      // List of script functions allowed to be sent from client via remoteExec
       class Functions
-      {
-              mode = 2; //0:disabled, 1:whitelisted, 2:all
-              jip = 1;  //0:disabled, 1:enabled
-              /*
-              class YourFunctionName
-              {
-                     allowedTargets=0; //0;anyone; 1:only clients, 2:only server
-                     jip = 1;  //0:disabled, 1:enabled
-              };
-              */
+      { 	//mode 0:disabled, 1:whitelisted, 2:all
+              mode = 1;
+              jip = 1;
               #include "feats\_cfgRemoteExec.cfg"
               
       };        
-      // List of script commands allowed to be sent from client via remoteExec
       class Commands
       {
-             // your commands here
-             class YourCommand1 
-             { 
-                     allowedTargets=0; // can target anyone
-                     jip=0; // sending jip is turned off (overrides settings in the Commands class)
-             };
+      		mode = 1;
+      		jip = 1;            
       };
 };
 
