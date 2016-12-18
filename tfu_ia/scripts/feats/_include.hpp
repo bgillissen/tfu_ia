@@ -11,7 +11,6 @@ Description:
 
 #define FEATS [\
 				["baseProtection", 		[0,0,0,0], [1,0], [0,0]],\
-				["cleanup", 			[2,0,0,0], [0,0], [0,0]],\
 				["curator", 			[1,0,1,1], [1,0], [0,0]],\
 				["dynBillboards", 		[0,0,0,0], [0,1], [0,0]],\
 				["earPlugs", 			[0,0,0,0], [1,0], [0,0]],\

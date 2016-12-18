@@ -4,14 +4,8 @@ Author:
 	Ben
 Description:
 	This script is executed by main init once on all context (server, headless client, player)
-	define PARAMS_... vars, player_side, assets arrays
-	init and implent the detected mods
+	set player side, set independant friendship, init assets containers, init and implent detected mods
 */
-
-//copy mission parameters object properties into variables
-{
-	call compile format ["PARAMS_%1 = %2", (configName ((missionConfigFile >> "Params") select _forEachIndex)), (paramsArray _x)];
-} forEach(paramsArray);
 
 //check what is the players side
 PLAYER_SIDE  = east;
@@ -86,7 +80,27 @@ S_car = [];
 S_airPatrol = [];
 S_garrison = [];
 
-#define ROLES ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", "pilot", "mortar"];
+RL_hq = [];
+RL_sl = [];
+RL_tl = [];
+RL_medic = [];
+RL_lmg = [];
+RL_hmg = [];
+RL_assHMG = [];
+RL_at = [];
+RL_assAT = [];
+RL_sniper = [];
+RL_marksman = [];
+RL_repair = [];
+RL_demo = [];
+RL_engineer = [];
+RL_grenadier = [];
+RL_rifleman = [];
+RL_jtac = [];
+RL_pilot = [];
+RL_mortar = [];
+
+//#define ROLES ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", "pilot", "mortar"];
 
 //detect loaded mods and init them
 if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace\init.sqf";

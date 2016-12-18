@@ -7,17 +7,17 @@ Description:
 	define vanilla assets
 */
 
-//------------------------------------------------------------ ALLOWED UNITS
+//------------------------------------------------------------ UNITS
 
-#define AU_pilot []
-#define AU_crew []
-#define AU_mg []
-#define AU_at []
-#define AU_marksman []
-#define AU_sniper []
-#define AU_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
-#define AU_officer []
-#define AU_arti []
+#define U_pilot []
+#define U_crew []
+#define U_mg []
+#define U_at []
+#define U_marksman []
+#define U_sniper []
+#define U_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
+#define U_officer []
+#define U_arti []
 
 //------------------------------------------------------------ Arsenal Vanilla BLUFOR
 
@@ -173,57 +173,57 @@ Description:
 
 //------------------------------------------------------------ Role Loadout Vanilla BLUFOR
 
-#define RLVB_hq
-#define RLVB_sl
-#define RLVB_tl
-#define RLVB_medic
-#define RLVB_lmg
-#define RLVB_hmg
-#define RLVB_assHMG
-#define RLVB_at
-#define RLVB_assAT
-#define RLVB_sniper
-#define RLVB_marksman
-#define RLVB_repair
-#define RLVB_demo
-#define RLVB_engineer
-#define RLVB_grenadier
-#define RLVB_rifleman
-#define RLVB_jtac
-#define RLVB_pilot
-#define RLVB_mortar
+#define RLVB_hq []
+#define RLVB_sl []
+#define RLVB_tl []
+#define RLVB_medic []
+#define RLVB_lmg []
+#define RLVB_hmg []
+#define RLVB_assHMG []
+#define RLVB_at []
+#define RLVB_assAT []
+#define RLVB_sniper []
+#define RLVB_marksman []
+#define RLVB_repair []
+#define RLVB_demo []
+#define RLVB_engineer []
+#define RLVB_grenadier []
+#define RLVB_rifleman []
+#define RLVB_jtac []
+#define RLVB_pilot []
+#define RLVB_mortar []
 
 //------------------------------------------------------------ Role Loadout Vanilla OPFOR
 
-#define RLVO_hq
-#define RLVO_sl
-#define RLVO_tl
-#define RLVO_medic
-#define RLVO_lmg
-#define RLVO_hmg
-#define RLVO_assHMG
-#define RLVO_at
-#define RLVO_assAT
-#define RLVO_sniper
-#define RLVO_marksman
-#define RLVO_repair
-#define RLVO_demo
-#define RLVO_engineer
-#define RLVO_grenadier
-#define RLVO_rifleman
-#define RLVO_jtac
-#define RLVO_pilot
-#define RLVO_mortar
+#define RLVO_hq []
+#define RLVO_sl []
+#define RLVO_tl []
+#define RLVO_medic []
+#define RLVO_lmg []
+#define RLVO_hmg []
+#define RLVO_assHMG []
+#define RLVO_at []
+#define RLVO_assAT []
+#define RLVO_sniper []
+#define RLVO_marksman []
+#define RLVO_repair []
+#define RLVO_demo []
+#define RLVO_engineer []
+#define RLVO_grenadier []
+#define RLVO_rifleman []
+#define RLVO_jtac []
+#define RLVO_pilot []
+#define RLVO_mortar []
 
 //------------------------------------------------------------ Base Atmosphere Vanilla BLUFOR
 
-#define BAVB_vehicle
-#define BAVB_npc
-#define BAVB_object
+#define BAVB_vehicle []
+#define BAVB_npc []
+#define BAVB_object []
 
 //------------------------------------------------------------ Base Atmosphere Vanilla BLUFOR
 
-#define BAVO_vehicle
-#define BAVO_npc
-#define BAVO_object
+#define BAVO_vehicle []
+#define BAVO_npc []
+#define BAVO_object []
 

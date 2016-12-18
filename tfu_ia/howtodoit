@@ -1,7 +1,7 @@
 
 HOWTO one mission by map for all mods combo [[+TFAR][+RHS][+ACE]] and with the ability to be BLUFOR or OPFOR
 to do that i need :
-1 - only place vanilla BLUFOR units in the editor
+1 - only place vanilla BLUFOR units in the editor (naked)
 		change player side on player init
 		
 2 - a dynamic Loadout feature (dynLoadout) to change units loadout on player init
@@ -66,11 +66,6 @@ class Missions
 		class Params
 		{
 			Side = "blufor";
-			Reward_opfor = 0;	//0:no, 1:yes, 2:if rhs_afrf is not loaded
-			Reward_blufor = 2;	//0:no, 1:yes, 2:if rhs_usaf is not loaded
-			Reward_usaf = 1;
-			Reward_afrf = 0;
-			Reward_gref = 0;
 		};
 	};
 	
@@ -81,11 +76,7 @@ class Missions
 		class Params
 		{
 			Side = "opfor";
-			Reward_opfor = 2;	//0:no, 1:yes, 2:yes if rhs_afrf is not loaded
-			Reward_blufor = 0;	//0:no, 1:yes, 2:yes if rhs_usaf is not loaded
-			Reward_usaf = 0;
-			Reward_afrf = 1;
-			Reward_gref = 0;
+			indEnemy = 0; 
 		};
 	};
 
@@ -116,3 +107,16 @@ role loadout (default gear provided to player on first spawn)
 base atmosphere
 	BA_[vehicle, npc, object]		
 
+next step : multiple base by map
+0 - mission param to define which base we use
+1 - on server load, removed all other base "placed" assets
+
+2 - place player units in a inaccessible place (closed building anywere)
+	when player join:
+	 black out screen, 
+	 give spawn gear, 
+	 teleport to active base role spawn area, 
+	 remove black screen
+
+for the rest of the base, this is just a mater of using the right markers, so will a need an implent.sqf by maps
+ 
