@@ -4,7 +4,7 @@ Author:
 	Ben
 Description:
 		included by game engine (description.ext)
-		include individual mods include
+		include individual mods define
 */
 #include "mods\ace\_include.hpp"
 #include "mods\apex\_include.hpp"

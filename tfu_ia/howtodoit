@@ -118,5 +118,20 @@ next step : multiple base by map
 	 teleport to active base role spawn area, 
 	 remove black screen
 
-for the rest of the base, this is just a mater of using the right markers, so will a need an implent.sqf by maps
- 
+ok, so to compute all the other markers name from the selected base varName
+
+for base protection,	=> %varName%_B									=> BASE
+for player spawn 		=> %varName%_PS_[inf, crew, hPilot, jPilot]		=> PS_[inf, crew, hPilot, jPilot] => respawn_%side%
+for repair triggers		=> %varName%_VRT_[land, jet, heli, boat, uav]	=> VRT_[land, jet, heli, boat, uav]
+for base vehicle		=> %varName%_BV_[0, 1, 2, 3, 4, ...]			=> BV[0,1,2,3,4,...]
+for base atmosphere 	=> %varName%_BA_[0, 1, 2, 3, 4, ...]			=> BA_[arsenal, support, zeus]_[0,1,2,3,4,...]
+for fireRange			=> %varName%_FR									=> FR
+for base main flag		=> %varName_F									=> FLAG
+
+
+Idea for a new feature :
+environment  => clearFog 	=> all members 
+				setTime	  	=> above pfc 
+				setRain		=> aboce recruit
+disabled when a curator is assign!
+				

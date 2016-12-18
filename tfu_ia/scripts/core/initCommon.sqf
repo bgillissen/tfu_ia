@@ -8,18 +8,15 @@ Description:
 */
 
 //our global vars
-#define U 0
-#define RG 1
-#define A 2
-#define C 3
-#define SD 4
-#define AV 5
-#define BV 6
-#define S 7
-#define RL 8
+#define RG 0
+#define A 1
+#define C 2
+#define SD 3
+#define AV 4
+#define BV 5
+#define S 6
+#define RL 7
 #define GV [\
-			//allowed units (those placed in mission editor as playable units)
-			["U", ["pilot", "crew", "mg", "at", "marksman", "sniper", "medic", "officer", "arti"]],\
 			//restricted gear categories
 			["RG", ["launcher", "mg", "sRfile", "mRifle", "sScope", "mScope", "oScope"]],\
 			//arsenal types
@@ -33,7 +30,7 @@ Description:
 			//base vehicle types
 			["BV", ["car", "apc", "tank", "planeCAS", "planeAA", "planeTransport",\ 
 			        "heliSmall", "heliMedium", "heliMedEvac", "heliBig", "heliAttack",\
-			        "boatSmall", "boatAttack", "boatBig"]],\
+			        "boatSmall", "boatAttack", "boatBig", "uav"]],\
 			//spawn types
 			["S", ["radioTower", "pGroup", "sGroup", "pilot", "crew", "officer", "garrison",\
 			       "aa", "arti", "static", "cas", "tank", "apc", "car", "aPatrol"]],\
@@ -42,6 +39,13 @@ Description:
 			        "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac",\ 
 			        "pilot", "mortar"]]\	
            ];
+//initialize assets global vars
+{
+    param ["_prefix", "_keys"];
+	{
+		missionNamespace setVariable [format["%1_%2", _prefix, _x], [], false];
+	} count _keys;
+} count GV;
 
 //check what is the players side
 PLAYER_SIDE  = east;
@@ -49,13 +53,6 @@ if ( ["side"] call core_fnc_getConf ) then PLAYER_SIDE = west;
 
 //check if independent are ennemy to players
 IND_ARE_ENEMY = ( ["indEnemy"] call core_fnc_getConf );
-
-{
-    param ["_prefix", "_keys"];
-    {
-    	missionNamespace setVariable [format["%1_%2", _prefix, _x], [], false];
-	} count _keys;
-} count GV;
 
 //blacklisted things pool
 missionNamespace setVariable ["BLACKLIST", [[],[],[],[],[],[],[]], false];

@@ -3,8 +3,8 @@
 Author:
 	Ben
 Description:
-	Run once by server and players.
-	define vanilla assets
+	included by mods\_include.hpp
+	Vanilla mod define
 */
 
 //------------------------------------------------------------ Arsenal Vanilla BLUFOR
