@@ -105,7 +105,9 @@ role loadout (default gear provided to player on first spawn)
 	RL_[hq, sl, tl, medic, lmg, hmg, assHMG, at, assAT, sniper, marksman, repair, demo, engineer,
 		grenadier, rifleman, jtac, pilot, mortar]
 base atmosphere
-	BA_[vehicle, npc, object]		
+	BA_vehicle => [veh, [actions]]		
+	BA_npc => [unit, [actions]]
+	BA_object => [obj, [actions]]
 
 next step : multiple base by map
 0 - mission param to define which base we use
@@ -119,19 +121,24 @@ next step : multiple base by map
 	 remove black screen
 
 ok, so to compute all the other markers name from the selected base varName
+for base protection,		=> %varName%_SZ									=> "SZ" (marker)
+for player spawn 			=> %varName%_PS_[inf, crew, hPilot, jPilot]		=> "PS_[inf, crew, hPilot, jPilot]"  (marker)
+for repair triggers			=> %varName%_VRT_[land, jet, heli, boat, uav]	=> "VRT_[land, jet, heli, boat, uav]" (marker)
+for base vehicle			=> %varName%_BV_[0, 1, 2, 3, 4, ...]			=> "BV[0,1,2,3,4,...]" (marker)
+for fireRange (no mortar)	=> %varName%_FR									=> "FR" (marker)
+for fireRange (all gear)	=> %varName%_NOGR								=> "FR_NOGR" (marker)
+for base main flag			=> %varName_F									=> FLAG (object)
 
-for base protection,	=> %varName%_B									=> BASE
-for player spawn 		=> %varName%_PS_[inf, crew, hPilot, jPilot]		=> PS_[inf, crew, hPilot, jPilot] => respawn_%side%
-for repair triggers		=> %varName%_VRT_[land, jet, heli, boat, uav]	=> VRT_[land, jet, heli, boat, uav]
-for base vehicle		=> %varName%_BV_[0, 1, 2, 3, 4, ...]			=> BV[0,1,2,3,4,...]
-for base atmosphere 	=> %varName%_BA_[0, 1, 2, 3, 4, ...]			=> BA_[arsenal, support, zeus]_[0,1,2,3,4,...]
-for fireRange			=> %varName%_FR									=> FR
-for base main flag		=> %varName_F									=> FLAG
+Yeahhh markers can have a bearing :D
 
+also need SZ_RADIUS, FR_RADIUS
 
 Idea for a new feature :
 environment  => clearFog 	=> all members 
 				setTime	  	=> above pfc 
 				setRain		=> aboce recruit
 disabled when a curator is assign!
+
+
+only compute maps/mods on server and broadcast with JIP enabled
 				

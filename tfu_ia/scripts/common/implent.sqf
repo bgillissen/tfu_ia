@@ -7,7 +7,7 @@ Description:
 	it is used to append the things provided by a map/mod to the corresponding global var
 */
 
-param["_list", "_target", "_filter", "_fKey"];
+params ["_list", "_target", "_filter", "_fKey"];
 private ["_gv", "_toFilter"];
 
 if ( _list isEqualTo [] ) exitWith {};

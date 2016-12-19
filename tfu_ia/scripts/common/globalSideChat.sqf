@@ -6,6 +6,6 @@ Description:
 	used to send message on the side channel globaly
 */
 
-param ["_from", "_message"];
+params ["_from", "_message"];
 
 [WEST,"_from"] sideChat _message;

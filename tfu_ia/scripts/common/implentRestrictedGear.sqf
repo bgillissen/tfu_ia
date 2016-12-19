@@ -11,10 +11,10 @@ Description:
 
 if ( !(["restrictGear"] call core_fnc_getConf) ) ewitWith {};
 
-private ["_filter", "_target"];
-
 {
-	_filter = ["item", "weapon"] select ( _forEachIndex <= 3 );
-	_target = format["%1_%2", ((GV select RG) select 0), (((GV select RG) select 1) select _forEachIndex)]; 
-	[_x, _target, _filter] call common_fnc_implent;
+	private _filter;
+	if ( _forEachIndex < 4 ) then _filter = "weapon";
+	if ( _forEachIndex >= 4 && _forEachIndex < 7) then _filter = "item";
+	if ( _forEachIndex >= 7 ) then _filter = "backpack";
+	[_x, format["%1_%2", ((GV select RG) select 0), (((GV select RG) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
 } forEach (_this);

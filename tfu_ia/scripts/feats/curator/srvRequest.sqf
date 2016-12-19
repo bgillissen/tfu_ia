@@ -7,7 +7,7 @@ Description:
 	check if player is we got a free slot, then if player is one of our allowed curators 
 	if so, search for a free slot and assign it to him.
 */ 
-param ["_player"];
+params ["_player"];
 private ["_granted", "_curslot", "_inuse", "_freeSlot"];
 
 if ( [_player] call curator_fnc_isAssigned ) then exitWith{};

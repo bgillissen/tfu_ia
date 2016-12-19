@@ -7,49 +7,55 @@ Description:
 	propagate events to declared features, call or spawn required script.
 */
 
-param ["_ctxt", "_when", "_param"];
-private ["_key", "_prepend", "_switch", "_script"];
+params ["_ctxt", "_when", "_param"];
 
-if ( !isNil "FEAT_INIT" ) then exitWith{};
-if ( _when == "onRespawn" && CTXT != "PLAYER" ) then exitWith{};
+if ( _when == "onRespawn" && CTXT == "HEADLESS" ) then exitWith{};
 if ( _when == "onJoin" && CTXT != "SERVER" ) then exitWith{};
 if ( _when == "onLeave" && CTXT != "SERVER" ) then exitWith{};
 
-switch(_ctxt) do {
-	case "SERVER" : { _key = 1; };
-	case "PLAYER" : { _key = 2; };
-	case "HEADLESS" : { _key = 3; };
-};
+private _key;
+if ( _ctxt == "SERVER" ){ _key = 1; };
+if ( _ctxt == "PLAYER" ){ _key = 2; };
+if ( _ctxt == "HEADLESS" ){ _key = 3; };
 
-_append = "";
+private _append = "";
+if ( _when == "preInit" ) then _append = "PreInit";
+if ( _when == "init" ) then _append = "Init";
+if ( _when == "postInit" ) then _append = "PostInit";
 if ( _when == "onRespawn" ) then _append = "OnRespawn";
 if ( _when == "onJoin" ) then _append = "OnJoin";
 if ( _when == "onLeave" ) then _append = "OnLeave";
 
+private _pool = [];
 {
-	_switch = 0;
-	if ( _when == "init" ) then _switch = _x select _key select 0;
-	if ( _when == "onRespawn" ) then _switch = _x select _key select 1;
-	if ( _when == "onJoin" ) then _switch = _x select _key select 2;
-	if ( _when == "onLeave" ) then _switch = _x select _key select 3;
-	
-	switch( _switch ) do {
-		case 0 : { };
-		case 1 : { 
-					_script = format["feats\%1\%2%3.sqf", (_x select 0), toLower(_ctxt), _append];
-					if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
-						[_param, _script, false, false, true] call BIS_fnc_MP;
-					} else {
-						_param call compile preprocessFile _script  
-					};
-				 };
-		case 2 : { 
-					_script = format["feats\%1\%2%3Thread.sqf", (_x select 0), toLower(_ctxt), _append]
-					if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
-						[_param, _script, false, false, false] call BIS_fnc_MP;
-					} else {
-						_param execVM _script;   
-					};
-				 }; 
-	};
+	private _e;
+	if ( _when == "preInit" ) then _e = ((_x select _key) select 0);
+	if ( _when == "init" ) then _e = ((_x select _key) select 1);
+	if ( _when == "postInit" ) then _e = ((_x select _key) select 2);
+	if ( _when == "onRespawn" ) then _e = ((_x select _key) select 3);
+	if ( _when == "onJoin" ) then _e = ((_x select _key) select 4);
+	if ( _when == "onLeave" ) then _e = ((_x select _key) select 5);
+	if ( (_e select 1) > 0) then { _pool append [(_x select 0), _e]; };
 } forEach(FEATS);
+
+private _sorted = [_pool,[],{((_x select 1) select 0)},"ASCEND"] call BIS_fnc_sortBy;
+
+{
+	_x params ["_feat", "_order", "_switch"];
+	if ( _switch == 1 ) then { 
+		private _script = format["feats\%1\%2%3.sqf", _feat, toLower(_ctxt), _append];
+		if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
+			[_param, _script, false, false, true] call BIS_fnc_MP;
+		} else {
+			_param call compile preprocessFile _script  
+		};
+	};
+	if ( _switch == 2 ) then { 
+		private _script = format["feats\%1\%2%3Thread.sqf", _feat, toLower(_ctxt), _append];
+		if ( _ctxt == "SERVER" && CTXT == "PLAYER") then {
+			[_param, _script, false, false, false] call BIS_fnc_MP;
+		} else {
+			_param execVM _script;   
+		};
+	}; 
+} forEach(_pool);

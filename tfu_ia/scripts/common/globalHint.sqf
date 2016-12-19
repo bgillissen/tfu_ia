@@ -6,6 +6,6 @@ Description:
 	used to send formated globalHint
 */
 
-param["_hint"];
+params ["_hint"];
 
 hint parseText format["%1", _hint];

@@ -1,9 +1,9 @@
 /*
-@filename: ia\ao\thread.sqf
+@filename: feats\iaAO\serverPostInitThread.sqf
 Author:
 	Ben
 Description:
-	this script is executed once on server side only,
+	run on server side
 	must be spawn not call
 	it keeps track of the active AO thread, and spawn a new one when needed 
 */

@@ -12,14 +12,35 @@ Description:
 #define unlockDelay 15;
 
 //squadHint, squad name that will trigger a globalHint when one of his members join
-#define SQUAD "Task Force Unicorn"
-
+#define SH_name "Task Force Unicorn"
+#define SH_url "taskforceunicorn.com"
+#define SH msg"<t align='center' size='2.2' color='#FAAF3A'>%1<br/></t><t size='1.4' color='#33CCFF'>%2</t><br/>has joined the server, To become a TFU member, apply to %3</t><br/>"
 //vonHint, displayed teamSpeak address
 #define TSADDR "ts.taskforceunicorn.com"
 
+//baseProtection
+#define BP_MSG "You are discharging your weapon at base without approval.  Cease your actions Immediately!"
+
+//loadBalance (headless)
+#define LB_loopDelay 60
+
+//gearRestriction
+#define GR_minDist 20	//player distance to the closest arsenal
+#define GR_minDelay 3
+#define GR_maxDelay 20
+#define GR_atMSG "Only AT/AA soldiers may use this weapon system, launcher removed."
+#define GR_mgMSG "Only Autoriflemen may use this machine gun, weapon removed."
+#define GR_sRifleMSG "Only snipers may use this rifle, rifle removed."
+#define GR_mRifleMSG "Only snipers/marksmans may use this rifle, rifle removed."
+#define GR_sOpticMSG "Only snipers may use this long range optic, optic removed."
+#define GR_mOpticMSG "Only snipers/markmans may use this long range optic, optic removed."
+#define GR_oOpticMSG "Only squad or team leader may use thermal optics, optic removed."
+#define GR_oOpticMSG "Only squad or team leader may use thermal optics, optic removed."
+#define GR_backpackMSG "Only AT/AA soldier may use this backpack, backpack removed."
+#define GR_uavMSG "Only UAV operator may use this item, UAV terminal removed."
+
 //curator url (space separated list of steamID), don't forget to change the description.ext ;)
 #define CURATOR_url "http://taskforcunicorn.com/api/curators"
-#define CURATOR_slot 4	//MUST BE SMALLER OR EGAL TO THE NUMBER OF GAME MASTER MODULE PLACED ON MAP
 #define CURATOR_noSlotMsg "No more free Zeus slot available (%1 / %2)."
 #define CURATOR_ascendMsg "%3 has ascend, %1 / %2 slots."
 #define CURATOR_failedMsg "%1 has tryed to ascend."
@@ -72,6 +93,11 @@ Description:
 //vehicleRespaw
 #define VR_distanceFromSpawn 150
 #define VR_checkDelay 20
+
+//viewDistance
+#define VD_foot 2200;
+#define VD_car  3500;
+#define VD_air  5000;
 
 //invade & annex
 #define IA_loopDelay 20

@@ -7,6 +7,6 @@ Description:
 	use CBA for now, but i should really get rid of that dependency, a bit lazy 
 */
 
-param ["_unit", "_building", "_patrol"];
+params ["_unit", "_building", "_patrol"];
 
 [_unit, _building, 2, _patrol] call CBA_fnc_taskDefend;

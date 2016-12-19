@@ -1,9 +1,9 @@
 /*
-@filename: feats\curator\server.sqf
+@filename: feats\curator\serverInit.sqf
 Author:
 	Ben
 Description:
-	run once by server.
+	run on server.
 	initialize assigned curator stack, fech allowed curators uids 
 */
 

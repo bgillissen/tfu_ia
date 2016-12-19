@@ -4,7 +4,7 @@ Author:
 	Ben
 Description:
 	This script is executed by main init once on all context (server, headless client, player)
-	set player side, set independant friendship, init assets containers, init and implent detected mods
+	init assets variables, set player side, preInit mods
 */
 
 //our global vars
@@ -17,68 +17,51 @@ Description:
 #define S 6
 #define RL 7
 #define GV [\
-			//restricted gear categories
-			["RG", ["launcher", "mg", "sRfile", "mRifle", "sScope", "mScope", "oScope"]],\
+			//Restricted Gear
+			["RG", ["launcher", "mg", "sRfile", "mRifle", "sScope", "mScope", "oScope", "backpack"], true],\
 			//arsenal types
-			["A", ["backpacks", "items", "weapons", "ammo"]],\
+			["A", ["backpacks", "items", "weapons", "ammo"], true],\
 			//cargo types
-			["C", ["backpacks", "items", "weapons", "ammo"]],\
+			["C", ["backpacks", "items", "weapons", "ammo"], true],\
 			//supply drop
-			["SD", ["gears", "crates"]],\
+			["SD", ["backpacks", "items", "weapons", "ammo", "crates"]],\
 			//allowed Vehicle types
-			["AV", ["heli", "plane", "tank"]],\
+			["AV", ["heli", "plane", "tank"], true],\
 			//base vehicle types
 			["BV", ["car", "apc", "tank", "planeCAS", "planeAA", "planeTransport",\ 
 			        "heliSmall", "heliMedium", "heliMedEvac", "heliBig", "heliAttack",\
-			        "boatSmall", "boatAttack", "boatBig", "uav"]],\
+			        "boatSmall", "boatAttack", "boatBig", "uav"], false],\
 			//spawn types
 			["S", ["radioTower", "pGroup", "sGroup", "pilot", "crew", "officer", "garrison",\
-			       "aa", "arti", "static", "cas", "tank", "apc", "car", "aPatrol"]],\
+			       "aa", "arti", "static", "cas", "tank", "apc", "car", "aPatrol"], false],\
 			//roles loadout
 			["RL", ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper",\ 
 			        "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac",\ 
-			        "pilot", "mortar"]]\	
+			        "pilot", "mortar"], true]\	
            ];
+
 //initialize assets global vars
 {
-    param ["_prefix", "_keys"];
-	{
-		missionNamespace setVariable [format["%1_%2", _prefix, _x], [], false];
-	} count _keys;
+    private _prefix = _x select 0;
+    private _keys = _x select 1;
+    {
+    	missionNamespace setVariable [format["%1_%2", _prefix, _x], [], false];
+    } count _keys;
 } count GV;
 
 //check what is the players side
-PLAYER_SIDE  = east;
-if ( ["side"] call core_fnc_getConf ) then PLAYER_SIDE = west;
+PLAYER_SIDE = [east, west] select ( ["side"] call core_fnc_getConf );
+if ( PLAYER_SIZE isEqualTo east ){
+	PLAYER_SIDETXT = "OPFOR";
+} else {
+	PLAYER_SIDETXT = "BLUFOR";
+};
 
 //check if independent are ennemy to players
 IND_ARE_ENEMY = ( ["indEnemy"] call core_fnc_getConf );
 
-//blacklisted things pool
-missionNamespace setVariable ["BLACKLIST", [[],[],[],[],[],[],[]], false];
+//init map settings
+call compile preprocessFile format["maps\%1\preInit.sqf", worldName];
 
-//uav
-missionNamespace setVariable ["UAV", [], false];
-
-//revards
-missionNamespace setVariable ["REWARDS", [], false];
-
-//define current map settings
-call compile preprocessFile format["maps\%1.sqf", worldName];
-
-//detect loaded mods and init them
-if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then call compile preprocessFile "mods\ace\init.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsAFRF\init.sqf"; 
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsGREF\init.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then call compile preprocessFile "mods\rhsUSAF\init.sqf";
-if ( isClass(configFile >> "CfgPatches" >> "????") ) then call compile preprocessFile "mods\tfar\init.sqf";
-
-call common_fnc_arsenalAuto;
-
-//implent detected mods
-call compile preprocessFile "mods\vanilla.sqf";
-if ( MOD_ace ) then call compile preprocessFile "mods\ace\implent.sqf";
-if ( MOD_rhsAFRF ) then call compile preprocessFile "mods\rhsAFRF\implent.sqf"; 
-if ( MOD_rhsGREF ) then call compile preprocessFile "mods\rhsGREF\implent.sqf";
-if ( MOD_rhsUSAF ) then call compile preprocessFile "mods\rhsUSAF\implent.sqf";
-if ( MOD_tfar ) then call compile preprocessFile "mods\tfar\implent.sqf";
+//init mods for both players and server
+call compile preprocessFile "mods\preInit.sqf";

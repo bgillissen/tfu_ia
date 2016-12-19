@@ -7,7 +7,7 @@ Description:
 	it help to determine if something got to be implented
 */
 
-param["_conf", "_side", "_modRule", "_mapRule"];
+params ["_conf", "_side", "_modRule", "_mapRule"];
 
 if ( _conf typeName == "BOOL" ) then exitWith{ _conf };
 

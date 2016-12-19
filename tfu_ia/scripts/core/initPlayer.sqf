@@ -15,5 +15,12 @@ Description:
 waitUntil {!isNull player};
 waitUntil {player == player};
 
+//black screen
+//draw Loading...
+
 //features init
 [CTXT, "init"] call core_fnc_featEvents;
+
+private _msg = format["Welcome to %1 base, you are %1", BASE_name, PLAYER_SIDETXT];
+//draw _msg
+sleep 2

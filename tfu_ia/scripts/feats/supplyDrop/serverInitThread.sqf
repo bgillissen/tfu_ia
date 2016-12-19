@@ -1,20 +1,12 @@
 /*
-@filename: feats\supplyDrop\serverThread.sqf
+@filename: feats\supplyDrop\serverInitThread.sqf
 Author:
 	Ben
 Description:
-	this script will run on server side,
+	this run on server,
 	must be spawn, not called,
 	a loop that act as a coolDown for supplyDrop avaibility
 */
-
-private ["_side"];
-
-if ( PLAYER_SIDE == "blufor" ) then {
-	_side = west;
-} else {
-	_side = east;
-}
 
 supplyDropAvail = true;
 publicVariable "supplyDropAvail";
@@ -30,7 +22,7 @@ while ( true ) do {
 			publicVariable "supplyDropCrates";
 			deleteVehicle _crate;
 		};
-		[_side, SD_msgFrom] sideChat SD_msgAvail;
+		[PLAYER_SIDE, SD_msgFrom] sideChat SD_msgAvail;
 		supplyDropAvail = true;
 		publicVariable "supplyDropAvail";
 	}

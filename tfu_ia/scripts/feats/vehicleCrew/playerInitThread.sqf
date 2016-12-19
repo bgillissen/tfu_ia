@@ -1,14 +1,13 @@
 /*
-@filename: feats\vehicleCrew\thread.sqf
+@filename: feats\vehicleCrew\playerInitThread.sqf
 Author:
 	unknown, taken from ahoyWorld I&A
 Description:
-	Run once on player side only,
-	This script keeps updating an HUD with the passenger list 
-	of the vehicle the player is in.
+	run on player side
+	This script keeps updating an HUD with the passenger list of the vehicle the player is in.
 */
 
-if ( PARAMS_vehicleCrew == 0 ) then { exitWith{}; };
+if ( !(["vehicleCrew"] call core_fnc_getConf) ) exitWith{};
 
 private ["_name","_vehicle","_weapname","_weap","_target","_picture","_vehtarget","_azimuth","_wepdir","_hudnames","_ui"];   
 	   

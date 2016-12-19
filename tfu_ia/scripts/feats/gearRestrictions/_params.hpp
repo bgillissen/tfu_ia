@@ -13,7 +13,7 @@ class restrictMG {
 };
 
 class restrictSniper {
-	title = "Sniper Rifle Restriction";
+	title = "Sniper / Marksman Rifle Restriction";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};
 	default = 1;
@@ -26,7 +26,7 @@ class restrictLauncher {
 	default = 1;
 };
 
-class restrictLongRangeScope {
+class restrictLRScope {
 	title = "Long Range Scope Restriction";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};
@@ -35,6 +35,13 @@ class restrictLongRangeScope {
 
 class restrictThermalScope {
 	title = "Thermal Scope Restriction";
+	values[] = {0,1};
+	texts[] = {"Disabled","Enabled"};
+	default = 1;
+};
+
+class restrictBackpack {
+	title = "Backpack Restriction";
 	values[] = {0,1};
 	texts[] = {"Disabled","Enabled"};
 	default = 1;

@@ -1,9 +1,9 @@
 /*
-@filename: feats\vehicleRespawn\serverThread.sqf
+@filename: feats\vehicleRespawn\serverInitThread.sqf
 Author:
 	ben
 Description:
-	this script will run on server side,
+	this run on server,
 	must be spawn, not called,
 	loop through all the vehicles we got to monitor and respawn them when needed
 	

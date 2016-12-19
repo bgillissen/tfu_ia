@@ -8,12 +8,9 @@ Description:
 	params MUST follow GV => BV definition!
 	car, apc, tank, planeCAS, planeAA, planeTransport,
 	heliSmall, heliMedium, heliMedEvac, heliBig, heliAttack,
-	boatSmall, boatAttack, boatBig
+	boatSmall, boatAttack, boatBig, repair, fuel, quad
 */
 
-private ["_target"];
-
 {
-	_target = format["%1_%2", ((GV select BV) select 0), (((GV select BV) select 1) select _forEachIndex)]; 
-	[_x, _target, "vehicle"] call common_fnc_implent;
+	[_x, format["%1_%2", ((GV select BV) select 0), (((GV select BV) select 1) select _forEachIndex)], "vehicle"] call common_fnc_implent;
 } forEach (_this);

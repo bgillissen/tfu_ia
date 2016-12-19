@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	this script is executed server side when a player join
+	this script is run on server side when a player join
 	to make player a zeus editable object
 */
 

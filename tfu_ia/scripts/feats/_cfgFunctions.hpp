@@ -6,8 +6,11 @@ Description:
 		included by game engine (description.ext)
 		include individual feature functions definition
 */
+
+#include "feats\baseProtection\_cfgFunctions.hpp"
 #include "feats\dynBillboards\_cfgFunctions.hpp"
 #include "feats\curator\_cfgFunctions.hpp"
+#include "feats\intro\_cfgFunctions.hpp"
 #include "feats\radioFreq\_cfgFunctions.hpp"
 #include "feats\va\_cfgFunctions.hpp"
 #include "feats\vas\_cfgFunctions.hpp"

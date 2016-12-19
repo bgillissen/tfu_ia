@@ -1,10 +1,11 @@
 /*
-@filename: feats\voiceControl\thread.sqf
+@filename: feats\voiceControl\serverInitThread.sqf
 Credit:
 	KiloSwiss
 Author:
 	Ben
 Description:
+	run on server
 	must be spawn, not called.
 	This script is used to keep the player authorized channels updated.
 */

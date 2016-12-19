@@ -1,5 +1,5 @@
 /*
-@filename: ia\fob\thread.sqf
+@filename: ia\fob\serverPostInitThread.sqf
 Author:
 	Ben
 Description:

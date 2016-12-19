@@ -1,5 +1,5 @@
 /*
-@filename: feats\curator\player.sqf
+@filename: feats\curator\playerInit.sqf
 Author:
 	Ben
 Description:

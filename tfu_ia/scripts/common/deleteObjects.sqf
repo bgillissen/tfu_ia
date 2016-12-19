@@ -6,7 +6,7 @@ Description:
 	it remove the objects given 
 */
 
-param ["_objects"];
+params ["_objects"];
 
 {
 	if (typeName _x == "GROUP") then {

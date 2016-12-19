@@ -1,19 +1,15 @@
 /*
- * passToHCs.sqf
- *
- * In the mission editor, name the Headless Clients "HC", "HC2", "HC3" without the quotes
- *
- * In the mission init.sqf, call passToHCs.sqf with:
- * execVM "passToHCs.sqf";
- *
- * It seems that the dedicated server and headless client processes never use more than 20-22% CPU each.
- * With a dedicated server and 3 headless clients, that's about 88% CPU with 10-12% left over.  Far more efficient use of your processing power.
- *
- */
+@filename: feats\laodBalancing\serverInitThread.sqf
+Credit:
+ 	 unknow
+Author:
+	Ben
+Description:
+	this run on server side
+	to load balance the AI between headless clients
+*/
 
-if (!isServer) exitWith {};
-
-diag_log "passToHCs: Started";
+if ( !["headless"] call core_fnc_getConf ) exitWith{};
 
 waitUntil {!isNil "HC"};
 waitUntil {!isNull HC};

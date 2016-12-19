@@ -1,5 +1,5 @@
 /*
-@filename: feats\voiceControl\player.sqf
+@filename: feats\voiceControl\playerInit.sqf
 Credit:
 	KiloSwiss
 Author:

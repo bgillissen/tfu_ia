@@ -8,10 +8,7 @@ class curator {
 		class isAssigned { file="feats\curator\isAssigned.sqf"; };
 		class isCurator { file="feats\curator\isCurator.sqf"; };
 		class objPlaced { file="feats\curator\objPlaced.sqf"; };
-		class postInit {
-			file="feats\curator\postInit.sqf";
-			postInit = 1;
-		};
+		class postInit { file="feats\curator\postInit.sqf"; };
 		class srvRelease { file="feats\curator\srvRelease.sqf"; };
 		class srvReload { file="feats\curator\srvReload.sqf"; };
 		class srvRequest { file="feats\curator\srvRequest.sqf"; };

@@ -6,37 +6,35 @@ Author:
 	Ben
 Description:
 	this script will run on client side,
-	it spawn an paradroped ammobox
+	it spawn an paradroped ammobox below the player vehicle
 */
 
-param ["_veh"];
-private ["_side", "_chuteType", "_chute", "_crate", "_light", "_smoke"];
+params ["_veh"];
+private ["_chuteType", "_chute", "_crate", "_light", "_smoke"];
 
 supplyDropAvail = false;
 publicVariable "supplyDropAvail";
 
-if ( PLAYER_SIDE == "blufor" ) then {
-	_side = west;
+if ( PLAYER_SIDE == west ) then {
 	_chuteType = "B_Parachute_02_F";
 } else {
 	_chuteType = "O_Parachute_02_F";
-	_side = east;
 };
 
 _chute = createVehicle [_chuteType, [100, 100, 200], [], 0, 'FLY'];
 _chute setPos [getPosASL _veh select 0, getPosASL _veh select 1, (getPosASL _veh select 2) - 50];
 
-_crate = createVehicle [selectRandom VEH_supplyCrates, position _chute, [], 0, 'NONE']; 
+_crate = createVehicle [selectRandom SD_crates, position _chute, [], 0, 'NONE']; 
 _crate attachTo [_chute, [0, 0, -1.3]];
 _crate allowdamage false;
 
 supplyDropCrates append _crate;
 publicVariable "supplyDropCrates";
 
-_light = createVehicle [SD__light, position _chute, [], 0, 'NONE'];
+_light = createVehicle [SD_light, position _chute, [], 0, 'NONE'];
 _light attachTo [_chute, [0, 0, 0]];
 
-[_crate] call common_fnc_setCargo;
+[_crate, SD_backpacks, SD_items, SD_weapons, SD_ammo] call common_fnc_setCargo;
 
 [_side, SD_msgFrom] sideChat SD_msgDeployed;
 

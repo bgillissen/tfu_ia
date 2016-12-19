@@ -1,6 +1,7 @@
 class common {
 	tag = "common";
 	class functions {
+		class addToBlacklists { file="common\addToBlacklists.sqf"; };
 		class arsenalAuto { file="common\arsenalAuto.sqf"; };
 		class deleteObjects { file="common\deleteObjects.sqf"; };
 		class garrisonUnit { file="common\garrisonUnit.sqf"; };
@@ -17,6 +18,7 @@ class common {
 		class implentReward { file="common\implentReward.sqf"; };
 		class implentSpawn { file="common\implentSpawn.sqf"; };
 		class implentSupplyDrop { file="common\implentSupplyDrop.sqf"; };
+		class isBlacklisted { file="common\isBlacklisted.sqf"; };
 		class setCargo { file="common\setCargo.sqf"; };
 		class setSkill { file="common\setSkill.sqf"; };
 	};

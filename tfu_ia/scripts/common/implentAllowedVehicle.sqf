@@ -9,9 +9,6 @@ Description:
 	heli, plane, tank
 */
 
-private ["_target"];
-
 {
-	_target = format["%1_%2", ((GV select AV) select 0), (((GV select AV) select 1) select _forEachIndex)]; 
-	[_x, _target, "vehicle"] call common_fnc_implent;
+	[_x, format["%1_%2", ((GV select AV) select 0), (((GV select AV) select 1) select _forEachIndex)], "vehicle"] call common_fnc_implent;
 } forEach (_this);

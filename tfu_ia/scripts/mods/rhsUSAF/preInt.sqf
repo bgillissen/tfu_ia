@@ -1,9 +1,10 @@
 /*
-@filename: mods\rhsUSAF\init.sqf
+@filename: mods\rhsUSAF\preInit.sqf
 Author:
 	Ben
 Description:
-	Run once by server and players.
+	run once by server and players.
 	init RHS USAF mod
 */
+
 #define MOD_rhsUSAF true;

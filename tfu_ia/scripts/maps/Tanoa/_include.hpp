@@ -7,6 +7,10 @@ Description:
 		Tanoa maps define
 */
 
+//------------------------------------------------------------ Number of GameMaster module placed
+
+#define TANOA_CURATOR 4
+
 //------------------------------------------------------------ Playable Units Tanoa (type)
 
 #define PUT_hPilot []
@@ -115,24 +119,25 @@ Description:
 #define BT [["varName0", "dspName0", "size0"]]
 //varName	=> to compute all the other needed markers from that name (prefix)
 //dspName	=> for a hint after blackout "Welcome to %dspName% base, you are %PLAYER_SIDE%"
-//size		=> for baseProtection
+//size		=> for baseProtection SZ_RADIUS
 
 //------------------------------------------------------------ Base vehicle Tanoa
-#define BV_varName0 [\
-                    ["type0", "bearing0"],\
-                    ["type1", "bearing1"]\
-                    ]
+#define BV_varName0 ["type0", "type1", "type2"]
 //type		=> to pick one from the right pool
-//bearing 	=> to setDir on spawn
-//------------------------------------------------------------ Base atmosphere Tanoa
+
+                    //------------------------------------------------------------ Base atmosphere Tanoa
 
 #define BA_varName0 [
-                    ["type0", "bearing0", ["action00", "action01"]],\
-                    ["type1", "bearing1", ["action10", "action11"]]
+                    ["vehicle", ["action0", "action1"], "className", ["x", "y", "z", "d"]],\
+                    ["npc", ["action0", "action1"],  ["uniform", "vest", "head"], ["x", "y", "z", "d"]],\
+                    ["object", ["action0", "action1"],  "className", ["x", "y", "z", "d"]],\
                     ]
 /*
-type	=> to set it up
-	vehicle	=> (remove cargo, set simpleObject, disable damage
+type, actios, type conf, coord + bearing
+for all disable damage,
+	vehicle	=>  remove cargo, if no actions set simpleObject, disable damage, actions
+	npc		=>  loadout, actions
+	object  =>  actions
 actions => to know which action i got to bind to that thing, those key words are used by features
 	arsenal => va, vas, viewDistance
 	support => supportCrate

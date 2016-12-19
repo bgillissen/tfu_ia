@@ -29,14 +29,15 @@ Description:
 #define AV_items []
 
 //------------------------------------------------------------ Restricted Gear Vanilla
-
+//TODO may probably need to split that by side, so players can loot (new param gear_enemyLoot)
 #define RGV_launcher []
-#define RGV_MG []
-#define RGV_mRifle []
-#define RGV_mScope []
+#define RGV_mg []
 #define RGV_sRifle []
+#define RGV_mRifle []
 #define RGV_sScope []
+#define RGV_mScope []
 #define RGV_oScope []
+#define RGV_backpack []
 
 //------------------------------------------------------------ Cargo Vanilla BLUFOR
 						 
@@ -72,9 +73,9 @@ Description:
 #define AVV_plane []
 #define AVV_tank []
 
-//------------------------------------------------------------ Vanilla UAV
+//------------------------------------------------------------ UAV Vanilla
 
-#define V_UAV ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
+#define UAVV ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
 
 //------------------------------------------------------------ supplyDrop Vanilla BLUFOR
 
@@ -158,6 +159,9 @@ Description:
 #define BVVB_boatSmall []
 #define BVVB_boatAttack []
 #define BVVB_boatBig []
+#define BVVB_repair []
+#define BVVB_fuel []
+#define BVVB_quad []
 
 //------------------------------------------------------------ Base Vehicles Vanilla OPFOR
 
@@ -175,6 +179,9 @@ Description:
 #define BVVO_boatSmall []
 #define BVVO_boatAttack []
 #define BVVO_boatBig []
+#define BVVO_repair []
+#define BVVO_fuel []
+#define BVVO_quad []
 
 //------------------------------------------------------------ Role Loadout Vanilla BLUFOR
 
