@@ -9,7 +9,7 @@ Description:
 	backpacks, items, weapons, ammo
 */
 
-if ( !(["filteredArsenal"] call core_fnc_getConf) ) exitWith{};
+if ( !(["filterArsenal"] call core_fnc_getConf) ) exitWith{};
 
 {
 	private "_filter";

@@ -65,7 +65,10 @@ class Missions
 		difficulty="Custom";
 		class Params
 		{
-			Side = "blufor";
+			side = "blufor";
+			indEnemy = 1;
+			restrictUAV = 0;
+			restrictBackpack = 0;
 		};
 	};
 	
@@ -75,8 +78,10 @@ class Missions
 		difficulty="Custom";
 		class Params
 		{
-			Side = "opfor";
-			indEnemy = 0; 
+			side = "opfor";
+			indEnemy = 0;
+			restrictUAV = 0;
+			restrictBackpack = 0;
 		};
 	};
 
@@ -86,8 +91,8 @@ class Missions
 
 GLOBAL VAR POOLS
 ----------------
-allowed units (those units can wear some restricted gear and/or drive/gun some restricted vehicles)
-	AU_[pilot, crew, mg, at, marksman, sniper, medic, officer, arti]
+units (those units can wear some restricted gear and/or drive/gun some restricted vehicles)
+	U_[pilot, crew, mg, at, marksman, sniper, medic, officer, arti]
 allowed vehicle (any unit can drive/gun those vehicles)
 	AV_[heli, plane, tank]
 restricted gears (only some units can wear those gear)
@@ -129,7 +134,7 @@ for fireRange (no mortar)	=> %varName%_FR									=> "FR" (marker)
 for fireRange (all gear)	=> %varName%_NOGR								=> "FR_NOGR" (marker)
 for base main flag			=> %varName_F									=> FLAG (object)
 
-Yeahhh markers can have a bearing :D
+Yeahhh markers have a bearing :D
 
 also need SZ_RADIUS, FR_RADIUS
 
@@ -141,4 +146,40 @@ disabled when a curator is assign!
 
 
 only compute maps/mods on server and broadcast with JIP enabled
-				
+			
+if i want to be able to change side or base location at run time, i need to:
+	have actions : Move base to %baseName1%
+				   Move base to %baseName2%	
+				   Change side to !%PLAYER_SIDE%
+				   Apply Changes (%newBaseName% / %newSide%)	
+	be able to reInit everything on server and player side
+	%feat%/serverDestroy.sqf
+	%feat%/playerDestroy.sqf
+	%feat%/headlessDestroy.sqf
+ 	------------------------------------------------------------
+ 	client: select "Apply Changes" action
+ 			remote call to server core_fnc_serverReLoad
+ 			
+	core_fnc_serverReLoad: 	if base and side have not changed abord
+							lock server (LOCK=true)
+							add variable EH on PLAYER_DESTROY to keep track of the player destroy completion
+							remote call to core_fnc_playerReLoad on all players
+							wait for all players to have finished destroying their features
+							remove variable EH
+							feats serverDestroy
+							enforce base mission param
+							enforce side mission param	
+							call init.sqf
+			
+	core_fnc_playerReLoad:	black screen (BLACKED=true)Some Settings have changed, please wait while loading.)
+						  	feats playerDestroy
+						  	add variable EH on SERVER_INIT to know when server has finished his init
+						  	missionNamespace setVariable ["PLAYER_DESTOY", true];
+						  	wait for server to have finished init
+						  	call init.sqf 
+	------------------------------------------------------------
+	TADA it's reloaded with a new base and/or an other side
+
+
+
+	

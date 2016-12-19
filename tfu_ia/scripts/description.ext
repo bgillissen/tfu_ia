@@ -47,13 +47,11 @@ minPlayerDistance = 1500;
 //------------------------- Parameters
 class Params {
 	#include "_params.hpp"
-	#include "mods\_params.hpp"
 	#include "feats\_params.hpp"
 };
 
 //------------------------- Includes
 #include "_settings.hpp"
-#include "mods\_include.hpp"
 #include "feats\_include.hpp"
 
 //------------------------- RscTitles

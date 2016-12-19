@@ -7,10 +7,12 @@ Description:
 	it init the headless side features
 */
 
+#ifndef INIT
 #define CTXT_SERVER false
 #define CTXT_HEADLESS true
 #define CTXT_PLAYER false
 #define CTXT "HEADLESS"
+#endif
 
 waitUntil {!isNull player};
 waitUntil {player == player};

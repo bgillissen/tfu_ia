@@ -7,20 +7,22 @@ Description:
 	it init the player side features
 */
 
+#ifndef INIT
+#define INIT true
 #define CTXT_SERVER false
 #define CTXT_HEADLESS false
 #define CTXT_PLAYER true
 #define CTXT "PLAYER"
+#endif
 
 waitUntil {!isNull player};
 waitUntil {player == player};
 
-//black screen
-//draw Loading...
+//features playerPreInit
+[CTXT, "preInit"] call core_fnc_featEvents;
 
-//features init
+//features playerInit
 [CTXT, "init"] call core_fnc_featEvents;
 
-private _msg = format["Welcome to %1 base, you are %1", BASE_name, PLAYER_SIDETXT];
-//draw _msg
-sleep 2
+//features playerPostInit
+[CTXT, "postInit"] call core_fnc_featEvents;

@@ -3,49 +3,41 @@
 Author:
 	Ben
 Description:
-	this is executed once by init.sqf on server side only.
+	this run on server side only.
 */
 
+#ifndef INIT
+#define INIT true
 #define CTXT_SERVER true
 #define CTXT_HEADLESS false
 #define CTXT_PLAYER false
 #define CTXT "SERVER"
+#endif
 
-private _srvCMD =  srvCMDpass serverCommand "#lock";
-
-//change independent friendship according to parameters
-if ( (IND_ARE_ENEMY && PLAYER_SIDE == west) || (!IND_ARE_ENEMY && PLAYER_SIDE == east) ) then {
-	//ind against west
-	independent setFriend [east, 1];
-	east setFriend [independent, 1];
-	independent setFriend [west, 0];
-	west setFriend [independent, 0];
-} else {
-	//ind against east
-	independent setFriend [east, 0];
-	east setFriend [independent, 0];
-	independent setFriend [west, 1];
-	west setFriend [independent, 1];
+if ( !LOCKED ) then {
+	private _srvCMD =  srvCMDpass serverCommand "#lock";
+	LOCKED = true;
 };
 
-//some global var needed server side
-missionNamespace setVariable ["BLACKLIST", [[],[],[],[],[],[],[],[]], false];
-missionNamespace setVariable ["UAV", [], false];
-missionNamespace setVariable ["REWARDS", [], false];
+//some global vars are only needed server side, lets initialize/reset them
+BLACKLIST = [[],[],[],[],[],[],[],[]];
+UAV = [];
+REWARDS = [];
 
-//init map
-call compile preprocessFile format["maps\%1\srvInit.sqf", worldName];
-
-//to make arsenal configration less painfull 
+//to make arsenal configration less painfull, TODO as feature (serverPreInit after mods)
 call common_fnc_arsenalAuto;
 
-//init mods
-call compile preprocessFile "mods\srvInit.sqf";
+//features serverPreInit call/spawn
+[CTXT, "preInit"] call core_fnc_featEvents;
 
-//features init call/spawn
+//features serverInit call/spawn
 [CTXT, "init"] call core_fnc_featEvents;
-//registering feature's onLeave eventHandler
+
+//register feature's serverOnLeave eventHandler
 addMissionEventHandler ["HandleDisconnect",{[CTXT, "onLeave", _this] call core_fnc_featEvents;}];
+
+//features serverPostInit call/spawn
+[CTXT, "postInit"] call core_fnc_featEvents;
 
 //broadcast computed assets to clients
 {
@@ -57,6 +49,8 @@ addMissionEventHandler ["HandleDisconnect",{[CTXT, "onLeave", _this] call core_f
 		} count _keys;
 	};
 } count GV;
+
+missionNamespace setVariable ["SERVER_INIT", true, false];
 
 sleep unlockDelay;
 

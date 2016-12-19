@@ -35,11 +35,12 @@ Description:
 #define GR_sOpticMSG "Only snipers may use this long range optic, optic removed."
 #define GR_mOpticMSG "Only snipers/markmans may use this long range optic, optic removed."
 #define GR_oOpticMSG "Only squad or team leader may use thermal optics, optic removed."
-#define GR_oOpticMSG "Only squad or team leader may use thermal optics, optic removed."
 #define GR_backpackMSG "Only AT/AA soldier may use this backpack, backpack removed."
 #define GR_uavMSG "Only UAV operator may use this item, UAV terminal removed."
 
-//curator url (space separated list of steamID), don't forget to change the description.ext ;)
+//curator
+#define CURATOR_static false
+#define CURATOR_uids []
 #define CURATOR_url "http://taskforcunicorn.com/api/curators"
 #define CURATOR_noSlotMsg "No more free Zeus slot available (%1 / %2)."
 #define CURATOR_ascendMsg "%3 has ascend, %1 / %2 slots."
