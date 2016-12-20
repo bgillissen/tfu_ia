@@ -1,5 +1,5 @@
 /*
-@filename: core\featEventLocal.sqf
+@filename: core\featEvent.sqf
 Author:
 	Ben
 Description:
@@ -9,11 +9,20 @@ Description:
 
 params ["_ctxt", "_when", "_param"];
 
-//some basic check for cases that can not happend
-if ( _when == "onRespawn" && CTXT == "HEADLESS" ) then exitWith{};
-if ( _when == "onJoin" && CTXT != "SERVER" ) then exitWith{};
-if ( _when == "onLeave" && CTXT != "SERVER" ) then exitWith{};
-if ( _when == "onCloseVA" && CTXT != "PLAYER" ) then exitWith{};
+//some basic checks for cases that can not happend
+if ( CTXT_HEADLESS ) then {
+	if ( _when == "onRespawn" ) exitWith{};	
+};
+if ( !CTXT_SERVER ) then {
+	if ( _when == "onJoin" ) exitWith{};
+	if ( _when == "onLeave" ) exitWith{};
+};
+if ( !CTXT_PLAYER ) then {
+	if ( _when == "onCloseVA" ) exitWith{};
+	if ( _when == "onShoot" ) exitWith{};
+	if ( _when == "onBoardIn" ) exitWith{};
+	if ( _when == "onTake" ) exitWith{};
+};
 
 if ( _ctxt != CTXT ) exitWith {
 	//so it's a remote event to propagate
@@ -26,14 +35,14 @@ if ( _ctxt != CTXT ) exitWith {
 //not defined yet, we initialize it
 if ( iNil "FEAT_THREADS" ) then FEAT_THREADS = [];
 
-private ["_key", "_append"];
-
 private _poolName = format["FEAT_%1", _when];
 
 private _sorted = missionNamespace getVariable _poolName;
 
 if ( isNil {_sorted) ) then {
-	
+
+	private ["_key", "_append"];
+
 	if ( _ctxt == "SERVER" ){ _key = 1; };
 	if ( _ctxt == "PLAYER" ){ _key = 2; };
 	if ( _ctxt == "HEADLESS" ){ _key = 3; };
@@ -58,11 +67,15 @@ if ( isNil {_sorted) ) then {
 		if ( _when == "init" ) then _e = ((_x select _key) select 1);
 		if ( _when == "postInit" ) then _e = ((_x select _key) select 2);
 		if ( _when == "onRespawn" ) then _e = ((_x select _key) select 3);
-		if ( _when == "onJoin" ) then _e = ((_x select _key) select 4);
+		if ( _when == "onJoin" || ) then _e = ((_x select _key) select 4);
 		if ( _when == "onLeave" ) then _e = ((_x select _key) select 5);
+		if ( _when == "onCloseVA" ) then _e = ((_x select _key) select 4);
+		if ( _when == "onShoot" ) then _e = ((_x select _key) select 5);
+		if ( _when == "onBoardIn" ) then _e = ((_x select _key) select 6);
+		if ( _when == "onTake" ) then _e = ((_x select _key) select 7);
 		if ( _when == "destroy" ) then {
 			if ( _key == 1 ) then _e = ((_x select _key) select 6);
-			if ( _key == 2 ) then _e = ((_x select _key) select 4);
+			if ( _key == 2 ) then _e = ((_x select _key) select 8);
 		};
 		if ( (_e select 1) > 0) then { 
 			if ( _when == "destroy" ) then {
@@ -74,7 +87,7 @@ if ( isNil {_sorted) ) then {
 	
 	} forEach(FEATS);
 
-	_sorted = [_pool,[],{(_x select 4)},"ASCEND"] call BIS_fnc_sortBy;
+	_sorted = [_pool, [], {(_x select 4)},"ASCEND"] call BIS_fnc_sortBy;
 	_pool = nil;
 	missionNamespace setVariable [_poolName, _sorted];
 

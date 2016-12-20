@@ -3,9 +3,12 @@
 Author:
 	Ben
 Description:
-	this is run on player side when player has clicked on CONTINUE after having fire a shot in safe zone
-	it close the centered Hint, and remove the eventHandler
+	this run on player side when player has clicked on CONTINUE after having fire a shot in safe zone
+	remove the eventHandler and close the centered hint 
 */
 
-_this select 0 displayRemoveEventHandler ["unload", hintC_EH];
+params ["_display"];
+
+_display displayRemoveEventHandler ["unload", hintC_EH];
+
 hintSilent "";

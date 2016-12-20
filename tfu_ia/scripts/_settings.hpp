@@ -23,6 +23,7 @@ Description:
 
 //baseProtection
 #define BP_MSG "You are discharging your weapon at base without approval.  Cease your actions Immediately!"
+#define BP_sleepDelay 10
 
 //loadBalance (headless)
 #define LB_loopDelay 60
