@@ -7,4 +7,4 @@ Description:
 	it ask the server to reload the allowed curator list
 */
 
-remoteExec("curator_fnc_srvReload", 2, false);
+remoteExec ("curator_fnc_reload", 2, false);

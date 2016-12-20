@@ -10,6 +10,7 @@ Description:
 #include "feats\baseProtection\_cfgFunctions.hpp"
 #include "feats\curator\_cfgFunctions.hpp"
 #include "feats\dynBillboards\_cfgFunctions.hpp"
+#include "feats\earPlugs\_cfgFunctions.hpp"
 #include "feats\iaAO\_cfgFunctions.hpp"
 #include "feats\iaFOB\_cfgFunctions.hpp"
 #include "feats\iaSIDE\_cfgFunctions.hpp"

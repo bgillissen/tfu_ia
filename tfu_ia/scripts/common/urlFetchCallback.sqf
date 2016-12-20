@@ -22,6 +22,9 @@ waitUntil {
 };
 
 if (_result == "ERROR") exitWith {
+#ifdef DDEBUG
+	conWhite(format ["urlFetchCallback: %1, %2", _url, "url_fetch" callExtension "ERROR"]);
+#endif	
 	[("url_fetch" callExtension "ERROR"), _url] call _cbERROR;
 };
 

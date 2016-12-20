@@ -8,11 +8,13 @@ Description:
 */
 
 if ( isNil "curator_EH" ) then {
+	isCurator = false;
 	"curatorUIDs" addPublicVariableEventHandler {
 		curatorUIDs = _this select 1;
 		isCurator = [player] call curator_fnc_isCurator;
 		isAssigned = [player] call curator_fnc_isAssigned;
 	};
+	isAssigned = false;
 	"curatorAssigned" addPublicVariableEventHandler {
 		curatorAssigned = _this select 1;
 		isAssigned = [player] call curator_fnc_isAssigned;

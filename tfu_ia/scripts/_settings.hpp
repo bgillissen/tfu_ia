@@ -59,6 +59,14 @@ Description:
 #define DB_path "media\billboards\%1.paa"
 #define DB_totRandom 6
 
+//earPlugs
+#define EP_volume 0.2
+#define EP_onMsg "EarPlugs fitted"
+#define EP_offMsg "EarPlugs removed"
+#define EP_showHint false
+#define EP_keycode 197	//pause/break key
+#define EP_hint "<t color='#ff9d00' size='1.2' shadow='1' shadowColor='#000000' align='center'>** Earplugs Recieved **</t>          Use [Pause/Break] key to Insert and Remove"
+
 //radioFreq, short/long range channel frequencies
 #define RF_SR_FREQ_1 "300"
 #define RF_SR_FREQ_2 "310"

@@ -7,4 +7,4 @@ Description:
 	it ask the server to unassign the player from the curator module
 */
 
-[player] remoteExec ("curator_fnc_srvRelease", 2, false);
+[player] remoteExec ("curator_fnc_release", 2, false);

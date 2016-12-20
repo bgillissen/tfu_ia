@@ -7,4 +7,4 @@ Description:
 	it ask server the assign player to a curator module
 */
 
-[player] remoteExec("curator_fnc_srvRequest", 2, false);
+[player] remoteExec ("curator_fnc_request", 2, false);

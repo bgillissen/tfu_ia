@@ -22,7 +22,9 @@ waitUntil {
 };
 
 if (_result == "ERROR") exitWith {
-	//some debug in the console
+#ifdef DDEBUG
+	conWhite(format ["urlFetchReturn: %1, %2", _url, "url_fetch" callExtension "ERROR"]);
+#endif
 	false
 };
 

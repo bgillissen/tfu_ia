@@ -7,7 +7,7 @@ Description:
 	It changes the texture displayed on the billboards.
 */
 
-param ["_obj", "_mode"];
+params ["_obj", "_mode"];
 private ["_bill"];
 
 if ( isNil "DB_list" ) then {
