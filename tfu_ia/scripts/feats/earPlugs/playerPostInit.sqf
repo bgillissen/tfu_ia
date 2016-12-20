@@ -8,7 +8,7 @@ Description:
 	optionaly display a hint to let player know about
 */
 
-if ( !["earPlugs"] core_fnc_getConf ) exitWith{};
+if ( !(["earPlugs"] call core_fnc_getConf) ) exitWith{};
 if ( MOD_ace ) exitWith {};
 
 earPlug_state = 0; 
