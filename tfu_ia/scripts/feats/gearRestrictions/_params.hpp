@@ -46,3 +46,10 @@ class restrictBackpack {
 	texts[] = {"Disabled","Enabled"};
 	default = 1;
 };
+
+class restrictUAV {
+	title = "UAV Terminal Restriction";
+	values[] = {0,1};
+	texts[] = {"Disabled","Enabled"};
+	default = 1;
+};

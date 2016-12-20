@@ -29,9 +29,6 @@ Description:
 #define LB_loopDelay 60
 
 //gearRestriction
-#define GR_minDist 20	//player distance to the closest arsenal
-#define GR_minDelay 3
-#define GR_maxDelay 20
 #define GR_atMSG "Only AT/AA soldiers may use this weapon system, launcher removed."
 #define GR_mgMSG "Only Autoriflemen may use this machine gun, weapon removed."
 #define GR_sRifleMSG "Only snipers may use this rifle, rifle removed."
@@ -41,6 +38,7 @@ Description:
 #define GR_oOpticMSG "Only squad or team leader may use thermal optics, optic removed."
 #define GR_backpackMSG "Only AT/AA soldier may use this backpack, backpack removed."
 #define GR_uavMSG "Only UAV operator may use this item, UAV terminal removed."
+#define GR_msgDuration 5
 
 //curator
 #define CURATOR_uids []
