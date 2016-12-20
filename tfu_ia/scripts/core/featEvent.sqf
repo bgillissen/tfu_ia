@@ -99,15 +99,20 @@ if ( isNil {_sorted) ) then {
 	private _code = missionNamespace getVariable _fncName;
 	if( isNil {_code) ) then {
 		private _script = format["feats\%1\%2%3%4.sqf", _feat, toLower(_ctxt), _append, ["", "Thread"] select (_how == 2)];
-		_code = compile preprocessFileLineNumber _script;;
+		_code = compile preprocessFileLineNumber _script;
 		missionNamespace setVariable [_fncName, _code]; 
 	};
 	if ( _when == "destroy" ) then {
 		{
 			_x params ["_fid", "_fwhen", "_fthread"];
-			if ( _id == _fid && _when == _fwhen ) exitWith { _param = [_when, _thread]; };
+			if ( _id == _fid ) then { 
+				[_fwhen, _fthread] call _code;
+				FEAT_THREADS = FEAT_THREADS - _x; 
+			};
 		} count(FEAT_THREADS);
+		[] call _code;
+	} else {
+		if ( _how == 1 ) then _param call _code;
+		if ( _how == 2 ) then FEAT_THREADS append [_id, _when, (_param spawn _code)];
 	};
-	if ( _how == 1 ) then _param call _code;
-	if ( _how == 2 ) then FEAT_THREADS append [_id, _when, (_param spawn _code)]; 
 } count(_sorted);

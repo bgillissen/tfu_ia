@@ -3,10 +3,19 @@
 Author:
 	Ben
 Description:
-	run once on player side only.
-	define vars to quickly see if player is a curator
-	add an eventHandler to   
+	run on player.
+	add once needed variable eventHandlers to handle a curator events
 */
 
-isCurator = [player] call curator_fnc_isCurator;
-isAssigned = [player] call curator_fnc_isAssigned;
+if ( isNil "curator_EH" ) then {
+	"curatorUIDs" addPublicVariableEventHandler {
+		curatorUIDs = _this select 1;
+		isCurator = [player] call curator_fnc_isCurator;
+		isAssigned = [player] call curator_fnc_isAssigned;
+	};
+	"curatorAssigned" addPublicVariableEventHandler {
+		curatorAssigned = _this select 1;
+		isAssigned = [player] call curator_fnc_isAssigned;
+	};
+	curator_EH = true;
+};

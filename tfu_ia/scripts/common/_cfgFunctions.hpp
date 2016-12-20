@@ -20,5 +20,7 @@ class common {
 		class isBlacklisted { file="common\isBlacklisted.sqf"; };
 		class setCargo { file="common\setCargo.sqf"; };
 		class setSkill { file="common\setSkill.sqf"; };
+		class urlFetchCallback { file="common\urlFetchCallback.sqf"; };
+		class urlFetchReturn { file="common\urlFetchReturn.sqf"; };
 	};
 };

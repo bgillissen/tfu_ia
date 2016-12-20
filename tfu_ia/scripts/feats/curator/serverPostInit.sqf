@@ -4,10 +4,12 @@ Author:
 	Ben
 Description:
 	run on server
-	add needed eventHandlers to share placed things between curators 
+	add once needed eventHandlers to share placed things between curators 
 */
-
-{    
-	_x addEventHandler ["CuratorGroupPlaced", {[_this, "curator_fnc_grpPlaced", false] spawn BIS_fnc_MP}];
-	_x addEventHandler ["CuratorObjectPlaced", {[_this, "curator_fnc_objPlaced", false] spawn BIS_fnc_MP}];
-} forEach allCurators;
+if ( isNil "curator_EH" ) then {
+	{    
+		_x addEventHandler ["CuratorGroupPlaced", {[_this, "curator_fnc_placeGrp", false] spawn BIS_fnc_MP}];
+		_x addEventHandler ["CuratorObjectPlaced", {[_this, "curator_fnc_paceObj", false] spawn BIS_fnc_MP}];
+	} forEach allCurators;
+	curator_EH = true;
+};

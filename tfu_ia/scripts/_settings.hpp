@@ -43,8 +43,8 @@ Description:
 #define GR_uavMSG "Only UAV operator may use this item, UAV terminal removed."
 
 //curator
-#define CURATOR_static false
 #define CURATOR_uids []
+#define CURATOR_web true
 #define CURATOR_url "http://taskforcunicorn.com/api/curators"
 #define CURATOR_noSlotMsg "No more free Zeus slot available (%1 / %2)."
 #define CURATOR_ascendMsg "%3 has ascend, %1 / %2 slots."

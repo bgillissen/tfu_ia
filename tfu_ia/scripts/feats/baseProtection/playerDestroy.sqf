@@ -7,6 +7,8 @@ Description:
 	kill the baseProtection initThread
  */
 
+if ( count(_this) == 0 ) ewitWith {};
+
 params ["_when", "_thread"];
 
 if ( scriptDone _thread ) ewitWith {};
