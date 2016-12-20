@@ -1,7 +1,8 @@
 class core {
 	tag = "core";
 	class functions {
-		class featEvents { file="core\featEvents.sqf"; };
+		class featEvent { file="core\featEvent.sqf"; };
+		class featEventRemote { file="core\featEventRemote.sqf"; };
 		class getConf { file="core\getConf.sqf"; };
 		class initCommon { file="core\initCommon.sqf"; };
 		class initHeadless { file="core\initHeadless.sqf"; };

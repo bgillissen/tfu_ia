@@ -19,22 +19,21 @@ if ( !LOCKED ) then {
 	LOCKED = true;
 };
 
-//some global vars are only needed server side, lets initialize/reset them
+//those global vars are only needed server side
 BLACKLIST = [[],[],[],[],[],[],[],[]];
 UAV = [];
 REWARDS = [];
 
-//to make arsenal configration less painfull, TODO as feature (serverPreInit after mods)
-call common_fnc_arsenalAuto;
-
 //features serverPreInit call/spawn
-[CTXT, "preInit"] call core_fnc_featEvents;
+[CTXT, "preInit"] call core_fnc_featEvent;
 
 //features serverInit call/spawn
-[CTXT, "init"] call core_fnc_featEvents;
+[CTXT, "init"] call core_fnc_featEvent;
 
 //register feature's serverOnLeave eventHandler
-addMissionEventHandler ["HandleDisconnect",{[CTXT, "onLeave", _this] call core_fnc_featEvents;}];
+if ( isNil "EH_onLeave" ) then {
+	EH_onLeave = addMissionEventHandler ["HandleDisconnect",{[CTXT, "onLeave", _this] call core_fnc_featEvent;}];
+};
 
 //features serverPostInit call/spawn
 [CTXT, "postInit"] call core_fnc_featEvents;
@@ -55,3 +54,5 @@ missionNamespace setVariable ["SERVER_INIT", true, false];
 sleep unlockDelay;
 
 _srvCMD = srvCMDpass serverCommand "#unlock";
+
+LOCKED = false;

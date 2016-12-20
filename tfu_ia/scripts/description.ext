@@ -52,6 +52,7 @@ class Params {
 
 //------------------------- Includes
 #include "_settings.hpp"
+#include "core\debug.hpp"
 #include "feats\_include.hpp"
 
 //------------------------- RscTitles

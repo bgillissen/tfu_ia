@@ -8,7 +8,8 @@ Description:
 	set the channel radio frequencies of the owned radios
 */
 
-#ifdef MOD_tfar
+if ( !MOD_tfar ) exitWith{};
+if ( !(["radioFreq"] call core_fnc_getConf) ) exitWith{};
 
 for "_i" from 1 to 999 do {
 	scopeName "radioLoop";
@@ -25,5 +26,3 @@ sleep 3;
 
 if ( call TFAR_fnc_haveSWRadio ) then { call radioFreq_fnc_setShortRange; };
 if ( call TFAR_fnc_haveLRRadio ) then { call radioFreq_fnc_setLongRange; };
-
-#endif

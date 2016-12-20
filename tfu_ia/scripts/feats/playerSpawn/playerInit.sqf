@@ -3,6 +3,8 @@
 Author:
 	Ben
 Description:
-	this run player side
-	give player his role loadout, set his side to PLAYER_SIDE and tp him into active base spawn area according his role
+	this run on player
+	give player his role loadout, 
+	set his side to PLAYER_SIDE,
+	tp him into the active base spawn area according to his role
 */

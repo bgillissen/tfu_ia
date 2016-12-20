@@ -18,7 +18,7 @@ if ( count curatorAssigned >= CURATOR_slot) then {
 	};
 };
 
-if ( !()[_player] call curator_fnc_isCurator) ) then {
+if ( !([_player] call curator_fnc_isCurator) ) then {
 	["HQ", [format[CURATOR_failedMsg, name _player]] common_fnc_globalChat;
 };
 
@@ -31,7 +31,7 @@ for ("_curSlot" from 0 to CURATOR_slot) do {
 };
 	
 _player assignCurator (missionNamespace getVariable format["zeus_%1", _freeSlot]);
-curatorAssigned append [_x, _freeSlot];
+curatorAssigned append [(getPlayerUID _player), _freeSlot];
 publicVariable "curatorAssigned";
 
 ["HQ", [format[CURATOR_ascendMsg, (count curatorAssigned), CURATOR_slot, name _player]] common_fnc_globalChat;

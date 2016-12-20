@@ -11,9 +11,10 @@ Description:
 param ["_player"];
 
 {
-	if ( _x select 0 == getPlayerUID _player) then {
+	_x params["_uid", "_slot"];
+	if ( _uid == getPlayerUID _player) then {
 		exitWith{
-			unassignCurator (missionNamespace getVariable format["zeus_%1", _x select 1]);
+			unassignCurator (missionNamespace getVariable format["zeus_%1", _slot]);
 			curatorAssigned = curatorAssigned - _x;
 			publicVariable "curatorAssigned";
 		};

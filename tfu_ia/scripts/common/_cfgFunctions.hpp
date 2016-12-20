@@ -2,7 +2,6 @@ class common {
 	tag = "common";
 	class functions {
 		class addToBlacklists { file="common\addToBlacklists.sqf"; };
-		class arsenalAuto { file="common\arsenalAuto.sqf"; };
 		class deleteObjects { file="common\deleteObjects.sqf"; };
 		class garrisonUnit { file="common\garrisonUnit.sqf"; };
 		class globalHint { file="common\globalHint.sqf"; };

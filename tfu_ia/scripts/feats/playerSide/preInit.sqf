@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	this run on both client and server
+	this run on client and server
 */
 
 //check what is the players side, TODO move into a feature playerSide

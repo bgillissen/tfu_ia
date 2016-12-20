@@ -7,9 +7,6 @@ Description:
 	call init functions depending on the context
 */
 
-#define ASC true
-#define DESC false
-
 call core_fnc_initCommon;
 
 if ( isServer ) then call core_fnc_initServer;

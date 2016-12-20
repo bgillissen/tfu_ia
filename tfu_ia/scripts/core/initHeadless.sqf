@@ -17,5 +17,11 @@ Description:
 waitUntil {!isNull player};
 waitUntil {player == player};
 
-//features init
-[CTXT, "init"] call core_fnc_featEvents;
+//features headlessPreInit call/spawn
+[CTXT, "preInit"] call core_fnc_featEvent;
+
+//features headlessInit call/spawn
+[CTXT, "init"] call core_fnc_featEvent;
+
+//features headlessPostInit
+[CTXT, "postInit"] call core_fnc_featEvent;

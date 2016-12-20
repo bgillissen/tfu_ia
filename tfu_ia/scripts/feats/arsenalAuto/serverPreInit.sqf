@@ -1,9 +1,9 @@
 /*
-@filename: common\arsenalAuto.sqf
+@filename: feats\arsenalAuto\serverPreInit.sqf
 Author:
 	Ben
 Description:
-	This script is executed by core\initServer.sqf
+	this run on server
 	if ArsenalAuto is set to 1 in mission parameters, 
 	it overvewrite specific gear arsenal avaibility, just to make our live easyer ;)
 */

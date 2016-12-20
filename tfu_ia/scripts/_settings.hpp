@@ -7,6 +7,9 @@ Description:
 	it defines features settings that can't be set by mission parameters
 */
 
+//do we debug ?, !!! MUST comment the following line if not
+#define DEBUG true
+
 //init, needed to lock the server while server side features are loading
 #define srvCMDpass "honeybadger";
 #define unlockDelay 15;

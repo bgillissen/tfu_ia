@@ -6,6 +6,7 @@ Description:
 		included by game engine (description.ext)
 		include individual feature parameters
 */
+#include "feats\arsenalAuto\_params.hpp"
 #include "feats\baseProtection\_params.hpp"
 #include "feats\earPlugs\_params.hpp"
 #include "feats\fatigue\_params.hpp"

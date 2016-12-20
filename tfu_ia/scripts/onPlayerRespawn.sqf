@@ -11,6 +11,6 @@ waitUntil {!isNull player};
 waitUntil {player == player};
 
 //features onRespawn (player side)(local)
-[CTXT, "onRespawn", [player]] call common_fnc_featInit;
+[CTXT, "onRespawn", [player]] call core_fnc_featEvent;
 //features onRespawn (server side)(remote)
-["SERVER", "onRespawn", [player]] call common_fnc_featInit;
+["SERVER", "onRespawn", [player]] call core_fnc_featEvent;
