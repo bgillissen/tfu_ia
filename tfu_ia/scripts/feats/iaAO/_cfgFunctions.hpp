@@ -1,12 +1,13 @@
 class AO {
 	tag = "AO";
 	class functions {
-		class aoThread { file="ia\ao\aoThread.sqf"; };
-		class unitSpawn { file="ia\ao\unitSpawn.sqf"; };
-		class rtSpawn { file="ia\ao\rtSpawn.sqf"; };
-		class rtSpawnMinefield { file="ia\ao\rtSpawnMinefield.sqf"; };
-		class casThread { file="ia\ao\casThread.sqf"; };
-		class cleanup { file="ia\ao\rtDelete.sqf"; };
+		class cleanup { file="feats\iaAO\cleanup.sqf"; };
+		class placeEnemies { file="feats\iaAO\placeEnemies.sqf"; };
+		class placeMinefield { file="feats\iaAO\placeMinefield.sqf"; };
+		class placeRadioTower { file="feats\iaAO\placeRadioTower.sqf"; };
+		class placeVechicle { file="feats\iaAO\placeVehicle.sqf"; };
+		class threadAO { file="feats\iaAO\threadAO.sqf"; };
+		class threadCAS { file="feats\iaAO\threadCAS.sqf"; };
 
 	};
 };

@@ -110,10 +110,13 @@ Description:
                    	 ["","","","","","","","",""],\	//main
                    	 [],\							//ravi-ta
                    	 ["","","","","","","","",""],\	//saintgeorge
-                   	 ["","","","","","","","",""],\	//sosovu
+                   	 [],\							//sosovu
                    	 []\							//tuvanaka
                     ]
 
+#define FOBT_objects [\
+                     ["markerName", ["v1Coord", "v1Dir"], ["v2Coord", "v2Dir"], "padDir"]
+                     ]
 //------------------------------------------------------------ BASE Tanoa
 
 #define BT [["varName0", "dspName0", "size0"]]

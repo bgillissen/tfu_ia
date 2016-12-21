@@ -8,7 +8,7 @@ Description:
 	if true, it sits there and wait for it to pass back to false  
 */
 
-param ["_hint"];
+param ["_hint", "_globalSwitch"];
 
 if ( zeusMission ) then {
 	if ( _hint ) then {
@@ -16,6 +16,10 @@ if ( zeusMission ) then {
 	};
 	waitUntil {
 		sleep 5;
-		!zeusMission
+		_extBool = false;
+		if ( !(isNil _globalSwitch) ) then {
+			private _extBool = missionNamespace getVariable _globalSwitch;
+		};
+		(!zeusMission || _extBool)
 	};
 };

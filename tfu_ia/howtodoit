@@ -104,7 +104,7 @@ cargo (available in supplyDrop crates)
 rewards (vehicle available as rewards)
 	REWARDS	
 spawn (units/groups/vehicles/objects we are going to spawn in the missions)  
-	S_[radioTower, pilot, crew, cas, patrolGroups, sniperGroups, aaTank, arti, statics, tank, 
+	S_[radioTower, pilot, crew, +officer, cas, patrolGroups, sniperGroups, aaTank, arti, statics, tank, 
 	   apc, car, airPatrol, garrison]
 role loadout (default gear provided to player on first spawn)
 	RL_[hq, sl, tl, medic, lmg, hmg, assHMG, at, assAT, sniper, marksman, repair, demo, engineer,
@@ -113,7 +113,8 @@ base atmosphere
 	BA_vehicle => [veh, [actions]]		
 	BA_npc => [unit, [actions]]
 	BA_object => [obj, [actions]]
-
+base Vehicle
+	BV_[car, apc, tank, planeCAS, planeAA, planeTransport, heliSmall, heliMedium, heliMedEvac, heliBig, heliAttack, boatSmall, boatAttack, boatBig, repair, fuel, quad]
 next step : multiple base by map
 0 - mission param to define which base we use
 1 - on server load, removed all other base "placed" assets

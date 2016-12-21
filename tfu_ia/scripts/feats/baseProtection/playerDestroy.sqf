@@ -15,6 +15,6 @@ if ( scriptDone _thread ) ewitWith {};
 
 terminate _thread;
 
-waitUntil( scriptDone _thread );
+waitUntil{ scriptDone _thread };
 
 BP_inBase = false;

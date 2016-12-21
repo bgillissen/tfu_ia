@@ -1,38 +1,50 @@
 /*
-@filename: ia\fob\serverPostInitThread.sqf
+@filename: feats\iaFOB\serverPostInitThread.sqf
 Author:
 	Ben
 Description:
-	this script is executed once on server side only,
+	this run on server,
 	it keeps track of the active FOB thread, and spawn a new one when needed 
 */
 
-private ["_mkey"];
+if ( !(["FOB"] call core_fnc_getConf) ) ewitWith{};
+
+private ["_markers", "_types", "_marker"];
+
+FOB_isOn = false;
+FOB_stop = false;
+FOB_success = false;
+FOB_failed = false;
+
+_markers = [];
+_types = [];
 
 while( true ) do {
 	
+	[false, "FOR_stop"] call zeusMission_fnc_checkAndWait;
+	if ( FOB_stop ) ewitWith{};
 	waitUntil {
-		private ["_out"];
-		sleep 2;
-		_out = true;
-		if ( isNil AO_zone ) then {
-			_out = false;
-		} else {
-			if ( (count FOB_markers select AO_zone) == 0 ) _out = false;
-		};
-		_out
+		sleep IA_checkDelay;
+		( !(isNil AO_zone) && (count FOB_markers select AO_zone) != 0 ) && AO_isOn)
 	};
+	if ( FOB_stop ) ewitWith{};
+	sleep FOB_cooldown;
+	if ( FOB_stop ) ewitWith{};
+	if ( count _markers == 0 ) then _markers = FOB_markers select AO_zone;
+	if ( count _types == 0 ) then _types = FOB_pool;
 	
-	_mkey =  floor random count FOB_markers select AO_zone;
-	FOB_marker = FOB_markers select AO_zone select _mkey;
+	_marker =  selectRandom _markers;
+	_markers = _markers - [_marker];
 	
-	[false] call zeusMission_fnc_checkAndWait;
-	FOB = true;
-	_thread = spawn { [_x] call FOB_fnc_start; };
+	_type = selectRandom _types;
+	_types = _types -[_type];
+	
+	_thread = spawn { [_marker, _type, AO_zone] call FOB_fnc_thread; };
+	FOB_isOn = true;
+	FOB_failed = false;
 	waitUntil {
 		sleep IA_checkDelay;
 		scriptDone _thread
 	};
-	FOB = false;
-	sleep IA_loopDelay;	
+	FOB_isOn = false;
 };

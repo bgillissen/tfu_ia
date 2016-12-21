@@ -1,22 +1,22 @@
 /*
-@filename: ia\ao\rtSpawnMinefield.sqf
+@filename: feats\iaAO\placeMinefield.sqf
 Credit:
 	Quiksilver (credit Rarek [ahoyworld] for initial build)
 Author:
 	Ben
 Description:
-	this script is executed on server side,
+	this run on server,
 	it spawn a minefield around the radioTower 
 */
 
-param ["_rtCoord"];
+params ["_rtCoord"];
 private ["_dist", "_dir"];
 
 AO_minefield = [];
 
 for "_x" from 1 to IA_rtMines do {
 	_mine = createMine [[AO_rtMineTypes] call BIS_fnc_selectrandom, _rtCoord, [], 38];
-    AO_minefield = AO_minefield + [_mine];
+    AO_minefield append [_mine];
 };
 
 _dist = 40;
@@ -30,5 +30,5 @@ for "_c" from 0 to 23 do {
     _bWire enableSimulation false;
 	_bWire allowDamage false;
     _dir = _dir + 15;
-    AO_minefield = AO_minefield + [_bWire];
+    AO_minefield append [_bWire];
 };

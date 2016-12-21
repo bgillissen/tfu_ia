@@ -1,10 +1,19 @@
-
-param ["_side", "_aoCoord", "_vehType", "_patrolSize", "_commander", "_skill"];
+/*
+@filename: ia\ao\vehSpawn.sqf
+Credit:
+	Quiksilver
+Author:
+	Ben
+Description:
+	this run server side,
+	it spawn the enemies vehicles inside the given ao coordonate 
+*/
+params ["_side", "_aoCoord", "_aoSize", "_vehType", "_patrolSize", "_commander", "_skill"];
 private ["_group", "_randomPos", "_veh", "_units"];
 
 _units = [];
 _group = createGroup _side;
-_randomPos = [[[_aoCoord, (PARAMS_AO_size / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
+_randomPos = [[[_aoCoord, (_aoSize / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
 _veh = _vehType createVehicle _randomPos;
 waitUntil{
 	sleep 0.1;
@@ -27,16 +36,16 @@ if ( _commander ) then {
 	((units _group) select 2) assignAsCargo _veh;
 	((units _group) select 2) moveInCargo _veh;
 };
-[_group, _aoCoord, 500] call BIS_fnc_taskPatrol;
+[_group, _aoCoord, _patrolSize] call BIS_fnc_taskPatrol;
 
-if (IA_lockVeh) _veh lock 3;
+if (IA_lockVeh) then _veh lock 3;
 
 [(units _group), _skill] call common_fnc_setSkill;
 
 {
 	_x addCuratorEditableObjects [[_veh], false];
 	_x addCuratorEditableObjects [units _group, false];
-} foreach allCurators;
+} count allCurators;
 
 _units append _group;
 _units append _veh;

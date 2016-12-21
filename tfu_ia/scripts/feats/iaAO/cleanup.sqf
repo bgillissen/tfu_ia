@@ -1,5 +1,5 @@
 /*
-@filename: ia\ao\rtDelete.sqf
+@filename: feats\iaAO\cleanup.sqf
 Credit:
 	Quiksilver
 Author:
@@ -9,15 +9,16 @@ Description:
 	it remove the objects spawned for an AO if no players are near 
 */
 
-param ["_aoCoord", "_trigger", "_radioTower", "_units"];
+params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
 
-deleteVehicle _trigger;
-
-waitUntil {
-	sleep IA_checkDelay
-	({((_x distance _aoCoord) < IA_deleteDistance)} count allPlayers) isEqualTo 0)
+if ( !_force ) then {
+	waitUntil {
+		sleep IA_checkDelay
+		({((_x distance _aoCoord) < IA_deleteDistance)} count allPlayers) isEqualTo 0)
+	};
 };
 
+deleteVehicle _trigger;
 [_radioTower] call common_fnc_deleteObjects;
 [AO_minefield] call common_fnc_deleteObjects;
 [_units] call common_fnc_deleteObjects;

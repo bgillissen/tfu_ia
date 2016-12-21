@@ -113,6 +113,7 @@ Description:
 //invade & annex
 #define IA_loopDelay 20
 #define IA_checkDelay 5
+#define IA_cooldown 120
 #define IA_newAOHint "<t align='center' size='2.2'>New Target</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/>We did a good job with the last target, lads. I want to see the same again. Get yourselves over to %1 and take them all down!<br/><br/>Remember to take down that radio tower to stop the enemy from calling in CAS."
 #define IA_endAOHint "<t align='center' size='2.2'>Target Taken</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/><t align='left'>Fantastic job taking %1, boys! Give us a moment here at HQ and we'll line up your next target for you.</t>"
 #define IA_endRTHint "<t align='center' size='2.2'>Radio Tower</t><br/><t size='1.5' color='#08b000' align='center'>DESTROYED</t><br/>____________________<br/>The enemy radio tower has been destroyed! Fantastic job, lads!<br/><br/><t size='1.2' color='#08b000' align='center'> The enemy cannot call in air support now!</t><br/>"
@@ -135,3 +136,29 @@ Description:
 #define IA_carSkill 3
 #define IA_airSkill 3
 #define IA_garrisonSkill 1
+
+#define FOB_pool ["ammo", "repair", "landMedic", "fuel"]
+#define FOR_maxTime 3600
+#define FOB_cooldown 900
+#define FOB_newHint "<t align='center'><t size='2.2'>FOB created</t><br/><t size='1.5' color='#00B2EE'></t><br/>____________________<br/>We have created a FOB for you to use. You got %1 minutes to bring the supplies there.</t>"
+#define FOB_failHint "<t align='center'><t size='2.2'>FOB Mission</t><br/><t size='1.5' color='#b60000'>FAILED</t><br/>____________________<br/>You'll have to do better than that next time!<br/><br/><br/>Focus on the main objective for now; we'll relay the bad news to HQ, with some luck we'll have another objective lined up. We'll get back to you with an other one in some time.</t>"
+#define FOB_newZoneHint "<t align='center'><t size='2.2'>FOB Mission</t><br/><br/>____________________<br/>Operations in the area have ceased.<br/><br/>The resources are no longer needed.</t>";
+#define FOB_successHint "<t align='center'><t size='2.2'>FOB Mission</t><br/><t size='1.5' color='#FFCF11'>SUCCESS</t><br/>____________________<br/>Good job getting the supplies to the FOB. You have been rewarded with<br/>%1</t>"
+#define FOR_waveDelay 600
+#define FOB_skill 2
+#define FOB_minDistToDepot 500
+
+#define SIDE_cooldown 120
+#define SIDE_minDistFromBAse 2000
+#define SIDE_minDistFromAO 2000
+#define SIDE_missions = ["urban", "hqCoast", "research", "priority", "secure", "intel"]
+#define SIDE_hqCoastAction "<t color='#ffff00'>Plant Charge</t>"
+#define SIDE_hqCoastHint
+
+#define SIDE_urbanHint
+
+#define SIDE_researchHint
+#define SIDE_priorityHint
+#define SIDE_secureHint
+#define SIDE_intelHint
+];

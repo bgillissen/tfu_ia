@@ -1,25 +1,24 @@
 /*
-@filename: ia\ao\casThread.sqf
+@filename: feats\iaAO\threadCAS.sqf
 Author:
 	Ben
 Description:
-	this script is executed on server side,
-	it keep respawn CAS over AO until the radioTower is alive or a zeusMission has not started
+	this run on server,
+	it keep respawning CAS over AO until the radioTower is alive or a zeusMission has not started
 */
 
 param ["aoCoord", "_radioTower"];
 private ["_spawnPos", "_pilotClass", "_pilot", "_cas", "_casPos", "_targets"];
 
 if ( isNil "AO_cas" ) then AO_cas = false;
-if ( isNil "AO_casGroup") then { AO_casGroup = createGroup east; };
+if ( isNil "AO_casGroup") then AO_casGroup = createGroup ENEMY_SIDE;
 
 while {(alive _radioTower)} do {
 	if ( !AO_cas ) then {
 		_spawnPos = [(random 30000),(random 30000),3000];
-		_pilotClass = selectRandom IA_pilot; 
-		_pilot = AO_casGroup createUnit [_pilotClass,[0,0,(1000 + (random 1000))],[],0,"NONE"];
-		_jetClass = selectRandom IA_cas;
-		_cas = createVehicle [_jetClass,_spawnPos,[],0,"NONE"];
+		_pilotClass = ; 
+		_pilot = AO_casGroup createUnit [(selectRandom IA_pilot), [0,0,(1000 + (random 1000))], [], 0, "NONE"];
+		_cas = createVehicle [(selectRandom IA_cas), _spawnPos, [] , 0, "NONE"];
 		waitUntil {!isNull _cas};
 		_cas engineOn TRUE;
 		_cas allowCrewInImmobile TRUE;
@@ -47,7 +46,7 @@ while {(alive _radioTower)} do {
 			_casPos = getPosATL _cas;
 			_targets = _casPos nearEntities [["Air"], IA_casSearchRadius];
 			{AO_casGroup reveal [_x,4];} count _targets;
-			!alive _cas || zeusMission
+			(!alive _cas || zeusMission || AO_stop)
 		};
 		AO_cas = false;
 		if ( alive _cas ){
@@ -57,5 +56,7 @@ while {(alive _radioTower)} do {
 			["EnemyJetDown","Enemy CAS is down. Well Done!"] remoteExec ["common_fnc_globalNotification", 0, false];
 		};
 	};
+	if ( zeusMission || AO_stop ) ewitWith {};
+	
 	sleep (IA_casDelay + (random  IA_casDelay));
 };
