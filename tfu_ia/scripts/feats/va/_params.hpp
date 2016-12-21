@@ -1,6 +1,6 @@
-class enableVAS {
-	title = "Virtual Ammobox System (VAS)";
+class filterArsenal {
+	title = "Filtered Arsenal";
 	values[] = {0,1};
-	texts[] = {"Disabled", "Enabled"};
+	texts[] = {"Disabled","Enabled"};
 	default = 1;
 };

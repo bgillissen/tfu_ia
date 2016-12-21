@@ -158,12 +158,12 @@ if i want to be able to change side or base location at run time, i need to:
 	%feat%/headlessDestroy.sqf
  	------------------------------------------------------------
  	client: select "Apply Changes" action
- 			remote call to server core_fnc_serverReLoad
+ 			[player] remoteExec ["core_fnc_serverReset", 2];
  			
-	core_fnc_serverReLoad: 	if base and side have not changed abord
+	core_fnc_serverReset: 	if base and side have not changed abord
 							lock server (LOCK=true)
 							add variable EH on PLAYER_DESTROY to keep track of the player destroy completion
-							remote call to core_fnc_playerReLoad on all players
+							remoteExec ["core_fnc_playerReset",(allPlayers - entities "healessCliient_F")];
 							wait for all players to have finished destroying their features
 							remove variable EH
 							feats serverDestroy
@@ -171,10 +171,10 @@ if i want to be able to change side or base location at run time, i need to:
 							enforce side mission param	
 							call init.sqf
 			
-	core_fnc_playerReLoad:	black screen (BLACKED=true)Some Settings have changed, please wait while loading.)
+	core_fnc_playerReset:	black screen (BLACKED=true)Some Settings have changed, please wait while the server apply the changes...)
 						  	feats playerDestroy
 						  	add variable EH on SERVER_INIT to know when server has finished his init
-						  	missionNamespace setVariable ["PLAYER_DESTOY", true];
+						  	missionNamespace setVariableServer ["PLAYER_DESTOY", player];
 						  	wait for server to have finished init
 						  	call init.sqf 
 	------------------------------------------------------------

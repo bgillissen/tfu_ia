@@ -46,7 +46,6 @@ minPlayerDistance = 1500;
 
 //------------------------- Parameters
 class Params {
-	#include "_params.hpp"
 	#include "feats\_params.hpp"
 };
 
