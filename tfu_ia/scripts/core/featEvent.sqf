@@ -39,7 +39,7 @@ private _poolName = format["FEAT_%1", _when];
 
 private _sorted = missionNamespace getVariable _poolName;
 
-if ( isNil {_sorted) ) then {
+if ( isNil _sorted ) then {
 
 	private ["_key", "_append"];
 
@@ -97,7 +97,7 @@ if ( isNil {_sorted) ) then {
 	_x params ["_feat", "_how", "_id", "_append"];
 	private _fncName = format["FEAT_%1_%2", _feat, _when];
 	private _code = missionNamespace getVariable _fncName;
-	if( isNil {_code) ) then {
+	if( isNil _code ) then {
 		private _script = format["feats\%1\%2%3%4.sqf", _feat, toLower(_ctxt), _append, ["", "Thread"] select (_how == 2)];
 		_code = compile preprocessFileLineNumber _script;
 		missionNamespace setVariable [_fncName, _code]; 
