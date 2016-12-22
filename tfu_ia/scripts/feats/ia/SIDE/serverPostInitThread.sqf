@@ -1,5 +1,5 @@
 /*
-@filename: feats\iaSIDE\serverPostInitThread.sqf
+@filename: feats\ia\SIDE\serverPostInitThread.sqf
 Author:
 	Ben
 Description:

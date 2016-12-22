@@ -15,31 +15,31 @@ private _units = [];
 private "_count";
 
 _count = ["AO_groupPatrol"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
-_units append [_aoCoord, _aoSize, _count, AO_patrolSkill] call IA_fnc_placeInfPatrol;
+_count = ((random _count) - (random _count) + (random _count));
+_units append [_aoCoord, _aoSize, _count, 600, AO_patrolSkill] call IA_fnc_placeInfPatrol;
 
 _count = ["AO_sniperPatrol"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
+_count = ((random _count) - (random _count) + (random _count));
 _units append [_aoCoord, _aoSize, _count, AO_sniperSkill] call IA_fnc_placeSniper;
 
 _count = ["AO_garrison"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
+_count = ((random _count) - (random _count) + (random _count));
 _units append [_aoCoord, _aoSize, _count, AO_garrisonSkill, true] call IA_fnc_placeGarrison;
 
 _count = ["AO_static"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
+_count = ((random _count) - (random _count) + (random _count));
 _units append [_aoCoord, _aoSize, _count, AO_garrisonSkill] call IA_fnc_placeStatic;
 
 _count = ["AO_aaPatrol"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
+_count = ((random _count) - (random _count) + (random _count));
 _units append [_aoCoord, _aoSize, _count, AO_aaSkill, 500, (selectRandom S_aaTank), true] call IA_fnc_placeVehicle;
 
 _count = ["AO_tankPatrol"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
+_count = ((random _count) - (random _count) + (random _count));
 _units append [_aoCoord, _aoSize, _count, AO_tankSkill, 500, (selectRandom S_tank), true] call IA_fnc_placeVehicle;
 
 _count = ["AO_apcPatrol"] call core_fnc_getConf;
-_count = ((random _count) - (random _count-2));
+_count = ((random _count) - (random _count) + (random _count));
 _units append [_aoCoord, _aoSize, _count, AO_apcSkill, 500, (selectRandom S_apc), false] call IA_fnc_placeVehicle;
 
 _count = ["AO_carPatrol"] call core_fnc_getConf;

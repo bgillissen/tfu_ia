@@ -153,23 +153,67 @@ Description:
 #define FOB_minDistToDepot 500
 
 #define SIDE_cooldown 120
-#define SIDE_minDistFromBAse 2000
+#define SIDE_minDistFromBase 2000
 #define SIDE_minDistFromAO 2000
 #define SIDE_missions ["urban", "hqCoast", "research", "priority", "secure", "intel"]
 #define SIDE_size 500
 #define SIDE_circle "sideCircle"
 #define SIDE_label "sideLabel"
-#define SIDE_briefing "<t align='center'><t size='2.2'>New Side Mission</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>"
-#define SIDE_hqCoastTitle "Secure Smuggled Explosives"
-#define SIDE_hqCoastBriefing "The enemy have been smuggling explosives and hiding them in a Mobile HQ on the coastline.<br/><br/>We've marked the building on your map; head over there and secure the current shipment. Keep well back when you blow it; there's a lot of stuff in that building.</t>"
-#define SIDE_hqCoastPlanted "The charge has been set! 30 seconds until detonation."
-#define SIDE_hqCoastAction "<t color='#ffff00'>Plant Charge</t>"
+#define SIDE_patrolSkill 1
+#define SIDE_sniperSkill 2
+#define SIDE_garrisonSkill 1
+#define SIDE_aaSkill 4
+#define SIDE_tankSkill 2
+#define SIDE_apcSkill 1
+#define SIDE_carSkill 3
+#define SIDE_boomDelay 30
+#define SIDE_briefing "<t align='center'><t size='2.2'>New Side Mission</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>%2</t>"
 #define SIDE_successHint "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/>Fantastic job, lads! The enemies won't last long if you keep that up!<br/><br/>We've given you %1 to help with the fight. You'll find it at base.</t>"
+#define SIDE_failHint "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#b60000'>FAILED</t><br/>____________________<br/>You'll have to do better than that next time!</t>"
 
-#define SIDE_urbanHint
+#define SIDE_hqCoastTitle "Secure Smuggled Explosives"
+#define SIDE_hqCoastBriefing "The enemy have been smuggling explosives and hiding them in a Mobile HQ on the coastline.<br/><br/>We've marked the building on your map; head over there and secure the current shipment. Keep well back when you blow it; there's a lot of stuff in that building."
+#define SIDE_hqCoastPlanted "The charge has been set! %1 seconds until detonation."
+#define SIDE_hqCoastAction "<t color='#ffff00'>Plant Charge</t>"
 
-#define SIDE_researchHint
-#define SIDE_priorityHint
-#define SIDE_secureHint
+
+#define SIDE_urbanTitle "Destroy Weapons Shipment"
+#define SIDE_urbanBriefing "The enemy is supplying insurgents with advanced weapons and explosives. Neutralize them!<br/><br/>We've marked the aproximative location on your map; Looks like it's in town. Get your CQB gear ready."
+#define SIDE_urbanPlanted "The charge has been set! %1 seconds until detonation."
+#define SIDE_urbanAction "<t color='#ffff00'>Plant Charge</t>"
+
+#define SIDE_researchTitle "Seize Research Data"
+#define SIDE_researchBriefing "The enemy is conducting advanced military research.<br/><br/>Find the data and then torch the place!"
+#define SIDE_researchPlanted "Hard drive secured. The charge has been set! %1 seconds until detonation."
+#define SIDE_researchAction "<t color='#ffff00'>Secure Data</t>"
+
+#define SIDE_priorityMaxDistFromAO 4000
+#define SIDE_priorityMinDistFromAO 1000
+#define SIDE_priorityArtiProb 50
+#define SIDE_priorityInfAmmo true
+#define SIDE_priorityExtraHealth false
+#define SIDE_priotityHBarrier "Land_HBarrierBig_F"
+#define SIDE_priorityBriefing "<t align='center'><t size='2.2'>New Priority Target</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>%2</t>"
+#define SIDE_prioritySuccess "<t align='center'><t size='2.2'>Priority Target</t><br/><t size='1.5' color='#08b000'>NEUTRALISED<>/t><br/>____________________<br/>Incredible job, boys! Make sure you jump on those priority targets quickly; they can really cause havoc if they're left to their own devices.</t>"
+#define SIDE_priorityArtiTitle "Artillery Battery"
+#define SIDE_priorityArtiBriefing "The enemy is setting up an artillery battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map.<br/><br/>This is a priority target, boys! They're just setting up now; they'll be firing soon!"
+#define SIDE_priorityArtiNotification "Artillery Neutralised"
+#define SIDE_priorityArtiRadius 25
+#define SIDE_priorityArtiSalve 4
+#define SIDE_priorityArtiSalveDelay 6
+#define SIDE_priorityArtiFiringMsg [\
+		"Thermal scans are picking up those enemy Artillery firing! Heads down!",\
+		"Enemy Artillery rounds incoming! Advise you seek cover immediately.",\
+		"The Artillery team's firing, boys! Down on the ground!",\
+		"Get that damned Artillery team down; they're firing right now! Seek cover!",\
+		"They're zeroing in! Incoming Artillery fire; heads down!"]
+#define SIDE_priorityAATitle "Anti-Air Battery"
+#define SIDe_priorityAABriefing "The enemy is setting up an anti-air battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map.<br/><br/>This is a priority target, boys!"
+#define SIDE_priorityAANotification "Anti-Air Battery Neutralised"
+#define SIDE_priorityAARange 2500
+
+#define SIDE_priorityBriefing
+
+#define SIDE_secureTitle
+
 #define SIDE_intelHint
-];
