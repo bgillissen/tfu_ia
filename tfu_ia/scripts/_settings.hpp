@@ -113,29 +113,33 @@ Description:
 //invade & annex
 #define IA_loopDelay 20
 #define IA_checkDelay 5
-#define IA_cooldown 120
-#define IA_newAOHint "<t align='center' size='2.2'>New Target</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/>We did a good job with the last target, lads. I want to see the same again. Get yourselves over to %1 and take them all down!<br/><br/>Remember to take down that radio tower to stop the enemy from calling in CAS."
-#define IA_endAOHint "<t align='center' size='2.2'>Target Taken</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/><t align='left'>Fantastic job taking %1, boys! Give us a moment here at HQ and we'll line up your next target for you.</t>"
-#define IA_endRTHint "<t align='center' size='2.2'>Radio Tower</t><br/><t size='1.5' color='#08b000' align='center'>DESTROYED</t><br/>____________________<br/>The enemy radio tower has been destroyed! Fantastic job, lads!<br/><br/><t size='1.2' color='#08b000' align='center'> The enemy cannot call in air support now!</t><br/>"
-#define IA_rtMines 60
-#define IA_rtMineTypes ["APERSBoundingMine", "APERSMine", "ATMine"]
-#define IA_casSkill 2
-#define IA_casCheckDelay 60
-#define IA_casDelay 1200
-#define IA_casInfAmmo true
-#define IA_casInfFuel true
-#define IA_casSearchRadius 5000
-#define IA_deleteDistance 1500
 #define IA_lockVeh true
+#define IA_deleteDistance 1500
 #define IA_crewStayInProb 25
-#define IA_patrolSkill 1
-#define IA_sniperSkill 2
-#define IA_aaSkill 4
-#define IA_tankSkill 2
-#define IA_apcSkill 1
-#define IA_carSkill 3
-#define IA_airSkill 3
-#define IA_garrisonSkill 1
+
+#define AO_cooldown 120
+#define AO_circle "aoCircle"
+#define AO_label "aoLabel"
+#define AO_newHint "<t align='center' size='2.2'>New Target</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/>We did a good job with the last target, lads. I want to see the same again. Get yourselves over to %1 and take them all down!<br/><br/>Remember to take down that radio tower to stop the enemy from calling in CAS."
+#define AO_endHint "<t align='center' size='2.2'>Target Taken</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/><t align='left'>Fantastic job taking %1, boys! Give us a moment here at HQ and we'll line up your next target for you.</t>"
+#define AO_endRTHint "<t align='center' size='2.2'>Radio Tower</t><br/><t size='1.5' color='#08b000' align='center'>DESTROYED</t><br/>____________________<br/>The enemy radio tower has been destroyed! Fantastic job, lads!<br/><br/><t size='1.2' color='#08b000' align='center'> The enemy cannot call in air support now!</t><br/>"
+#define AO_rtMines 60
+#define AO_rtMineTypes ["APERSBoundingMine", "APERSMine", "ATMine"]
+#define AO_casSkill 2
+#define AO_casCheckDelay 60
+#define AO_casDelay 1200
+#define AO_casInfAmmo true
+#define AO_casInfFuel true
+#define AO_casSearchRadius 5000
+#define AO_patrolSkill 1
+#define AO_sniperSkill 2
+#define AO_garrisonSkill 1
+#define AO_aaSkill 4
+#define AO_tankSkill 2
+#define AO_apcSkill 1
+#define AO_carSkill 3
+#define AO_airSkill 3
+#define AO_airAltitude 300
 
 #define FOB_pool ["ammo", "repair", "landMedic", "fuel"]
 #define FOR_maxTime 3600
@@ -151,9 +155,16 @@ Description:
 #define SIDE_cooldown 120
 #define SIDE_minDistFromBAse 2000
 #define SIDE_minDistFromAO 2000
-#define SIDE_missions = ["urban", "hqCoast", "research", "priority", "secure", "intel"]
+#define SIDE_missions ["urban", "hqCoast", "research", "priority", "secure", "intel"]
+#define SIDE_size 500
+#define SIDE_circle "sideCircle"
+#define SIDE_label "sideLabel"
+#define SIDE_briefing "<t align='center'><t size='2.2'>New Side Mission</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>"
+#define SIDE_hqCoastTitle "Secure Smuggled Explosives"
+#define SIDE_hqCoastBriefing "The enemy have been smuggling explosives and hiding them in a Mobile HQ on the coastline.<br/><br/>We've marked the building on your map; head over there and secure the current shipment. Keep well back when you blow it; there's a lot of stuff in that building.</t>"
+#define SIDE_hqCoastPlanted "The charge has been set! 30 seconds until detonation."
 #define SIDE_hqCoastAction "<t color='#ffff00'>Plant Charge</t>"
-#define SIDE_hqCoastHint
+#define SIDE_successHint "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/>Fantastic job, lads! The enemies won't last long if you keep that up!<br/><br/>We've given you %1 to help with the fight. You'll find it at base.</t>"
 
 #define SIDE_urbanHint
 

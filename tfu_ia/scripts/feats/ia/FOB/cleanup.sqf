@@ -14,7 +14,7 @@ deleteVehicle _truck;
 
 if ( !_force ) then {
 	waitUntil {
-		sleep IA_checkDelay
+		sleep IA_checkDelay;
 		({((_x distance _coord) < IA_deleteDistance)} count allPlayers) isEqualTo 0)
 	};
 };
@@ -24,7 +24,10 @@ if ( !_force ) then {
 	deleteGroup _x;
 } count (_groups);
 
-if ( count _this > 4 ) then {
+deleteVehicle _truck;
+deleteVehicle _pad;
+
+if ( count _this > 5 ) then {
 	 deleteVehicle _veh1;
 	 deleteVehicle _veh2;
 };

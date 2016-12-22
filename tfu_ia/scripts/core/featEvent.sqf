@@ -43,9 +43,9 @@ if ( isNil _sorted ) then {
 
 	private ["_key", "_append"];
 
-	if ( _ctxt == "SERVER" ){ _key = 1; };
-	if ( _ctxt == "PLAYER" ){ _key = 2; };
-	if ( _ctxt == "HEADLESS" ){ _key = 3; };
+	if ( _ctxt == "SERVER" ){ _key = 2; };
+	if ( _ctxt == "PLAYER" ){ _key = 3; };
+	if ( _ctxt == "HEADLESS" ){ _key = 4; };
 
 	if ( _when == "preInit" ) then _append = "PreInit";
 	if ( _when == "init" ) then _append = "Init";
@@ -61,7 +61,7 @@ if ( isNil _sorted ) then {
 
 	private _pool = [];
 	{
-		_x params ["_feat"];
+		_x params ["_feat", "_path"];
 		private "_e";
 		if ( _when == "preInit" ) then _e = ((_x select _key) select 0);
 		if ( _when == "init" ) then _e = ((_x select _key) select 1);
@@ -79,26 +79,25 @@ if ( isNil _sorted ) then {
 		};
 		if ( (_e select 1) > 0) then { 
 			if ( _when == "destroy" ) then {
-				_pool append [_feat, 1, _forEachIndex, _apppend, (_e select 0)];
+				_pool append [_feat, _path, 1, _forEachIndex, _apppend, (_e select 0)];
 			} else {
-				_pool append [_feat, (_e select 1), _forEachIndex, _apppend, (_e select 0)];
+				_pool append [_feat, _path, (_e select 1), _forEachIndex, _apppend, (_e select 0)];
 			};
 		};
 	
 	} forEach(FEATS);
 
-	_sorted = [_pool, [], {(_x select 4)},"ASCEND"] call BIS_fnc_sortBy;
+	_sorted = [_pool, [], {(_x select 5)},"ASCEND"] call BIS_fnc_sortBy;
 	_pool = nil;
 	missionNamespace setVariable [_poolName, _sorted];
-
 };
 
 {
-	_x params ["_feat", "_how", "_id", "_append"];
+	_x params ["_feat", "_path", "_how", "_id", "_append"];
 	private _fncName = format["FEAT_%1_%2", _feat, _when];
 	private _code = missionNamespace getVariable _fncName;
 	if( isNil _code ) then {
-		private _script = format["feats\%1\%2%3%4.sqf", _feat, toLower(_ctxt), _append, ["", "Thread"] select (_how == 2)];
+		private _script = format["%1\%2\%3%4%5.sqf", _path, _feat, toLower(_ctxt), _append, ["", "Thread"] select (_how == 2)];
 		_code = compile preprocessFileLineNumber _script;
 		missionNamespace setVariable [_fncName, _code]; 
 	};

@@ -24,7 +24,8 @@ _trigger setTriggerStatements ["this","",""];
 //spawn radioTower
 _radioTower = [_coord, _size, _trigger] call AO_fnc_placeRadioTower;
 
-//move marker
+//create markers
+
 { _x setMarkerPos _coord; } forEach ["aoCircle", "aoMarker"];
 
 //set marker label

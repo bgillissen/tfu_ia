@@ -1,5 +1,5 @@
 /*
-@filename: feats\iaAO\cleanup.sqf
+@filename: feats\ia\AO\cleanup.sqf
 Credit:
 	Quiksilver
 Author:
@@ -13,7 +13,7 @@ params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
 
 if ( !_force ) then {
 	waitUntil {
-		sleep IA_checkDelay
+		sleep IA_checkDelay;
 		({((_x distance _aoCoord) < IA_deleteDistance)} count allPlayers) isEqualTo 0)
 	};
 };

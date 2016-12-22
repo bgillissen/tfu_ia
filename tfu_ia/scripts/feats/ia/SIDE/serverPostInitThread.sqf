@@ -12,9 +12,12 @@ if ( !(["SIDE"] call core_fnc_getConf) ) ewitWith{};
 SIDE_isOn = false;
 SIDE_stop = false;
 SIDE_success = false;
-SIDE_failed = false;
 
 private _missions = [];
+
+if ( isNil "SIDE_EH" ) then {
+	SIDE_EH = "SIDE_success" addPublicVariableEventHandler { SIDE_success = true; };
+};
 
 while( true ) do {
 	
@@ -34,10 +37,10 @@ while( true ) do {
 	
 	_thread = spawn format["SIDE_fnc_%1", _type];
 	SIDE_isOn = true;
-	SIDE_failed = false;
 	waitUntil {
 		sleep IA_checkDelay;
 		scriptDone _thread
 	};
 	SIDE_isOn = false;
+	SIDE_success = false;
 };
