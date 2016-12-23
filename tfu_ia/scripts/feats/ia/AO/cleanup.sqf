@@ -11,6 +11,9 @@ Description:
 
 params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
 
+deleteMarker AO_label;
+deleteMarker AO_circle;
+
 if ( !_force ) then {
 	waitUntil {
 		sleep IA_checkDelay;

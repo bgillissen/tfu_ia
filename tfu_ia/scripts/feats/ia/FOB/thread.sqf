@@ -55,46 +55,56 @@ private _lastSpawnCoord = nil;
 private _groups = [];
 private _vehs = [];
 while ( true ) {
-	if ( time > (_lastSpawn + FOB_spawnDelay) ) then {
-		if ( (_truck distance _depotCoord > FOB_minDistToDepot)  && (_truck distance _coord > 100) ) then {
-			private _distance = 100 + (random 100);
-			private _spawnCoord = [_truck, _distance, getDir (_truck)] call BIS_fnc_relPos;
-			private _spawnVeh = false;
-			if ( !isNil _lastSpawnCoord ) then {
-				//check if they moved a little since the last spawn, if not mutch let's punish them
-				_spawnVeh = ( _truck distance _lastSpawnCoord < 400 );
-			}
-			if ( !_spawnVeh ) then {
-				private _groupPath = selectRandom S_patrolGroups;
-				private _infGroup = selectRandom ([_groupPath] call Bis_fnc_getCfgSubClasses);
-				private _group = [_spawnCoord, ENEMY_SIDE, (_groupPath + [_infGroup]) call BIS_fnc_configPath] call BIS_fnc_spawnGroup;
-			} else {
-				private _group = createGroup ENEMY_SIDE;
-				private _veh = (selectRandom S_apc) createVehicle _spawnCoord;
-				(selectRandom IA_crew) createUnit [_spawnCoord,_group];
-				(selectRandom IA_crew) createUnit [_spawnCoord,_group];
-				(selectRandom IA_crew) createUnit [_spawnCoord,_group];
-				((units _group) select 0) assignAsDriver _veh;
-				((units _group) select 0) moveInDriver _veh;
-				((units _group) select 1) assignAsGunner _veh;
-				((units _group) select 1) moveInGunner _veh;
-				if (IA_lockVeh) then _veh lock 3;
-				_vehs append _veh;
+	if ( count _groups < FOB_maxGroup ) then {
+		if ( time > (_lastSpawn + FOB_spawnDelay) ) then {
+			if ( (_truck distance _depotCoord > FOB_minDistToDepot)  && (_truck distance _coord > 100) ) then {
+				private _distance = 100 + (random 100);
+				private _spawnCoord = [_truck, _distance, getDir (_truck)] call BIS_fnc_relPos;
+				private _spawnVeh = false;
+				if ( !isNil _lastSpawnCoord ) then {
+					//check if they moved a little since the last spawn, if not mutch let's punish them
+					_spawnVeh = ( _truck distance _lastSpawnCoord < 400 );
+				}
+				private ["_group", "_veh"];
+				if ( !_spawnVeh ) then {
+					private _groupPath = selectRandom S_patrolGroups;
+					private _infGroup = selectRandom ([_groupPath] call Bis_fnc_getCfgSubClasses);
+					_group = [_spawnCoord, ENEMY_SIDE, (_groupPath + [_infGroup]) call BIS_fnc_configPath] call BIS_fnc_spawnGroup;
+				} else {
+					_group = createGroup ENEMY_SIDE;
+					_veh = (selectRandom S_apc) createVehicle _spawnCoord;
+					(selectRandom IA_crew) createUnit [_spawnCoord,_group];
+					(selectRandom IA_crew) createUnit [_spawnCoord,_group];
+					(selectRandom IA_crew) createUnit [_spawnCoord,_group];
+					((units _group) select 0) assignAsDriver _veh;
+					((units _group) select 0) moveInDriver _veh;
+					((units _group) select 1) assignAsGunner _veh;
+					((units _group) select 1) moveInGunner _veh;
+					if (IA_lockVeh) then _veh lock 3;
+					_vehs append _veh;
+				};
+				//set skill
+				[(units _group), FOB_skill] call common_fnc_setSkill;
+				//add to zeus
+				{
+					if ( _spawnVeh ) then _x addCuratorEditableObjects [[_veh], false];
+					_x addCuratorEditableObjects [units _group, false];
+				} count allCurators;
+				//make new group attack the truck
+				[_group, (getPos _truck)] call BIS_fnc_taskAttack;
+				
+				_groups append [_group];
+				//remove killed groups
+				{
+					if ((count units _x) == 0) then {
+						_groups = _groups - [_x];
+						deleteGroup _x;
+					};
+				} count _groups;
+				//update lastspawn time and coord
+				_lastSpawn = time;
+				_lastSpawnCoord = _spawnCoord;
 			};
-
-			[(units _group), FOB_skill] call common_fnc_setSkill;
-		
-			{
-				if ( _spawnVeh ) then _x addCuratorEditableObjects [[_veh], false];
-				_x addCuratorEditableObjects [units _group, false];
-			} count allCurators;
-		
-			[_group, (getPos _truck)] call BIS_fnc_taskAttack;
-		
-			groups append [_group];
-		
-			_lastSpawn = time;
-			_lastSpawnCoord = _spawnCoord;
 		};
 	};
 	sleep IA_loopDelay;

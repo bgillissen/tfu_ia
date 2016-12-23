@@ -35,11 +35,11 @@ while( true ) do {
 	private _type = selecRandom _missions;
 	_missions = _missions - [_type];
 	
-	_thread = spawn format["SIDE_fnc_%1", _type];
+	SIDE_main = spawn format["SIDE_fnc_%1", _type];
 	SIDE_isOn = true;
 	waitUntil {
 		sleep IA_checkDelay;
-		scriptDone _thread
+		scriptDone SIDE_main
 	};
 	SIDE_isOn = false;
 	SIDE_success = false;

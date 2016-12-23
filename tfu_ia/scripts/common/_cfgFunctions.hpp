@@ -22,5 +22,6 @@ class common {
 		class setSkill { file="common\setSkill.sqf"; };
 		class urlFetchCallback { file="common\urlFetchCallback.sqf"; };
 		class urlFetchReturn { file="common\urlFetchReturn.sqf"; };
+		class smartSleep { file="common\smartSleep.sqf"; };
 	};
 };

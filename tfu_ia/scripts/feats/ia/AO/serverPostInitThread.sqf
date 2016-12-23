@@ -1,5 +1,5 @@
 /*
-@filename: feats\iaAO\serverPostInitThread.sqf
+@filename: feats\ia\AO\serverPostInitThread.sqf
 Author:
 	Ben
 Description:

@@ -1,5 +1,5 @@
 /*
-@filename: feats\iaFOB\serverPostInitThread.sqf
+@filename: feats\ia\FOB\serverPostInitThread.sqf
 Author:
 	Ben
 Description:
@@ -21,7 +21,7 @@ _types = [];
 
 while( true ) do {
 	
-	[false, "FOR_stop"] call zeusMission_fnc_checkAndWait;
+	[false, "FOB_stop"] call zeusMission_fnc_checkAndWait;
 	if ( FOB_stop ) ewitWith{};
 	waitUntil {
 		sleep IA_checkDelay;
@@ -39,12 +39,12 @@ while( true ) do {
 	_type = selectRandom _types;
 	_types = _types -[_type];
 	
-	_thread = spawn { [_marker, _type, AO_zone] call FOB_fnc_thread; };
+	FOB_main = spawn { [_marker, _type, AO_zone] call FOB_fnc_thread; };
 	FOB_isOn = true;
 	FOB_failed = false;
 	waitUntil {
 		sleep IA_checkDelay;
-		scriptDone _thread
+		scriptDone FOB_main
 	};
 	FOB_isOn = false;
 };

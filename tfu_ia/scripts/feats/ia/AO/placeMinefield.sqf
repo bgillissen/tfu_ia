@@ -1,5 +1,5 @@
 /*
-@filename: feats\iaAO\placeMinefield.sqf
+@filename: feats\ia\AO\placeMinefield.sqf
 Credit:
 	Quiksilver (credit Rarek [ahoyworld] for initial build)
 Author:
@@ -14,8 +14,8 @@ private ["_dist", "_dir"];
 
 AO_minefield = [];
 
-for "_x" from 1 to IA_rtMines do {
-	_mine = createMine [[AO_rtMineTypes] call BIS_fnc_selectrandom, _rtCoord, [], 38];
+for "_x" from 1 to AO_rtMines do {
+	_mine = createMine [(selectRandom AO_rtMineTypes), _rtCoord, [], 38];
     AO_minefield append [_mine];
 };
 

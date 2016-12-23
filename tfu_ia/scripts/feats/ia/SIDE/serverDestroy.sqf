@@ -1,24 +1,24 @@
 /*
-@filename: feats\ia\FOB\serverDestroy.sqf
+@filename: feats\ia\AO\serverDestroy.sqf
 Author:
 	Ben
 Description:
 	run on server side
-	tell FOB thread to stop, wait some, kill it 
+	tell main AO to stop, wait some, kill it 
 */
 
 if ( count(_this) == 0 ) exitWith{};
 
 params ["_when", "_thread"];
 
-if ( !(["FOB"] call core_fnc_getConf) ) ewitWith{};
+if ( !(["SIDE"] call core_fnc_getConf) ) ewitWith{};
 
-FOB_stop = true;
+SIDE_stop = true;
 
 private _start = time;
 
 waitUntil {
-	((time > (_start + 20)) || scriptDone FOB_main)
+	((time > (_start + 20)) || scriptDone SIDE_main)
 };
 
 terminate _thread;
