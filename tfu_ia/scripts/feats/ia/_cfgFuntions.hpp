@@ -9,3 +9,7 @@ class IA {
 		class placeAirPatrol { file="feats\ia\placeAirPatrol.sqf"; };
 	};
 };
+
+#include "feats\ia\AO\_cfgFunctions.hpp"
+#include "feats\ia\FOB\_cfgFunctions.hpp"
+#include "feats\ia\SIDE\_cfgFunctions.hpp"

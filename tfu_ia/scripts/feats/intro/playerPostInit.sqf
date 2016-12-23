@@ -7,4 +7,4 @@ Description:
 	display the server rules dialog on join.
 */
 
-if ( (["intro"] call core_fnc_getConf) ) then call intro_fnc_show;
+if ( (["intro"] call core_fnc_getConf) ) then spawn intro_fnc_show;

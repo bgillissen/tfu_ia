@@ -1,5 +1,5 @@
 /*
-@filename: settings.sqf
+@filename: _settings.sqf
 Author:
 	Ben
 Description:
@@ -7,7 +7,7 @@ Description:
 	it defines features settings that can't be set by mission parameters
 */
 
-//do we debug ?, !!! MUST comment the following line if not
+//do we debug ?, !!! you MUST comment the following line if not
 #define DEBUG true
 
 //init, needed to lock the server while server side features are loading
@@ -27,6 +27,23 @@ Description:
 
 //loadBalance (headless)
 #define LB_loopDelay 60
+
+//mapTracker
+#define MT_colorNeedRevive [1, 0.41, 0, 1]
+#define MT_colorEast [0.5, 0, 0]
+#define MT_colorWest [0, 0.3, 0.6]
+#define MT_colorInd  [0, 0.5, 0]
+#define MT_colorCiv  [0.4, 0, 0.5]
+#define MT_colorDft	 [0.7, 0.6, 0]
+#define MT_sizeMan 22
+#define MT_sizeLandVehicle 28
+#define MT_sizeAir 28
+#define MT_sizeShip 26
+#define MT_shadow 1
+#define MT_textSize 0.05
+#define MT_textFont "puristaMedium"
+#define MT_textOffset "right"
+#define MT_gpsDist 150
 
 //gearRestriction
 #define GR_atMSG "Only AT/AA soldiers may use this weapon system, launcher removed."
