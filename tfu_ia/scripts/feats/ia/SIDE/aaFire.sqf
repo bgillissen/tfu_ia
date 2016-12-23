@@ -6,7 +6,7 @@ Author:
 	Ben
 Description:
 	this run on server,
-	search for a air target in range and fire at it 
+	search for an air target in range and fire at it 
 */
 
 params ["_batteries"];

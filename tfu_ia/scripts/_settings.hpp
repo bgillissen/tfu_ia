@@ -223,8 +223,11 @@ Description:
 #define SIDE_secureAction "<t color='#ffff00'>Secure Data</t>"
 #define SIDE_securePlanted "Hard drive secured. The charge has been set! %1 seconds until detonation."
 
+#define SIDE_intelVehicleProb 40
+#define SIDE_intelTriggerSize 500
+#define SIDE_intelTitle "Secure Intel"
+#define SIDE_intelBriefing "We have reports from locals that sensitive, strategic information is changing hands. This is a target of opportunity!<br/><br/>We've marked the position on your map; head over there and secure the intel. It should be stored on one of the vehicles or on their persons."
+#define SIDE_intelSpotted  "Target has spotted you and is trying to escape with the intel!"
+#define SIDE_intelSecured "Intel received. Mission accomplished! We're sending the data up to HQ for analysis."
+#define SIDE_intelAction "<t color='#ff0000'>Secure Intel</t>"
 
-#define SIDE_intelTitle
-#define SIDE_intelBriefing
-#define SIDE_intelSecured
-#define SIDE_intelAction

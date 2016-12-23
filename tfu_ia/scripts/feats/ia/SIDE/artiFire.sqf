@@ -15,12 +15,13 @@ params ["_batteries", "_szCoords"];
 private _ammo = ((_batteries select 0) magazinesTurret [0]) select 0);
 private _target = nullObj;
 private "_targetPos";
+private _accepted = false;
 
 while { true } do {
 	_target = playableUnits select (floor (random (count playableUnits)));
 	if (!isNull _target) then {
 		_targetPos = getPos _target;
-		private _accepted = true;
+		_accepted = true;
 		{
 			_x params ["_pos", "_radius"];
 			if ((_targetPos distance _pos) < _radius) then _accepted = false;
@@ -35,6 +36,7 @@ while { true } do {
 	if ( _accepted ) exitWith {};
 	sleep IA_checkDelay;
 };
+_accepted = nil;
 
 if ( _target == nullObj ) exitWith {};
 

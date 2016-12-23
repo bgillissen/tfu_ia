@@ -115,6 +115,7 @@ Description:
 
 #define SVB_pilot []
 #define SVB_crew []
+#define SVB_officer []
 #define SVB_cas []
 #define SVB_patrolGroups []
 #define SVB_sniperGroups []
@@ -124,6 +125,7 @@ Description:
 #define SVB_tank []
 #define SVB_apc []
 #define SVB_car []
+#define SVB_carAttack []
 #define SVB_airPatrol []
 #define SVB_garrison []
 
@@ -131,6 +133,7 @@ Description:
 
 #define SVO_pilot []
 #define SVO_crew []
+#define SVO_officer []
 #define SVO_cas []
 #define SVO_patrolGroups []
 #define SVO_sniperGroups []
@@ -140,6 +143,7 @@ Description:
 #define SVO_tank []
 #define SVO_apc []
 #define SVO_car []
+#define SVO_carAttack []
 #define SVO_airPatrol []
 #define SVO_garrison []
 

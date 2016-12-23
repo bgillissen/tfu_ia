@@ -13,13 +13,14 @@ Description:
 
 private _aoCoord = getMarkerPos AO_circle;
 private _szCoord = getMarkerPos "SZ";
+private _cargoType = "Land_Cargo_House_V3_F";
 private _flatPos = [0,0,0];
 private _accepted = false;
 
-//find a flat position, near coast
+//find a flat position
 while {!_accepted} do {
 	_position = [] call BIS_fnc_randomPos;
-	_flatPos = _position isFlatEmpty [5, 1, 0.2, (sizeOf _hqType), 0, false];
+	_flatPos = _position isFlatEmpty [5, 1, 0.2, (sizeOf _cargoType), 0, false];
 	while {(count _flatPos) < 2} do {
 		_position = [] call BIS_fnc_randomPos;
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _hqType, 0, false];
@@ -52,7 +53,7 @@ _obj setDir random 360;
 if ( !isRadar ) then _obj lock 3;
 
 //cargo house
-private _cargo = "Land_Cargo_House_V3_F" createVehicle _objPos;
+private _cargo = _cargoType createVehicle _objPos;
 _cargo setDir random 360;
 
 (getPos _cargo) params["_cargoX", "_cargoY", "_cargoZ"];

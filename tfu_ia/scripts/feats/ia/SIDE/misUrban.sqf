@@ -37,7 +37,7 @@ _crate allowDamage false;
 [_crate, SIDE_urbanAction] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
 
 //spawn units ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_tank", "_apc", "_car", "_air", "_patrolSize"];
-private _groups = [_coord, 15, 20, 2, 20, 0, 0, 0, 0, 2, 0, (random 200)] call SIDE_fnc_placeEnemies;
+private _groups = [_coord, 15, 20, 2, 20, 0, 0, 0, 0, 2, 0, (100 + random 200)] call SIDE_fnc_placeEnemies;
 
 //briefing
 [_coord, SIDE_urbanTitle, SIDE_size] call SIDE_fnc_placeMarkers;

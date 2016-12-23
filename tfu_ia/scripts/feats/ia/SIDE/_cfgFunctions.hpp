@@ -12,7 +12,7 @@ class SIDE {
 		class urban { file="feats\ia\SIDE\misUrban.sqf"; };
 		class research { file="feats\ia\SIDE\misResearch.sqf"; };
 		class priority { file="feats\ia\SIDE\misPriority.sqf"; };
-			class intel { file="feats\ia\SIDE\misIntel.sqf"; };
+		class intel { file="feats\ia\SIDE\misIntel.sqf"; };
 		class secure { file="feats\ia\SIDE\misSecure.sqf"; };
 	};
 };
