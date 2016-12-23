@@ -214,11 +214,10 @@ Description:
 #define SIDE_priorityAANotification "Anti-Air Battery Neutralised"
 #define SIDE_priorityAARange 4000
 #define SIDE_priorityAAminAltitde 25
-#define SIDE_priorityBriefing
 
 #define SIDE_secureRadarProb 50
 #define SIDE_secureRadarTitle "Secure Radar"
-#define SIDE_secureRadarBriefing ""
+#define SIDE_secureRadarBriefing "The enemy have installed a small radar to support their aircraft.<br/><br/>We've marked the position on your map; head over there and secure the site. Take the data and destroy it."
 #define SIDE_secureChopperTitle "Secure Enemy Chopper"
 #define SIDE_secureChopperBriefing "The enemy have been provided with a new prototype attack chopper.<br/><br/>We've marked the suspected location on your map; head there, get the data and destroy the helicopter."
 #define SIDE_secureAction "<t color='#ffff00'>Secure Data</t>"

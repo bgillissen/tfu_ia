@@ -40,7 +40,7 @@ _hq setVectorUp [0,0,1];
 
 (getPos _hq) params["_hqX", "_hqY", "_hqZ"];
 
-//objetive table, laptop
+//objective table, laptop
 private _table = SIDE_table createVehicle [_hqX, _hqY, (_hqZ+1)];
 _table enableSimulation true;
 private _laptop = SIDE_laptop createVehicle [_hqX, _hqY, (_hqZ+5)];
@@ -51,6 +51,7 @@ _laptop enableSimulation true;
 //spawn units ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_tank", "_apc", "_car", "_air", "_patrolSize"];
 private _groups = [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (SIDE_size + (random 150))] call SIDE_fnc_placeEnemies;
 _groups append ([_hq, SIDE_garrisonSkill] call IA_fnc_forcedGarrison);
+
 //briefing
 [_flatPos, SIDE_researchTitle, SIDE_size] call SIDE_fnc_placeMarkers;
 [format[SIDE_briefing, SIDE_researchTitle, SIDE_researchBriefing] remoteExec ["common_fnc_globalHint", 0, false];
