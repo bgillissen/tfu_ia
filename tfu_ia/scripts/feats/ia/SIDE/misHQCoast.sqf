@@ -10,7 +10,7 @@ Description:
 	a HQ bunker near coast with a crate to "activate" on top. 
 */
 
-private _aoCoord = getMarkerPos "aoCircle";
+private _aoCoord = getMarkerPos AO_circle;
 private _szCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _accepted = false;
@@ -59,7 +59,7 @@ _boat lock 3
 
 //spawn units ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_tank", "_apc", "_car", "_air", "_patrolSize"];
 private _groups = [_flatPos, 0, 4, 2, 0, 1, 1, 1, 2, 3, 0, (SIDE_size + (random 150))] call SIDE_fnc_placeEnemies;
-
+_groups append ([_hq, SIDE_garrisonSkill] call IA_fnc_forcedGarrison);
 //briefing
 [_flatPos, SIDE_hqCoastTitle, SIDE_size] call SIDE_fnc_placeMarkers;
 [format[SIDE_briefing, SIDE_hqCoastTitle, SIDE_hqCoastBriefing] remoteExec ["common_fnc_globalHint", 0, false];

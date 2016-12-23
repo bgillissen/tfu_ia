@@ -161,12 +161,14 @@ Description:
 #define SIDE_label "sideLabel"
 #define SIDE_patrolSkill 1
 #define SIDE_sniperSkill 2
-#define SIDE_garrisonSkill 1
+#define SIDE_garrisonSkill 3
 #define SIDE_aaSkill 4
 #define SIDE_tankSkill 2
 #define SIDE_apcSkill 1
 #define SIDE_carSkill 3
 #define SIDE_boomDelay 30
+#define SIDE_table ""
+#define SIDE_laptop ""
 #define SIDE_briefing "<t align='center'><t size='2.2'>New Side Mission</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>%2</t>"
 #define SIDE_successHint "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/>Fantastic job, lads! The enemies won't last long if you keep that up!<br/><br/>We've given you %1 to help with the fight. You'll find it at base.</t>"
 #define SIDE_failHint "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#b60000'>FAILED</t><br/>____________________<br/>You'll have to do better than that next time!</t>"
@@ -210,10 +212,20 @@ Description:
 #define SIDE_priorityAATitle "Anti-Air Battery"
 #define SIDe_priorityAABriefing "The enemy is setting up an anti-air battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map.<br/><br/>This is a priority target, boys!"
 #define SIDE_priorityAANotification "Anti-Air Battery Neutralised"
-#define SIDE_priorityAARange 2500
-
+#define SIDE_priorityAARange 4000
+#define SIDE_priorityAAminAltitde 25
 #define SIDE_priorityBriefing
 
-#define SIDE_secureTitle
+#define SIDE_secureRadarProb 50
+#define SIDE_secureRadarTitle "Secure Radar"
+#define SIDE_secureRadarBriefing ""
+#define SIDE_secureChopperTitle "Secure Enemy Chopper"
+#define SIDE_secureChopperBriefing "The enemy have been provided with a new prototype attack chopper.<br/><br/>We've marked the suspected location on your map; head there, get the data and destroy the helicopter."
+#define SIDE_secureAction "<t color='#ffff00'>Secure Data</t>"
+#define SIDE_securePlanted "Hard drive secured. The charge has been set! %1 seconds until detonation."
 
-#define SIDE_intelHint
+
+#define SIDE_intelTitle
+#define SIDE_intelBriefing
+#define SIDE_intelSecured
+#define SIDE_intelAction

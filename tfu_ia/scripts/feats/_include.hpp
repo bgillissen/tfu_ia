@@ -60,6 +60,7 @@ Description:
 //some features need also an include
 #include "feats\maps\_include.hpp"
 #include "feats\mods\_include.hpp"
+#include "feats\ia\_include.hpp"
 #include "feats\intro\_include.hpp"
 #include "feats\vehicleCrew\_include.hpp"
 #include "feats\viewDistance\_include.hpp"

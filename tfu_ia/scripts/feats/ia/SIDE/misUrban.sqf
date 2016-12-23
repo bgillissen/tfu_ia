@@ -10,7 +10,7 @@ Description:
 	a crate to "activate" on a predefined marker in a urban area. 
 */
 
-private _aoCoord = getMarkerPos "aoCircle";
+private _aoCoord = getMarkerPos AO_circle;
 private _coord = [0,0,0];
 private _accepted = false;
 

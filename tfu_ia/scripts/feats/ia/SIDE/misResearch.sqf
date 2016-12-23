@@ -10,7 +10,7 @@ Description:
 	a Research bunker with a laptop to "activate" inside. 
 */
 
-private _aoCoord = getMarkerPos "aoCircle";
+private _aoCoord = getMarkerPos AO_circle;
 private _szCoord = getMarkerPos "SZ";
 private _hqType = "Land_Research_HQ_F";
 private _flatPos = [0,0,0];
@@ -41,16 +41,16 @@ _hq setVectorUp [0,0,1];
 (getPos _hq) params["_hqX", "_hqY", "_hqZ"];
 
 //objetive table, laptop
-private _table = "tableType" createVehicle [_hqX, _hqY, (_hqY+1)];
+private _table = SIDE_table createVehicle [_hqX, _hqY, (_hqZ+1)];
 _table enableSimulation true;
-private _laptop = "laptopType" createVehicle [_hqX, _hqY, (_hqY+5)];
-[_table, _laptop, [0,0,0.8]] call BIS_fnc_relPosObject;
-_laptop enableSimulation true
-
+private _laptop = SIDE_laptop createVehicle [_hqX, _hqY, (_hqZ+5)];
+[_table, _laptop, [0,0,0.83]] call BIS_fnc_relPosObject;
+_laptop enableSimulation true;
+[_laptop, SIDE_researchAction] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
 
 //spawn units ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_tank", "_apc", "_car", "_air", "_patrolSize"];
 private _groups = [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (SIDE_size + (random 150))] call SIDE_fnc_placeEnemies;
-
+_groups append ([_hq, SIDE_garrisonSkill] call IA_fnc_forcedGarrison);
 //briefing
 [_flatPos, SIDE_researchTitle, SIDE_size] call SIDE_fnc_placeMarkers;
 [format[SIDE_briefing, SIDE_researchTitle, SIDE_researchBriefing] remoteExec ["common_fnc_globalHint", 0, false];
@@ -64,7 +64,7 @@ while ( true ){
 	if ( SIDE_success ) exitWith {
 		[format[SIDE_researchPlanted, SIDE_boomDelay]] remoteExec ["common_fnc_globalSideChat", 0, false];
 		sleep SIDE_boomDelay;
-		[[_hqX, _hqY, (_hqY+2)], true] spawn SIDE_fnc_boom.sqf
+		[[_hqX, _hqY, (_hqZ+2)], false] spawn SIDE_fnc_boom.sqf
 		deleteVehicle _laptop;
 		deleteVehicle _table;
 		private _reward = call common_fnc_giveReward;

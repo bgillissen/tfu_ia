@@ -10,8 +10,9 @@ Description:
 	either Arti or AA tank position, not to far from AO 
 */
 
-private _aoCoord = getMarkerPos "aoCircle";
+private _aoCoord = getMarkerPos AO_circle;
 private _szCoord = getMarkerPos "SZ";
+private _frCoord = getMarkerPos "FR";
 private _hqType = "Land_Research_HQ_F";
 private _flatPos = [0,0,0];
 private _accepted = false;
@@ -139,7 +140,7 @@ while ( true ) do {
 			if ( SIDE_priorityExtraHealth ) then _tank2 removeEventHandler ["HandleDamage", (_tank2 getVariable "damage_EH")];
 			if ( SIDE_priorityInfAmmo ) then _tank2 removeEventHandler ["Fired", (_tank2 getVariable "fired_EH")];
 			[SIDE_prioritySuccess] remoteExec ["common_fnc_globalHint", 0, false];
-			["CompletedPriorityTarget", _notification] remoteExec ["AW_fnc_globalNotification", 0, false];
+			["CompletedPriorityTarget", _notification] remoteExec ["common_fnc_globalNotification", 0, false];
 			[false, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
 		};
 	};
@@ -147,7 +148,7 @@ while ( true ) do {
 		[true, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( isArti ) then {
-		[_tank1, _tank2] call SIDE_fnc_artiFire;
+		[[_tank1, _tank2], [_szCoord, _frCoord]] call SIDE_fnc_artiFire;
 		private "_tick"; 
 		if (_tickMax <= _tickMin) then {
 			_tick = _tickMin;
