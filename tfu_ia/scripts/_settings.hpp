@@ -18,8 +18,12 @@ Description:
 #define SH_name "Task Force Unicorn"
 #define SH_url "taskforceunicorn.com"
 #define SH msg"<t align='center' size='2.2' color='#FAAF3A'>%1<br/></t><t size='1.4' color='#33CCFF'>%2</t><br/>has joined the server, To become a TFU member, apply to %3</t><br/>"
-//vonHint, displayed teamSpeak address
-#define TSADDR "ts.taskforceunicorn.com"
+
+//vonHint, displayed teamSpeak addres
+#define VH_delay 1800
+#define VH_tsAddr "ts.taskforceunicorn.com"
+#define VH_joinUs "<t align='center'><t size='2'><t color='#FAAF3A'>Join us on TeamSpeak</t><br/><br/>_____________<br/><br/><t size='1.5'><t color='#FAAF3A'>%1<br/></t>"
+#define VH_noVON "<t align='center'><t size='1.5'><t color='#FAAF3A'>VON is disabled</t><br/>  <t size='1.5'><br/>So instead join us on Teamspeak<br/>  <br/><t color='#FAAF3A'>%1<br/></t>"
 
 //baseProtection
 #define BP_MSG "You are discharging your weapon at base without approval.  Cease your actions Immediately!"
