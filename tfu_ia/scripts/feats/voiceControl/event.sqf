@@ -5,7 +5,7 @@ Credit:
 Author:
 	Ben
 Description:
-	must be spawn, not called.
+	run on player
 	This script is used to trigger an alarm sound when player try to speak in an unauthorized channel.
 */
 

@@ -93,6 +93,7 @@ A_msgDuration 5
 
 
 //voiceControl, which channel is allowed to who
+#define VC_loopDelay 20
 #define VC_disabled [6]
 #define VC_players [3,4,5]
 #define VC_groupleader [2,3,4,5]
