@@ -1,5 +1,5 @@
 /*
-@filename: feats\radioFreq\onPickUp.sqf
+@filename: feats\radioFreq\playerPickUp.sqf
 Author:
 	Ben
 Description:

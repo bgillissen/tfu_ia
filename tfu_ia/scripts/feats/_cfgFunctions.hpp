@@ -20,6 +20,7 @@ Description:
 #include "feats\supportCrate\_cfgFunctions.hpp"
 #include "feats\va\_cfgFunctions.hpp"
 #include "feats\vehicleRespawn\_cfgFunctions.hpp"
+#include "feats\vehicleRestrictions\_cfgFunctions.hpp"
 #include "feats\viewDistance\_cfgFunctions.hpp"
 #include "feats\voiceControl\_cfgFunctions.hpp"
 #include "feats\zeusMission\_cfgFunctions.hpp"

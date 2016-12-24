@@ -35,6 +35,11 @@ if ( isNil "FEH_boardIn") then {
 	FEH_boardIn = player addEventHandler ["GetInMan", {[CTXT, "onBoardIn", _this] call core_fnc_featEvent;}];
 };
 
+//bind player's SwitchSeatInMan event to feature's onSwitchSeat
+if ( isNil "FEH_switchSeat") then {
+	FEH_switchSeat = player addEventHandler ["SeatSwitchedMan", {[CTXT, "onSwitchSeat", _this] call core_fnc_featEvent;}];
+};
+
 //bind player's Take event to feature's onPickUp
 if ( isNil "FEH_pickUp") then {
 	FEH_pickUp = player addEventHandler ["Take", {[CTXT, "onPickUp", _this] call core_fnc_featEvent;}];
