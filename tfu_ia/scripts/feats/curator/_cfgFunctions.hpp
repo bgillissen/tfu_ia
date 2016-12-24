@@ -4,6 +4,7 @@ class curator {
 		class actionRelease { file="feats\curator\actionRelease.sqf"; };
 		class actionReload { file="feats\curator\actionReload.sqf"; };
 		class actionRequest { file="feats\curator\actionRequest.sqf"; };
+		class condition { file="feats\curator\condition.sqf"; };
 		class isAssigned { file="feats\curator\isAssigned.sqf"; };
 		class isCurator { file="feats\curator\isCurator.sqf"; };
 		class placeGrp { file="feats\curator\placeGrp.sqf"; };

@@ -1,5 +1,5 @@
 /*
-@filename: feats\supportCrate\condition.sqf
+@filename: feats\zeusMission\condition.sqf
 Credit:
 	Quicksilver
 Author:

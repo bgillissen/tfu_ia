@@ -73,6 +73,9 @@ Description:
 #define CURATOR_ascendMsg "%3 has ascend, %1 / %2 Zeus slot in use."
 #define CURATOR_failedMsg "%1 has tryed to ascend."
 #define CURATOR_descendMsg "%3 has descend, %1 / %2 Zeus slot in use."
+#define CURATOR_requestAction "Request Zeus Power"
+#define CURATOR_releaseAction "Release Zeus Power"
+#define CURATOR_reloadAction "Reload Allowed Zeus List"
 
 //zeusMission
 #define ZM_startAction "Start a zeus mission"
