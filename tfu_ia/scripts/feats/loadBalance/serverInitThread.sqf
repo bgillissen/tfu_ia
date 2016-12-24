@@ -67,6 +67,9 @@ while {true} do {
 		} count _toMove;
 		#ifdef DEBUG
     		conWhite(format ["loadBalance : moved %1 group(s) to %2 HCs", count _toMove, _avail]);
+    		conWhite(format ["loadBalance : HC1 now owns %1 AI", countArray select 0]);
+    		conWhite(format ["loadBalance : HC2 now owns %1 AI", countArray select 1]);
+    		conWhite(format ["loadBalance : HC3 now owns %1 AI", countArray select 2]);
 		#endif
 	} else {
 		#ifdef DEBUG
