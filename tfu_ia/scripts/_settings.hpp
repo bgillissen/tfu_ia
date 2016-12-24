@@ -57,6 +57,10 @@ Description:
 #define GR_uavMSG "Only UAV operator may use this item, UAV terminal removed."
 #define GR_msgDuration 5
 
+//filtered arsenal
+A_filterMSG "At least one piece of your gear is not allowed, it has been removed!"
+A_msgDuration 5
+
 //curator
 #define CURATOR_uids []
 #define CURATOR_web true
