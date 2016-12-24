@@ -26,6 +26,7 @@ Description:
 #include "feats\restrictArti\_params.hpp"
 #include "feats\revive\_params.hpp"
 #include "feats\squadHint\_params.hpp"
+#include "feats\startTime\_params.hpp"
 #include "feats\supplyDrop\_params.hpp"
 #include "feats\supportCrate\_params.hpp"
 #include "feats\va\_params.hpp"

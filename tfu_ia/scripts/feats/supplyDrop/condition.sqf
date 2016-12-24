@@ -1,16 +1,18 @@
 /*
-@filename: feats\supplyDrop\actionCondition.sqf
+@filename: feats\supplyDrop\condition.sqf
 Credit:
 	Quicksilver
 Author:
 	Ben
 Description:
-	this script will run on client side,
+	run on player,
 	supplyDrop action condition
 */
 
-private ["_veh"];
+if ( !SD_avail ) exitWith { false };
+private _veh = vehicle player;
+if ( _veh isEqualTo player) ewitWith { false };
+if ( !(_veh getVariable "supplyDrop") ) ewitWith { false };
+if ( (position _veh) select 2 < SD_minAltitude ) exitWith { false };
 
-_veh = vehicle player;
-
-( supplyDropAvail && (_veh != player) && (_veh getVariable "supplyDrop") && ((position _veh) select 2 >= SD_minAltitude) )
+true

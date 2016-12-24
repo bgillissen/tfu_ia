@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	called player side when a player pick up something.
+	run on player when player pick up something.
 	if it's a tfar radio, set its channel frequencies 
 */
 

@@ -82,24 +82,9 @@ Description:
 #define EP_keycode 197	//pause/break key
 #define EP_hint "<t color='#ff9d00' size='1.2' shadow='1' shadowColor='#000000' align='center'>** Earplugs Recieved **</t>          Use [Pause/Break] key to Insert and Remove"
 
-//radioFreq, short/long range channel frequencies
-#define RF_SR_FREQ_1 "300"
-#define RF_SR_FREQ_2 "310"
-#define RF_SR_FREQ_3 "320"
-#define RF_SR_FREQ_4 "330"
-#define RF_SR_FREQ_5 "340"
-#define RF_SR_FREQ_6 "350"
-#define RF_SR_FREQ_7 "360"
-#define RF_SR_FREQ_8 "370"
-#define RF_LR_FREQ_1 "50"
-#define RF_LR_FREQ_2 "60"
-#define RF_LR_FREQ_3 "70"
-#define RF_LR_FREQ_4 "80"
-#define RF_LR_FREQ_5 "90"
-#define RF_LR_FREQ_6 "100"
-#define RF_LR_FREQ_7 "110"
-#define RF_LR_FREQ_8 "120"
-#define RF_LR_FREQ_9 "130"
+//radioFreq
+#define RF_SR_FREQS ["300","310","320","330","340","350","360","370"]
+#define RF_LR_FREQS ["50","60","70","80","90","100","110","120","130"]
 
 //voiceControl, which channel is allowed to who
 #define VC_disabled [6]
@@ -115,8 +100,19 @@ Description:
 #define SD_msgAvail "Supply Drop is available."
 #define SD_msgDeployed "Supply Drop has been deployed."
 #define SD_checkDelay 20
+#define SD_action "<t color='#0000ff'>Drop supply crate</t>"
 #define_SD_smoke =  "SmokeShellPurple";
 #define SD_light =  "Chemlight_blue";
+
+//supportCrate
+#define SC_msgFrom "HQ"
+#define SC_msgAvail "Support crate request is available."
+#define SC_msgDeployed "Requested support crate has been deployed."
+#define SC_checkDelay 20
+#define SC_actionFuel "<t color='#0000ff'>Request -- Fuel</t>"
+#define SC_actionMedic "<t color='#0000ff'>Request -- Medical</t>"
+#define SC_actionRepair "<t color='#0000ff'>Request -- Repair</t>"
+#define SC_actionSupply "<t color='#0000ff'>Request -- Supply</t>"
 
 //vehicleRespaw
 #define VR_distanceFromSpawn 150

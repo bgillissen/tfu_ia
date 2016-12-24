@@ -3,26 +3,24 @@
 Author:
 	Ben
 Description:
-	called on player side when a player (re)spawn.
-	check that the player's radio has not been switched with one RF-7800
+	run on player when a player (re)spawn.
+	check that the player's radio has not been switched with a RF-7800
 	set the channel radio frequencies of the owned radios
 */
 
 if ( !MOD_tfar ) exitWith{};
 if ( !(["radioFreq"] call core_fnc_getConf) ) exitWith{};
 
-for "_i" from 1 to 999 do {
-	scopeName "radioLoop";
-	_cur = format["tf_rf7800str_%1",_i];
-	if ( (call TFAR_fnc_activeSwRadio) == _cur ) then {
-		player unlinkItem _cur;
-		player linkItem "tf_anprc152";
-		systemChat "RF-7800 replaced by an AN/RPC-152";
-		breakOut "radioLoop";
+spawn {
+	for "_i" from 1 to 999 do {
+		private _cur = format["tf_rf7800str_%1", _i];
+		if ( (call TFAR_fnc_activeSwRadio) == _cur ) exitWith {
+			player unlinkItem _cur;
+			private _radio = [(TFAR_OPFOR_SR select 0), (TFAR_BLUFOR_SR select 0)] select ( PLAYER_SIDE == west );
+			player linkItem _radio;
+		};
 	};
+	sleep 3;
+	if ( call TFAR_fnc_haveSWRadio ) then { call radioFreq_fnc_setShortRange; };
+	if ( call TFAR_fnc_haveLRRadio ) then { call radioFreq_fnc_setLongRange; };
 };
-
-sleep 3;
-
-if ( call TFAR_fnc_haveSWRadio ) then { call radioFreq_fnc_setShortRange; };
-if ( call TFAR_fnc_haveLRRadio ) then { call radioFreq_fnc_setLongRange; };

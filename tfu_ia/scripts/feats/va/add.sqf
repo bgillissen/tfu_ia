@@ -3,7 +3,7 @@
 Author:
 	ben
 Description:
-	This script will run on server
+	this run on server
 	it add to the given thing a virtual arsenal, like this: [this] call va_fnc_add;
 */
 

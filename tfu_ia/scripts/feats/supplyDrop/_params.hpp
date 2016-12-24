@@ -14,5 +14,5 @@ class supplyDrop_maxcrate {
 	title = "Maximum Supply Drop Crate";
 	values[] = {1, 2, 3, 4, 5};
 	texts[] = {"1", "2", "3", "4", "5"};
-	default = 900;
+	default = 3;
 };

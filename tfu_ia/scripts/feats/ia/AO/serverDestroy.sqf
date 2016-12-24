@@ -1,5 +1,5 @@
 /*
-@filename: feats\iaAO\serverDestroy.sqf
+@filename: feats\ia\AO\serverDestroy.sqf
 Author:
 	Ben
 Description:

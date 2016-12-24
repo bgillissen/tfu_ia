@@ -142,9 +142,13 @@ for all disable damage,
 	npc		=>  loadout, actions
 	object  =>  actions
 actions => to know which action i got to bind to that thing, those key words are used by features
-	arsenal => va, vas, viewDistance
+	arsenal => va, viewDistance
 	support => supportCrate
 	zeus => curator, zeusMission, fatigue
+
+	once implented that become
+	BA_[vehicle, npc, object]
+	=> [_obj, [actions]];
 */
 
 
