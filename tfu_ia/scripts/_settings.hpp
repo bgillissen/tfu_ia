@@ -62,8 +62,8 @@ Description:
 #define GR_msgDuration 5
 
 //filtered arsenal
-A_filterMSG "At least one piece of your gear is not allowed, it has been removed!"
-A_msgDuration 5
+#define A_filterMSG "At least one piece of your gear is not allowed, it has been removed!"
+#define A_msgDuration 5
 
 //curator
 #define CURATOR_uids []
@@ -73,6 +73,10 @@ A_msgDuration 5
 #define CURATOR_ascendMsg "%3 has ascend, %1 / %2 Zeus slot in use."
 #define CURATOR_failedMsg "%1 has tryed to ascend."
 #define CURATOR_descendMsg "%3 has descend, %1 / %2 Zeus slot in use."
+
+//zeusMission
+#define ZM_startAction "Start a zeus mission"
+#define ZM_stopAction "Stop a zeus mission"
 
 //dynBillboards
 #define DB_left Bill_1

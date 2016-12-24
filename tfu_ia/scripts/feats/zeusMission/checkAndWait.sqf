@@ -11,9 +11,6 @@ Description:
 param ["_hint", "_globalSwitch"];
 
 if ( zeusMission ) then {
-	if ( _hint ) then {
-		//Todo a global Hint that says that a zeus mission is in preparation
-	};
 	waitUntil {
 		sleep 5;
 		_extBool = false;
