@@ -149,6 +149,17 @@ Description:
                     ["type1", ["action0", "action1"],  "varName1", ["uniform", "vest", "head"]],\
                     ["type2", ["action0", "action1"],  "varName2"],\
                     ]
+#define BAT_tuvanaka [
+                    	["npc", ["arsenal"], "BA_leftVA", ["", "", ""]],\
+                    	["npc", ["arsenal"], "BA_rightVA", ["", "", ""]],\
+                    	["object", ["billboard"], "BA_leftBB"],\
+                    	["object", ["billboard"], "BA_rightBB"],\
+                    	["object", ["hos"], "BA_hos0"],\
+                    	["object", ["hos"], "BA_hos1"],\
+                    	["object", ["hos"], "BA_hos2"],\
+                    	["object", ["hos"], "BA_hos3"],\
+                    	["object", ["hos"], "BA_hos4"],\
+                     ]
 /*
 type, actios, type conf, coord + bearing
 for all disable damage,

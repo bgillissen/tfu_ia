@@ -10,6 +10,16 @@ Description:
 private _type = player getVariable "loadout";
 private _loadOut = missionNamespace getVariable format["RL_%1", _type];
 /*
-uniform, inUniform, backpack, inBackpack, vest, inVest, helmet, primWeapon, primWeaponItems 
-secWeapon, secWeapItems, handWeapon, handWeapItems, comm, terminal, map, bino, nv
+[uniform, [inUniform]], 
+[backpack, [inBackpack]], 
+[vest, inVest]], 
+helmet, 
+[primWeapon, [primWeaponItems]] 
+[secWeapon, [secWeapItems]],
+[handWeapon, handWeapItems]], 
+comm, 
+terminal, 
+map, 
+bino, 
+nv
 */

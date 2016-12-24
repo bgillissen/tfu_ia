@@ -92,12 +92,13 @@ Description:
 #define ZM_stopAction "Stop a zeus mission"
 
 //dynBillboards
-#define DB_left Bill_1
-#define DB_leftMode "random"
-#define DB_right Bill_2
-#define DB_rightMode "random"
-#define DB_path "media\billboards\%1.paa"
+#define DB ["random", "random"]
 #define DB_totRandom 6
+#define DB_path "media\billboards\%1.paa"
+
+//hallOfShame
+#define HOS ["delution", "big", "genericnord", "adam", "matthew", "jneuel"]
+#define HOS_path "media\hallofshame\%1.paa"
 
 //earPlugs
 #define EP_volume 0.2
