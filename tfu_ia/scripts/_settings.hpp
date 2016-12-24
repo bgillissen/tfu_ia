@@ -14,6 +14,16 @@ Description:
 #define srvCMDpass "honeybadger";
 #define unlockDelay 15;
 
+//to be able to restrict apex assets to jungle map
+#define APEX_jungleMap ["Tanoa"]
+
+//list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
+#define SQUADS [["HQ", "HQ", "Orange"],\
+				["ALPHA", "Alpha", "Black"],\
+				["BRAVO", "Bravo", "Black"],\
+				["HORNET", "Hornet", "Blue"],\
+				["HAMMER", "Hammer", "Green"]]
+
 //squadHint, squad name that will trigger a globalHint when one of his members join
 #define SH_name "Task Force Unicorn"
 #define SH_url "taskforceunicorn.com"

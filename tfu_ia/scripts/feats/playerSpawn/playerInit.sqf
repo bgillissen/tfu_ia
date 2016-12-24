@@ -4,7 +4,21 @@ Author:
 	Ben
 Description:
 	this run on player
-	give player his role loadout, 
-	set his side to PLAYER_SIDE,
-	tp him into the active base spawn area according to his role
+	tp player on the active base spawn marker depending on his role (heliPilot, jetPilot, crew, inf)
 */
+
+private _type = typeOf player;
+
+if ( _type in U_hPilot ) exitWith {
+	player setPos (getMarkerPos "BS_HPILOT"); 
+};
+
+if ( _type in U_jPilot ) exitWith { 
+	player setPos (getMarkerPos "BS_JPILOT"); 
+};
+
+if ( _type in U_crew ) exitWith { 
+	player setPos (getMarkerPos "BS_CREW"); 
+};
+
+player setPos (getMarkerPos "BS_INF");

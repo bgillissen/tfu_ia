@@ -7,9 +7,8 @@ to do that i need :
 2 - a dynamic Loadout feature (dynLoadout) to change units loadout on player init
 	  	need a list of roles (hq, sl, tl, medic, etc...)
 	  	foreach roles each mod append things into each slot, so needed slots :
-	  		uniform, inUniform, backpack, inBackpack, vest, inVest, helmet, launcher, launcherOptic, 
-	  		sideArm, sideArmSupressor, sideArmOptic, weapon, weaponSupressor, weaponOptic, weaponHandle, weaponAcc
-	  		comm, terminal, bino, nv
+	  		uniform, inUniform, backpack, inBackpack, vest, inVest, helmet, primWeapon, primWeaponItems 
+			secWeapon, secWeapItems, handWeapon, handItems, comm, terminal, bino, nv
 	  	mods must be able to blacklist items (ex: ace blacklist faks, medikit, toolKit) 
 
 3 - dynamic base assets feature (dynBaseAsset) to spawn the vehicles available to players on server init

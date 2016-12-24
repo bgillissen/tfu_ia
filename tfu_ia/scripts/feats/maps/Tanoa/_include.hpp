@@ -13,16 +13,16 @@ Description:
 
 //------------------------------------------------------------ Playable Units Tanoa (type)
 
-#define PUT_hPilot []
-#define PUT_jPilot []
-#define PUT_crew []
-#define PUT_mg []
-#define PUT_at []
-#define PUT_marksman []
-#define PUT_sniper []
-#define PUT_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
-#define PUT_officer []
-#define PUT_arti []
+#define UT_hPilot []
+#define UT_jPilot []
+#define UT_crew []
+#define UT_mg []
+#define UT_at []
+#define UT_marksman []
+#define UT_sniper []
+#define UT_medic ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"]
+#define UT_officer []
+#define UT_arti []
 
 //------------------------------------------------------------ AO Tanoa
 
@@ -99,7 +99,7 @@ Description:
 					 "Ile Saint-George",\
 					 "Saint-George Airstrip"],\
 					["Sosovu"],\					//sosovu
-					["Belfort",\ 					//tuvanka
+					["Belfort",\ 					//tuvanaka
 					 "Tuvanaka"]\
                    ]
 
@@ -119,21 +119,35 @@ Description:
                      ]
 //------------------------------------------------------------ BASE Tanoa
 
-#define BT [["varName0", "dspName0", "size0"]]
+#define BT [["varName0", "compName0", "dspName0", "size0", "frSize0"],
+            ["tuvanaka", "tuvanaka", "Tuvanaka Military Airfield", "400", "200"]]
 //varName	=> to compute all the other needed markers from that name (prefix)
+//compName	=> to find the composition to load with LARS
 //dspName	=> for a hint after blackout "Welcome to %dspName% base, you are %PLAYER_SIDE%"
 //size		=> for baseProtection SZ_RADIUS
+//frSize 	=> for gearRestriction => FR_RADIUS
 
 //------------------------------------------------------------ Base vehicle Tanoa
-#define BV_varName0 ["type0", "type1", "type2"]
-//type		=> to pick one from the right pool
+#define BVT_varName0 [["type0", "respawnTime0"],
+                      ["type1", "respawnTime1"],
+                      ["type2", "respawnTime2"]]
+#define BVT_tuvanaka [["heliSmall", 20],
+                      ["heliAttack", 20],
+                      ["heliMedium", 20],
+                      ["heliMedEvac", 20],
+                      ["planeTransport", 20],
+                      ["planeAA", 20],
+                      ["planeCAS", 20],
+                      ["car", 20],
+                      ["quad", 20]]
+//type			=> to pick one from the right pool
+//respawnTime 	=> for vehicleRespawn
+//------------------------------------------------------------ Base atmosphere Tanoa
 
-                    //------------------------------------------------------------ Base atmosphere Tanoa
-
-#define BA_varName0 [
-                    ["vehicle", ["action0", "action1"], "className", ["x", "y", "z", "d"]],\
-                    ["npc", ["action0", "action1"],  ["uniform", "vest", "head"], ["x", "y", "z", "d"]],\
-                    ["object", ["action0", "action1"],  "className", ["x", "y", "z", "d"]],\
+#define BAT_varName0 [
+                    ["type0", ["action0", "action1"], "varName0"],\
+                    ["type1", ["action0", "action1"],  "varName1", ["uniform", "vest", "head"]],\
+                    ["type2", ["action0", "action1"],  "varName2"],\
                     ]
 /*
 type, actios, type conf, coord + bearing
@@ -144,11 +158,31 @@ for all disable damage,
 actions => to know which action i got to bind to that thing, those key words are used by features
 	arsenal => va, viewDistance
 	support => supportCrate
-	zeus => curator, zeusMission, fatigue
+	curator => curator, zeusMission
 
-	once implented that become
-	BA_[vehicle, npc, object]
-	=> [_obj, [actions]];
+once implented that become
+in baseAtmosphere :
+	spawn composition (FIXED POSITION)
+	BA => composition reference
+	BA_[vehicle, npc, object] => [_obj, [actions]]
+		to create got to loop through the loaded base atmosphere "BAT_varname"
+	BS_[HPILOT, JPILOT, CREW, INF]
+		markers directly from composition
+	BR_[land, heli, jet, uav, boat]
+		markers directly from composition
+		use those to create the triggers
+	SZ, FR
+		markers directly from composition
+	HOS_[0,1,2,3,4,5,6]
+		new feature, get "name" from settings, hideGlobal those that are not assigned
+
+in baseVehicle
+	BV_[0,1,2,3,4,5,6] =>
+		markers directly from composition
+		to populate VEHRESPAWN got to loop through the loaded base vehicle "BVT_varname"
+
+
+
 */
 
 

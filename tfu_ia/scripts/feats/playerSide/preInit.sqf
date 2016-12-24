@@ -25,3 +25,4 @@ independent setFriend [PLAYER_SIDE, !IND_ARE_ENEMY];
 PLAYER_SIDE, setFriend [independent, !IND_ARE_ENEMY];
 independent setFriend [ENEMY_SIDE, IND_ARE_ENEMY];
 ENEMY_SIDE setFriend [independent, IND_ARE_ENEMY];
+
