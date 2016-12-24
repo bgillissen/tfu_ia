@@ -90,6 +90,8 @@ A_msgDuration 5
 #define RF_SR_FREQS ["300","310","320","330","340","350","360","370"]
 #define RF_LR_FREQS ["50","60","70","80","90","100","110","120","130"]
 
+
+
 //voiceControl, which channel is allowed to who
 #define VC_disabled [6]
 #define VC_players [3,4,5]
@@ -123,6 +125,7 @@ A_msgDuration 5
 #define VR_checkDelay 20
 
 //viewDistance
+#define VD_action "View Distance Settings"
 #define VD_foot 2200;
 #define VD_car  3500;
 #define VD_air  5000;

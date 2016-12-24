@@ -1,5 +1,5 @@
 /*
-@filename: feats\radioFreq\playerBoardIn.sqf
+@filename: feats\radioFreq\playerGetIn.sqf
 Author:
 	Ben
 Description:

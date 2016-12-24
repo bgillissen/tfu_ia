@@ -1,5 +1,5 @@
 /*
-@filename: feats\vehicleRestrictions\playerSwitchSeat.sqf
+@filename: feats\vehicleRestrictions\playerGetIn.sqf
 Author:
 	Ben
 Description:

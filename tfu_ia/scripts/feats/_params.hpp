@@ -33,7 +33,6 @@ Description:
 #include "feats\vehicleCrew\_params.hpp"
 #include "feats\vehicleRespawn\_params.hpp"
 #include "feats\vehicleRestrictions\_params.hpp"
-#include "feats\viewDistance\_params.hpp"
 #include "feats\voiceControl\_params.hpp"
 #include "feats\vonHint\_params.hpp"
 #include "feats\zeusMission\_params.hpp"

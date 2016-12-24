@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	this run on server,
+	this run on player when it close the arsenal,
 	Check that all the gear equiped by player is in the arsenal, thx Nancy...
 */
 

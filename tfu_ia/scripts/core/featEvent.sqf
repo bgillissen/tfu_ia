@@ -20,7 +20,8 @@ if ( !CTXT_SERVER ) then {
 if ( !CTXT_PLAYER ) then {
 	if ( _when == "onCloseVA" ) exitWith{};
 	if ( _when == "onShoot" ) exitWith{};
-	if ( _when == "onBoardIn" ) exitWith{};
+	if ( _when == "onGetIn" ) exitWith{};
+	if ( _when == "onGetOut" ) exitWith{};
 	if ( _when == "onSwitchSeat" ) exitWith{};
 	if ( _when == "onTake" ) exitWith{};
 };
@@ -55,8 +56,9 @@ if ( isNil _sorted ) then {
 	if ( _when == "onJoin" ) then _append = "OnJoin";
 	if ( _when == "onCloseVA" ) then _append = "CloseVA";
 	if ( _when == "onShoot" ) then _append = "Fired";
-	if ( _when == "onBoardIn" ) then _append = "BoardIn";
+	if ( _when == "onGetIn" ) then _append = "GetIn";
 	if ( _when == "onSwitchSeat" ) then _append = "SwitchSeat";
+	if ( _when == "onGetOut" ) then _append = "GetOut";
 	if ( _when == "onTake" ) then _append = "PickUp";
 	if ( _when == "onLeave" ) then _append = "OnLeave";
 	if ( _when == "destroy" ) then _append = "Destroy";
@@ -73,12 +75,13 @@ if ( isNil _sorted ) then {
 		if ( _when == "onLeave" ) then _e = ((_x select _key) select 5);
 		if ( _when == "onCloseVA" ) then _e = ((_x select _key) select 4);
 		if ( _when == "onShoot" ) then _e = ((_x select _key) select 5);
-		if ( _when == "onBoardIn" ) then _e = ((_x select _key) select 6);
-		if ( _when == "onSwitchSeat" ) then _e = ((_x select _key) select 7);
-		if ( _when == "onTake" ) then _e = ((_x select _key) select 8);
+		if ( _when == "onGetIn" ) then _e = ((_x select _key) select 6);
+		if ( _when == "onGetOut" ) then _e = ((_x select _key) select 7);
+		if ( _when == "onSwitchSeat" ) then _e = ((_x select _key) select 8);
+		if ( _when == "onTake" ) then _e = ((_x select _key) select 9);
 		if ( _when == "destroy" ) then {
 			if ( _key == 1 ) then _e = ((_x select _key) select 6);
-			if ( _key == 2 ) then _e = ((_x select _key) select 9);
+			if ( _key == 2 ) then _e = ((_x select _key) select 10);
 		};
 		if ( (_e select 1) > 0) then { 
 			if ( _when == "destroy" ) then {
