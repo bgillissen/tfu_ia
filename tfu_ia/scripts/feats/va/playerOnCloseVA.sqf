@@ -13,7 +13,6 @@ private _removed = false;
 
 //backpack
 private _backpack = backpack player;
-private _backpackWeap = nullObj;
 if ( !(_backpack in A_backpacks) ) then {
 	_removed = true;
 	removeBackpack player;
@@ -25,8 +24,11 @@ if ( !(_backpack in A_backpacks) ) then {
 			player removeItemFromBackpack _x;
 		};
 	} count _backpackItems;
-	 _backpackWeap = getWeaponCargo (unitBackpack player);
-	
+	private _backpackWeap = getWeaponCargo (unitBackpack player);
+	if ( !(_backpackWeap in A_weapons) ) then {
+		_removed = true;
+	 	player removeWeapon _backpackWeap;
+	};
 };
 
 private _goggles = goggles player;
@@ -88,7 +90,7 @@ if ( !(_primWeap in A_weapons) ) then {
 			_removed = true;
 			player removePrimaryWeaponItem _x;
 		}
-	} count(_primItems);
+	} count _primItems;
 };
 
 private _secondWeap =  secondaryWeapon player;
@@ -103,7 +105,7 @@ if ( !(_secondWeap in A_weapons) ) then {
 			player removeSecondaryWeaponItem _x;
 			
 		};
-	} count(_secondItems);
+	} count _secondItems;
 };
 
 private _handWeap = handgunWeapon player;
@@ -118,7 +120,7 @@ if ( !(_handWeap in A_weapons) ) then {
 			player removeHandgunItem _x;
 			
 		};
-	} count(_handItems);
+	} count _handItems;
 };
 
 private _allMagazines = magazinesAmmoFull player;
@@ -128,7 +130,7 @@ private _allMagazines = magazinesAmmoFull player;
 		_removed = true;
 		player removeMagazines _x;
 	};
-} foreach _allMmagazines;
+} count _allMmagazines;
 _allMagazines = nil;	
 
 if ( _removed ) then {
