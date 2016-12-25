@@ -7,8 +7,6 @@ Description:
 	call init functions depending on the context
 */
 
-call core_fnc_initCommon;
-
 if ( isServer ) then call core_fnc_initServer;
 
 if ( !isServer && !hasInterface ) then call core_fnc_initHeadless;

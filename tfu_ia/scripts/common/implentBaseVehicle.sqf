@@ -3,14 +3,11 @@
 Author:
 	Ben
 Description:
-	run on all context
-	it is used to append given vehicle to the vehicle avail in base pool
-	params MUST follow GV => BV definition!
-	car, apc, tank, planeCAS, planeAA, planeTransport,
-	heliSmall, heliMedium, heliMedEvac, heliBig, heliAttack,
-	boatSmall, boatAttack, boatBig, repair, fuel, quad
+	run on server
+	it is used to append given vehicle to the vehicle avail in base vehicle pool
 */
+params ["_index", "_toAdd"];
 
 {
-	[_x, format["%1_%2", ((GV select BV) select 0), (((GV select BV) select 1) select _forEachIndex)], "vehicle"] call common_fnc_implent;
-} forEach (_this);
+	[_x, format["%1_%2", ((PV select BV) select 0), (((PV select BV) select 1) select _index)], "vehicle"] call common_fnc_implent;
+} count (_toAdd);

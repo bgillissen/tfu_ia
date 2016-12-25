@@ -75,7 +75,7 @@ Description:
 
 //------------------------------------------------------------ UAV Vanilla
 
-#define UAVV ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
+#define UAVV []
 
 //------------------------------------------------------------ supplyDrop Vanilla BLUFOR
 
@@ -154,12 +154,16 @@ Description:
 //------------------------------------------------------------ Vehicles Vanilla BLUFOR
 
 #define VVB_car []
+#define VVB_carArmed []
 #define VVB_apc []
 #define VVB_tank []
+#define VVB_aaTank []
 #define VVB_planeCAS []
 #define VVB_planeAA []
 #define VVB_planeTransport []
+#define VVB_uav ["B_UAV_02_CAS_F", "B_UAV_02_F", "B_UGV_01_F", "B_UGV_01_rcws_F"]
 #define VVB_heliSmall []
+#define VVB_heliSmallArmed []
 #define VVB_heliMedium []
 #define VVB_heliMedEvac []
 #define VVB_heliBig []
@@ -167,6 +171,7 @@ Description:
 #define VVB_boatSmall []
 #define VVB_boatAttack []
 #define VVB_boatBig []
+#define VVB_sub []
 #define VVB_landMedic []
 #define VVB_repair []
 #define VVB_fuel []
@@ -176,12 +181,16 @@ Description:
 //------------------------------------------------------------ Vehicles Vanilla OPFOR
 
 #define VVO_car []
+#define VVO_carArmed []
 #define VVO_apc []
 #define VVO_tank []
+#define VVO_aaTank []
 #define VVO_planeCAS []
 #define VVO_planeAA []
 #define VVO_planeTransport []
+#define VVO_uav []
 #define VVO_heliSmall []
+#define VVO_heliSmallArmed []
 #define VVO_heliMedium []
 #define VVO_heliMedEvac []
 #define VVO_heliBig []
@@ -189,6 +198,7 @@ Description:
 #define VVO_boatSmall []
 #define VVO_boatAttack []
 #define VVO_boatBig []
+#define VVO_sub []
 #define VVO_landMedic []
 #define VVO_repair []
 #define VVO_fuel []
@@ -198,12 +208,16 @@ Description:
 //------------------------------------------------------------ Vehicles Cargo Vanilla BLUFOR
 
 #define VCVB_car []
+#define VCVB_carArmed []
 #define VCVB_apc []
 #define VCVB_tank []
+#define VCVB_aaTank []
 #define VCVB_planeCAS []
 #define VCVB_planeAA []
 #define VCVB_planeTransport []
+#define VCVB_uav []
 #define VCVB_heliSmall []
+#define VCVB_heliSmallArmed []
 #define VCVB_heliMedium []
 #define VCVB_heliMedEvac []
 #define VCVB_heliBig []
@@ -211,6 +225,7 @@ Description:
 #define VCVB_boatSmall []
 #define VCVB_boatAttack []
 #define VCVB_boatBig []
+#define VCVB_sub []
 #define VCVB_landMedic []
 #define VCVB_repair []
 #define VCVB_fuel []
@@ -220,12 +235,16 @@ Description:
 //------------------------------------------------------------ Vehicles Cargo Vanilla OPFOR
 
 #define VCVO_car []
+#define VCVO_carArmed []
 #define VCVO_apc []
 #define VCVO_tank []
+#define VCVO_aaTank []
 #define VCVO_planeCAS []
 #define VCVO_planeAA []
 #define VCVO_planeTransport []
+#define VCVO_uav []
 #define VCVO_heliSmall []
+#define VCVO_heliSmallArmed []
 #define VCVO_heliMedium []
 #define VCVO_heliMedEvac []
 #define VCVO_heliBig []
@@ -233,6 +252,7 @@ Description:
 #define VCVO_boatSmall []
 #define VCVO_boatAttack []
 #define VCVO_boatBig []
+#define VCVO_sub []
 #define VCVO_landMedic []
 #define VCVO_repair []
 #define VCVO_fuel []
@@ -242,12 +262,16 @@ Description:
 //------------------------------------------------------------ Vehicles Cargo Vanilla (common)
 
 #define VCV_car []
+#define VCV_carArmed []
 #define VCV_apc []
 #define VCV_tank []
+#define VCV_aaTank []
 #define VCV_planeCAS []
 #define VCV_planeAA []
 #define VCV_planeTransport []
+#define VCV_uav []
 #define VCV_heliSmall []
+#define VCV_heliSmallArmed []
 #define VCV_heliMedium []
 #define VCV_heliMedEvac []
 #define VCV_heliBig []
@@ -255,6 +279,7 @@ Description:
 #define VCV_boatSmall []
 #define VCV_boatAttack []
 #define VCV_boatBig []
+#define VCV_sub []
 #define VCV_landMedic []
 #define VCV_repair []
 #define VCV_fuel []
@@ -304,16 +329,4 @@ Description:
 #define RLVO_jtac []
 #define RLVO_pilot []
 #define RLVO_mortar []
-
-//------------------------------------------------------------ Base Atmosphere Vanilla BLUFOR
-
-#define BAVB_vehicle []
-#define BAVB_npc []
-#define BAVB_object []
-
-//------------------------------------------------------------ Base Atmosphere Vanilla BLUFOR
-
-#define BAVO_vehicle []
-#define BAVO_npc []
-#define BAVO_object []
 

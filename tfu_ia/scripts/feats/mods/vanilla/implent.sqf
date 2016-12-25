@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	Run once by server and players.
+	run on server.
 	implent vanilla assets
 */
 
@@ -97,158 +97,66 @@ if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_imple
 [_rewards] call common_fnc_implentReward;
 _rewards = nil;
 
-private _iaPGroup = [];
-private _iaSGroup = [];
-private _iaPilot = [];
-private _iaCrew = [];
-private _iaOfficer = [];
-private _iaGarrison = [];
-private _iaAA = [];
-private _iaArti = [];
-private _iaStatic = [];
-private _iaCAS = [];
-private _iaTank = [];
-private _iaAPC = [];
-private _iaCar = [];
-private _iaAir = [];
+
 _conf = ["Spawn_vanilla"] call core_fnc_getConf;
+private ["_doBLUFOR", "_doOPFOR"];
 if ( PLAYER_SIDE == west ) then {
-	if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
-		_iaPGroup = SVO_patrolGroup;
-		_iaSGroup = SVO_sniperGroup;
-		_iaPilot = SVO_pilot;
-		_iaCrew = SVO_crew;
-		_iaOfficer = SVO_officer;
-		_iaGarrison = SVO_garrison;
-		_iaAA = SVO_aaTank;
-		_iaArti = SVO_arti;
-		_iaStatic = SVO_static;
-		_iaCAS = SVO_cas;
-		_iaTank = SVO_tank;
-		_iaAPC = SVO_apc;
-		_iaCar = SVO_car;
-		_iaAir = SVO_airPatrol;
-		
-	};
+	_doBLUFOR = [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond;
+	_doOPFOR = false;
 } else {
-	if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
-		_iaPGroup = SVB_patrolGroup;
-		_iaSGroup = SVB_sniperGroup;
-		_iaPilot = SVB_pilot;
-		_iaCrew = SVB_crew;
-		_iaOfficer = SVB_officer;
-		_iaGarrison = SVB_garrison;
-		_iaAA = SVB_aaTank;
-		_iaArti = SVB_arti;
-		_iaStatic = SVB_static;
-		_iaCAS = SVB_cas;
-		_iaTank = SVB_tank;
-		_iaAPC = SVB_apc;
-		_iaCar = SVB_car;
-		_iaAir = SVB_airPatrol;
-	};	
+	_doOPFOR = [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond;
+	_doBLUFOR = false;
 };
+{
+	if ( _doOPFOR ) then {
+		private _vname = format["SVO_%1", _x];
+		[_forEachIndex, (missionNameSpace getVariable _vname)] call implentSpawn;
+	};
+	if ( _doBLUFOR ) then {
+		private _vname = format["SVB_%1", _x];
+		[_forEachIndex,(_missionNameSpace getVariable _vname)] call implentSpawn;
+	};
+} forEach ((PV select RL) select 1);
 
-[RTV, _iaPGroup, _iaSGroup,_iaPilot, _iaCrew, _iaOfficer, _iaGarrison, _iaAA, _iaArti, _iaStatic, _iaCAS, _iaTank, _iaAPC, _iaCar, _iaAir] call common_fnc_implentSpawn;
 
-_iaPGroup = nil;
-_iaSGroup = nil;
-_iaPilot = nil;
-_iaCrew = nil;
-_iaOfficer = nil;
-_iaGarrison = nil;
-_iaAA = nil;
-_iaArti = nil;
-_iaStatic = nil;
-_iaCAS = nil;
-_iaTank = nil;
-_iaAPC = nil;
-_iaCar = nil;
-_iaAir = nil;
-
-private _bvCar = []; 
-private _bvAPC = []; 
-private _bvTank = [];
-private _bvPlaneCAS = [];
-private _bvPlaneAA = [];
-private _bvPlaneTransport = [];
-private _bvHeliSmall = [];
-private _bvHeliMedium = [];
-private _bvHeliMedEvac = [];
-private _bvHeliBig = [];
-private _bvHeliAttack = []; 
-private _bvBoatSmall = [];
-private _bvBoatAttack = [];
-private _bvBoatBig = [];
-private _bvRepair = [];
-private _bvFuel = [];
-private _bvQuad = [];
 _conf = ["BaseVehicle_vanilla"] call core_fnc_getConf;
-if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
-	_bvCar append BVVB_car; 
-	_bvAPC append BVVB_apc; 
-	_bvTank append BVVB_tank;
-	_bvPlaneCAS append BVVB_planeCAS;
-	_bvPlaneAA append BVVB_planeAA;
-	_bvPlaneTransport append BVVB_planeTransport;
-	_bvHeliSmall append BVVB_heliSmall;
-	_bvHeliMedium append BVVB_heliMedium;
-	_bvHeliMedEvac append BVVB_heliMedEvac;
-	_bvHeliBig append BVVB_heliBig;
-	_bvHeliAttack append BVVB_heliAttack; 
-	_bvBoatSmall append BVVB_boatSmall;
-	_bvBoatAttack append BVVB_boatAttack;
-	_bvBoatBig append BVVB_boatBig;
-	_bvRepair append BVVB_repair;
-	_bvFuel append BVVB_fuel;
-	_bvQuad append BVVB_quad;
-};
-if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond ) then {
-	_bvCar append BVVO_car; 
-	_bvAPC append BVVO_apc; 
-	_bvTank append BVVO_tank;
-	_bvPlaneCAS append BVVO_planeCAS;
-	_bvPlaneAA append BVVO_planeAA;
-	_bvPlaneTransport append BVVO_planeTransport;
-	_bvHeliSmall append BVVO_heliSmall;
-	_bvHeliMedium append BVVO_heliMedium;
-	_bvHeliMedEvac append BVVO_heliMedEvac;
-	_bvHeliBig append BVVO_heliBig;
-	_bvHeliAttack append BVVO_heliAttack; 
-	_bvBoatSmall append BVVO_boatSmall;
-	_bvBoatAttack append BVVO_boatAttack;
-	_bvBoatBig append BVVO_boatBig;
-	_bvRepair append BVVO_repair;
-	_bvFuel append BVVO_fuel;
-	_bvQuad append BVVO_quad;
-};
+private ["_doBLUFOR", "_doOPFOR"];
+_doBLUFOR = [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond;
+_doOPFOR = [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond;
+{
+	if ( _doOPFOR ) then {
+		private _vname = format["VVO_%1", _x];
+		[_forEachIndex, (missionNameSpace getVariable _vname)] call implentBaseVehicle;
+	};
+	if ( _doBLUFOR ) then {
+		private _vname = format["VVB_%1", _x];
+		[_forEachIndex, (_missionNameSpace getVariable _vname)] call implentBaseVehicle;
+	};
+} forEach ((PV select BV) select 1);
 
-[_bvCar, _bvAPC, _bvTank, _bvPlaceCAS, _bvPlaneAA, _bvPlaneTransport, 
- _bvHeliSmall, _bvHeliMedium, _bvHeliMedEvac, _bvHeliBig, _bvHeliAttack, 
- _bvBoatSmall, _bvBoatAttack, _bvBoatBig,
- _bvRepair, _bvFuel, _bvQuad
-] call common_fnc_implentBaseVehicle;
 
-_bvCar = nil; 
-_bvAPC = nil; 
-_bvTank = nil;
-_bvPlaneCAS = nil;
-_bvPlaneAA = nil;
-_bvPlaneTransport = nil;
-_bvHeliSmall = nil;
-_bvHeliMedium = nil;
-_bvHeliMedEvac = nil;
-_bvHeliBig = nil;
-_bvHeliAttack = nil; 
-_bvBoatSmall = nil;
-_bvBoatAttack = nil;
-_bvBoatBig = nil;
-_bvRepair = nil;
-_bvFuel = nil;
-_bvQuad = nil;
+_conf = ["RoleLoadout_vanilla"] call core_fnc_getConf;
+private ["_doBLUFOR", "_doOPFOR"];
+if ( PLAYER_SIDE == west ) then {
+	_doBLUFOR = [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond;
+	_doOPFOR = false;
+} else {
+	_doOPFOR = [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call common_fnc_implentCond;
+	_doBLUFOR = false;
+};
+{
+	if ( _doOPFOR ) then {
+		private _vname = format["RLVO_%1", _x];
+		[_forEachIndex, (missionNameSpace getVariable _vname)] call implentRoleLoadout;
+	};
+	if ( _doBLUFOR ) then {
+		private _vname = format["RLVB_%1", _x];
+		[_forEachIndex,(_missionNameSpace getVariable _vname)] call implentRoleLoadout;
+	};
+} forEach ((PV select RL) select 1);
+
 
 [RGV_launcher, RGV_mg, RGV_sRifle, RGV_mRifle, RGV_sScope, RGV_mScope, RGV_oScope, RGV_backpack] call implentRestrictedGear;
 
-[AVV_heli, AVV_plane, AVV_tank] call implentAllowedVehicle;
 
-{ [_x, "UAV", "vehicle"] call common_fnc_implent; } forEach (UAVV);
+[AVV_heli, AVV_plane, AVV_tank] call implentAllowedVehicle;

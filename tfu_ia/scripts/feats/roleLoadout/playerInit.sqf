@@ -8,18 +8,9 @@ Description:
 */
 
 private _type = player getVariable "loadout";
+
 private _loadOut = missionNamespace getVariable format["RL_%1", _type];
-/*
-[uniform, [inUniform]], 
-[backpack, [inBackpack]], 
-[vest, inVest]], 
-helmet, 
-[primWeapon, [primWeaponItems]] 
-[secWeapon, [secWeapItems]],
-[handWeapon, handWeapItems]], 
-comm, 
-terminal, 
-map, 
-bino, 
-nv
-*/
+
+_loadOut params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_c", "_t", "_m", "_bino", "_n"];
+
+[_player, _u, _v, _b, _pw, _sw, _hw, _h, _c, _t, _m, _bino, _nv] call common_fnc_setLoadout;

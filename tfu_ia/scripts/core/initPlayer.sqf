@@ -30,14 +30,19 @@ if ( isNil "FEH_closeVA") then {
 	FEH_closeVA =  ["FEH_closeVA", "onEachFrame", {[CTXT, "closeVA", _this] call core_fnc_fehCloseVA}, player] call BIS_fnc_addStackedEventHandler];  
 };
 
-//bind player's GetInMan event to feature's onBoardIn
-if ( isNil "FEH_boardIn") then {
-	FEH_boardIn = player addEventHandler ["GetInMan", {[CTXT, "onBoardIn", _this] call core_fnc_featEvent;}];
+//bind player's GetInMan event to feature's onGetIn
+if ( isNil "FEH_getIn") then {
+	FEH_getIn = player addEventHandler ["GetInMan", {[CTXT, "onGetIn", _this] call core_fnc_featEvent;}];
 };
 
 //bind player's SwitchSeatInMan event to feature's onSwitchSeat
 if ( isNil "FEH_switchSeat") then {
 	FEH_switchSeat = player addEventHandler ["SeatSwitchedMan", {[CTXT, "onSwitchSeat", _this] call core_fnc_featEvent;}];
+};
+
+//bind player's GetOutMan event to feature's onGetOut
+if ( isNil "FEH_getOut") then {
+	FEH_getOut = player addEventHandler ["GetOutman", {[CTXT, "onGetOut", _this] call core_fnc_featEvent;}];
 };
 
 //bind player's Take event to feature's onPickUp

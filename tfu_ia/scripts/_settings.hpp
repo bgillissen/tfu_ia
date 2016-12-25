@@ -97,7 +97,7 @@ Description:
 #define DB_path "media\billboards\%1.paa"
 
 //hallOfShame
-#define HOS ["delution", "big", "genericnord", "adam", "matthew", "jneuel"]
+#define HOS ["delusion", "big", "genericnord", "adam", "matthew", "jneuel"]
 #define HOS_path "media\hallofshame\%1.paa"
 
 //earPlugs

@@ -103,8 +103,7 @@ cargo (available in supplyDrop crates)
 rewards (vehicle available as rewards)
 	REWARDS	
 spawn (units/groups/vehicles/objects we are going to spawn in the missions)  
-	S_[radioTower, pilot, crew, +officer, cas, patrolGroups, sniperGroups, aaTank, arti, statics, tank, 
-	   apc, car, airPatrol, garrison]
+	S_[radioTower, pGroup, sGroup, pilot, crew, officer, garrison, aa, arti, static, cas, tank, apc, car, aPatrol]
 role loadout (default gear provided to player on first spawn)
 	RL_[hq, sl, tl, medic, lmg, hmg, assHMG, at, assAT, sniper, marksman, repair, demo, engineer,
 		grenadier, rifleman, jtac, pilot, mortar]
@@ -113,7 +112,7 @@ base atmosphere
 	BA_npc => [unit, [actions]]
 	BA_object => [obj, [actions]]
 base Vehicle
-	BV_[car, apc, tank, planeCAS, planeAA, planeTransport, heliSmall, heliMedium, heliMedEvac, heliBig, heliAttack, boatSmall, boatAttack, boatBig, repair, fuel, quad]
+	BV_[.....]
 next step : multiple base by map
 0 - mission param to define which base we use
 1 - on server load, removed all other base "placed" assets
@@ -166,15 +165,16 @@ if i want to be able to change side or base location at run time, i need to:
 							remoteExec ["core_fnc_playerReset",(allPlayers - entities "healessCliient_F")];
 							wait for all players to have finished destroying their features
 							remove variable EH
-							feats serverDestroy
+							feats destroy event
 							enforce base mission param
 							enforce side mission param	
 							call init.sqf
 			
 	core_fnc_playerReset:	black screen (BLACKED=true)Some Settings have changed, please wait while the server apply the changes...)
-						  	feats playerDestroy
+						  	feats destroy event
 						  	add variable EH on SERVER_INIT to know when server has finished his init
-						  	missionNamespace setVariableServer ["PLAYER_DESTOY", player];
+						  	export PLAYER_DESTROY to server (it will keep track of all players)
+						  		missionNamespace setVariableServer ["PLAYER_DESTOY", player];
 						  	wait for server to have finished init
 						  	call init.sqf 
 	------------------------------------------------------------
