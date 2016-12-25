@@ -73,10 +73,6 @@ Description:
 #define AVV_plane []
 #define AVV_tank []
 
-//------------------------------------------------------------ UAV Vanilla
-
-#define UAVV []
-
 //------------------------------------------------------------ supplyDrop Vanilla BLUFOR
 
 #define SDVB_backpacks []

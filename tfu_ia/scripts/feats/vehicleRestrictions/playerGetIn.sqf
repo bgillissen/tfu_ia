@@ -11,16 +11,33 @@ params ["_unit", "_pos", "_veh", "_turret"];
 		
 if ( _pos == "cargo" ) exitWith{}; 
 
+private _role = _unit getVariable "role";
+
+private _HPilot_fly_jet = (["HPilot_fly_jet"] call core_fnc_getConf) 
+private _JPilot_fly_heli = (["JPilot_fly_heli"] call core_fnc_getConf)
+
+private _isHPilot = (_role == "hPilot");
+private _isJPilot = (_role == "jPilot");
+
 if ( (["restrictHeli"] call core_fnc_getConf) ) then {
 	if((_veh isKindOf "Helicopter") && !(_veh isKindOf "ParachuteBase")) then {
 		if ( (typeOf _veh) in VA_heli ) ewitWith {};
-		if ( (typeOf player) in U_hPilot ) exitWith {};
+		if ( ( _isHPilot) exitWith {};
+		if ( ( _JPilot_fly_heli && _isJPilot) exitWith {};
 		if( _pos == "driver" ) exitWith {
-			systemChat "Pilot seat is restricted to helicopter pilot on this vehicle";
+			if ( ( _JPilot_fly_heli ) then {
+				systemChat "Pilot seat is restricted to helicopter and jet pilot on this vehicle";
+			} else {
+				systemChat "Pilot seat is restricted to helicopter pilot on this vehicle";
+			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
 		if( (_pos == "gunner") && (_turret == [0]) ) exitWith {
-			systemChat "Co-pilot seat is restricted to helicopter pilot on this vehicle";
+			if ( ( _JPilot_fly_heli ) then {
+				systemChat "Co-pilot seat is restricted to helicopter and jet pilot on this vehicle";
+			} else {
+				systemChat "Co-pilot seat is restricted to helicopter pilot on this vehicle";
+			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		}; 
 	};
@@ -29,14 +46,23 @@ if ( (["restrictHeli"] call core_fnc_getConf) ) then {
 if ( (["restrictPlane"] call core_fnc_getConf) ) then {
 	if((_veh isKindOf "Plane") && !(_veh isKindOf "ParachuteBase")) then {
 		if ( (typeOf _veh) in VA_plane ) ewitWith {};
-		if ( (typeOf player) in U_jPilot ) exitWith {};
+		if ( ( _isJPilot) exitWith {};
+		if ( ( _HPilot_fly_jet && _isHPilot) exitWith {};
 		if( _pos == "driver" ) exitWith {
-			systemChat "Pilot seat is restricted to jet pilot on this vehicle";
+			if ( ( _HPilot_fly_jet ) then {
+				systemChat "Pilot seat is restricted to jet and helicopter pilot on this vehicle";
+			} else {
+				systemChat "Pilot seat is restricted to jet pilot on this vehicle";
+			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
 		//private _forbidden = [_veh turretUnit [0]];
 		if( ( (_pos == "gunner") && (_turret == [0]) ) exitWith {
-			systemChat "Co-pilot seat is restricted to jet pilot on this vehicle";
+			if ( ( _HPilot_fly_jet ) then {
+				systemChat "Co-pilot seat is restricted to jet and helicopter pilot on this vehicle";
+			} else {
+				systemChat "Co-pilot seat is restricted to jet pilot on this vehicle";
+			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
 	};
@@ -45,8 +71,8 @@ if ( (["restrictPlane"] call core_fnc_getConf) ) then {
 if ( (["restrictTank"] call core_fnc_getConf) ) then {
 	if ( (_veh isKindOf "Tank") || (_veh isKindOf "IFV")  ) then {
 		if ( (typeOf _veh) in VA_tank ) ewitWith {};
-		if ( (typeOf player) in U_crew ) exitWith {};
-		if( _pos == "driver" ) exitWith {
+		if ( _role == "crew" ) exitWith {};
+		if ( _pos == "driver" ) exitWith {
 			systemChat "Driver seat is restricted to tank crew on this vehicle";
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};

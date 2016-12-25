@@ -8,7 +8,7 @@ Description:
 */
 params ["_index", "_loadOut"];
 
-_loadOut params["_uniform", "_vest", "_backpack", "_pw", "_sw", "_hw", "_helmet", "_comm", "_term", "_map", "_bino", "_nv"];
+_loadOut params["_uniform", "_vest", "_backpack", "_pw", "_sw", "_hw", "_helmet", "_face", "_comm", "_term", "_map", "_bino", "_nv", "_watch"];
 _loadOut = nil;
 
 private _vname = format["%1_%2", ((PV select RL) select 0), (((PV select RL) select 1) select _index)];
@@ -115,23 +115,31 @@ if ( !([_helmet, 'item'] call isBlacklisted) ) then { _current set [_key, _helme
 _helmet = nil;
 
 _key = 7;
+if ( !([_face, 'item'] call isBlacklisted) ) then { _current set [_key, _face]; };
+_face = nil;
+
+_key = 8;
 if ( !([_comm, 'item'] call isBlacklisted) ) then { _current set [_key, _comm]; };
 _comm = nil;
 
-_key = 8;
+_key = 9;
 if ( !([_term, 'item'] call isBlacklisted) ) then { _current set [_key, _term]; };
 _term = nil;
 
-_key = 9;
+_key = 10;
 if ( !([_map, 'item'] call isBlacklisted) ) then { _current set [_key, _map]; };
 _map = nil;
 
-_key = 10;
+_key = 11;
 if ( !([_bino, 'item'] call isBlacklisted) ) then { _current set [_key, _bino]; };
 _bino = nil;
 
-_key = 11;
+_key = 12;
 if ( !([_nv, 'item'] call isBlacklisted) ) then { _current set [_key, _nv]; };
+_nv = nil;
+
+_key = 13;
+if ( !([_watch, 'item'] call isBlacklisted) ) then { _current set [_key, _watch]; };
 _nv = nil;
 
 missionNameSpace setVariable [_vname, _current, false];

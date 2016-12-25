@@ -27,7 +27,7 @@ REWARDS = [];
 //those public vars are filled by server and then broadcasted to players
 #ifndef PV_INIT
 #define PV_INIT true
-#define LO_empty [["", []], ["", []], ["", []], ["", []], ["", []], ["", []], "", "", "", "", "", ""]
+#define LO_empty [["", []], ["", []], ["", []], ["", []], ["", []], ["", []], "", "", "", "", "", "", "", ""]
 #define RG 0
 #define A 1
 #define C 2

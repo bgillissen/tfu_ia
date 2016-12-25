@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	tell if the given item is blacklisted in the given category
+	tell if the given thing is blacklisted in the given category
 */
 
 params ["_item", "_cat"];
