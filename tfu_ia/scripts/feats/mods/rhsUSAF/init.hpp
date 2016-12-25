@@ -1,5 +1,5 @@
 /*
-@filename: feats\mods\rhsUSAF\preInit.sqf
+@filename: feats\mods\rhsUSAF\init.hpp
 Author:
 	Ben
 Description:

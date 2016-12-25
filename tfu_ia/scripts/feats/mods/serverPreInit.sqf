@@ -17,21 +17,21 @@ Description:
 #include "feats\mods\apex\_include.hpp"
 
 if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\ace\preInit.sqf";
+	preprocessFileLineNumbers "feats\mods\ace\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsAFRF\preInit.sqf";
+	preprocessFileLineNumbers "feats\mods\rhsAFRF\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\preInit.sqf";
+	preprocessFileLineNumbers "feats\mods\rhsGREF\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\preInit.sqf";
+	preprocessFileLineNumbers "feats\mods\rhsUSAF\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\preInit.sqf";
+	preprocessFileLineNumbers "feats\mods\tfar\init.hpp";
 };

@@ -1,5 +1,5 @@
 /*
-@filename: feats\mods\ace\preInit.sqf
+@filename: feats\mods\ace\init.hpp
 Author:
 	Ben
 Description:

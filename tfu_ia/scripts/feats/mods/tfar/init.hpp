@@ -1,5 +1,5 @@
 /*
-@filename: feats\mods\tfar\preInit.sqf
+@filename: feats\mods\tfar\init.hpp
 Author:
 	Ben
 Description:

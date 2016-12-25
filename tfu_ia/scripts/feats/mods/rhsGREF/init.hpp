@@ -1,5 +1,5 @@
 /*
-@filename: feats\mods\rhsGREF\init.sqf
+@filename: feats\mods\rhsGREF\init.hpp
 Author:
 	Ben
 Description:
