@@ -1,11 +1,13 @@
 /*
-@filename: mods\tfar\include.hpp
+@filename: feats\mods\tfar\_include.hpp
 Author:
 	Ben
 Description:
-	Run once by server and players.
-	define tfar assets
+	run on server
+	define TFAR assets
 */
+
+#define TFAR_INC
 
 #define TFAR_BLUFOR_LR [ "tf_rt1523g",\ 
 				 	 	 "tf_rt1523g_big",\ 

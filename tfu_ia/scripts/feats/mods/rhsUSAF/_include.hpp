@@ -1,11 +1,13 @@
 /*
-@filename: mods\rhsUSAF\include.hpp
+@filename: feats\mods\rhsUSAF\_include.hpp
 Author:
 	Ben
 Description:
-	Run once by server and players.
+	run on server
 	define RHS USAF assets
 */
+
+#define USAF_INC
 
 //------------------------------------------------------------ GEAR
 
@@ -47,19 +49,6 @@ Description:
 #define USAF_exception_heli []
 #define USAF_exception_plane []
 #define USAF_exception_tank []
-
-//------------------------------------------------------------ UNIT CLASSES FOR RESTRICTIONS
-
-#define USAF_pilot []
-#define USAF_crew ["rhsusf_army_ocp_crewman"]
-#define USAF_mg []
-#define USAF_at []
-#define USAF_marksman []
-#define USAF_sniper []
-#define USAF_medic []
-#define USAF_officer []
-#define USAF_arti ["rhsusf_army_ocp_fso",\
-			 	  "rhsusf_army_ocp_crewman"]
 
 //------------------------------------------------------------ SUPPLY DROP
 

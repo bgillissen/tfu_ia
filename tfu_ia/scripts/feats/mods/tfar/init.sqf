@@ -1,9 +1,9 @@
 /*
-@filename: mods\tfar\srvInit.sqf
+@filename: feats\mods\tfar\init.sqf
 Author:
 	Ben
 Description:
-	run once on server.
+	run on server
 	implent tfar blacklist (backpack, item, weapon, ammo, veh, unit, group, object)
 */
 

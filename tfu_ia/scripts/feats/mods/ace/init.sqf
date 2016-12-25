@@ -1,9 +1,9 @@
 /*
-@filename: mods\ace\srvInit.sqf
+@filename: feats\mods\ace\init.sqf
 Author:
 	Ben
 Description:
-	run once by server.
+	run on server
 	implent ace blacklist (backpack, item, weapon, ammo, veh, unit, group, object)
 */
 

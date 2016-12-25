@@ -25,3 +25,5 @@ class common {
 		class smartSleep { file="common\smartSleep.sqf"; };
 	};
 };
+
+#include "common\LARS\_cfgFunctions.cfg"

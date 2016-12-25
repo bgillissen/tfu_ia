@@ -1,11 +1,13 @@
 /*
-@filename: mods\rhsGREF.sqf
+@filename: feats\mods\rhsGREF\_include.hpp
 Author:
 	Ben
 Description:
-	Run once by server and players.
+	run on server.
 	define RHS GREF assets
 */
+
+#define GREF_INC
 
 //------------------------------------------------------------ GEAR
 
@@ -36,19 +38,6 @@ Description:
 #define GREF_cargoWeapons []
 #define GREF_cargoAmmo []
 #define GREF_cargoItems []
-
-//------------------------------------------------------------ UNIT CLASSES FOR RESTRICTIONS
-
-#define GREF_pilot []
-#define GREF_crew ["rhsusf_army_ocp_crewman"]
-#define GREF_mg []
-#define GREF_at []
-#define GREF_marksman []
-#define GREF_sniper []
-#define GREF_medic []
-#define GREF_officer []
-#define GREF_arti ["rhsusf_army_ocp_fso",\
-			 	  "rhsusf_army_ocp_crewman"]
 
 //------------------------------------------------------------ SUPPLY DROP
 

@@ -3,21 +3,41 @@
 Author:
 	Ben
 Description:
-	this is run on server
+	run on server
 	check which mods were preInit and init then implent them
 */
 
-if ( MOD_ace ) then call compile preprocessFile "feats\mods\ace\srvInit.sqf";
-if ( MOD_rhsAFRF ) then call compile preprocessFile "feats\mods\rhsAFRF\srvInit.sqf"; 
-if ( MOD_rhsGREF ) then call compile preprocessFile "feats\mods\rhsGREF\srvInit.sqf";
-if ( MOD_rhsUSAF ) then call compile preprocessFile "feats\mods\rhsUSAF\srvInit.sqf";
-if ( MOD_tfar ) then call compile preprocessFile "feats\mods\tfar\srvInit.sqf";
+if ( MOD_ace ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\ace\init.sqf";
+};
+if ( MOD_rhsAFRF ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsAFRF\init.sqf"; 
+};
+if ( MOD_rhsGREF ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\init.sqf";
+};
+if ( MOD_rhsUSAF ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\init.sqf";
+};
+if ( MOD_tfar ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\init.sqf";
+};
 
-call compile preprocessFile "feats\mods\vanilla\implent.sqf";
-call compile preprocessFile "feats\mods\apex\implent.sqf";
+call compileFinal preprocessFileLineNumbers "feats\mods\vanilla\implent.sqf";
+call compileFinal preprocessFileLineNumbers "feats\mods\apex\implent.sqf";
 
-if ( MOD_ace ) then call compile preprocessFile "feats\mods\ace\implent.sqf";
-if ( MOD_rhsAFRF ) then call compile preprocessFile "feats\mods\rhsAFRF\implent.sqf"; 
-if ( MOD_rhsGREF ) then call compile preprocessFile "feats\mods\rhsGREF\implent.sqf";
-if ( MOD_rhsUSAF ) then call compile preprocessFile "feats\mods\rhsUSAF\implent.sqf";
-if ( MOD_tfar ) then call compile preprocessFile "feats\mods\tfar\implent.sqf";
+if ( MOD_ace ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\ace\implent.sqf";
+};
+if ( MOD_rhsAFRF ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsAFRF\implent.sqf"; 
+};
+if ( MOD_rhsGREF ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\implent.sqf";
+};
+if ( MOD_rhsUSAF ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\implent.sqf";
+};
+if ( MOD_tfar ) then {
+	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\implent.sqf";
+};

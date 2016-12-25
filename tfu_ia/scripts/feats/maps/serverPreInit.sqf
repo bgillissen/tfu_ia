@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	this run on server
+	run on server
 	include map definition,
 	include active base definition
 	define needed globals and make some public 

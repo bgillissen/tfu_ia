@@ -1,11 +1,13 @@
 /*
-@filename: mods\rhsAFRF.sqf
+@filename: feats\mods\rhsAFRF\_include.hpp
 Author:
 	Ben
 Description:
-	Run once by server and players.
-	define RHS AFRF assets we are going to use, roles/gears for restrictions, vehicles rewards/features/restrictions
+	run on server
+	define RHS AFRF assets
 */
+
+#define AFRF_INC
 
 //------------------------------------------------------------ GEAR
 
@@ -36,19 +38,6 @@ Description:
 #define AFRF_exception_heli []
 #define AFRF_exception_plane []
 #define AFRF_exception_tank []
-
-//------------------------------------------------------------ UNIT CLASSES FOR RESTRICTIONS
-
-#define AFRF_pilot []
-#define AFRF_crew ["rhsusf_army_ocp_crewman"]
-#define AFRF_mg []
-#define AFRF_at []
-#define AFRF_marksman []
-#define AFRF_sniper []
-#define AFRF_medic []
-#define AFRF_officer []
-#define AFRF_arti ["rhsusf_army_ocp_fso",\
-			 	  "rhsusf_army_ocp_crewman"]
 
 //------------------------------------------------------------ SUPPLY DROP VEHICLES
 

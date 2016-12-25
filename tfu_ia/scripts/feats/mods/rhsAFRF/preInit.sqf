@@ -1,10 +1,14 @@
 /*
-@filename: mods\rhsAFRF\preInit.sqf
+@filename: feats\mods\rhsAFRF\preInit.sqf
 Author:
 	Ben
 Description:
-	run once on all context
+	run on server
+	include RHS AFRF assets definition
 */
-#ifndef MOD_rhsAFRF
+
+#undef MOD_rhsAFRF
 #define MOD_rhsAFRF true;
+#ifndef AFRF_INC
+#include "feats\mods\rhsAFRF\_include.hpp"
 #endif

@@ -1,9 +1,14 @@
 /*
-@filename: mods\tfar\preInit.sqf
+@filename: feats\mods\tfar\preInit.sqf
 Author:
 	Ben
 Description:
-	run once by server and players.
-	init tfar mod
+	run on server
+	include TFAR assets definition
 */
+
+#undef MOD_tfar
 #define MOD_tfar true;
+#ifndef TFAR_INC
+#include "feats\mods\tfar\_include.hpp"
+#endif
