@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-		included by game engine (description.ext)
+		included by feats\_params.hpp
 		include individual mods parameters
 */
 #include "feats\mods\apex\_params.hpp"

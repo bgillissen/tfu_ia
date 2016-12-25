@@ -33,7 +33,6 @@ RespawnDelay = 4;
 RespawnDialog = 0;
 
 //------------------------- Corps/Wreck cleanup
-minPlayerDistance = 50;
 corpseManagerMode = 1;
 corpseLimit = 50;
 corpseRemovalMinTime = 1800;

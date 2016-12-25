@@ -17,21 +17,36 @@ Description:
 #include "feats\mods\apex\_include.hpp"
 
 if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then {
+#ifdef DEBUG
+	conWhite("mods: ACE is present");
+#endif
 	preprocessFileLineNumbers "feats\mods\ace\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
+#ifdef DEBUG
+	conWhite("mods: AFRF is present");
+#endif
 	preprocessFileLineNumbers "feats\mods\rhsAFRF\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
+#ifdef DEBUG
+	conWhite("mods: GREF is present");
+#endif
 	preprocessFileLineNumbers "feats\mods\rhsGREF\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
+#ifdef DEBUG
+	conWhite("mods: USAF is present");
+#endif
 	preprocessFileLineNumbers "feats\mods\rhsUSAF\init.hpp";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "????") ) then {
+#ifdef DEBUG
+	conWhite("mods: TFAR is present");
+#endif
 	preprocessFileLineNumbers "feats\mods\tfar\init.hpp";
 };
