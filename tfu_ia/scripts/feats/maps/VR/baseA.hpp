@@ -14,18 +14,21 @@ Description:
 
 //------------------------------------------------------------ Base atmosphere
 
-#define VR_BA_baseA [["npc",	["arsenal"],	"BA_leftVA"],\
-                     ["npc",	["arsenal"], 	"BA_rightVA"],\
-                     ["npc",	["support"], 	"BA_support"],\
-                     ["obj",	["arsenal"], 	"BA_crewVA"],\
-                     ["obj",	["arsenal"], 	"BA_heliVA"],\
-                     ["obj",	["arsenal"], 	"BA_jetVA"],\
-                     ["obj",	["arsenal"], 	"BA_fobVA"],\
-                     ["obj",	["arsenal"], 	"BA_frVA"],\
-                     ["obj",	["billboard"], 	"BA_leftBB"],\
-                     ["obj",	["billboard"], 	"BA_rightBB"],\
-                     ["obj",	["hos"], 		"BA_hos0"],\
-                     ["obj",	["hos"], 		"BA_hos1"],\
-                     ["obj",	["hos"], 		"BA_hos2"],\
-                     ["obj",	["hos"], 		"BA_hos3"],\
-                     ["obj",	["hos"], 		"BA_hos4"]]
+#define VR_BA_baseA [["npc",	["arsenal"],	"BA_leftVA",	[false, false, false]],\
+                     ["npc",	["arsenal"], 	"BA_rightVA", 	[false, false, false]],\
+                     ["npc",	["support"], 	"BA_support",	[false, false, false]],\
+                     ["npc",	["medic"],		"BA_medic", 	[false, false, false]],\
+                     ["obj",	["arsenal"], 	"BA_crewVA", 	[false, false, false]],\
+                     ["obj",	["arsenal"], 	"BA_heliVA", 	[false, false, false]],\
+                     ["obj",	["arsenal"], 	"BA_jetVA",		[false, false, false]],\
+                     ["obj",	["arsenal"], 	"BA_fobVA",		[false, false, false]],\
+                     ["obj",	["arsenal"], 	"BA_frVA",		[false, false, false]],\
+                     ["obj",	["billboard"], 	"BA_leftBB", 	[false, true, false]],\
+                     ["obj",	["billboard"], 	"BA_rightBB", 	[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos0", 		[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos1", 		[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos2", 		[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos3", 		[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos4", 		[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos5", 		[false, true, false]],\
+                     ["obj",	["hos"], 		"BA_hos6", 		[false, true, false]]]

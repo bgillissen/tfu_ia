@@ -156,7 +156,11 @@ if ( PLAYER_SIDE == west ) then {
 } forEach ((PV select RL) select 1);
 
 
-[RGV_launcher, RGV_mg, RGV_sRifle, RGV_mRifle, RGV_sScope, RGV_mScope, RGV_oScope, RGV_backpack] call implentRestrictedGear;
+if ( PLAYER_SIDE == west ) then {
+	[RGVB_launcher, RGVB_mg, RGVB_sRifle, RGVB_mRifle, RGVB_sScope, RGVB_mScope, RGVB_oScope, RGVB_backpack] call implentRestrictedGear;	
+} else {
+	[RGVO_launcher, RGVO_mg, RGVO_sRifle, RGVO_mRifle, RGVO_sScope, RGVO_mScope, RGVO_oScope, RGVO_backpack] call implentRestrictedGear;
+};
 
 
 [AVV_heli, AVV_plane, AVV_tank] call implentAllowedVehicle;

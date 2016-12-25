@@ -102,8 +102,3 @@ class CfgNotifications {
 class CfgCompositions {
 	#include "feats\maps\_cfgCompositions.hpp"
 };
-
-//------------------------- to allow our curator list to be downloaded
-class CfgCommands {
-       allowedHTMLLoadURIs = {"http://taskforceunicorn.com/api/curators"};
-};

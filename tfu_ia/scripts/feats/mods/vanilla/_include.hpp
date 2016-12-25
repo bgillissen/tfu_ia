@@ -1,10 +1,10 @@
 /*
-@filename: mods\vanilla\_include.hpp
+@filename: feats\mods\vanilla\_include.hpp
 Author:
 	Ben
 Description:
-	included by mods\_include.hpp
-	Vanilla mod define
+	included by feats\mods\serverPreInit.sqf
+	define Vanilla assets
 */
 
 //------------------------------------------------------------ Arsenal Vanilla BLUFOR
@@ -28,16 +28,27 @@ Description:
 #define AV_ammo []
 #define AV_items []
 
-//------------------------------------------------------------ Restricted Gear Vanilla
-//TODO may probably need to split that by side, so players can loot (new param gear_enemyLoot)
-#define RGV_launcher []
-#define RGV_mg []
-#define RGV_sRifle []
-#define RGV_mRifle []
-#define RGV_sScope []
-#define RGV_mScope []
-#define RGV_oScope []
-#define RGV_backpack []
+//------------------------------------------------------------ Restricted Gear Vanilla BLUFOR
+
+#define RGVB_launcher []
+#define RGVB_mg []
+#define RGVB_sRifle []
+#define RGVB_mRifle []
+#define RGVB_sScope []
+#define RGVB_mScope []
+#define RGVB_oScope []
+#define RGVB_backpack []
+
+//------------------------------------------------------------ Restricted Gear Vanilla OPFOR
+
+#define RGVO_launcher []
+#define RGVO_mg []
+#define RGVO_sRifle []
+#define RGVO_mRifle []
+#define RGVO_sScope []
+#define RGVO_mScope []
+#define RGVO_oScope []
+#define RGVO_backpack []
 
 //------------------------------------------------------------ Cargo Vanilla BLUFOR
 						 

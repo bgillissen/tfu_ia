@@ -18,14 +18,14 @@ Description:
 				  ["zoneB", 3],\
 				  ["zoneC", 1]]
 
-#define AO_markers [["ao1", "ao2", "ao3"],\ //zoneA
-					["ao4", "ao5", "ao6"],\ //zoneB
-					["ao7"]]				//zoneC
+#define AO_markers [["ao_1", "ao_2", "ao_3"],\ //zoneA
+					["ao_4", "ao_5", "ao_6"],\ //zoneB
+					["ao_7"]]					//zoneC
 
 //------------------------------------------------------------ FOB
 
-#define FOBS [["fob1", "fob2", "fob3", "fob4"],\	//zoneA
-              ["fob5", "fob6", "fob7"],\			//zoneB
+#define FOBS [["fob_1", "fob_2", "fob_3", "fob_4"],\	//zoneA
+              ["fob_5", "fob_6", "fob_7"],\			//zoneB
               []]									//zoneC
 
 //------------------------------------------------------------ BASE
