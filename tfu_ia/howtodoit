@@ -181,5 +181,45 @@ if i want to be able to change side or base location at run time, i need to:
 	TADA it's reloaded with a new base and/or an other side
 
 
+type, actios, varName in composition
+for all disable damage,
+	veh	=>  remove cargo, if no actions set simpleObject
+	npc	=>  loadout (BA_npcLoadout), noMove, make member of BA_npcGROUP (for side)
+	obj =>  ??? will it keep my object state ?
+actions => to know which action i got to bind to that thing, those are key words are used by features
+	arsenal => va, viewDistance
+	support => supportCrate
+	curator => curator, zeusMission
 
+once implented that become
+in mods
+	change BALO_[medic, gear, support]
+in baseAtmosphere :
+	spawn composition (FIXED POSITION)
+	BA_comp => composition reference
+	BA_[veh, npc, obj] => [_obj, [actions]]
+		to create got to loop through the loaded base atmosphere "BAT_%varName%"
+	BAS_[HPILOT, JPILOT, CREW, INF]
+		markers directly from composition
+	BAR_[land, heli, jet, uav, boat]
+		markers directly from composition
+		new feature, baseRepair
+			use those to create the repair triggers
+	SZ, FR
+		markers directly from composition
+	BAHOS_[0,1,2,3,4,5,6]
+		new feature, hallOfshame that get a list of "name" from settings to apply texture, hideGlobal those that are not assigned
+	BABD_[0,1,2,3,4,5,6]
+		markers directly from composition
+		new feature, baseDefence
+			spawn baseDefence AA batteries from BV_aaTank pool on each BADB_?? marker
+			use : if (getMarkerColor "markerName" == "") then {hint "Marker not found";}; ;) to know if a marker exists !
+in baseVehicle
+	BV_[0,1,2,3,4,5,6]
+		markers directly from composition
+		got to loop through BV and foreach
+			- getPos from marker "BV_%_forEachIndex%", for boat (posABL Z = 0)
+			- spawn the vehicle using the corresponding pool (BV_[???])
+			- clear and fill the vehicle cargo following VC_[????])
+			- append to VR[veh, delay, class, pos, dir]
 	

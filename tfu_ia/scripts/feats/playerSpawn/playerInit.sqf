@@ -7,17 +7,17 @@ Description:
 	tp player on the active base spawn marker depending on his role (heliPilot, jetPilot, crew, inf)
 */
 
-private _type = typeOf player;
+private _role = player getVariable "role";
 
-if ( _type in U_hPilot ) exitWith {
+if ( _role == "hPilot" ) exitWith {
 	player setPos (getMarkerPos "BS_HPILOT"); 
 };
 
-if ( _type in U_jPilot ) exitWith { 
+if ( _role ==  "jPilot" ) exitWith { 
 	player setPos (getMarkerPos "BS_JPILOT"); 
 };
 
-if ( _type in U_crew ) exitWith { 
+if ( _role == "crew" ) exitWith { 
 	player setPos (getMarkerPos "BS_CREW"); 
 };
 

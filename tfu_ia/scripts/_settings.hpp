@@ -8,14 +8,11 @@ Description:
 */
 
 //do we debug ?, !!! you MUST comment the following line if not
-#define DEBUG true
+#define DEBUG
 
 //init, needed to lock the server while server side features are loading
 #define srvCMDpass "honeybadger";
 #define unlockDelay 15;
-
-//to be able to restrict apex assets to jungle map
-#define APEX_jungleMap ["Tanoa"]
 
 //list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
 #define SQUADS [["HQ", "HQ", "Orange"],\
@@ -36,7 +33,7 @@ Description:
 #define VH_noVON "<t align='center'><t size='1.5'><t color='#FAAF3A'>VON is disabled</t><br/>  <t size='1.5'><br/>So instead join us on Teamspeak<br/>  <br/><t color='#FAAF3A'>%1<br/></t>"
 
 //baseProtection
-#define BP_MSG "You are discharging your weapon at base without approval.  Cease your actions Immediately!"
+#define BP_MSG "You are discharging your weapon at base without approval. Cease your actions Immediately!"
 #define BP_sleepDelay 10
 
 //loadBalance (headless)
