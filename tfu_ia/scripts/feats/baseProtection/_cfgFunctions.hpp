@@ -1,6 +1,6 @@
 class baseProtection {
 	tag = "baseProtection";
 	class functions {
-		class unload { file="unload.sqf"; };
+		class unload { file="feats\baseProtection\unload.sqf"; };
 	};
 };

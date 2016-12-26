@@ -1,7 +1,7 @@
 class radioFreq {
 	tag = "radioFreq";
 	class functions {
-		class setLongRange { file="setLongRange.sqf"; };
-		class setShortRange { file="setShortRange.sqf"; };
+		class setLongRange { file="feats\radioFreq\setLongRange.sqf"; };
+		class setShortRange { file="feats\radioFreq\setShortRange.sqf"; };
 	};
 };

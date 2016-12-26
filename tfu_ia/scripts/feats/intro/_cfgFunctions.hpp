@@ -1,6 +1,6 @@
 class intro {
 	tag = "intro";
 	class functions {
-		class show { file="show.sqf"; };
+		class show { file="feats\intro\show.sqf"; };
 	};
 };

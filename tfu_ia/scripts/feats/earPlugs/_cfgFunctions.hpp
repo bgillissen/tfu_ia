@@ -1,6 +1,6 @@
 class earPlugs {
 	tag = "earPlugs";
 	class functions {
-		class swapState { file="swapSate.sqf"; };
+		class swapState { file="feats\earPlugs\swapSate.sqf"; };
 	};
 };

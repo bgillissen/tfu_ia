@@ -1,6 +1,6 @@
 class loadBalance {
 	tag = "loadBalance";
 	class functions {
-		class getClientID { file="getClientID.sqf"; };
+		class getClientID { file="feats\loadBalance\getClientID.sqf"; };
 	};
 };

@@ -1,6 +1,6 @@
 class vehicleRestrictions {
 	tag = "vehicleRestrictions";
 	class functions {
-		class kickOut { file="kickOut.sqf"; };
+		class kickOut { file="feats\vehicleRestrictions\kickOut.sqf"; };
 	};
 };

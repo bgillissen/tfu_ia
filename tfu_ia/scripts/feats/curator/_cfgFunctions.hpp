@@ -1,16 +1,16 @@
 class curator {
 	tag = "curator";
 	class functions {
-		class actionRelease { file="actionRelease.sqf"; };
-		class actionReload { file="actionReload.sqf"; };
-		class actionRequest { file="actionRequest.sqf"; };
-		class condition { file="condition.sqf"; };
-		class isAssigned { file="isAssigned.sqf"; };
-		class isCurator { file="isCurator.sqf"; };
-		class placeGrp { file="placeGrp.sqf"; };
-		class placeObj { file="placeObj.sqf"; };
-		class release { file="release.sqf"; };
-		class reload { file="reload.sqf"; };
-		class request { file="request.sqf"; };
+		class actionRelease { file="feats\curator\actionRelease.sqf"; };
+		class actionReload { file="feats\curator\actionReload.sqf"; };
+		class actionRequest { file="feats\curator\actionRequest.sqf"; };
+		class condition { file="feats\curator\condition.sqf"; };
+		class isAssigned { file="feats\curator\isAssigned.sqf"; };
+		class isCurator { file="feats\curator\isCurator.sqf"; };
+		class placeGrp { file="feats\curator\placeGrp.sqf"; };
+		class placeObj { file="feats\curator\placeObj.sqf"; };
+		class release { file="feats\curator\release.sqf"; };
+		class reload { file="feats\curator\reload.sqf"; };
+		class request { file="feats\curator\request.sqf"; };
 	};
 };

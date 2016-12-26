@@ -1,7 +1,7 @@
 class FOB {
 	tag = "FOB";
 	class functions {
-		class cleanup { file="cleanup.sqf"; };
-		class thread { file="thread.sqf"; };
+		class cleanup { file="feats\ia\FOB\cleanup.sqf"; };
+		class thread { file="feats\ia\FOB\thread.sqf"; };
 	};
 };

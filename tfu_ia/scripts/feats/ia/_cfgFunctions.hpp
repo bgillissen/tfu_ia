@@ -1,12 +1,12 @@
 class IA {
 	tag = "IA";
 	class functions {
-		class placeInfPatrol { file="placeInfPatrol.sqf"; };
-		class placeSniper { file="placeSniper.sqf"; };
-		class placeGarrison { file="placeGarrison.sqf"; };
-		class placeStatic { file="placeStatic.sqf"; };
-		class placeVehicle { file="placeVehicle.sqf"; };
-		class placeAirPatrol { file="placeAirPatrol.sqf"; };
+		class placeInfPatrol { file="feats\ia\placeInfPatrol.sqf"; };
+		class placeSniper { file="feats\ia\placeSniper.sqf"; };
+		class placeGarrison { file="feats\ia\placeGarrison.sqf"; };
+		class placeStatic { file="feats\ia\placeStatic.sqf"; };
+		class placeVehicle { file="feats\ia\placeVehicle.sqf"; };
+		class placeAirPatrol { file="feats\ia\placeAirPatrol.sqf"; };
 	};
 };
 
