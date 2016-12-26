@@ -27,7 +27,7 @@ UAV = [];
 REWARDS = [];
 
 if ( isNil "PV") then {
-	//those public vars are filled by server and then broadcasted to players
+	//those public vars are filled by server and then some are broadcasted to players
 	private _emptyLoadout = [["", []], ["", []], ["", []], ["", []], ["", []], ["", []], "", "", "", "", "", "", "", ""];
 	private _vehPools = ["car", "carArmed", "apc", "tank", "aaTank", "planeCAS", "planeAA", "planeTransport", "uav", 
 	                     "heliSmall", "heliSmallArmed", "heliMedium", "heliMedEvac", "heliBig", "heliAttack",
@@ -61,9 +61,9 @@ if ( isNil "PV") then {
 //initialize/reset assets public vars
 {
     _x params ["_prefix", "_vars", "_dft"];
-    {
-    	missionNamespace setVariable [format["%1_%2", _prefix, _x], _dft, false];
-    } count _vars;
+    //{
+    	//missionNamespace setVariable [format["%1_%2", _prefix, _x], _dft, false];
+    //} count _vars;
 } count PV;
 
 //features serverPreInit call/spawn
@@ -84,9 +84,9 @@ if ( isNil "FEH_onLeave" ) then {
 {
 	_x params ["_prefix", "_vars", "_dft", "_broadcast"];
 	if ( _broadcast ) then {
-		{
-			publicVariable format["%1_%2", _prefix, _x];
-		} count _vars;
+		//{
+			//publicVariable format["%1_%2", _prefix, _x];
+		//} count _vars;
 	};
 } count PV;
 

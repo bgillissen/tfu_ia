@@ -7,46 +7,35 @@ Description:
 	check which mods are available and preInit them
 */
 
-#define MOD_ace false
-#define MOD_rhsAFRF false
-#define MOD_rhsGREF false
-#define MOD_rhsUSAF false
-#define MOD_tfar false
+MOD_ace = false;
+MOD_rhsAFRF = false;
+MOD_rhsGREF = false;
+MOD_rhsUSAF = false;
+MOD_tfar = false;
 
-#include "feats\mods\vanilla\_include.hpp"
-#include "feats\mods\apex\_include.hpp"
+#ifndef VANILLA_INC
+#include "vanilla\_include.hpp"
+#endif
+#ifndef APEX_INC
+#include "apex\_include.hpp"
+#endif
 
 if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then {
-#ifdef DEBUG
-	conWhite("mods: ACE is present");
-#endif
-	preprocessFileLineNumbers "feats\mods\ace\init.hpp";
+	call compileFinal preprocessFileLineNumbers "feats\mods\ace\preInit.sqf";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-#ifdef DEBUG
-	conWhite("mods: AFRF is present");
-#endif
-	preprocessFileLineNumbers "feats\mods\rhsAFRF\init.hpp";
+	call compileFile preprocessFileLineNumbers "feats\mods\rhsAFRF\preInit.sqf";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-#ifdef DEBUG
-	conWhite("mods: GREF is present");
-#endif
-	preprocessFileLineNumbers "feats\mods\rhsGREF\init.hpp";
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\preInit.sqf";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-#ifdef DEBUG
-	conWhite("mods: USAF is present");
-#endif
-	preprocessFileLineNumbers "feats\mods\rhsUSAF\init.hpp";
+	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\preInit.sqf";
 };
 
 if ( isClass(configFile >> "CfgPatches" >> "????") ) then {
-#ifdef DEBUG
-	conWhite("mods: TFAR is present");
-#endif
-	preprocessFileLineNumbers "feats\mods\tfar\init.hpp";
+	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\preInit.sqf";
 };

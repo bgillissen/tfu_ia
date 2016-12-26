@@ -7,6 +7,8 @@ Description:
 	define apex assets
 */
 
+#define APEX_INC
+
 //------------------------------------------------------------ BLUFOR ASSETS
 
 #define AB_backpacks []

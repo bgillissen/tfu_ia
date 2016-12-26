@@ -7,6 +7,8 @@ Description:
 	define Vanilla assets
 */
 
+#define VANILLE_INC
+
 //------------------------------------------------------------ Arsenal Vanilla BLUFOR
 
 #define AVB_backpacks []
