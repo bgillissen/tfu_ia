@@ -41,7 +41,7 @@ _accepted = nil;
 if ( _target == nullObj ) exitWith {};
 
 if ( ["ArtilleryTargetTickWarning"] call core_fnc_getConf ) then {
-	[(selectRandom SIDE_priorityArtiFiringMsg)] remoteExec ["AW_fnc_globalSideChat", 0, false];
+	[(selectRandom SIDE_priorityArtiFiringMsg)] remoteExec ["common_fnc_globalSideChat", 0, false];
 };
 
 {

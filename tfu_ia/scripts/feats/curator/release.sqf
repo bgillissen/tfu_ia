@@ -8,10 +8,10 @@ Description:
 	remove the player's curator slot from the stack 
 */
 
-param ["_player"];
+params ["_player"];
 
 {
-	_x params["_uid", "_slot"];
+	_x params ["_uid", "_slot"];
 	if ( _uid == getPlayerUID _player) then {
 		exitWith{
 			unassignCurator (missionNamespace getVariable format["zeus_%1", _slot]);

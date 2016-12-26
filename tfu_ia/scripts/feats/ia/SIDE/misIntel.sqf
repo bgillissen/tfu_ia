@@ -117,7 +117,7 @@ while ( true ) do {
 		_escaped = (count list _trigger < 1);
 	} else {
 		if (_intel call BIS_fnc_enemyDetected) then {
-			[SIDE_intelSpotted] remoteExec ["AW_fnc_globalSideChat",0,false];
+			[SIDE_intelSpotted] remoteExec ["common_fnc_globalSideChat",0,false];
 			if ( !_inVehicle ) then { 
 				[_intel] orderGetIn true;
 				sleep 10;

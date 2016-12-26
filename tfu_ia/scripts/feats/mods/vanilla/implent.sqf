@@ -22,6 +22,7 @@ private _sdItems = SDV_items;
 private _sdWeapons = SDV_weapons;
 private _sdAmmo = SDV_ammo;
 
+diag_log MOD_rhsUSAF;
 private _conf = ["gear_vb_backpacks"] call core_fnc_getConf;
 if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call common_fnc_implentCond ) then { 
 	_backpacks append AVB_backpacks; 

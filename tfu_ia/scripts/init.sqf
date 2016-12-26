@@ -12,8 +12,13 @@ Description:
 
 #include "core\debug.hpp"
 
-if ( isServer ) then { call core_fnc_initServer; };
+if ( isMultiplayer ) exitWith {};
 
-if ( !isServer && !hasInterface ) then { call core_fnc_initHeadless; };
+CTXT_SERVER = true;
+CTXT_HEADLESS = false;
+CTXT_PLAYER = true;
 
-if ( hasInterface ) then { call core_fnc_initPlayer; };
+diag_log "init.sqf START --------------------------------------------------------------------------------------------------------";
+call core_fnc_initServer;
+call core_fnc_initPlayer;
+diag_log "init.sqf END --------------------------------------------------------------------------------------------------------";

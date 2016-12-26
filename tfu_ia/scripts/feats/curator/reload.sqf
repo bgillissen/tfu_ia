@@ -5,16 +5,14 @@ Author:
 Description:
 	run server side.
 	fetch the list of players with zeus right, and make it a server global array
-	see @ _settings.sqf for url, and static uids
+	see @ _settings.hpp for url, and static uids
 */
 
-private ["_slot", "_found"];
+curatorUIDs = ["curator", "uids"] call BIS_fnc_GetCfgData;
 
-curatorUIDs = CURATOR_uids;
-
-if ( CURATOR_web ) then {
-	private _webList = [CURATOR_URL] call common_fnc_urlFetchReturn
-	if ( _webList typeName != "BOOL" ) then {
+if ( ["curator", "web"] call BIS_fnc_GetCfgData ) then {
+	private _webList = [["curator", "url"] call BIS_fnc_GetCfgData] call common_fnc_urlFetchReturn
+	if ( (typeName _webList) != "BOOL" ) then {
 		curatorUIDs append (_webList splitString " ");
 		_webList = nil;
 	};

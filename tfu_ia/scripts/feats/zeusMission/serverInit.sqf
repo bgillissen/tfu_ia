@@ -4,7 +4,8 @@ Author:
 	Ben
 Description:
 	this run on server,
-	it just set the initial value of the zeusMission global variable on the server to false
+	set the initial value of the zeusMission public variable to false
+	append action to base tings
 */
 
 missionNamespace setVariable ["zeusMission", false, true];

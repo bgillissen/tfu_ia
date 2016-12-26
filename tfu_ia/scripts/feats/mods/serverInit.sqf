@@ -7,7 +7,7 @@ Description:
 	check which mods were preInit and init then implent them
 */
 
-if ( MOD_ace ) then {
+if ( missionNamespace getVariable "MOD_ace" ) then {
 	call compileFinal preprocessFileLineNumbers "feats\mods\ace\init.sqf";
 };
 if ( MOD_rhsAFRF ) then {

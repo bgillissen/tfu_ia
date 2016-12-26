@@ -7,6 +7,6 @@ Description:
 	it enable or disable the fatigue system
 */
 
-private _bool = [false, true] select (["fatigue"] core_fnc_getConf);
+private _bool = [false, true] select (["fatigue"] call core_fnc_getConf);
 
 player enableFatigue _bool;

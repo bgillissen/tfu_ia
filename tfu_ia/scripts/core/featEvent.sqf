@@ -11,6 +11,12 @@ Description:
 
 params ["_ctxt", "_when", "_arg"];
 
+if ( isNil "_arg" ) then { _arg = []; };
+
+#ifdef DEBUG
+diag_log format["featEvent: %1, %2", _ctxt, _when];
+#endif
+
 //some basic checks for cases that can not happend
 if ( CTXT_HEADLESS ) then {
 	if ( _when isEqualTo "onRespawn" ) exitWith{};	
@@ -28,7 +34,14 @@ if ( !CTXT_PLAYER ) then {
 	if ( _when isEqualTo "onTake" ) exitWith{};
 };
 
-if ( _ctxt != CTXT ) exitWith {
+private _remote = false;
+if ( (_ctxt isEqualTo "SERVER") && (!CTXT_SERVER) ) then { _remote = true; };
+if ( (_ctxt isEqualTo "PLAYER") && (!CTXT_PLAYER) ) then { _remote = true; };
+if ( (_ctxt isEqualTo "HEADLESS") && (!CTXT_HEADLESS) ) then { _remote = true; };
+if ( _remote ) exitWith {
+#ifdef DEBUG
+	diag_log "featEvent: is remote";
+#endif
 	//so it's a remote event to propagate
 	_target = call {
 		if ( _ctxt isEqualTo "SERVER" ) exitWith { 2 };
@@ -41,7 +54,7 @@ if ( _ctxt != CTXT ) exitWith {
 //not defined yet, we initialize it
 if ( isNil "FEAT_THREADS" ) then { FEAT_THREADS = []; };
 
-private _poolName = format["FEAT_%1", _when];
+private _poolName = format["FEAT_%1_%2", _ctxt, _when];
 
 private _sorted = missionNamespace getVariable _poolName;
 
@@ -95,12 +108,11 @@ if ( isNil "_sorted" ) then {
 		};
 	
 	} forEach(FEATS);
-	diag_log _pool;
+	_sorted = [];
 	if ( count _pool > 0 ) then {
 		_sorted = [_pool, [], {_x select 5}, "ASCEND"] call BIS_fnc_sortBy;
 		_pool = nil;
-	};
-	diag_log _sorted;
+	};	
 	missionNamespace setVariable [_poolName, _sorted];
 };
 
@@ -110,20 +122,23 @@ if ( isNil "_sorted" ) then {
 	private _code = missionNamespace getVariable _fncName;
 	if( isNil "_code" ) then {
 		private _script = format["%1\%2\%3%4%5.sqf", _path, _feat, toLower(_ctxt), _toadd, ["", "Thread"] select (_how isEqualTo 2)];
-		_code = compileFinal preprocessFileLineNumbers _script;
-		missionNamespace setVariable [_fncName, _code, false]; 
+		//_code = compileFinal preprocessFileLineNumbers _script;
+		//missionNamespace setVariable [_fncName, _code, false]; 
 	};
+#ifdef DEBUG
+	diag_log format["featEvent: %1, %2 => %3", _ctxt, _when, _fncName];
+#endif
 	if ( _when isEqualTo "destroy" ) then {
 		{
 			_x params ["_fid", "_fwhen", "_fthread"];
 			if ( _id isEqualTo _fid ) then { 
-				[_fwhen, _fthread] call _code;
+				//[_fwhen, _fthread] call _code;
 				FEAT_THREADS = FEAT_THREADS - _x; 
 			};
 		} count(FEAT_THREADS);
-		[] call _code;
+		//[] call _code;
 	} else {
-		if ( _how isEqualTo 1 ) then { _arg call _code; };
-		if ( _how isEqualTo 2 ) then { FEAT_THREADS append [[_id, _when, (_arg spawn _code)]]; };
+		//if ( _how isEqualTo 1 ) then { _arg call _code; };
+		//if ( _how isEqualTo 2 ) then { FEAT_THREADS append [[_id, _when, (_arg spawn _code)]]; };
 	};
 } count(_sorted);

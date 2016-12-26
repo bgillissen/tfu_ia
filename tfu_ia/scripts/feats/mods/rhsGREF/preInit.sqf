@@ -7,7 +7,7 @@ Description:
 	include RHS GREF assets definition
 */
 
-MOD_rhsGREF = true;
+missionNamespace setVariable ["MOD_rhsGREF", true, false];
 #ifdef DEBUG
 	conWhite("mods: GREF is present");
 #endif

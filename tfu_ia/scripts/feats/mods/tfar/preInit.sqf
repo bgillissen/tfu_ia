@@ -7,7 +7,7 @@ Description:
 	include TFAR assets definition
 */
 
-MOD_tfar = true;
+missionNamespace setVariable ["MOD_tfar", true, false];
 #ifdef DEBUG
 	conWhite("mods: TFAR is present");
 #endif

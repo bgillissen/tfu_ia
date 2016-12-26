@@ -6,7 +6,8 @@ Description:
 	this script is executed server side when a player want to become zeus
 	check if player is we got a free slot, then if player is one of our allowed curators 
 	if so, search for a free slot and assign it to him.
-*/ 
+*/
+
 params ["_player"];
 private ["_granted", "_curslot", "_inuse", "_freeSlot"];
 

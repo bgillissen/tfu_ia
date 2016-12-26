@@ -13,7 +13,7 @@ unlockDelay = 15;
 
 //list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
 
-SQUADS[]={{"HQ", "HQ", "Orange"},
+squads[]={{"HQ", "HQ", "Orange"},
 		  {"ALPHA", "Alpha", "Black"},
 		  {"BRAVO", "Bravo", "Black"},
 		  {"HORNET", "Hornet", "Blue"},

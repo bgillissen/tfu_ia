@@ -7,7 +7,7 @@ Description:
 	include ACE assets definition
 */
 
-MOD_ace = true;
+missionNamespace setVariable ["MOD_ace", true, false];
 #ifdef DEBUG
 	conWhite("mods: ACE is present");
 #endif

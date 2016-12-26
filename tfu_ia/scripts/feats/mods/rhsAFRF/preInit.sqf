@@ -7,7 +7,7 @@ Description:
 	include RHS AFRF assets definition
 */
 
-MOD_rhsAFRF = true;
+missionNamespace setVariable ["MOD_rhsAFRF", true, false];
 #ifdef DEBUG
 	conWhite("mods: AFRF is present");
 #endif

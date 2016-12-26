@@ -7,6 +7,6 @@ Description:
 	it ask server to update the value of the zeusMission variable
 */
 
-_param ["_bool"];
+params ["_bool"];
 
 missionNamespace setVariable ["zeusMission", _bool, true];

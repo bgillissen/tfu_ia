@@ -8,6 +8,4 @@ Description:
 	make player join the squad defined by his slot (unit init)
 */
 
-call playerSide_fnc_preInit;
-
 [player] joinSilent (missionNamespace getVariable format["SQUAD_%1", player getVariable "groupID"]);

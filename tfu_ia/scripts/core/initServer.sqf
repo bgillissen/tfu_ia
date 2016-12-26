@@ -6,11 +6,6 @@ Description:
 	this run on server side only.
 */
 
-CTXT_SERVER = true;
-CTXT_HEADLESS = false;
-CTXT_PLAYER = false;
-CTXT = "SERVER";
-
 SERVER_INIT = true;
 publicVariable "SERVER_INIT";
 
@@ -67,18 +62,18 @@ if ( isNil "PV") then {
 } count PV;
 
 //features serverPreInit call/spawn
-[CTXT, "preInit"] call core_fnc_featEvent;
+["SERVER", "preInit"] call core_fnc_featEvent;
 
 //features serverInit call/spawn
-[CTXT, "init"] call core_fnc_featEvent;
+["SERVER", "init"] call core_fnc_featEvent;
 
 //register feature's serverOnLeave eventHandler
 if ( isNil "FEH_onLeave" ) then {
-	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {[CTXT, "onLeave", _this] call core_fnc_featEvent;}];
+	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {["SERVER", "onLeave", _this] call core_fnc_featEvent;}];
 };
 
 //features serverPostInit call/spawn
-[CTXT, "postInit"] call core_fnc_featEvent;
+["SERVER", "postInit"] call core_fnc_featEvent;
 
 //broadcast computed assets to clients
 {

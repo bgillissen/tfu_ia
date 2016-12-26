@@ -7,12 +7,6 @@ Description:
 	check which mods are available and preInit them
 */
 
-MOD_ace = false;
-MOD_rhsAFRF = false;
-MOD_rhsGREF = false;
-MOD_rhsUSAF = false;
-MOD_tfar = false;
-
 #ifndef VANILLA_INC
 #include "vanilla\_include.hpp"
 #endif
@@ -20,22 +14,11 @@ MOD_tfar = false;
 #include "apex\_include.hpp"
 #endif
 
-if ( isClass(configFile >> "CfgPatches" >> "ace_main") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\ace\preInit.sqf";
-};
-
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-	call compileFile preprocessFileLineNumbers "feats\mods\rhsAFRF\preInit.sqf";
-};
-
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\preInit.sqf";
-};
-
-if ( isClass(configFile >> "CfgPatches" >> "??????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\preInit.sqf";
-};
-
-if ( isClass(configFile >> "CfgPatches" >> "????") ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\preInit.sqf";
-};
+{
+	_x params ["_mod", "_cfg"];
+	missionNamespace setVariable [format["MOD_%1", _mod], false, false];
+	if ( isClass(configFile >> "CfgPatches" >> _cfg) ) then {
+		call compileFinal preprocessFileLineNumbers format["feats\mods\%1\preInit.sqf", _mod];
+	};
+	
+} count [["ace", "ace_main"], ["rhsAFRF", "patchEntry"], ["rhsGREF", "patchEntry"], ["rhsUSAF", "patchEntry"], ["tfar", "patchEntry"]];

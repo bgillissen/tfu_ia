@@ -7,7 +7,7 @@ Description:
 	include RHS USAF assets definition
 */
 
-MOD_rhsUSAF = true;
+missionNamespace setVariable ["MOD_rhsUSAF", true, false];
 #ifdef DEBUG
 	conWhite("mods: USAF is present");
 #endif
