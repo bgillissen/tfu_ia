@@ -7,9 +7,6 @@ Description:
 	call init functions depending on the context
 */
 
-//!!! you MUST comment ONLY the following line to disable debug
-#define DEBUG
-
 #include "core\debug.hpp"
 
 if ( isMultiplayer ) exitWith {};
@@ -18,7 +15,13 @@ CTXT_SERVER = true;
 CTXT_HEADLESS = false;
 CTXT_PLAYER = true;
 
-diag_log "init.sqf START --------------------------------------------------------------------------------------------------------";
+#ifdef DEBUG
+conWhite("init.sqf START --------------------------------------------------------------------------------------------------------");
+#endif
+
 call core_fnc_initServer;
 call core_fnc_initPlayer;
-diag_log "init.sqf END --------------------------------------------------------------------------------------------------------";
+
+#ifdef DEBUG
+conWhite("init.sqf END --------------------------------------------------------------------------------------------------------");
+#endif

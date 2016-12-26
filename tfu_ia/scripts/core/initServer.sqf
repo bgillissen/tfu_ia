@@ -6,8 +6,9 @@ Description:
 	this run on server side only.
 */
 
-SERVER_INIT = true;
-publicVariable "SERVER_INIT";
+#include "debug.hpp"
+
+missionNamespace setVariable ["SERVER_INIT", true, true];
 
 if ( isNil "isLOCKED" ) then { isLOCKED = false; };
 private _srvCMDpass = ["srvCMDpass"] call BIS_fnc_GetCfgData;
@@ -67,7 +68,7 @@ if ( isNil "PV") then {
 //features serverInit call/spawn
 ["SERVER", "init"] call core_fnc_featEvent;
 
-//register feature's serverOnLeave eventHandler
+//register feature's OnLeave eventHandler
 if ( isNil "FEH_onLeave" ) then {
 	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {["SERVER", "onLeave", _this] call core_fnc_featEvent;}];
 };
@@ -85,8 +86,7 @@ if ( isNil "FEH_onLeave" ) then {
 	};
 } count PV;
 
-SERVER_INIT = false;
-publicVariable "SERVER_INIT";
+missionNamespace setVariable ["SERVER_INIT", false, true];
 
 sleep (["lockDelay"] call BIS_fnc_GetCfgData);
 

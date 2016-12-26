@@ -7,14 +7,20 @@ Description:
 	it init the player side features
 */
 
+#include "debug.hpp"
+
 missionNamespace setVariable ["PLAYER_INIT", true, false];
 
 waitUntil {
 	sleep 1;
-	diag_log ">>>> initPlayer is waiting for server init";
+#ifdef DEBUG
+conWhite(">>>> core_fnc_initPlayer is waiting for server to init");
+#endif
 	((missionNamespace getVariable "SERVER_INIT") isEqualTo false)
 };
-diag_log ">>>> start initPlayer";
+#ifdef DEBUG
+conWhite(">>>> start core_fnc_initPlayer");
+#endif
 
 waitUntil {!isNull player};
 waitUntil {player isEqualTo player};

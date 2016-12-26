@@ -7,6 +7,7 @@ Description:
 	propagate events to features, call or spawn required script.
 */
 
+#include "debug.hpp"
 #include "featEvent.hpp"
 
 params ["_ctxt", "_when", "_arg"];
@@ -14,7 +15,8 @@ params ["_ctxt", "_when", "_arg"];
 if ( isNil "_arg" ) then { _arg = []; };
 
 #ifdef DEBUG
-diag_log format["featEvent: %1, %2", _ctxt, _when];
+private _debug = format["featEvent: %1, %2", _ctxt, _when];
+conWhite(_debug);
 #endif
 
 //some basic checks for cases that can not happend
@@ -40,7 +42,7 @@ if ( (_ctxt isEqualTo "PLAYER") && (!CTXT_PLAYER) ) then { _remote = true; };
 if ( (_ctxt isEqualTo "HEADLESS") && (!CTXT_HEADLESS) ) then { _remote = true; };
 if ( _remote ) exitWith {
 #ifdef DEBUG
-	diag_log "featEvent: is remote";
+	conWhite("featEvent: is remote");
 #endif
 	//so it's a remote event to propagate
 	_target = call {
@@ -126,7 +128,8 @@ if ( isNil "_sorted" ) then {
 		//missionNamespace setVariable [_fncName, _code, false]; 
 	};
 #ifdef DEBUG
-	diag_log format["featEvent: %1, %2 => %3", _ctxt, _when, _fncName];
+private _debug = format["featEvent: %1, %2 => %3", _ctxt, _when, _fncName];
+conWhite(_debug);
 #endif
 	if ( _when isEqualTo "destroy" ) then {
 		{

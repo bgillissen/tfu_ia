@@ -7,10 +7,18 @@ Description:
 	it init the headless side features
 */
 
-CTXT_SERVER = false;
-CTXT_HEADLESS = true;
-CTXT_PLAYER = false;
-CTXT = "HEADLESS";
+#include "debug.hpp"
+
+waitUntil {
+	sleep 1;
+#ifdef DEBUG
+conWhite(">>>> core_fnc_initHeadless is waiting for server to init");
+#endif
+	((missionNamespace getVariable "SERVER_INIT") isEqualTo false)
+};
+#ifdef DEBUG
+conWhite(">>>> start core_fnc_initHeadless");
+#endif
 
 waitUntil {!isNull player};
 waitUntil {player == player};

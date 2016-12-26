@@ -2,8 +2,15 @@
 	KK's debug_console v3.0 macros
 	http://killzonekid.com
 */
-#ifdef DEBUG
 
+//!!! you MUST comment ONLY those 2 lines to disable debug
+//#define DEBUG_CONSOLE()
+#define DEBUG_ARMA()
+
+
+#ifdef DEBUG_CONSOLE
+#undef DEBUG_ARMA
+#define DEBUG
 #define conBeep() "debug_console" callExtension ("A")
 #define conClear() "debug_console" callExtension ("C")
 #define conClose() "debug_console" callExtension ("X")
@@ -23,27 +30,28 @@
 #define conCyanTime(_msg) "debug_console" callExtension (_msg + "#0111")
 #define conFile(_msg) "debug_console" callExtension (_msg + "~0000")
 #define conFileTime(_msg) "debug_console" callExtension (_msg + "~0001")
+#endif
 
-#else
 
+#ifdef DEBUG_ARMA
+#define DEBUG
 #define conBeep()
 #define conClear()
 #define conClose()
-#define conWhite(_msg)
-#define conWhiteTime(_msg)
-#define conRed(_msg)
-#define conRedTime(_msg)
-#define conGreen(_msg)
-#define conGreenTime(_msg)
-#define conBlue(_msg)
-#define conBlueTime(_msg)
-#define conYellow(_msg)
-#define conYellowTime(_msg)
-#define conPurple(_msg)
-#define conPurpleTime(_msg)
-#define conCyan(_msg)
-#define conCyanTime(_msg)
+#define conWhite(_msg) diag_log(_msg)
+#define conWhiteTime(_msg) diag_log(_msg)
+#define conRed(_msg) diag_log(_msg)
+#define conRedTime(_msg) diag_log(_msg)
+#define conGreen(_msg) diag_log(_msg)
+#define conGreenTime(_msg) diag_log(_msg)
+#define conBlue(_msg) diag_log(_msg)
+#define conBlueTime(_msg) diag_log(_msg)
+#define conYellow(_msg) diag_log(_msg)
+#define conYellowTime(_msg) diag_log(_msg)
+#define conPurple(_msg) diag_log(_msg)
+#define conPurpleTime(_msg) diag_log(_msg)
+#define conCyan(_msg) diag_log(_msg)
+#define conCyanTime(_msg) diag_log(_msg)
 #define conFile(_msg)
 #define conFileTime(_msg)
-
 #endif

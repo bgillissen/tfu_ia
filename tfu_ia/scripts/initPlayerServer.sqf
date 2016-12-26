@@ -11,4 +11,18 @@ params ["_player"];
 
 #include "core\debug.hpp"
 
-//[CTXT, "onJoin", [_player]] call common_fnc_featInit;
+if ( !isMultiplayer ) exitWith {};
+
+CTXT_SERVER = true;
+CTXT_HEADLESS = false;
+CTXT_PLAYER = false;
+
+#ifdef DEBUG
+conWhite ("initPlayerServer.sqf START --------------------------------------------------------------------------------------------------------");
+#endif
+
+["SERVER", "onJoin", [_player]] call core_fnc_featEvent;
+
+#ifdef DEBUG
+conWhite("initPlayerServer.sqf END --------------------------------------------------------------------------------------------------------");
+#endif
