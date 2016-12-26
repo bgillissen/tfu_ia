@@ -11,13 +11,15 @@ Description:
 
 params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
 
-deleteMarker AO_label;
-deleteMarker AO_circle;
+deleteMarker ["ia", "ao", "circle"] call BIS_fnc_GetCfgData;
+deleteMarker ["ia", "ao", "label"] call BIS_fnc_GetCfgData;
 
 if ( !_force ) then {
+	private _delay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+	private _dist = ["ia", "deleteDistance"] call BIS_fnc_GetCfgData;
 	waitUntil {
-		sleep IA_checkDelay;
-		({((_x distance _aoCoord) < IA_deleteDistance)} count allPlayers) isEqualTo 0)
+		sleep _delay;
+		(({((_x distance _aoCoord) < _dist)} count allPlayers) isEqualTo 0)
 	};
 };
 
@@ -26,5 +28,5 @@ deleteVehicle _trigger;
 [AO_minefield] call common_fnc_deleteObjects;
 [_units] call common_fnc_deleteObjects;
 {
-	if ((count units _x) == 0) then deleteGroup _x;
+	if ((count units _x) == 0) then { deleteGroup _x; };
 } count allGroups;

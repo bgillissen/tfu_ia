@@ -57,9 +57,10 @@ if ( isNil "PV") then {
 //initialize/reset assets public vars
 {
     _x params ["_prefix", "_vars", "_dft"];
-    //{
-    	//missionNamespace setVariable [format["%1_%2", _prefix, _x], _dft, false];
-    //} count _vars;
+    {
+    	missionNamespace setVariable [format["%1_%2", _prefix, _x], _dft, false];
+    } count _vars;
+    true
 } count PV;
 
 //features serverPreInit call/spawn
@@ -80,10 +81,11 @@ if ( isNil "FEH_onLeave" ) then {
 {
 	_x params ["_prefix", "_vars", "_dft", "_broadcast"];
 	if ( _broadcast ) then {
-		//{
-			//publicVariable format["%1_%2", _prefix, _x];
-		//} count _vars;
+		{
+			publicVariable format["%1_%2", _prefix, _x];
+		} count _vars;
 	};
+	true
 } count PV;
 
 missionNamespace setVariable ["SERVER_INIT", false, true];

@@ -16,7 +16,7 @@ Description:
 
 {
 	_x params ["_mod", "_cfg"];
-	missionNamespace setVariable [format["MOD_%1", _mod], false, false];
+	missionNamespace setVariable [format["MOD_%1", _mod], false, true];
 	if ( isClass(configFile >> "CfgPatches" >> _cfg) ) then {
 		call compileFinal preprocessFileLineNumbers format["feats\mods\%1\preInit.sqf", _mod];
 	};

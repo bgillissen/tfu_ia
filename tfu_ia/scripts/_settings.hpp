@@ -177,6 +177,7 @@ class ia {
 		patrolSkill = 1;
 		sniperSkill = 2;
 		garrisonSkill = 1;
+		staticSkill = 2;
 		aaSkill = 4;
 		tankSkill = 2;
 		apcSkill = 1;
@@ -191,15 +192,19 @@ class ia {
 			size = 500;
 			mines = 60;
 			mineTypes[]={"APERSBoundingMine", "APERSMine", "ATMine"};
+			newNotif = "Destroy the enemy radio tower.";
 			endHint = "<t align='center' size='2.2'>Radio Tower</t><br/><t size='1.5' color='#08b000' align='center'>DESTROYED</t><br/>____________________<br/>The enemy radio tower has been destroyed! Fantastic job, lads!<br/><br/><t size='1.2' color='#08b000' align='center'> The enemy cannot call in air support now!</t><br/>";
+			endNotif = "Enemy radio tower destroyed.";
 		};
 		class cas {
 			skill = 2;
-			checkDelay = 60;
-			delay = 1200;
+			checkDelay = 20;
+			cooldown = 1200;
 			infiniteAmmo = true;
-			IniniteFuel = true;
+			infiniteFuel = true;
 			searchRadius = 5000;
+			newNotif = "Enemy jet approaching!";
+			endNotif = "Enemy CAS is down. Well Done!";
 		};
 	};
 	class fob {

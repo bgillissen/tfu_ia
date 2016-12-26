@@ -9,12 +9,12 @@ Description:
 	it spawn Infantry Patrol inside the given coordonate 
 */
 
-params ["_coord", "_size", "_count", "_patrolSize"];
+params ["_coord", "_size", "_amount", "_patrolSize"];
 private _groups = [];
 
-if ( _count <= 0 ) exitWith{_groups};
+if ( _amount <= 0 ) exitWith{_groups};
 
-for "_x" from 1 to _count do {
+for "_x" from 1 to _amount do {
 	private _group = createGroup civilian;
 	private _randomPos = [[[_coord, (_size / 1.2)],[]],["water","out"]] call BIS_fnc_randomPos;
 	(selectRandom S_civ) createUnit [_randomPos, _group];

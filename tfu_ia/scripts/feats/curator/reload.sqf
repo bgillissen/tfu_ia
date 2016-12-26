@@ -11,9 +11,9 @@ Description:
 curatorUIDs = ["curator", "uids"] call BIS_fnc_GetCfgData;
 
 if ( ["curator", "web"] call BIS_fnc_GetCfgData ) then {
-	private _webList = [["curator", "url"] call BIS_fnc_GetCfgData] call common_fnc_urlFetchReturn
+	private _webList = [["curator", "url"] call BIS_fnc_GetCfgData] call common_fnc_urlFetchReturn;
 	if ( (typeName _webList) != "BOOL" ) then {
-		curatorUIDs append (_webList splitString " ");
+		curatorUIDs append [(_webList splitString " ")];
 		_webList = nil;
 	};
 };
@@ -22,11 +22,12 @@ if ( ["curator", "web"] call BIS_fnc_GetCfgData ) then {
 	private _slot = _x;
 	private _found = false;
 	{
-		if ( _x == _slot select 0) then exitWith{ _found = true; };
+		if ( _x == _slot select 0) exitWith{ _found = true; };
 	} count (curatorUIDs);
 	if ( !_found ) then {
-		unassignCurator (missionNamespace getVariable format["zeus_%1", _slot select 1]);
-		curatorAssigned = curatorAssigned - _slot;
+		private _gm = missionNamespace getVariable format["zeus_%1", _slot select 1];
+		unassignCurator _gm;
+		curatorAssigned = curatorAssigned - [_slot];
 	};	
 } count (curatorAssigned);
 

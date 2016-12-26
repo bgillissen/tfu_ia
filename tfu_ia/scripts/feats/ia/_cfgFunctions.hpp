@@ -11,5 +11,7 @@ class IA {
 };
 
 #include "AO\_cfgFunctions.hpp"
+#ifdef OK
 #include "FOB\_cfgFunctions.hpp"
 #include "SIDE\_cfgFunctions.hpp"
+#endif

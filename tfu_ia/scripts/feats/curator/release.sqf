@@ -1,5 +1,5 @@
 /*
-@filename: feats\curator\srvRelease.sqf
+@filename: feats\curator\release.sqf
 Author:
 	Ben
 Description:
@@ -12,13 +12,14 @@ params ["_player"];
 
 {
 	_x params ["_uid", "_slot"];
-	if ( _uid == getPlayerUID _player) then {
-		exitWith{
-			unassignCurator (missionNamespace getVariable format["zeus_%1", _slot]);
-			curatorAssigned = curatorAssigned - _x;
-			publicVariable "curatorAssigned";
-		};
-	}
+	if ( _uid isEqualTo (getPlayerUID _player)) exitWith {
+		private _mg = (missionNamespace getVariable format["zeus_%1", _slot]);
+		unassignCurator _mg;
+		curatorAssigned = curatorAssigned - [_x];
+		publicVariable "curatorAssigned";
+	};
 } forEach(curatorAssigned);
 
-["HQ", format[CURATOR_descendMsg, (count curatorAssigned), CURATOR_slot, name _player]] common_fnc_globalSideChat;
+["HQ", format[CURATOR_descendMsg, (count curatorAssigned), 
+              	  	  	  	  	  (["curator", "slot"] call BIS_fnc_getCfgData), 
+              	  	  	  	  	  (name _player)]] call common_fnc_globalSideChat;

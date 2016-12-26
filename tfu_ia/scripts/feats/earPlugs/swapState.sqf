@@ -9,14 +9,14 @@ Description:
 
 params ["_keyCode"];
 
-if ( _keycode != EP_keyCode ) then exitWith{};        
+if ( _keyCode != (["earPlugs", "keycode"] call BIS_fnc_GetCfgData) ) exitWith{};        
 
-if ( earPlug_state == 1 ) then {
-	earPlug_state = 0;
+if ( earPlug_state ) then {
+	earPlug_state = false;
 	2 fadeSound 1;
-	player groupChat EP_offMsg; 
+	player groupChat (["earPlugs", "offMsg"] call BIS_fnc_GetCfgData); 
 } else { 
-	earPlug_state = 1;
-	2 fadeSound EP_volume;
-	player groupChat EP_onMsg;
+	earPlug_state = true;
+	2 fadeSound (["earPlugs", "volume"] call BIS_fnc_GetCfgData); 
+	player groupChat (["earPlugs", "onMsg"] call BIS_fnc_GetCfgData);
 };

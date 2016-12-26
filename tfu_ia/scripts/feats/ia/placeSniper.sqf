@@ -9,14 +9,13 @@ Description:
 	it spawn Sniper Patrol inside the given coordonate 
 */
 
-params ["_coord", "_size", "_count", "_skill"];
+params ["_coord", "_size", "_amount", "_skill"];
+
+if ( _amount <= 0 ) exitWith{[]};
+
 private _groups = [];
 
-if ( _count <= 0 ) exitWith{_groups};
-
-
-
-for "_x" from 1 to _count do {
+for "_x" from 1 to _amount do {
 	private _randomPos = [_coord, _size, 100, 10] call BIS_fnc_findOverwatch;
 	private _group = [_randomPos, ENEMY_SIDE, (selectRandom S_sniperGroups)] call BIS_fnc_spawnGroup;
 	private _group setBehaviour "COMBAT";

@@ -1,38 +1,39 @@
 /*
-@filename: feats\curator\srvRequest.sqf
+@filename: feats\curator\request.sqf
 Author:
 	Ben
 Description:
 	this script is executed server side when a player want to become zeus
-	check if player is we got a free slot, then if player is one of our allowed curators 
+	check if we got a free slot, then if player is one of our allowed curators 
 	if so, search for a free slot and assign it to him.
 */
 
 params ["_player"];
-private ["_granted", "_curslot", "_inuse", "_freeSlot"];
 
-if ( [_player] call curator_fnc_isAssigned ) then exitWith{};
+if ( [_player] call curator_fnc_isAssigned ) exitWith {};
 
-if ( count curatorAssigned >= CURATOR_slot) then {
-	exitWith{ 
-		format[CURATOR_noSlotMsg,(count curatorAssigned), CURATOR_slot] remoteExec ["systemChat", _player, false];
-	};
+private _totSlot = ["curator", "slot"] call BIS_fnc_getCfgData;
+
+if ( count curatorAssigned >= _totSlot) exitWith { 
+	format[CURATOR_noSlotMsg, (count curatorAssigned), _totSlot] remoteExec ["systemChat", _player, false];
 };
 
 if ( !([_player] call curator_fnc_isCurator) ) then {
-	["HQ", [format[CURATOR_failedMsg, name _player]] common_fnc_globalChat;
+	["HQ", format[CURATOR_failedMsg, (name _player)]] call common_fnc_globalSideChat;
 };
 
-for ("_curSlot" from 0 to CURATOR_slot) do {
+private "_freeslot";
+
+for ("_curSlot" from 0 to (_totSlot-1)) do {
 	_inuse = false;
 	{
-		if ( _x select 1 == _curSlot) then exitWith{ _inuse = true; };
+		if ( _x select 1 == _curSlot) exitWith{ _inuse = true; };
 	} forEach(curatorAssigned);
-	if ( !_inuse ) then exitWith{ _freeSlot = _curSlot };
+	if ( !_inuse ) exitWith{ _freeSlot = _curSlot };
 };
-	
-_player assignCurator (missionNamespace getVariable format["zeus_%1", _freeSlot]);
-curatorAssigned append [(getPlayerUID _player), _freeSlot];
+private _gm = missionNamespace getVariable format["zeus_%1", _freeSlot];
+_player assignCurator _gm;
+curatorAssigned append [[(getPlayerUID _player), _freeSlot]];
 publicVariable "curatorAssigned";
 
-["HQ", [format[CURATOR_ascendMsg, (count curatorAssigned), CURATOR_slot, name _player]] common_fnc_globalChat;
+["HQ", format[CURATOR_ascendMsg, (count curatorAssigned), _totSlot, (name _player)]] call common_fnc_globalSideChat;

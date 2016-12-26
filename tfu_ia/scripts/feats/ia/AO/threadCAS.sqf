@@ -7,10 +7,22 @@ Description:
 	it keep respawning CAS over AO until the radioTower is alive or a zeusMission has not started
 */
 
-param ["aoCoord", "_radioTower"];
+params ["_aoCoord", "_radioTower"];
 
-if ( isNil "AO_cas" ) then AO_cas = false;
-if ( isNil "AO_casGroup") then AO_casGroup = createGroup ENEMY_SIDE;
+if ( isNil "AO_cas" ) then {
+	AO_cas = false;
+};
+
+if ( isNil "AO_casGroup") then {
+	AO_casGroup = createGroup ENEMY_SIDE;
+};
+
+private _delay = ["ia", "ao", "checkDelay"] call BIS_fnc_GetCfgData;
+private _checkDelay = ["ia", "ao", "cas", "checkDelay"] call BIS_fnc_GetCfgData; 
+private _cooldown = ["ia", "ao", "cas", "cooldown"] call BIS_fnc_GetCfgData;
+private _infAmmo = ["ia", "ao", "cas", "infiniteAmmo"] call BIS_fnc_GetCfgData;
+private _infFuel = ["ia", "ao", "cas", "infiniteFuel"] call BIS_fnc_GetCfgData;
+private _range = ["ia", "ao", "cas", "searchRadius"] call BIS_fnc_GetCfgData;
 
 while {(alive _radioTower)} do {
 	if ( !AO_cas ) then {
@@ -27,33 +39,38 @@ while {(alive _radioTower)} do {
 		AO_casGroup setCombatMode "RED";
 		AO_casGroup setBehaviour "COMBAT";
 		AO_casGroup setSpeedMode "FULL";
-		[(units enemyCasGroup), AO_casSkill] call common_fnc_setSkill;
+		[(units enemyCasGroup), (["ia", "ao", "cas", "skill"] call BIS_fnc_GetCfgData)] call common_fnc_setSkill;
 		[AO_casGroup, _aoCoord] call BIS_fnc_taskAttack;
 		{
 			_x addCuratorEditableObjects [[_pilot], false];
 			_x addCuratorEditableObjects [[_cas], false];
 		} count allCurators;
-		["EnemyJet", "Enemy jet approaching!"] remoteExec ["common_fnc_globalNotification", 0, false];
+		["EnemyJet", (["ia", "ao", "cas", "newNotif"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalNotification", 0, false];
 		AO_cas = true;
+		 
 		waitUntil {
-			if ( AO_casInfAmmo ) _cas setVehicleAmmo 1;
-			if ( AO_casInfFuel ) _cas setFuel 1;
+			if ( _InfAmmo ) then {
+				_cas setVehicleAmmo 1;
+			};
+			if ( _InfFuel ) then {
+				_cas setFuel 1;
+			};
 			_cas flyInHeight (200 + (random 850));
 			private _casPos = getPosATL _cas;
-			private _targets = _casPos nearEntities [["Air"], AO_casSearchRadius];
+			private _targets = _casPos nearEntities [["Air"], _range];
 			{
 				AO_casGroup reveal [_x, 4];
 			} count _targets;
-			[AO_casCheckDelay, AO_checkDelay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;
+			[_checkDelay, _delay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;
 			(!alive _cas || zeusMission || AO_stop)
 		};
 		AO_cas = false;
-		if ( alive _cas ){
+		if ( alive _cas ) then {
 			deleteVehicle _pilot;
 			deleteVehicle _cas;
 		} else {
-			["EnemyJetDown","Enemy CAS is down. Well Done!"] remoteExec ["common_fnc_globalNotification", 0, false];
+			["EnemyJetDown", (["ia", "ao", "cas", "endNotif"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalNotification", 0, false];
 		};
 	};
-	[(AO_casDelay + (random  AO_casDelay)), AO_checkDelay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;
+	[(_cooldown + (random  _cooldown)), _checkDelay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;
 };

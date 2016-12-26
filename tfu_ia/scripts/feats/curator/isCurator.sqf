@@ -8,12 +8,11 @@ Description:
 */
 
 param ["_player"];
-private ["_out"];
 
-_out = false;
+private _out = false;
 
 {
-	if ( _x != getPlayerUID _player ) then exitWith{ _out = true; }
+	if ( _x != (getPlayerUID _player) ) exitWith{ _out = true; }
 } forEach(curatorUIDs);
 
 _out

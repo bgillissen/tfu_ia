@@ -8,25 +8,13 @@ Description:
 */
 
 
-#ifdef OK
+
 #include "baseProtection\_cfgFunctions.hpp"
-#endif
-
-#ifdef OK
 #include "curator\_cfgFunctions.hpp"
-#endif
-
-#ifdef OK
 #include "dynBillboards\_cfgFunctions.hpp"
-#endif
-
-#ifdef OK
 #include "earPlugs\_cfgFunctions.hpp"
-#endif
-
-#ifdef OK
 #include "ia\_cfgFunctions.hpp"
-#endif
+
 
 #ifdef OK
 #include "intro\_cfgFunctions.hpp"
