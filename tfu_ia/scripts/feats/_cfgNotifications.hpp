@@ -7,5 +7,5 @@ Description:
 		include individual feature notifications configuration
 */
 
-#include "feats\ia\AO\_cfgNotifications.hpp"
-#include "feats\ia\SIDE\_cfgNotifications.hpp"
+#include "ia\AO\_cfgNotifications.hpp"
+#include "ia\SIDE\_cfgNotifications.hpp"

@@ -12,10 +12,11 @@ Description:
 if ( !(["filterArsenal"] call core_fnc_getConf) ) exitWith{};
 
 {
-	private "_filter";
-	if ( _forEachIndex == 0 ) then _filter = "backpack";
-	if ( _forEachIndex == 1 ) then _filter = "item";
-	if ( _forEachIndex == 2 ) then _filter = "weapon";
-	if ( _forEachIndex == 3 ) then _filter = "ammo";
-	[_x, format["%1_%2", ((GV select A) select 0), (((GV select A) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
+	private _filter = _forEachIndex call {
+		if ( _this isEqualTo 0 ) exitWith { "backpack" };
+		if ( _this isEqualTo 1 ) exitWith { "item" };
+		if ( _this isEqualTo 2 ) exitWith { "weapon" };
+		"ammo"
+	};
+	[_x, format["%1_%2", ((GV select A_k) select 0), (((GV select A_k) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
 } forEach (_this);

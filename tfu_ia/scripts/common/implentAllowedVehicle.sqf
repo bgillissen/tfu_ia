@@ -10,5 +10,5 @@ Description:
 */
 
 {
-	[_x, format["%1_%2", ((GV select AV) select 0), (((GV select AV) select 1) select _forEachIndex)], "vehicle"] call common_fnc_implent;
+	[_x, format["%1_%2", ((GV select AV_k) select 0), (((GV select AV_k) select 1) select _forEachIndex)], "vehicle"] call common_fnc_implent;
 } forEach (_this);

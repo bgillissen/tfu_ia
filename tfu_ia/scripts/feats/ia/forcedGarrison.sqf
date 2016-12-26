@@ -3,6 +3,8 @@ params ["_buidling", "_skill"];
 
 if (!(typeOf _building in GARRISON_buildings)) exitWith {[]};
 
+#include "forcedGarrison.hpp"
+
 private _positions = (GARRISON_buildings select ((GARRISON_buildings find (typeOf _building)) + 1));
 
 private _group = createGroup ENEMY_SIDE;

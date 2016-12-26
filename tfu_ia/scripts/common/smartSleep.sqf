@@ -15,6 +15,6 @@ private _code = compile _condition;
 
 waitUntil {
 	sleep _checkDelay;
-	if ( call _code ) ewitWith {};
-	(time > _end)
+	if ( call _code ) exitWith {};
+	(time > _end);
 };

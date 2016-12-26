@@ -11,7 +11,7 @@ params ["_index", "_loadOut"];
 _loadOut params["_uniform", "_vest", "_backpack", "_pw", "_sw", "_hw", "_helmet", "_face", "_comm", "_term", "_map", "_bino", "_nv", "_watch"];
 _loadOut = nil;
 
-private _vname = format["%1_%2", ((PV select RL) select 0), (((PV select RL) select 1) select _index)];
+private _vname = format["%1_%2", ((PV select RL_k) select 0), (((PV select RL_k) select 1) select _index)];
 private _current = missionNamespace getVariable _vname;
 
 private _key = 0;

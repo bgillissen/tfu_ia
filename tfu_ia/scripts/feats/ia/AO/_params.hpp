@@ -5,7 +5,7 @@ class AO {
 	default = 1;
 };
 
-class AO_cas 
+class AO_cas {
 	title = "Main AO CAS";
 	values[] = {1,0};
 	texts[] = {"Enabled","Disabled"};
@@ -43,35 +43,35 @@ class AO_groupPatrol {
 class AO_sniperPatrol {
 	title = "Sniper Teams Patrolling Main AO";
 	values[] = {0,1,2,3,4};
-	texts[] = {"Disabled,1,2,3,4};
+	texts[] = {"Disabled", 1, 2, 3, 4};
 	default = 3;
 };
 
 class AO_aaPatrol {
 	title = "AA Vehicles Patrolling Main AO";
 	values[] = {0,1,2,3,4,5};
-	texts[] = {"Disabled", 1,2,3,4,5};
+	texts[] = {"Disabled", 1, 2, 3, 4, 5};
 	default = 2;
 };
 
 class AO_tankPatrol {
 	title = "Tank Patrolling Main AO";
 	values[] = {0,1,2,3};
-	texts[] = {"Disabled,1,2,3};
+	texts[] = {"Disabled", 1, 2, 3};
 	default = 2;
 };
 
 class AO_apcPatrol {
 	title = "APC Patrolling Main AO";
 	values[] = {0,1,2,3};
-	texts[] = {"Disabled,1,2,3};
+	texts[] = {"Disabled", 1, 2, 3};
 	default = 2;
 };
 
 class AO_carPatrol {
 	title = "Car Patrolling Main AO";
 	values[] = {0,1,2,3};
-	texts[] = {"Disabled,1,2,3};
+	texts[] = {"Disabled", 1, 2, 3};
 	default = 2;
 };
 

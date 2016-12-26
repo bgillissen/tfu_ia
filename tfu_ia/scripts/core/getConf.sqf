@@ -10,6 +10,6 @@ Description:
 params ["_conf"];
 
 private _value = missionNamespace getVariable _conf;
-if ( !isNil "_value" ) then exitWith{ _value };
+if ( !isNil "_value" ) exitWith { _value };
 
 _conf call BIS_fnc_getParamValue

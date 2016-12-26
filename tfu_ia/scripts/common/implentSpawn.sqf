@@ -10,23 +10,13 @@ Description:
 */
 
 params ["_index", "_toAdd"];
-/*
-{
-	private "_filter";
-	if ( _forEachIndex == 0 ) then _filter = "object";
-	if ( _forEachIndex >= 1 && _forEachIndex < 3 ) then _filter = "group";
-	if ( _forEachIndex >= 3 && _forEachIndex < 7  ) then _filter = "unit";
-	if ( _forEachIndex >= 7 ) then _filter = "vehicle";
-	[_x, format["%1_%2", ((GV select S) select 0), (((GV select S) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
-} forEach (_this);
-*/
 
-
-private "_filter";
-if ( _index == 0 ) then _filter = "object";
-if ( _index >= 1 && _index < 3 ) then _filter = "group";
-if ( _index >= 3 && _index < 7  ) then _filter = "unit";
-if ( _index >= 7 ) then _filter = "vehicle";
+private _filter = _index call {
+	if ( _this isEqualTo 0 ) exitWith { "object" };
+	if ( _this >= 1 && _this < 3 ) exitWith { "group" };
+	if ( _this >= 3 && _this < 7 ) exitWith { "unit" };
+	"vehicle"
+};
 {
-	[_x, format["%1_%2", ((PV select S) select 0), (((PV select S) select 1) select _index)], _filter] call common_fnc_implent;
+	[_x, format["%1_%2", ((PV select S_k) select 0), (((PV select S_k) select 1) select _index)], _filter] call common_fnc_implent;
 } count (_toAdd);

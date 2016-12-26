@@ -43,62 +43,21 @@ wreckRemovalMinTime = 1800;
 wreckRemovalMaxTime = 3600;
 minPlayerDistance = 1500;
 
-//------------------------- Parameters
+//------------------------- Mission parameters
 class Params {
 	#include "feats\_params.hpp"
 };
 
-//------------------------- Includes
+//------------------------- Mission configs
 #include "_settings.hpp"
-#include "core\debug.hpp"
+
+//------------------------- Features includes (ui)
+#include "common\ui.hpp"
 #include "feats\_include.hpp"
 
-//------------------------- RscTitles
-class RscTitles {
-	#include "feats\vehicleCrew\_rscTitles.hpp"
-};
-	
 //------------------------- Functions
 class CfgFunctions {
 	#include "core\_cfgFunctions.hpp"
 	#include "common\_cfgFunctions.hpp"
 	#include "feats\_cfgFunctions.hpp"
-	
-};
-
-//------------------------- Whitelisted Remote Functions
-class CfgRemoteExec
-{
-      class Functions
-      { 	//mode 0:disabled, 1:whitelisted, 2:all
-              mode = 1;
-              jip = 1;
-              #include "feats\_cfgRemoteExec.cfg"
-              
-      };        
-      class Commands
-      {
-      		mode = 1;
-      		jip = 1;            
-      };
-};
-
-//------------------------- Notifications
-class CfgNotifications {
-	class Default {
-		title = "";
-		iconPicture = "";
-		iconText = "";
-		description = "";
-		color[] = {1,1,1,1};
-		duration = 5;
-		priority = 0;
-		difficulty[] = {};
-	};
-	#include "feats\_cfgNotifications.hpp"
-};
-
-//------------------------- Compositions
-class CfgCompositions {
-	#include "feats\maps\_cfgCompositions.hpp"
 };

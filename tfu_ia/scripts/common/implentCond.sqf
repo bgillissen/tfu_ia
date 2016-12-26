@@ -9,16 +9,16 @@ Description:
 
 params ["_conf", "_side", "_modRule", "_mapRule"];
 
-if ( _conf typeName == "BOOL" ) then exitWith{ _conf };
+if ( _conf isEqualType true ) exitWith{ _conf };
 
-if ( _conf == 0 ) then exitWith{ false };
+if ( _conf isEqualTo 0 ) exitWith{ false };
 
-if ( _conf == 1 ) then exitWith{ true };
+if ( _conf isEqualTo 1 ) exitWith{ true };
 
-if ( PLAYER_SIDE getFriend _side >= 0.6 ) then exitWith{ false };
+if ( PLAYER_SIDE getFriend _side >= 0.6 ) exitWith{ false };
 
-if ( _modRule select 0 != _modRule select 1 ) then exitWith{ false };
+if ( _modRule select 0 != _modRule select 1 ) exitWith{ false };
 
-if ( _conf < 3 ) then exitWith{ true }; 
+if ( _conf < 3 ) exitWith{ true }; 
 
-( _mapRule select 0 == (worldName == _mapRule select 1) )
+( _mapRule select 0 isEqualTo (worldName isEqualTo _mapRule select 1) )

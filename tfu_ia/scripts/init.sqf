@@ -7,8 +7,13 @@ Description:
 	call init functions depending on the context
 */
 
-if ( isServer ) then call core_fnc_initServer;
+//!!! you MUST comment ONLY the following line to disable debug
+#define DEBUG
 
-if ( !isServer && !hasInterface ) then call core_fnc_initHeadless;
+#include "core\debug.hpp"
 
-if ( !isServer && hasInterface ) then call core_fnc_initPlayer;
+if ( isServer ) then { call core_fnc_initServer; };
+
+if ( !isServer && !hasInterface ) then { call core_fnc_initHeadless; };
+
+if ( hasInterface ) then { call core_fnc_initPlayer; };

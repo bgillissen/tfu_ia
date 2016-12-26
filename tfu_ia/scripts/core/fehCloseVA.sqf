@@ -7,7 +7,7 @@ Description:
 	to trigger features binded to onCloseVA event
 */
 
-if ( !(_this getVariable "VAopen") && !(isNull (uiNamespace getVariable [ "BIS_fnc_arsenal_cam", objNull])) ) then { 
+if ( !( isNil {_this getVariable "VAopen"}) && {!(isNull (uiNamespace getVariable [ "BIS_fnc_arsenal_cam", objNull]))} ) then { 
 	_this setVariable ["VAopen", true];
     private _thread = _this spawn { 
     	waitUntil { isNull ( uiNamespace getVariable [ "BIS_fnc_arsenal_cam", objNull ] )  };

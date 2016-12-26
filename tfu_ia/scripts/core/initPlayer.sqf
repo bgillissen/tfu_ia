@@ -7,27 +7,24 @@ Description:
 	it init the player side features
 */
 
-#ifndef INIT
-#define INIT true
-#define CTXT_SERVER false
-#define CTXT_HEADLESS false
-#define CTXT_PLAYER true
-#define CTXT "PLAYER"
-#endif
+CTXT_SERVER = false;
+CTXT_HEADLESS = false;
+CTXT_PLAYER = true;
+CTXT = "PLAYER";
 
 waitUntil {!isNull player};
-waitUntil {player isEqualto player};
+waitUntil {player isEqualTo player};
 
 //features playerPreInit
-[CTXT, "preInit"] call core_fnc_featEvents;
+[CTXT, "preInit"] call core_fnc_featEvent;
 
 //features playerInit
-[CTXT, "init"] call core_fnc_featEvents;
+[CTXT, "init"] call core_fnc_featEvent;
 
 //register feature's onCloseVA
 if ( isNil "FEH_closeVA") then {
 	player setVariable ["VAopen", false];
-	FEH_closeVA =  ["FEH_closeVA", "onEachFrame", {[CTXT, "closeVA", _this] call core_fnc_fehCloseVA}, player] call BIS_fnc_addStackedEventHandler];  
+	FEH_closeVA = ["FEH_closeVA", "onEachFrame", {_this call core_fnc_fehCloseVA;}, player] call BIS_fnc_addStackedEventHandler;  
 };
 
 //bind player's GetInMan event to feature's onGetIn

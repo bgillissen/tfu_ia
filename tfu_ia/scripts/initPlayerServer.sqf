@@ -7,6 +7,8 @@ Description:
 	launch or spawn scripts required by features
 */
 
-param ["_player"];
+params ["_player"];
 
-[CTXT, "onJoin", [_player]] call common_fnc_featInit;
+#include "core\debug.hpp"
+
+//[CTXT, "onJoin", [_player]] call common_fnc_featInit;

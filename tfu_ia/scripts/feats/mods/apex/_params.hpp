@@ -55,9 +55,3 @@ class Reward_ao {
 	texts[] = {"no", "yes", "yes, if no RHS AFRF", "yes, if no RHS AFRF and map is Tanoa"};
 	default = 3;
 };
-class Reward_ab {
-	title = "Apex BLUFOR rewards";
-	values[] = {0,1,2,3};
-	texts[] = {"no", "yes", "yes, if no RHS USAF", "yes, if no RHS USAF and map is Tanoa"};
-	default = 3;
-};

@@ -6,8 +6,8 @@ Description:
 		included by feats\_params.hpp
 		include individual mods parameters
 */
-#include "feats\mods\apex\_params.hpp"
-#include "feats\mods\rhsAFRF\_params.hpp"
-#include "feats\mods\rhsGREF\_params.hpp"
-#include "feats\mods\rhsUSAF\_params.hpp"
-#include "feats\mods\vanilla\_params.hpp"
+#include "apex\_params.hpp"
+#include "rhsAFRF\_params.hpp"
+#include "rhsGREF\_params.hpp"
+#include "rhsUSAF\_params.hpp"
+#include "vanilla\_params.hpp"

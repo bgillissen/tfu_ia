@@ -9,5 +9,5 @@ Description:
 params ["_index", "_toAdd"];
 
 {
-	[_x, format["%1_%2", ((PV select BV) select 0), (((PV select BV) select 1) select _index)], "vehicle"] call common_fnc_implent;
+	[_x, format["%1_%2", ((PV select BV_k) select 0), (((PV select BV_k) select 1) select _index)], "vehicle"] call common_fnc_implent;
 } count (_toAdd);

@@ -26,4 +26,4 @@ class common {
 	};
 };
 
-#include "common\LARS\_cfgFunctions.cfg"
+#include "LARS\_cfgFunctions.hpp"

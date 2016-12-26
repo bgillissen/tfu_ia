@@ -1,7 +1,7 @@
 class supportCrate {
 	tag = "supportCrate";
 	class functions {
-		class condition { file="feats\supportCrate\condition.sqf" };
-		class spawn { file="feats\supportCrate\spawn.sqf" };
+		class condition { file="condition.sqf" };
+		class spawn { file="spawn.sqf" };
 	};
 };

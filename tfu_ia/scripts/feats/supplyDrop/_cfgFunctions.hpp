@@ -1,7 +1,7 @@
 class supplyDrop {
 	tag = "supplyDrop";
 	class functions {
-		class condition { file="feats\supplyDrop\condition.sqf" };
-		class drop { file="feats\supplyDrop\drop.sqf" };
+		class condition { file="condition.sqf" };
+		class drop { file="drop.sqf" };
 	};
 };

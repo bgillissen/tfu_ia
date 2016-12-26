@@ -9,12 +9,13 @@ Description:
 	launcher, mg, sRifle, mRfile, sScope, mScope, oScope  
 */
 
-if ( !(["restrictGear"] call core_fnc_getConf) ) ewitWith {};
+if ( !(["restrictGear"] call core_fnc_getConf) ) exitWith {};
 
 {
-	private _filter;
-	if ( _forEachIndex < 4 ) then _filter = "weapon";
-	if ( _forEachIndex >= 4 && _forEachIndex < 7) then _filter = "item";
-	if ( _forEachIndex >= 7 ) then _filter = "backpack";
-	[_x, format["%1_%2", ((GV select RG) select 0), (((GV select RG) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
+	private _filter = _forEachIndex call {
+		if ( _this < 4 ) exitWith { "weapon" };
+		if ( _this >= 4 && _this < 7 ) exitWith { "item" };
+		"backpack"
+	};
+	[_x, format["%1_%2", ((GV select RG_k) select 0), (((GV select RG_k) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
 } forEach (_this);
