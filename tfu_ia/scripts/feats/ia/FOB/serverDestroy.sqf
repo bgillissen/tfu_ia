@@ -15,10 +15,11 @@ if ( !(["FOB"] call core_fnc_getConf) ) ewitWith{};
 
 FOB_stop = true;
 
-private _start = time;
-
-waitUntil {
-	((time > (_start + 20)) || scriptDone FOB_main)
+if ( !(isNil "FOB_main") ) then {
+	private _limit = time + 20;
+	waitUntil {
+		( (time > _limit) || (scriptDone FOB_main) )
+	};
 };
 
 terminate _thread;

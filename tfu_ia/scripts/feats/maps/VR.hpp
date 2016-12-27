@@ -11,6 +11,7 @@ Description:
 #define MAP_FOLDER "VR"
 //#define MAP_KEYWORDS []
 #define TOT_CURATOR 4
+#define MAP_URBAN 4
 
 //------------------------------------------------------------ AO
 
@@ -24,7 +25,7 @@ Description:
 
 //------------------------------------------------------------ FOB
 
-#define FOBS [["fob_1", "fob_2", "fob_3", "fob_4"],\	//zoneA
+#define FOBS [["fob_1", "fob_2", "fob_3", "fob_4"],\//zoneA
               ["fob_5", "fob_6", "fob_7"],\			//zoneB
               []]									//zoneC
 

@@ -9,42 +9,53 @@ Description:
 
 if ( !(["FOB"] call core_fnc_getConf) ) ewitWith{};
 
-private ["_markers", "_types", "_marker"];
-
-FOB_isOn = false;
 FOB_stop = false;
-FOB_success = false;
-FOB_failed = false;
+FOB_deployed = [];
+FOB_main = nil;
 
-_markers = [];
-_types = [];
+private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _cooldown = ["ia", "fob", "cooldown"] call BIS_fnc_GetCfgData;
+private _markers = [];
+private _types = [];
 
 while( true ) do {
 	
 	[false, "FOB_stop"] call zeusMission_fnc_checkAndWait;
-	if ( FOB_stop ) ewitWith{};
+	if ( FOB_stop ) exitWith {};
 	waitUntil {
-		sleep IA_checkDelay;
+		sleep _checkDelay;
 		( !(isNil AO_zone) && (count FOB_markers select AO_zone) != 0 ) && AO_isOn)
 	};
-	if ( FOB_stop ) ewitWith{};
-	sleep FOB_cooldown;
-	if ( FOB_stop ) ewitWith{};
-	if ( count _markers == 0 ) then _markers = FOB_markers select AO_zone;
-	if ( count _types == 0 ) then _types = FOB_pool;
-	
-	_marker =  selectRandom _markers;
-	_markers = _markers - [_marker];
-	
-	_type = selectRandom _types;
-	_types = _types -[_type];
-	
-	FOB_main = spawn { [_marker, _type, AO_zone] call FOB_fnc_thread; };
-	FOB_isOn = true;
-	FOB_failed = false;
-	waitUntil {
-		sleep IA_checkDelay;
-		scriptDone FOB_main
+	if ( FOB_stop ) exitWith {};
+	sleep _cooldown;
+	if ( FOB_stop ) exitWith {};
+	if ( count _markers == 0 ) then {
+		_markers = FOB_markers select AO_zone;
 	};
-	FOB_isOn = false;
+	if ( count _types == 0 ) then {
+		_types = ["ia", "fob", "pool"] call BIS_fnc_GetCfgData;;
+	};
+	if ( _count _markers > 0 ) then {
+		
+		if ( isNil (FOB_deployed select AO_zone) ) then {
+			FOB_deployed set [AO_zone, []];
+		};
+		private _pool = [];
+		{
+			if ( !(_x in (FOB_deployed select AO_zone)) ) then { _pool append [_x]; };
+		} count _markers;
+	
+		if ( count _pool > 0 ) then {
+			private _marker =  selectRandom _pool;
+			_markers = _markers - [_marker];
+	
+			private _type = selectRandom _types;
+			_types = _types -[_type];
+			FOB_main = spawn { [_marker, _type, AO_zone] call FOB_fnc_thread; };
+			waitUntil {
+				sleep _checkDelay;
+				scriptDone FOB_main
+			};
+		};
+	};
 };

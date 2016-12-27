@@ -10,52 +10,90 @@ Description:
 	a crate to "activate" on a predefined marker in a urban area. 
 */
 
-private _aoCoord = getMarkerPos AO_circle;
-private _coord = [0,0,0];
-private _accepted = false;
+if ( MAP_URBAN isEqualTo 0 ) exitWith {};
 
 if ( isNil "URBAN_markers" ) then {
 	URBAN_markers = [];
-	for "_x" from 1 to MAP_urban do { URBAN_markers append [format["Urban_%1", _x]]; };
+	for "_x" from 1 to MAP_URBAN do { 
+		URBAN_markers append [format["Urban_%1", _x]]; 
+	};
 };
 
-if ( isNil "URBAN_pool" ) then URBAN_pool = URBAN_markers;
-if ( (count URBAN_pool) == 0 ) then URBAN_pool = URBAN_markers;
+if ( isNil "URBAN_pool" ) then {
+	URBAN_pool = URBAN_markers;
+};
+if ( (count URBAN_pool) == 0 ) then {
+	URBAN_pool = URBAN_markers;
+};
 
-{
-	_coord = getMarkerPos _x;
-	if ((_coord distance (getMarkerPos "SZ")) > SIDE_minDistFromBase ) then {
-		if ( _coord distance _aoCoord) > SIDE_minDistFromAO ) exitWith {
-			URBAN_pool = URBAN_pool - [_x];
+private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
+private _baseCoord = getMarkerPos "SZ";
+private _accepted = false;
+
+private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
+while (!_accepted) do {
+	{
+		_coord = getMarkerPos _x;
+		if ( (_coord distance _baseCoord) > _minDistFromBase ) then {
+			if ( (_coord distance _aoCoord) > _minDistFromAO ) exitWith {
+				_accepted = true;
+				URBAN_pool = URBAN_pool - [_x];
+			};
 		};
-	};
-} count(URBAN_pool);
+	} count URBAN_pool;
+};
+_aoCoord = nil;
+_szCoord = nil;
+_accepted = nil;
+_minDistFromBase = nil;
+_minDistFromAO = nil;
 
 //objective crate
 private _crate = (selectRandom S_crates) createVehicle _coord;
 _crate allowDamage false;
-[_crate, SIDE_urbanAction] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
+private _action = ["ia", "side", "hqCoast", "action"] call BIS_fnc_GetCfgData;
+[_crate, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
+_action= nil;
 
-//spawn units ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_tank", "_apc", "_car", "_air", "_patrolSize"];
+//spawn units
 private _groups = [_coord, 15, 20, 2, 20, 0, 0, 0, 0, 2, 0, (100 + random 200)] call SIDE_fnc_placeEnemies;
 
 //briefing
-[_coord, SIDE_urbanTitle, SIDE_size] call SIDE_fnc_placeMarkers;
-[format[SIDE_briefing, SIDE_urbanTitle, SIDE_urbanBriefing] remoteExec ["common_fnc_globalHint", 0, false];
-["NewSideMission", SIDE_urbanTitle] remoteExec ["common_fnc_globalNotification" ,0 , false];
+private _title = ["ia", "side", "urban", "title"] call BIS_fnc_GetCfgData;
+private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
+[_coord, _title, _size] call SIDE_fnc_placeMarkers;
 
-while ( true ){
+private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
+private _desc = ["ia", "side", "hqCoast", "briefing"] call BIS_fnc_GetCfgData;
+[format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
+["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+_title = nil;
+_size = nil;
+_briefing = nil;
+_desc = nil;
+
+private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+
+while ( true ) do {
 	if ( SIDE_success ) exitWith {
-		[format[SIDE_urbanPlanted, SIDE_boomDelay]] remoteExec ["common_fnc_globalSideChat", 0, false];
-		sleep SIDE_boomDelay;
-		[getPos _crate, false] spawn SIDE_fnc_boom.sqf
+		private _planted = ["ia", "side", "urban", "planted"] call BIS_fnc_GetCfgData;
+		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
+		[format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
+		_planted = nil;
+		sleep _delay;
+		_delay = nil;
+		[getPos _crate, false] spawn SIDE_fnc_boom;
 		deleteVehicle _crate;
 		private _reward = call common_fnc_giveReward;
-		[format[SIDE_successHint, _reward] remoteExec ["common_fnc_globalHint", 0, false];
+		private _hint = ["ia", "side", "successHint"] call BIS_fnc_GetCfgData;
+		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
+		_hint = nil;
+		_reward = nil;
 		[false, _coord, _groups, []] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
 		[true, _coord, _groups, []] spawn SIDE_fnc_cleanup;
 	};
-	sleep IA_checkDelay;
+	sleep _checkDelay;
 };

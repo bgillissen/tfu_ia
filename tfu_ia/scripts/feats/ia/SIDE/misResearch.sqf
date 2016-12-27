@@ -10,11 +10,14 @@ Description:
 	a Research bunker with a laptop to "activate" inside. 
 */
 
-private _aoCoord = getMarkerPos AO_circle;
-private _szCoord = getMarkerPos "SZ";
-private _hqType = "Land_Research_HQ_F";
+private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
+private _baseCoord = getMarkerPos "SZ";
+private _hqType = ["ia", "side", "research", "hqType"] call BIS_fnc_GetCfgData;
 private _flatPos = [0,0,0];
 private _accepted = false;
+
+private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
 
 //find a flat position, near coast
 while {!_accepted} do {
@@ -24,56 +27,88 @@ while {!_accepted} do {
 		_position = [] call BIS_fnc_randomPos;
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _hqType, 0, false];
 	};
-	if ((_flatPos distance _szCoord) > SIDE_minDistFromBase ) then {
-		if ( _flatPos distance _aoCoord) > SIDE_minDistFromAO ) then _accepted = true;
+	if ( (_flatPos distance _baseCoord) > _minDistFromBase ) then {
+		if ( (_flatPos distance _aoCoord) > _minDistFromAO ) then {
+			_accepted = true;
+		};
 	};
 };
 _aoCoord = nil;
 _szCoord = nil;
 _accepted = nil;
+_minDistFromBase = nil;
+_minDistFromAO = nil;
 
 //objective building
 private _hq = _hqType createVehicle _flatPos;
-waitUntil {alive _hq};
 _hq setDir (random 360);
 _hq setVectorUp [0,0,1];
+_hqType = nil;
 
 (getPos _hq) params["_hqX", "_hqY", "_hqZ"];
 
 //objective table, laptop
-private _table = SIDE_table createVehicle [_hqX, _hqY, (_hqZ+1)];
+private _tableType = ["ia", "side", "table"] call BIS_fnc_GetCfgData;
+private _table = _tableType createVehicle [_hqX, _hqY, (_hqZ+1)];
 _table enableSimulation true;
-private _laptop = SIDE_laptop createVehicle [_hqX, _hqY, (_hqZ+5)];
+_tableType = nil;
+
+private _laptopType = ["ia", "side", "laptop"] call BIS_fnc_GetCfgData;
+private _laptop = _laptopType createVehicle [_hqX, _hqY, (_hqZ+5)];
+_laptopType = nil;
+
 [_table, _laptop, [0,0,0.83]] call BIS_fnc_relPosObject;
 _laptop enableSimulation true;
-[_laptop, SIDE_researchAction] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
 
-//spawn units ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_tank", "_apc", "_car", "_air", "_patrolSize"];
-private _groups = [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (SIDE_size + (random 150))] call SIDE_fnc_placeEnemies;
-_groups append ([_hq, SIDE_garrisonSkill] call IA_fnc_forcedGarrison);
+private _action = ["ia", "side", "research", "action"] call BIS_fnc_GetCfgData;
+[_laptop, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
+_action = nil;
+
+//spawn units
+private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
+private _skill = ["ia", "side", "garrisonSize"] call BIS_fnc_GetCfgData;
+private _groups = [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
+_groups append ([_hq, _skill] call IA_fnc_forcedGarrison);
+_skill = nil;
+
 
 //briefing
-[_flatPos, SIDE_researchTitle, SIDE_size] call SIDE_fnc_placeMarkers;
-[format[SIDE_briefing, SIDE_researchTitle, SIDE_researchBriefing] remoteExec ["common_fnc_globalHint", 0, false];
-["NewSideMission", SIDE_researchTitle] remoteExec ["common_fnc_globalNotification" ,0 , false];
+private _title = ["ia", "side", "research", "title"] call BIS_fnc_GetCfgData; 
+[_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
 
-while ( true ){
+private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
+private _desc = ["ia", "side", "research", "briefing"] call BIS_fnc_GetCfgData;
+[format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
+["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+_title = nil;
+_size = nil;
+_briefing = nil;
+_desc = nil;
+
+private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+
+while ( true ) do {
 	if (!alive _hq) exitWith {
-		[SIDE_failHint] remoteExec ["common_fnc_globalHint", 0, false];
+		private _fail = ["ia", "side", "failHint"] call BIS_fnc_GetCfgData;
+		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _flatPos, _groups, [_laptop, _table, _hq]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
-		[format[SIDE_researchPlanted, SIDE_boomDelay]] remoteExec ["common_fnc_globalSideChat", 0, false];
-		sleep SIDE_boomDelay;
-		[[_hqX, _hqY, (_hqZ+2)], false] spawn SIDE_fnc_boom.sqf
+		private _planted = ["ia", "side", "research", "planted"] call BIS_fnc_GetCfgData;
+		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
+		[format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
+		_planted = nil;
+		sleep _delay;
+		[[_hqX, _hqY, (_hqZ+2)], false] spawn SIDE_fnc_boom;
 		deleteVehicle _laptop;
 		deleteVehicle _table;
 		private _reward = call common_fnc_giveReward;
-		[format[SIDE_successHint, _reward] remoteExec ["common_fnc_globalHint", 0, false];
+		private _hint = ["ia", "side", "successHint"] call BIS_fnc_GetCfgData;
+		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _flatPos, _groups, [_hq]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
 		[true, _flatPos, _groups, [_laptop, _table, _hq]] spawn SIDE_fnc_cleanup;
 	};
-	sleep IA_checkDelay;
+	sleep _checkDelay;
 };

@@ -43,9 +43,10 @@ BA_veh = [];
 				};
 			};
 		};
-	} else {
 #ifdef DEBUG
-		conRed(format["baseAtmosphere: missing composition thing in '%1', '%2' is not defined!", BASE_COMP, _name]);
+	} else {
+		private _debug = format["baseAtmosphere: missing composition thing in '%1', '%2' is not defined!", BASE_COMP, _name]; 
+		conRed(_debug);
 #endif
 	};
 } count BA;

@@ -11,8 +11,8 @@ Description:
 
 params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
 
-deleteMarker ["ia", "ao", "circle"] call BIS_fnc_GetCfgData;
-deleteMarker ["ia", "ao", "label"] call BIS_fnc_GetCfgData;
+deleteMarker (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
+deleteMarker (["ia", "ao", "label"] call BIS_fnc_GetCfgData);
 
 if ( !_force ) then {
 	private _delay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;

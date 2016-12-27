@@ -11,7 +11,7 @@ params ["_coord", "_secondary"];
 "Bo_GBU12_LGB" createVehicle _coord;
 sleep 0.1;
 
-if (_secondary ) exitWith {};
+if ( !_secondary ) exitWith {};
 
 for "_i" from 1 to 5 do {
 	sleep 1 + (random 3);

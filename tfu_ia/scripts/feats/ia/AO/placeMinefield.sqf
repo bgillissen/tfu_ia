@@ -13,11 +13,14 @@ params ["_rtCoord"];
 
 AO_minefield = [];
 
-private _mines = ["ia", "ao", "radioTower", "mineTypes"] call BIS_fnc_GetCfgData
-for "_x" from 1 to (["ia", "ao", "radioTower", "mines"] call BIS_fnc_GetCfgData) do {
+private _mines = ["ia", "ao", "radioTower", "mineTypes"] call BIS_fnc_GetCfgData;
+private _amount = ["ia", "ao", "radioTower", "mines"] call BIS_fnc_GetCfgData;
+for "_x" from 1 to _amount do {
 	private _mine = createMine [(selectRandom _mines), _rtCoord, [], 38];
     AO_minefield append [_mine];
 };
+_mines = nil;
+_amount = nil;
 
 private _dist = 40;
 private _dir = 180;

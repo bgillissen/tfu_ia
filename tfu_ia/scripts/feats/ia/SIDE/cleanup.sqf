@@ -1,17 +1,33 @@
+/*
+@filename: feats\ia\SIDE\cleanup.sqf
+Credit:
+	Quiksilver
+Author:
+	Ben
+Description:
+	this script is executed on server side,
+	it remove the objects spawned for a SIDE mission, if no players are near; can be force 
+*/
 
 params ["_force", "_coord", "_groups", "_objects"];
 
-deleteMarker SIDE_label;
-deleteMarker SIDE_circle;
+deleteMarker (["ia", "side", "circle"] call BIS_fnc_GetCfgData);
+deleteMarker (["ia", "side", "label"] call BIS_fnc_GetCfgData);
 
 if ( !_force ) then {
+	private _delay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+	private _dist = ["ia", "deleteDistance"] call BIS_fnc_GetCfgData;
 	waitUntil {
-		sleep IA_checkDelay;
-		({((_x distance _coord) < IA_deleteDistance)} count allPlayers) isEqualTo 0)
+		sleep _delay;
+		( ({((_x distance _coord) < _dist)} count allPlayers) isEqualTo 0 )
 	};
+	_delay = nil;
+	_dist = nil;
 };
 
 [_groups] call common_fnc_deleteObjects;
+[_objects] call common_fnc_deleteObjects;
+
 {
-	if ((count units _x) == 0) then deleteGroup _x;
+	if ((count units _x) == 0) then { deleteGroup _x; };
 } count allGroups;
