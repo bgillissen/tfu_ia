@@ -5,9 +5,24 @@ Credit:
 Author:
 	Ben
 Description:
-	this run on server,
-	search for a target player in range and not in safe zone,
-	and send some salve to him :D 
+	run on server,
+	used by priority side mission when arti type has been picked
+	it search for a player in range and not in a safe zone,
+	and send him some salve :D 
+Params:
+	_batteries	ARRAY of objects, list of arti tanks
+	_szCoords	ARRAY of ARRAY of SCALAR, [x,y,z] coordonates of the safe zones
+Environment:
+	missionParams:
+		ArtilleryTargetTickWarning
+	missionConfig:
+		ia >> checkDelay
+		ia >> side >> priority >> arti >> firingMsg
+		ia >> side >> priority >> arti >> salve
+		ia >> side >> priority >> arti >> salveDelay
+		ia >> side >> priority >> arti >> radius
+Return:
+	nothing
 */
 
 params ["_batteries", "_szCoords"];

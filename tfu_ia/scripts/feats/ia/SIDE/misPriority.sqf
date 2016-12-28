@@ -5,21 +5,50 @@ Credit:
 Author:
 	Ben
 Description:
-	this run on server,
-	it create a new side mission, 
-	either Arti or AA tank position, not to far from AO 
+	run on server,
+	spawn by feats\ia\SIDE\serverPostInitTheard.sqf,
+	fortified and protected Arti or AA batteries
+Params:
+	none
+Environment:
+	missionNamespace:
+		SIDE_stop
+		zeusMission
+	missionConfig:
+		ia >> oa >> circle
+		ia >> side >> minDistFromBase
+		ia >> side >> priority >> minDistFromAO
+		ia >> side >> priority >> maxDistFromAO
+		ia >> side >> priority >> artiProb
+		ia >> side >> priority >> infiniteAmmo
+		ia >> side >> priority >> extraHealth
+		ia >> side >> priority >> HBarrier
+		ia >> side >> priority >> arti >> title
+		ia >> side >> priority >> aa >> title
+		ia >> side >> size
+		ia >> side >> priority >> briefing
+		ia >> side >> priority >> arti >> briefing
+		ia >> side >> priority >> aa >> briefing
+		ia >> checkDelay
+		ia >> side >> priority >> success
+		ia >> side >> priority >> arti >> notification
+		ia >> side >> priority >> aa >> notification
+	missionParameters:
+		ArtilleryTargetTickTimeMax
+		ArtilleryTargetTickTimeMin
+Return:
+	nothing
 */
 
 private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
-private _accepted = false;
 
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
-private _minDistFromAO = ["ia", "side", "priority", "minDistFromAO"] call BIS_fnc_GetCfgData;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
 private _maxDistFromAO = ["ia", "side", "priority", "maxDistFromAO"] call BIS_fnc_GetCfgData;
-//find a flat position, not too far from AO
-while {!_accepted} do {
+//find a flat position, not too close from base, and not too far, not too close from the active AO (if one)
+while { true } do {
 	_position = [[[_baseCoord, 2000]], ["water","out"]] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [5, 0, 0.2, 5, 0, false];
 	while {(count _flatPos) < 2} do {
@@ -27,16 +56,14 @@ while {!_accepted} do {
 		_flatPos = _position isFlatEmpty [5, 0, 0.2, 5, 0, false];
 	};
 	if ((_flatPos distance _baseCoord) > _mindistFromBase) then {
-		if ((_flatPos distance _aoCoord) < _maxDistFromAO) then {
-			if ((_flatPos distance _aoCoord) > _minDistFromAO) then {
-				_accepted = true;
-			};
+		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {}; //TODO to test
+		if ((_flatPos distance _aoCoord) <= _maxDistFromAO) then {
+			if ((_flatPos distance _aoCoord) >= _minDistFromAO) exitWith {};
 		};
 	};
 };
 _aoCoord = nil;
-_szCoord = nil;
-_accepted = nil;
+_baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 _maxDistFromAO = nil;
@@ -50,9 +77,7 @@ private _truckCoord = [_cX + 20, _cY + random 20, _cZ];
 //arti or AA ?
 private _isArti  = [true, false] select (random 100 <= (["ia", "side", "priority", "artiProb"] call BIS_fnc_GetCfgData));
 
-
-
-//spawn objective
+//spawn objective vehicles
 private _pool = [S_aaTank, S_arti] select (isArti);
 private _tank1 = (selectRandom _pool) createVehicle (_tankCoords select 0);
 _tank1 setDir _tankDir;
@@ -112,34 +137,43 @@ if ( _stronger ) then {
 //H-barrier ring
 private _distance = 16;
 private _dir = 0;
+private _protect = ["ia", "side", "priority", "HBarrier"] call BIS_fnc_GetCfgData;
 for "_c" from 0 to 7 do {
 	private _pos = [_flatPos, _distance, _dir] call BIS_fnc_relPos;
-	private _barrier = SIDE_priorityHBarrier createVehicle _pos;
+	private _barrier = _protect createVehicle _pos;
 	_barrier setDir _dir;
 	_dir = _dir + 45;
 	_barrier allowDamage false; 
 	_barrier enableSimulation false;
-		
 	_groups append [_barrier];
 	_barrier = nil;
 };
+_distance = nil;
+_dir = nil;
+_protect = nil;
 
 //spawn units
 private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
 _groups append [_flatPos, 0, 4, 2, 0, 0, ([0,2] select (_isArti)), 2, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
 
-//briefing
-private _cfg  = ["aa", "arti"] select (isArti);
+//markers
+private _cfg  = ["aa", "arti"] select (_isArti);
 private _title = ["ia", "side", "priority", _cfg, "title"] call BIS_fnc_GetCfgData;
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
+_size = nil;
 
+//briefing
 private _briefing = ["ia", "side", "priority", "briefing"] call BIS_fnc_GetCfgData;
 private _desc = ["ia", "side", "priority", _cfg, "briefing"] call BIS_fnc_GetCfgData;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
 ["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+_cfg = nil;
+_title = nil;
+_briefing = nil;
+_desc = nil;
 
 private ["_frCoord", "_tickMax", "_tickMin"];
-if ( isArti ) then {
+if ( _isArti ) then {
 	_frCoord = getMarkerPos "FR";
 	_tickMax = ["ArtilleryTargetTickTimeMax"] call core_fnc_getConf;
 	_tickMin = ["ArtilleryTargetTickTimeMin"] call core_fnc_getConf;
@@ -172,7 +206,7 @@ while ( true ) do {
 		[true, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _isArti ) then {
-		[[_tank1, _tank2], [_szCoord, _frCoord]] call SIDE_fnc_artiFire;
+		[[_tank1, _tank2], [_baseCoord, _frCoord]] call SIDE_fnc_artiFire;
 		private "_tick"; 
 		if (_tickMax <= _tickMin) then {
 			_tick = _tickMin;

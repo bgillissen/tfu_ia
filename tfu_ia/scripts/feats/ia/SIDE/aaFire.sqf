@@ -5,8 +5,16 @@ Credit:
 Author:
 	Ben
 Description:
-	this run on server,
-	search for an air target in range and fire at it 
+	run on server,
+	search for an air target in range and fire at it
+Params:
+	_batteries	ARRAY of object, list of vehicles to make fire (aaTanks)
+Environment params:
+	missionConfig:
+		ia >> side >> priority >> aa >> range
+		ia >> side >> priority >> aa >> minAltitude
+Return:
+	nothing
 */
 
 params ["_batteries"];

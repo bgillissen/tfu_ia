@@ -5,16 +5,40 @@ Credit:
 Author:
 	Ben
 Description:
-	this run on server,
-	it create a new side mission, 
+	run on server,
+	spawn by feats\ia\SIDE\serverPostInitTheard.sqf, 
 	a HQ bunker near coast with a crate to "activate" on top. 
+Params:
+	none
+Environment:
+	missionNamespace:
+		MAP_URBAN
+		URBAN_MARKERS
+		S_crates
+		SIDE_stop
+		zeusMission
+	missionConfig:
+		ia >> oa >> circle
+		ia >> side >> minDistFromBase
+		ia >> side >> minDistFromAO
+		ia >> side >> hqCoast >> action
+		ia >> side >> size
+		ia >> side >> garrisonSkill
+		ia >> side >> hqCoast >> title
+		ia >> side >> briefing
+		ia >> side >> hqCoast >> briefing
+		ia >> checkDelay
+		ia >> side >> failHint
+		ia >> side >> hqCoast >> planted
+		ia >> side >> boomDelay
+		ia >> side >> successHint
+Return:
+		nothing 
 */
 
 private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
-private _accepted = false;
-
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
 
@@ -27,15 +51,13 @@ while {!_accepted} do {
 		_flatPos = _position isFlatEmpty [2,0,0.3,1,1,true];
 	};
 
-	if ( (_flatPos distance _baseCoord) > _minDistFromBase ) then {
-		if ( (_flatPos distance _aoCoord) > _minDistFromAO ) then {
-			_accepted = true;
-		};
+	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
+		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {};
+		if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) exitWith {};
 	};
 };
 _aoCoord = nil;
 _szCoord = nil;
-_accepted = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 
@@ -70,15 +92,15 @@ _coord = nil;
 
 //spawn units
 private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
-private _skill = ["ia", "side", "garrisonSize"] call BIS_fnc_GetCfgData;
+private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
 private _groups = [_flatPos, 0, 4, 2, 0, 1, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
 _groups append ([_hq, _skill] call IA_fnc_forcedGarrison);
 _skill = nil;
 
-//briefing
+//markers
 private _title = ["ia", "side", "hqCoast", "title"] call BIS_fnc_GetCfgData; 
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
-
+//briefing
 private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
 private _desc = ["ia", "side", "hqCoast", "briefing"] call BIS_fnc_GetCfgData;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];

@@ -3,8 +3,16 @@
 Author:
 	Ben
 Description:
-	included by game engine (description.ext)
-	it defines features settings that can't be set by mission parameters
+	included by description.ext
+	it define in the missionConfig entries needed by features
+	those settings are those that (can't be set as || are not needed as) mission parameters
+	it is organize by features.
+Params:
+	none
+Environment:
+	none
+Return:
+	nothing
 */
 
 //init, needed to lock the server while server side features are loading
@@ -12,12 +20,12 @@ srvCMDpass = "honeybadger";
 unlockDelay = 15;
 
 //list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
-
 squads[]={{"HQ", "HQ", "Orange"},
 		  {"ALPHA", "Alpha", "Black"},
 		  {"BRAVO", "Bravo", "Black"},
 		  {"HORNET", "Hornet", "Blue"},
-		  {"HAMMER", "Hammer", "Green"}};
+		  {"HAMMER", "Hammer", "Green"},
+		  {"SUPPORT", "Support", "Pink"}};
 
 class squadHind {
 	name = "Task Force Unicorn";
@@ -311,6 +319,7 @@ class ia {
 			vehicleProb = 40;
 			triggerSize = 500;
 			spotted = "Target has spotted you and is trying to escape with the intel!";
+			fail = "Target has escaped!";
 			secured = "Intel received. Mission accomplished! We're sending the data up to HQ for analysis.";
 			action = "<t color='#ff0000'>Secure Intel</t>";
 		};

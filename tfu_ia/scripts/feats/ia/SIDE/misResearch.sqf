@@ -5,37 +5,59 @@ Credit:
 Author:
 	Ben
 Description:
-	this run on server,
-	it create a new side mission, 
+	run on server,
+	spawn by feats\ia\SIDE\serverPostInitTheard.sqf, 
 	a Research bunker with a laptop to "activate" inside. 
+Params:
+	none
+Environment:
+	missionNamespace:
+		SIDE_stop
+		zeusMission
+	missionConfig:
+		ia >> oa >> circle
+		ia >> side >> research >> hqType
+		ia >> side >> minDistFromBase
+		ia >> side >> minDistFromAO
+		ia >> side >> table
+		ia >> side >> laptop
+		ia >> side >> research >> action
+		ia >> side >> size
+		ia >> side >> garrisonSkill
+		ia >> side >> research >> title
+		ia >> side >> briefing
+		ia >> side >> research >> briefing
+		ia >> checkDelay
+		ia >> side >> failHint
+		ia >> side >> research >> planted
+		ia >> side >> boomDelay
+		ia >> side >> successHint
+Return:
+		nothing
 */
 
 private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
 private _baseCoord = getMarkerPos "SZ";
 private _hqType = ["ia", "side", "research", "hqType"] call BIS_fnc_GetCfgData;
 private _flatPos = [0,0,0];
-private _accepted = false;
-
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
 
 //find a flat position, near coast
-while {!_accepted} do {
+while ( true ) do {
 	_position = [] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [5, 1, 0.2, (sizeOf _hqType), 0, false];
 	while {(count _flatPos) < 2} do {
 		_position = [] call BIS_fnc_randomPos;
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _hqType, 0, false];
 	};
-	if ( (_flatPos distance _baseCoord) > _minDistFromBase ) then {
-		if ( (_flatPos distance _aoCoord) > _minDistFromAO ) then {
-			_accepted = true;
-		};
+	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
+		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {};
+		if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) exitWith {};
 	};
 };
 _aoCoord = nil;
 _szCoord = nil;
-_accepted = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 
@@ -66,16 +88,16 @@ _action = nil;
 
 //spawn units
 private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
-private _skill = ["ia", "side", "garrisonSize"] call BIS_fnc_GetCfgData;
+private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
 private _groups = [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
 _groups append ([_hq, _skill] call IA_fnc_forcedGarrison);
 _skill = nil;
 
 
-//briefing
+//markers
 private _title = ["ia", "side", "research", "title"] call BIS_fnc_GetCfgData; 
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
-
+//briefing
 private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
 private _desc = ["ia", "side", "research", "briefing"] call BIS_fnc_GetCfgData;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
@@ -97,7 +119,6 @@ while ( true ) do {
 		private _planted = ["ia", "side", "research", "planted"] call BIS_fnc_GetCfgData;
 		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
 		[format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
-		_planted = nil;
 		sleep _delay;
 		[[_hqX, _hqY, (_hqZ+2)], false] spawn SIDE_fnc_boom;
 		deleteVehicle _laptop;

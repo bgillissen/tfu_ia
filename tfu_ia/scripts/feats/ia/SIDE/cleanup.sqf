@@ -5,7 +5,7 @@ Credit:
 Author:
 	Ben
 Description:
-	this script is executed on server side,
+	run on server,
 	it remove the objects spawned for a SIDE mission, if no players are near; can be force 
 */
 

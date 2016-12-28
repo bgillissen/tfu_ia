@@ -6,8 +6,33 @@ Author:
 	Ben
 Description:
 	this run on server,
-	it create a new side mission, 
-	a crate to "activate" on a predefined marker in a urban area. 
+	spawn by feats\ia\SIDE\serverPostInitTheard.sqf, 
+	a crate to "activate" on a predefined marker in an urban area.
+Params:
+	none
+Environment:
+	missionNamespace:
+		MAP_URBAN
+		URBAN_MARKERS
+		S_crates
+		SIDE_stop
+		zeusMission
+	missionConfig:
+		ia >> oa >> circle
+		ia >> side >> research >> hqType
+		ia >> side >> minDistFromBase
+		ia >> side >> minDistFromAO
+		ia >> side >> urban >> action
+		ia >> side >> size
+		ia >> side >> urban >> title
+		ia >> side >> briefing
+		ia >> side >> urban >> briefing
+		ia >> checkDelay
+		ia >> side >> urban >> planted
+		ia >> side >> boomDelay
+		ia >> side >> successHint
+Return:
+		nothing 
 */
 
 if ( MAP_URBAN isEqualTo 0 ) exitWith {};
@@ -52,20 +77,20 @@ _minDistFromAO = nil;
 //objective crate
 private _crate = (selectRandom S_crates) createVehicle _coord;
 _crate allowDamage false;
-private _action = ["ia", "side", "hqCoast", "action"] call BIS_fnc_GetCfgData;
+private _action = ["ia", "side", "urban", "action"] call BIS_fnc_GetCfgData;
 [_crate, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
 _action= nil;
 
 //spawn units
 private _groups = [_coord, 15, 20, 2, 20, 0, 0, 0, 0, 2, 0, (100 + random 200)] call SIDE_fnc_placeEnemies;
 
-//briefing
+//markers
 private _title = ["ia", "side", "urban", "title"] call BIS_fnc_GetCfgData;
 private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
 [_coord, _title, _size] call SIDE_fnc_placeMarkers;
-
+//briefing
 private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
-private _desc = ["ia", "side", "hqCoast", "briefing"] call BIS_fnc_GetCfgData;
+private _desc = ["ia", "side", "urban", "briefing"] call BIS_fnc_GetCfgData;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
 ["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
 _title = nil;
