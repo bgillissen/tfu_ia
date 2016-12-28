@@ -12,8 +12,6 @@ Params:
 	none
 Environment:
 	missionNamespace:
-		MAP_URBAN
-		URBAN_MARKERS
 		S_crates
 		SIDE_stop
 		zeusMission

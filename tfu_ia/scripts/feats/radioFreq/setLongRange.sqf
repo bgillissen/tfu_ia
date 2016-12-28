@@ -3,10 +3,21 @@
 Author:
 	Ben
 Description:
+	run on player,
+	call by	feats\radioFreq\playerGetIn.sqf
+			feats\radioFreq\playerOnRespawn.sqf
+			feats\radioFreq\playerPickUp.sqf
 	define the channel Frequencies for the active long range radio
+Params:
+	none		
+Environment:
+	missionConfig:
+		radioFreq >> longRange
+Return:
+	nothing 
 */
 
 private _radio = call TFAR_fnc_activeLrRadio; 
 {
 	[_radio, (_forEachIndex + 1), _x] call TFAR_fnc_SetChannelFrequency;
-} forEach RF_LR_FREQS;
+} forEach (["radioFreq", "longRange"] call BIS_fnc_GetCfgData);

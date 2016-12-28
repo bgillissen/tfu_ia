@@ -5,29 +5,41 @@ Credit:
 Author:
 	Ben
 Description:
-	this run on server side
-	get the clientID of the given HC slot
+	run on server,
+	call by feats\loadBalance\serverInitThread.sqf
+	return the clientID of the given HC slot
+Params:
+	_slot	STRING, HC entity varname		
+Environment:
+	none
+Return:
+	SCALAR, client ID assigned to the given HC entity 
 */
 
 params ["_slot"];
+
+#include "..\..\core\debug.hpp"
 
 private "_id";
 try {
     _id = owner (missionNamespace getVariable _slot);
     if (_id > 2) then {
-		#ifdef DEBUG
-    		conWhite(format ["loadBalance : [%1] got Client ID %2", _slot, _id]);
-		#endif
+#ifdef DEBUG
+   		private _debug = format ["loadBalance : [%1] got Client ID %2", _slot, _id]; 
+   		conWhite(_debug);
+#endif
     } else {
-		#ifdef DEBUG
-    		conWhite(format ["loadBalance: [%1] disconnected", _slot]);
-		#endif
+#ifdef DEBUG
+  		private _debug = format ["loadBalance: [%1] disconnected", _slot]; 
+   		conWhite(_debug);
+#endif
     	_id = -1;
     };
 } catch { 
-	#ifdef DEBUG
-		conYellow(format ["loadBalance: [%1] %2", _slot, _exception]; 
-	#endif
+#ifdef DEBUG
+	private _debug = format ["loadBalance: [%1] %2", _slot, _exception]; 
+	conWhite(_debug); 
+#endif
 	_id = -1;
 };
 

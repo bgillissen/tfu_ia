@@ -154,10 +154,17 @@ class supportCrate {
 	msgAvail = "Support crate request is available.";
 	msgDeployed = "Requested support crate has been deployed.";
 	checkDelay = 20;
-	actionFuel = "<t color='#0000ff'>Request -- Fuel</t>";
-	actionMedic = "<t color='#0000ff'>Request -- Medical</t>";
-	actionRepair = "<t color='#0000ff'>Request -- Repair</t>";
-	actionSupply = "<t color='#0000ff'>Request -- Supply</t>";
+	class actions {
+		fuel = "<t color='#0000ff'>Request -- Fuel</t>";
+		medic = "<t color='#0000ff'>Request -- Medical</t>";
+		repair = "<t color='#0000ff'>Request -- Repair</t>";
+		supply = "<t color='#0000ff'>Request -- Supply</t>";
+	};
+	class types {
+		fuel = "?????";
+		medic = "????";
+		repair = "????";
+	};
 };
 
 class vehicleRespaw {

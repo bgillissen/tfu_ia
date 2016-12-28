@@ -3,9 +3,20 @@
 Author:
 	Ben
 Description:
-	run on player side
-	check if rule dialog has already been shown,
-	if not, wait for the screen to be UNBLACKED and display the server rules dialog.
+	run on player,
+	spawn by feats\intro\playerPostInit.sqf
+	check the server's rule dialog has not already been shown,
+	if not, wait for the screen to be UNBLACKED and display it.
+Params:
+	none
+Environment:
+	missionNamespace:
+		INTRO_SHOWN
+		BLACKSCREEN
+	ui:
+		SRV_RULES
+Return:
+	nothing
 */
 
 if ( !isNil "INTRO_SHOWN") exitWith {};
@@ -16,4 +27,5 @@ waitUntil {
 };
 
 INTRO_SHOWN = true;
-private _handle = createdialog "SRV_RULES";
+
+createdialog "SRV_RULES";

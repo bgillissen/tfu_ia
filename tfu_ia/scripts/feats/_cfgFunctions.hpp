@@ -7,17 +7,14 @@ Description:
 		include feature's functions definition
 */
 
-
-
 #include "baseProtection\_cfgFunctions.hpp"
 #include "curator\_cfgFunctions.hpp"
 #include "dynBillboards\_cfgFunctions.hpp"
 #include "earPlugs\_cfgFunctions.hpp"
 #include "ia\_cfgFunctions.hpp"
-
-#ifdef OK
 #include "intro\_cfgFunctions.hpp"
 #include "loadBalance\_cfgFunctions.hpp"
+#include "mapTracker\_cfgFunctions.hpp"
 #include "radioFreq\_cfgFunctions.hpp"
 #include "supplyDrop\_cfgFunctions.hpp"
 #include "supportCrate\_cfgFunctions.hpp"
@@ -27,4 +24,3 @@ Description:
 #include "viewDistance\_cfgFunctions.hpp"
 #include "voiceControl\_cfgFunctions.hpp"
 #include "zeusMission\_cfgFunctions.hpp"
-#endif

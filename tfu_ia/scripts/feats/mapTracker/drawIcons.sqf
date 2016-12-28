@@ -17,7 +17,9 @@ private _text = "";
 	if ((side _veh == PLAYER_SIDE) || {(captive _x)}) then {
 		private _toSkip = ( _isGPS && (_x distance player) > MT_gpsDist );
 		if ( !_toSkip ) then {
-			if ( !_isGPS ) then _text = [_veh] call mapTracker_fnc_iconText;
+			if ( !_isGPS ) then {
+				_text = [_veh] call mapTracker_fnc_iconText;
+			};
 			_iconType = [_veh] call mapTracker_fnc_iconType;
 			_iconSize = [_veh] call mapTracker_fnc_iconSize;
 			_color = [_x] call mapTracker_fnc_iconColor;	

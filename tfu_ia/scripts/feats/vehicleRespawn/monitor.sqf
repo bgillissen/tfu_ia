@@ -4,17 +4,12 @@ Credit: Tophe for earlier monitor script
 Author:
 	Quiksilver, tweaked by ben
 Description:
-	This script will run on all context (vehicle init field).
-	one for each vehicle you want to monitor, like this:
-		[this,30] call vehicleRespawn_fnc_monitor;
+	run on server,
+	add the given vehicle to the vehicle monitored by vehicleRespawn thread
 */
 
-if (!isServer) exitWith{};
+params ["_veh", "_delay"];
 
-param ["_veh", "_delay"];
-
-if ( isNil "VEHRESPAWN" ) then VEHRESPAWN = [];
-
-VEHRESPAWN append [_veh, _delay, (typeOf _veh), (getPosATL _veh), (getDir _veh)];
+VEHRESPAWN append [[_veh, _delay, (typeOf _veh), (getPosATL _veh), (getDir _veh)]];
 
 [_veh] call vehicleRespawn_fnc_setup;

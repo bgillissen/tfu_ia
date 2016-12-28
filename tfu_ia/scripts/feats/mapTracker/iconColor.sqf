@@ -7,6 +7,20 @@ Author:
 Description:
 	run on client
 	return the color of the icon to draw.
+Params:
+	OBJECT,	a unit
+Environment:
+	object:
+		BTC_need_revive
+	missionConfig:
+		mapTracker >> colorNeedRevive
+		mapTracker >> colorEast
+		mapTracker >> colorWest
+		mapTracker >> colorInd
+		mapTracker >> colorCiv
+		mapTracker >> colorDft
+Return:
+	ARRAY of SCALAR, color RGB + Alpha
 */
 
 params ["_unit"];
@@ -16,12 +30,16 @@ if ((group _unit) == (group player)) then {
 	_a = 0.9;
 };
 
-if (format ["%1", _unit getVariable "BTC_need_revive"] == "1") exitWith { MT_colorNeedRevive };
+if (format ["%1", _unit getVariable "BTC_need_revive"] == "1") exitWith { 
+	(["mapTracker", "colorNeedRevive"] call BIS_fnc_GetCfgData) 
+};
 
-private _c = MT_colorDft;
-if (side _unit == east) then _c = MT_colorEast;
-if (side _unit == west) then _c = MT_colorWest;
-if (side _unit == independent) then _c = MT_colorInd;
-if (side _unit == civilian) then _c = MT_colorCiv;
+private _c = (side _unit) call {
+	if ( _this == east) exitWith { (["mapTracker", "colorEast"] call BIS_fnc_GetCfgData) };
+	if ( _this == west) exitWith { (["mapTracker", "colorWest"] call BIS_fnc_GetCfgData) };
+	if ( _this == independent) exitWith { (["mapTracker", "colorInd"] call BIS_fnc_GetCfgData) };
+	if ( _this == civilian) exitWith { (["mapTracker", "colorCiv"] call BIS_fnc_GetCfgData) };
+	(["mapTracker", "colorDft"] call BIS_fnc_GetCfgData)
+};
 
-(_c + _a)
+(_c + [_a])

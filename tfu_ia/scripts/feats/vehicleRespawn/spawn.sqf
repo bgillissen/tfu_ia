@@ -3,11 +3,11 @@
 Author:
 	ben
 Description:
-	This script will run server side,
-	respawn a abandoned/destroyed vehicle
+	run on server
+	respawn an abandoned/destroyed vehicle
 */
 
-param ["_veh", "_type", "_pos", "_dir"];
+params ["_veh", "_type", "_pos", "_dir"];
 
 if (!isNull _veh) then {
 	if ( alive _veh ) then {
@@ -16,19 +16,27 @@ if (!isNull _veh) then {
 		_veh setPos _pos;
 		_veh setDamage 0;
 		_veh setVehicleAmmo 1;
-		if ((fuel _veh) < 0.90) then [[_veh, 1], "setFuel", true, false] spawn BIS_fnc_MP;
-		if (isEngineOn _veh) then _veh engineOn false;
-		if (isCollisionLightOn _veh) then _veh setCollisionLight false;
-		if (isLightOn _veh) then _veh setPilotLight false;
+		if ((fuel _veh) < 0.90) then {
+			[[_veh, 1], "setFuel", true, false] spawn BIS_fnc_MP;
+		};
+		if (isEngineOn _veh) then {
+			_veh engineOn false;
+		};
+		if (isCollisionLightOn _veh) then {
+			_veh setCollisionLight false;
+		};
+		if (isLightOn _veh) then {
+			_veh setPilotLight false;
+		};
 		_veh allowDamage true;
-		exitWith{ _veh };
+	} else {
+		deleteVehicle _veh;
 	};
-	deleteVehicle _veh; 
+} else {
+	_veh = createVehicle [_type, [0,0,0], [], 0, "NONE"];
+	_veh setDir _dir;
+	_veh setPos _pos;
+	[_veh] call vehicleRespawn_fnc_setup;
 };
-_veh = createVehicle [_type, [0,0,0], [], 0, "NONE"];
-_veh setDir _dir;
-_veh setPos _pos;
-
-[_veh] call vehicleRespawn_fnc_setup;
 
 _veh

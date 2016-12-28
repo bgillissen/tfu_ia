@@ -3,7 +3,7 @@
 Author:
 	Ben
 Description:
-	this run on player
+	run on player
 	it ask server to update the value of the zeusMission variable
 */
 

@@ -7,8 +7,17 @@ Author:
 Description:
 	run on player,
 	supportCrate action condition
+Params:
+	none
+Environment:
+	missionNamespace:
+		SC_avail
+	player:
+		role
+Return:
+	BOOL, supportCrate action is shown or not
 */
 
 if ( !SC_avail ) exitWith { false };
 
-( ({player isEqualType _x} count PUT_hPilot) > 0 )
+( player getVariable "role" isEqualTo "hPilot" )

@@ -3,8 +3,17 @@
 Author:
 	Ben
 Description:
-	run once on player side when the player has finished loading
-	display the server rules dialog on join.
+	run on player,
+	display the server's rule dialog on join.
+Params:
+	none
+Environment:
+	missionParamaters:
+		intro
+Return:
+	nothing	
 */
 
-if ( (["intro"] call core_fnc_getConf) ) then spawn intro_fnc_show;
+if ( (["intro"] call core_fnc_getConf) ) then {
+	spawn intro_fnc_show;
+};
