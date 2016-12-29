@@ -1,10 +1,10 @@
 /*
-@filename: feats\mods\vanilla\assetBlufor.sqf
+@filename: feats\mods\vanilla\assetOpfor.sqf
 Author:
 	Ben
 Description:
 	call by feats\mods\vanilla\init.sqf
-	return the Vanilla BLUFOR assets
+	return the Vanilla OPFOR assets
 */
 
 private _out = [];
@@ -18,7 +18,7 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 
-_out set [AVB, (["A", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
+_out set [AVB, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Restricted Gear Vanilla OPFOR
 
@@ -33,7 +33,7 @@ private _mScope = [];
 private _oScope = [];
 private _backpack = [];
 
-_out set [RGVB, (["RG", _launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]  call mods_fnc_append)];
+_out set [RGVB, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
 //------------------------------------------------------------ Cargo Vanilla OPFOR
 
@@ -44,7 +44,7 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 
-_out set [CVB, (["C", _backpacks, _items, _weapons, _ammo]  call mods_fnc_append)];
+_out set [CVB, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Allowed Vehicles Vanilla OPFOR
 
@@ -54,7 +54,7 @@ private _heli = [];
 private _plane = [];
 private _tank = [];
 
-_out set [AVVB, (["AV", _heli, _plane, _tank] call mods_fnc_append)];
+_out set [AVVB, [_heli, _plane, _tank]];
 
 //------------------------------------------------------------ supplyDrop Vanilla OPFOR
 
@@ -66,7 +66,7 @@ private _weapons = [];
 private _ammo = [];
 private _crates = [];
 
-_out set [SDVB, (["SD", _backpacks, _items, _weapons, _ammo, _crates]  call mods_fnc_append)];
+_out set [SDVB, [_backpacks, _items, _weapons, _ammo, _crates]];
 
 //------------------------------------------------------------ Rewards Vanilla OPFOR
 
@@ -98,7 +98,8 @@ private _car = [];
 private _carArmed = [];
 private _aPatrol = [];
 
-_out set [SVB, (["S", _rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]  call mods_fnc_append)];
+_out set [SVB, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+                _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles Vanilla OPFOR
 
@@ -129,9 +130,9 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [VVB, (["BV", _car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 	   _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
-                 	   _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]  call mods_fnc_append)];
+_out set [VVB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+                _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo Vanilla OPFOR
 
@@ -162,9 +163,9 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [VCVB, (["VC", _car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 	    _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
-                 	    _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]  call mods_fnc_append)];
+_out set [VCVB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout Vanilla OPFOR
 
@@ -190,9 +191,9 @@ private _jtac = [];
 private _pilot = [];
 private _mortar = [];
 
-_out set [RLVB, (["RL", _hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman, _repair, _demo, _engineer, 
-                        _grenadier, _rifleman, _jtac, _pilot, _mortar] call mods_fnc_append)]
-          
+_out set [RLVB, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
+                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _pilot, _mortar]];
+
 //------------------------------------------------------------ FINITO, return
           
 _out

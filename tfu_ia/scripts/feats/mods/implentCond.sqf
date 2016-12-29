@@ -22,13 +22,13 @@ if ( _isEnemy ) then {
 	if ( PLAYER_SIDE getFriend _side >= 0.6 ) exitWith { false };
 } else {
 	if ( PLAYER_SIDE getFriend _side < 0.6 ) exitWith { false };
-}
+};
 //then mods presence rules
 private _out = true;
 
 {
 	_x params ["_filter", "_modPresence"];
-	if ( !(_filter isEqualTo _modPresence ) exitWith { _out = false; };
+	if ( !(_filter isEqualTo _modPresence) ) exitWith { _out = false; };
 } count _modRules;
 
 if ( !_out ) exitWith { false };

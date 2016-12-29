@@ -7,7 +7,7 @@ Description:
 		include individual feature's mission parameters
 */
 
-#include "arsenalAuto\_params.hpp"
+#include "assetAuto\_params.hpp"
 #include "baseProtection\_params.hpp"
 #include "earPlugs\_params.hpp"
 #include "fatigue\_params.hpp"

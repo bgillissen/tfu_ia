@@ -20,7 +20,7 @@ Description:
 #endif
 		private _incVar = format["%1_INC", toUpper(_mod)];
 		if ( isNil _incVar ) then {
-			call compileFinal preprocessFileLineNumbers format["feats\mods\%1\preInit.sqf", _mod]; in mods/serverPreInit.sqf
+			call compileFinal preprocessFileLineNumbers format["feats\mods\%1\preInit.sqf", _mod];
 			missionNamespace setVariable [_incVar, true, false];
 		};
 #ifdef DEBUG

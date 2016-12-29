@@ -18,7 +18,7 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 
-_out set [AVO, (["A", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
+_out set [AVO, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Restricted Gear Vanilla OPFOR
 
@@ -33,7 +33,7 @@ private _mScope = [];
 private _oScope = [];
 private _backpack = [];
 
-_out set [RGVO, (["RG", _launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]  call mods_fnc_append)];
+_out set [RGVO, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
 //------------------------------------------------------------ Cargo Vanilla OPFOR
 
@@ -44,7 +44,7 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 
-_out set [CVO, (["C", _backpacks, _items, _weapons, _ammo]  call mods_fnc_append)];
+_out set [CVO, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Allowed Vehicles Vanilla OPFOR
 
@@ -54,7 +54,7 @@ private _heli = [];
 private _plane = [];
 private _tank = [];
 
-_out set [AVVO, (["AV", _heli, _plane, _tank] call mods_fnc_append)];
+_out set [AVVO, [_heli, _plane, _tank]];
 
 //------------------------------------------------------------ supplyDrop Vanilla OPFOR
 
@@ -66,7 +66,7 @@ private _weapons = [];
 private _ammo = [];
 private _crates = [];
 
-_out set [SDVO, (["SD", _backpacks, _items, _weapons, _ammo, _crates]  call mods_fnc_append)];
+_out set [SDVO, [_backpacks, _items, _weapons, _ammo, _crates]];
 
 //------------------------------------------------------------ Rewards Vanilla OPFOR
 
@@ -98,7 +98,8 @@ private _car = [];
 private _carArmed = [];
 private _aPatrol = [];
 
-_out set [SVO, (["S", _rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]  call mods_fnc_append)];
+_out set [SVO, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+                _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles Vanilla OPFOR
 
@@ -129,9 +130,9 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [VVO, (["BV", _car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 	   _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
-                 	   _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]  call mods_fnc_append)];
+_out set [VVO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+                _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo Vanilla OPFOR
 
@@ -162,9 +163,9 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [VCVO, (["VC", _car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 	    _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
-                 	    _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]  call mods_fnc_append)];
+_out set [VCVO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout Vanilla OPFOR
 
@@ -190,9 +191,9 @@ private _jtac = [];
 private _pilot = [];
 private _mortar = [];
 
-_out set [RLVO, (["RL", _hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman, _repair, _demo, _engineer, 
-                        _grenadier, _rifleman, _jtac, _pilot, _mortar] call mods_fnc_append)]
-          
+_out set [RLVO, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
+                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _pilot, _mortar]];
+
 //------------------------------------------------------------ FINITO, return
           
 _out

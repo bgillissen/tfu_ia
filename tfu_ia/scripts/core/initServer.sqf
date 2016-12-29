@@ -31,16 +31,15 @@ if ( isNil "PV") then {
 	RG_k = 0;
 	A_k = 1;
 	C_k = 2;
-	SD_k = 3
+	SD_k = 3;
 	AV_k = 4;
 	BV_k = 5;
 	VC_k = 6;
 	BA_k = 7;
 	BALO_k = 8;
-	SD_k = 9;
-	S_k = 10;
-	RL_k = 11;
-	PV = [["RG", ["launcher", "mg", "sRfile", "mRifle", "sScope", "mScope", "oScope", "backpack"], [], true],
+	S_k = 9;
+	RL_k = 10;
+	PV = [["RG", ["launcher", "mg", "sRifle", "mRifle", "sScope", "mScope", "oScope", "backpack"], [], true],
 	      ["A", ["backpacks", "items", "weapons", "ammo"], [], true],
 	      ["C", ["backpacks", "items", "weapons", "ammo"], [], true],
 	      ["SD", ["backpacks", "items", "weapons", "ammo", "crates"], [], true],

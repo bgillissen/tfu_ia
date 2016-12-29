@@ -15,7 +15,7 @@ private _i = call compileFinal preprocessFileLineNumbers "feats\mods\vanilla\ass
 //------------------------------------------------------------ ARSENAL / CARGO / SUPPLYDROP
 
 //common arsenal
-private _backpacks 	= _c select AVC select A__BAKCPACKS;
+private _backpacks 	= _c select AVC select A__BACKPACKS;
 private _items 		= _c select AVC select A__ITEMS;
 private _weapons 	= _c select AVC select A__WEAPONS;
 private _ammo 		= _c select AVC select A__AMMO;
@@ -56,7 +56,7 @@ private _sdCrates	 = _c select SDVC select SD__CRATES;
 		_cWeapons 	append (_src select _cK select C__WEAPONS);
 		_cAmmo 		append (_src select _cK select C__AMMO);
 		_sdWeapons	append (_src select _sK select SD__WEAPONS);
-		_sdAmmo 	append (_src select _sK select SD___AMMO);
+		_sdAmmo 	append (_src select _sK select SD__AMMO);
 	};
 	if ( PLAYER_SIDE == _side ) then {
 		_sdCrates append (_src select _sK select SD__CRATES);
@@ -88,18 +88,18 @@ _sdCrates = nil;
 //------------------------------------------------------------ REWARDS
 
 private _rewards = [];
-_rewards append _c select RVC; 
+_rewards append (_c select RVC); 
 _conf = ["Reward_vb"] call core_fnc_getConf;
 if ( [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
-	_rewards append _b select RVB; 
+	_rewards append (_b select RVB); 
 };
 _conf = ["Reward_vo"] call core_fnc_getConf;
 if ( [_conf, east, false, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
-	_rewards append _o select RVO; 
+	_rewards append (_o select RVO); 
 };
 _conf = ["Reward_vi"] call core_fnc_getConf;
-if ( [_conf, east, false, [[false, MOD_rhsAGREF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
-	_rewards append _i select RVI; 
+if ( [_conf, east, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
+	_rewards append (_i select RVI); 
 };
 [_rewards] call mods_fnc_implentReward;
 _rewards = nil;
@@ -126,17 +126,18 @@ if ( IND_ARE_ENEMY ) then {
 } else {
 	_doIND = false;
 };
+
 {
 	if ( _doOPFOR ) then {
-		[_forEachIndex, (_o select SVO] call mods_fnc_implentSpawn;
+		[_forEachIndex, (_o select SVO select _forEachIndex)] call mods_fnc_implentSpawn;
 	};
 	if ( _doBLUFOR ) then {
-		[_forEachIndex, (_b select SVB)] call mods_fnc_implentSpawn;
+		[_forEachIndex, (_b select SVB select _forEachIndex)] call mods_fnc_implentSpawn;
 	};
 	if ( _doInd ) then {
-		[_forEachIndex, (_i select SVI)] call mods_fnc_implentSpawn;
+		[_forEachIndex, (_i select SVI select _forEachIndex)] call mods_fnc_implentSpawn;
 	};
-} forEach ((PV select S_k) select 1);
+} forEach (PV select S_k select 1);
 
 //------------------------------------------------------------ BASE VEHICLE
 
@@ -146,13 +147,13 @@ private _doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungl
 private _doIND = [_conf, independent, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 {
 	if ( _doOPFOR ) then {
-		[_forEachIndex, (_o select VVO)] call mods_fnc_implentBaseVehicle;
+		[_forEachIndex, ((_o select VVO) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	};
 	if ( _doBLUFOR ) then {
-		[_forEachIndex, (_b select VVB)] call mods_fnc_implentBaseVehicle;
+		[_forEachIndex, ((_b select VVB) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	};
 	if ( _doIND ) then {
-		[_forEachIndex, (_i select VVI)] call mods_fnc_implentBaseVehicle;
+		[_forEachIndex, ((_i select VVI) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	};	
 } forEach ((PV select BV_k) select 1);
 
@@ -180,19 +181,19 @@ if ( PLAYER_SIDE == independent ) then {
 		[_forEachIndex, (_o select RLVO)] call mods_fnc_implentRoleLoadout;
 	};
 	if ( _doBLUFOR ) then {
-		[_forEachIndex,(_o select RLVB)] call mods_fnc_implentRoleLoadout;
+		[_forEachIndex, (_o select RLVB)] call mods_fnc_implentRoleLoadout;
 	};
 	if ( _doIND ) then {
-		[_forEachIndex,(_i select RLVI)] call mods_fnc_implentRoleLoadout;
+		[_forEachIndex, (_i select RLVI)] call mods_fnc_implentRoleLoadout;
 	};
 } forEach ((PV select RL_k) select 1);
 
 //------------------------------------------------------------ RESTRICTED GEAR
 
-private _restrictEnemyGear = ["restrictEnemyGear"] call core_fnc_getConf;;
+private _restrictEnemyGear = (["restrictEnemyGear"] call core_fnc_getConf == 1);
 private _sides = [[(_o select RGVO), east, "OPFOR"],
                   [(_b select RGVB), west, "BLUFOR"],
-                  [(_i select RGVI), independent, "IND"]]
+                  [(_i select RGVI), independent, "IND"]];
 {
 	_x params ["_src", "_side", "_sideTXT"];
 	private _do = false;
@@ -206,7 +207,7 @@ private _sides = [[(_o select RGVO), east, "OPFOR"],
 		[(_src select RG__LAUNCHER), 
 		 (_src select RG__MG), 
 		 (_src select RG__SRIFLE),
-		 (_src select RG__SRIFLE), 
+		 (_src select RG__MRIFLE), 
 		 (_src select RG__SSCOPE), 
 		 (_src select RG__MSCOPE), 
 		 (_src select RG__OSCOPE), 
