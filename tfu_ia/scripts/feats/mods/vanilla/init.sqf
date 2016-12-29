@@ -38,19 +38,19 @@ private _sdCrates	 = _c select SDVC select SD__CRATES;
 	private _cK = missionNamespace getVariable format["CV%1", toUpper(_k)];
 	private _sK = missionNamespace getVariable format["SDV%1", toUpper(_k)];
 	private _isPresent = missionNamespace getVariable _mod; 
-	if ( [_conf, _side, [false, _isPresent], [false, "Tanoa"]] call mods_fnc_implentCond ) then {
+	if ( [_conf, _side, false, [[false, _isPresent]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
 		_backpacks	 append (_src select _aK select A__BACKPACKS); 
 		_cBackpacks  append (_src select _cK select C__BACKPACKS);
 		_sdBackpacks append (_src select _sK select SD__BACKPACKS);
 	};
 	_conf = [format["gear_v%1_items", _k]] call core_fnc_getConf;
-	if ( [_conf, _side, [false, _isPresent], [false, "Tanoa"]] call mods_fnc_implentCond ) then { 
+	if ( [_conf, _side, false, [[false, _isPresent]], [[false, "jungle"]]] call mods_fnc_implentCond ) then { 
 		_items 	 append (_src select _aK select A__ITEMS); 
 		_cItems  append (_src select _cK select C__ITEMS);
 		_sdItems append (_src select _sK select SD__ITEMS);
 	};
 	_conf = [format["gear_v%1_weapons", _k]] call core_fnc_getConf;
-	if ( [_conf, _side, [false, _isPresent], [false, "Tanoa"]] call mods_fnc_implentCond ) then {
+	if ( [_conf, _side, false, [[false, _isPresent]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
 		_weapons 	append (_src select _aK select A__WEAPONS);
 		_ammo 		append (_src select _aK select A__AMMO);
 		_cWeapons 	append (_src select _cK select C__WEAPONS);
@@ -90,15 +90,15 @@ _sdCrates = nil;
 private _rewards = [];
 _rewards append _c select RVC; 
 _conf = ["Reward_vb"] call core_fnc_getConf;
-if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call mods_fnc_implentCond ) then {
+if ( [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
 	_rewards append _b select RVB; 
 };
 _conf = ["Reward_vo"] call core_fnc_getConf;
-if ( [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call mods_fnc_implentCond ) then {
+if ( [_conf, east, false, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
 	_rewards append _o select RVO; 
 };
 _conf = ["Reward_vi"] call core_fnc_getConf;
-if ( [_conf, east, [false, MOD_rhsAGREF], [false, "Tanoa"]] call mods_fnc_implentCond ) then {
+if ( [_conf, east, false, [[false, MOD_rhsAGREF]], [[false, "jungle"]]] call mods_fnc_implentCond ) then {
 	_rewards append _i select RVI; 
 };
 [_rewards] call mods_fnc_implentReward;
@@ -106,20 +106,23 @@ _rewards = nil;
 
 //------------------------------------------------------------ SPAWN
 
-_conf = ["Spawn_vanilla"] call core_fnc_getConf;
+
 private ["_doBLUFOR", "_doOPFOR", "_doIND"];
 if ( OPFOR_ARE_ENEMY ) then {
-	_doOPFOR = [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call mods_fnc_implentCond;
+	_conf = ["spawn_vo"] call core_fnc_getConf;
+	_doOPFOR = [_conf, east, true, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 } else {
 	_doOPFOR = false;
 };
 if ( BLUFOR_ARE_ENEMY ) then {
-	_doBLUFOR = [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call mods_fnc_implentCond;
+	_conf = ["spawn_vb"] call core_fnc_getConf;
+	_doBLUFOR = [_conf, west, true, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 } else {
 	_doBLUFOR = false;
 };
 if ( IND_ARE_ENEMY ) then {
-	_doIND = [_conf, independent, [false, MOD_rhsGREF], [false, "Tanoa"]] call mods_fnc_implentCond;
+	_conf = ["spawn_vi"] call core_fnc_getConf;
+	_doIND = [_conf, independent, true, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 } else {
 	_doIND = false;
 };
@@ -138,10 +141,9 @@ if ( IND_ARE_ENEMY ) then {
 //------------------------------------------------------------ BASE VEHICLE
 
 _conf = ["BaseVehicle_vanilla"] call core_fnc_getConf;
-private ["_doBLUFOR", "_doOPFOR", "_doIND"];
-_doOPFOR = [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call mods_fnc_implentCond;
-_doBLUFOR = [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call mods_fnc_implentCond;
-_doIND = [_conf, independent, [false, MOD_rhsGREF], [false, "Tanoa"]] call mods_fnc_implentCond;
+private _doOPFOR = [_conf, east, false, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond;
+private _doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond;
+private _doIND = [_conf, independent, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 {
 	if ( _doOPFOR ) then {
 		[_forEachIndex, (_o select VVO)] call mods_fnc_implentBaseVehicle;
@@ -158,17 +160,17 @@ _doIND = [_conf, independent, [false, MOD_rhsGREF], [false, "Tanoa"]] call mods_
 
 _conf = ["RoleLoadout_vanilla"] call core_fnc_getConf;
 if ( PLAYER_SIDE == west ) then {
-	_doBLUFOR = [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call mods_fnc_implentCond;
+	_doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 	_doOPFOR = false;
 	_doIND = false;
 };
 if ( PLAYER_SIDE == east ) then {
-	_doOPFOR = [_conf, east, [false, MOD_rhsAFRF], [false, "Tanoa"]] call mods_fnc_implentCond;
+	_doOPFOR = [_conf, east, false, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 	_doBLUFOR = false;
 	_doIND = false;
 };
 if ( PLAYER_SIDE == independent ) then {
-	_doIND = [_conf, independent, [false, MOD_rhsGREF], [false, "Tanoa"]] call mods_fnc_implentCond;
+	_doIND = [_conf, independent, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 	_doBLUFOR = false;
 	_doOPFOR = false;
 };

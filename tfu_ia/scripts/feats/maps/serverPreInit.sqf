@@ -22,7 +22,6 @@ FR_RADIUS = _base select 3;
 
 call compileFinal preprocessFileLineNumbers format["feats\maps\%1\%2.sqf", MAP_FOLDER, (_base select 0)];
 
-publicVariable "MAP_KEYWORDS";
 publicVariable "BASE_NAME";
 publicVariable "SZ_RADIUS";
 publicVariable "FR_RADIUS";
