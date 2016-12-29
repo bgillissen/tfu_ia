@@ -7,37 +7,56 @@ Description:
 	define Vanilla assets
 */
 
+private _a = [];
+private _b = [];
+
 //------------------------------------------------------------ Arsenal Vanilla BLUFOR
 
-AVB_backpacks = [];
-AVB_weapons = [];
-AVB_ammo = [];
-AVB_items = [];
+AVB = 0;
+
+private _backpacks = [];
+private _items = [];
+private _weapons = [];
+private _ammo = [];
+
+_a set [AVB, (["A", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
 
 //------------------------------------------------------------ Arsenal Vanilla OPFOR
 
-AVO_backpacks = [];
-AVO_weapons = [];
-AVO_ammo = [];
-AVO_items = [];
+AVO = AVB + 1;
+
+_backpacks = [];
+_items = [];
+_weapons = [];
+_ammo = [];
+
+_a set [AVO, (["A", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
 
 //------------------------------------------------------------ Arsenal Vanilla (common)
 
-AV_backpacks = [];
-AV_weapons = [];
-AV_ammo = [];
-AV_items = [];
+AV = AVO + 1;
+
+_backpacks = [];
+_items = [];
+_weapons = [];
+_ammo = [];
+
+_a set [AV, (["A", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
 
 //------------------------------------------------------------ Restricted Gear Vanilla BLUFOR
 
-RGVB_launcher = [];
-RGVB_mg = [];
-RGVB_sRifle = [];
-RGVB_mRifle = [];
-RGVB_sScope = [];
-RGVB_mScope = [];
-RGVB_oScope = [];
-RGVB_backpack = [];
+RGVB = AV + 1;
+
+_launcher = [];
+_mg = [];
+_sRifle = [];
+_mRifle = [];
+_sScope = [];
+_mScope = [];
+_oScope = [];
+_backpack = [];
+
+_a set [RGVB, ["RG", _launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
 //------------------------------------------------------------ Restricted Gear Vanilla OPFOR
 

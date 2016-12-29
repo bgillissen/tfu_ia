@@ -12,6 +12,7 @@ Description:
 	private _isPresent = missionNamespace getVariable format["MOD_%1", _mod];
 	if ( _isPresent) then {
 		call compileFinal preprocessFileLineNumbers format["feats\mods\%1\init.sqf", _mod];
+		//call compileFinal preprocessFileLineNumbers format["feats\mods\%1\preInit.sqf", _mod]; in mods/serverPreInit.sqf
 	};
 
 } count (["mods"] call BIS_fnc_GetCfgData);
@@ -24,6 +25,7 @@ call compileFinal preprocessFileLineNumbers "feats\mods\vanilla\implent.sqf";
 	private _isPresent = missionNamespace getVariable format["MOD_%1", _mod];
 	if ( _isPresent) then {
 		call compileFinal preprocessFileLineNumbers format["feats\mods\%1\implent.sqf", _mod];
+		//call compileFinal preprocessFileLineNumbers format["feats\mods\%1\init.sqf", _mod]; here
 	};
 
 } count (["mods"] call BIS_fnc_GetCfgData);

@@ -20,24 +20,24 @@ BA_veh = [];
 	_x params ["_type", "_actions", "_name", "_flags"];
 	_flags params ["_damage", "_simu", "_simple"];
 	_flags = nil;
-	private _thing = missionNamespace getVariable _name;
 	if ( !(isNil _name) ) then {
+		private _thing = missionNamespace getVariable _name;
 		_thing allowDamage _damage;
 		_thing enableSimulationGlobal _simu;
 		if ( _simple ) then { 
 			//should not be used in MP :(, not optimised, got to be created as simpleObject!, but gonna try anyway ;)
 			//if it really kills the server/clients, gonnna tweak LARs to support it... 
-			[_thing] call BIS_fnc_replaceWithSimpleObject
+			[_thing] call BIS_fnc_replaceWithSimpleObject;
 		};
-		if ( _type == "obj" ) then { 
+		if ( _type isEqualTo "obj" ) then { 
 			BA_obj append [[_thing, _actions]];
 		} else {
-			if ( _type == "npc" ) then {
+			if ( _type isEqualto "npc" ) then {
 				{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
 				[_thing, _actions] call baseAtmosphere_fnc_npcLoadout;
 				BA_npc append [[_thing, _actions]];	
 			} else {
-				if ( _type == "veh" ) then {
+				if ( _type isEqualto "veh" ) then {
 					clearWeaponCargoGlobal _thing;
 					clearMagazineCargoGlobal _thing;
 					clearItemCargoGlobal _thing;
@@ -48,7 +48,7 @@ BA_veh = [];
 		};
 #ifdef DEBUG
 	} else {
-		private _debug = format["baseAtmosphere: missing composition thing in '%1', '%2' is not defined!", BASE_COMP, _name]; 
+		private _debug = format["baseAtmosphere: missing composition element in '%1', '%2' is not defined!", BASE_COMP, _name]; 
 		conRed(_debug);
 #endif
 	};

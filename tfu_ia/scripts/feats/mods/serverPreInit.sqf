@@ -24,8 +24,8 @@ if ( isNil "APEX_INC" ) then {
 	missionNamespace setVariable [format["MOD_%1", _mod], _isPresent, true];
 	if ( _isPresent ) then {
 #ifdef DEBUG
-	private _debug = format["mods: %1 is present", _mod];
-	conWhite(_debug);
+		private _debug = format["mods: %1 is present", _mod];
+		conWhite(_debug);
 #endif
 		private _incVar = format["%1_INC", toUpper(_mod)];
 		if ( isNil _incVar ) then {
@@ -34,8 +34,8 @@ if ( isNil "APEX_INC" ) then {
 		};
 	} else {
 #ifdef DEBUG
-	private _debug = format["mods: %1 is not present", _mod];
-	conWhite(_debug);
+		private _debug = format["mods: %1 is not present", _mod];
+		conWhite(_debug);
 #endif		
 	};
 } count (["mods"] call BIS_fnc_GetCfgData);

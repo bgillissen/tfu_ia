@@ -7,4 +7,6 @@ Description:
 	implent tfar blacklist (backpack, item, weapon, ammo, veh, unit, group, object)
 */
 
-[[], TFAR_blacklist, [], [], [], [], [], [], []] call common_fnc_addToBlacklists;
+private _items = ["radio"];
+
+[[], _items, [], [], [], [], [], [], []] call common_fnc_addToBlacklists;

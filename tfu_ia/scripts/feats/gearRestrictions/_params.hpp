@@ -5,6 +5,13 @@ class restrictGear {
 	default = 1;
 };
 
+class restrictEnemyGear {
+	title = "Enemy Gear Restrictions";
+	values[] = {0,1};
+	texts[] = {"Disabled","Enabled"};
+	default = 0;
+};
+
 class restrictMG {
 	title = "Machine Gun Restriction";
 	values[] = {0,1};

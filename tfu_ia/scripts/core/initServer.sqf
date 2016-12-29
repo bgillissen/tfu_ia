@@ -31,24 +31,26 @@ if ( isNil "PV") then {
 	RG_k = 0;
 	A_k = 1;
 	C_k = 2;
-	AV_k = 3;
-	BV_k = 4;
-	VC_k = 5;
-	BA_k = 6;
-	BALO_k = 7;
-	SD_k = 8;
-	S_k = 9;
-	RL_k = 10;
+	SD_k = 3
+	AV_k = 4;
+	BV_k = 5;
+	VC_k = 6;
+	BA_k = 7;
+	BALO_k = 8;
+	SD_k = 9;
+	S_k = 10;
+	RL_k = 11;
 	PV = [["RG", ["launcher", "mg", "sRfile", "mRifle", "sScope", "mScope", "oScope", "backpack"], [], true],
 	      ["A", ["backpacks", "items", "weapons", "ammo"], [], true],
-	      ["C", ["backpacks", "items", "weapons", "ammo", "crates"], [], true],
+	      ["C", ["backpacks", "items", "weapons", "ammo"], [], true],
+	      ["SD", ["backpacks", "items", "weapons", "ammo", "crates"], [], true],
 	      ["AV", ["heli", "plane", "tank"], [], true],
 	      ["BV", _vehPools, [], false],
 	      ["VC", _vehPools, [], false],
 	      ["BA", ["veh", "npc", "obj"], [], false],
 	      ["BALO", ["medic", "gear", "support", "default"], _emptyLoadout, false],\
-	      ["S", ["radioTower", "pGroup", "sGroup", "pilot", "crew", "officer", "garrison",
-	             "aa", "arti", "static", "cas", "tank", "apc", "car", "aPatrol"], [], false],
+	      ["S", ["radioTower", "crates", "pGroup", "sGroup", "pilot", "crew", "officer", "garrison",
+	             "aa", "arti", "static", "cas", "tank", "apc", "car", "carArmed", "aPatrol"], [], false],
 	      ["RL", ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", 
 	              "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", 
 	              "pilot", "mortar"], _emptyLoadout, true]];
@@ -59,7 +61,8 @@ if ( isNil "PV") then {
     _x params ["_prefix", "_vars", "_dft"];
     {
     	missionNamespace setVariable [format["%1_%2", _prefix, _x], _dft, false];
-    } count _vars;
+    	missionNamespace setVariable [format["%1__%2", _prefix, toUpper(_x)], _forEachIndex, false];
+    } forEach _vars;
     true
 } count PV;
 
