@@ -61,3 +61,8 @@ class CfgFunctions {
 	#include "common\_cfgFunctions.hpp"
 	#include "feats\_cfgFunctions.hpp"
 };
+
+//------------------------- Compositions
+class CfgCompositions {
+	#include "feats\maps\_cfgCompositions.hpp"
+};

@@ -9,6 +9,6 @@ Description:
 
 params ["_r"];
 
-if ( (["SideMission"] call core_fnc_getConf) || (["FOBMission"] call core_fnc_getConf) ) then {
+if ( ( (["SideMission"] call core_fnc_getConf) == 1 ) || ( (["FOBMission"] call core_fnc_getConf) == 1) ) then {
 	[_r, "REWARDS", "vehicle"] call common_fnc_implent;
 };

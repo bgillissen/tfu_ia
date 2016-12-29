@@ -3,8 +3,8 @@
 Author:
 	Ben
 Description:
-		included by game engine (description.ext)
-		include individual feature parameters
+		included by description.ext
+		include individual feature's mission parameters
 */
 
 #include "arsenalAuto\_params.hpp"

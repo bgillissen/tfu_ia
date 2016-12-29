@@ -7,37 +7,23 @@ Description:
 	check which mods were preInit and init then implent them
 */
 
-if ( missionNamespace getVariable "MOD_ace" ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\ace\init.sqf";
-};
-if ( MOD_rhsAFRF ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsAFRF\init.sqf"; 
-};
-if ( MOD_rhsGREF ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\init.sqf";
-};
-if ( MOD_rhsUSAF ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\init.sqf";
-};
-if ( MOD_tfar ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\init.sqf";
-};
+{
+	_x params ["_mod"];
+	private _isPresent = missionNamespace getVariable format["MOD_%1", _mod];
+	if ( _isPresent) then {
+		call compileFinal preprocessFileLineNumbers format["feats\mods\%1\init.sqf", _mod];
+	};
+
+} count (["mods"] call BIS_fnc_GetCfgData);
 
 call compileFinal preprocessFileLineNumbers "feats\mods\vanilla\implent.sqf";
-call compileFinal preprocessFileLineNumbers "feats\mods\apex\implent.sqf";
+//call compileFinal preprocessFileLineNumbers "feats\mods\apex\implent.sqf";
 
-if ( MOD_ace ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\ace\implent.sqf";
-};
-if ( MOD_rhsAFRF ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsAFRF\implent.sqf"; 
-};
-if ( MOD_rhsGREF ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsGREF\implent.sqf";
-};
-if ( MOD_rhsUSAF ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\implent.sqf";
-};
-if ( MOD_tfar ) then {
-	call compileFinal preprocessFileLineNumbers "feats\mods\tfar\implent.sqf";
-};
+{
+	_x params ["_mod"];
+	private _isPresent = missionNamespace getVariable format["MOD_%1", _mod];
+	if ( _isPresent) then {
+		call compileFinal preprocessFileLineNumbers format["feats\mods\%1\implent.sqf", _mod];
+	};
+
+} count (["mods"] call BIS_fnc_GetCfgData);

@@ -49,6 +49,6 @@ while ( true ) do {
 		[PLAYER_SIDE, _from] sideChat _msg;
 		SD_avail = true;
 		publicVariable "SD_avail";
-	}
+	};
 	sleep _checkDelay;
 };

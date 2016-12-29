@@ -10,6 +10,6 @@ Description:
 
 params ["_veh", "_delay"];
 
-VEHRESPAWN append [[_veh, _delay, (typeOf _veh), (getPosATL _veh), (getDir _veh)]];
+VR append [[_veh, _delay, (typeOf _veh), (getPosATL _veh), (getDir _veh)]];
 
 [_veh] call vehicleRespawn_fnc_setup;

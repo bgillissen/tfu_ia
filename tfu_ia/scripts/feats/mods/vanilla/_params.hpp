@@ -5,42 +5,42 @@ class Spawn_vanilla {
 	default = 3;
 };
 
-class Arsenal_vb_backpacks {
+class gear_vb_backpacks {
 	title = "Vanilla BLUFOR backpacks in arsenal";
 	values[] = {3,1,0};
-	texts[] = { "automatic", "true", "false"};
-	default = 1;
+	texts[] = { "automatic", "yes", "no"};
+	default = 3;
 };
-class Arsenal_vb_weapons {
+class gear_vb_weapons {
 	title = "Vanilla BLUFOR weapons in arsenal";
 	values[] = {3,1,0};
-	texts[] = { "automatic", "true", "false"};
-	default = 1;
+	texts[] = { "automatic", "yes", "no"};
+	default = 3;
 };
-class Arsenal_vb_items {
+class gear_vb_items {
 	title = "Vanilla BLUFOR items in arsenal";
 	values[] = {3,1,0};
-	texts[] = { "automatic", "true", "false"};
-	default = 1;
+	texts[] = { "automatic", "yes", "no"};
+	default = 3;
 };
 
-class Arsenal_vo_backpacks {
+class gear_vo_backpacks {
 	title = "Vanilla OPFOR backpacks in arsenal";
 	values[] = {3,1,0};
-	texts[] = { "automatic", "true", "false"};
-	default = 1;
+	texts[] = { "automatic", "yes", "no"};
+	default = 3;
 };
-class Arsenal_vo_weapons {
+class gear_vo_weapons {
 	title = "Vanilla OPFOR weapons in arsenal";
 	values[] = {3,1,0};
-	texts[] = { "automatic", "true", "false"};
-	default = 1;
+	texts[] = { "automatic", "yes", "no"};
+	default = 3;
 };
-class Arsenal_vo_items {
+class gear_vo_items {
 	title = "Vanilla OPFOR items in arsenal";
 	values[] = {3,1,0};
-	texts[] = { "automatic", "true", "false"};
-	default = 1;
+	texts[] = { "automatic", "yes", "no"};
+	default = 3;
 };
 
 class Reward_vo {

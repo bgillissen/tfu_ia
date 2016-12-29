@@ -3,10 +3,10 @@
 Author:
 	Ben
 Description:
-	this run on server,
-	it init the BIS group management
+	run on server,
+	init the BIS group management if enabled
 */
 
-if ( !(["groupManagement"] call core_fnc_getConf) ) ewitWith{};
+if ( !(["groupManagement"] call core_fnc_getConf) ) exitWith {};
 
 ["Initialize", [true]] call BIS_fnc_dynamicGroups;

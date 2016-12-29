@@ -9,7 +9,7 @@ Description:
 	launcher, mg, sRifle, mRfile, sScope, mScope, oScope  
 */
 
-if ( !(["restrictGear"] call core_fnc_getConf) ) exitWith {};
+if ( (["restrictGear"] call core_fnc_getConf) == 0 ) exitWith {};
 
 {
 	private _filter = _forEachIndex call {
@@ -17,5 +17,5 @@ if ( !(["restrictGear"] call core_fnc_getConf) ) exitWith {};
 		if ( _this >= 4 && _this < 7 ) exitWith { "item" };
 		"backpack"
 	};
-	[_x, format["%1_%2", ((GV select RG_k) select 0), (((GV select RG_k) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
+	[_x, format["%1_%2", ((PV select RG_k) select 0), (((PV select RG_k) select 1) select _forEachIndex)], _filter] call common_fnc_implent;
 } forEach (_this);

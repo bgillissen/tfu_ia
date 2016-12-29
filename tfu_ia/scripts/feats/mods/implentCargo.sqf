@@ -16,5 +16,5 @@ Description:
 		if ( _this isEqualTo 2 ) exitWith { "weapon" };
 		"ammo"
 	};
-	[_x, format["%1_%2", ((GV select C_k) select 0), (((GV select C_k) select 1) select _forEachIndex)], _filter, 0] call common_fnc_implent;
+	[_x, format["%1_%2", ((PV select C_k) select 0), (((PV select C_k) select 1) select _forEachIndex)], _filter, 0] call common_fnc_implent;
 } forEach (_this);

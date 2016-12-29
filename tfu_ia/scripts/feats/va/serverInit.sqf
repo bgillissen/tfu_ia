@@ -11,7 +11,9 @@ Description:
 	{
 		_x params ["_thing", "_actions"];
 		{
-			if ( _x == "arsenal") then [_thing] va_fnc_add;
+			if ( _x isEqualTo "arsenal" ) exitWith { [_thing] call va_fnc_add; };
 		} count _actions;
+		true
 	} count _x;
+	true
 } count [BA_vehicle, BA_npc, BA_object];

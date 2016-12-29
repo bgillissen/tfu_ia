@@ -10,9 +10,9 @@ Description:
 
 private ["_zones", "_zone", "_markers", "_markbuff", "_ao"];
 
-if ( !(["AO"] call core_fnc_getConf) ) ewitWith{};
+if ( !(["AO"] call core_fnc_getConf) ) exitWith {};
 
-AO_isOn = false;
+FOB_isOn = false;
 AO_stop = false;
 AO_zone = nil;
 AO_thread = nil;
@@ -21,6 +21,9 @@ FOB = false;
 
 _zones = [];
 _markers = [];
+
+private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _cooldown = ["ia", "ao", "cooldown"] call BIS_fnc_GetCfgData;
 
 while { true } do {	
 	
@@ -48,21 +51,19 @@ while { true } do {
 	
 	{
 		[true, "AO_stop"] call zeusMission_fnc_checkAndWait;
-		if ( AO_stop ) ewitWith{};
-		sleep IA_cooldown;
-		if ( AO_stop ) ewitWith{};
-		AO_isOn = true;
+		if ( AO_stop ) exitWith {};
+		sleep _cooldown;
+		if ( AO_stop ) exitWith {};
 		_ao = missionNamespace getVariable _x;
 		if ( !(isNil _ao) ) then {
-			AO_main = spawn { [_x] call AO_fnc_threadAO; };
+			AO_main = [_x] spawn AO_fnc_threadAO;
 			waitUntil {
-				sleep IA_checkDelay;
+				sleep _checkDelay;
 				scriptDone AO_main
 			};
-			AO_isOn = false;
-			if ( AO_stop ) ewitWith{};
+			if ( AO_stop ) exitWith {};
 		};
 	} count _markers;
 	
-	if ( AO_stop ) ewitWith{};
+	if ( AO_stop ) exitWith {};
 };

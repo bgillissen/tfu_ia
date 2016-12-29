@@ -9,7 +9,7 @@ Description:
 
 class T_base {
 	title = "Tanoa Base Location";
-	values[] = {0,1,2};
-	texts[] = {"Tuvanaka","Base B", "Base C"};
+	values[] = {0};
+	texts[] = {"Tuvanaka"};
 	default = 0;
 };

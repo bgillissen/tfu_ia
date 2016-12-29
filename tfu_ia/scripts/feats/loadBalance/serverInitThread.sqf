@@ -8,17 +8,21 @@ Description:
 	only support 3HCs for now, but can be changed to support more, with some count loop.
 */
 
+#include "..\..\core\debug.hpp"
+
 if ( !["headless"] call core_fnc_getConf ) exitWith{};
 
-while {true} do {
+private _delay = ["loadBalance", "loopDelay"] call BIS_fnc_GetCfgData;
 
-	sleep LB_loopDelay;
+while ( true ) do {
+
+	sleep _delay;
 	private _HC1_ID = ["HC1"] call loadBalance_fnc_getClientID;
 	private _HC2_ID = ["HC2"] call loadBalance_fnc_getClientID;
 	private _HC3_ID = ["HC3"] call loadBalance_fnc_getClientID;
 	private _avail = 0;
 	{
-		if ( _x != -1 ) then _avail = _avail + 1; 
+		if ( _x != -1 ) then { _avail = _avail + 1; }; 
 	} count [_HC1_ID, _HC2_ID, _HC3_ID];
   
 	private _toMove = [];
@@ -58,18 +62,21 @@ while {true} do {
 					_countSmallest = _x;
 				};
 			} foreach(_countArray);
-			private "_moveTo";
-			if ( _smallest == 0 ) then _moveTo = _HC1_ID;
-			if ( _smallest == 1 ) then _moveTo = _HC2_ID;
-			if ( _smallest == 2 ) then _moveTo = _HC3_ID;
+			private _moveTo = _smallest call {
+				if ( _this == 0 ) exitWith { _HC1_ID };	
+				if ( _this == 1 ) exitWith { _HC2_ID };
+				_HC3_ID
+			};
 			_x setGroupOwner _moveTo;
 			_countArray set [_smallest, (_countSmallest + 1)];
 		} count _toMove;
 		#ifdef DEBUG
-    		conWhite(format ["loadBalance : moved %1 group(s) to %2 HCs", count _toMove, _avail]);
-    		conWhite(format ["loadBalance : HC1 now owns %1 AI", countArray select 0]);
-    		conWhite(format ["loadBalance : HC2 now owns %1 AI", countArray select 1]);
-    		conWhite(format ["loadBalance : HC3 now owns %1 AI", countArray select 2]);
+			private _debug = format ["loadBalance : moved %1 group(s) to %2 HCs", count _toMove, _avail];
+    		conWhite(_debug);
+			{
+				_debug = format ["loadBalance : HC%1 now owns %2 AI", (_x +1), countArray select _x]; 
+				conWhite(_debug);	
+			} count [0,1,2];
 		#endif
 	} else {
 		#ifdef DEBUG

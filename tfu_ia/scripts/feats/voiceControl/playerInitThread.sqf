@@ -7,11 +7,11 @@ Author:
 Description:
 	run on player
 	this is used to register the events needed to trigger an alarm sound when player try to speak in an unauthorized channel.
-	it also keep the player authorized channels updated,
+	it also keep the player's authorized channels updated,
 	
 */
 
-if ( !(["voiceControl"] call core_fnc_getConf)) then exitWith{};
+if ( !(["voiceControl"] call core_fnc_getConf)) exitWith {};
 
 VC_isOn = false;
 VC_currentTxt = "";

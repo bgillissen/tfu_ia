@@ -19,6 +19,13 @@ Return:
 srvCMDpass = "honeybadger";
 unlockDelay = 15;
 
+//list of supported mods and they entry under CfgPatches
+mods[]={{"ace", "ace_main"},
+		{"rhsAFRF", "todo"},
+		{"rhsGREF", "todo"},
+		{"rhsUSAF", "todo"},
+		{"tfar", "todo"}};
+
 //list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
 squads[]={{"HQ", "HQ", "Orange"},
 		  {"ALPHA", "Alpha", "Black"},

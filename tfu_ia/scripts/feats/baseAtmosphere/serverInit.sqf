@@ -8,17 +8,20 @@ Description:
  	configure base things
 */
 
+#include "..\..\core\debug.hpp"
+
 BASE_REF = [BASE_COMP, [], [0,0,0], 0, false, false] call comp_fnc_spawn;
 
 BA_npc = [];
 BA_obj = [];
 BA_veh = [];
+
 {
 	_x params ["_type", "_actions", "_name", "_flags"];
 	_flags params ["_damage", "_simu", "_simple"];
 	_flags = nil;
 	private _thing = missionNamespace getVariable _name;
-	if ( !(_thing isEqualType Anything ) ) then {
+	if ( !(isNil _name) ) then {
 		_thing allowDamage _damage;
 		_thing enableSimulationGlobal _simu;
 		if ( _simple ) then { 

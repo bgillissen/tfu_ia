@@ -15,5 +15,5 @@ Return:
 */
 
 if ( (["intro"] call core_fnc_getConf) ) then {
-	spawn intro_fnc_show;
+	[] spawn intro_fnc_show;
 };

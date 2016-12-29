@@ -11,13 +11,14 @@ BP_inBase = false;
 
 if ( !(["baseProtection"] call core_fnc_getConf) ) exitWith {};
 
+private _delay = ["baseProtection", "sleepDelay"] call BIS_fnc_GetCfgData;
 private _coord = getMarkerPos "SZ";
 
-while {true} do {
+while ( true ) do {
 	if ( BP_inBase ) then {
-		BP_inBase = [false, true] select (player distance _coord) > SZ_RADIUS);
+		BP_inBase = [false, true] select ((player distance _coord) > SZ_RADIUS);
 	} else {
-		BP_inBase = [false, true] select (player distance _coord) < SZ_RADIUS);
+		BP_inBase = [false, true] select ((player distance _coord) < SZ_RADIUS);
 	};
-	sleep BP_sleepDelay;
+	sleep _delay;
 };

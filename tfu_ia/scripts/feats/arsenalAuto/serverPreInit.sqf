@@ -8,9 +8,10 @@ Description:
 	it overvewrite specific gear arsenal avaibility, just to make our live easyer ;)
 */
 
+if ( (["arsenalAuto"] call core_fnc_getConf) == 0 ) exitWith {};
+
 private "_bool";
 
-if ( !(["arsenalAuto"] call core_fnc_getConf) ) then exitWith{};
 //vanilla BLUFOR
 _bool = ( PLAYER_SIDE == west && !MOD_rhsUSAF && worldName != "Tanoa");
 gear_vb_backpacks = _bool;

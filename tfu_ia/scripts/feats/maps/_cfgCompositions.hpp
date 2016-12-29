@@ -7,5 +7,5 @@ Description:
 		include maps base compositions
 */
 
-#include "feats\maps\Tanoa\_cfgCompositions.hpp"
-#include "feats\maps\VR\_cfgCompositions.hpp"
+#include "Tanoa\_cfgCompositions.hpp"
+#include "VR\_cfgCompositions.hpp"

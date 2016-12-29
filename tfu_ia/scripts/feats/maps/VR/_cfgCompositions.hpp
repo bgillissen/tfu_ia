@@ -8,11 +8,5 @@ Description:
 */
 
 class VR_baseA {
-	#include "feats\maps\VR\baseA.sqe"
-};
-class VR_baseB {
-	#include "feats\maps\VR\baseB.sqe"
-};
-class VR_baseC {
-	#include "feats\maps\VR\baseC.sqe"
+	#include "baseA.sqe"
 };

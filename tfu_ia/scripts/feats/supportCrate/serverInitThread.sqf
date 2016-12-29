@@ -72,6 +72,6 @@ while ( true ) do {
 		[PLAYER_SIDE, _from] sideChat _msg;
 		SC_avail = true;
 		publicVariable "SC_avail";
-	}
+	};
 	sleep _checkDelay;
 };

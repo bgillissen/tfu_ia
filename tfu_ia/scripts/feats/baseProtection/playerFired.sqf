@@ -11,6 +11,6 @@ if ( !BP_inBase ) exitWith {};
 
 deleteVehicle (_this select 6);
 
-hintC BP_MSG;
+hintC (["baseProtection", "msg"] call BIS_fnc_GetCfgData);
 
 hintC_EH = findDisplay 57 displayAddEventHandler ["Unload", {_this spawn baseProtection_fnc_unload;}];

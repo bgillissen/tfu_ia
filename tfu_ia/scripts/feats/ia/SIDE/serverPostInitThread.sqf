@@ -7,11 +7,13 @@ Description:
 	it keep track of the active SIDE mission thread, and spawn a new one when needed 
 */
 
-if ( !(["SIDE"] call core_fnc_getConf) ) ewitWith{};
+if ( !(["SIDE"] call core_fnc_getConf) ) exitWith {};
 
-SIDE_isOn = false;
 SIDE_stop = false;
 SIDE_success = false;
+
+private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _cooldown = ["ia", "fob", "cooldown"] call BIS_fnc_GetCfgData;
 
 private _missions = [];
 
@@ -19,28 +21,21 @@ if ( isNil "SIDE_EH" ) then {
 	SIDE_EH = "SIDE_success" addPublicVariableEventHandler { SIDE_success = true; };
 };
 
-while( true ) do {
+while ( true ) do {
 	
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
-	if ( SIDE_stop ) ewitWith{};
-	waitUntil {
-		sleep IA_checkDelay;
-		!(isNil AO_zone)
+	[_cooldown, _checkDelay, "SIDE_stop"] call common_smartSleep;
+	if ( SIDE_stop ) exitWith {};
+	if ( (count _missions) == 0 ) then {
+		_missions = ["ia", "side", "missions"] call BIS_fnc_GetCfgData;
 	};
-	if ( SIDE_stop ) ewitWith{};
-	sleep SIDE_cooldown;
-	if ( SIDE_stop ) ewitWith{};
-	
-	if ( (count _missions) == 0) then _missions = SIDE_missions;
-	private _type = selecRandom _missions;
+	private _type = selectRandom _missions;
 	_missions = _missions - [_type];
 	
-	SIDE_main = spawn format["SIDE_fnc_%1", _type];
-	SIDE_isOn = true;
+	SIDE_main = [] spawn format["SIDE_fnc_%1", _type];
 	waitUntil {
-		sleep IA_checkDelay;
+		sleep _checkDelay;
 		scriptDone SIDE_main
 	};
-	SIDE_isOn = false;
 	SIDE_success = false;
 };

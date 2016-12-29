@@ -8,4 +8,4 @@ Description:
 	
 */
 
-VEHRESPAWN = [];
+VR = [];

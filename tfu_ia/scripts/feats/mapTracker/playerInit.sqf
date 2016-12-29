@@ -12,7 +12,7 @@ Description:
 if ( !(["mapTracker"] call core_fnc_getConf) ) exitWith {};
 
 MT_mapEH = -1;
-MT_mapThread = spawn {
+MT_mapThread = [] spawn {
 	waitUntil {
 		sleep 1; 
 		!(isNull (findDisplay 12))
@@ -22,7 +22,7 @@ MT_mapThread = spawn {
 
 
 MT_gpsEH = -1;
-MT_gpsThread = spawn { 
+MT_gpsThread = [] spawn { 
 	disableSerialization;
 	MT_gps = controlNull;	
 	while {isNull MT_gps} do {

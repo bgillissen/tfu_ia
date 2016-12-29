@@ -7,8 +7,9 @@ Description:
 	it keeps track of the active FOB thread, and spawn a new one when needed 
 */
 
-if ( !(["FOB"] call core_fnc_getConf) ) ewitWith{};
+if ( !(["FOB"] call core_fnc_getConf) ) exitWith {};
 
+FOB_isOn = false;
 FOB_stop = false;
 FOB_deployed = [];
 FOB_main = nil;
@@ -21,21 +22,20 @@ private _types = [];
 while( true ) do {
 	
 	[false, "FOB_stop"] call zeusMission_fnc_checkAndWait;
+	[_cooldown, _checkDelay, "FOB_stop"] call common_smartSleep;
 	if ( FOB_stop ) exitWith {};
 	waitUntil {
 		sleep _checkDelay;
-		( !(isNil AO_zone) && (count FOB_markers select AO_zone) != 0 ) && AO_isOn)
+		( !(isNil AO_zone) && (count (FOB_markers select AO_zone) != 0 ) )
 	};
-	if ( FOB_stop ) exitWith {};
-	sleep _cooldown;
 	if ( FOB_stop ) exitWith {};
 	if ( count _markers == 0 ) then {
 		_markers = FOB_markers select AO_zone;
 	};
 	if ( count _types == 0 ) then {
-		_types = ["ia", "fob", "pool"] call BIS_fnc_GetCfgData;;
+		_types = ["ia", "fob", "pool"] call BIS_fnc_GetCfgData;
 	};
-	if ( _count _markers > 0 ) then {
+	if ( count _markers > 0 ) then {
 		
 		if ( isNil (FOB_deployed select AO_zone) ) then {
 			FOB_deployed set [AO_zone, []];
@@ -51,11 +51,13 @@ while( true ) do {
 	
 			private _type = selectRandom _types;
 			_types = _types -[_type];
-			FOB_main = spawn { [_marker, _type, AO_zone] call FOB_fnc_thread; };
+			FOB_isOn = true;
+			FOB_main = [_marker, _type, AO_zone] spawn FOB_fnc_thread;
 			waitUntil {
 				sleep _checkDelay;
 				scriptDone FOB_main
 			};
+			FOB_isOn = false;
 		};
 	};
 };

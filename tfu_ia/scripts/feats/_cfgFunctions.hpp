@@ -15,6 +15,7 @@ Description:
 #include "intro\_cfgFunctions.hpp"
 #include "loadBalance\_cfgFunctions.hpp"
 #include "mapTracker\_cfgFunctions.hpp"
+#include "mods\_cfgFunctions.hpp"
 #include "radioFreq\_cfgFunctions.hpp"
 #include "supplyDrop\_cfgFunctions.hpp"
 #include "supportCrate\_cfgFunctions.hpp"

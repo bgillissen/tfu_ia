@@ -4,21 +4,21 @@ class Spawn_afrf {
 	texts[] = {"yes", "no"};
 	default = 1;
 };
-class Arsenal_afrf_backpacks {
+class gear_afrf_backpacks {
 	title = "RHS AFRF backpacks in arsenal";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
-class Arsenal_afrf_weapons {
+class gear_afrf_weapons {
 	title = "RHS AFRF weapons in arsenal";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
-class Arsenal_afrf_items {
+class gear_afrf_items {
 	title = "RHS AFRF items in arsenal";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };

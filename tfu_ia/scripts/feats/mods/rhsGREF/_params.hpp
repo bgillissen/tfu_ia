@@ -4,21 +4,21 @@ class Spawn_gref {
 	texts[] = {"yes", "no"};
 	default = 1;
 };
-class Arsenal_gref_backpacks {
+class gear_gref_backpacks {
 	title = "RHS GREF backpacks in arsenal";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
-class Arsenal_gref_weapons {
+class gear_gref_weapons {
 	title = "RHS GREF weapons in arsenal";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };
-class Arsenal_gref_items {
+class gear_gref_items {
 	title = "RHS GREF items in arsenal";
 	values[] = {1,0};
-	texts[] = {"true", "false"};
+	texts[] = {"yes", "no"};
 	default = 1;
 };

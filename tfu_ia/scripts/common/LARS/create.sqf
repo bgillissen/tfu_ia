@@ -38,6 +38,7 @@ switch ( true ) do {
 	//Get original composition position
 	case ( _compPos isEqualType [] && { count _compPos isEqualTo 0 } ) : {
 		_compPos = getArray( missionConfigFile >> "CfgCompositions" >> _compName >> "center" );
+		diag_log _compPos;
 		_compPos = [ _compPos select 0, _compPos select 2, _compPos select 1 ];
 		_asPlaced = true;
 	};

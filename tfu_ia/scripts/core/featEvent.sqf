@@ -124,24 +124,24 @@ if ( isNil "_sorted" ) then {
 	private _code = missionNamespace getVariable _fncName;
 	if( isNil "_code" ) then {
 		private _script = format["%1\%2\%3%4%5.sqf", _path, _feat, toLower(_ctxt), _toadd, ["", "Thread"] select (_how isEqualTo 2)];
-		//_code = compileFinal preprocessFileLineNumbers _script;
-		//missionNamespace setVariable [_fncName, _code, false]; 
+		_code = compileFinal preprocessFileLineNumbers _script;
+		missionNamespace setVariable [_fncName, _code, false]; 
 	};
 #ifdef DEBUG
-private _debug = format["featEvent: %1, %2 => %3", _ctxt, _when, _fncName];
+private _debug = format["featEvent: %1, %2 => %3", _ctxt, _when, _feat];
 conWhite(_debug);
 #endif
 	if ( _when isEqualTo "destroy" ) then {
 		{
 			_x params ["_fid", "_fwhen", "_fthread"];
 			if ( _id isEqualTo _fid ) then { 
-				//[_fwhen, _fthread] call _code;
+				[_fwhen, _fthread] call _code;
 				FEAT_THREADS = FEAT_THREADS - _x; 
 			};
 		} count(FEAT_THREADS);
-		//[] call _code;
+		[] call _code;
 	} else {
-		//if ( _how isEqualTo 1 ) then { _arg call _code; };
-		//if ( _how isEqualTo 2 ) then { FEAT_THREADS append [[_id, _when, (_arg spawn _code)]]; };
+		if ( _how isEqualTo 1 ) then { _arg call _code; };
+		if ( _how isEqualTo 2 ) then { FEAT_THREADS append [[_id, _when, (_arg spawn _code)]]; };
 	};
 } count(_sorted);
