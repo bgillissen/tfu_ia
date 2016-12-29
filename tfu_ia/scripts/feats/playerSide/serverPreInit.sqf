@@ -10,7 +10,7 @@ Description:
 
 //check what is the players side, TODO move into a feature playerSide
 missionNamespace setVariable ["PLAYER_SIDE", [east, west, independent] select ( ["side"] call core_fnc_getConf ), true];
-//missionNamespace setVariable ["ENEMY_SIDE", [west, east] select ( ["side"] call core_fnc_getConf ), true];
+
 if ( PLAYER_SIDE isEqualTo east ) then {
 	missionNamespace setVariable ["PLAYER_SIDETXT", "EAST", true];
 	missionNamespace setVariable ["OPFOR_ARE_ENEMY", false, true];

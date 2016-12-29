@@ -61,7 +61,9 @@ private _sdCrates	 = _c select SDVC select SD__CRATES;
 	if ( PLAYER_SIDE == _side ) then {
 		_sdCrates append (_src select _sK select SD__CRATES);
 	};
-} count [["b", west, "MOD_rhsUSAF", _b],["o", west, "MOD_rhsAFRF", _o],["i", independent, "MOD_rhsGREF", _i]];
+} count [["b", west, "MOD_rhsUSAF", _b],
+         ["o", west, "MOD_rhsAFRF", _o],
+         ["i", independent, "MOD_rhsGREF", _i]];
 
 //arsenal Implent
 [_backpacks, _items, _weapons, _ammo] call mods_fnc_implentArsenal;
@@ -86,6 +88,7 @@ _sdCrates = nil;
 //------------------------------------------------------------ REWARDS
 
 private _rewards = [];
+_rewards append _c select RVC; 
 _conf = ["Reward_vb"] call core_fnc_getConf;
 if ( [_conf, west, [false, MOD_rhsUSAF], [false, "Tanoa"]] call mods_fnc_implentCond ) then {
 	_rewards append _b select RVB; 

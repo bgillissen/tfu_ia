@@ -1,10 +1,10 @@
 /*
-@filename: feats\mods\ace\init.sqf
+@filename: mods\ace\implent.sqf
 Author:
 	Ben
 Description:
-	run on server
-	implent ace blacklist (backpack, item, weapon, ammo, veh, unit, group, object)
+	Run once by server and players.
+	implent ACE assets
 */
 
-[[], ACE_blacklist, [], [], [], [], [], [], []] call common_fnc_blacklistAssets;
+[[], [], [[], ACE_items, [], []], [[], ACE_cargoItems, [], []], [], [], [], []] call common_fnc_implentAssets;
