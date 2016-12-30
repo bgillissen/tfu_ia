@@ -65,8 +65,9 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 private _crates = [];
+private _vehicles = [];
 
-_out set [SDVI, [_backpacks, _items, _weapons, _ammo, _crates]];
+_out set [SDVI, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
 //------------------------------------------------------------ Rewards Vanilla OPFOR
 

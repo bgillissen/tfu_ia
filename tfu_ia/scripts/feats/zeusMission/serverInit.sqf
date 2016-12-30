@@ -10,14 +10,18 @@ Description:
 
 missionNamespace setVariable ["zeusMission", false, true];
 
+private _start = ["zeusMission", "startAction"] call BIS_fnc_GetCfgData;
+private _stop = ["zeusMission", "stoptAction"] call BIS_fnc_GetCfgData; 
 {
 	{
 		_x params ["_thing", "_actions"];
 		{
 			if ( _x == "curator") then {
-				_thing addAction [ZM_startAction, zeusMission_fnc_set, [true], 0, false, true, '', '[true] call zeusMission_fnc_condition', 2];
-				_thing addAction [ZM_stopAction, zeusMission_fnc_set, [false], 0, false, true, '', '[false] call zeusMission_fnc_condition', 2];
+				_thing addAction [_start, {[_this select 3] call zeusMission_fnc_set}, [true], 0, false, true, "", "[true] call zeusMission_fnc_condition", 2];
+				_thing addAction [_stop, {[_this select 3] call zeusMission_fnc_set}, [false], 0, false, true, "", "[false] call zeusMission_fnc_condition", 2];
 			}
 		} count _actions;
+		true
 	} count _x;
-} count [BA_vehicle, BA_npc, BA_object];
+	true
+} count [BA_veh, BA_npc, BA_obj];

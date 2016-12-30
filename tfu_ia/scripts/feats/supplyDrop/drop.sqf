@@ -80,6 +80,6 @@ params ["_veh"];
 	private _smoke = ["supplyDrop", "smoke"] call BIS_fnc_GetCfgData;
 	_smoke = _smoke createVehicle [getPos _crate select 0, getPos _crate select 1, 5];
 	
-	SD_crates append [[_crate, _chute, _light, _smoke]];
-	publicVariable "SD_crates";
+	SD_spawnedCrates append [[_crate, _chute, _light, _smoke]];
+	publicVariable "SD_spawnedCrates";
 };

@@ -10,11 +10,11 @@ Description:
 
 #include "..\..\core\debug.hpp"
 
-if ( !["headless"] call core_fnc_getConf ) exitWith{};
+if ( (["headless"] call core_fnc_getConf)  == 0 ) exitWith {};
 
 private _delay = ["loadBalance", "loopDelay"] call BIS_fnc_GetCfgData;
 
-while ( true ) do {
+while { true } do {
 
 	sleep _delay;
 	private _HC1_ID = ["HC1"] call loadBalance_fnc_getClientID;

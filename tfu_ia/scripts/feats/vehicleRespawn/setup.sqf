@@ -6,10 +6,9 @@ Description:
 	run by server each time a destroyed vehicle respawn.
 */
 
-param ["_veh"];
-private ["_type"];
+params ["_veh"];
 
-_type = typeOf _veh;
+private _type = typeOf _veh;
 
 //add to Zeus
 {
@@ -17,7 +16,7 @@ _type = typeOf _veh;
 } count allCurators;
 
 //add supplyDrop support
-if (_type in VEH_supplyDrop) then {
+if (_type in SD_vehicles) then {
 	_veh setVariable ["supplyDrop", true, true];
 };
 

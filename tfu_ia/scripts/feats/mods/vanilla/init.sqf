@@ -30,6 +30,7 @@ private _sdItems 	 = _c select SDVC select SD__ITEMS;
 private _sdWeapons 	 = _c select SDVC select SD__WEAPONS;
 private _sdAmmo 	 = _c select SDVC select SD__AMMO;
 private _sdCrates	 = _c select SDVC select SD__CRATES;
+private _sdVehicles  = _c select SDVC select SD__VEHICLES;
 //blufor, opfor, ind arsenal/cargo/supplyDrop
 {
 	_x params ["_k", "_side", "_mod", "_src"];
@@ -60,6 +61,7 @@ private _sdCrates	 = _c select SDVC select SD__CRATES;
 	};
 	if ( PLAYER_SIDE == _side ) then {
 		_sdCrates append (_src select _sK select SD__CRATES);
+		_sdVehicles append (_src select _sK select SD__VEHICLES);
 	};
 } count [["b", west, "MOD_rhsUSAF", _b],
          ["o", west, "MOD_rhsAFRF", _o],
@@ -78,12 +80,13 @@ _cItems = nil;
 _cWeapons = nil;
 _cAmmo = nil;
 //supplyDrop Implent
-[_sdBackpacks, _sdItems, _sdWeapons, _sdAmmo, _sdCrates] call mods_fnc_implentSupplyDrop;
+[_sdBackpacks, _sdItems, _sdWeapons, _sdAmmo, _sdCrates, _sdVehicles] call mods_fnc_implentSupplyDrop;
 _sdBackpacks = nil;
 _sdItems = nil;
 _sdWeapons = nil;
 _sdAmmo = nil;
 _sdCrates = nil;
+_sdVehicles = nil;
 
 //------------------------------------------------------------ REWARDS
 

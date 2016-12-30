@@ -29,7 +29,7 @@ Return:
 	nothing
 */
 
-if ( !(["supportCrate"] call core_fnc_getConf) ) exitWith{};
+if ( (["supportCrate"] call core_fnc_getConf) == 0 ) exitWith{};
 
 SC_avail = true;
 publicVariable "SC_avail";
@@ -45,12 +45,14 @@ private _types = ["fuel", "medic", "repair", "supply"];
 			if ( _x == "support") exitWith {
 				{
 					private _action = ["suppportCrate", "actions", _x] call BIS_fnc_GetCfgData;
-					_thing addAction [_action, supportCrate_fnc_spawn, [_x], 0, false, true, '', 'call supportCrate_fnc_condition', 2];	
+					_thing addAction [_action, {[_this select 3] call supportCrate_fnc_spawn}, [_x], 0, false, true, '', 'call supportCrate_fnc_condition', 2];	
 				} count _types;
 			};
 		} count _actions;
+		true
 	} count _x;
-} count [BA_vehicle, BA_npc, BA_object];
+	true
+} count [BA_veh, BA_npc, BA_obj];
 
 _types = nil;
 
@@ -60,7 +62,7 @@ private _from =  ["supportCrate", "msgFrom"] call BIS_fnc_GetCfgData;
 private _msg =  ["supportCrate", "msgAvail"] call BIS_fnc_GetCfgData;
 private _checkDelay =  ["supportCrate", "checkDelay"] call BIS_fnc_GetCfgData;
 
-while ( true ) do {
+while { true } do {
 	if ( !SC_avail ) then {
 		sleep _cooldown;
 		if ( (count SC_crates) > _maxCrate ) then {

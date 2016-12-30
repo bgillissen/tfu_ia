@@ -56,6 +56,14 @@ class loadBalance {
 	loopDelay = 60;
 };
 
+class revive {
+	class btc {
+		healMode = 1;	//0, only faks, 1 consume a faks if no medikit, 2 only medikit
+		medicClass = ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"];
+		medicViewDistance = 500;
+
+	};
+};
 class mapTracker {
 	colorNeedRevive[]={1, 0.41, 0, 1};
 	colorEast[]={0.5, 0, 0};
@@ -94,7 +102,7 @@ class arsenal {
 
 class curator {
 	uids[]={};
-	web = true;
+	web = 1;
 	url = "http://taskforcunicorn.com/api/curators";
 	noSlotMsg = "No more free Zeus slot available (%1 / %2).";
 	ascendMsg = "%3 has ascend, %1 / %2 Zeus slot in use.";
@@ -126,7 +134,7 @@ class earPlugs {
 	onMsg = "EarPlugs fitted";
 	offMsg = "EarPlugs removed";
 	keycode = 197;	//pause/break key
-	showHint = false;
+	showHint = 0;
 	hint = "<t color='#ff9d00' size='1.2' shadow='1' shadowColor='#000000' align='center'>** Earplugs Recieved **</t>          Use [Pause/Break] key to Insert and Remove";
 };
 
@@ -222,8 +230,8 @@ class ia {
 			skill = 2;
 			checkDelay = 20;
 			cooldown = 1200;
-			infiniteAmmo = true;
-			infiniteFuel = true;
+			infiniteAmmo = 1;
+			infiniteFuel = 1;
 			searchRadius = 5000;
 			newNotif = "Enemy jet approaching!";
 			endNotif = "Enemy CAS is down. Well Done!";
@@ -292,8 +300,8 @@ class ia {
 			maxDistFromAO = 5000;
 			minDistFromAO = 2000;
 			artiProb = 50;
-			infiniteAmmo = true;
-			extraHealth = false;
+			infiniteAmmo = 1;
+			extraHealth = 0;
 			HBarrier = "Land_HBarrierBig_F";
 			briefing = "<t align='center'><t size='2.2'>New Priority Target</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>%2</t>";
 			success = "<t align='center'><t size='2.2'>Priority Target</t><br/><t size='1.5' color='#08b000'>NEUTRALISED<>/t><br/>____________________<br/>Incredible job, boys! Make sure you jump on those priority targets quickly; they can really cause havoc if they're left to their own devices.</t>";

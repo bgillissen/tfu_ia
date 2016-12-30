@@ -7,7 +7,7 @@ Description:
 	it keep track of the active SIDE mission thread, and spawn a new one when needed 
 */
 
-if ( !(["SIDE"] call core_fnc_getConf) ) exitWith {};
+if ( (["SIDE"] call core_fnc_getConf) == 0 ) exitWith {};
 
 SIDE_stop = false;
 SIDE_success = false;
@@ -21,7 +21,7 @@ if ( isNil "SIDE_EH" ) then {
 	SIDE_EH = "SIDE_success" addPublicVariableEventHandler { SIDE_success = true; };
 };
 
-while ( true ) do {
+while { true } do {
 	
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
 	[_cooldown, _checkDelay, "SIDE_stop"] call common_smartSleep;

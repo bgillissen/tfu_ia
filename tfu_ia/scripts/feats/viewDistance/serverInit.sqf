@@ -7,13 +7,17 @@ Description:
 	add viewDistance action to base things with an arsenal action
 */
 
+private _action = ["viewDistance", "action"] call BIS_fnc_GetCfgData;
+
 {
 	{
 		_x params ["_thing", "_actions"];
 		{
-			if ( _x == "arsenal") then {
-				_thing addAction [VD_action, viewDistance_fnc_open, [], 0, false, true, '', {true}, 2];
+			if ( _x isEqualTo "arsenal" ) exitWith {
+				_thing addAction [_action, {call viewDistance_fnc_open}, [], 0, false, true, "", "true", 2];
 			};
 		} count _actions;
+		true
 	} count _x;
-} count [BA_vehicle, BA_npc, BA_object];
+	true
+} count [BA_veh, BA_npc, BA_obj];

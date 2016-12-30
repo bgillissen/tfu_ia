@@ -27,5 +27,7 @@ call curator_fnc_reload;
 				};
 			}
 		} count _actions;
+		true
 	} count _x;
+	true
 } count [BA_veh, BA_npc, BA_obj];

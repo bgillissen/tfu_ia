@@ -10,14 +10,14 @@ Description:
 
 private ["_zones", "_zone", "_markers", "_markbuff", "_ao"];
 
-if ( !(["AO"] call core_fnc_getConf) ) exitWith {};
+if ( (["AO"] call core_fnc_getConf) == 0 ) exitWith {};
 
 FOB_isOn = false;
+FOB_success = false;
 AO_stop = false;
 AO_zone = nil;
 AO_thread = nil;
 AO_cas = nil;
-FOB = false;
 
 _zones = [];
 _markers = [];
@@ -33,7 +33,7 @@ while { true } do {
 			FOB_failed = true;
 			waitUntil {
 				sleep 2;
-				!FOB
+				scriptDone FOB_main
 			};
 		};
 	};

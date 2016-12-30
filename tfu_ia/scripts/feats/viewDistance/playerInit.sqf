@@ -7,7 +7,7 @@ Description:
 	just define default value for TAW View Distance.
 */
 
-tawvd_foot = VD_foot;
-tawvd_car = VD_car;
-tawvd_air = VD_air;
+tawvd_foot = ["viewDistance", "foot"] call BIS_fnc_GetCfgData;;
+tawvd_car = ["viewDistance", "car"] call BIS_fnc_GetCfgData;
+tawvd_air = ["viewDistance", "air"] call BIS_fnc_GetCfgData;
 tawvd_addon_disable = true;

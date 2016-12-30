@@ -37,7 +37,6 @@ private _weapons = [];
 private _ammo = [["SatchelCharge_Remote_Mag", 5],
                  ["DemoCharge_Remote_Mag", 10]];
 
-//_out set [CVC, (["C", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
 _out set [CVC, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Allowed Vehicles Vanilla (common)
@@ -48,7 +47,6 @@ private _heli = [];
 private _plane = [];
 private _tank = [];
 
-//_out set [AVVC, (["AV", _heli, _plane, _tank] call mods_fnc_append)];
 _out set [AVVC, [_heli, _plane, _tank]];
 
 //------------------------------------------------------------ supplyDrop Vanilla (common)
@@ -60,9 +58,9 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 private _crates = [];
+private _vehicles = [];
 
-//_out set [SDVC, (["SD", _backpacks, _items, _weapons, _ammo, _crates]  call mods_fnc_append)];
-_out set [SDVC, [ _backpacks, _items, _weapons, _ammo, _crates]];
+_out set [SDVC, [ _backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
 //------------------------------------------------------------ Rewards Vanilla (common)
 
@@ -99,11 +97,7 @@ private _repair = [];
 private _fuel = [];
 private _ammo = [];
 private _quad = [];
-/*
-_out set [VCVC, (["VC", _car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 	    _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
-                 	    _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]  call mods_fnc_append)];
-*/
+
 _out set [VCVC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];

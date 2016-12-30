@@ -7,6 +7,7 @@ Description:
 		include feature's functions definition
 */
 
+#include "baseAtmosphere\_cfgFunctions.hpp"
 #include "baseProtection\_cfgFunctions.hpp"
 #include "curator\_cfgFunctions.hpp"
 #include "dynBillboards\_cfgFunctions.hpp"

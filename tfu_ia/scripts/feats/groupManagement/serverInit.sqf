@@ -7,6 +7,6 @@ Description:
 	init the BIS group management if enabled
 */
 
-if ( !(["groupManagement"] call core_fnc_getConf) ) exitWith {};
+if ( (["groupManagement"] call core_fnc_getConf) == 0 ) exitWith {};
 
 ["Initialize", [true]] call BIS_fnc_dynamicGroups;

@@ -13,7 +13,7 @@ private _dist = ["VehicleRespawn_distance"] call core_fnc_getConf;
 private _queue = [];
 
 private _delay = ["vehicleRespawn", "checkDelay"] call BIS_fnc_GetCfgData;
-private _dist = ["vehicleRespawn", "distanceFromSpawn"] call BIS_fnc_GetCfgData;
+private _distFromSpawn = ["vehicleRespawn", "distanceFromSpawn"] call BIS_fnc_GetCfgData;
 
 while {true} do {
 	
@@ -39,11 +39,11 @@ while {true} do {
 					_queue append [_forEachIndex, (time + _delay)];
 				} else {
 					if ((count (crew _veh)) == 0) then {
-						if ((_veh distance _pos) > _dist) then {
+						if ((_veh distance _pos) > _distFromSpawn) then {
 							if (({(_veh distance _x) < _dist} count (allPlayers - entities "HeadlessClient_F")) < 1) then {
 								_queue append [_forEachIndex, (time + _delay)];
 							};
-						};
+						];
 					};
 				};
 			};

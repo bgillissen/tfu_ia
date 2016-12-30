@@ -9,7 +9,7 @@ Description:
 
 params ["_box"];
 
-private _filtered = ( ["filterArsenal"] call core_fnc_getConf );
+private _filtered = ( ["filterArsenal"] call core_fnc_getConf == 1 );
 
 ["AmmoboxInit", [_box, !_filtered]] call BIS_fnc_arsenal;
 

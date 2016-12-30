@@ -7,7 +7,7 @@ Description:
 	it keeps track of the active FOB thread, and spawn a new one when needed 
 */
 
-if ( !(["FOB"] call core_fnc_getConf) ) exitWith {};
+if ( (["FOB"] call core_fnc_getConf) == 0 ) exitWith {};
 
 FOB_isOn = false;
 FOB_stop = false;
@@ -19,7 +19,7 @@ private _cooldown = ["ia", "fob", "cooldown"] call BIS_fnc_GetCfgData;
 private _markers = [];
 private _types = [];
 
-while( true ) do {
+while { true } do {
 	
 	[false, "FOB_stop"] call zeusMission_fnc_checkAndWait;
 	[_cooldown, _checkDelay, "FOB_stop"] call common_smartSleep;

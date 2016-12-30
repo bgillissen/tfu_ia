@@ -16,4 +16,4 @@ Description:
 		true
 	} count _x;
 	true
-} count [BA_vehicle, BA_npc, BA_object];
+} count [BA_veh, BA_npc, BA_obj];

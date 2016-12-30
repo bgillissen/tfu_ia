@@ -7,6 +7,6 @@ Description:
 	it init the BIS group management
 */
 
-if ( !(["groupManagement"] call core_fnc_getConf) ) ewitWith{};
+if ( (["groupManagement"] call core_fnc_getConf) == 0 ) ewitWith{};
 
 ["InitializePlayer", [player, true]] call BIS_fnc_dynamicGroups;
