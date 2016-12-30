@@ -24,15 +24,16 @@ if ( isNil "SIDE_EH" ) then {
 while { true } do {
 	
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
-	[_cooldown, _checkDelay, "SIDE_stop"] call common_smartSleep;
+	[_cooldown, _checkDelay, "SIDE_stop"] call common_fnc_smartSleep;
 	if ( SIDE_stop ) exitWith {};
 	if ( (count _missions) == 0 ) then {
 		_missions = ["ia", "side", "missions"] call BIS_fnc_GetCfgData;
 	};
 	private _type = selectRandom _missions;
 	_missions = _missions - [_type];
+	private _fncName = format["SIDE_fnc_%1", _type];
 	
-	SIDE_main = [] spawn format["SIDE_fnc_%1", _type];
+	SIDE_main = [] spawn _fncName;
 	waitUntil {
 		sleep _checkDelay;
 		scriptDone SIDE_main

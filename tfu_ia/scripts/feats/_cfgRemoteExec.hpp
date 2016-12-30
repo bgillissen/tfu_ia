@@ -1,2 +1,2 @@
-#include "curator\_cfgRemoteExec.cfg"
-#include "ia\SIDE\_cfgRemoteExec.cfg"
+#include "curator\_cfgRemoteExec.hpp"
+#include "ia\SIDE\_cfgRemoteExec.hpp"

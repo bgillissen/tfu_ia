@@ -9,4 +9,6 @@ Description:
 
 param ["_unit", "_id", "_uid", "_name"];
 
-if ( !(isNull _unit) ) then deleteVehicle _unit;
+if ( !(isNull _unit) ) then { 
+	deleteVehicle _unit;
+};

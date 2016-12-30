@@ -27,12 +27,13 @@ while { true } do {
 		_zones = AO_zones;
 	};
 	
-	AO_zone = selectRandom _zones;
+	AO_zone = floor random (count _zones - 1);
 	private _zone = _zones select AO_zone;
 	_zones = _zones - [_zone];
-
+	
 	private _markbuff = AO_markers select AO_zone;
-	for "_i" from 0 to (_zones select 1) do {
+
+	for "_i" from 0 to ((_zone select 1) - 1) do {
 		private _m = selectRandom _markbuff;
 		_markers = _markers + [_m];
 		_markbuff = _markbuff - [_m];
@@ -46,7 +47,7 @@ while { true } do {
 		sleep _cooldown;
 		if ( AO_stop ) exitWith {};
 		private _ao = missionNamespace getVariable _x;
-		if ( !(isNil _ao) ) then {
+		if ( !(isNil "_ao") ) then {
 			AO_main = [_x] spawn AO_fnc_threadAO;
 			waitUntil {
 				sleep _checkDelay;

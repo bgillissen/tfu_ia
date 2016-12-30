@@ -7,9 +7,9 @@ Description:
 	add to the given thing a virtual arsenal
 */
 
-params ["_box"];
+params ["_box", "_filtered"];
 
-private _filtered = ( ["filterArsenal"] call core_fnc_getConf == 1 );
+_filtered = false;
 
 ["AmmoboxInit", [_box, !_filtered]] call BIS_fnc_arsenal;
 

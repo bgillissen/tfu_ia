@@ -8,23 +8,32 @@ Description:
 	create the defined squads (see @ _settings.hpp)
 */
 
+//do not know why, but the first call sometimes return 0
+("side" call BIS_fnc_getParamValue);
+
 //check what is the players side, TODO move into a feature playerSide
-missionNamespace setVariable ["PLAYER_SIDE", [east, west, independent] select ( ["side"] call core_fnc_getConf ), true];
+missionNamespace setVariable ["PLAYER_SIDE", [east, west, independent] select (["side"] call core_fnc_getConf), true];
 
 if ( PLAYER_SIDE isEqualTo east ) then {
+	diag_log "Player side is EAST";
 	missionNamespace setVariable ["PLAYER_SIDETXT", "EAST", true];
+	missionNamespace setVariable ["PLAYER_SIDEDSP", "OPFOR", true];
 	missionNamespace setVariable ["OPFOR_ARE_ENEMY", false, true];
 	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", true, true];
 	missionNamespace setVariable ["IND_ARE_ENEMY", [false, true] select (["indEnemy"] call core_fnc_getConf), true];
 };
 if ( PLAYER_SIDE isEqualTo west ) then {
+	diag_log "Player side is WEST";
 	missionNamespace setVariable ["PLAYER_SIDETXT", "WEST", true];
+	missionNamespace setVariable ["PLAYER_SIDEDSP", "BLUFOR", true];
 	missionNamespace setVariable ["OPFOR_ARE_ENEMY", true, true];
 	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", false, true];
 	missionNamespace setVariable ["IND_ARE_ENEMY", [false, true] select (["indEnemy"] call core_fnc_getConf), true];
 };
 if ( PLAYER_SIDE isEqualTo independent ) then {
+	diag_log "Player side is IND";
 	missionNamespace setVariable ["PLAYER_SIDETXT", "IND", true];
+	missionNamespace setVariable ["PLAYER_SIDEDSP", "INDEPENDENT", true];
 	missionNamespace setVariable ["OPFOR_ARE_ENEMY", [false, true] select (["opforEnemy"] call core_fnc_getConf), true];
 	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", [false, true] select (["bluforEnemy"] call core_fnc_getConf), true];
 };

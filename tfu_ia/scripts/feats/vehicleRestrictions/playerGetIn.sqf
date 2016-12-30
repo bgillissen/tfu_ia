@@ -12,6 +12,8 @@ params ["_unit", "_pos", "_veh", "_turret"];
 		
 if ( _pos == "cargo" ) exitWith{}; 
 
+if ( _veh isKindOf "ParachuteBase" ) exitWith {};
+
 private _role = _unit getVariable "role";
 
 private _HPilot_fly_jet = ((["HPilot_fly_jet"] call core_fnc_getConf) == 1); 
@@ -21,7 +23,7 @@ private _isHPilot = (_role isEqualTo "hPilot");
 private _isJPilot = (_role isEqualTo "jPilot");
 
 if ( (["restrictHeli"] call core_fnc_getConf) == 1 ) then {
-	if((_veh isKindOf "Helicopter") && !(_veh isKindOf "ParachuteBase")) then {
+	if( _veh isKindOf "Helicopter" ) then {
 		if ( (typeOf _veh) in VA_heli ) ewitWith {};
 		if ( ( _isHPilot) exitWith {};
 		if ( ( _JPilot_fly_heli && _isJPilot) exitWith {};
@@ -45,7 +47,7 @@ if ( (["restrictHeli"] call core_fnc_getConf) == 1 ) then {
 };
 
 if ( (["restrictPlane"] call core_fnc_getConf) == 1 ) then {
-	if((_veh isKindOf "Plane") && !(_veh isKindOf "ParachuteBase")) then {
+	if( _veh isKindOf "Plane" ) then {
 		if ( (typeOf _veh) in VA_plane ) ewitWith {};
 		if ( ( _isJPilot) exitWith {};
 		if ( ( _HPilot_fly_jet && _isHPilot) exitWith {};

@@ -9,6 +9,7 @@ class common {
 		class globalSideChat { file="common\globalSideChat.sqf"; };
 		class implent { file="common\implent.sqf"; };
 		class isBlacklisted { file="common\isBlacklisted.sqf"; };
+		class setLoadout { file="common\setLoadout.sqf"; };
 		class setCargo { file="common\setCargo.sqf"; };
 		class setSkill { file="common\setSkill.sqf"; };
 		class urlFetchCallback { file="common\urlFetchCallback.sqf"; };

@@ -7,14 +7,15 @@ Description:
 	keep track of player distance from the saveZone and add/remove the eventHandler that prevent him to fire accordingly
 */
 
+if ( (["baseProtection"] call core_fnc_getConf) == 0 ) exitWith {};
+
 BP_inBase = false;
 
-if ( !(["baseProtection"] call core_fnc_getConf) ) exitWith {};
-
 private _delay = ["baseProtection", "sleepDelay"] call BIS_fnc_GetCfgData;
+
 private _coord = getMarkerPos "SZ";
 
-while ( true ) do {
+while { true } do {
 	if ( BP_inBase ) then {
 		BP_inBase = [false, true] select ((player distance _coord) > SZ_RADIUS);
 	} else {

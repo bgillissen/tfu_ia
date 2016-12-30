@@ -14,6 +14,13 @@ Return:
 	nothing	
 */
 
-if ( (["intro"] call core_fnc_getConf) ) then {
-	[] spawn intro_fnc_show;
+if ( (["intro"] call core_fnc_getConf) == 0 ) exitWith {};
+
+[] spawn {
+	waitUntil {
+		sleep 2;
+		!BLACKSCREEN
+	};
+	sleep 5;
+	[] spawn intro_fnc_show;	
 };

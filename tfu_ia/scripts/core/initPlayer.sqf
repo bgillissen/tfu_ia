@@ -14,7 +14,7 @@ missionNamespace setVariable ["PLAYER_INIT", true, false];
 waitUntil {
 	sleep 1;
 #ifdef DEBUG
-conWhite(">>>> core_fnc_initPlayer is waiting for server to init");
+conWhite(">>>> core_fnc_initPlayer is waiting for server init");
 #endif
 	((missionNamespace getVariable "SERVER_INIT") isEqualTo false)
 };
@@ -34,7 +34,7 @@ waitUntil {player isEqualTo player};
 
 //register feature's onCloseVA
 if ( isNil "FEH_closeVA") then {
-	player setVariable ["VAopen", false];
+	VAopen = false;
 	FEH_closeVA = ["FEH_closeVA", "onEachFrame", {_this call core_fnc_fehCloseVA;}, player] call BIS_fnc_addStackedEventHandler;  
 };
 

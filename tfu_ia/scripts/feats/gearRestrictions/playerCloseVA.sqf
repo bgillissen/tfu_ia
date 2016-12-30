@@ -7,9 +7,9 @@ Description:
 	apply weapon / items restriction if player is outside the fire range
 */
 
-if ( !(["restrictGear"] call core_fnc_getConf) ) exitWith {};
+if ( (["restrictGear"] call core_fnc_getConf) == 0 ) exitWith {};
 
-if ( player distance (getMarkerPos "FR") < FR_RADIUS ) ewitWith {}; 
+if ( (player distance (getMarkerPos "FR")) < FR_RADIUS ) exitWith {}; 
 
 private _role = player getVariable "role";
 private _at = (_role == "at");

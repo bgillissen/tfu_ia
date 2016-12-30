@@ -35,7 +35,7 @@ squads[]={{"HQ", "HQ", "Orange"},
 		  {"HAMMER", "Hammer", "Green"},
 		  {"SUPPORT", "Support", "Pink"}};
 
-class squadHind {
+class squadHint {
 	name = "Task Force Unicorn";
 	url = "taskforceunicorn.com";
 	msg = "<t align='center' size='2.2' color='#FAAF3A'>%1<br/></t><t size='1.4' color='#33CCFF'>%2</t><br/>has joined the server, To become a TFU member, apply to %3</t><br/>";
@@ -60,7 +60,7 @@ class loadBalance {
 class revive {
 	class btc {
 		healMode = 1;	//0, only faks, 1 consume a faks if no medikit, 2 only medikit
-		medicClass = ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"];
+		medicClass[]={"B_medic_F", "B_recon_medic_F", "B_G_medic_F"};
 		medicViewDistance = 500;
 	};
 	class ais {
@@ -108,9 +108,9 @@ class gearRestriction {
 	duration = 5;
 };
 
-class arsenal {
+class va {
 	message = "At least one piece of your gear is not allowed, it has been removed!";
-	duration = 5;
+	duration = 0.5;
 };
 
 class curator {
@@ -160,7 +160,7 @@ class voiceControl {
 	loopDelay = 20;
 	disabled[]={6};
 	players[]={3,4,5};
-	groupleader[]={2,3,4,5};
+	groupLeader[]={2,3,4,5};
 	admins[]={0,1,2,3,4,5};
     adminList[]={};
     message = "Talking in %1 is not allowed!\nPlease change your channel with %2 or %3";
@@ -219,6 +219,13 @@ class viewDistance {
 	foot = 2200;
 	car  = 3500;
 	air = 5000;
+};
+
+class playerSpawn {
+	loading = "Please wait, loading...";
+	loadFadeout = 2;
+	welcome = "Welcome to %1, you are %2";
+	welcomeFadeOut = 2;
 };
 
 class ia {

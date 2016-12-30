@@ -11,11 +11,14 @@ Description:
 	
 */
 
-if ( !(["voiceControl"] call core_fnc_getConf)) exitWith {};
+if ( (["voiceControl"] call core_fnc_getConf) == 0 ) exitWith {};
 
 VC_isOn = false;
 VC_currentTxt = "";
 VC_channelId = -1;
+VC_allowed = [];
+VC_open = [];
+VC_message = ["voiceControl", "message"] call BIS_fnc_GetCfgData;
 
 waitUntil { !isNull findDisplay 46 };
 
@@ -27,21 +30,28 @@ findDisplay 46 displayAddEventHandler ["JoystickButton", voiceControl_fnc_keyDow
 
 private _uid = getPlayerUID player;
 
+private _delay = ["voiceControl", "loopDelay"] call BIS_fnc_GetCfgData;
+private _disabled = ["voiceControl", "disabled"] call BIS_fnc_GetCfgData;
+private _players = ["voiceControl", "players"] call BIS_fnc_GetCfgData;
+private _groupLeader = ["voiceControl", "groupLeader"] call BIS_fnc_GetCfgData;
+private _admins = ["voiceControl", "admins"] call BIS_fnc_GetCfgData;
+private _adminList = ["voiceControl", "adminList"] call BIS_fnc_GetCfgData;
+
 while { true } do { 
 	
-	if( _uid in VC_adminList ) then {
-		VC_allowed = VC_admins;
+	if( _uid in _adminList ) then {
+		VC_allowed = _admins;
 	} else {
 		if( serverCommandAvailable "#logout" ) then {
-			VC_allowed = VC_admins;
+			VC_allowed = _admins;
 		} else {
 			if(count units group player == 1) then {
-				VC_allowed = VC_players;
+				VC_allowed = _players;
 			} else {
 				if(player != leader group player) then {
-					VC_allowed = VC_players;
+					VC_allowed = _players;
 				} else {
-					VC_allowed = VC_groupleader;
+					VC_allowed = _groupLeader;
 					if(vehicle player != player && effectiveCommander (vehicle player) == player) then {
 						VC_allowed = VC_allowed + [2]; 
 					};                                                                    
@@ -50,13 +60,11 @@ while { true } do {
 		};
 	};
 
-	if( isNil "VC_open" ) then { VC_open = [] };
 	if !(VC_open isEqualTo VC_allowed) then {
 		for "_i" from 0 to 6 do {
-			_i enableChannel [true, ([false, true] select ( (_i in VC_allowed) && !(_i in VC_disabled) ) )];
-			//_i enableChannel ( if (_i in VC_allowed) then [ {true},{if(_i in VC_disabled)then [{false},{true}] }] );
+			_i enableChannel [true, ([false, true] select ( (_i in VC_allowed) && !(_i in _disabled) ) )];
 		};
 		VC_open = VC_allowed;
 	};
-	sleep VC_loopDelay;
+	sleep _delay;
 };

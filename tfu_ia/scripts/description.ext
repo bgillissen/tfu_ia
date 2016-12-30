@@ -77,7 +77,7 @@ class CfgRemoteExec {
 	class Functions { 	//mode 0:disabled, 1:whitelisted, 2:all
 		mode = 1;
 		jip = 1;
-		#include "feats\_cfgRemoteExec.cfg"
+		#include "feats\_cfgRemoteExec.hpp"
 	};        
     class Commands {
 		mode = 1;

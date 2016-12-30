@@ -7,11 +7,14 @@ Description:
 	to trigger features binded to onCloseVA event
 */
 
-if ( !( isNil {_this getVariable "VAopen"}) && {!(isNull (uiNamespace getVariable [ "BIS_fnc_arsenal_cam", objNull]))} ) then { 
-	_this setVariable ["VAopen", true];
-    private _thread = _this spawn { 
-    	waitUntil { isNull ( uiNamespace getVariable [ "BIS_fnc_arsenal_cam", objNull ] )  };
-    	[CTXT, "onCloseVA", []] call core_fnc_featEvents;
-    	_this setVariable ["VAopen", false]; 
-    };
+if ( VAopen ) exitWith {};
+if ( isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull]) ) exitWith {};
+
+VAopen = true;
+[] spawn {
+	waitUntil {
+		isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])  
+	};
+	VAopen = false;
+	["PLAYER", "onCloseVA", []] call core_fnc_featEvent;
 };

@@ -138,10 +138,7 @@ Yeahhh markers have a bearing :D
 also need SZ_RADIUS, FR_RADIUS
 
 Idea for a new feature :
-environment  => clearFog 	=> all members 
-				setTime	  	=> above pfc 
-				setRain		=> aboce recruit
-disabled when a curator is assign!
+
 
 
 only compute maps/mods on server and broadcast with JIP enabled
@@ -216,16 +213,16 @@ in baseVehicle (server)
 			- clear and fill the vehicle cargo following VC_[????])
 			- append to VR[veh, delay, class, pos, dir]
 			
-new feature, hallOfShame (server side):
+new feature, hallOfShame (server):
 	list object with a "hos" action
 	get a list of "name" from settings to apply texture, hideGlobal those that are not assigned
 
 new feature, baseDefence : 
-		markers directly from composition BA_bd[0,1,2,3,4,5,6]
-		param : Permanent Base Defence (yes, no)
+		markers directly from composition BADB_[1,2,3,4,5,6]
+		param : Base Defence (permanent, cooldown, no)
 				Base Defence Cooldown (short, medium, long)
 		if permanent : 
-			just spawn baseDefence AA batteries from BV_aaTank pool on each BADB_?? marker
+			just spawn baseDefence AA batteries from BV_aaTank pool on each BABD_?? marker
 			use : if (getMarkerColor "markerName" == "") then {hint "Marker not found";}; ;) to know if a marker exists !
 		if need activation :
 			use a new action "defence", and use that to addAction on those things
@@ -241,4 +238,25 @@ new feature, baseLight (server / player):
 		_x setHit ["light_3_hitpoint", _dmg];
 		_x setHit ["light_4_hitpoint", _dmg];
 	} count (nearestObjects [SZ, ["Lamps_base_F", "PowerLines_base_F", "PowerLines_Small_base_F"], SZ_RADIUS]);
+
+new feature, deathMessage (server)
+	to display a custom death message
+	systemChat to all player with 
+		???? has been [team]Killed by ????
+		???? killed himself
+new feature respawnMessage (server)
+	systemChat to all player with
+	???? has respawn in base
+	
+new feature, environment
+	disabled when a curator is assigned!  
+	clearFog 	=> all members
+	clearRain	=> above recruit
+	dawn	  	=> above pfc
+	sunRise	  	=> above pfc
+	midday		=> above pfc
+	midnight	=> above pfc
+
+baseProectetion for vehicle too ???
+	link EH in vehicleRespawn setup	
 	

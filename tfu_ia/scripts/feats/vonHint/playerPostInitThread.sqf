@@ -7,7 +7,7 @@ Description:
 	wait for screen to be "unblacked" then display periodicaly a Hint about server TS
 */
 
-if ( !(["vonHint"] call core_fnc_getConf) ) exitWith {};
+if ( (["vonHint"] call core_fnc_getConf) == 0 ) exitWith {};
 
 waitUntil {
 	sleep 1;
@@ -17,7 +17,7 @@ waitUntil {
 private _delay = ["vonHint", "delay"] call BIS_fnc_GetCfgData;
 private _ts = ["vonHint", "tsAddr"] call BIS_fnc_GetCfgData;
 
-while ( true ) do {
+while { true } do {
 	{
 		[format[_x, _ts]] remoteExec ["common_fnc_globalHint", 0, false];
 		sleep _delay;	

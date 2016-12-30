@@ -7,7 +7,7 @@ Description:
 	This script keeps updating an HUD with the passenger list of the vehicle the player is in.
 */
 
-if ( !(["vehicleCrew"] call core_fnc_getConf) ) exitWith{};
+if ( (["vehicleCrew"] call core_fnc_getConf) == 0 ) exitWith{};
 
 private ["_name","_vehicle","_weapname","_weap","_target","_picture","_vehtarget","_azimuth","_wepdir","_hudnames","_ui"];   
 	   

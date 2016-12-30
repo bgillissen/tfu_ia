@@ -8,12 +8,13 @@ Description:
 	optionaly display a hint to let player know about this feature
 */
 
-if ( !(["earPlugs"] call core_fnc_getConf) ) exitWith{};
+if ( (["earPlugs"] call core_fnc_getConf) == 0 ) exitWith{};
+
 if ( (missionNamespace getVariable "MOD_ace") ) exitWith {};
 
 earPlug_state = false; 
 
-if ( ["earPlugs", "showHint"] call BIS_fnc_GetCfgData ) then {
+if ( (["earPlugs", "showHint"] call BIS_fnc_GetCfgData) == 1 ) then {
 	hint parseText (["earPlugs", "hint"] call BIS_fnc_GetCfgData);
 };
 

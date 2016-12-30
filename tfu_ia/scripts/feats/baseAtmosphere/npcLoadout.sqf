@@ -10,16 +10,16 @@ Description:
 
 params ["_npc", "_actions"];
 
-if ( "arsenal" in _actions ) ewitWith {
-	[_npc, BALO_gear] common_fnc_setLoadout;
+if ( "arsenal" in _actions ) exitWith {
+	[_npc, BALO_gear] call common_fnc_setLoadout;
 };
 
-if ( "support" in _actions ) ewitWith {
-	[_npc, BALO_support] common_fnc_setLoadout;
+if ( "support" in _actions ) exitWith {
+	[_npc, BALO_support] call common_fnc_setLoadout;
 };
 
-if ( "medic" in _actions ) ewitWith {
-	[_npc, BALO_medic] common_fnc_setLoadout;
+if ( "medic" in _actions ) exitWith {
+	[_npc, BALO_medic] call common_fnc_setLoadout;
 };
 
-[_npc, BALO_default] common_fnc_setLoadout;
+[_npc, BALO_default] call common_fnc_setLoadout;

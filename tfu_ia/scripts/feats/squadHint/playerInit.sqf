@@ -8,14 +8,21 @@ Description:
 	(see settings.sqf)
 */
 
-if ( !(["squadHint"] call core_fnc_getConf) ) exitWith{};
+if ( (["squadHint"] call core_fnc_getConf) == 0 ) exitWith{};
 
-private _infoArray = squadParams player;  
+private _infoArray = squadParams player;
 private _infoSquad = _infoArray select 0;
+
+if ( isNil "_infoSquad" ) exitWith {};
+
 private _squad = _infoSquad select 1;
 private _infoName = _infoArray select 1;
-private _name = _infoName select 1;
+private _playerName = _infoName select 1;
 
-if (_squad == SH_name) then { 
-	[format[SH_msg, _squad, _name, SH_url]] remoteExec ["common_fnc_globalHint", 0, false]; 
+private _cfgName = ["squadHint", "name"] call BIS_fnc_GetCfgData;
+		
+if (_squad isEqualTo _cfgName) then {
+	private _msg = ["squadHint", "msg"] call BIS_fnc_GetCfgData;
+	private _url = ["squadHint", "url"] call BIS_fnc_GetCfgData;
+	[format[_msg, _squad, _playerName, _url]] remoteExec ["common_fnc_globalHint", 0, false]; 
 };

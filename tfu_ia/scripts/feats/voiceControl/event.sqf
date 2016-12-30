@@ -9,7 +9,7 @@ Description:
 	This script is used to trigger an alarm sound when player try to speak in an unauthorized channel.
 */
 
-param ["_currentTxt"];
+params ["_currentTxt"];
 
 VC_currentTxt = _currentTxt;
 VC_channelId = [VC_currentTxt] call voiceControl_fnc_channelId;

@@ -9,7 +9,7 @@ Description:
 	register map and gps draw eventHandler.
 */
 
-if ( !(["mapTracker"] call core_fnc_getConf) ) exitWith {};
+if ( (["mapTracker"] call core_fnc_getConf) == 0 ) exitWith {};
 
 MT_mapEH = -1;
 MT_mapThread = [] spawn {
@@ -24,12 +24,12 @@ MT_mapThread = [] spawn {
 MT_gpsEH = -1;
 MT_gpsThread = [] spawn { 
 	disableSerialization;
-	MT_gps = controlNull;	
-	while {isNull MT_gps} do {
+	private _gps = controlNull;	
+	while {isNull _gps} do {
 		{
-			if !(isNil {_x displayctrl 101}) then { MT_gps = _x displayctrl 101 };
+			if !(isNil {_x displayctrl 101}) then { _gps = _x displayctrl 101 };
 		} count (uiNamespace getVariable "IGUI_Displays");
 		sleep 1;
 	};
-	MT_gpsEH = MT_gps ctrlAddEventHandler ["Draw", {[true, _this select 0] call mapTracker_fnc_drawIcons}];
+	MT_gpsEH = _gps ctrlAddEventHandler ["Draw", {[true, _this select 0] call mapTracker_fnc_drawIcons}];
 };

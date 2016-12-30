@@ -8,7 +8,7 @@ Description:
 	if true, it sits there and wait for it to pass back to false  
 */
 
-param ["_hint", "_globalSwitch"];
+params ["_hint", "_globalSwitch"];
 
 if ( zeusMission ) then {
 	waitUntil {

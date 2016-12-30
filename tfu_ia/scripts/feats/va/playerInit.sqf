@@ -7,4 +7,4 @@ Description:
 	just preload the arsenal.
 */
 
-["Preload"] spawn BIS_fnc_arsenal; 
+//["Preload"] spawn BIS_fnc_arsenal; 

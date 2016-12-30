@@ -4,9 +4,13 @@ Author:
 	Ben
 Description:
 	this run player side
-	black our player screen if not already done.
+	black out player screen if not already done.
 */
 
+if ( isNil "BLACKSCREEN" ) then { BLACKSCREEN = false; };
+
 if ( BLACKSCREEN ) exitWith{};
+
 BLACKSCREEN = true;
-cutText ["Please wait, loading...", "BLACK OUT"];
+
+"loading" cutText ["Please wait, loading...", "BLACK", 1];

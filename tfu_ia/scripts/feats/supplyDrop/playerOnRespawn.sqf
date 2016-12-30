@@ -18,7 +18,7 @@ Return:
 	nothing
 */
 
-if ( !(["supplyDrop"] call core_fnc_getConf) ) exitWith {};
+if ( (["supplyDrop"] call core_fnc_getConf) == 0 ) exitWith {};
 
 private _isHPilot = ( player getVariable "role" isEqualTo "hPilot" );
 private _isJPilot = ( player getVariable "role" isEqualTo "jPilot" );

@@ -120,7 +120,7 @@ if ( isNil "_sorted" ) then {
 
 {
 	_x params ["_feat", "_path", "_how", "_id", "_toadd"];
-	private _fncName = format["FEAT_%1_%2", _feat, _when];
+	private _fncName = format["FEAT_%1_%3_%2", _feat, _when, _ctxt];
 	private _code = missionNamespace getVariable _fncName;
 	if( isNil "_code" ) then {
 		private _script = format["%1\%2\%3%4%5.sqf", _path, _feat, toLower(_ctxt), _toadd, ["", "Thread"] select (_how isEqualTo 2)];

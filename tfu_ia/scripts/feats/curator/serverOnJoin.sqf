@@ -7,7 +7,7 @@ Description:
 	to make player a zeus editable object
 */
 
-param ["_player"];
+params ["_player"];
 
 {
 	_x addCuratorEditableObjects [[_player], true];
