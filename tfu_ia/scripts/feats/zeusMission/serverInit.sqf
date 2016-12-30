@@ -5,7 +5,7 @@ Author:
 Description:
 	this run on server,
 	set the initial value of the zeusMission public variable to false
-	append action to base tings
+	append action to base things with a curator action
 */
 
 missionNamespace setVariable ["zeusMission", false, true];

@@ -139,7 +139,7 @@ while ( true ) do {
 		private _hint = ["ia", "fob", "failHint"] call BIS_fnc_GetCfgData;
 		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker, _veh1, _veh2] spawn FOB_fnc_cleanup;
-		FOB_failed = true;
+		//FOB_failed = true;
 	};
 	if ( AO_zone != _aoZone ) exitWith {
 		private _hint = ["ia", "fob", "newZoneHint"] call BIS_fnc_GetCfgData;

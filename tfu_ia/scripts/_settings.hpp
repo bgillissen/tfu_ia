@@ -3,8 +3,9 @@
 Author:
 	Ben
 Description:
-	included by description.ext
-	it define in the missionConfig entries needed by features
+	on all context,
+	included by description.ext,
+	define the missionConfig entries needed by the supported features
 	those settings are those that (can't be set as || are not needed as) mission parameters
 	it is organize by features.
 Params:
@@ -19,7 +20,7 @@ Return:
 srvCMDpass = "honeybadger";
 unlockDelay = 15;
 
-//list of supported mods and they entry under CfgPatches
+//supported mods and their entries under CfgPatches
 mods[]={{"ace", "ace_main"},
 		{"rhsAFRF", "todo"},
 		{"rhsGREF", "todo"},
@@ -61,9 +62,21 @@ class revive {
 		healMode = 1;	//0, only faks, 1 consume a faks if no medikit, 2 only medikit
 		medicClass = ["B_medic_F", "B_recon_medic_F", "B_G_medic_F"];
 		medicViewDistance = 500;
-
+	};
+	class ais {
+		realistic = 0;	//instant death of serious wound
+		education = 2; 	//who can revive, 0 everybody, 1 everybody with faks and medikit, 2 only medics
+		resistance = 1;	//damage resistance factor, 1 for default, higher to increase, lower to decrease
+		noTFAR = 1; 	//disable TFAR communication when uncouncious
+		noChat = 0;		//no chat when uncouncious
+		mapMarker = 1;	//add an icon on map at the wounded location
+		3dIcons = 0;	//in-game visible 3D icon to show you the position of the wounded
+		blood = 1;		//generate extra blood particles
+		impact = 1;		//visible impact effect
+		showTimer = 1;	//show bleedout countdown
 	};
 };
+
 class mapTracker {
 	colorNeedRevive[]={1, 0.41, 0, 1};
 	colorEast[]={0.5, 0, 0};
@@ -101,7 +114,7 @@ class arsenal {
 };
 
 class curator {
-	uids[]={};
+	uids[]={"76561198030235789"};
 	web = 1;
 	url = "http://taskforcunicorn.com/api/curators";
 	noSlotMsg = "No more free Zeus slot available (%1 / %2).";
@@ -185,6 +198,20 @@ class supportCrate {
 class vehicleRespaw {
 	distanceFromSpawn = 150;
 	checkDelay = 20;
+};
+
+class vehicleRestrictions {
+	JH_pilot_heli = "Pilot seat is restricted to helicopter and jet pilot on this vehicle";
+	H_pilot = "Pilot seat is restricted to helicopter pilot on this vehicle";
+	JH_copilot_heli = "Co-pilot seat is restricted to helicopter and jet pilot on this vehicle";
+	H_copilot = "Co-pilot seat is restricted to helicopter pilot on this vehicle";
+	JH_pilot_plane = "Pilot seat is restricted to jet and helicopter pilot on this vehicle";
+	J_pilot = "Pilot seat is restricted to jet pilot on this vehicle";
+	JH_copilot_plane = "Co-pilot seat is restricted to jet and helicopter pilot on this vehicle";
+	J_copilot = "Co-pilot seat is restricted to jet pilot on this vehicle";
+	crew_driver = "Driver seat is restricted to tank crew on this vehicle";
+	crew_gunner = "Gunner seat is restricted to tank crew on this vehicle";
+	crew_commander = "Commander seat is rectricted to tank crew on this vehicle";
 };
 
 class viewDistance {

@@ -9,7 +9,6 @@ Description:
 
 if ( (["FOB"] call core_fnc_getConf) == 0 ) exitWith {};
 
-FOB_isOn = false;
 FOB_stop = false;
 FOB_deployed = [];
 FOB_main = nil;
@@ -51,13 +50,11 @@ while { true } do {
 	
 			private _type = selectRandom _types;
 			_types = _types -[_type];
-			FOB_isOn = true;
 			FOB_main = [_marker, _type, AO_zone] spawn FOB_fnc_thread;
 			waitUntil {
 				sleep _checkDelay;
 				scriptDone FOB_main
 			};
-			FOB_isOn = false;
 		};
 	};
 };

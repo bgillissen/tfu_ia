@@ -13,6 +13,11 @@ if ( isNil "curatorAssigned" ) then {
 	publicVariable "curatorAssigned";
 };
 
+private _request = ["curator", "requestAction"] call BIS_fnc_GetCfgData;
+private _release = ["curator", "releaseAction"] call BIS_fnc_GetCfgData;
+private _web = (["curator", "web"] call BIS_fnc_GetCfgData == 1);
+private _reload  = ["curator", "reloadAction"] call BIS_fnc_GetCfgData;
+
 call curator_fnc_reload;
 
 {
@@ -20,10 +25,10 @@ call curator_fnc_reload;
 		_x params ["_thing", "_actions"];
 		{
 			if ( _x == "curator") then {
-				_thing addAction [CURATOR_requestAction, curator_fnc_actionRequest, [], 0, false, true, '', '[false] call curator_fnc_condition', 2];
-				_thing addAction [CURATOR_releaseAction, curator_fnc_actionRelease, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
-				if ( CURATOR_web ) then {
-					_thing addAction [CURATOR_reloadAction, curator_fnc_actionReload, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
+				_thing addAction [_request, curator_fnc_actionRequest, [], 0, false, true, '', '[false] call curator_fnc_condition', 2];
+				_thing addAction [_release, curator_fnc_actionRelease, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
+				if ( _web ) then {
+					_thing addAction [_reload, curator_fnc_actionReload, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
 				};
 			}
 		} count _actions;

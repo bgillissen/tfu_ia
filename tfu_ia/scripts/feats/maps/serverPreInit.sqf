@@ -11,6 +11,7 @@ Description:
 
 if ( isNil "MAP_INIT" ) then {
 	call compileFinal preprocessFileLineNumbers format["feats\maps\%1.sqf", toUpper(worldName)];
+	MAP_INIT = true;
 };
 
 private _base = BASES select (format["%1_base", MAP_PREFIX] call core_fnc_getConf);
@@ -25,5 +26,3 @@ call compileFinal preprocessFileLineNumbers format["feats\maps\%1\%2.sqf", MAP_F
 publicVariable "BASE_NAME";
 publicVariable "SZ_RADIUS";
 publicVariable "FR_RADIUS";
-
-MAP_INIT = true;

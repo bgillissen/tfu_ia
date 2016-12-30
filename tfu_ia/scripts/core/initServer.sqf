@@ -65,24 +65,19 @@ if ( isNil "PV") then {
     true
 } count PV;
 
-diag_log "SERVER_PREINIT START";
 //features serverPreInit call/spawn
 ["SERVER", "preInit"] call core_fnc_featEvent;
-diag_log "SERVER_PREINIT DONE";
 
-diag_log "SERVER_INIT START";
 //features serverInit call/spawn
 ["SERVER", "init"] call core_fnc_featEvent;
-diag_log "SERVER_INIT DONE";
+
 //register feature's OnLeave eventHandler
 if ( isNil "FEH_onLeave" ) then {
 	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {["SERVER", "onLeave", _this] call core_fnc_featEvent;}];
 };
 
-diag_log "SERVER_POSTINIT START";
 //features serverPostInit call/spawn
 ["SERVER", "postInit"] call core_fnc_featEvent;
-diag_log "SERVER_POSTINIT DONE";
 
 //broadcast computed assets to clients
 {

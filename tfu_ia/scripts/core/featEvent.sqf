@@ -115,7 +115,7 @@ if ( isNil "_sorted" ) then {
 		_sorted = [_pool, [], {_x select 5}, "ASCEND"] call BIS_fnc_sortBy;
 		_pool = nil;
 	};	
-	missionNamespace setVariable [_poolName, _sorted];
+	missionNamespace setVariable [_poolName, _sorted, false];
 };
 
 {
@@ -128,8 +128,8 @@ if ( isNil "_sorted" ) then {
 		missionNamespace setVariable [_fncName, _code, false]; 
 	};
 #ifdef DEBUG
-private _debug = format["featEvent: %1, %2 => %3", _ctxt, _when, _feat];
-conWhite(_debug);
+	private _debug = format["featEvent: %1, %2 => %3", _ctxt, _when, _feat];
+	conWhite(_debug);
 #endif
 	if ( _when isEqualTo "destroy" ) then {
 		{
