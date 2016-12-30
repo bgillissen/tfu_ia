@@ -66,3 +66,21 @@ class CfgFunctions {
 class CfgCompositions {
 	#include "feats\maps\_cfgCompositions.hpp"
 };
+
+//------------------------- RscTitles
+class RscTitles {
+	#include "feats\vehicleCrew\_rscTitles.hpp"
+};
+
+//------------------------- Whitelisted Remote Functions
+class CfgRemoteExec {
+	class Functions { 	//mode 0:disabled, 1:whitelisted, 2:all
+		mode = 1;
+		jip = 1;
+		#include "feats\_cfgRemoteExec.cfg"
+	};        
+    class Commands {
+		mode = 1;
+		jip = 1;            
+	};
+};
