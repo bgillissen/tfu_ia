@@ -88,7 +88,7 @@ class mapTracker {
     textSize = 0.05;
     textFont = "puristaMedium";
     textOffset = "right";
-    gpsDist = 150;
+    gpsDist = 500;
 };
 
 class gearRestriction {

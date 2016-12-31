@@ -20,7 +20,7 @@ MT_mapThread = [] spawn {
 	MT_mapEH = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {[false, _this select 0] call mapTracker_fnc_drawIcons}];
 };
 
-
+MT_gpsDist = ["mapTracker", "gpsDist"] call BIS_fnc_GetCfgData;
 MT_gpsEH = -1;
 MT_gpsThread = [] spawn { 
 	disableSerialization;
