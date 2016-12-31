@@ -13,5 +13,6 @@ private _marker = (player getVariable "role") call {
 	"BS_INF"
 };
 
+//TODO abit of randomness on position in a 5m radius
 player setDir (markerDir _marker);
 player setPos (getMarkerPos _marker);

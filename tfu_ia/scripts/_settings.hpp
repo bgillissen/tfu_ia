@@ -16,10 +16,6 @@ Return:
 	nothing
 */
 
-//init, needed to lock the server while server side features are loading
-srvCMDpass = "honeybadger";
-unlockDelay = 15;
-
 //supported mods and their entries under CfgPatches
 mods[]={{"ace", "ace_main"},
 		{"rhsAFRF", "todo"},

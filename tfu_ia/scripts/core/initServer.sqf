@@ -12,16 +12,8 @@ Description:
 
 missionNamespace setVariable ["SERVER_INIT", true, true];
 
-if ( isNil "isLOCKED" ) then { isLOCKED = false; };
-private _srvCMDpass = ["srvCMDpass"] call BIS_fnc_GetCfgData;
-if ( !isLOCKED ) then {
-	_srvCMDpass serverCommand "#lock";
-	isLOCKED = true;
-};
-
 //those global vars are only needed server side
 BLACKLIST = [[],[],[],[],[],[],[],[]];
-UAV = [];
 REWARDS = [];
 
 if ( isNil "PV") then {
@@ -89,8 +81,6 @@ if ( isNil "FEH_onLeave" ) then {
 	_x params ["_prefix", "_vars", "_broadcast"];
 	if ( _broadcast ) then {
 		{
-			//diag_log format["Exporting %1_%2 to clients", _prefix, _x];
-			//diag_log (missionNamespace getVariable format["%1_%2", _prefix, _x]);
 			publicVariable format["%1_%2", _prefix, _x];
 		} count _vars;
 	};
@@ -98,9 +88,3 @@ if ( isNil "FEH_onLeave" ) then {
 } count PV;
 
 missionNamespace setVariable ["SERVER_INIT", false, true];
-
-sleep (["lockDelay"] call BIS_fnc_GetCfgData);
-
-_srvCMDpass serverCommand "#unlock";
-
-isLOCKED = false;

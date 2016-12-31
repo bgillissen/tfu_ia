@@ -13,8 +13,6 @@ private _delay = ["baseProtection", "sleepDelay"] call BIS_fnc_GetCfgData;
 
 private _coord = getMarkerPos "SZ";
 
-diag_log _coord;
-
 BP_inBase = true;
 
 waitUntil {

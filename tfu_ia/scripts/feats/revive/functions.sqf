@@ -1360,10 +1360,6 @@ BTC_player_respawn = {
 			player switchMove "amovpercmstpsraswrfldnon";
 			player switchMove "";//amovpercmstpsraswrfldnon
 			
-			//features onRespawn (player side)(local)
-			//["PLAYER", "onRespawn", [player]] call core_fnc_featEvent;
-			//features onRespawn (server side)(remote)
-			//["SERVER", "onRespawn", [player]] call core_fnc_featEvent;
 			//teleport player back to base
 			[] call playerSpawn_fnc_teleport;
 			

@@ -22,7 +22,7 @@ conWhite(">>>> core_fnc_initPlayer is waiting for server init");
 	((missionNamespace getVariable "SERVER_INIT") isEqualTo false)
 };
 #ifdef DEBUG
-conWhite(">>>> start core_fnc_initPlayer");
+conWhite(">>>> core_fnc_initPlayer start");
 #endif
 
 waitUntil {!isNull player};

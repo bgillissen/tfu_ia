@@ -19,6 +19,7 @@ Description:
 #include "mods\_cfgFunctions.hpp"
 #include "playerSpawn\_cfgFunctions.hpp"
 #include "radioFreq\_cfgFunctions.hpp"
+#include "skipBriefing\_cfgFunctions.hpp"
 #include "supplyDrop\_cfgFunctions.hpp"
 #include "supportCrate\_cfgFunctions.hpp"
 #include "va\_cfgFunctions.hpp"

@@ -151,15 +151,15 @@ private _doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungl
 _conf = ["bv_vi"] call core_fnc_getConf;
 private _doIND = [_conf, independent, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 {
-	//[_forEachIndex, ((_c select VVC) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+	[_forEachIndex, ((_c select VVC) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	if ( _doOPFOR ) then {
-		//[_forEachIndex, ((_o select VVO) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+		[_forEachIndex, ((_o select VVO) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	};
 	if ( _doBLUFOR ) then {
 		[_forEachIndex, ((_b select VVB) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	};
 	if ( _doIND ) then {
-		//[_forEachIndex, ((_i select VVI) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+		[_forEachIndex, ((_i select VVI) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
 	};
 	
 } forEach ((PV select BV_k) select 1);

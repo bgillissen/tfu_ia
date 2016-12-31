@@ -15,11 +15,10 @@ private _out = [];
 AVC = 0;
 
 private _backpacks = [];
-private _items = [];
+private _items = ["map"];
 private _weapons = [];
 private _ammo = [];
 
-//_out set [AVC, (["A", _backpacks, _items, _weapons, _ammo] call mods_fnc_append)];
 _out set [AVC, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Cargo Vanilla (common)
