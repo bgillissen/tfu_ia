@@ -50,7 +50,7 @@ _out set [CVB, [_backpacks, _items, _weapons, _ammo]];
 
 AVVB = CVB + 1;
 
-private _heli = [];
+private _heli = ["B_Heli_Light_01_F"];
 private _plane = [];
 private _tank = [];
 
@@ -115,8 +115,8 @@ private _planeCAS = [];
 private _planeAA = [];
 private _planeTransport = [];
 private _uav = [];
-private _heliSmall = [];
-private _heliSmallArmed = [];
+private _heliSmall = ["B_Heli_Light_01_F"];
+private _heliSmallArmed = ["B_Heli_Light_01_armed_F"];
 private _heliMedium = [];
 private _heliMedEvac = [];
 private _heliBig = [];
@@ -129,7 +129,7 @@ private _landMedic = [];
 private _repair = [];
 private _fuel = [];
 private _ammo = [];
-private _quad = [];
+private _quad = ["quad"];
 
 _out set [VVB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 

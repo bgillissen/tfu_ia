@@ -69,9 +69,43 @@ RVC = SDVC + 1;
 private _rewards = [];
 
 _out set [RVC, _rewards];
+
+//------------------------------------------------------------ Vehicles Vanilla  (common)
+
+VVC = RVC + 1;
+
+private _car = [];
+private _carArmed = [];
+private _apc = [];
+private _tank = [];
+private _aaTank = [];
+private _planeCAS = [];
+private _planeAA = [];
+private _planeTransport = [];
+private _uav = [];
+private _heliSmall = [];
+private _heliSmallArmed = [];
+private _heliMedium = [];
+private _heliMedEvac = [];
+private _heliBig = [];
+private _heliAttack = [];
+private _boatSmall = [];
+private _boatAttack = [];
+private _boatBig = [];
+private _sub = [];
+private _landMedic = [];
+private _repair = [];
+private _fuel = [];
+private _ammo = [];
+private _quad = [];
+
+_out set [VVC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+                _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
+
 //------------------------------------------------------------ Vehicles Cargo Vanilla (common)
 
-VCVC = RVC + 1;
+VCVC = VVC + 1;
 
 private _car = [];
 private _carArmed = [];

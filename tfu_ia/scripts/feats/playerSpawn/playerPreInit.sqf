@@ -9,8 +9,8 @@ Description:
 
 if ( isNil "BLACKSCREEN" ) then { BLACKSCREEN = false; };
 
-if ( BLACKSCREEN ) exitWith{};
+if ( BLACKSCREEN ) exitWith {};
 
 BLACKSCREEN = true;
 
-"loading" cutText ["Please wait, loading...", "BLACK", 1];
+"loading" cutText ["Please wait, loading...", "BLACK", 0.1, true];

@@ -11,6 +11,9 @@ Description:
 
 missionNamespace setVariable ["PLAYER_INIT", true, false];
 
+//features playerPreInit
+["PLAYER", "preInit"] call core_fnc_featEvent;
+
 waitUntil {
 	sleep 1;
 #ifdef DEBUG
@@ -24,10 +27,6 @@ conWhite(">>>> start core_fnc_initPlayer");
 
 waitUntil {!isNull player};
 waitUntil {player isEqualTo player};
-
-
-//features playerPreInit
-["PLAYER", "preInit"] call core_fnc_featEvent;
 
 //features playerInit
 ["PLAYER", "init"] call core_fnc_featEvent;

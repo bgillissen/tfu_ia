@@ -90,12 +90,12 @@ if ( isNil "_sorted" ) then {
 			if ( _when isEqualTo "postInit" ) exitWith { (_this select 2) };
 			if ( _when isEqualTo "onRespawn" ) exitWith { (_this select 3) };
 			if ( _when isEqualTo "onJoin" ) exitWith { (_this select 4) };
-			if ( _when isEqualTo "onLeave" ) exitWith { (_this select 5) };
+			if ( _when isEqualTo "onLeave" ) exitWith { (_this select 5) };			
 			if ( _when isEqualTo "onCloseVA" ) exitWith { (_this select 4) };
 			if ( _when isEqualTo "onShoot" ) exitWith { (_this select 5) };
 			if ( _when isEqualTo "onGetIn" ) exitWith { (_this select 6) };
-			if ( _when isEqualTo "onGetOut" ) exitWith { (_this select 7) };
-			if ( _when isEqualTo "onSwitchSeat" ) exitWith { (_this select 8) };
+			if ( _when isEqualTo "onSwitchSeat" ) exitWith { (_this select 7) };
+			if ( _when isEqualTo "onGetOut" ) exitWith { (_this select 8) };
 			if ( _when isEqualTo "onPickUp" ) exitWith { (_this select 9) };
 			//destroy
 			if ( _key isEqualTo 1 ) exitWith { (_this select 6) };

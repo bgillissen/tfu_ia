@@ -92,3 +92,22 @@ class Reward_vi {
 	texts[] = {"no", "yes", "automatic"};
 	default = 2;
 };
+
+class bv_vo {
+	title = "Vanilla OPFOR vehicle available in base";
+	values[] = {0,1,2};
+	texts[] = {"no", "yes", "automatic"};
+	default = 2;
+};
+class bv_vb {
+	title = "Vanilla BLUFOR vehicle available in base";
+	values[] = {0,1,2};
+	texts[] = {"no", "yes", "automatic"};
+	default = 2;
+};
+class bv_vi {
+	title = "Vanilla IND vehicle available in base";
+	values[] = {0,1,2};
+	texts[] = {"no", "yes", "automatic"};
+	default = 2;
+};

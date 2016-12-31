@@ -21,7 +21,11 @@ if (_type in SD_vehicles) then {
 };
 
 //UAV respawn fixer
-if (_type in VEH_uav) then {
+if (_type in BV_uav) then {
+	diag_log format["Creating crew for : %1", _type];
+	diag_log BV_uav;
+	diag_log BV_heliSmall;
+	diag_log BV_heliSmallArmed;
 	{
 		deleteVehicle _x;
 	} forEach(crew _veh);

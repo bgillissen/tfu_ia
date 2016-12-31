@@ -13,4 +13,6 @@ deleteVehicle (_this select 6);
 
 hintC (["baseProtection", "msg"] call BIS_fnc_GetCfgData);
 
+disableSerialization;
+
 hintC_EH = findDisplay 57 displayAddEventHandler ["Unload", {_this spawn baseProtection_fnc_unload;}];

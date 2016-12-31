@@ -25,8 +25,6 @@ conWhite(_debug);
 
 if ( (count _list) == 0 ) exitWith {};
 
-private _pv = missionNamespace getVariable _target;
-
 {
 	private "_toFilter";
 	if ( isNil "_fKey" ) then {
@@ -35,8 +33,6 @@ private _pv = missionNamespace getVariable _target;
 		_toFilter = _x select _fKey;
 	};
 	if ( !([_toFilter, _filter] call common_fnc_isBlacklisted) ) then {
-		_pv append [_x];
+		(missionNamespace getVariable _target) append [_x];
 	};
-} count _list;	
-
-missionNamespace setVariable [_target, _pv, false];
+} count _list;

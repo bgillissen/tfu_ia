@@ -1360,11 +1360,12 @@ BTC_player_respawn = {
 			player switchMove "amovpercmstpsraswrfldnon";
 			player switchMove "";//amovpercmstpsraswrfldnon
 			
-			[] call QS_fnc_respawnHeli;
-			[] call QS_fnc_respawnJet;
-			[] call QS_fnc_respawnCrew;
-			
-			if (PARAMS_Fatigue == 0) then {player enableFatigue FALSE;};
+			//features onRespawn (player side)(local)
+			//["PLAYER", "onRespawn", [player]] call core_fnc_featEvent;
+			//features onRespawn (server side)(remote)
+			//["SERVER", "onRespawn", [player]] call core_fnc_featEvent;
+			//teleport player back to base
+			[] call playerSpawn_fnc_teleport;
 			
 			//==== experimental respawn dialog
 			

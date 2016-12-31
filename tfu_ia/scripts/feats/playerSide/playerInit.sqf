@@ -1,10 +1,9 @@
 /*
-@filename: feats\playerSide\playerPreInit.sqf
+@filename: feats\playerSide\playerInit.sqf
 Author:
 	Ben
 Description:
-	this run on client,
-	define player and enemy side
+	run on player,
 	make player join the squad defined by his slot (unit init)
 */
 

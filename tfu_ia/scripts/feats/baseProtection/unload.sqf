@@ -7,6 +7,8 @@ Description:
 	remove the eventHandler and close the centered hint 
 */
 
+disableSerialization;
+
 params ["_display"];
 
 _display displayRemoveEventHandler ["unload", hintC_EH];

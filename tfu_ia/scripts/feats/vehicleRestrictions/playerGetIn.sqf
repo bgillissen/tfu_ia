@@ -23,48 +23,47 @@ private _isHPilot = (_role isEqualTo "hPilot");
 private _isJPilot = (_role isEqualTo "jPilot");
 
 if ( (["restrictHeli"] call core_fnc_getConf) == 1 ) then {
-	if( _veh isKindOf "Helicopter" ) then {
-		if ( (typeOf _veh) in VA_heli ) ewitWith {};
-		if ( ( _isHPilot) exitWith {};
-		if ( ( _JPilot_fly_heli && _isJPilot) exitWith {};
+	if ( _veh isKindOf "Helicopter" ) then {
+		if ( (typeOf _veh) in AV_heli ) exitWith {};
+		if ( _isHPilot ) exitWith {};
+		if ( _JPilot_fly_heli && _isJPilot) exitWith {};
 		if( _pos == "driver" ) exitWith {
-			if ( ( _JPilot_fly_heli ) then {
-				systemChat (["vehicleRestrcitions", "JH_pilot_heli"] call BIS_fnc_GetCfgData);
+			if ( _JPilot_fly_heli ) then {
+				systemChat (["vehicleRestrictions", "JH_pilot_heli"] call BIS_fnc_GetCfgData);
 			} else {
-				systemChat (["vehicleRestrcitions", "H_pilot"] call BIS_fnc_GetCfgData);
+				systemChat (["vehicleRestrictions", "H_pilot"] call BIS_fnc_GetCfgData);
 			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
-		if( (_pos == "gunner") && (_turret == [0]) ) exitWith {
-			if ( ( _JPilot_fly_heli ) then {
-				systemChat (["vehicleRestrcitions", "JH_copilot_heli"] call BIS_fnc_GetCfgData);
+		if ( (_pos == "gunner") && (_turret isEqualTo [0]) ) exitWith {
+			if (  _JPilot_fly_heli ) then {
+				systemChat (["vehicleRestrictions", "JH_copilot_heli"] call BIS_fnc_GetCfgData);
 			} else {
-				systemChat (["vehicleRestrcitions", "JH_copilot"] call BIS_fnc_GetCfgData);
+				systemChat (["vehicleRestrictions", "JH_copilot"] call BIS_fnc_GetCfgData);
 			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
-		}; 
+		};
 	};
 };
 
 if ( (["restrictPlane"] call core_fnc_getConf) == 1 ) then {
-	if( _veh isKindOf "Plane" ) then {
-		if ( (typeOf _veh) in VA_plane ) ewitWith {};
-		if ( ( _isJPilot) exitWith {};
-		if ( ( _HPilot_fly_jet && _isHPilot) exitWith {};
+	if ( _veh isKindOf "Plane" ) then {
+		if ( (typeOf _veh) in AV_plane ) exitWith {};
+		if ( _isJPilot ) exitWith {};
+		if ( _HPilot_fly_jet && _isHPilot) exitWith {};
 		if( _pos == "driver" ) exitWith {
-			if ( ( _HPilot_fly_jet ) then {
-				systemChat (["vehicleRestrcitions", "JH_pilot_plane"] call BIS_fnc_GetCfgData);
+			if ( _HPilot_fly_jet ) then {
+				systemChat (["vehicleRestrictions", "JH_pilot_plane"] call BIS_fnc_GetCfgData);
 			} else {
-				systemChat (["vehicleRestrcitions", "J_pilot"] call BIS_fnc_GetCfgData);
+				systemChat (["vehicleRestrictions", "J_pilot"] call BIS_fnc_GetCfgData);
 			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
-		//private _forbidden = [_veh turretUnit [0]];
-		if( ( (_pos == "gunner") && (_turret == [0]) ) exitWith {
-			if ( ( _HPilot_fly_jet ) then {
-				systemChat (["vehicleRestrcitions", "JH_copilot_plane"] call BIS_fnc_GetCfgData);
+		if ( (_pos == "gunner") && (_turret isEqualTo [0]) ) exitWith {
+			if ( _HPilot_fly_jet ) then {
+				systemChat (["vehicleRestrictions", "JH_copilot_plane"] call BIS_fnc_GetCfgData);
 			} else {
-				systemChat (["vehicleRestrcitions", "J_pilot"] call BIS_fnc_GetCfgData);
+				systemChat (["vehicleRestrictions", "J_pilot"] call BIS_fnc_GetCfgData);
 			};
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
@@ -73,18 +72,18 @@ if ( (["restrictPlane"] call core_fnc_getConf) == 1 ) then {
 
 if ( (["restrictTank"] call core_fnc_getConf) == 1 ) then {
 	if ( (_veh isKindOf "Tank") || (_veh isKindOf "IFV")  ) then {
-		if ( (typeOf _veh) in VA_tank ) ewitWith {};
+		if ( (typeOf _veh) in AV_tank ) exitWith {};
 		if ( _role == "crew" ) exitWith {};
 		if ( _pos == "driver" ) exitWith {
-			systemChat (["vehicleRestrcitions", "crew_driver"] call BIS_fnc_GetCfgData);
+			systemChat (["vehicleRestrictions", "crew_driver"] call BIS_fnc_GetCfgData);
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
-		if( ( (_pos == "gunner") && (_turret == [0]) ) exitWith {
-			systemChat (["vehicleRestrcitions", "crew_gunner"] call BIS_fnc_GetCfgData);
+		if ( (_pos == "gunner") && (_turret isEqualTo [0]) ) exitWith {
+			systemChat (["vehicleRestrictions", "crew_gunner"] call BIS_fnc_GetCfgData);
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
-		if (player in [commander _veh]) ewitWith {
-			systemChat (["vehicleRestrcitions", "crew_commander"] call BIS_fnc_GetCfgData);
+		if ( player in [commander _veh] ) exitWith {
+			systemChat (["vehicleRestrictions", "crew_commander"] call BIS_fnc_GetCfgData);
 			[_veh] call vehicleRestrictions_fnc_kickOut;
 		};
 	};
