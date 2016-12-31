@@ -1,15 +1,15 @@
 /*
-@filename: feats\mods\vanilla\assetOpfor.sqf
+@filename: feats\mods\vanilla\assetBlufor.sqf
 Author:
 	Ben
 Description:
 	call by feats\mods\vanilla\init.sqf
-	return the Vanilla OPFOR assets
+	return the Vanilla BLUFOR assets
 */
 
 private _out = [];
 
-//------------------------------------------------------------ Arsenal Vanilla OPFOR
+//------------------------------------------------------------ Arsenal Vanilla BLUFOR
 
 AVB = 0;
 
@@ -20,7 +20,7 @@ private _ammo = [];
 
 _out set [AVB, [_backpacks, _items, _weapons, _ammo]];
 
-//------------------------------------------------------------ Restricted Gear Vanilla OPFOR
+//------------------------------------------------------------ Restricted Gear Vanilla BLUFOR
 
 RGVB = AVB + 1;
 
@@ -35,7 +35,7 @@ private _backpack = [];
 
 _out set [RGVB, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
-//------------------------------------------------------------ Cargo Vanilla OPFOR
+//------------------------------------------------------------ Cargo Vanilla BLUFOR
 
 CVB = RGVB + 1;
 
@@ -46,7 +46,7 @@ private _ammo = [];
 
 _out set [CVB, [_backpacks, _items, _weapons, _ammo]];
 
-//------------------------------------------------------------ Allowed Vehicles Vanilla OPFOR
+//------------------------------------------------------------ Allowed Vehicles Vanilla BLUFOR
 
 AVVB = CVB + 1;
 
@@ -56,7 +56,7 @@ private _tank = [];
 
 _out set [AVVB, [_heli, _plane, _tank]];
 
-//------------------------------------------------------------ supplyDrop Vanilla OPFOR
+//------------------------------------------------------------ supplyDrop Vanilla BLUFOR
 
 SDVB = AVVB + 1;
 
@@ -69,7 +69,7 @@ private _vehicles = [];
 
 _out set [SDVB, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
-//------------------------------------------------------------ Rewards Vanilla OPFOR
+//------------------------------------------------------------ Rewards Vanilla BLUFOR
 
 RVB = SDVB + 1;
 
@@ -77,7 +77,7 @@ private _rewards = [];
 
 _out set [RVB, _rewards];
 
-//------------------------------------------------------------ Spawn Vanilla OPFOR
+//------------------------------------------------------------ Spawn Vanilla BLUFOR
 
 SVB = RVB + 1;
 
@@ -102,7 +102,7 @@ private _aPatrol = [];
 _out set [SVB, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
-//------------------------------------------------------------ Vehicles Vanilla OPFOR
+//------------------------------------------------------------ Vehicles Vanilla BLUFOR
 
 VVB = SVB + 1;
 
@@ -135,7 +135,7 @@ _out set [VVB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _pla
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Vehicles Cargo Vanilla OPFOR
+//------------------------------------------------------------ Vehicles Cargo Vanilla BLUFOR
 
 VCVB = VVB + 1;
 
@@ -168,7 +168,7 @@ _out set [VCVB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _pl
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Role Loadout Vanilla OPFOR
+//------------------------------------------------------------ Role Loadout Vanilla BLUFOR
 
 RLVB = VCVB + 1;
 

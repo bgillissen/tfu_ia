@@ -8,5 +8,5 @@ Description:
 */
 
 {
-	_x append (BLACKLIST select _forEachIndex);
+	(BLACKLIST select _forEachIndex) append _x;
 } forEach (_this);

@@ -1,5 +1,5 @@
 /*
-@filename: mods\rhsUSAF\implent.sqf
+@filename: feats\mods\rhsUSAF\init.sqf
 Author:
 	Ben
 Description:
@@ -7,74 +7,134 @@ Description:
 	implent RHS USAF assets
 */
 
-/*
-private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
-         "_cargoBackpacks", "_cargoWeapons", "_cargoAmmo", "_cargoItems",
-         "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
+private _u = call compileFinal preprocessFileLineNumbers "feats\mods\rhsUSAF\assets.sqf";
 
-_backpacks = [];
-_items = [];
-_weapons = [];
-_ammo = [];
-_cargoBackpacks = [];
-_cargoItems = [];
-_cargoWeapons = [];
-_cargoAmmo = [];
-_rewards = [];
+//------------------------------------------------------------ ARSENAL / CARGO / SUPPLYDROP
 
-if ( ["Arsenal_usaf_backpacks"] call core_fnc_getConf ) then { 
-	_backpacks append _backpacks; 
-	_cargoBackpacks append USAF_cargoBackpacks;
+//arsenal
+private _backpacks 	= [];
+private _items 		= [];
+private _weapons 	= [];
+private _ammo 		= [];
+//cargo
+private _cBackpacks = [];
+private _cItems 	= [];
+private _cWeapons 	= [];
+private _cAmmo 		= [];
+//supplyDrop
+private _sdBackpacks = [];
+private _sdItems 	 = [];
+private _sdWeapons 	 = [];
+private _sdAmmo 	 = [];
+private _sdCrates	 = [];
+private _sdVehicles  = [];
+
+private _conf = ["gear_usaf_backpacks"] call core_fnc_getConf;
+if ( [_conf, west, false, [], []] call mods_fnc_implentCond ) then {
+	_backpacks	 append (_u select A_USAF select A__BACKPACKS); 
+	_cBackpacks  append (_u select C_USAF select C__BACKPACKS);
+	_sdBackpacks append (_u select SD_USAF select SD__BACKPACKS);
 };
-if ( ["Arsenal_usaf_items"] call core_fnc_getConf ) then { 
-	_items append AFRF_items;
-	_cargoItems append USAF_cargoItems;
+_conf = ["gear_usaf_items"] call core_fnc_getConf;
+if ( [_conf, west, false, [], []] call mods_fnc_implentCond ) then {
+	_items	 append (_u select A_USAF select A__ITEMS); 
+	_cItems  append (_u select C_USAF select C__ITEMS);
+	_sdItems append (_u select SD_USAF select SD__ITEMS);
 };
-if ( ["Arsenal_usaf_weapons"] call core_fnc_getConf ) then { 
-	_weapons append USAF_weapons;
-	_ammo append USAF_ammo;
-	_cargoWeapons append USAF_cargoWeapons;
-	_cargoAmmo append USAF_cargoAmmo;
+_conf = ["gear_usaf_weapons"] call core_fnc_getConf;
+if ( [_conf, west, false, [], []] call mods_fnc_implentCond ) then {
+	_weapons  	append (_u select A_USAF select A__WEAPONS);
+	_ammo		append (_u select A_USAF select A__AMMO);
+	_cWeapons 	append (_u select C_USAF select C__WEAPONS);
+	_cAmmo  	append (_u select C_USAF select C__AMMO);
+	_sdWeapons	append (_u select SD_USAF select SD__WEAPONS);
+	_sdAmmo 	append (_u select SD_USAF select SD__AMMO);
+};
+if ( PLAYER_SIDE == west ) then {
+	_sdCrates 	append (_u select SD_USAF select SD__CRATES);
+};
+//arsenal Implent
+[_backpacks, _items, _weapons, _ammo] call mods_fnc_implentArsenal;
+_backpacks = nil;
+_items = nil;
+_weapons = nil;
+_ammo = nil;
+//cargo Implent
+[_cBackpacks, _cItems, _cWeapons, _cAmmo] call mods_fnc_implentCargo;
+_cBackpacks = nil;
+_cItems = nil;
+_cWeapons = nil;
+_cAmmo = nil;
+
+//------------------------------------------------------------ BASE VEHICLE
+
+_conf = ["bv_usaf"] call core_fnc_getConf;
+private _do = [_conf, west, false, [], []] call mods_fnc_implentCond;
+if ( _do ) then {
+	{
+		[_forEachIndex, ((_u select V_USAF) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+	} forEach ((PV select BV_k) select 1);
+	_sdVehicles append (_u select SD_USAF select SD__VEHICLES);
+};
+//supplyDrop Implent
+[_sdBackpacks, _sdItems, _sdWeapons, _sdAmmo, _sdCrates, _sdVehicles] call mods_fnc_implentSupplyDrop;
+_sdBackpacks = nil;
+_sdItems = nil;
+_sdWeapons = nil;
+_sdAmmo = nil;
+_sdCrates = nil;
+_sdVehicles = nil;
+
+//------------------------------------------------------------ REWARDS
+
+private _rewards = [];
+_conf = ["reward_usaf"] call core_fnc_getConf;
+if ( [_conf, west, false, [], []] call mods_fnc_implentCond ) then {
+	_rewards append (_u select R_USAF); 
+};
+[_rewards] call mods_fnc_implentReward;
+_rewards = nil;
+	
+//------------------------------------------------------------ SPAWN
+
+if ( BLUFOR_ARE_ENEMY ) then {
+	_conf = ["spawn_usaf"] call core_fnc_getConf;
+	_do = [_conf, west, true, [], []] call mods_fnc_implentCond;
+	if ( _do ) then {
+		{
+			[_forEachIndex, (_u select S_USAF select _forEachIndex)] call mods_fnc_implentSpawn;
+		} forEach (PV select S_k select 1);
+	};
 };
 
-if ( ["Reward_usaf"] call core_fnc_getConf ) then { _rewards append USAF_rewards; };
+//------------------------------------------------------------ ROLE LOADOUT
 
-if ( ["Spawn_usaf"] call core_fnc_getConf && PLAYER_SIDE == east ) then {
-	_iaPilot = USAF_pilot;
-	_iaCrew = USAF_crew;
-	_iaCAS = USAF_cas;
-	_iaPGroup = USAF_patrolGroup;
-	_iaSGroup = USAF_sniperGroup;
-	_iaArti = USAF_arti;
-	_iaAA = USAF_aaTank;
-	_iaStatic = USAF_static;
-	_iaTank = USAF_tank;
-	_iaAPC = USAF_apc;
-	_iaCar = USAF_car;
-	_iaAir = USAF_airPatrol;
-	_iaGarrison = USAF_garrison;
-} else {
-	_iaPilot = [];
-	_iaCrew = [];
-	_iaCAS = [];
-	_iaPGroup = [];
-	_iaSGroup = [];
-	_iaArti = [];
-	_iaAA = [];
-	_iaStatic = [];
-	_iaTank = [];
-	_iaAPC = [];
-	_iaCar = [];
-	_iaAir = [];
-	_iaGarrison = [];
-};		
+if ( PLAYER_SIDE == west ) then {
+	_do = [_conf, west, false, [], []] call mods_fnc_implentCond;
+	if ( _do ) then {
+		{
+			[_forEachIndex, (_u select RL_USAF select _forEachIndex)] call mods_fnc_implentRoleLoadout;
+		} forEach ((PV select RL_k) select 1);
+	};
+};
 
-[
-	[USAF_pilot, USAF_crew, USAF_mg, USAF_at, USAF_marksman, USAF_sniper, USAF_medic, USAF_officer, USAF_arti],
-	[USAF_exception_heli, USAF_exception_plane, USAF_exception_tank],
-	[_backpacks, _items, _weapons, _ammo],
-	[_cargoBackpacks, _cargoItems, _cargoWeapons, _cargoAmmo],
-	[USAF_supplyDrop, USAF_supplyCrates], _rewards, [], 
-	[USAF_RT, _iaPilot, _iaCrew, _iaCAS, _iaPGroup, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
-] call common_fnc_implentAssets;
-*/
+//------------------------------------------------------------ RESTRICTED GEAR
+
+private _restrictEnemyGear = (["restrictEnemyGear"] call core_fnc_getConf == 1);
+if ( !(_restrictEnemyGear && BLUFOR_ARE_ENEMY) ) then {
+	[(_u select RG_USAF select RG__LAUNCHER), 
+	 (_u select RG_USAF select RG__MG), 
+	 (_u select RG_USAF select RG__SRIFLE),
+	 (_u select RG_USAF select RG__MRIFLE), 
+	 (_u select RG_USAF select RG__SSCOPE), 
+	 (_u select RG_USAF select RG__MSCOPE), 
+	 (_u select RG_USAF select RG__OSCOPE), 
+	 (_u select RG_USAF select RG__BACKPACK)] call mods_fnc_implentRestrictedGear;
+};
+
+
+//------------------------------------------------------------ ALLOWED VEHICLE
+
+[(_u select AV_USAF select AV__HELI), 
+ (_u select AV_USAF select AV__PLANE), 
+ (_u select AV_USAF select AV__TANK)] call mods_fnc_implentAllowedVehicle;

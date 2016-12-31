@@ -12,14 +12,17 @@ if ( !MOD_tfar ) exitWith{};
 if ( (["radioFreq"] call core_fnc_getConf) == 0 ) exitWith{};
 
 [] spawn {
-	if ( call TFAR_fnc_haveSWRadio ) then { 
-		for "_i" from 1 to 999 do {
-			private _cur = format["tf_rf7800str_%1", _i];
-			if ( (call TFAR_fnc_activeSwRadio) == _cur ) exitWith {
-				player unlinkItem _cur;
-				private _radio = [(TFAR_OPFOR_SR select 0), (TFAR_BLUFOR_SR select 0)] select ( PLAYER_SIDE isEqualTo west );
-				player linkItem _radio;
+	if ( call TFAR_fnc_haveSWRadio ) then {
+		private _radio = call TFAR_fnc_activeSwRadio;
+		private _found = false;
+		{
+			if ( ([_radio, _x] call TFAR_fnc_isSameRadio)) exitWith {
+				_found = true;
 			};
+		} count TFAR_SR;
+		if ( !_found ) then {
+			player unlinkItem _radio;
+			player linkItem (TFAR_SR select 0);
 		};
 		sleep 3;
 		call radioFreq_fnc_setShortRange;

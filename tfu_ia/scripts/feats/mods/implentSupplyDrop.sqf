@@ -20,5 +20,10 @@ if ( (["supplyDrop"] call core_fnc_getConf) == 0 ) exitWith{};
 		if ( _this isEqualTo 4 ) exitWith { "object" };
 		"vehicle"
 	};
-	[_x, format["%1_%2",((PV select SD_k) select 0), (((PV select SD_k) select 1) select _forEachIndex) ], _filter, 0] call common_fnc_implent;
+	private _target = format["%1_%2",((PV select SD_k) select 0), (((PV select SD_k) select 1) select _forEachIndex) ];
+	if ( _forEachIndex < 4 ) then {
+		[_x, _target, _filter, 0] call common_fnc_implent;
+	} else {
+		[_x, _target, _filter] call common_fnc_implent;
+	}
 } forEach (_this);

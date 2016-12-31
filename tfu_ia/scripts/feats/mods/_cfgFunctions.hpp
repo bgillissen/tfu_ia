@@ -8,6 +8,7 @@ class mods {
 		class implentCond { file="feats\mods\implentCond.sqf"; };
 		class implentRestrictedGear { file="feats\mods\implentRestrictedGear.sqf"; };
 		class implentReward { file="feats\mods\implentReward.sqf"; };
+		class implentRoleLoadout { file="feats\mods\implentRoleLoadout.sqf"; };
 		class implentSpawn { file="feats\mods\implentSpawn.sqf"; };
 		class implentSupplyDrop { file="feats\mods\implentSupplyDrop.sqf"; };
 	};

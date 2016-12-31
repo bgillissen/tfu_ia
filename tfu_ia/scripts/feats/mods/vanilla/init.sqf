@@ -61,7 +61,7 @@ private _sdVehicles  = _c select SDVC select SD__VEHICLES;
 	};
 	if ( PLAYER_SIDE == _side ) then {
 		_sdCrates append (_src select _sK select SD__CRATES);
-		_sdVehicles append (_src select _sK select SD__VEHICLES);
+		
 	};
 } count [["b", west, "MOD_rhsUSAF", _b],
          ["o", west, "MOD_rhsAFRF", _o],
@@ -79,6 +79,33 @@ _cBackpacks = nil;
 _cItems = nil;
 _cWeapons = nil;
 _cAmmo = nil;
+
+
+//------------------------------------------------------------ BASE VEHICLE
+
+_conf = ["bv_vo"] call core_fnc_getConf;
+private _doOPFOR = [_conf, east, false, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond;
+_conf = ["bv_vb"] call core_fnc_getConf;
+private _doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond;
+_conf = ["bv_vi"] call core_fnc_getConf;
+private _doIND = [_conf, independent, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
+{
+	[_forEachIndex, ((_c select VVC) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+	if ( _doOPFOR ) then {
+		[_forEachIndex, ((_o select VVO) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+	};
+	if ( _doBLUFOR ) then {
+		[_forEachIndex, ((_b select VVB) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+	};
+	if ( _doIND ) then {
+		[_forEachIndex, ((_i select VVI) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
+	};
+	
+} forEach ((PV select BV_k) select 1);
+
+if ( _doOPFOR ) then { _sdVehicles append (_o select SDVO select SD__VEHICLES); };
+if ( _doBLUFOR ) then { _sdVehicles append (_b select SDVB select SD__VEHICLES); };
+if ( _doIND ) then { _sdVehicles append (_i select SDVI select SD__VEHICLES); };
 //supplyDrop Implent
 [_sdBackpacks, _sdItems, _sdWeapons, _sdAmmo, _sdCrates, _sdVehicles] call mods_fnc_implentSupplyDrop;
 _sdBackpacks = nil;
@@ -108,7 +135,6 @@ if ( [_conf, east, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods
 _rewards = nil;
 
 //------------------------------------------------------------ SPAWN
-
 
 private ["_doBLUFOR", "_doOPFOR", "_doIND"];
 if ( OPFOR_ARE_ENEMY ) then {
@@ -142,31 +168,11 @@ if ( IND_ARE_ENEMY ) then {
 	};
 } forEach (PV select S_k select 1);
 
-//------------------------------------------------------------ BASE VEHICLE
 
-_conf = ["bv_vo"] call core_fnc_getConf;
-private _doOPFOR = [_conf, east, false, [[false, MOD_rhsAFRF]], [[false, "jungle"]]] call mods_fnc_implentCond;
-_conf = ["bv_vb"] call core_fnc_getConf;
-private _doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond;
-_conf = ["bv_vi"] call core_fnc_getConf;
-private _doIND = [_conf, independent, false, [[false, MOD_rhsGREF]], [[false, "jungle"]]] call mods_fnc_implentCond;
-{
-	[_forEachIndex, ((_c select VVC) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
-	if ( _doOPFOR ) then {
-		[_forEachIndex, ((_o select VVO) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
-	};
-	if ( _doBLUFOR ) then {
-		[_forEachIndex, ((_b select VVB) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
-	};
-	if ( _doIND ) then {
-		[_forEachIndex, ((_i select VVI) select _forEachIndex)] call mods_fnc_implentBaseVehicle;
-	};
-	
-} forEach ((PV select BV_k) select 1);
 
 //------------------------------------------------------------ ROLE LOADOUT
 
-_conf = ["RoleLoadout_vanilla"] call core_fnc_getConf;
+_conf = ["rl_vanilla"] call core_fnc_getConf;
 if ( PLAYER_SIDE == west ) then {
 	_doBLUFOR = [_conf, west, false, [[false, MOD_rhsUSAF]], [[false, "jungle"]]] call mods_fnc_implentCond;
 	_doOPFOR = false;
@@ -185,13 +191,13 @@ if ( PLAYER_SIDE == independent ) then {
 
 {
 	if ( _doOPFOR ) then {
-		[_forEachIndex, (_o select RLVO)] call mods_fnc_implentRoleLoadout;
+		[_forEachIndex, (_o select RLVO select _forEachIndex)] call mods_fnc_implentRoleLoadout;
 	};
 	if ( _doBLUFOR ) then {
-		[_forEachIndex, (_b select RLVB)] call mods_fnc_implentRoleLoadout;
+		[_forEachIndex, (_b select RLVB select _forEachIndex)] call mods_fnc_implentRoleLoadout;
 	};
 	if ( _doIND ) then {
-		[_forEachIndex, (_i select RLVI)] call mods_fnc_implentRoleLoadout;
+		[_forEachIndex, (_i select RLVI select _forEachIndex)] call mods_fnc_implentRoleLoadout;
 	};
 } forEach ((PV select RL_k) select 1);
 
@@ -203,14 +209,8 @@ private _sides = [[(_o select RGVO), east, "OPFOR"],
                   [(_i select RGVI), independent, "IND"]];
 {
 	_x params ["_src", "_side", "_sideTXT"];
-	private _do = false;
-	if ( _side == PLAYER_SIDE ) then {
-		_do = true;
-	} else {
-		private _isEnemy = missionNamespace getVariable format["%1_ARE_ENEMY", _sideTXT];
-		_do = ( _restrictEnemyGear && _isEnemy );
-	};
-	if ( _do ) then {
+	private _isEnemy = missionNamespace getVariable format["%1_ARE_ENEMY", _sideTXT];
+	if ( !(_restrictEnemyGear && _isEnemy) ) then {
 		[(_src select RG__LAUNCHER), 
 		 (_src select RG__MG), 
 		 (_src select RG__SRIFLE),
@@ -224,6 +224,12 @@ private _sides = [[(_o select RGVO), east, "OPFOR"],
 
 //------------------------------------------------------------ ALLOWED VEHICLE
 
-[(_o select AVVO select AV__HELI), (_o select AVVO select AV__PLANE), (_o select AVVO select AV__TANK)] call mods_fnc_implentAllowedVehicle;
-[(_b select AVVB select AV__HELI), (_b select AVVB select AV__PLANE), (_b select AVVB select AV__TANK)] call mods_fnc_implentAllowedVehicle;
-[(_i select AVVI select AV__HELI), (_i select AVVI select AV__PLANE), (_i select AVVI select AV__TANK)] call mods_fnc_implentAllowedVehicle;
+[(_o select AVVO select AV__HELI), 
+ (_o select AVVO select AV__PLANE), 
+ (_o select AVVO select AV__TANK)] call mods_fnc_implentAllowedVehicle;
+[(_b select AVVB select AV__HELI), 
+ (_b select AVVB select AV__PLANE), 
+ (_b select AVVB select AV__TANK)] call mods_fnc_implentAllowedVehicle;
+[(_i select AVVI select AV__HELI), 
+ (_i select AVVI select AV__PLANE), 
+ (_i select AVVI select AV__TANK)] call mods_fnc_implentAllowedVehicle;

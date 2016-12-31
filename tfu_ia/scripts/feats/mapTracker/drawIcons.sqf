@@ -20,23 +20,23 @@ private _text = "";
 			if ( !_isGPS ) then {
 				_text = [_veh] call mapTracker_fnc_iconText;
 			};
-			_iconType = [_veh] call mapTracker_fnc_iconType;
-			_iconSize = [_veh] call mapTracker_fnc_iconSize;
-			_color = [_x] call mapTracker_fnc_iconColor;	
-			_pos = getPosASL _v;		
-			_dir = getDir _x;		
-			if (_x == crew _veh select 0 || {_x in allUnitsUav}) then {	
-				_control drawIcon [_iconType,
+			private _type = [_veh] call mapTracker_fnc_iconType;		
+			private _size = [_veh] call mapTracker_fnc_iconSize;
+			private _color = [_x] call mapTracker_fnc_iconColor;	
+			private _pos = getPosASL _veh;		
+			private _dir = getDir _x;		
+			if ( (_x == crew _veh select 0) || {_x in allUnitsUav} ) then {
+				_control drawIcon [_type,
 				                   _color,
 				                   _pos,
-				                   _iconSize,
-				                   _iconSize,
+				                   _size,
+				                   _size,
 				                   _dir,
 				                   _text,
 				                   MT_shadow,
 				                   MT_textSize,
 				                   MT_textFont,
-				                   MT_textOffset]
+				                   MT_textOffset];
 			};
 		};
 	};

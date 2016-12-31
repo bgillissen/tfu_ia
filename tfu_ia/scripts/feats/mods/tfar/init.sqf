@@ -1,35 +1,25 @@
 /*
-@filename: mods\tfar\implent.sqf
+@filename: mods\tfar\init.sqf
 Author:
 	Ben
 Description:
-	Run once by server and players.
+	run on server,
 	implent TFAR assets
 */
 
-//so player do not spawn with longrange radio as backpacks
-tf_no_auto_long_range_radio = true;
-
-//so player do not have Dagr in their inventory
-TF_give_microdagr_to_soldier = false;
-
-//To reduce the terrain interception coefficient
-TF_terrain_interception_coefficient = 1;
-
-//implent BLUFOR radios into arsenal pool
-if ( PLAYER_SIDE == west ) exitWith {
-	private _b =  call compileFinal preprocessFileLineNumbers "feats\mods\tfar\assetBlufor.sqf";
-	[_b select A__BACKPACKS, _b select A__ITEMS, [], []] call mods_fnc_implentArsenal;
+private _r = PLAYER_SIDE call {
+	if ( _this == west ) exitWith {
+		call compileFinal preprocessFileLineNumbers "feats\mods\tfar\assetBlufor.sqf";
+	};
+	if ( _this == east ) exitWith {
+		call compileFinal preprocessFileLineNumbers "feats\mods\tfar\assetOpfor.sqf";
+	};
+	if ( _this == independent ) exitWith {
+		call compileFinal preprocessFileLineNumbers "feats\mods\tfar\assetInd.sqf";
+	};
+	[[],[]]
 };
 
-//implent OPFOR radios into arsenal pool
-if ( PLAYER_SIDE == east ) exitWith {
-	private _o =  call compileFinal preprocessFileLineNumbers "feats\mods\tfar\assetOpfor.sqf";
-	[_o select A__BACKPACKS, _o select A__ITEMS, [], []] call mods_fnc_implentArsenal;
-};
-
-//implent IND radios into arsenal pool
-if ( PLAYER_SIDE == independent ) exitWith {
-	private _i =  call compileFinal preprocessFileLineNumbers "feats\mods\tfar\assetInd.sqf";
-	[_i select A__BACKPACKS, _i select A__ITEMS, [], []] call mods_fnc_implentArsenal;
-};
+TFAR_SR = (_r select 1);
+TFAR_LR = (_r select 0);
+[TFAR_LR, TFAR_SR, [], []] call mods_fnc_implentArsenal;

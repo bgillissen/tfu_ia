@@ -9,6 +9,8 @@ Description:
 	just to make our live easyer ;)
 */
 
+if ( true ) exitWith {};
+
 if ( (["assetAuto"] call core_fnc_getConf) == 0 ) exitWith {};
 
 private "_bool";

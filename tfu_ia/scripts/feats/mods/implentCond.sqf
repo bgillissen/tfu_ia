@@ -9,7 +9,7 @@ Description:
 
 params ["_conf", "_side", "_isEnemy", "_modRules", "_mapRules"];
 
-//is these case assetAuto has been used
+//in these case assetAuto has been used
 if ( _conf isEqualType true ) exitWith { _conf };
 if ( _conf isEqualType false ) exitWith { _conf };
 
@@ -17,15 +17,23 @@ if ( _conf isEqualType false ) exitWith { _conf };
 if ( _conf isEqualTo 0 ) exitWith { false };
 if ( _conf isEqualTo 1 ) exitWith { true };
 
-//so it s set to automatic, first friendship check
-if ( _isEnemy ) then {
-	if ( PLAYER_SIDE getFriend _side >= 0.6 ) exitWith { false };
-} else {
-	if ( PLAYER_SIDE getFriend _side < 0.6 ) exitWith { false };
-};
-//then mods presence rules
 private _out = true;
 
+//so it s set to automatic, first friendship check
+if ( !(PLAYER_SIDE isEqualTo _side) ) then {
+	if ( _isEnemy ) then {
+		if ( PLAYER_SIDE getFriend _side >= 0.6 ) then { 
+			_out = false; 
+		};
+	} else {
+		if ( PLAYER_SIDE getFriend _side < 0.6 ) then { 
+			_out = false 
+		};
+	};
+};
+if ( !_out ) exitWith { false };
+
+//then mods presence rules
 {
 	_x params ["_filter", "_modPresence"];
 	if ( !(_filter isEqualTo _modPresence) ) exitWith { _out = false; };

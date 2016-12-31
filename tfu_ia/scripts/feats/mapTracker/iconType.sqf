@@ -14,7 +14,7 @@ params ["_veh"];
 private _i = _veh getVariable ["icontype", ""];
 if (_i == "") then {
 	_i = getText (configFile >> "CfgVehicles" >> typeOf _veh >> "icon");
-	_veh setVariable ["icontype", _i];
+	_veh setVariable ["icontype", _i, true];
 };
 
 _i

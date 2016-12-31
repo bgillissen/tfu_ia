@@ -11,13 +11,11 @@ _out = [];
 
 //------------------------------------------------------------ Arsenal TFAR IND
 
-private _backpacks = ["TFAR_anprc155",
-                      "TFAR_anprc155_coyote"];
-private _items =  ["TFAR_anprc148jem"];
-
-_out set [A__BACKPACKS, _backpacks];
-_out set [A__ITEMS, _items];
+private _backpacks = ["tf_anarc210",
+                      "tf_anprc155",
+                      "tf_anprc155_coyote"];
+private _items =  ["tf_anprc148jem"];
 
 //------------------------------------------------------------ FINITO, return
 
-_out
+[_backpacks, _items]

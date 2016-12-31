@@ -74,19 +74,19 @@ class gear_vi_items {
 	default = 2;
 };
 
-class Reward_vo {
+class reward_vo {
 	title = "Vanilla OPFOR rewards";
 	values[] = {0,1,2};
 	texts[] = {"no", "yes", "automatic"};
 	default = 2;
 };
-class Reward_vb {
+class reward_vb {
 	title = "Vanilla BLUFOR rewards";
 	values[] = {0,1,2};
 	texts[] = {"no", "yes", "automatic"};
 	default = 2;
 };
-class Reward_vi {
+class reward_vi {
 	title = "Vanilla IND rewards";
 	values[] = {0,1,2};
 	texts[] = {"no", "yes", "automatic"};
@@ -107,6 +107,13 @@ class bv_vb {
 };
 class bv_vi {
 	title = "Vanilla IND vehicle available in base";
+	values[] = {0,1,2};
+	texts[] = {"no", "yes", "automatic"};
+	default = 2;
+};
+
+class rl_vanilla {
+	title = "PLayers got Vanilla loadout";
 	values[] = {0,1,2};
 	texts[] = {"no", "yes", "automatic"};
 	default = 2;

@@ -13,7 +13,14 @@ waitUntil {
 	!PLAYER_INIT
 };
 
-"loading" cutText [format["Welcome to %1, you are %2", BASE_NAME, PLAYER_SIDEDSP], "PLAIN", 0.1, true];
+"welcome" cutText [format["Welcome to %1, you are %2", BASE_NAME, PLAYER_SIDEDSP], "BLACK", 1, true];
+
+sleep 1;
+
+"loading" cutFadeOut 2;
+
 sleep 3;
-"loading" cutFadeOut 4;
+
+"welcome" cutFadeOut 1;
+
 BLACKSCREEN = false;
