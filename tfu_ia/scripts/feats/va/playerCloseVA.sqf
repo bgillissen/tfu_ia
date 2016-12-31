@@ -11,28 +11,6 @@ if ( (["filterArsenal"] call core_fnc_getConf) == 0 ) exitWith {};
 
 private _removed = false;
 
-//backpack
-private _backpack = backpack player;
-if ( !(_backpack isEqualTo "") ) then {
-	if ( !(_backpack in A_backpacks) ) then {
-		_removed = true;
-		removeBackpack player;
-	} else {
-		private _backpackItems = backpackItems player;
-		{
-			if ( !(_x in A_items) ) then {
-				_removed = true;
-				player removeItemFromBackpack _x;
-			};
-		} count _backpackItems;
-		private _backpackWeap = getWeaponCargo (unitBackpack player);
-		if ( !(_backpackWeap in A_weapons) ) then {
-			_removed = true;
-			player removeWeapon _backpackWeap;
-		};
-	};
-};
-
 private _goggles = goggles player;
 if ( !(_goggles isEqualTo "") ) then {
 	diag_log _goggles;
@@ -61,6 +39,37 @@ if ( !(_headgear isEqualTo "") ) then {
 	};
 };
 
+//backpack
+private _backpack = backpack player;
+if ( !(_backpack isEqualTo "") ) then {
+	if ( !(_backpack in A_backpacks) ) then {
+		_removed = true;
+		removeBackpack player;
+	} else {
+		{
+			private _found = false;
+			if ( (_x in A_items) ) then { 
+				_found = true; 
+			} else {
+				if ( (_x in A_ammo) ) then { _found = true; };
+			};
+			if ( !_found ) then {
+				_removed = true;
+				player removeItemFromBackpack _x;
+			}
+		} count (backpackItems player);
+		private _weapCargo = getWeaponCargo (backpackContainer player);
+		_weapCargo params ["_types", "_qty"];
+		{
+			if ( !(_x in A_weapons) ) then { 
+				_removed = true;
+				player removeWeapon _x;	
+			};
+		} count _types;
+	};
+};
+
+//uniform
 private _uniform = uniform player;
 if ( !(_uniform isEqualTo "") ) then {
 	if ( !(_uniform in A_items) ) then {
@@ -68,13 +77,26 @@ if ( !(_uniform isEqualTo "") ) then {
 		player unassignItem _uniform;
 		player removeItem _uniform;
 	} else {
-		private _uniformItems = uniformItems player;
 		{
-			if ( !(_x in A_items) ) then {
-				_removed = true;
-				player removeItemFromUniform _x;
+			private _found = false;
+			if ( (_x in A_items) ) then { 
+				_found = true; 
+			} else {
+				if ( (_x in A_ammo) ) then { _found = true; };
 			};
-		} count _uniformItems;
+			if ( !_found ) then {
+				_removed = true;
+				player removeItem _x;
+			}
+		} count (uniformItems player);
+		private _weapCargo = getWeaponCargo (uniformContainer player);
+		_weapCargo params ["_types", "_qty"];
+		{
+			if ( !(_x in A_weapons) ) then { 
+				_removed = true;
+				player removeWeapon _x;	
+			};
+		} count _types;
 	};
 };
 
@@ -85,13 +107,26 @@ if ( !(_vest isEqualTo "") ) then {
 		player unassignItem _vest;
 		player removeItem _vest;
 	} else {
-		private _vestItems = vestItems player;
 		{
-			if ( !(_x in A_items) ) then {
-				_removed = true;
-				player removeItemFromVest _x;
+			private _found = false;
+			if ( (_x in A_items) ) then { 
+				_found = true; 
+			} else {
+				if ( (_x in A_ammo) ) then { _found = true; };
 			};
-		} count _vestItems;
+			if ( !_found ) then {
+				_removed = true;
+				player removeItem _x;
+			}
+		} count (vestItems player);
+		private _weapCargo = getWeaponCargo (vestContainer player);
+		_weapCargo params ["_types", "_qty"];
+		{
+			if ( !(_x in A_weapons) ) then { 
+				_removed = true;
+				player removeWeapon _x;	
+			};
+		} count _types;
 	};
 };
 

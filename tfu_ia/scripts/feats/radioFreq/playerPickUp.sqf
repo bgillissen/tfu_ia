@@ -8,12 +8,9 @@ Description:
 */
 
 if ( !MOD_tfar ) exitWith{};
-if ( !(["radioFreq"] call core_fnc_getConf) ) exitWith{};
+if ( (["radioFreq"] call core_fnc_getConf) == 0 ) exitWith{};
 
 params ["_item"]; 
 
-if ( _item in TFAR_SR ) then {
-	call radioFreq_fnc_setShortRange;
-} else {
-	if ( _item in TFAR_LR ) then { call radioFreq_fnc_setLongRange; };
-}
+if ( call TFAR_fnc_haveSWRadio ) then { call radioFreq_fnc_setShortRange; };
+if ( call TFAR_fnc_haveLRRadio ) then { call radioFreq_fnc_setLongRange; };

@@ -17,8 +17,8 @@ if (getNumber (missionConfigFile >> "briefing") == 1) exitWith {};
 [] spawn {
 	waitUntil {
 		if (getClientState isEqualTo "BRIEFING READ") exitWith {true};
-		if (!isNull findDisplay _display) exitWith {
-			private _dsp = [52, 53] select (isDedicated);
+		private _dsp = [52, 53] select (isDedicated);
+		if (!isNull findDisplay _dsp) exitWith {
 			ctrlActivate (findDisplay _dsp displayCtrl 1);
 			findDisplay _dsp closeDisplay 1;
 			true

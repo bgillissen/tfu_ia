@@ -15,9 +15,20 @@ private _out = [];
 AVC = 0;
 
 private _backpacks = [];
-private _items = ["map"];
+private _items = ["ItemMap", "ItemRadio", "ItemGPS", "ItemCompass", "ItemWatch", "MineDetector"];
 private _weapons = [];
-private _ammo = [];
+private _ammo = ["DemoCharge_Remote_Mag",
+                 "IEDUrbanSmall_Remote_Mag",
+                 "IEDLandSmall_Remote_Mag",
+                 "SatchelCharge_Remote_Mag",
+                 "IEDUrbanBig_Remote_Mag",
+                 "IEDLandBig_Remote_Mag",
+                 "ATMine_Range_Mag",
+                 "ClaymoreDirectionalMine_Remote_Mag",
+                 "APERSMine_Range_Mag",
+                 "APERSBoundingMine_Range_Mag",
+                 "SLAMDirectionalMine_Wire_Mag",
+                 "APERSTripMine_Wire_Mag"];
 
 _out set [AVC, [_backpacks, _items, _weapons, _ammo]];
 

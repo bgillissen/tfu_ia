@@ -9,7 +9,7 @@ Description:
 
 params ["_box", "_filtered"];
 
-_filtered = false;
+//_filtered = false;
 
 ["AmmoboxInit", [_box, !_filtered]] call BIS_fnc_arsenal;
 

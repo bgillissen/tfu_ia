@@ -9,18 +9,21 @@ Description:
 */
 
 if ( !MOD_tfar ) exitWith{};
-if ( !(["radioFreq"] call core_fnc_getConf) ) exitWith{};
+if ( (["radioFreq"] call core_fnc_getConf) == 0 ) exitWith{};
 
 [] spawn {
-	for "_i" from 1 to 999 do {
-		private _cur = format["tf_rf7800str_%1", _i];
-		if ( (call TFAR_fnc_activeSwRadio) == _cur ) exitWith {
-			player unlinkItem _cur;
-			private _radio = [(TFAR_OPFOR_SR select 0), (TFAR_BLUFOR_SR select 0)] select ( PLAYER_SIDE isEqualTo west );
-			player linkItem _radio;
+	if ( call TFAR_fnc_haveSWRadio ) then { 
+		for "_i" from 1 to 999 do {
+			private _cur = format["tf_rf7800str_%1", _i];
+			if ( (call TFAR_fnc_activeSwRadio) == _cur ) exitWith {
+				player unlinkItem _cur;
+				private _radio = [(TFAR_OPFOR_SR select 0), (TFAR_BLUFOR_SR select 0)] select ( PLAYER_SIDE isEqualTo west );
+				player linkItem _radio;
+			};
 		};
+		sleep 3;
+		call radioFreq_fnc_setShortRange;
+		
 	};
-	sleep 3;
-	if ( call TFAR_fnc_haveSWRadio ) then { call radioFreq_fnc_setShortRange; };
 	if ( call TFAR_fnc_haveLRRadio ) then { call radioFreq_fnc_setLongRange; };
 };

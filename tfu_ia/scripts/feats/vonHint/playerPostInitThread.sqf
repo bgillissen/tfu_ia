@@ -14,8 +14,10 @@ waitUntil {
 	!BLACKSCREEN
 };
 
-private _delay = ["vonHint", "delay"] call BIS_fnc_GetCfgData;
-private _ts = ["vonHint", "tsAddr"] call BIS_fnc_GetCfgData;
+sleep (["vonHint", "initialDelay"] call BIS_fnc_GetCfgData);
+
+private _delay = (["vonHint", "delay"] call BIS_fnc_GetCfgData);
+private _ts = (["vonHint", "tsAddr"] call BIS_fnc_GetCfgData);
 
 while { true } do {
 	{

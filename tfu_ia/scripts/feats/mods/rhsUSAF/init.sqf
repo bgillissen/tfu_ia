@@ -7,6 +7,7 @@ Description:
 	implent RHS USAF assets
 */
 
+/*
 private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
          "_cargoBackpacks", "_cargoWeapons", "_cargoAmmo", "_cargoItems",
          "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
@@ -76,3 +77,4 @@ if ( ["Spawn_usaf"] call core_fnc_getConf && PLAYER_SIDE == east ) then {
 	[USAF_supplyDrop, USAF_supplyCrates], _rewards, [], 
 	[USAF_RT, _iaPilot, _iaCrew, _iaCAS, _iaPGroup, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
 ] call common_fnc_implentAssets;
+*/

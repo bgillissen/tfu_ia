@@ -7,4 +7,4 @@ Description:
 	implent ACE assets
 */
 
-[[], [], [[], ACE_items, [], []], [[], ACE_cargoItems, [], []], [], [], [], []] call common_fnc_implentAssets;
+//[[], [], [[], ACE_items, [], []], [[], ACE_cargoItems, [], []], [], [], [], []] call common_fnc_implentAssets;

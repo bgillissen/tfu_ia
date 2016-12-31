@@ -15,7 +15,7 @@ Description:
 	missionNamespace setVariable [format["MOD_%1", _mod], _isPresent, true];
 	if ( _isPresent ) then {
 #ifdef DEBUG
-		private _debug = format["mods: %1 is present", _mod];
+		private _debug = format["mods: %1 is present (%2)", _mod, _cfg];
 		conWhite(_debug);
 #endif
 		private _incVar = format["%1_INC", toUpper(_mod)];
@@ -25,7 +25,7 @@ Description:
 		};
 #ifdef DEBUG
 	} else {
-		private _debug = format["mods: %1 is not present", _mod];
+		private _debug = format["mods: %1 is not present (%2)", _mod, _cfg];
 		conWhite(_debug);
 #endif		
 	};

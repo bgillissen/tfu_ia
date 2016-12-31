@@ -18,10 +18,10 @@ Return:
 
 //supported mods and their entries under CfgPatches
 mods[]={{"ace", "ace_main"},
-		{"rhsAFRF", "todo"},
-		{"rhsGREF", "todo"},
-		{"rhsUSAF", "todo"},
-		{"tfar", "todo"}};
+		{"rhsAFRF", "rhs_main"},
+		{"rhsGREF", "rhsgref_main"},
+		{"rhsUSAF", "rhsusf_main"},
+		{"tfar", "task_force_radio"}};
 
 //list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
 squads[]={{"HQ", "HQ", "Orange"},
@@ -38,6 +38,7 @@ class squadHint {
 };
 
 class vonHint {
+	inititalDelay = 60;
 	delay = 1800;
 	tsAddr = "ts.taskforceunicorn.com";
 	Messages[]={"<t align='center'><t size='2'><t color='#FAAF3A'>Join us on TeamSpeak</t><br/><br/>_____________<br/><br/><t size='1.5'><t color='#FAAF3A'>%1<br/></t>",

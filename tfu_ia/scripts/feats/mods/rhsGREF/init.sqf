@@ -11,6 +11,7 @@ private ["_backpacks", "_items", "_weapons", "_ammo", "_rewards",
          "_cargoBackpacks", "_cargoWeapons", "_cargoAmmo", "_cargoItems",
          "_iaPilot", "_iaCAS", "_iaSGroup", "_iaArti", "_iaAA", "_iaStatic", "_iaTank", "_iaAPC", "_iaCar", "_iaAir", "_iaGarrison"];
 
+/*
 _backpacks = [];
 _items = [];
 _weapons = [];
@@ -76,3 +77,4 @@ if ( ["Spawn_gref"] call core_fnc_getConf && IND_ARE_ENEMY ) then {
 	[GREF_supplyDrop, GREF_supplyCrates], _rewards, [], 
 	[GREF_RT, _iaPilot, _iaCrew, _iaCAS, _iaPGroup, _iaSGroup, _iaArti, _iaAA, _iaStatic, _iaTank, _iaAPC, _iaCar, _iaAir, _iaGarrison]
 ] call common_fnc_implentAssets;
+*/
