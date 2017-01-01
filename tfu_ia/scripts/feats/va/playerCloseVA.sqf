@@ -11,10 +11,10 @@ if ( (["filterArsenal"] call core_fnc_getConf) == 0 ) exitWith {};
 
 private _removed = false;
 
-private _goggles = goggles player;
-if ( !(_goggles isEqualTo "") ) then {
-	diag_log _goggles;
-	if ( !(_goggles in A_items) ) then {
+private _goggle = goggles player;
+if ( !(_goggle isEqualTo "") ) then {
+	if ( !(_goggle in A_items) ) then {
+		systemChat format["Goggle: %1 is not allowed", _goggle];
 		_removed = true;
 		removeGoggles player;
 	};
@@ -22,8 +22,8 @@ if ( !(_goggles isEqualTo "") ) then {
 
 private _bino = binocular player;
 if ( !(_bino isEqualTo "") ) then {
-	diag_log _bino;
 	if ( !(_bino in A_items) ) then {
+		systemChat format["Binocular: %1 is not allowed", _bino];
 		_removed = true;
 		player removeWeapon _bino;
 	};
@@ -33,6 +33,7 @@ if ( !(_bino isEqualTo "") ) then {
 private _headgear = headgear player;
 if ( !(_headgear isEqualTo "") ) then {
 	if ( !(_headgear in A_items) ) then {
+		systemChat format["Headgear: %1 is not allowed", _headgear];
 		_removed = true;
 		player unassignItem _headgear;
 		player removeItem _headgear;
@@ -43,7 +44,7 @@ if ( !(_headgear isEqualTo "") ) then {
 private _backpack = backpack player;
 if ( !(_backpack isEqualTo "") ) then {
 	if ( !(_backpack in A_backpacks) ) then {
-		diag_log "backpack removed";
+		systemChat format["Backpack: %1 is not allowed", _backpack];
 		_removed = true;
 		removeBackpack player;
 	} else {
@@ -55,6 +56,7 @@ if ( !(_backpack isEqualTo "") ) then {
 private _uniform = uniform player;
 if ( !(_uniform isEqualTo "") ) then {
 	if ( !(_uniform in A_items) ) then {
+		systemChat format["Uniform: %1 is not allowed", _uniform];
 		_removed = true;
 		player unassignItem _uniform;
 		player removeItem _uniform;
@@ -66,6 +68,7 @@ if ( !(_uniform isEqualTo "") ) then {
 private _vest = vest player;
 if ( !(_vest isEqualTo "") ) then {
 	if ( !(_vest in A_items) ) then {
+		systemChat format["Vest: %1 is not allowed", _vest];
 		_removed = true;
 		player unassignItem _vest;
 		player removeItem _vest;
@@ -74,6 +77,7 @@ if ( !(_vest isEqualTo "") ) then {
 	};
 };
 
+//assigned items
 {
 	private _found = false;
 	private _isRadio = false;
@@ -87,6 +91,7 @@ if ( !(_vest isEqualTo "") ) then {
 	};
 	if ( !_found ) then {
 		if ( !(_x in A_items) ) then {
+			systemChat format["Item: %1 is not allowed", _x];
 			_removed = true;
 			player unassignItem _x;
 			player removeItem _x;
@@ -102,11 +107,25 @@ if ( !(_primWeap isEqualTo "") ) then {
 	} else {
 		private _primItems = primaryWeaponItems player;
 		{
-			if ( !(_x in A_items) ) then {
-				_removed = true;
-				player removePrimaryWeaponItem _x;
+			if ( !(_x isEqualTo "") ) then {
+				if ( !(_x in A_items) ) then {
+					systemChat format["primary weapon Item: %1 is not allowed", _x];
+					_removed = true;
+					player removePrimaryWeaponItem _x;
+				}
 			}
 		} count _primItems;
+		private _count = player ammo _primWeap;
+		if ( _count > 0 ) then {
+			private _mags = primaryWeaponMagazine player;
+			{
+				if ( !(_x in A_ammo) ) then {
+					systemChat format["primary weapon magazine: %1 is not allowed", _x];
+					player setAmmo [_primWeap, 0];
+					_removed = true;
+				};	
+			} count _mags;
+		};
 	};
 };
 
@@ -118,12 +137,25 @@ if ( !(_secondWeap isEqualTo "") ) then {
 	} else {
 		private _secondItems = secondaryWeaponItems player;
 		{
-			if ( !(_x in A_items) ) then {
-				_removed = true;
-				player removeSecondaryWeaponItem _x;
-			
+			if ( !(_x isEqualTo "") ) then {
+				if ( !(_x in A_items) ) then {
+					systemChat format["secondary weapon item: %1 is not allowed", _x];
+					_removed = true;
+					player removeSecondaryWeaponItem _x;
+				};
 			};
 		} count _secondItems;
+		private _count = player ammo _secondWeap;
+		if ( _count > 0 ) then {
+			private _mags = secondaryWeaponMagazine player;
+			{
+				if ( !(_x in A_ammo) ) then {
+					systemChat format["secondary weapon magazine: %1 is not allowed", _x];
+					player setAmmo [_secondWeap, 0];
+					_removed = true;
+				};	
+			} count _mags;
+		};
 	};
 };
 
@@ -135,24 +167,27 @@ if ( !(_handWeap isEqualTo "") ) then {
 	} else {
 		private _handItems = handgunItems player;
 		{
-			if ( !(_x in A_items) ) then {
-				_removed = true;
-				player removeHandgunItem _x;
-			
+			if ( !(_x isEqualTo "") ) then {
+				if ( !(_x in A_items) ) then {
+					_removed = true;
+					systemChat format["handgun item: %1 is not allowed", _x];
+					player removeHandgunItem _x;
+				};
 			};
 		} count _handItems;
+		private _count = player ammo _handWeap;
+		if ( _count > 0 ) then {
+			private _mags = handGunMagazine player;
+			{
+				if ( !(_x in A_ammo) ) then {
+					systemChat format["handgun magazine: %1 is not allowed", _x];
+					player setAmmo [_handWeap, 0];
+					_removed = true;
+				};	
+			} count _mags;
+		};
 	};
 };
-
-private _allMagazines = magazinesAmmoFull player;
-{
-	_x params ["_class", "_ammoCount", "_loaded", "_type", "_loc"];
-	if ( !(_class in A_ammo) ) then {
-		_removed = true;
-		player removeMagazines _x;
-	};
-} count _allMagazines;
-_allMagazines = nil;	
 
 if ( _removed ) then {
 	private _msg = ["va", "message"] call BIS_fnc_GetCfgData;

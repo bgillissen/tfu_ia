@@ -27,7 +27,10 @@ private _veh = vehicle player;
 
 if ( _veh isEqualTo player) exitWith { false };
 
-if ( !(_veh getVariable "supplyDrop") ) exitWith { false };
+if ( !(driver _veh isEqualTo player) ) exitWith { false };
+
+_isSD = _veh getVariable "supplyDrop";
+if ( isNil "_isSD" ) exitWith { false };
 
 if ( (position _veh) select 2 <= (["supplyDrop", "minAltitude"] call BIS_fnc_GetCfgData) ) exitWith { false };
 

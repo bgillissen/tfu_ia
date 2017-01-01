@@ -12,6 +12,7 @@ Description:
 params ["_isGPS", "_control"];
 
 private _text = "";
+
 {
 	private _veh = vehicle _x;
 	if ((side _veh == PLAYER_SIDE) || {(captive _x)}) then {
@@ -20,11 +21,12 @@ private _text = "";
 			if ( !_isGPS ) then {
 				_text = [_veh] call mapTracker_fnc_iconText;
 			};
+			
 			private _type = [_veh] call mapTracker_fnc_iconType;		
 			private _size = [_veh] call mapTracker_fnc_iconSize;
 			private _color = [_x] call mapTracker_fnc_iconColor;	
 			private _pos = getPosASL _veh;		
-			private _dir = getDir _x;		
+			private _dir = getDir _x;
 			if ( (_x == crew _veh select 0) || {_x in allUnitsUav} ) then {
 				_control drawIcon [_type,
 				                   _color,

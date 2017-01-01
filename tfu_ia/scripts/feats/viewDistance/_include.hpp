@@ -192,6 +192,7 @@ class TAWVD_activeText
 	font = "PuristaLight";
 	color[] = {1, 1, 1, 1};
 	colorActive[] = {1, 0.2, 0.2, 1};
+	colorDisabled[] = {1,1,1,0.25};	//added by ben
 	soundEnter[] = {"\A3\ui_f\data\sound\onover", 0.09, 1};
 	soundPush[] = {"\A3\ui_f\data\sound\new1", 0.0, 0};
 	soundClick[] = {"\A3\ui_f\data\sound\onclick", 0.07, 1};
@@ -206,7 +207,6 @@ class TAW_VD
 	name= "taw_vd";
 	movingEnable = false;
 	enableSimulation = true;
-	//onLoad = "['guns'] execVM 'gear\switch.sqf'";
 	
 	class controlsBackground {
 		class TAWVD_RscTitleBackground:TAWVD_RscText {

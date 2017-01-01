@@ -35,6 +35,7 @@ private _removeItem = _type call {
 		};
 	};
 	if ( !_found ) then {
+		systemChat format["Item/Ammo in your %1: %2 is not allowed", _type, _x];
 		_out = false;
 		_x call _removeItem;
 	};
@@ -43,6 +44,7 @@ private _removeItem = _type call {
 {
 	if ( !(_x in A_weapons) ) then { 
 		_out = false;
+		systemChat format["Weapon in your %1: %2 is not allowed", _type, _x];
 		player removeWeapon _x;	
 	};
 } count ((getWeaponCargo _container) select 0);

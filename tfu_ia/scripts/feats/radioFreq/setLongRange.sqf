@@ -17,7 +17,8 @@ Return:
 	nothing 
 */
 
-private _radio = call TFAR_fnc_activeLrRadio; 
+//params ["_radio"];
+private _radio = call TFAR_fnc_activeLrRadio;
 {
 	[_radio, (_forEachIndex + 1), _x] call TFAR_fnc_SetChannelFrequency;
 } forEach (["radioFreq", "longRange"] call BIS_fnc_GetCfgData);

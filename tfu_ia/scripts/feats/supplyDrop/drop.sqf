@@ -40,17 +40,17 @@ params ["_veh"];
 	SD_avail = false;
 	publicVariable "SD_avail";
 
-	private "_chuteType";
-	if ( PLAYER_SIDE == west ) then {
-		_chuteType = "B_Parachute_02_F";
-	} else {
-		_chuteType = "O_Parachute_02_F";
+	private _chuteType = PLAYER_SIDE call {
+		if ( _this == west ) exitWith { "B_Parachute_02_F" };
+		if ( _this == east ) exitWith { "O_Parachute_02_F" };
+		"I_Parachute_02_F"
 	};
 
 	private _chute = createVehicle [_chuteType, [100, 100, 200], [], 0, 'FLY'];
 	_chute setPos [getPosASL _veh select 0, getPosASL _veh select 1, (getPosASL _veh select 2) - 50];
 
-	private _crate = createVehicle [(selectRandom S_crates), position _chute, [], 0, 'NONE']; 
+	diag_log SD_crates;
+	private _crate = createVehicle [(selectRandom SD_crates), position _chute, [], 0, 'NONE']; 
 	_crate attachTo [_chute, [0, 0, -1.3]];
 	_crate allowdamage false;
 	

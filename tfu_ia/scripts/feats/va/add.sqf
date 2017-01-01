@@ -9,7 +9,10 @@ Description:
 
 params ["_box", "_filtered"];
 
-//_filtered = false;
+clearWeaponCargoGlobal _box;
+clearMagazineCargoGlobal _box;
+clearItemCargoGlobal _box;
+clearBackpackCargoGlobal _box;
 
 ["AmmoboxInit", [_box, !_filtered]] call BIS_fnc_arsenal;
 

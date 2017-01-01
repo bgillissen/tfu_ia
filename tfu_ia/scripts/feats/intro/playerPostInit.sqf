@@ -21,5 +21,5 @@ if ( (["intro"] call core_fnc_getConf) == 0 ) exitWith {};
 		sleep 2;
 		!BLACKSCREEN
 	};
-	[] spawn intro_fnc_show;	
+	//[] spawn intro_fnc_show;	
 };

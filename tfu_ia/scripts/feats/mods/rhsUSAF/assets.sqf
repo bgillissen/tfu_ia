@@ -15,7 +15,7 @@ A_USAF = 0;
 
 private _backpacks = [];
 private _items = [];
-private _weapons = [];
+private _weapons = ["rhs_weap_m4a1_blockII"];
 private _ammo = [];
 
 _out set [A_USAF, [_backpacks, _items, _weapons, _ammo]];

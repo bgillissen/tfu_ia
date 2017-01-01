@@ -9,48 +9,39 @@ Description:
 
 if ( (["vehicleCrew"] call core_fnc_getConf) == 0 ) exitWith{};
 
-private ["_name","_vehicle","_weapname","_weap","_target","_picture","_vehtarget","_azimuth","_wepdir","_hudnames","_ui"];   
-	   
+private _updateDelay = ["vehicleCrew", "updateDelay"] call BIS_fnc_getCfgData;
+private _dsp = ["vehicleCrew", "display"] call BIS_fnc_getCfgData;
+private _driver = ["vehicleCrew", "icons", "driver"] call BIS_fnc_getCfgData;
+private _gunner = ["vehicleCrew", "icons", "gunner"] call BIS_fnc_getCfgData;
+private _commander = ["vehicleCrew", "icons", "commander"] call BIS_fnc_getCfgData;
+private _cargo = ["vehicleCrew", "icons", "cargo"] call BIS_fnc_getCfgData;
+
 disableSerialization;
 
 while { true } do  {
-
-   	 1000 cutRsc ["HudNames","PLAIN"];
-   	 _ui = uiNameSpace getVariable "HudNames";
- 	 _HudNames = _ui displayCtrl 99999;
-
-    if(player != vehicle player) then {
-        _name = "";
-        _vehicle = assignedVehicle player;
-        _weapname = getarray (configFile >> "CfgVehicles" >> typeOf (vehicle player) >> "Turrets" >> "MainTurret" >> "weapons"); 
-        _weap = _weapname select 0;
-					
+	
+	1000 cutRsc ["HudNames","PLAIN"];
+	private _ui = uiNameSpace getVariable "HudNames";
+	private _HudNames = _ui displayCtrl 99999;
+	
+    if( !(player isEqualTo vehicle player) ) then {
+        private _list = "";
+        private _vehicle = assignedVehicle player;
         {
-            if((driver _vehicle == _x) || (gunner _vehicle == _x)) then
-            {
-	                
-                if(driver _vehicle == _x) then {
-                    _name = format ["<t size='0.85' color='#f0e68c'>%1 %2</t> <img size='0.7' color='#6b8e23' image='a3\ui_f\data\IGUI\Cfg\Actions\getindriver_ca.paa'/><br/>", _name, (name _x)];
-                } else {
-	                        _target = cursorTarget;
-       				 _picture = getText (configFile >> "cfgVehicles" >> typeOf _target >> "displayname");
-       				 _vehtarget =  format ["%1",_picture];
-					_wepdir =  (vehicle player) weaponDirection _weap;
-					_Azimuth = round  (((_wepdir select 0) ) atan2 ((_wepdir select 1) ) + 360) % 360;
-                    _name = format ["<t size='0.85' color='#f0e68c'>%1 %2</t> <img size='0.7' color='#6b8e23' image='a3\ui_f\data\IGUI\Cfg\Actions\getingunner_ca.paa'/><br/> <t size='0.85' color='#f0e68c'>Heading :<t/> <t size='0.85' color='#ff0000'>%3</t><br/><t size='0.85' color='#f0e68c'> Target : </t><t size='0.85' color='#ff0000'>%4</t><br/>", _name, (name _x), _Azimuth, _vehtarget];
-				};
-               
-            }
-            else
-            {
-                _name = format ["<t size='0.85' color='#f0e68c'>%1 %2</t> <img size='0.7' color='#6b8e23' image='a3\ui_f\data\IGUI\Cfg\Actions\getincargo_ca.paa'/><br/>", _name, (name _x)];
-            };  
-              
+        	private _icon = [_vehicle, _x ] call {
+        		params ["_veh", "_player"];
+        		if( driver _veh == _player) exitWith { _driver };
+        		if ( gunner _veh == _player ) exitWith { _gunner };
+        		if ( commander _veh == _player ) exitWith { _commander };
+        		_cargo
+        	};
+        	_list = format [_dsp, _list, (name _x), _icon]; 
         } forEach crew _vehicle;
 
-      	_HudNames ctrlSetStructuredText parseText _name;
+      	_HudNames ctrlSetStructuredText parseText _list;
       	_HudNames ctrlCommit 0;
-    	};
-    sleep 5;
+      	sleep _updateDelay;
+    };
+    sleep 2;
   };  
   

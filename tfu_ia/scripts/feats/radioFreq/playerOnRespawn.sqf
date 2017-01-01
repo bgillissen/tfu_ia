@@ -24,9 +24,15 @@ if ( (["radioFreq"] call core_fnc_getConf) == 0 ) exitWith{};
 			player unlinkItem _radio;
 			player linkItem (TFAR_SR select 0);
 		};
-		sleep 3;
+		waitUntil {		
+			sleep 0.5;
+			( count ([true, (TFAR_SR select 0)] call radioFreq_fnc_searchRadios) == 0);
+		};
+		sleep 2;
 		call radioFreq_fnc_setShortRange;
 		
 	};
-	if ( call TFAR_fnc_haveLRRadio ) then { call radioFreq_fnc_setLongRange; };
+	if ( call TFAR_fnc_haveLRRadio ) then { 
+		call radioFreq_fnc_setLongRange; 
+	};
 };

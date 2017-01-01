@@ -21,5 +21,11 @@ private _r = PLAYER_SIDE call {
 };
 
 TFAR_SR = (_r select 1);
+
 TFAR_LR = (_r select 0);
+
+//those are needed client side by radioFreq and va (when filtered)
+publicVariable "TFAR_SR";
+publicVariable "TFAR_LR";
+
 [TFAR_LR, TFAR_SR, [], []] call mods_fnc_implentArsenal;
