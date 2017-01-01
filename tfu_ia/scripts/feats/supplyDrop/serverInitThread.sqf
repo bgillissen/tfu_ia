@@ -46,7 +46,7 @@ while { true } do {
 			SD_spawnedCrates = SD_spawnedCrates - [_crate];
 			publicVariable "SD_spawnedCrates";
 		};
-		[PLAYER_SIDE, _from] sideChat _msg;
+		[_from, _msg] call common_fnc_globalSideChatServer;
 		SD_avail = true;
 		publicVariable "SD_avail";
 	};

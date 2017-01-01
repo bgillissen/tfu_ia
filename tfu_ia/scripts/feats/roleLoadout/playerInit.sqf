@@ -9,7 +9,15 @@ Description:
 
 private _role = player getVariable "role";
 
+if ( isNil "_role" ) exitWith {
+	diag_log format["Player role was not defined! for '%1'", player];
+};
+
 private _lo = missionNamespace getVariable format["RL_%1", _role];
+
+if ( isNil "_lo" ) exitWith {
+	diag_log format["Role loadout is not set for 'RL_%1'", _role];
+};
 
 _role = nil;
 

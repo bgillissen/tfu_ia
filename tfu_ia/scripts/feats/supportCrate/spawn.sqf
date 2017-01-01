@@ -28,21 +28,21 @@ Environment:
 Return:
 	nothing 
 */
-
-params ["_type"];
+params ["_thing", "_caller", "_id", "_type"];
 
 SC_avail = false;
 publicVariable "SC_avail";
 
 private "_class";
+
 if ( _type isEqualTo "supply" ) then {
 	_class = (selectRandom SD_crates);
 } else {
-	_class = ["suppportCrate", "types", _type] call BIS_fnc_GetCfgData;
+	_class = (["supportCrate", "typeClass", _type] call BIS_fnc_GetCfgData);
 };
 
-
 private _crate = createVehicle [_class, getMarkerPos "SC_spawn", [], 0, 'NONE']; 
+_crate setDir markerDir "SC_spawn";
 _crate allowdamage false;
 
 SC_crates append [_crate];
@@ -52,6 +52,11 @@ if ( _type isEqualTo "supply" ) then {
 	[_crate, SD_backpacks, SD_items, SD_weapons, SD_ammo] call common_fnc_setCargo;
 };
 
-private _from = ["suppportCrate", "msgFrom"] call BIS_fnc_GetCfgData;
-private _msg = ["suppportCrate", "msgDeployed"] call BIS_fnc_GetCfgData;
-[PLAYER_SIDE, _from] sideChat _msg;
+private _from =  ["supportCrate", "msgFrom"] call BIS_fnc_GetCfgData;
+private _msg = (["supportCrate", "msgDeployed"] call BIS_fnc_GetCfgData);
+private _cooldown = ["supportCrate_cooldown"] call core_fnc_getConf;
+[_from, format[_msg, profileName, _type, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
+
+{
+	_x addCuratorEditableObjects [[_crate],false];
+} count allCurators;

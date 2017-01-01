@@ -129,7 +129,6 @@ class zeusMission {
 };
 
 class dynBillboards {
-	mode[]={"random", "random"};
 	totRandom = 6;
 	path = "media\billboards\%1.paa";
 };
@@ -167,7 +166,7 @@ class supplyDrop {
 	minAltitude = 40;
 	msgFrom = "HQ";
 	msgAvail = "Supply Drop is available.";
-	msgDeployed = "Supply Drop has been deployed.";
+	msgDeployed = "Supply Drop has been deployed by %1, next drop available in %2min.";
 	checkDelay = 20;
 	action = "<t color='#0000ff'>Drop supply crate</t>";
 	smoke = "SmokeShellPurple";
@@ -175,20 +174,21 @@ class supplyDrop {
 };
 
 class supportCrate {
-	msgFrom  = "HQ";
+	msgFrom = "HQ";
 	msgAvail = "Support crate request is available.";
-	msgDeployed = "Requested support crate has been deployed.";
+	msgDeployed = "%1 requested a support crate (%2), it has been deployed. An other one will be available in %3min.";
 	checkDelay = 20;
+	types[]={"fuel", "medic", "repair", "supply"};
 	class actions {
 		fuel = "<t color='#0000ff'>Request -- Fuel</t>";
 		medic = "<t color='#0000ff'>Request -- Medical</t>";
 		repair = "<t color='#0000ff'>Request -- Repair</t>";
 		supply = "<t color='#0000ff'>Request -- Supply</t>";
 	};
-	class types {
-		fuel = "?????";
-		medic = "????";
-		repair = "????";
+	class typeClass {
+		fuel = "B_Slingload_01_Fuel_F";
+		medic = "B_Slingload_01_Medevac_F";
+		repair = "B_Slingload_01_Repair_F";
 	};
 };
 

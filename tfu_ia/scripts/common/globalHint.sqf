@@ -3,7 +3,8 @@
 Author:
 	unknown, taken from ahoyworld I&A
 Description:
-	used to send formated globalHint
+	run on player (local hint) and server (global hint)
+	used to send formated hint
 */
 
 params ["_hint"];

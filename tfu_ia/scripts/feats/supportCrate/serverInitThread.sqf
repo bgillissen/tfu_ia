@@ -36,19 +36,18 @@ publicVariable "SC_avail";
 SC_crates = [];
 publicVariable "SC_crates";
 
-private _types = ["fuel", "medic", "repair", "supply"];
+private _types = (["supportCrate", "types"] call BIS_fnc_GetCfgData);
 
 {
 	{
 		_x params ["_thing", "_actions"];
-		{
-			if ( _x == "support") exitWith {
-				{
-					private _action = ["suppportCrate", "actions", _x] call BIS_fnc_GetCfgData;
-					_thing addAction [_action, {[_this select 3] call supportCrate_fnc_spawn}, [_x], 0, false, true, '', 'call supportCrate_fnc_condition', 2];	
-				} count _types;
-			};
-		} count _actions;
+		if ( "support" in _actions ) then {
+			{
+				private _action = ["supportCrate", "actions", _x] call BIS_fnc_GetCfgData;
+				_thing addAction [_action, {call supportCrate_fnc_spawn}, _x, 0, false, true, '', 'call supportCrate_fnc_condition', 4];
+				true
+			} count _types;
+		};
 		true
 	} count _x;
 	true
@@ -71,7 +70,7 @@ while { true } do {
 			SC_crates = SC_crates - [_crate];
 			publicVariable "SC_crates";
 		};
-		[PLAYER_SIDE, _from] sideChat _msg;
+		[_from, _msg] call common_fnc_globalSideChatServer;
 		SC_avail = true;
 		publicVariable "SC_avail";
 	};

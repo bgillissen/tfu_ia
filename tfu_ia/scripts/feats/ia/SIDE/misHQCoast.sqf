@@ -119,7 +119,7 @@ while ( true ) do {
 	if ( SIDE_success ) exitWith {
 		private _planted = ["ia", "side", "hqCoast", "planted"] call BIS_fnc_GetCfgData;
 		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
-		[format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
+		["HQ", format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
 		_planted = nil;
 		sleep _delay;
 		_delay = nil;

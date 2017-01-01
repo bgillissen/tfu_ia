@@ -17,7 +17,7 @@ BA_obj = [];
 BA_veh = [];
 
 {
-	_x params ["_type", "_actions", "_name", "_flags"];
+	_x params ["_type", "_actions", "_name", "_flags", "_conf"];
 	_flags params ["_damage", "_simu", "_simple"];
 	_flags = nil;
 	if ( !(isNil _name) ) then {
@@ -30,19 +30,19 @@ BA_veh = [];
 			[_thing] call BIS_fnc_replaceWithSimpleObject;
 		};
 		if ( _type isEqualTo "obj" ) then { 
-			BA_obj append [[_thing, _actions]];
+			BA_obj append [[_thing, _actions, _conf]];
 		} else {
 			if ( _type isEqualto "npc" ) then {
-				{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
+				//{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
 				[_thing, _actions] call baseAtmosphere_fnc_npcLoadout;
-				BA_npc append [[_thing, _actions]];	
+				BA_npc append [[_thing, _actions, _conf]];	
 			} else {
 				if ( _type isEqualto "veh" ) then {
 					clearWeaponCargoGlobal _thing;
 					clearMagazineCargoGlobal _thing;
 					clearItemCargoGlobal _thing;
 					clearBackpackCargoGlobal _thing;
-					BA_veh append [[_thing, _actions]];
+					BA_veh append [[_thing, _actions, _conf]];
 				};
 			};
 		};

@@ -189,11 +189,12 @@ private _engineer = [];
 private _grenadier = [];
 private _rifleman = [];
 private _jtac = [];
-private _pilot = [];
+private _hpilot = [];
+private _jPilot = [];
 private _mortar = [];
 
 _out set [RLVO, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
-                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _pilot, _mortar]];
+                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _mortar]];
 
 //------------------------------------------------------------ FINITO, return
           

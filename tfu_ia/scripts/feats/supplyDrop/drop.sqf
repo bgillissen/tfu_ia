@@ -53,9 +53,7 @@ params ["_veh"];
 	private _crate = createVehicle [(selectRandom S_crates), position _chute, [], 0, 'NONE']; 
 	_crate attachTo [_chute, [0, 0, -1.3]];
 	_crate allowdamage false;
-
 	
-
 	private _light = ["supplyDrop", "light"] call BIS_fnc_GetCfgData;
 	_light = createVehicle [_light, position _chute, [], 0, 'NONE'];
 	_light attachTo [_chute, [0, 0, 0]];
@@ -64,7 +62,9 @@ params ["_veh"];
 
 	private _from = ["supplyDrop", "msgFrom"] call BIS_fnc_GetCfgData;
 	private _msg = ["supplyDrop", "msgDeployed"] call BIS_fnc_GetCfgData;
-	[PLAYER_SIDE, _from] sideChat _msg;
+	private _cooldown = ["supplyDrop_cooldown"] call core_fnc_getConf;
+	[_from, format[_msg, profileName, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
+	_cooldown = nil;
 	_from = nil;
 	_msg = nil;
 	

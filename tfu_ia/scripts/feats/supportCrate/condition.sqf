@@ -20,4 +20,4 @@ Return:
 
 if ( !SC_avail ) exitWith { false };
 
-( player getVariable "role" isEqualTo "hPilot" )
+( (player getVariable "role") isEqualTo "hPilot" )

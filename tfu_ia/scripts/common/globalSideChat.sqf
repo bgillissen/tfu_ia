@@ -3,9 +3,10 @@
 Author:
 	unknown, taken from ahoyworld I&A
 Description:
-	used to send message on the side channel globaly
+	run on player
+	ask server to send a sideChat message globaly
 */
 
-params ["_from", "_message"];
+params ["_from", "_msg"];
 
-[WEST,"_from"] sideChat _message;
+[_from, _msg] remoteExec ["common_fnc_globalSideChatServer", 2, false];

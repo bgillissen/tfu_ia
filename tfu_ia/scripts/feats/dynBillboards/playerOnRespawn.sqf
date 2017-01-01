@@ -7,10 +7,16 @@ Description:
 	It changes the texture displayed on the billboards with a mode set to random.
 */
 
+if ( isNil "DB_list" ) then {
+	DB_list = [];
+	private _tot = (["dynBillboards", "totRandom"] call BIS_fnc_GetCfgData);
+	for "_x" from 1 to  _tot do { DB_list append [_x]; };
+};
+
 {
-	private _vname = format["DB_%1", _forEachIndex];
-	if ( !isNil _vname ) then {
-		_obj = missionNamespace getVariable _vname;
-		[_obj, _x] call dynBillboards_fnc_setTexture;
+	_x params ["_thing", "_actions", "_mode"];
+	if ( "billboard" in _actions ) then {
+		[_thing, _mode] call dynBillboards_fnc_setTexture;
 	};
-} forEach (["dynBillboards", "mode"] call BIS_fnc_GetCfgData);
+	true
+} count BA_obj;

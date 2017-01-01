@@ -17,9 +17,9 @@ private _delay = ["loadBalance", "loopDelay"] call BIS_fnc_GetCfgData;
 while { true } do {
 
 	sleep _delay;
-	private _HC1_ID = ["HC1"] call loadBalance_fnc_getClientID;
-	private _HC2_ID = ["HC2"] call loadBalance_fnc_getClientID;
-	private _HC3_ID = ["HC3"] call loadBalance_fnc_getClientID;
+	private _HC1_ID = ["HC_1"] call loadBalance_fnc_getClientID;
+	private _HC2_ID = ["HC_2"] call loadBalance_fnc_getClientID;
+	private _HC3_ID = ["HC_3"] call loadBalance_fnc_getClientID;
 	private _avail = 0;
 	{
 		if ( _x != -1 ) then { _avail = _avail + 1; }; 

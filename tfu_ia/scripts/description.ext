@@ -68,6 +68,11 @@ class CfgCompositions {
 	#include "feats\maps\_cfgCompositions.hpp"
 };
 
+//------------------------- Notifications
+class CfgNotifications {
+	#include "feats\_cfgNotifications.hpp"
+};
+
 //------------------------- RscTitles
 class RscTitles {
 	#include "feats\vehicleCrew\_rscTitles.hpp"
@@ -78,10 +83,7 @@ class CfgRemoteExec {
 	class Functions { 	//mode 0:disabled, 1:whitelisted, 2:all
 		mode = 1;
 		jip = 1;
+		#include "common\_cfgRemoteExec.hpp"
 		#include "feats\_cfgRemoteExec.hpp"
-	};        
-    class Commands {
-		mode = 1;
-		jip = 1;            
 	};
 };

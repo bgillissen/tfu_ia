@@ -7,6 +7,7 @@ class common {
 		class globalHint { file="common\globalHint.sqf"; };
 		class globalNotification { file="common\globalNotification.sqf"; };
 		class globalSideChat { file="common\globalSideChat.sqf"; };
+		class globalSideChatServer { file="common\globalSideChatServer.sqf"; };
 		class implent { file="common\implent.sqf"; };
 		class isBlacklisted { file="common\isBlacklisted.sqf"; };
 		class setLoadout { file="common\setLoadout.sqf"; };

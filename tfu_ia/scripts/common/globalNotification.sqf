@@ -3,7 +3,8 @@
 Author:
 	unknown, taken from ahoyworld I&A
 Description:
-	used to show notification
+	run on server
+	used to show notification globaly
 */
 
 params ["_type", "_array"];
