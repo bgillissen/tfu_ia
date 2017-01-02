@@ -24,6 +24,3 @@ for "_curSlot" from 0 to (_totSlot-1) do {
 		_gm setVariable ["showNotification", false];			//notification
 	};
 };
-
-//grabing the list of squad members with zeus access
-call curator_fnc_reload;
