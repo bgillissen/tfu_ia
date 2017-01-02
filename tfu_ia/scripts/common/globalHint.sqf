@@ -3,10 +3,10 @@
 Author:
 	unknown, taken from ahoyworld I&A
 Description:
-	run on player (local hint) and server (global hint)
-	used to send formated hint
+	run on server
+	used to ask players ro display a hint
 */
 
 params ["_hint"];
 
-hint parseText format["%1", _hint];
+[_hint]  remoteExec ["common_fnc_globalHintPlayer", PLAYER_SIDE, false];

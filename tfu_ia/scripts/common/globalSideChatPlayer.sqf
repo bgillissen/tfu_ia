@@ -6,10 +6,10 @@ Author:
 	ben
 
 Description:
-	run on server
-	used to send message on the side channel globaly
+	run on player
+	show a side chat message
 */
 
 params ["_side", "_from", "_msg"];
 
-[_side, _from, _msg] remoteExec ["common_fnc_globalSideChatPlayer", _side, false];
+[_side, _from] sideChat _msg;

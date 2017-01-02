@@ -9,4 +9,4 @@ Description:
 
 params ["_from", "_msg"];
 
-[_from, _msg] remoteExec ["common_fnc_globalSideChatServer", 2, false];
+[PLAYER_SIDE, _from, _msg] remoteExec ["common_fnc_globalSideChatServer", 2, false];
