@@ -5,15 +5,87 @@ Author:
 Description:
 	this run on server side
 	to evenly distribute AI between headless clients
-	only support 3HCs for now, but can be changed to support more, with some count loop.
+	only support 3HCs for now, but can be changed to support more, 
+	with some count loop and a hc map.
 */
 
 #include "..\..\core\debug.hpp"
+#define DFT_GRP []
 
-if ( (["headless"] call core_fnc_getConf)  == 0 ) exitWith {};
+if ( (["headless"] call core_fnc_getConf) == 0 ) exitWith {};
 
 private _delay = ["loadBalance", "loopDelay"] call BIS_fnc_GetCfgData;
 
+while { true } do {
+
+	sleep _delay;
+	
+	private _HCmap = [];
+	private _HCgrp = [];
+	private _HCavail = 0;
+	private _HCfail = 0;
+	
+	for "_i" from 0 to TOT_HC do {
+		private _name = format["HC_%1", (_i + 1)];
+		private _id = [_name] call loadBalance_fnc_getClientID;
+		_HCmap set [_i, [_name, _id]];
+		_HCgrp set [_i, DFT_GRP];
+		if (_id != -1 ) then {
+			_HCavail = _HCavail + 1;
+		};
+		
+	};
+	
+	if ( _HCavail > 0 ) then {
+		private _toMove = [];
+		{
+			private _swap =  (({ isPlayer _x } count (units _x)) == 0);
+			if ( _swap ) then {
+				private _grp = _x;
+				private _owner = groupOwner _x;
+				private _isOnHC = false;
+				{
+					if ( _owner == _x select 1 ) then {
+						(_HCgrp select _forEachIndex) append [_grp]; 
+						_isOnHC = true;
+					};
+				} count _HCmap;
+				if ( !_isOnHC ) then { _toMove append [_grp]; };
+			};
+		} count allGroups;
+		
+		{
+			private _countSmallest = count allGroups;
+			private "_smallest";
+			{
+				if ( count _x < _countSmallest) then {
+					_smallest = _forEachIndex;
+					_countSmallest = count _x;
+				};
+			} foreach _HCgrp;
+			
+			if ( _x setGroupOwner _smallest ) then {
+				(_HCgrp select _smallest) append [_x];
+			} else {
+				_HCfail = _HCfail + 1;
+			}
+		} count _toMove;
+#ifdef DEBUG
+		private _debug = format ["loadBalance : moved %1 group(s) to %2 HCs", count _toMove, _avail];
+		conWhite(_debug);
+		for "_i" from 0 to TOT_HC do {
+			_debug = format ["loadBalance : HC_%1 now owns %2 AI", (_i + 1), count _HCgrp select _i]; 
+			conWhite(_debug);
+		};
+#endif
+	} else {
+#ifdef DEBUG
+		conWhite("loadBalance : no HC available, maybe next loop");
+#endif
+	};
+};
+
+/*
 while { true } do {
 
 	sleep _delay;
@@ -84,3 +156,4 @@ while { true } do {
 		#endif
 	};
 };
+*/

@@ -5,6 +5,10 @@ private _out = [];
 
 private _checkContent = {
 	params ["_tocheck", "_filter", "_isProto"];
+	diag_log _tocheck;
+	diag_log _filter;
+	diag_log _isProto;
+	diag_log "---------";
 	private _do = false;
 	if ( _filter isEqualTo "" ) then {
 		{

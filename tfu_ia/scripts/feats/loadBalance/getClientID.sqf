@@ -24,7 +24,7 @@ private "_id";
 try {
 	_slot = missionNamespace getVariable _slotName;
     if ( isNil "_slot" ) then {
-		throw "is not present on the map!"; 
+		throw "is not connected"; 
     };	
     _id = owner _slot;
     if (_id > 2) then {

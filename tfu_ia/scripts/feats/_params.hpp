@@ -21,6 +21,7 @@ Description:
 #include "maps\_params.hpp"
 #include "mapTracker\_params.hpp"
 #include "mods\_params.hpp"
+#include "noRenegade\_params.hpp"
 #include "playerSide\_params.hpp"
 #include "radioFreq\_params.hpp"
 #include "restrictArti\_params.hpp"
