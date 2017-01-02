@@ -47,9 +47,8 @@ params ["_veh"];
 	};
 
 	private _chute = createVehicle [_chuteType, [100, 100, 200], [], 0, 'FLY'];
-	_chute setPos [getPosASL _veh select 0, getPosASL _veh select 1, (getPosASL _veh select 2) - 50];
+	_chute setPos [getPosASL _veh select 0, getPosASL _veh select 1, (getPosASL _veh select 2) - 42];
 
-	diag_log SD_crates;
 	private _crate = createVehicle [(selectRandom SD_crates), position _chute, [], 0, 'NONE']; 
 	_crate attachTo [_chute, [0, 0, -1.3]];
 	_crate allowdamage false;
@@ -70,15 +69,24 @@ params ["_veh"];
 	
 	waitUntil {
 		sleep 0.2;
-		( position _crate select 2 < 2 || isNull _chute )
+		( position _crate select 2 < 1 || isNull _chute )
 	};
 
 	detach _crate;
-	_crate setPos [position _crate select 0, position _crate select 1, 0];
+	private _cratePos = position _crate;
+	private _chutePos = position _crate;
+	_crate setPos [(_cratePos select 0), (_cratePos select 1), 0];
 	_crate setVectorUp [0,0,1];
 	_crate enableSimulationGlobal true;
+	//to make it touch the ground next to the crate, it's needed or it never collapse
+	_chute setPos [(_chutePos select 0) + 0.5 , (_chutePos select 1) + 0.5, (_chutePos select 2)];
+
 	private _smoke = ["supplyDrop", "smoke"] call BIS_fnc_GetCfgData;
-	_smoke = _smoke createVehicle [getPos _crate select 0, getPos _crate select 1, 5];
+	_smoke = _smoke createVehicle [_cratePos select 0, _cratePos select 1, 5];
+	
+	{
+		_x addCuratorEditableObjects [[_crate, _light, _smoke, _chute], false];
+	} count allCurators;
 	
 	SD_spawnedCrates append [[_crate, _chute, _light, _smoke]];
 	publicVariable "SD_spawnedCrates";

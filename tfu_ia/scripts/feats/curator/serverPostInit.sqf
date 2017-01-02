@@ -6,11 +6,11 @@ Description:
 	run on server
 	add once needed eventHandlers to share placed things between curators 
 */
-if ( isNil "curator_EH" ) then {
+if ( isNil "curator_SEH" ) then {
 	{    
-		_x addEventHandler ["CuratorGroupPlaced", {[_this, "curator_fnc_placeGrp", false] spawn BIS_fnc_MP}];
-		_x addEventHandler ["CuratorObjectPlaced", {[_this, "curator_fnc_paceObj", false] spawn BIS_fnc_MP}];
+		_x addEventHandler ["CuratorGroupPlaced", {_this call curator_fnc_placeGrpServer}];
+		_x addEventHandler ["CuratorObjectPlaced", {_this call curator_fnc_paceObjServer}];
 		true
 	} count allCurators;
-	curator_EH = true;
+	curator_SEH = true;
 };

@@ -140,9 +140,10 @@ class hallOfShame {
 
 class earPlugs {
 	volume = 0.2;
-	onMsg = "EarPlugs fitted";
-	offMsg = "EarPlugs removed";
+	onMsg = "earPlugs fitted";
+	offMsg = "earPlugs removed";
 	keycode = 197;	//pause/break key
+	delay = 0.3;
 	showHint = 0;
 	hint = "<t color='#ff9d00' size='1.2' shadow='1' shadowColor='#000000' align='center'>** Earplugs Recieved **</t>          Use [Pause/Break] key to Insert and Remove";
 };
@@ -163,7 +164,7 @@ class voiceControl {
 };
 
 class supplyDrop {
-	minAltitude = 40;
+	minAltitude = 50;
 	msgFrom = "HQ";
 	msgAvail = "Supply Drop is available.";
 	msgDeployed = "Supply Drop has been deployed by %1, next drop available in %2min.";
@@ -192,10 +193,11 @@ class supportCrate {
 	};
 };
 
-class vehicleRespaw {
+class vehicleRespawn {
 	distanceFromSpawn = 150;
 	checkDelay = 20;
 };
+
 class vehicleCrew {
 	updateDelay = 3;
 	display = "<t size='0.85' color='#f0e68c'>%1 %2</t><img size='0.7' color='#6b8e23' image='%3'/><br/>";

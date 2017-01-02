@@ -24,5 +24,5 @@ private _cfgName = ["squadHint", "name"] call BIS_fnc_GetCfgData;
 if (_squad isEqualTo _cfgName) then {
 	private _msg = ["squadHint", "msg"] call BIS_fnc_GetCfgData;
 	private _url = ["squadHint", "url"] call BIS_fnc_GetCfgData;
-	[format[_msg, _squad, _playerName, _url]] remoteExec ["common_fnc_globalHint", 0, false]; 
+	[format[_msg, _squad, _playerName, _url]] call common_fnc_globalHint; 
 };

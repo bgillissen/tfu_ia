@@ -28,6 +28,9 @@ conWhite(">>>> core_fnc_initPlayer start");
 waitUntil {!isNull player};
 waitUntil {player isEqualTo player};
 
+//features serverOnJoin
+["SERVER", "onJoin", [player]] call core_fnc_featEvent;
+
 //features playerInit
 ["PLAYER", "init"] call core_fnc_featEvent;
 

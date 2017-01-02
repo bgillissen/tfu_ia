@@ -17,7 +17,7 @@ Description:
 		if ( count _pool > 0 ) then {
 			private _veh = (selectRandom _pool) createVehicle (getMarkerPos _marker);
 			_veh setDir (markerDir _marker);
-			[_veh, _delay] call vehicleRespawn_fnc_monitor;
+			[_veh, _delay, _poolName] call vehicleRespawn_fnc_monitor;
 #ifdef DEBUG
 		} else {
 			private _debug = format["basevehicle: pool %1 is empty!", _poolName];

@@ -35,7 +35,7 @@ private _backpack = [];
 
 _out set [RG_USAF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
-//------------------------------------------------------------ Cargo RHS USAF
+//------------------------------------------------------------ Cargo RHS USAF --- TODO deprec, use VehicleCargo instead
 
 C_USAF = RG_USAF + 1;
 
@@ -66,7 +66,8 @@ private _weapons = [["rhs_weap_M136", 5],
 					["rhs_weap_M136_hedp", 5],
 					["rhs_weap_M136_hp", 5],
 					["rhs_weap_m4a1_blockII", 3]];
-private _ammo = [["rhsusf_100Rnd_762x51_m62_tracer", 15],
+private _ammo = [["30Rnd_556x45_Stanag_Tracer_Red", 40],
+                 ["rhsusf_100Rnd_762x51_m62_tracer", 15],
 				 ["rhsusf_100Rnd_556x45_M200_soft_pouch", 15],
 				 ["rhs_fim92_mag", 3],
 				 ["rhs_fgm148_magazine_AT", 3],
@@ -132,7 +133,7 @@ private _heliSmallArmed = ["RHS_MELB_AH6M_H",
                            "RHS_MELB_AH6M_L",
                            "RHS_MELB_AH6M_M"];
 private _heliMedium = ["RHS_UH60M"];
-private _heliMedEvac = [];
+private _heliMedEvac = ["RHS_UH60M_MEV_d", "RHS_UH60M_MEV2_d"];
 private _heliBig = ["RHS_CH_47F_10", 
 					"rhsusf_CH53E_USMC_D"];
 private _heliAttack = [];

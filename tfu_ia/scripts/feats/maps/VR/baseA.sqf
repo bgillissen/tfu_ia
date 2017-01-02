@@ -11,7 +11,9 @@ Description:
 //------------------------------------------------------------ Base vehicle
 
 BV = [["heliSmall", 		20, "BV_lb1"],
-      ["heliSmallArmed", 	20, "BV_lb2"]];
+      ["heliSmallArmed", 	20, "BV_lb2"],
+      ["heliMedium", 		20, "BV_bh1"],
+      ["heliMedEvac", 		20, "BV_bh2"]];
 
 //------------------------------------------------------------ Base atmosphere
 

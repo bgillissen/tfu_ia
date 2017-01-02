@@ -40,13 +40,16 @@ private _removeItem = _type call {
 } count ((getItemCargo _container) select 0);
 
 //weapons
+private _content = getWeaponCargo _container;
 {
 	if ( !(_x in A_weapons) ) then { 
 		_out = false;
 		systemChat format["Weapon in your %1: %2 is not allowed", _type, _x];
-		player removeWeapon _x;	
+		for "_i" from 1 to ((_content select 1) select _forEachIndex) do {
+			_x call _removeItem;
+		};
 	};
-} count ((getWeaponCargo _container) select 0);
+} forEach (_content select 0);
 
 //ammo
 {

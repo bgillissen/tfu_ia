@@ -8,6 +8,8 @@ Description:
 
 params ["_curator", "_placed"];
 
+diag_log "SERVER placeObjServer";
+
 {
 	_x addCuratorEditableObjects [[_placed],true]
 } forEach (allCurators - [_curator]);

@@ -8,7 +8,7 @@ Description:
 	add curator action to things in base that got a curator action 
 */
 
-if ( isNil "curator_EH" ) then {
+if ( isNil "curator_PEH" ) then {
 	isCurator = false;
 	"curatorUIDs" addPublicVariableEventHandler {
 		curatorUIDs = _this select 1;
@@ -20,7 +20,15 @@ if ( isNil "curator_EH" ) then {
 		curatorAssigned = _this select 1;
 		isAssigned = [player] call curator_fnc_isAssigned;
 	};
-	curator_EH = true;
+	if ( isNil "curator_SEH" ) then {
+		diag_log "PLAYER curatorGroupPlaced / ObjectPlaced registred";
+		{    
+			_x addEventHandler ["CuratorGroupPlaced", {_this call curator_fnc_placeGrpPlayer}];
+			_x addEventHandler ["CuratorObjectPlaced", {_this call curator_fnc_paceObjPlayer}];
+			true
+		} count allCurators;
+	};
+	curator_PEH = true;
 };
 
 private _request = ["curator", "requestAction"] call BIS_fnc_GetCfgData;

@@ -10,7 +10,7 @@ Description:
 
 if ( (["earPlugs"] call core_fnc_getConf) == 0 ) exitWith{};
 
-if ( (missionNamespace getVariable "MOD_ace") ) exitWith {};
+if ( MOD_ace ) exitWith {};
 
 earPlug_state = false; 
 
@@ -19,5 +19,9 @@ if ( (["earPlugs", "showHint"] call BIS_fnc_GetCfgData) == 1 ) then {
 };
 
 if ( isNil "EP_EH" ) then {
-	EP_EH = (findDisplay 46) displayAddEventHandler ["KeyDown", {[_this select 1] call earPlugs_fnc_swapSate;}];
+	[] spawn {
+		waituntil {!isnull (finddisplay 46)};
+		EP_availAt = time;
+		EP_EH = (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call earPlugs_fnc_swapState;"];
+	};
 };

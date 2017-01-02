@@ -57,6 +57,4 @@ private _msg = (["supportCrate", "msgDeployed"] call BIS_fnc_GetCfgData);
 private _cooldown = ["supportCrate_cooldown"] call core_fnc_getConf;
 [_from, format[_msg, profileName, _type, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
 
-{
-	_x addCuratorEditableObjects [[_crate],false];
-} count allCurators;
+[[_crate], false] call curator_fnc_addEditable;

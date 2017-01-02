@@ -6,14 +6,13 @@ Description:
 	run by server each time a destroyed vehicle respawn.
 */
 
-params ["_veh"];
+params ["_veh", "_poolName"];
 
 private _type = typeOf _veh;
 
-//add to Zeus
-{
-	_x addCuratorEditableObjects [[_veh],false];
-} count allCurators;
+private _args = [_veh];
+_args append (missionNamespace getVariable format["VC_%1", _poolName]);
+_args call common_fnc_setCargo;
 
 //add supplyDrop support
 if (_type in SD_vehicles) then {
@@ -24,7 +23,14 @@ if (_type in SD_vehicles) then {
 if (_type in BV_uav) then {
 	{
 		deleteVehicle _x;
-	} forEach(crew _veh);
+	} count (crew _veh);
 	sleep 2;
 	createVehicleCrew _veh;
 };
+
+//add to Zeus
+{
+	_x addCuratorEditableObjects [[_veh],false];
+} count allCurators;
+
+true

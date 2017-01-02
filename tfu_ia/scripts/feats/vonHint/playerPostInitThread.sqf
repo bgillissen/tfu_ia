@@ -21,7 +21,7 @@ private _ts = (["vonHint", "tsAddr"] call BIS_fnc_GetCfgData);
 
 while { true } do {
 	{
-		[format[_x, _ts]] remoteExec ["common_fnc_globalHint", 0, false];
+		hint parseText format[_x, _ts];
 		sleep _delay;	
 	} count (["vonHint", "Messages"] call BIS_fnc_GetCfgData);
 };

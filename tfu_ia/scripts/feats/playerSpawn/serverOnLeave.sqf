@@ -7,7 +7,7 @@ Description:
 	remove player _unit (no dead in base ;))
 */
 
-param ["_unit", "_id", "_uid", "_name"];
+params ["_unit", "_id", "_uid", "_name"];
 
 if ( !(isNull _unit) ) then { 
 	deleteVehicle _unit;
