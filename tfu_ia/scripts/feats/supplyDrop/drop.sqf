@@ -84,9 +84,7 @@ params ["_veh"];
 	private _smoke = ["supplyDrop", "smoke"] call BIS_fnc_GetCfgData;
 	_smoke = _smoke createVehicle [_cratePos select 0, _cratePos select 1, 5];
 	
-	{
-		_x addCuratorEditableObjects [[_crate, _light, _smoke, _chute], false];
-	} count allCurators;
+	[[_crate, _light, _smoke], false] call curator_fnc_addEditable;
 	
 	SD_spawnedCrates append [[_crate, _chute, _light, _smoke]];
 	publicVariable "SD_spawnedCrates";

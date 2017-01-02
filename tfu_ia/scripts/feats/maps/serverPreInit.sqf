@@ -14,6 +14,8 @@ if ( isNil "MAP_INIT" ) then {
 	MAP_INIT = true;
 };
 
+if ( isNil "TOT_CURATOR" ) then { TOT_CURATOR = 0; };
+
 private _base = BASES select (format["%1_base", MAP_PREFIX] call core_fnc_getConf);
 
 BASE_COMP = format["%1_%2", MAP_PREFIX, (_base select 0)];

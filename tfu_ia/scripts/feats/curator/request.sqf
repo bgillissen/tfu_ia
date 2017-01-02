@@ -12,8 +12,9 @@ params ["_player"];
 
 if ( [_player] call curator_fnc_isAssigned ) exitWith {};
 
-private _totSlot = ["curator", "slot"] call BIS_fnc_getCfgData;
-
+//private _totSlot = ["curator", "slot"] call BIS_fnc_getCfgData;
+private _totSlot = TOT_CURATOR; 
+		
 if ( count curatorAssigned >= _totSlot) exitWith { 
 	format[CURATOR_noSlotMsg, (count curatorAssigned), _totSlot] remoteExec ["systemChat", _player, false];
 };

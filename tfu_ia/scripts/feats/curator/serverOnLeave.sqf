@@ -12,11 +12,9 @@ params ["_unit", "_id", "_uid", "_name"];
 
 {
 	_x params ["_cuid", "_slot"];
-	if ( _cuid == _uid) then {
-		exitWith{
-			unassignCurator (missionNamespace getVariable format["zeus_%1", _slot]);
-			curatorAssigned = curatorAssigned - _x;
-			publicVariable "curatorAssigned";
-		};
-	}
-} count(curatorAssigned);
+	if ( _cuid == _uid) exitWith {
+		unassignCurator (missionNamespace getVariable format["zeus_%1", _slot]);
+		curatorAssigned = curatorAssigned - [_x];
+		publicVariable "curatorAssigned";
+	};
+} count curatorAssigned;
