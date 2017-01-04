@@ -38,129 +38,161 @@ Return:
 		nothing
 */
 
-private _aoCoord = getMarkerPos AO_circle;
+private _aoCoord = [0,0,0];
+if ( !isNil "AO_circle" ) then { 
+	_aoCoord = getMarkerPos AO_circle; 
+};
 private _baseCoord = getMarkerPos "SZ";
 private _cargoType = "Land_Cargo_House_V3_F";
 private _flatPos = [0,0,0];
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
+private _found = false;
+private "_flatPos";
 
-//find a flat position
-while ( true ) do {
+diag_log "searching for a flat pos...";
+
+while { !_found } do {
 	_position = [] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [5, 1, 0.2, (sizeOf _cargoType), 0, false];
+	diag_log _flatPos;
 	while {(count _flatPos) < 2} do {
 		_position = [] call BIS_fnc_randomPos;
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _cargoType, 0, false];
 	};
 	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
-		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {};
-		if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) exitWith {};
+		if ( _aoCoord isEqualTo [0,0,0] ) then {
+			_found = true;
+		} else {
+			if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) then {
+				_found = true;
+			};
+		};
 	};
 };
 _aoCoord = nil;
 _baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
+_found = nil;
 
-private _isRadar = [false, true] select (random 100 <= (["ia", "side", "secure", "radarProb"] call BIS_fnc_GetCfgData));
-
+//private _isRadar = [false, true] select (random 100 <= (["ia", "side", "secure", "radarProb"] call BIS_fnc_GetCfgData));
+_isRadar = true;
 private ["_title", "_desc", "_pool"];
-if ( _isRadar ) then {
+//if ( _isRadar ) then {
 	_title = ["ia", "side", "secure", "radar", "title"] call BIS_fnc_GetCfgData;
 	_desc = ["ia", "side", "secure", "radar", "briefing"] call BIS_fnc_GetCfgData;
 	 _pool = ["Land_Radar_Small_F"];
-} else {
+/*} else {
 	_title = ["ia", "side", "secure", "chopper", "title"] call BIS_fnc_GetCfgData;
 	_desc = ["ia", "side", "secure", "chopper", "briefing"] call BIS_fnc_GetCfgData;
-	_pool = S_airPatrol;
-};
+	_pool = S_aPatrol;
+};*/
 
 //spawn objective
 private _obj = (selectRandom _pool) createVehicle ([_flatPos, 25, 35, 10, 0, 0.5, 0] call BIS_fnc_findSafePos);
 _obj setDir random 360;
-if ( !isRadar ) then {
+if ( !_isRadar ) then {
 	_obj lock 3;
 };
 
 //cargo house
-private _cargo = _cargoType createVehicle _objPos;
+private _cargo = _cargoType createVehicle _flatPos;
 _cargo setDir random 360;
 
-(getPos _cargo) params["_cargoX", "_cargoY", "_cargoZ"];
+(getPos _cargo) params ["_cargoX", "_cargoY", "_cargoZ"];
 
 //table, laptop
 private _tableType = ["ia", "side", "table"] call BIS_fnc_GetCfgData;
-private _table = _tableType createVehicle [_cargoX, _cargoY, (_cargoY+1)];
-_table enableSimulation true;
+private _table = _tableType createVehicle [_cargoX, _cargoY, (_cargoZ + 15)];
 _tableType = nil;
 
-private _laptopType = ["ia", "side", "laptop"] call BIS_fnc_GetCfgData;
-private _laptop = SIDE_laptop createVehicle [_cargoX, _cargoY, (_cargoY+5)];
+[_cargo, _table, [0, 3.75, 0.8]] call BIS_fnc_relPosObject;
+_table enableSimulationGlobal true;
+
+sleep 0.5;
+
+private _laptopType = selectRandom (["ia", "side", "laptop"] call BIS_fnc_GetCfgData);
+private _laptop = _laptopType createVehicle [_cargoX, _cargoY, (_cargoZ + 15)];
+
 _laptopType = nil;
 
-[_table, _laptop, [0,0,0.83]] call BIS_fnc_relPosObject;
-_laptop enableSimulation true;
+[_table, _laptop, [0,0,0.80]] call BIS_fnc_relPosObject;
+_laptop enableSimulationGlobal false;
+_laptop setDir (getdir _table - 180);
 
 private _action = ["ia", "side", "secure", "action"] call BIS_fnc_GetCfgData;
-[_laptop, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
+[_laptop, _action] call SIDE_fnc_addAction;
 _action = nil;
 
-private _groups = [];
-
-//Populated watchTower
+//watchTower
 private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
 private _tower1 = "Land_Cargo_Patrol_V3_F" createVehicle ([_flatPos, 50, 0] call BIS_fnc_relPos);
 _tower1 setDir 180;
-_groups append [_tower1, _skill] call IA_fnc_forcedGarrison;
 private _tower2 = "Land_Cargo_Patrol_V3_F" createVehicle ([_flatPos, 50, 120] call BIS_fnc_relPos);
 _tower2 setDir 300;
-_groups append [_tower2, _skill] call IA_fnc_forcedGarrison;
 private _tower3 = "Land_Cargo_Patrol_V3_F" createVehicle ([_flatPos, 50, 240] call BIS_fnc_relPos);
 _tower3 setDir 60;
-_groups append [_tower3, _skill] call IA_fnc_forcedGarrison;
 _skill = nil;
 
-//spawn units
+private _groups = [];
+
+//spawn units in watch towers
+{
+	_groups append [([_x, 3] call IA_fnc_forcedGarrison)];
+	true
+} count [_tower1, _tower2, _tower3];
+
+//spawn patrols
 private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
-_groups append [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
+_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies);
+
+diag_log "--------------";
+diag_log _groups;
+diag_log "--------------";
 
 //markers
-private _title = ["ia", "side", "secure", "title"] call BIS_fnc_GetCfgData; 
-[_flatPos, _title, SIDE_size] call SIDE_fnc_placeMarkers;
+[_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
 //briefing
 private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
-[format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
-["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+[format[_briefing, _title, _desc]] call common_fnc_globalHint;
+["NewSideMission", _title] call common_fnc_globalNotification;
 _title = nil;
-_size = nil;
 _briefing = nil;
 _desc = nil;
 
 
 private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
 
-while ( true ) do {
+while { true } do {
 	if (!alive _cargo || !alive _obj) exitWith {
 		private _fail = ["ia", "side", "failHint"] call BIS_fnc_GetCfgData;
-		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
-		[false, _flatPos, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
+		[_fail] call common_fnc_globalHint;
+		[false, _flatPos, _size, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
+		//plan message
 		private _planted = ["ia", "side", "secure", "planted"] call BIS_fnc_GetCfgData;
 		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
-		[format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
+		[PLAYER_SIDE, "HQ", format[_planted, _delay]] call common_fnc_globalSideChatServer;
+		//time to move away
 		sleep _delay;
-		[[_cargoX, _cargoY, (_cargoZ+2)], false] spawn SIDE_fnc_boom;
+		//blow objectif and cargo
+		(getPos _obj) params ["_objX", "_objY", "_objZ"];
+		diag_log "boom";
+		[[_cargoX, _cargoY, (_cargoZ+2)], false] spawn SIDE_fnc_boom;		
+		[[_objX, _objY, (_objZ+15)], false] spawn SIDE_fnc_boom;
 		deleteVehicle _laptop;
 		deleteVehicle _table;
-		private _reward = call common_fnc_giveReward;
+		//give a reward
+		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call BIS_fnc_GetCfgData;
-		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
-		[false, _flatPos, _groups, [_cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
+		[format[_hint, _reward]] call common_fnc_globalHint;
+		//cleanup
+		[false, _flatPos, _size, _groups, [_cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _flatPos, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
+		[true, _flatPos, _size, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	sleep _checkDelay;
 };

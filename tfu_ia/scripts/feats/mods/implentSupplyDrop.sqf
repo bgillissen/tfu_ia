@@ -3,10 +3,8 @@
 Author:
 	Ben
 Description:
-	run on all context
-	it is used to append given vehicle to the supply drop pool
-	params MUST follow GV => SD definition!
-	gears [backpacks, items, weapons, ammo], crates
+	run on server
+	implents the given gear/crates/vehicles into the supplyDrop pool
 */
 
 if ( (["supplyDrop"] call core_fnc_getConf) == 0 ) exitWith{};
@@ -26,4 +24,4 @@ if ( (["supplyDrop"] call core_fnc_getConf) == 0 ) exitWith{};
 	} else {
 		[_x, _target, _filter] call common_fnc_implent;
 	}
-} forEach (_this);
+} forEach _this;

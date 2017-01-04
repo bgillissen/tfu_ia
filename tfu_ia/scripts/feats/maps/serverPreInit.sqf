@@ -28,3 +28,5 @@ call compileFinal preprocessFileLineNumbers format["feats\maps\%1\%2.sqf", MAP_F
 publicVariable "BASE_NAME";
 publicVariable "SZ_RADIUS";
 publicVariable "FR_RADIUS";
+
+FOLLOW_KEYWORDS = ((["follow_mapKeywords"] call core_fnc_getConf) == 1);

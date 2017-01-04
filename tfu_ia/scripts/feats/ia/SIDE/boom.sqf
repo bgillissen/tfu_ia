@@ -8,10 +8,12 @@ Description:
 */
 params ["_coord", "_secondary"];
 
-"Bo_GBU12_LGB" createVehicle _coord;
-sleep 0.1;
+private _gbu = "Bo_GBU12_LGB" createVehicle _coord;
+_gbu hideObjectGlobal true;
 
 if ( !_secondary ) exitWith {};
+
+sleep 0.1;
 
 for "_i" from 1 to 5 do {
 	sleep 1 + (random 3);

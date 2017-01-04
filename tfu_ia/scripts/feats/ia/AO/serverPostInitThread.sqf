@@ -7,8 +7,10 @@ Description:
 	must be spawn not call
 	it keeps track of the active AO thread, and create a new one when needed 
 */
-
+/*
 if ( (["AO"] call core_fnc_getConf) == 0 ) exitWith {};
+
+diag_log "SERVER AO has started";
 
 AO_stop = false;
 AO_zone = nil;
@@ -59,3 +61,4 @@ while { true } do {
 	
 	if ( AO_stop ) exitWith {};
 };
+*/

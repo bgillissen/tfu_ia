@@ -7,7 +7,7 @@ Description:
 	set some TFAR settings
 	implent tfar blacklist (backpack, item, weapon, ammo, veh, unit, group, object)
 */
-/*
+/* useless, got to find a way to define CBA server addon settings....
 //so player do not spawn with longrange radio as backpacks
 profileNamespace setVariable ["tf_no_auto_long_range_radio_server", true];
 profileNamespace setVariable ["tf_no_auto_long_range_radio", true];

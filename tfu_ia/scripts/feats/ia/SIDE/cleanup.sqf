@@ -9,7 +9,7 @@ Description:
 	it remove the objects spawned for a SIDE mission, if no players are near; can be force 
 */
 
-params ["_force", "_coord", "_groups", "_objects"];
+params ["_force", "_coord", "_radius", "_groups", "_objects"];
 
 deleteMarker (["ia", "side", "circle"] call BIS_fnc_GetCfgData);
 deleteMarker (["ia", "side", "label"] call BIS_fnc_GetCfgData);
@@ -27,7 +27,4 @@ if ( !_force ) then {
 
 [_groups] call common_fnc_deleteObjects;
 [_objects] call common_fnc_deleteObjects;
-
-{
-	if ((count units _x) == 0) then { deleteGroup _x; };
-} count allGroups;
+[_coord, _radius] call common_fnc_deleteRuins;

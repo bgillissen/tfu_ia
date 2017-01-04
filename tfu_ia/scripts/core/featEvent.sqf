@@ -24,7 +24,6 @@ if ( CTXT_HEADLESS ) then {
 	if ( _when isEqualTo "onRespawn" ) exitWith{};	
 };
 if ( !CTXT_SERVER ) then {
-	//if ( _when isEqualTo "onJoin" ) exitWith{};
 	if ( _when isEqualTo "onLeave" ) exitWith{};
 };
 if ( !CTXT_PLAYER ) then {

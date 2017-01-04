@@ -5,20 +5,21 @@ Credit:
 Author:
 	Ben
 Description:
-	this run server side,
-	it spawn vehicles with crew inside the given coordonate 
+	run server side,
+	spawn vehicles with crew inside the given coordonate using the given pool
 */
 
-params ["_coord", "_size", "_amount", "_skill", "_patrolSize", "_class", "_commander"];
+params ["_coord", "_size", "_amount", "_side", "_skill", "_patrolSize", "_pool", "_commander"];
 
 private _groups = [];
 
-if ( _amount <= 0 ) exitWith{_groups};
+if ( count _pool == 0 ) exitWith { _groups };
+if ( _amount <= 0 ) exitWith { _groups };
 
 for "_x" from 1 to _amount do {
 	private _group = createGroup _side;
 	private _randomPos = [[[_coord, (_size / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
-	private _veh = _class createVehicle _randomPos;
+	private _veh = (selectRandom _pool) createVehicle _randomPos;
 	
 	if (random 100 >= (["ia", "crewSrayInProb"] call BIS_fnc_GetCfgData) ) then {
 		_veh allowCrewInImmobile true;

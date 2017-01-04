@@ -16,12 +16,12 @@ Return:
 	nothing
 */
 
-//supported mods and their entries under CfgPatches
-mods[]={{"ace", "ace_main"},
-		{"rhsAFRF", "rhs_main"},
-		{"rhsGREF", "rhsgref_main"},
-		{"rhsUSAF", "rhsusf_main"},
-		{"tfar", "task_force_radio"}};
+//supported mods, their entries under CfgPatches, their side(s)
+mods[]={{"ace", "ace_main", {east, west, independent}},
+		{"rhsAFRF", "rhs_main", {east}},
+		{"rhsGREF", "rhsgref_main", {independent}},
+		{"rhsUSAF", "rhsusf_main", {west}},
+		{"tfar", "task_force_radio", {east, west, independent}}};
 
 //list of squads, possible colors are: Black, Red, Green, Blue, Yellow, Orange, Pink
 squads[]={{"HQ", "HQ", "Orange"},
@@ -51,7 +51,7 @@ class baseProtection {
 };
 
 class loadBalance {
-	loopDelay = 60;
+	loopDelay = 20;
 };
 
 class revive {
@@ -314,8 +314,9 @@ class ia {
 		airSkill = 3;
 		airAltitude = 300;
 		boomDelay = 30;
-		table = "";
-		laptop = "";
+		plantAnim = "AinvPercMstpSrasWrflDnon_Putdown_AmovPercMstpSrasWrflDnon";
+		table = "Land_CampingTable_small_F";
+		laptop[]= {"Land_Laptop_F", "Land_Laptop_device_F", "Land_laptop_unfolded_F", "Land_Tablet_02_F"};
 		briefing = "<t align='center'><t size='2.2'>New Side Mission</t><br/><t size='1.5' color='#00B2EE'>%1</t><br/>____________________<br/>%2</t>";
 		successHint = "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#08b000'>COMPLETE</t><br/>____________________<br/>Fantastic job, lads! The enemies won't last long if you keep that up!<br/><br/>We've given you %1 to help with the fight. You'll find it at base.</t>";
 		failHint = "<t align='center'><t size='2.2'>Side Mission</t><br/><t size='1.5' color='#b60000'>FAILED</t><br/>____________________<br/>You'll have to do better than that next time!</t>";

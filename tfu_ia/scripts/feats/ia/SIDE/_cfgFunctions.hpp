@@ -4,6 +4,8 @@ class SIDE {
 		class aaFire { file="feats\ia\SIDE\aaFire.sqf"; };
 		class artiFire { file="feats\ia\SIDE\artiFire.sqf"; };
 		class addAction { file="feats\ia\SIDE\addAction.sqf"; };
+		class addActionPlayer { file="feats\ia\SIDE\addActionPlayer.sqf"; };
+		class doAction { file="feats\ia\SIDE\doAction.sqf"; };
 		class boom { file="feats\ia\SIDE\boom.sqf"; };
 		class cleanup { file="feats\ia\SIDE\cleanup.sqf"; };
 		class placeMarkers { file="feats\ia\SIDE\placeMarkers.sqf"; };

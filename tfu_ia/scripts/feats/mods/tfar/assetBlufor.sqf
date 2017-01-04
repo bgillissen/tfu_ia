@@ -7,8 +7,6 @@ Description:
 	return BLUFOR TFAR assets
 */
 
-_out = [];
-
 //------------------------------------------------------------ Arsenal TFAR BLUFOR
 
 private _backpacks = ["tf_anarc210",
@@ -23,7 +21,7 @@ private _backpacks = ["tf_anarc210",
 				 	  "tf_rt1523g_green",
 				 	  "tf_rt1523g_rhs",
 				 	  "tf_rt1523g_sage"];
-private _items =  ["tf_anprc152"];
+private _items = ["tf_anprc152"];
 
 //------------------------------------------------------------ FINITO, return
 

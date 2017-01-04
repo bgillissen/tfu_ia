@@ -9,9 +9,11 @@ Description:
 
 #include "core\debug.hpp"
 
-CTXT_SERVER = !isMultiplayer;
-CTXT_HEADLESS = false;
-CTXT_PLAYER = true;
+CTXT_SERVER = isServer;
+CTXT_HEADLESS = (!isDedicated && !hasInterface);
+CTXT_PLAYER = hasInterface;
+
+if ( !CTXT_PLAYER ) exitWith {};
 
 #ifdef DEBUG
 diag_log "onPlayerRespawn.sqf START --------------------------------------------------------------------------------------------------------";
@@ -34,6 +36,7 @@ conWhite(">>>> onPlayerRespawn is waiting for player init to end");
 #endif
 	((missionNamespace getVariable "PLAYER_INIT") isEqualTo false)
 };
+
 #ifdef DEBUG
 conWhite(">>>> start onPlayerRespawn");
 #endif
@@ -43,6 +46,7 @@ waitUntil {player == player};
 
 //features onRespawn (player side)(local)
 ["PLAYER", "onRespawn", [player]] call core_fnc_featEvent;
+
 //features onRespawn (server side)(remote)
 ["SERVER", "onRespawn", [player]] call core_fnc_featEvent;
 

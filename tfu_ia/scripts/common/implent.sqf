@@ -9,7 +9,7 @@ Description:
 
 #include "..\core\debug.hpp"
 
-params [["_list", []], "_target", "_filter", "_fKey"];
+params [["_list", []], "_target", "_filter", "_fKey", "_sub"];
 
 if ( typeName _list != "ARRAY" ) exitWith {
 #ifdef DEBUG
@@ -18,12 +18,19 @@ if ( typeName _list != "ARRAY" ) exitWith {
 #endif	
 };
 
+if ( (count _list) == 0 ) exitWith {};
+
 #ifdef DEBUG
-private _debug = format["implent: target=%1, filter=%2, #items=%3", _target, _filter, (count _list)];
+private "_debug";
+if ( isNil "_sub" ) then {
+	_debug = format["implent: target=%1, filter=%2, #items=%3", _target, _filter, (count _list)];
+} else {
+	_debug = format["implent: target=%1 (%2), filter=%3, #items=%4", _target, _sub, _filter, (count _list)];
+};
 conWhite(_debug);
 #endif
 
-if ( (count _list) == 0 ) exitWith {};
+
 
 {
 	private "_toFilter";
@@ -33,6 +40,10 @@ if ( (count _list) == 0 ) exitWith {};
 		_toFilter = _x select _fKey;
 	};
 	if ( !([_toFilter, _filter] call common_fnc_isBlacklisted) ) then {
-		(missionNamespace getVariable _target) append [_x];
+		if ( isNil "_sub" ) then {
+			(missionNamespace getVariable _target) append [_x];
+		} else {
+			((missionNamespace getVariable _target) select _sub) append [_x];
+		}
 	};
 } count _list;

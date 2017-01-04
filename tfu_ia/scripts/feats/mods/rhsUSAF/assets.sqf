@@ -35,20 +35,9 @@ private _backpack = [];
 
 _out set [RG_USAF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
-//------------------------------------------------------------ Cargo RHS USAF --- TODO deprec, use VehicleCargo instead
-
-C_USAF = RG_USAF + 1;
-
-private _backpacks = [];
-private _items = [];
-private _weapons = [];
-private _ammo = [];
-
-_out set [C_USAF, [_backpacks, _items, _weapons, _ammo]];
-
 //------------------------------------------------------------ Allowed Vehicles RHS USAF
 
-AV_USAF = C_USAF + 1;
+AV_USAF = RG_USAF + 1;
 
 private _heli = ["RHS_MELB_MH6M"];
 private _plane = [];
@@ -117,7 +106,7 @@ _out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _g
 
 //------------------------------------------------------------ Vehicles RHS USAF
 
-V_USAF = S_USAF + 1;
+BV_USAF = S_USAF + 1;
 
 private _car = [];
 private _carArmed = [];
@@ -147,38 +136,38 @@ private _fuel = [];
 private _ammo = [];
 private _quad = ["quad"];
 
-_out set [V_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [BV_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo RHS USAF
 
-VC_USAF = V_USAF + 1;
+VC_USAF = BV_USAF + 1;
 
-private _car = [];
-private _carArmed = [];
-private _apc = [];
-private _tank = [];
-private _aaTank = [];
-private _planeCAS = [];
-private _planeAA = [];
-private _planeTransport = [];
-private _uav = [];
-private _heliSmall = [];
-private _heliSmallArmed = [];
-private _heliMedium = [];
-private _heliMedEvac = [];
-private _heliBig = [];
-private _heliAttack = [];
-private _boatSmall = [];
-private _boatAttack = [];
-private _boatBig = [];
-private _sub = [];
-private _landMedic = [];
-private _repair = [];
-private _fuel = [];
-private _ammo = [];
-private _quad = [];
+private _car = [[],[],[],[]];
+private _carArmed = [[],[],[],[]];
+private _apc = [[],[],[],[]];
+private _tank = [[],[],[],[]];
+private _aaTank = [[],[],[],[]];
+private _planeCAS = [[],[],[],[]];
+private _planeAA = [[],[],[],[]];
+private _planeTransport = [[],[],[],[]];
+private _uav = [[],[],[],[]];
+private _heliSmall = [[],[],[],[]];
+private _heliSmallArmed = [[],[],[],[]];
+private _heliMedium = [[],[],[],[]];
+private _heliMedEvac = [[],[],[],[]];
+private _heliBig = [[],[],[],[]];
+private _heliAttack = [[],[],[],[]];
+private _boatSmall = [[],[],[],[]];
+private _boatAttack = [[],[],[],[]];
+private _boatBig = [[],[],[],[]];
+private _sub = [[],[],[],[]];
+private _landMedic = [[],[],[],[]];
+private _repair = [[],[],[],[]];
+private _fuel = [[],[],[],[]];
+private _ammo = [[],[],[],[]];
+private _quad = [[],[],[],[]];
 
 _out set [VC_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
@@ -211,6 +200,17 @@ private _mortar = [];
 
 _out set [RL_USAF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _mortar]];
+
+//------------------------------------------------------------ Base Atmosphere Role Loadout RHS USAF
+
+BALO_USAF = RL_USAF + 1;
+
+private _medic = [];
+private _gear = [];
+private _support = [];
+private _default = [];
+
+_out set [BALO_USAF, [_medic, _gear, _support, _default]];
 
 //------------------------------------------------------------ FINITO, return
           

@@ -9,10 +9,13 @@ Description:
 
 #include "..\..\core\debug.hpp"
 
+MODS = [];
+
 {
-	_x params ["_mod", "_cfg"];
+	_x params ["_mod", "_cfg", "_sides"];
 	private _isPresent = isClass(configFile >> "CfgPatches" >> _cfg);
 	missionNamespace setVariable [format["MOD_%1", _mod], _isPresent, true];
+	MODS append [[_mod, _isPresent, _sides]];
 	if ( _isPresent ) then {
 #ifdef DEBUG
 		private _debug = format["mods: %1 is present (%2)", _mod, _cfg];

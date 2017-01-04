@@ -1,4 +1,4 @@
-class SIDE_fnc_addAction {
+class SIDE_fnc_addActionPlayer {
 	allowedTargets=1;
-	jip=0;
+	jip=1;
 };

@@ -7,7 +7,5 @@ Description:
 		include individual mods parameters
 */
 #include "apex\_params.hpp"
-#include "rhsAFRF\_params.hpp"
-#include "rhsGREF\_params.hpp"
-#include "rhsUSAF\_params.hpp"
+#include "rhs\_params.hpp"
 #include "vanilla\_params.hpp"

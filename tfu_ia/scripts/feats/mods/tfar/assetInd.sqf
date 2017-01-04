@@ -7,8 +7,6 @@ Description:
 	return Independent TFAR assets
 */
 
-_out = [];
-
 //------------------------------------------------------------ Arsenal TFAR IND
 
 private _backpacks = ["tf_anarc210",

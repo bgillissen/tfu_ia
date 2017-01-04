@@ -12,10 +12,10 @@ private _out = [];
 
 //------------------------------------------------------------ Arsenal Vanilla (common)
 
-AVC = 0;
+A_VC = 0;
 
 private _backpacks = [];
-private _items = ["ItemMap", "ItemRadio", "ItemGPS", "ItemCompass", "ItemWatch", "MineDetector"];
+private _items = ["ItemMap", "ItemRadio", "ItemGPS", "ItemCompass", "ItemWatch", "MineDetector", "FirstAidKit", "Medikit", "ToolKit"];
 private _weapons = [];
 private _ammo = ["DemoCharge_Remote_Mag",
                  "IEDUrbanSmall_Remote_Mag",
@@ -30,59 +30,47 @@ private _ammo = ["DemoCharge_Remote_Mag",
                  "SLAMDirectionalMine_Wire_Mag",
                  "APERSTripMine_Wire_Mag"];
 
-_out set [AVC, [_backpacks, _items, _weapons, _ammo]];
-
-//------------------------------------------------------------ Cargo Vanilla (common)
-
-CVC = AVC + 1;
-
-private _backpacks = [];
-private _items = [["Laserdesignator", 5],
-                  ["Laserbatteries", 5],
-                  ["MineDetector", 5],
-                  ["FirstAidKit", 20],
-                  ["Medikit", 3],
-                  ["ToolKit", 3]];
-private _weapons = [];
-private _ammo = [["SatchelCharge_Remote_Mag", 5],
-                 ["DemoCharge_Remote_Mag", 10]];
-
-_out set [CVC, [_backpacks, _items, _weapons, _ammo]];
+_out set [A_VC, [_backpacks, _items, _weapons, _ammo]];
 
 //------------------------------------------------------------ Allowed Vehicles Vanilla (common)
 
-AVVC = CVC + 1;
+AV_VC = A_VC + 1;
 
 private _heli = [];
 private _plane = [];
 private _tank = [];
 
-_out set [AVVC, [_heli, _plane, _tank]];
+_out set [AV_VC, [_heli, _plane, _tank]];
 
 //------------------------------------------------------------ supplyDrop Vanilla (common)
 
-SDVC = AVVC + 1;
+SD_VC = AV_VC + 1;
 
 private _backpacks = [];
-private _items = [];
+private _items = [["Laserdesignator", 3],
+                  ["Laserbatteries", 5],
+                  ["FirstAidKit", 20],
+                  ["Medikit", 2],
+                  ["ToolKit", 2]];
 private _weapons = [];
-private _ammo = [];
+private _ammo = [["SatchelCharge_Remote_Mag", 3],
+                 ["DemoCharge_Remote_Mag", 5]];
 private _crates = [];
 private _vehicles = [];
 
-_out set [SDVC, [ _backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
+_out set [SD_VC, [ _backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
 //------------------------------------------------------------ Rewards Vanilla (common)
 
-RVC = SDVC + 1;
+R_VC = SD_VC + 1;
 
 private _rewards = [];
 
-_out set [RVC, _rewards];
+_out set [R_VC, _rewards];
 
 //------------------------------------------------------------ Vehicles Vanilla  (common)
 
-VVC = RVC + 1;
+BV_VC = R_VC + 1;
 
 private _car = [];
 private _carArmed = [];
@@ -109,40 +97,40 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [VVC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [BV_VC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo Vanilla (common)
 
-VCVC = VVC + 1;
+VC_VC = BV_VC + 1;
 
-private _car = [];
-private _carArmed = [];
-private _apc = [];
-private _tank = [];
-private _aaTank = [];
-private _planeCAS = [];
-private _planeAA = [];
-private _planeTransport = [];
-private _uav = [];
-private _heliSmall = [];
-private _heliSmallArmed = [];
-private _heliMedium = [];
-private _heliMedEvac = [];
-private _heliBig = [];
-private _heliAttack = [];
-private _boatSmall = [];
-private _boatAttack = [];
-private _boatBig = [];
-private _sub = [];
-private _landMedic = [];
-private _repair = [];
-private _fuel = [];
-private _ammo = [];
-private _quad = [];
+private _car = [[],[],[],[]];
+private _carArmed = [[],[],[],[]];
+private _apc = [[],[],[],[]];
+private _tank = [[],[],[],[]];
+private _aaTank = [[],[],[],[]];
+private _planeCAS = [[],[],[],[]];
+private _planeAA = [[],[],[],[]];
+private _planeTransport = [[],[],[],[]];
+private _uav = [[],[],[],[]];
+private _heliSmall = [[],[],[],[]];
+private _heliSmallArmed = [[],[],[],[]];
+private _heliMedium = [[],[],[],[]];
+private _heliMedEvac = [[],[],[],[]];
+private _heliBig = [[],[],[],[]];
+private _heliAttack = [[],[],[],[]];
+private _boatSmall = [[],[],[],[]];
+private _boatAttack = [[],[],[],[]];
+private _boatBig = [[],[],[],[]];
+private _sub = [[],[],[],[]];
+private _landMedic = [[],[],[],[]];
+private _repair = [[],[],[],[]];
+private _fuel = [[],[],[],[]];
+private _ammo = [[],[],[],[]];
+private _quad = [[],[],[],[]];
 
-_out set [VCVC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [VC_VC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 

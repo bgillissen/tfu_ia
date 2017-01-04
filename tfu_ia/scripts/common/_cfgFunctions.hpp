@@ -3,6 +3,7 @@ class common {
 	class functions {
 		class addToBlacklists { file="common\addToBlacklists.sqf"; };
 		class deleteObjects { file="common\deleteObjects.sqf"; };
+		class deleteRuins { file="common\deleteRuins.sqf"; };
 		class garrisonUnit { file="common\garrisonUnit.sqf"; };
 		class globalHint { file="common\globalHint.sqf"; };
 		class globalHintPlayer { file="common\globalHintPlayer.sqf"; };

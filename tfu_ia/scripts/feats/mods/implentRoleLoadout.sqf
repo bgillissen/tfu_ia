@@ -11,11 +11,7 @@ Description:
 
 params ["_index", "_loadOut"];
 
-if ( count _loadOut == 0 ) exitWith {
-#ifdef DEBUG
-	conRed("trying to implent an empty loadout!");
-#endif
-};
+if ( count _loadOut == 0 ) exitWith {};
 
 _loadOut params["_uniform", "_vest", "_backpack", "_pw", "_sw", "_hw", "_helmet", "_face", "_comm", "_term", "_map", "_bino", "_nv", "_watch"];
 _loadOut = nil;

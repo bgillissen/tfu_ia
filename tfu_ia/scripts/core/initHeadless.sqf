@@ -9,6 +9,11 @@ Description:
 
 #include "debug.hpp"
 
+missionNamespace setVariable ["HEADLESS_INIT", true, false];
+
+//features headlessPreInit call/spawn
+["HEADLESS", "preInit"] call core_fnc_featEvent;
+
 waitUntil {
 	sleep 1;
 #ifdef DEBUG
@@ -23,11 +28,11 @@ conWhite(">>>> start core_fnc_initHeadless");
 waitUntil {!isNull player};
 waitUntil {player == player};
 
-//features headlessPreInit call/spawn
-[CTXT, "preInit"] call core_fnc_featEvent;
 
 //features headlessInit call/spawn
-[CTXT, "init"] call core_fnc_featEvent;
+["HEADLESS", "init"] call core_fnc_featEvent;
 
 //features headlessPostInit
-[CTXT, "postInit"] call core_fnc_featEvent;
+["HEADLESS", "postInit"] call core_fnc_featEvent;
+
+missionNamespace setVariable ["HEADLESS_INIT", false, false];

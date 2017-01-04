@@ -1,10 +1,12 @@
 /*
-@filename: mods\ace\implent.sqf
+@filename: mods\ace\init.sqf
 Author:
 	Ben
 Description:
-	Run once by server and players.
+	run on server
 	implent ACE assets
 */
 
-//[[], [], [[], ACE_items, [], []], [[], ACE_cargoItems, [], []], [], [], [], []] call common_fnc_implentAssets;
+private _data = call compileFinal preprocessFileLineNumbers "feats\mods\ace\assets.sqf";
+
+["rhs", [["ACE", _data, independent]]] call mods_fnc_megaImplent;

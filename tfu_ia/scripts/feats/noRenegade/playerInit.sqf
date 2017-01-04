@@ -12,6 +12,5 @@ if ( (["noRenegade"] call core_fnc_getConf) == 0 ) exitWith {};
 
 
 if ( isNil "NR_EH" ) then {
-	diag_log "HandleRating EH registered";
 	NR_EH = player addEventHandler ["HandleRating", { 0 }];
 };

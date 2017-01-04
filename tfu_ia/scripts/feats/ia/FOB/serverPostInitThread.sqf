@@ -6,8 +6,10 @@ Description:
 	this run on server,
 	it keeps track of the active FOB thread, and spawn a new one when needed 
 */
-
+/*
 if ( (["FOB"] call core_fnc_getConf) == 0 ) exitWith {};
+
+diag_log "SERVER FOB has started";
 
 FOB_stop = false;
 FOB_deployed = [];
@@ -58,3 +60,4 @@ while { true } do {
 		};
 	};
 };
+*/

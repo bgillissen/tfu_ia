@@ -16,7 +16,8 @@ if ( _amount <= 0 ) exitWith {[]};
 private _groups = [];
 
 for "_x" from 1 to _amount do {
-	private _group = createGroup ENEMY_SIDE;
+	private _group = createGroup east;
+	/*
 	private _randomPos = [[[_coord, (_size / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
 	private _veh = (selectRandom S_airPatrol) createVehicle [_randomPos select 0, _randomPos select 1, 1000];
 	_veh engineOn true;
@@ -38,8 +39,11 @@ for "_x" from 1 to _amount do {
 		_x addCuratorEditableObjects [[_veh], false];
 		_x addCuratorEditableObjects [units _group, false];
 	} count allCurators;
-	_groups append _group;
-	_groups append _veh;
+	*/
+	_groups append [_group];
+	//_groups append [_veh];
 };
+
+diag_log format["placeAirPatrol placed %1 groups", count _groups];
 
 _groups

@@ -6,12 +6,14 @@ Description:
 	it remove the objects given 
 */
 
-params ["_objects"];
-
+params ["_things"];
+ 
 {
 	if (typeName _x == "GROUP") then {
 		{
-			if ( !(isNull objectParent _x) ) then deleteVehicle (vehicle _x);
+			if ( !(isNull objectParent _x) ) then {
+				deleteVehicle (vehicle _x);
+			};
         	deleteVehicle _x;
 		} count (units _x);
 	} else {
@@ -23,7 +25,9 @@ params ["_objects"];
 		};
 		deleteVehicle _x;
 	};
-} count _objects;
+	true
+} count _things;
+
 /* not sure why this is needed....
 {
 	if (_x in allGroups) then {

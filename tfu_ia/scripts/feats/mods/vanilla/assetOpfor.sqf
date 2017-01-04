@@ -88,7 +88,7 @@ private _sGroups = [];
 private _pilot = [];
 private _crew = [];
 private _officer = [];
-private _garrison = [];
+private _garrison = ["O_Soldier_AR_F"];
 private _aa = [];
 private _arti = [];
 private _static = [];
@@ -139,30 +139,30 @@ _out set [VVO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _pla
 
 VCVO = VVO + 1;
 
-private _car = [];
-private _carArmed = [];
-private _apc = [];
-private _tank = [];
-private _aaTank = [];
-private _planeCAS = [];
-private _planeAA = [];
-private _planeTransport = [];
-private _uav = [];
-private _heliSmall = [];
-private _heliSmallArmed = [];
-private _heliMedium = [];
-private _heliMedEvac = [];
-private _heliBig = [];
-private _heliAttack = [];
-private _boatSmall = [];
-private _boatAttack = [];
-private _boatBig = [];
-private _sub = [];
-private _landMedic = [];
-private _repair = [];
-private _fuel = [];
-private _ammo = [];
-private _quad = [];
+private _car = [[],[],[],[]];
+private _carArmed = [[],[],[],[]];
+private _apc = [[],[],[],[]];
+private _tank = [[],[],[],[]];
+private _aaTank = [[],[],[],[]];
+private _planeCAS = [[],[],[],[]];
+private _planeAA = [[],[],[],[]];
+private _planeTransport = [[],[],[],[]];
+private _uav = [[],[],[],[]];
+private _heliSmall = [[],[],[],[]];
+private _heliSmallArmed = [[],[],[],[]];
+private _heliMedium = [[],[],[],[]];
+private _heliMedEvac = [[],[],[],[]];
+private _heliBig = [[],[],[],[]];
+private _heliAttack = [[],[],[],[]];
+private _boatSmall = [[],[],[],[]];
+private _boatAttack = [[],[],[],[]];
+private _boatBig = [[],[],[],[]];
+private _sub = [[],[],[],[]];
+private _landMedic = [[],[],[],[]];
+private _repair = [[],[],[],[]];
+private _fuel = [[],[],[],[]];
+private _ammo = [[],[],[],[]];
+private _quad = [[],[],[],[]];
 
 _out set [VCVO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
