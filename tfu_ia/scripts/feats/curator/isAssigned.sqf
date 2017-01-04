@@ -8,12 +8,13 @@ Description:
 */
 
 params ["_player"];
-private ["_out"];
 
-_out = false;
+private _puid = (getPlayerUID _player);
 
+private _out = false;
 {
-	if ( _x select 0 == getPlayerUID _player) exitWith { _out = true; };
+	_x params ["_uid"];
+	if ( _uid isEqualTo _puid) exitWith { _out = true; };
 } forEach(curatorAssigned);
 
 _out

@@ -91,10 +91,11 @@ _count = ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "carSkill"] call BIS_fnc_GetCfgData;
 _groups append ([_coord, _size, _count, _skill, _patrolSize, (selectRandom S_car), true] call IA_fnc_placeVehicle);
 */
+
 _count = _air;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "airSkill"] call BIS_fnc_GetCfgData;
 private _alt = ["ia", "side", "airAltitude"] call BIS_fnc_GetCfgData;
-_groups append ([_coord, _size, _count, _skill, _patrolSize, (selectRandom ENEMIES), "aPatrol", _alt] call IA_fnc_placeVehicle);
+_groups append ([_coord, _size, _count, _skill, _patrolSize, _alt] call IA_fnc_placeAirPatrol);
 
 _groups

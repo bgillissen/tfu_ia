@@ -17,9 +17,15 @@ params ["_player"];
 		unassignCurator _mg;
 		curatorAssigned = curatorAssigned - [_x];
 		publicVariable "curatorAssigned";
+		if ( !isDedicated ) then { 
+			isAssigned = [player] call curator_fnc_isAssigned;
+		};
 	};
-} forEach(curatorAssigned);
+} count curatorAssigned;
 
-["HQ", format[CURATOR_descendMsg, (count curatorAssigned), 
-              	  	  	  	  	  (["curator", "slot"] call BIS_fnc_getCfgData), 
-              	  	  	  	  	  (name _player)]] call common_fnc_globalSideChat;
+private _msg = format[(["curator", "descendMsg"] call BIS_fnc_getCfgData), 
+                      (count curatorAssigned), 
+  	  	  	  	  	  TOT_CURATOR, 
+  	  	  	  	  	  (name _player)];
+
+[PLAYER_SIDE, "HQ", _msg] call common_fnc_globalSideChatServer;

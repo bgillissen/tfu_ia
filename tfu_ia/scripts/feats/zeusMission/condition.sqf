@@ -12,6 +12,7 @@ Description:
 params ["_isStart"];
 
 if ( !isAssigned ) exitWith { false };
+
 if ( _isStart ) exitWith { !zeusMission };
 
 zeusMission

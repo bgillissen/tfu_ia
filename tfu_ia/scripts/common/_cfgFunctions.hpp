@@ -5,6 +5,7 @@ class common {
 		class deleteObjects { file="common\deleteObjects.sqf"; };
 		class deleteRuins { file="common\deleteRuins.sqf"; };
 		class garrisonUnit { file="common\garrisonUnit.sqf"; };
+		class getFriends { file="common\getFriends.sqf"; };
 		class globalHint { file="common\globalHint.sqf"; };
 		class globalHintPlayer { file="common\globalHintPlayer.sqf"; };
 		class globalNotification { file="common\globalNotification.sqf"; };
@@ -20,6 +21,8 @@ class common {
 		class urlFetchCallback { file="common\urlFetchCallback.sqf"; };
 		class urlFetchReturn { file="common\urlFetchReturn.sqf"; };
 		class smartSleep { file="common\smartSleep.sqf"; };
+		class systemChat { file="common\systemChat.sqf"; };
+		class systemChatPlayer { file="common\systemChatPlayer.sqf"; };
 	};
 };
 

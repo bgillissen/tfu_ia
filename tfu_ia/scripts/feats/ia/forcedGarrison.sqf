@@ -24,23 +24,18 @@ if ( count S_garrison == 0 ) exitWith {
 };
 */
 
-private _enemySide = call {
-	private _sides = [];
-	if ( OPFOR_ARE_ENEMY ) then { _sides append [east]; };
-	if ( BLUFOR_ARE_ENEMY ) then { _sides append [west]; };
-	if ( IND_ARE_ENEMY ) then { _sides append [independent]; };
-	selectRandom _sides
-};
+(["garrison"] call ia_fnc_randomSide) params ["_side", "_pool"]; 
 
-private _group = createGroup _enemySide;
+if ( isNil "_side" ) exitWith { grpNull };
+
+private _group = createGroup _side;
 
 {
 	_x params ["_p0", "_p1", "_p2", "_p3"];
 	private _pos =  [_building, _p1, _p0 + direction _building] call BIS_fnc_relPos;
 	_pos = [_pos select 0, _pos select 1, (((getPosASL _building) select 2) - _p2)];
 	UNIT_TRICK = nil;
-	//(selectRandom S_garrison) createUnit [_pos, _group, "UNIT_TRICK = this"];
-	"O_Soldier_AR_F" createUnit [_pos, _group, "UNIT_TRICK = this"];
+	(selectRandom _pool) createUnit [_pos, _group, "UNIT_TRICK = this"];
 	waitUntil { !isNil "UNIT_TRICK" };
 	_unit = UNIT_TRICK;
 	doStop _unit;

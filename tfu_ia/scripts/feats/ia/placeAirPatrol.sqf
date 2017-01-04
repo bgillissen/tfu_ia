@@ -13,37 +13,49 @@ params ["_coord", "_size", "_amount", "_skill", "_patrolSize", "_altitude"];
 
 if ( _amount <= 0 ) exitWith {[]};
 
+private _doLock = true; //( (["ia", "lockVeh"] call BIS_fnc_GetCfgData) == 1 );
+
 private _groups = [];
 
 for "_x" from 1 to _amount do {
-	private _group = createGroup east;
-	/*
+	
+	(["aPatrol"] call ia_fnc_randomSide) params ["_side", "_pool", "_enemyKey"];
+	
+	if ( isNil "_side" ) exitWith { [grpNull] };
+	
+	private _group = createGroup _side;
+	
 	private _randomPos = [[[_coord, (_size / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
-	private _veh = (selectRandom S_airPatrol) createVehicle [_randomPos select 0, _randomPos select 1, 1000];
+	
+	private _veh = (selectRandom _pool) createVehicle [_randomPos select 0, _randomPos select 1, 10000];
 	_veh engineOn true;
-	_veh setPos [_randomPos select 0, _randomPos select 1, _altitude];
-	(selectRandom S_pilot) createUnit [_randomPos, _group];
-	(selectRandom S_pilot) createUnit [_randomPos, _group];
+	if ( _doLock ) then { _veh lock 3; };
+	
+	(selectRandom (S_pilot select _enemyKey)) createUnit [_randomPos, _group];
 	((units _group) select 0) assignAsDriver _veh;
-	((units _group) select 0) moveInDriver _veh;		
+	((units _group) select 0) moveInDriver _veh;
+		
+	(selectRandom (S_pilot select _enemyKey)) createUnit [_randomPos, _group];		
 	((units _group) select 1) assignAsGunner _veh;
 	((units _group) select 1) moveInGunner _veh;
+	
 	_group setCombatMode "RED";
 	_veh flyInHeight _altitude;
+	
 	[_group, _coord, _patrolSize] call BIS_fnc_taskPatrol;
+	
 	[(units _group), _skill] call common_fnc_setSkill;
-	if (["ia", "lockVeh"] call BIS_fnc_GetCfgData) then { 
-		_veh lock 3;
-	};
-	{
-		_x addCuratorEditableObjects [[_veh], false];
-		_x addCuratorEditableObjects [units _group, false];
-	} count allCurators;
-	*/
+	
+	[[_veh], true] call curator_fnc_addEditableServer;
+	
 	_groups append [_group];
-	//_groups append [_veh];
+	_groups append [_veh];
+	
+	[_veh, _randomPos select 0, _randomPos select 1, _altitude] spawn {
+		params ["_veh", "_x", "_y", "_z"];
+		sleep 20;
+		_veh setPos [_x, _y, _z];
+	};
 };
-
-diag_log format["placeAirPatrol placed %1 groups", count _groups];
 
 _groups

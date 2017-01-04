@@ -9,10 +9,10 @@ Description:
 
 params ["_player"];
 
-private _out = false;
-
+( (getPlayerUID _player) in curatorUIDs )
+/*
 {
-	if ( _x == (getPlayerUID _player) ) exitWith { _out = true; }
+	if ( _x == (getPlayerUID _player) ) exitWith { true };
 } count curatorUIDs;
 
-_out
+false*/

@@ -6,7 +6,6 @@ Description:
 	run on player
 	it ask server to update the value of the zeusMission variable
 */
+params ["_thing", "_caller", "_id", "_arg"];
 
-params ["_bool"];
-
-missionNamespace setVariable ["zeusMission", _bool, true];
+missionNamespace setVariable ["zeusMission", _arg, true];

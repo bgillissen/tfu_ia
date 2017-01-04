@@ -4,23 +4,22 @@ Author:
 	Ben
 Description:
 	run on server
-	add once needed eventHandlers to share placed things between curators 
+	configure the gameMaster modules (nigth vision, notification)	 
 */
-if ( isNil "curator_SEH" ) then {
-	{    
-		_x addEventHandler ["CuratorGroupPlaced", {_this call curator_fnc_placeGrpServer}];
-		_x addEventHandler ["CuratorObjectPlaced", {_this call curator_fnc_paceObjServer}];
-		true
-	} count allCurators;
-	curator_SEH = true;
-};
 
-//configuring gameMaster modules
-private _totSlot = TOT_CURATOR;
-for "_curSlot" from 0 to (_totSlot-1) do {
-	private _gm = missionNamespace getVariable format["zeus_%1", _curSlot];
+private _notif = [false, true] select (["curator", "notification"] call BIS_fnc_getCfgData);
+private _thermal = [false, true] select (["curator", "thermalVision"] call BIS_fnc_getCfgData);
+private _doMsg = [false, true] select (["curator", "msgOnTakeOver"] call BIS_fnc_getCfgData);
+
+for "_slot" from 0 to (TOT_CURATOR - 1) do {
+	private _gm = missionNamespace getVariable format["zeus_%1", _slot];
 	if ( !(isNil "_gm") ) then {
-		[_gm, [-1, -2, 0]] call BIS_fnc_setCuratorVisionModes;  //nightvision
-		_gm setVariable ["showNotification", false];			//notification
+		if ( _thermal ) then {
+			[_gm, [-1, -2, 0]] call BIS_fnc_setCuratorVisionModes;  //nightvision
+		};
+		_gm setVariable ["showNotification", _notif];				//notification
+		if ( _doMsg ) then {
+			[_gm, "curatorObjectRemoteControlled", {_this call curator_fnc_remoteControl}] call BIS_fnc_addScriptedEventHandler;
+		};
 	};
 };

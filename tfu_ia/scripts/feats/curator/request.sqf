@@ -10,31 +10,42 @@ Description:
 
 params ["_player"];
 
-if ( [_player] call curator_fnc_isAssigned ) exitWith {};
-
-//private _totSlot = ["curator", "slot"] call BIS_fnc_getCfgData;
-private _totSlot = TOT_CURATOR; 
-		
-if ( count curatorAssigned >= _totSlot) exitWith { 
-	format[CURATOR_noSlotMsg, (count curatorAssigned), _totSlot] remoteExec ["systemChat", _player, false];
+if ( [_player] call curator_fnc_isAssigned ) exitWith {
+	[_player, "You have already ascended!"] call common_fnc_systemChat;
 };
 
-if ( !([_player] call curator_fnc_isCurator) ) then {
-	["HQ", format[CURATOR_failedMsg, (name _player)]] call common_fnc_globalSideChat;
+if ( count curatorAssigned >= TOT_CURATOR) exitWith {
+	_msg = ["curator", "noSlotMsg"] call BIS_fnc_getCfgData;
+	[_player, format[_msg, (count curatorAssigned), _totSlot]] call common_fnc_systemChat;
+};
+
+if ( !([_player] call curator_fnc_isCurator) ) exitWith {
+	_msg = ["curator", "failedMsg"] call BIS_fnc_getCfgData;
+	[PLAYER_SIDE, "HQ", format[_msg, (name _player)]] call common_fnc_globalSideChatServer;
 };
 
 private "_freeslot";
 
-for ("_curSlot" from 0 to (_totSlot-1)) do {
-	_inuse = false;
+for "_curSlot" from 0 to (TOT_CURATOR - 1) do {
+	private _inuse = false;
 	{
-		if ( _x select 1 == _curSlot) exitWith{ _inuse = true; };
-	} forEach(curatorAssigned);
-	if ( !_inuse ) exitWith{ _freeSlot = _curSlot };
+		if ( _x select 1 == _curSlot) then { _inuse = true; };
+	} count curatorAssigned;
+	if ( !_inuse ) then { _freeSlot = _curSlot };
 };
+
 private _gm = missionNamespace getVariable format["zeus_%1", _freeSlot];
 _player assignCurator _gm;
-curatorAssigned append [[(getPlayerUID _player), _freeSlot]];
+
+curatorAssigned append [[(getPlayerUID _player), _freeSlot, _player]];
+
 publicVariable "curatorAssigned";
 
-["HQ", format[CURATOR_ascendMsg, (count curatorAssigned), _totSlot, (name _player)]] call common_fnc_globalSideChat;
+//(owner _player) publicVariableClient "curatorAssigned";
+
+if ( !isDedicated ) then { 
+	isAssigned = [player] call curator_fnc_isAssigned; 
+};
+
+_msg = ["curator", "ascendMsg"] call BIS_fnc_getCfgData;
+[PLAYER_SIDE, "HQ", format[_msg, (count curatorAssigned), TOT_CURATOR, (name _player)]] call common_fnc_globalSideChatServer;

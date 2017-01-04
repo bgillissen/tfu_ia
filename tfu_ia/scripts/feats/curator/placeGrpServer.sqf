@@ -8,10 +8,8 @@ Description:
 
 params ["_curator", "_placed"];
 
-diag_log "SERVER placeGrpServer";
-
 {
-	_x addCuratorEditableObjects [(units _placed),true];
+	_x addCuratorEditableObjects [(units _placed), true];
 } forEach (allCurators - [_curator]);
 
 nil

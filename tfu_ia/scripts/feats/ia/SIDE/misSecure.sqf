@@ -50,12 +50,9 @@ private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData
 private _found = false;
 private "_flatPos";
 
-diag_log "searching for a flat pos...";
-
 while { !_found } do {
 	_position = [] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [5, 1, 0.2, (sizeOf _cargoType), 0, false];
-	diag_log _flatPos;
 	while {(count _flatPos) < 2} do {
 		_position = [] call BIS_fnc_randomPos;
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _cargoType, 0, false];
@@ -126,7 +123,6 @@ private _action = ["ia", "side", "secure", "action"] call BIS_fnc_GetCfgData;
 _action = nil;
 
 //watchTower
-private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
 private _tower1 = "Land_Cargo_Patrol_V3_F" createVehicle ([_flatPos, 50, 0] call BIS_fnc_relPos);
 _tower1 setDir 180;
 private _tower2 = "Land_Cargo_Patrol_V3_F" createVehicle ([_flatPos, 50, 120] call BIS_fnc_relPos);
@@ -138,14 +134,16 @@ _skill = nil;
 private _groups = [];
 
 //spawn units in watch towers
+private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
 {
-	_groups append [([_x, 3] call IA_fnc_forcedGarrison)];
+	_groups append [([_x, _skill] call IA_fnc_forcedGarrison)];
 	true
 } count [_tower1, _tower2, _tower3];
+_skill = nil;
 
 //spawn patrols
 private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
-_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies);
+_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 1, (_size + (random 150))] call SIDE_fnc_placeEnemies);
 
 diag_log "--------------";
 diag_log _groups;

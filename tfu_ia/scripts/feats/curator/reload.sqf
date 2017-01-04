@@ -20,17 +20,18 @@ if ( (["curator", "web"] call BIS_fnc_GetCfgData) == 1 ) then {
 };
 
 {
-	private _slot = _x;
-	private _found = false;
-	{
-		if ( _x == _slot select 0) exitWith{ _found = true; };
-	} count (curatorUIDs);
-	if ( !_found ) then {
-		private _gm = missionNamespace getVariable format["zeus_%1", _slot select 1];
+	_x params ["_uid", "_slot"];
+	if ( !(_uid in curatorUIDs) ) then {
+		private _gm = missionNamespace getVariable format["zeus_%1", _slot];
 		unassignCurator _gm;
-		curatorAssigned = curatorAssigned - [_slot];
+		curatorAssigned = curatorAssigned - [_x];
 	};	
 } count (curatorAssigned);
 
 publicVariable "curatorUIDs";
 publicVariable "curatorAssigned";
+
+if ( !isDedicated ) then { 
+	isCurator = [player] call curator_fnc_isCurator;
+	isAssigned = [player] call curator_fnc_isAssigned;
+};

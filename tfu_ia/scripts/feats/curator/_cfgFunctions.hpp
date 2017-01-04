@@ -15,6 +15,8 @@ class curator {
 		class placeObjServer { file="feats\curator\placeObjServer.sqf"; };
 		class release { file="feats\curator\release.sqf"; };
 		class reload { file="feats\curator\reload.sqf"; };
+		class remoteControl { file="feats\curator\remoteControl.sqf"; };
 		class request { file="feats\curator\request.sqf"; };
+
 	};
 };

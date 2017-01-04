@@ -114,13 +114,19 @@ class curator {
 	uids[]={"76561198030235789"};
 	web = 1;
 	url = "http://taskforcunicorn.com/api/curators";
+	notification = 0;
+	thermalVision = 1;
+	msgOnTakeOver = 1;
 	noSlotMsg = "No more free Zeus slot available (%1 / %2).";
 	ascendMsg = "%3 has ascend, %1 / %2 Zeus slot in use.";
 	failedMsg = "%1 has tryed to ascend.";
 	descendMsg = "%3 has descend, %1 / %2 Zeus slot in use.";
+	takeOverMsg = "%1 has taking over %2 (%3)";
+	releaseMsg = "%1 has release %2 (%3)";
 	requestAction = "Request Zeus Power";
 	releaseAction = "Release Zeus Power";
 	reloadAction = "Reload Allowed Zeus List";
+
 };
 
 class zeusMission {
@@ -239,7 +245,7 @@ class playerSpawn {
 class ia {
 	loopDelay = 20;
 	checkDelay = 5;
-	lockVeh = true;
+	lockVeh = 1;
 	deleteDistance = 1500;
 	crewStayInProb = 25;
 	class ao {
@@ -255,7 +261,7 @@ class ia {
 		apcSkill = 1;
 		carSkill = 3;
 		airSkill = 3;
-		airAltitude = 300;
+		airAltitude = 150;
 		newHint = "<t align='center' size='2.2'>New Target</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/>We did a good job with the last target, lads. I want to see the same again. Get yourselves over to %1 and take them all down!<br/><br/>Remember to take down that radio tower to stop the enemy from calling in CAS.";
 		endHint = "<t align='center' size='2.2'>Target Taken</t><br/><t size='1.5' align='center' color='#FFCF11'>%1</t><br/>____________________<br/><t align='left'>Fantastic job taking %1, boys! Give us a moment here at HQ and we'll line up your next target for you.</t>";
 		class radioTower {
@@ -312,7 +318,7 @@ class ia {
 		apcSkill = 1;
 		carSkill = 3;
 		airSkill = 3;
-		airAltitude = 300;
+		airAltitude = 150;
 		boomDelay = 30;
 		plantAnim = "AinvPercMstpSrasWrflDnon_Putdown_AmovPercMstpSrasWrflDnon";
 		table = "Land_CampingTable_small_F";

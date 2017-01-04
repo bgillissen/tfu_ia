@@ -6,11 +6,7 @@ Description:
 	this run on server,
 	it keep track of the active SIDE mission thread, and spawn a new one when needed 
 */
-diag_log "<<<<<<<<<<<<<<<<<<< SERVER SIDE has started";
-
 if ( (["SIDE"] call core_fnc_getConf) == 0 ) exitWith {};
-
-diag_log "<<<<<<<<<<<<<<<<<<< SERVER SIDE will be launched";
 
 SIDE_stop = false;
 SIDE_success = false;
@@ -24,8 +20,6 @@ private _missions = [];
 if ( isNil "SIDE_EH" ) then {
 	SIDE_EH = "SIDE_success" addPublicVariableEventHandler { SIDE_success = true; };
 };
-
-diag_log "<<<<<<<<<<<<<<<<<<< SERVER Entering SIDE loop";
 
 while { true } do {
 	
@@ -52,7 +46,9 @@ while { true } do {
 	diag_log "SIDE_main has finished";
 	SIDE_success = false;
 	publicVariable "SIDE_success";
-	diag_log format["<<<<<<<<<<<<<<<<<<< smart sleep (%1min)", _cooldown / 60];
-	[_cooldown, _checkDelay, "SIDE_stop"] call common_fnc_smartSleep;
-	if ( SIDE_stop ) exitWith {};
+	if ( !zeusMission ) then {
+		diag_log format["<<<<<<<<<<<<<<<<<<< smart sleep (%1min)", _cooldown / 60];
+		[_cooldown, _checkDelay, "SIDE_stop"] call common_fnc_smartSleep;
+		if ( SIDE_stop ) exitWith {};
+	};
 };

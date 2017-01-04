@@ -11,6 +11,5 @@ if ( isNil "curatorAssigned" ) then {
 	curatorAssigned = [];
 	publicVariable "curatorAssigned";
 };
-
 //grabing the list of squad members with zeus access
 call curator_fnc_reload;

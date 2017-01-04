@@ -14,3 +14,7 @@ class common_fnc_globalSideChatPlayer {
 	allowedTargets=1;
 	jip=0;
 };
+class common_fnc_systemChatPlayer {
+	allowedTargets=1;
+	jip=0;
+};

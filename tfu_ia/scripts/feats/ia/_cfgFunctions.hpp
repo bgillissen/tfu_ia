@@ -10,6 +10,7 @@ class IA {
 		class placeSniper { file="feats\ia\placeSniper.sqf"; };
 		class placeStatic { file="feats\ia\placeStatic.sqf"; };
 		class placeVehicle { file="feats\ia\placeVehicle.sqf"; };
+		class randomSide { file="feats\ia\randomSide.sqf"; };
 	};
 };
 

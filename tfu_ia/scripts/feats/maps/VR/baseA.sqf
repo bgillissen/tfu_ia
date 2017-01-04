@@ -19,7 +19,7 @@ BV = [["heliSmall", 		20, "BV_lb1"],
 
 BA = [["npc",	["arsenal"],	"BA_leftVA",	[false, false, false], ""],
       ["npc",	["arsenal"], 	"BA_rightVA", 	[false, false, false], ""],
-      ["npc",	["support"], 	"BA_support",	[false, false, false], ""],
+      ["npc",	["support", "curator"], 	"BA_support",	[false, false, false], ""],
       ["npc",	["medic"],		"BA_medic", 	[false, false, false], ""],
       ["obj",	["arsenal"], 	"BA_crewVA", 	[false, false, false], ""],
       ["obj",	["arsenal"], 	"BA_heliVA", 	[false, false, false], ""],

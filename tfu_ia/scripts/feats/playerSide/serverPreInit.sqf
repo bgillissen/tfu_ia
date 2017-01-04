@@ -92,7 +92,9 @@ if ( IND_ARE_ENEMY ) then {
 		conWhite(_debug);
 #endif
 
-
+publicVariable "ALLIES";
+publicVariable "ENEMIES";		
+		
 //create player's groups
 {
 	_x params ["_varName", "_groupID", "_color"];
