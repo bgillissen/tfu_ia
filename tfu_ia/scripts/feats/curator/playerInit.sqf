@@ -30,10 +30,15 @@ if ( isNil "curator_EH" ) then {
 	"curatorUnit" addPublicVariableEventHandler {
 		remoteUnit = _this select 1;
 	};
+	private _doMsg = [false, true] select (["curator", "msgOnTakeOver"] call BIS_fnc_getCfgData);
 	for "_curSlot" from 0 to (TOT_CURATOR - 1) do {
 		private _gm = missionNamespace getVariable format["zeus_%1", _curSlot];   
 		_gm addEventHandler ["CuratorGroupPlaced", {_this call curator_fnc_placeGrpPlayer}];
 		_gm addEventHandler ["CuratorObjectPlaced", {_this call curator_fnc_placeObjPlayer}];
+		if ( _doMsg ) then {
+			diag_log format["takeOver EH resgistred for %1", _gm];
+			[_gm, "curatorObjectRemoteControlled", {_this call curator_fnc_remoteControl}] call BIS_fnc_addScriptedEventHandler;
+		};
 		true
 	};
 	curator_EH = true;

@@ -22,6 +22,10 @@ class curator_fnc_placeObjServer {
 	allowedTargets=2;
 	jip=0;
 };
+class curator_fnc_remoteControlServer {
+	allowedTargets=2;
+	jip=0;
+};
 class BIS_fnc_setDate {
 	allowedTargets=2;
 	jip=0;

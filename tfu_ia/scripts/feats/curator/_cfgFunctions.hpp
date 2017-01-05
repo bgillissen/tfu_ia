@@ -16,6 +16,7 @@ class curator {
 		class release { file="feats\curator\release.sqf"; };
 		class reload { file="feats\curator\reload.sqf"; };
 		class remoteControl { file="feats\curator\remoteControl.sqf"; };
+		class remoteControlServer { file="feats\curator\remoteControlServer.sqf"; };
 		class request { file="feats\curator\request.sqf"; };
 
 	};

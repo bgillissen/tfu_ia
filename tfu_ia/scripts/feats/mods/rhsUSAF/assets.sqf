@@ -109,11 +109,11 @@ _out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _g
 BV_USAF = S_USAF + 1;
 
 private _car = [];
-private _carArmed = [];
+private _carArmed = ["rhsusf_m1025_w_m2"];
 private _apc = [];
 private _tank = [];
 private _aaTank = [];
-private _planeCAS = [];
+private _planeCAS = ["RHS_A10", "RHS_A10_AT"];
 private _planeAA = [];
 private _planeTransport = ["RHS_C130J"];
 private _uav = [];

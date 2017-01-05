@@ -18,8 +18,11 @@ for "_slot" from 0 to (TOT_CURATOR - 1) do {
 			[_gm, [-1, -2, 0]] call BIS_fnc_setCuratorVisionModes;  //nightvision
 		};
 		_gm setVariable ["showNotification", _notif];				//notification
+		/*
 		if ( _doMsg ) then {
+			diag_log format["takeOver EH resgistred for %1", _gm];
 			[_gm, "curatorObjectRemoteControlled", {_this call curator_fnc_remoteControl}] call BIS_fnc_addScriptedEventHandler;
 		};
+		*/
 	};
 };
