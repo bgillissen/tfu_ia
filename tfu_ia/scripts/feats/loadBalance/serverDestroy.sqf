@@ -7,11 +7,11 @@ Description:
 	kill the loadBalance thread
  */
 
-if ( count(_this) == 0 ) ewitWith {};
+if ( count(_this) == 0 ) exitWith {};
 
 params ["_when", "_thread"];
 
-if ( scriptDone _thread ) ewitWith {};
+if ( scriptDone _thread ) exitWith {};
 
 terminate _thread;
 

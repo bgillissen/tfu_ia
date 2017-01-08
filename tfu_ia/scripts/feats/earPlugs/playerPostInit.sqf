@@ -8,14 +8,14 @@ Description:
 	optionaly display a hint to let player know about this feature
 */
 
-if ( (["earPlugs"] call core_fnc_getConf) == 0 ) exitWith{};
+if ( (["earPlugs"] call core_fnc_getParam) == 0 ) exitWith{};
 
 if ( MOD_ace ) exitWith {};
 
 earPlug_state = false; 
 
-if ( (["earPlugs", "showHint"] call BIS_fnc_GetCfgData) == 1 ) then {
-	hint parseText (["earPlugs", "hint"] call BIS_fnc_GetCfgData);
+if ( (["earPlugs", "showHint"] call core_fnc_getSetting) == 1 ) then {
+	hint parseText (["earPlugs", "hint"] call core_fnc_getSetting);
 };
 
 if ( isNil "EP_EH" ) then {

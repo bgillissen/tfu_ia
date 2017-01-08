@@ -11,7 +11,7 @@ params ["_fob", "_type", "_aoZone"];
 
 private _coord = getMarkerPos _fob;
 
-private _marker = ["ia", "fob", "marker"] call BIS_fnc_GetCfgData;
+private _marker = ["ia", "fob", "marker"] call core_fnc_getSetting;
 private _color = ["colorBLUFOR", "colorOPFOR"] select (PLAYER_SIDE isEqualTo west);
 createMarker [_marker, _coord];
 _marker setMarkerColor _color;
@@ -39,16 +39,16 @@ private _truck = (selectRandom (missionNamespace getVariable format["BV_%1", _ty
 [_truck, format["C_%1", _type]] call common_fnc_setCargo;
 _depotCoord = nil;
 
-private _hint = ["ia", "fob", "newHint"] call BIS_fnc_GetCfgData;
-private _maxTime = ["ia", "fob", "maxTime"] call BIS_fnc_GetCfgData;
+private _hint = ["ia", "fob", "newHint"] call core_fnc_getSetting;
+private _maxTime = ["ia", "fob", "maxTime"] call core_fnc_getSetting;
 [format [_hint, (_maxTime / 60)]] remoteExec ["common_fnc_globalHint", 0, false];
 
 private _endTime = time + _maxTime;
-private _maxGrp = ["ia", "fob", "maxGroup"] call BIS_fnc_GetCfgData;
-private _maxVeh  = ["ia", "fob", "maxVehicle"] call BIS_fnc_GetCfgData;
-private _lockVeh = ["ia", "lockVeh"] call BIS_fnc_GetCfgData;
-private _loopDelay = ["ia", "loopDelay"] call BIS_fnc_GetCfgData;
-private _spawnDelay = ["ia", "waveDelay"] call BIS_fnc_GetCfgData;
+private _maxGrp = ["ia", "fob", "maxGroup"] call core_fnc_getSetting;
+private _maxVeh  = ["ia", "fob", "maxVehicle"] call core_fnc_getSetting;
+private _lockVeh = ["ia", "lockVeh"] call core_fnc_getSetting;
+private _loopDelay = ["ia", "loopDelay"] call core_fnc_getSetting;
+private _spawnDelay = ["ia", "waveDelay"] call core_fnc_getSetting;
 private _nextSpawn = time + _spawnDelay;
 private _lastSpawnTime = time;
 private _lastSpawnCoord = nil;
@@ -116,7 +116,7 @@ while ( true ) do {
 	sleep _loopDelay;
 	if (_truck distance _coord <= 10) exitWith {
 		private _reward = call common_fnc_giveReward; 
-		private _hint = ["ia", "fob", "succesHint"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "fob", "succesHint"] call core_fnc_getSetting;
 		[format[_hint, (_reward select 1)]] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker] spawn FOB_fnc_cleanup;
 		private _marker = format["%1_success", _fob];
@@ -130,19 +130,19 @@ while ( true ) do {
 		private _avail = count (FOB_markers select _aoZone);
 		if ( _done == _avail ) then {
 			sleep 5;
-			_hint = ["ia", "fob", "zoneHint"] call BIS_fnc_GetCfgData;
+			_hint = ["ia", "fob", "zoneHint"] call core_fnc_getSetting;
 			[format[_hint]] remoteExec ["common_fnc_globalHint", 0, false];
 		};
 		
 	};
 	if ( !alive _truck || (time > _endTime) ) exitWith {
-		private _hint = ["ia", "fob", "failHint"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "fob", "failHint"] call core_fnc_getSetting;
 		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker, _veh1, _veh2] spawn FOB_fnc_cleanup;
 		//FOB_failed = true;
 	};
 	if ( AO_zone != _aoZone ) exitWith {
-		private _hint = ["ia", "fob", "newZoneHint"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "fob", "newZoneHint"] call core_fnc_getSetting;
 		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker, _veh1, _veh2] spawn FOB_fnc_cleanup;
 	};

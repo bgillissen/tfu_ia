@@ -29,7 +29,6 @@ private _removeItem = _type call {
 		} count TFAR_SR;
 	};
 	if ( !_found ) then {
-		systemChat format["%1 is a not radio", _item];
 		if ( (_x in A_items) ) then { _found = true; };
 	};
 	if ( !_found ) then {
@@ -42,9 +41,10 @@ private _removeItem = _type call {
 //weapons
 private _content = getWeaponCargo _container;
 {
-	if ( !(_x in A_weapons) ) then { 
+	private _baseWeap = [_x] call assets_fnc_baseWeapon;
+	if ( !(_baseWeap in A_weapons) ) then { 
 		_out = false;
-		systemChat format["Weapon in your %1: %2 is not allowed", _type, _x];
+		systemChat format["Weapon in your %1: %2 (%3) is not allowed", _type, _baseWeap, _x];
 		for "_i" from 1 to ((_content select 1) select _forEachIndex) do {
 			_x call _removeItem;
 		};

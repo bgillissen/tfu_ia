@@ -21,7 +21,7 @@ for "_x" from 1 to _amount do {
 	private _randomPos = [[[_coord, (_size / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
 	private _veh = (selectRandom _pool) createVehicle _randomPos;
 	
-	if (random 100 >= (["ia", "crewSrayInProb"] call BIS_fnc_GetCfgData) ) then {
+	if (random 100 >= (["ia", "crewSrayInProb"] call core_fnc_getSetting) ) then {
 		_veh allowCrewInImmobile true;
 	};
 	(selectRandom S_crew) createUnit [_randomPos,_group];
@@ -39,7 +39,7 @@ for "_x" from 1 to _amount do {
 		((units _group) select 2) moveInCargo _veh;
 	};
 	[_group, _coord, _patrolSize] call BIS_fnc_taskPatrol;
-	if (["ia", "lockVeh"] call BIS_fnc_GetCfgData) then { 
+	if ( (["ia", "lockVeh"] call core_fnc_getSetting) == 1 ) then { 
 		_veh lock 3; 
 	};
 	[(units _group), _skill] call common_fnc_setSkill;

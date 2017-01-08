@@ -51,12 +51,12 @@ if ( (count URBAN_pool) == 0 ) then {
 	URBAN_pool = URBAN_markers;
 };
 
-private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
+private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call core_fnc_getSetting);
 private _baseCoord = getMarkerPos "SZ";
 private _accepted = false;
 
-private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
-private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
+private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
 while (!_accepted) do {
 	{
 		_coord = getMarkerPos _x;
@@ -77,7 +77,7 @@ _minDistFromAO = nil;
 //objective crate
 private _crate = (selectRandom S_crates) createVehicle _coord;
 _crate allowDamage false;
-private _action = ["ia", "side", "urban", "action"] call BIS_fnc_GetCfgData;
+private _action = ["ia", "side", "urban", "action"] call core_fnc_getSetting;
 [_crate, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
 _action= nil;
 
@@ -85,12 +85,12 @@ _action= nil;
 private _groups = [_coord, 15, 20, 2, 20, 0, 0, 0, 0, 2, 0, (100 + random 200)] call SIDE_fnc_placeEnemies;
 
 //markers
-private _title = ["ia", "side", "urban", "title"] call BIS_fnc_GetCfgData;
-private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
+private _title = ["ia", "side", "urban", "title"] call core_fnc_getSetting;
+private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 [_coord, _title, _size] call SIDE_fnc_placeMarkers;
 //briefing
-private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
-private _desc = ["ia", "side", "urban", "briefing"] call BIS_fnc_GetCfgData;
+private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
+private _desc = ["ia", "side", "urban", "briefing"] call core_fnc_getSetting;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
 ["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
 _title = nil;
@@ -98,12 +98,12 @@ _size = nil;
 _briefing = nil;
 _desc = nil;
 
-private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
 while ( true ) do {
 	if ( SIDE_success ) exitWith {
-		private _planted = ["ia", "side", "urban", "planted"] call BIS_fnc_GetCfgData;
-		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
+		private _planted = ["ia", "side", "urban", "planted"] call core_fnc_getSetting;
+		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
 		[format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
 		_planted = nil;
 		sleep _delay;
@@ -111,7 +111,7 @@ while ( true ) do {
 		[getPos _crate, false] spawn SIDE_fnc_boom;
 		deleteVehicle _crate;
 		private _reward = call common_fnc_giveReward;
-		private _hint = ["ia", "side", "successHint"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
 		_hint = nil;
 		_reward = nil;

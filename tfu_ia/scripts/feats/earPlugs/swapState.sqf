@@ -13,18 +13,18 @@ if ( isNil "_keyCode" ) exitWith {};
 
 if ( _shift || _ctrl || _alt ) exitWith {};
 
-if ( _keyCode != (["earPlugs", "keycode"] call BIS_fnc_GetCfgData) ) exitWith {};        
+if ( _keyCode != (["earPlugs", "keycode"] call core_fnc_getSetting) ) exitWith {};        
 
 if ( time <= EP_availAt ) exitWith {};
 
 if ( earPlug_state ) then {
 	earPlug_state = false;
 	2 fadeSound 1;
-	systemChat (["earPlugs", "offMsg"] call BIS_fnc_GetCfgData); 
+	systemChat (["earPlugs", "offMsg"] call core_fnc_getSetting); 
 } else { 
 	earPlug_state = true;
-	2 fadeSound (["earPlugs", "volume"] call BIS_fnc_GetCfgData); 
-	systemChat (["earPlugs", "onMsg"] call BIS_fnc_GetCfgData);
+	2 fadeSound (["earPlugs", "volume"] call core_fnc_getSetting); 
+	systemChat (["earPlugs", "onMsg"] call core_fnc_getSetting);
 };
 
-EP_availAt = time + (["earPlugs", "delay"] call BIS_fnc_GetCfgData);
+EP_availAt = time + (["earPlugs", "delay"] call core_fnc_getSetting);

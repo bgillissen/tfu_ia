@@ -7,7 +7,7 @@ Description:
 	add arsenal to the things in base with an arsenal action
 */
 
-private _filtered = ( ["filterArsenal"] call core_fnc_getConf == 1 );
+private _filtered = ( ["filterArsenal"] call core_fnc_getParam == 1 );
 {
 	{
 		_x params ["_thing", "_actions"];

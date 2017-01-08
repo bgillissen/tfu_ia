@@ -11,7 +11,7 @@ if ( count(_this) == 0 ) exitWith{};
 
 params ["_when", "_thread"];
 
-if ( !(["AO"] call core_fnc_getConf) ) ewitWith{};
+if ( (["AO"] call core_fnc_getParam) == 0 ) exitWith{};
 
 AO_stop = true;
 

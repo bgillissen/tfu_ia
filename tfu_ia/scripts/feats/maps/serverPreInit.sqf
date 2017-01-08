@@ -14,7 +14,7 @@ if ( isNil "MAP_INIT" ) then {
 	MAP_INIT = true;
 };
 
-private _base = BASES select (format["%1_base", MAP_PREFIX] call core_fnc_getConf);
+private _base = BASES select (format["%1_base", MAP_PREFIX] call core_fnc_getParam);
 
 BASE_COMP = format["%1_%2", MAP_PREFIX, (_base select 0)];
 BASE_NAME = _base select 1;
@@ -28,4 +28,4 @@ publicVariable "SZ_RADIUS";
 publicVariable "FR_RADIUS";
 publicVariable "TOT_CURATOR";
 
-FOLLOW_KEYWORDS = ((["follow_mapKeywords"] call core_fnc_getConf) == 1);
+FOLLOW_KEYWORDS = ((["follow_mapKeywords"] call core_fnc_getParam) == 1);

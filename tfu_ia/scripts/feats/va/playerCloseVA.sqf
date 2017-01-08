@@ -7,7 +7,7 @@ Description:
 	Check that all the gear equiped by player is in the arsenal, thx Nancy...
 */
 
-if ( (["filterArsenal"] call core_fnc_getConf) == 0 ) exitWith {};
+if ( (["filterArsenal"] call core_fnc_getParam) == 0 ) exitWith {};
 
 private _removed = false;
 
@@ -101,7 +101,9 @@ if ( !(_vest isEqualTo "") ) then {
 
 private _primWeap =  primaryWeapon player;
 if ( !(_primWeap isEqualTo "") ) then {
-	if ( !(_primWeap in A_weapons) ) then {
+	private _baseWeap = [_primWeap] call assets_fnc_baseWeapon;
+	if ( !(_baseWeap in A_weapons) ) then {
+		systemChat format["primary weapon : %1 (%2) is not allowed", _baseWeap, _primWeap];
 		_removed = true;
 		player removeWeapon _primWeap;
 	} else {
@@ -132,6 +134,7 @@ if ( !(_primWeap isEqualTo "") ) then {
 private _secondWeap =  secondaryWeapon player;
 if ( !(_secondWeap isEqualTo "") ) then {
 	if ( !(_secondWeap in A_weapons) ) then {
+		systemChat format["secondary weapon : %1 is not allowed", _secondWeap];
 		_removed = true;
 		player removeWeapon _secondWeap;
 	} else {
@@ -162,6 +165,7 @@ if ( !(_secondWeap isEqualTo "") ) then {
 private _handWeap = handgunWeapon player;
 if ( !(_handWeap isEqualTo "") ) then {
 	if ( !(_handWeap in A_weapons) ) then {
+		systemChat format["hand weapon : %1 is not allowed", _handWeap];
 		_removed = true;
 		player removeWeapon _handWeap;
 	} else {
@@ -190,7 +194,7 @@ if ( !(_handWeap isEqualTo "") ) then {
 };
 
 if ( _removed ) then {
-	private _msg = ["va", "message"] call BIS_fnc_GetCfgData;
-	private _duration = ["va", "duration"] call BIS_fnc_GetCfgData;
+	private _msg = ["va", "message"] call core_fnc_getSetting;
+	private _duration = ["va", "duration"] call core_fnc_getSetting;
 	titleText [_msg, "PLAIN", _duration];
 };

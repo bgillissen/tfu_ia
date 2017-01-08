@@ -29,7 +29,7 @@ waitUntil {!isNull player};
 waitUntil {player isEqualTo player};
 
 //features serverOnJoin
-["SERVER", "onJoin", [player]] call core_fnc_featEvent;
+["SERVER", "join", [player]] call core_fnc_featEvent;
 
 //features playerInit
 ["PLAYER", "init"] call core_fnc_featEvent;
@@ -42,27 +42,27 @@ if ( isNil "FEH_closeVA") then {
 
 //bind player's GetInMan event to feature's onGetIn
 if ( isNil "FEH_getIn") then {
-	FEH_getIn = player addEventHandler ["GetInMan", {["PLAYER", "onGetIn", _this] call core_fnc_featEvent;}];
+	FEH_getIn = player addEventHandler ["GetInMan", {["PLAYER", "getIn", _this] call core_fnc_featEvent;}];
 };
 
 //bind player's SwitchSeatInMan event to feature's onSwitchSeat
 if ( isNil "FEH_switchSeat") then {
-	FEH_switchSeat = player addEventHandler ["SeatSwitchedMan", {["PLAYER", "onSwitchSeat", _this] call core_fnc_featEvent;}];
+	FEH_switchSeat = player addEventHandler ["SeatSwitchedMan", {["PLAYER", "switchSeat", _this] call core_fnc_featEvent;}];
 };
 
 //bind player's GetOutMan event to feature's onGetOut
 if ( isNil "FEH_getOut") then {
-	FEH_getOut = player addEventHandler ["GetOutman", {["PLAYER", "onGetOut", _this] call core_fnc_featEvent;}];
+	FEH_getOut = player addEventHandler ["GetOutman", {["PLAYER", "getOut", _this] call core_fnc_featEvent;}];
 };
 
 //bind player's Take event to feature's onPickUp
 if ( isNil "FEH_pickUp") then {
-	FEH_pickUp = player addEventHandler ["Take", {["PLAYER", "onPickUp", _this] call core_fnc_featEvent;}];
+	FEH_pickUp = player addEventHandler ["Take", {["PLAYER", "take", _this] call core_fnc_featEvent;}];
 };
 
 //bind player's Fired event to feature's onShoot
 if ( isNil "FEH_onShoot") then {
-	FEH_onShoot = player addEventHandler ["Fired", {["PLAYER", "onShoot", _this] call core_fnc_featEvent;}];
+	FEH_onShoot = player addEventHandler ["Fired", {["PLAYER", "shoot", _this] call core_fnc_featEvent;}];
 };
 
 //features playerPostInit

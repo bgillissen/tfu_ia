@@ -8,10 +8,10 @@ Description:
 	see @ _settings.hpp for url, and static uids
 */
 
-curatorUIDs = ["curator", "uids"] call BIS_fnc_GetCfgData;
+curatorUIDs = ["curator", "uids"] call core_fnc_getSetting;
 
-if ( (["curator", "web"] call BIS_fnc_GetCfgData) == 1 ) then {
-	//private _webList = [["curator", "url"] call BIS_fnc_GetCfgData] call common_fnc_urlFetchReturn;
+if ( (["curator", "web"] call core_fnc_getSetting) == 1 ) then {
+	//private _webList = [["curator", "url"] call core_fnc_getSetting] call common_fnc_urlFetchReturn;
 	private _webList = false;
 	if ( (typeName _webList) != "BOOL" ) then {
 		curatorUIDs append [(_webList splitString " ")];

@@ -27,7 +27,7 @@ Return:
 
 params ["_batteries", "_szCoords"];
 
-private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 private _ammo = ((_batteries select 0) magazinesTurret [0]) select 0;
 private _target = nullObj;
 private "_targetPos";
@@ -61,15 +61,15 @@ _sleepDelay = nil;
 
 if ( _target == nullObj ) exitWith {};
 
-if ( ["ArtilleryTargetTickWarning"] call core_fnc_getConf ) then {
-	private _msgs = ["ia", "side", "priority", "arti", "firingMsg"] call BIS_fnc_GetCfgData;
+if ( ["ArtilleryTargetTickWarning"] call core_fnc_getParam ) then {
+	private _msgs = ["ia", "side", "priority", "arti", "firingMsg"] call core_fnc_getSetting;
 	[(selectRandom _msgs)] remoteExec ["common_fnc_globalSideChat", 0, false];
 	_msgs = nil;
 };
 
-private _salve = ["ia", "side", "priority", "arti", "salve"] call BIS_fnc_GetCfgData;
-private _delay = ["ia", "side", "priority", "arti", "salveDelay"] call BIS_fnc_GetCfgData;
-private _radius = ["ia", "side", "priority", "arti", "radius"] call BIS_fnc_GetCfgData;
+private _salve = ["ia", "side", "priority", "arti", "salve"] call core_fnc_getSetting;
+private _delay = ["ia", "side", "priority", "arti", "salveDelay"] call core_fnc_getSetting;
+private _radius = ["ia", "side", "priority", "arti", "radius"] call core_fnc_getSetting;
 {
 	if ( alive _x ) then {
 		for "_c" from 1 to _salve do {

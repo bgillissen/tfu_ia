@@ -13,8 +13,8 @@ params ["_rtCoord"];
 
 AO_minefield = [];
 
-private _mines = ["ia", "ao", "radioTower", "mineTypes"] call BIS_fnc_GetCfgData;
-private _amount = ["ia", "ao", "radioTower", "mines"] call BIS_fnc_GetCfgData;
+private _mines = ["ia", "ao", "radioTower", "mineTypes"] call core_fnc_getSetting;
+private _amount = ["ia", "ao", "radioTower", "mines"] call core_fnc_getSetting;
 for "_x" from 1 to _amount do {
 	private _mine = createMine [(selectRandom _mines), _rtCoord, [], 38];
     AO_minefield append [_mine];

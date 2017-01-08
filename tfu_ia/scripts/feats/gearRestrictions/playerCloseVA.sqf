@@ -7,7 +7,7 @@ Description:
 	apply weapon / items restriction if player is outside the fire range
 */
 
-if ( (["restrictGear"] call core_fnc_getConf) == 0 ) exitWith {};
+if ( (["restrictGear"] call core_fnc_getParam) == 0 ) exitWith {};
 
 if ( (player distance (getMarkerPos "FR")) < FR_RADIUS ) exitWith {}; 
 
@@ -20,7 +20,7 @@ private _officer = ((_role == "hq") || (_role == "sl") || (_role == "tl"));
 private _uavopp = (_role == "uavopp");
 _role = nil;
 
-if ( (["restrictLauncher"] call core_fnc_getConf) == 1 ) then {
+if ( (["restrictLauncher"] call core_fnc_getParam) == 1 ) then {
 	if ( !_at ) then {
 		private _secondWeap =  secondaryWeapon player;
 		if (({player hasWeapon _x} count RG_launcher) > 0) then {
@@ -32,7 +32,7 @@ if ( (["restrictLauncher"] call core_fnc_getConf) == 1 ) then {
 
 private _primWeap =  primaryWeapon player;
 
-if ( (["restrictMG"] call core_fnc_getConf) == 1 ) then {
+if ( (["restrictMG"] call core_fnc_getParam) == 1 ) then {
 	if ( !_mg ) then {
 		if (({player hasWeapon _x} count RG_mg) > 0) then {
 			player removeWeapon _secondWeap;
@@ -43,7 +43,7 @@ if ( (["restrictMG"] call core_fnc_getConf) == 1 ) then {
 
 
 
-if ( (["restrictSniper"] call core_fnc_getConf) == 1 ) then {
+if ( (["restrictSniper"] call core_fnc_getParam) == 1 ) then {
 	if (!_sniper ) then {
 		if (({player hasWeapon _x} count RG_sRifle) > 0) then {
     		player removeWeapon _primWeap;
@@ -60,7 +60,7 @@ if ( (["restrictSniper"] call core_fnc_getConf) == 1 ) then {
 
 private _primItems = primaryWeaponItems player;
 
-if ( (["restrictLRScope"] call core_fnc_getConf) == 1 ) then {
+if ( (["restrictLRScope"] call core_fnc_getParam) == 1 ) then {
 	private _sScope = (({_x in _primItems} count RG_sScope) > 0); 
 	private _mScope = (({_x in _primItems} count RG_mScope) > 0);
 	if  ( !_sniper && !_marksman && (_mScope || _sScope) ) then {
@@ -74,7 +74,7 @@ if ( (["restrictLRScope"] call core_fnc_getConf) == 1 ) then {
    	};
 };
 
-if ( (["restrictThermalScope"] call core_fnc_getConf) == 1 ) then {	
+if ( (["restrictThermalScope"] call core_fnc_getParam) == 1 ) then {	
 	if ( !_officer ) then {
     	if (({_x in _primItems} count RG_oScope) > 0) then {
     		{player removePrimaryWeaponItem  _x;} count _specialisedOptics;
@@ -83,7 +83,7 @@ if ( (["restrictThermalScope"] call core_fnc_getConf) == 1 ) then {
 	};
 };
 
-if ( (["restrictBackpack"] call core_fnc_getConf) == 1 ) then {
+if ( (["restrictBackpack"] call core_fnc_getParam) == 1 ) then {
 	if ( !_at ) then {
 		private _backpack = backpack player;
 		if ( _backpack in RG_backpack) then {
@@ -93,7 +93,7 @@ if ( (["restrictBackpack"] call core_fnc_getConf) == 1 ) then {
 	};
 };
 
-if ( (["restrictUAV"] call core_fnc_getConf) == 1 ) then {
+if ( (["restrictUAV"] call core_fnc_getParam) == 1 ) then {
 	if ( !_uavopp ) then {
     	private _items = assignedItems player;
     	if (({"B_UavTerminal" == _x} count _items) > 0) then {

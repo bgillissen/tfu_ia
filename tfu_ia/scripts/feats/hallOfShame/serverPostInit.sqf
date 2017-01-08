@@ -1,7 +1,7 @@
 
 
-private _entries = ["hallOfShame", "entries"] call BIS_fnc_GetCfgData;
-private _path = ["hallOfShame", "path"] call BIS_fnc_GetCfgData;
+private _entries = ["hallOfShame", "entries"] call core_fnc_getSetting;
+private _path = ["hallOfShame", "path"] call core_fnc_getSetting;
 
 private _c = 0;
 {

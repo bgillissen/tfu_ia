@@ -23,7 +23,7 @@ Environment:
 	vehicle:
 		supplyDrop
 	missionConfig:
-		supplyDrop >> minAltitude
+		supplyDrop >> minChuteAltitude
 		supplyDrop >> light
 		supplyDrop >> msgFrom
 		supplyDrop >> msgDeployed
@@ -39,29 +39,41 @@ params ["_veh"];
 	
 	SD_avail = false;
 	publicVariable "SD_avail";
-
-	private _chuteType = PLAYER_SIDE call {
-		if ( _this == west ) exitWith { "B_Parachute_02_F" };
-		if ( _this == east ) exitWith { "O_Parachute_02_F" };
-		"I_Parachute_02_F"
+	
+	private _doChute = (position (_veh select 2) >= (["supplyDrop", "minChuteAltitude"] call core_fnc_getSetting) ); 
+	
+	private _chute = objNull;
+	private ["_crate", "_posCrate"];
+	if ( _doChute ) then {
+		private _chuteType = PLAYER_SIDE call {
+			if ( _this == west ) exitWith { "B_Parachute_02_F" };
+			if ( _this == east ) exitWith { "O_Parachute_02_F" };
+			"I_Parachute_02_F"
+		};
+		_chute = createVehicle [_chuteType, [100, 100, 200], [], 0, 'FLY'];
+		_chute setPos [getPosASL _veh select 0, getPosASL _veh select 1, (getPosASL _veh select 2) - 42];
+		
+		_crate = createVehicle [(selectRandom SD_crates), position _chute, [], 0, 'NONE'];
+		_crate attachTo [_chute, [0, 0, -1.3]];
+		_posCrate = position _crate;
+	} else {
+		private _posVeh = (getPos _veh);
+		//TODO need a relative pos (depends on veh, rear for planes, left for choppers
+		_posCrate = [0,0,0];
+		_crate = createVehicle [(selectRandom SD_crates), _posCrate, [], 0, 'NONE'];
+		_crate enableSimulationGlobal true;
 	};
-
-	private _chute = createVehicle [_chuteType, [100, 100, 200], [], 0, 'FLY'];
-	_chute setPos [getPosASL _veh select 0, getPosASL _veh select 1, (getPosASL _veh select 2) - 42];
-
-	private _crate = createVehicle [(selectRandom SD_crates), position _chute, [], 0, 'NONE']; 
-	_crate attachTo [_chute, [0, 0, -1.3]];
 	_crate allowdamage false;
 	
-	private _light = ["supplyDrop", "light"] call BIS_fnc_GetCfgData;
-	_light = createVehicle [_light, position _chute, [], 0, 'NONE'];
-	_light attachTo [_chute, [0, 0, 0]];
+	private _light = ["supplyDrop", "light"] call core_fnc_getSetting;
+	_light = createVehicle [_light, _posCrate, [], 0, 'NONE'];
+	_light attachTo [_crate,[_posCrate select 0, _posCrate select 1, 5]];
 
 	[_crate, SD_backpacks, SD_items, SD_weapons, SD_ammo] call common_fnc_setCargo;
 
-	private _from = ["supplyDrop", "msgFrom"] call BIS_fnc_GetCfgData;
-	private _msg = ["supplyDrop", "msgDeployed"] call BIS_fnc_GetCfgData;
-	private _cooldown = ["supplyDrop_cooldown"] call core_fnc_getConf;
+	private _from = ["supplyDrop", "msgFrom"] call core_fnc_getSetting;
+	private _msg = ["supplyDrop", "msgDeployed"] call core_fnc_getSetting;
+	private _cooldown = ["supplyDrop_cooldown"] call core_fnc_getParam;
 	[_from, format[_msg, profileName, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
 	_cooldown = nil;
 	_from = nil;
@@ -71,18 +83,23 @@ params ["_veh"];
 		sleep 0.2;
 		( position _crate select 2 < 1 || isNull _chute )
 	};
+	
+	if ( _doChute ) then {
+		detach _crate;
+	};
 
-	detach _crate;
-	private _cratePos = position _crate;
-	private _chutePos = position _crate;
-	_crate setPos [(_cratePos select 0), (_cratePos select 1), 0];
+	_posCrate = position _crate;
+	
+	_crate setPos [(_posCrate select 0), (_posCrate select 1), 0];
 	_crate setVectorUp [0,0,1];
-	_crate enableSimulationGlobal true;
 	//to make it touch the ground next to the crate, it's needed or it never collapse
-	_chute setPos [(_chutePos select 0) + 0.5 , (_chutePos select 1) + 0.5, (_chutePos select 2)];
+	if ( _doChute ) then {
+		_crate enableSimulationGlobal true;
+		_chute setPos [(_posCrate select 0) + 0.5 , (_posCrate select 1) + 0.5, (_posCrate select 2)];
+	};
 
-	private _smoke = ["supplyDrop", "smoke"] call BIS_fnc_GetCfgData;
-	_smoke = _smoke createVehicle [_cratePos select 0, _cratePos select 1, 5];
+	private _smoke = ["supplyDrop", "smoke"] call core_fnc_getSetting;
+	_smoke = _smoke createVehicle [_posCrate select 0, _posCrate select 1, 5];
 	
 	[[_crate, _light, _smoke], false] call curator_fnc_addEditable;
 	

@@ -9,7 +9,7 @@ Description:
 
 if ( count(_this) == 0 ) exitWith{};
 
-if ( !(["supportCrate"] call core_fnc_getConf) ) exitWith{};
+if ( !(["supportCrate"] call core_fnc_getParam) ) exitWith{};
 
 params ["_when", "_thread"];
 

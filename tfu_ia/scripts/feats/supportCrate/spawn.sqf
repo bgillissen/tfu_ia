@@ -38,7 +38,7 @@ private "_class";
 if ( _type isEqualTo "supply" ) then {
 	_class = (selectRandom SD_crates);
 } else {
-	_class = (["supportCrate", "typeClass", _type] call BIS_fnc_GetCfgData);
+	_class = (["supportCrate", "typeClass", _type] call core_fnc_getSetting);
 };
 
 private _crate = createVehicle [_class, getMarkerPos "SC_spawn", [], 0, 'NONE']; 
@@ -52,9 +52,9 @@ if ( _type isEqualTo "supply" ) then {
 	[_crate, SD_backpacks, SD_items, SD_weapons, SD_ammo] call common_fnc_setCargo;
 };
 
-private _from =  ["supportCrate", "msgFrom"] call BIS_fnc_GetCfgData;
-private _msg = (["supportCrate", "msgDeployed"] call BIS_fnc_GetCfgData);
-private _cooldown = ["supportCrate_cooldown"] call core_fnc_getConf;
+private _from =  ["supportCrate", "msgFrom"] call core_fnc_getSetting;
+private _msg = (["supportCrate", "msgDeployed"] call core_fnc_getSetting);
+private _cooldown = ["supportCrate_cooldown"] call core_fnc_getParam;
 [_from, format[_msg, profileName, _type, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
 
 [[_crate], false] call curator_fnc_addEditable;

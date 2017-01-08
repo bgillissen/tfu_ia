@@ -14,7 +14,7 @@ Return:
 	nothing	
 */
 
-if ( (["intro"] call core_fnc_getConf) == 0 ) exitWith {};
+if ( (["intro"] call core_fnc_getParam) == 0 ) exitWith {};
 
 [] spawn {
 	waitUntil {

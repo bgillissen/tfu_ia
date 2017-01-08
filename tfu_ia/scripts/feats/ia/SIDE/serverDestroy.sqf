@@ -11,7 +11,7 @@ if ( count(_this) == 0 ) exitWith{};
 
 params ["_when", "_thread"];
 
-if ( !(["SIDE"] call core_fnc_getConf) ) ewitWith{};
+if ( (["SIDE"] call core_fnc_getParam) == 0 ) exitWith{};
 
 SIDE_stop = true;
 

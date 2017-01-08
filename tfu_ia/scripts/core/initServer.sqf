@@ -14,6 +14,8 @@ Description:
 
 missionNamespace setVariable ["SERVER_INIT", true, true];
 
+if ( isNil "PARAMETERS" ) then { PARAMETERS = []; };
+
 //those global vars are only needed server side
 BLACKLIST = [[],[],[],[],[],[],[],[]];
 REWARDS = [];
@@ -83,7 +85,7 @@ if ( isNil "PV") then {
 
 //register feature's OnLeave eventHandler
 if ( isNil "FEH_onLeave" ) then {
-	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {["SERVER", "onLeave", _this] call core_fnc_featEvent;}];
+	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {["SERVER", "leave", _this] call core_fnc_featEvent;}];
 };
 
 //features serverPostInit call/spawn

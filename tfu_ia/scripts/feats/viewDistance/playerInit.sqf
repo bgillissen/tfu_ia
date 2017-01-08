@@ -7,12 +7,12 @@ Description:
 	just define default value for TAW View Distance.
 */
 
-tawvd_foot = ["viewDistance", "foot"] call BIS_fnc_GetCfgData;;
-tawvd_car = ["viewDistance", "car"] call BIS_fnc_GetCfgData;
-tawvd_air = ["viewDistance", "air"] call BIS_fnc_GetCfgData;
+tawvd_foot = ["viewDistance", "foot"] call core_fnc_getSetting;;
+tawvd_car = ["viewDistance", "car"] call core_fnc_getSetting;
+tawvd_air = ["viewDistance", "air"] call core_fnc_getSetting;
 tawvd_addon_disable = true;
 
-private _action = ["viewDistance", "action"] call BIS_fnc_GetCfgData;
+private _action = ["viewDistance", "action"] call core_fnc_getSetting;
 
 {
 	{

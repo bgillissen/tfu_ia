@@ -15,12 +15,12 @@ if ( [_player] call curator_fnc_isAssigned ) exitWith {
 };
 
 if ( count curatorAssigned >= TOT_CURATOR) exitWith {
-	_msg = ["curator", "noSlotMsg"] call BIS_fnc_getCfgData;
+	_msg = ["curator", "noSlotMsg"] call core_fnc_getSetting;
 	[_player, format[_msg, (count curatorAssigned), _totSlot]] call common_fnc_systemChat;
 };
 
 if ( !([_player] call curator_fnc_isCurator) ) exitWith {
-	_msg = ["curator", "failedMsg"] call BIS_fnc_getCfgData;
+	_msg = ["curator", "failedMsg"] call core_fnc_getSetting;
 	[PLAYER_SIDE, "HQ", format[_msg, (name _player)]] call common_fnc_globalSideChatServer;
 };
 
@@ -47,5 +47,5 @@ if ( !isDedicated ) then {
 	isAssigned = [player] call curator_fnc_isAssigned; 
 };
 
-_msg = ["curator", "ascendMsg"] call BIS_fnc_getCfgData;
+_msg = ["curator", "ascendMsg"] call core_fnc_getSetting;
 [PLAYER_SIDE, "HQ", format[_msg, (count curatorAssigned), TOT_CURATOR, (name _player)]] call common_fnc_globalSideChatServer;

@@ -18,6 +18,10 @@ class curator {
 		class remoteControl { file="feats\curator\remoteControl.sqf"; };
 		class remoteControlServer { file="feats\curator\remoteControlServer.sqf"; };
 		class request { file="feats\curator\request.sqf"; };
-
+		class serverDestroy { file="feats\curator\serverDestroy.sqf"; };
+		class serverInit { file="feats\curator\serverInit.sqf"; };
+		class serverJoin { file="feats\curator\serverJoin.sqf"; };
+		class serverLeave { file="feats\curator\serverLeave.sqf"; };
+		class serverPostInit { file="feats\curator\serverPostInit.sqf"; };
 	};
 };

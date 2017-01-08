@@ -1,27 +1,8 @@
-class Revive_distance {
-	title = "Distance from woonded that medic won't see";
-	values[] = {100, 200, 300, 500, 1000, 2000};
-	texts[] = {"100m", "200m", "300m", "500m", "1km", "2km"};
-	default = 500;
-};
-
-class Revive_needFaks {
-	title = "Need a FirstAidKit to revive";
+class revive_script {
+	title = "Whish revive system to use (not available when ACE is present)";
 	values[] = {0, 1};
-	texts[] = {"False", "True"};
-	default = 1;
-};
-
-class Revive_bleedout {
-	title = "Maximum Bleedout time";
-	values[] = {300, 900, 1200};
-	texts[] = {"Short (5m)","Medium (15m)", "Long (25m)"};
-	default = 900;
-};
-
-class Revive_noRespawn {
-	title = "Prevent players to respawn when unconcious";
-	values[] = {0, 1};
-	texts[] = {"No", "Yes"};
+	texts[] = {"-= BTC =-", "TCB Wounding System"};
 	default = 0;
 };
+
+#include "btc\_params.hpp"

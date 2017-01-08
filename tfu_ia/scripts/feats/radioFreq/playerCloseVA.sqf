@@ -7,7 +7,7 @@ Description:
 */
 
 if ( !MOD_tfar ) exitWith{};
-if ( (["radioFreq"] call core_fnc_getConf) == 0 ) exitWith{};
+if ( (["radioFreq"] call core_fnc_getParam) == 0 ) exitWith{};
 
 [] spawn {
 	waitUntil {		

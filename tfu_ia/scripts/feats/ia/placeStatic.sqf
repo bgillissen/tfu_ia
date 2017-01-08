@@ -26,7 +26,7 @@ for "_x" from 1 to _amount do {
 	((units _group) select 0) moveInGunner _veh;	
 	_group setBehaviour "COMBAT";
 	_group setCombatMode "RED";
-	if (["ia", "lockVeh"] call BIS_fnc_GetCfgData) then { 
+	if ( (["ia", "lockVeh"] call core_fnc_getSetting) == 1 ) then { 
 		_veh lock 3;
 	};
 	{

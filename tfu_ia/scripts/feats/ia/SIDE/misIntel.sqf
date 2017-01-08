@@ -38,12 +38,12 @@ Return:
 		nothing
 */
 
-private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
+private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call core_fnc_getSetting);
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _sizeType = "Land_Dome_Small_F";
-private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
-private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
+private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
 //find a flat position
 while ( true ) do {
 	_position = [] call BIS_fnc_randomPos;
@@ -63,7 +63,7 @@ _minDistFromAO = nil;
 _sizeType = nil;
 
 
-private _inVehicle = [false, true] select (random 100 <= (["ia", "side", "intel", "vehicleProb"] call BIS_fnc_GetCfgData));
+private _inVehicle = [false, true] select (random 100 <= (["ia", "side", "intel", "vehicleProb"] call core_fnc_getSetting));
 
 private _pos1 = [_flatPos, 2, random 360] call BIS_fnc_relPos;
 private _pos2 = [_flatPos, 10, random 360] call BIS_fnc_relPos;
@@ -113,14 +113,14 @@ if ( _inVehicle ) then {
 [(units _fake1Group), 2] call common_fnc_setSkill;
 [(units _fake2Group), 2] call common_fnc_setSkill;
 
-private _action = ["ia", "side", "intel", "action"] call BIS_fnc_GetCfgData;
+private _action = ["ia", "side", "intel", "action"] call core_fnc_getSetting;
 [_addActionTo, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
 _addActionTo = nil;
 _action = nil;
 
 //detection trigger
 private _trigger = createTrigger ["EmptyDetector", getPos _intel];
-private _size = ["ia", "side", "intel", "triggerSize"] call BIS_fnc_GetCfgData;
+private _size = ["ia", "side", "intel", "triggerSize"] call core_fnc_getSetting;
 _trigger setTriggerArea [_size, _size, 0, false];
 _trigger setTriggerActivation [PLAYER_SIDETXT, "PRESENT", false];
 _trigger setTriggerStatements ["this","",""];
@@ -132,17 +132,17 @@ _groups append [_fake1Group];
 _groups append [_fake2Group];
 
 //spawn units
-_size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
+_size = ["ia", "side", "size"] call core_fnc_getSetting;
 _groups append [_flatPos, 0, 4, 0, 0, 0, 1, 0, 2, 2, 0, (_size - (random 50))] call SIDE_fnc_placeEnemies;
 
 //markers
-private _title = ["ia", "side", "intel", "title"] call BIS_fnc_GetCfgData;
+private _title = ["ia", "side", "intel", "title"] call core_fnc_getSetting;
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
 _size = nil;
 
 //briefing
-private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
-private _desc = ["ia", "side", "intel", "briefing"] call BIS_fnc_GetCfgData;
+private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
+private _desc = ["ia", "side", "intel", "briefing"] call core_fnc_getSetting;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
 ["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
 _title = nil;
@@ -152,7 +152,7 @@ _desc = nil;
 
 private _isFleing = false;
 private _escaped = false;
-private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
 while ( true ) do {
 	private ["_cond"];
@@ -162,14 +162,14 @@ while ( true ) do {
 		_cond = (alive _intel);
 	}
 	if ( !_cond ) exitWith {
-		private _fail = ["ia", "side", "failHint"] call BIS_fnc_GetCfgData;
+		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _escaped ) exitWith {
-		private _chat = ["ia", "side", "intel", "fail"] call BIS_fnc_GetCfgData;
+		private _chat = ["ia", "side", "intel", "fail"] call core_fnc_getSetting;
 		[_chat] remoteExec ["common_fnc_globalSideChat", 0, false];
-		private _fail = ["ia", "side", "failHint"] call BIS_fnc_GetCfgData;
+		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
@@ -177,7 +177,7 @@ while ( true ) do {
 		_escaped = (count list _trigger < 1);
 	} else {
 		if (_intel call BIS_fnc_enemyDetected) then {
-			private _chat = ["ia", "side", "intel", "spotted"] call BIS_fnc_GetCfgData;
+			private _chat = ["ia", "side", "intel", "spotted"] call core_fnc_getSetting;
 			[_chat] remoteExec ["common_fnc_globalSideChat",0,false];
 			_chat = nil;
 			if ( !_inVehicle ) then { 
@@ -194,10 +194,10 @@ while ( true ) do {
 	};
 	if ( SIDE_success ) exitWith {
 		
-		private _chat = ["ia", "side", "intel", "secured"] call BIS_fnc_GetCfgData;
+		private _chat = ["ia", "side", "intel", "secured"] call core_fnc_getSetting;
 		[_chat] remoteExec ["common_fnc_globalSideChat", 0, false];
 		private _reward = call common_fnc_giveReward;
-		private _hint = ["ia", "side", "successHint"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
 		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};

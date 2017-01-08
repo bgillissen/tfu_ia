@@ -40,13 +40,13 @@ Return:
 	nothing
 */
 
-private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
+private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call core_fnc_getSetting);
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 
-private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
-private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
-private _maxDistFromAO = ["ia", "side", "priority", "maxDistFromAO"] call BIS_fnc_GetCfgData;
+private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
+private _maxDistFromAO = ["ia", "side", "priority", "maxDistFromAO"] call core_fnc_getSetting;
 //find a flat position, not too close from base, and not too far, not too close from the active AO (if one)
 while { true } do {
 	_position = [[[_baseCoord, 2000]], ["water","out"]] call BIS_fnc_randomPos;
@@ -75,7 +75,7 @@ private _tankDir = (random 360);
 private _truckCoord = [_cX + 20, _cY + random 20, _cZ];
 
 //arti or AA ?
-private _isArti  = [true, false] select (random 100 <= (["ia", "side", "priority", "artiProb"] call BIS_fnc_GetCfgData));
+private _isArti  = [true, false] select (random 100 <= (["ia", "side", "priority", "artiProb"] call core_fnc_getSetting));
 
 //spawn objective vehicles
 private _pool = [S_aaTank, S_arti] select (isArti);
@@ -123,8 +123,8 @@ _tank2 engineOn true;
 _tank1 doWatch _aoCoord;
 _tank2 doWatch _aoCoord;
 
-private _infAmmo = ["ia", "side", "priority", "infiniteAmmo"] call BIS_fnc_GetCfgData;
-private _stronger = ["ia", "side", "priority", "extraHealth"] call BIS_fnc_GetCfgData;
+private _infAmmo = ["ia", "side", "priority", "infiniteAmmo"] call core_fnc_getSetting;
+private _stronger = ["ia", "side", "priority", "extraHealth"] call core_fnc_getSetting;
 if ( _infAmmo ) then {
 	_tank1 setVariable ["fired_EH", (_tank1 addEventHandler ["Fired",{ (_this select 0) setVehicleAmmo 1 }])];
 	_tank2 setVariable ["fired_EH", (_tank2 addEventHandler ["Fired",{ (_this select 0) setVehicleAmmo 1 }])];
@@ -137,7 +137,7 @@ if ( _stronger ) then {
 //H-barrier ring
 private _distance = 16;
 private _dir = 0;
-private _protect = ["ia", "side", "priority", "HBarrier"] call BIS_fnc_GetCfgData;
+private _protect = ["ia", "side", "priority", "HBarrier"] call core_fnc_getSetting;
 for "_c" from 0 to 7 do {
 	private _pos = [_flatPos, _distance, _dir] call BIS_fnc_relPos;
 	private _barrier = _protect createVehicle _pos;
@@ -153,18 +153,18 @@ _dir = nil;
 _protect = nil;
 
 //spawn units
-private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
+private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 _groups append [_flatPos, 0, 4, 2, 0, 0, ([0,2] select (_isArti)), 2, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
 
 //markers
 private _cfg  = ["aa", "arti"] select (_isArti);
-private _title = ["ia", "side", "priority", _cfg, "title"] call BIS_fnc_GetCfgData;
+private _title = ["ia", "side", "priority", _cfg, "title"] call core_fnc_getSetting;
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
 _size = nil;
 
 //briefing
-private _briefing = ["ia", "side", "priority", "briefing"] call BIS_fnc_GetCfgData;
-private _desc = ["ia", "side", "priority", _cfg, "briefing"] call BIS_fnc_GetCfgData;
+private _briefing = ["ia", "side", "priority", "briefing"] call core_fnc_getSetting;
+private _desc = ["ia", "side", "priority", _cfg, "briefing"] call core_fnc_getSetting;
 [format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
 ["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
 _cfg = nil;
@@ -175,11 +175,11 @@ _desc = nil;
 private ["_frCoord", "_tickMax", "_tickMin"];
 if ( _isArti ) then {
 	_frCoord = getMarkerPos "FR";
-	_tickMax = ["ArtilleryTargetTickTimeMax"] call core_fnc_getConf;
-	_tickMin = ["ArtilleryTargetTickTimeMin"] call core_fnc_getConf;
+	_tickMax = ["ArtilleryTargetTickTimeMax"] call core_fnc_getParam;
+	_tickMin = ["ArtilleryTargetTickTimeMin"] call core_fnc_getParam;
 };
 
-private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
 while ( true ) do {
 	{
@@ -194,10 +194,10 @@ while ( true ) do {
 	} count [_tank1, _tank2];
 	
 	if ( (!alive _tank1) && (!alive _tank2) ) exitWith {
-		private _hint = ["ia", "side", "priority", "success"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "side", "priority", "success"] call core_fnc_getSetting;
 		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
 		_hint = nil;
-		private _notif = ["ia", "side", "priority", _cfg, "notification"] call BIS_fnc_GetCfgData;
+		private _notif = ["ia", "side", "priority", _cfg, "notification"] call core_fnc_getSetting;
 		["CompletedPriorityTarget", _notif] remoteExec ["common_fnc_globalNotification", 0, false];
 		_notif = nil;
 		[false, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;

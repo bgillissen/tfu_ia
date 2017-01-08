@@ -9,16 +9,16 @@ Description:
 	register map and gps draw eventHandler.
 */
 
-if ( (["mapTracker"] call core_fnc_getConf) == 0 ) exitWith {};
+if ( (["mapTracker"] call core_fnc_getParam) == 0 ) exitWith {};
 
-MT_sizeMan = ["mapTracker", "sizeMan"] call BIS_fnc_GetCfgData;
-MT_sizeLandVehicle = ["mapTracker", "sizeLandVehicle"] call BIS_fnc_GetCfgData;
-MT_sizeAir = ["mapTracker", "sizeAir"] call BIS_fnc_GetCfgData;
-MT_sizeShip = ["mapTracker", "sizeShip"] call BIS_fnc_GetCfgData;
-MT_shadow = ["mapTracker", "shadow"] call BIS_fnc_GetCfgData;
-MT_textSize = ["mapTracker", "textSize"] call BIS_fnc_GetCfgData;
-MT_textFont = ["mapTracker", "textFont"] call BIS_fnc_GetCfgData;
-MT_textOffset = ["mapTracker", "textOffset"] call BIS_fnc_GetCfgData;
+MT_sizeMan = ["mapTracker", "sizeMan"] call core_fnc_getSetting;
+MT_sizeLandVehicle = ["mapTracker", "sizeLandVehicle"] call core_fnc_getSetting;
+MT_sizeAir = ["mapTracker", "sizeAir"] call core_fnc_getSetting;
+MT_sizeShip = ["mapTracker", "sizeShip"] call core_fnc_getSetting;
+MT_shadow = ["mapTracker", "shadow"] call core_fnc_getSetting;
+MT_textSize = ["mapTracker", "textSize"] call core_fnc_getSetting;
+MT_textFont = ["mapTracker", "textFont"] call core_fnc_getSetting;
+MT_textOffset = ["mapTracker", "textOffset"] call core_fnc_getSetting;
 
 MT_mapEH = -1;
 MT_mapThread = [] spawn {
@@ -29,7 +29,7 @@ MT_mapThread = [] spawn {
 	MT_mapEH = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", {[false, (_this select 0)] call mapTracker_fnc_drawIcons}];
 };
 
-MT_gpsDist = ["mapTracker", "gpsDist"] call BIS_fnc_GetCfgData;
+MT_gpsDist = ["mapTracker", "gpsDist"] call core_fnc_getSetting;
 MT_gpsEH = -1;
 MT_gpsThread = [] spawn { 
 	disableSerialization;

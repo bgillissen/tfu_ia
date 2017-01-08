@@ -10,7 +10,7 @@ Description:
 params ["_ao"];
 
 private _coord = getMarkerPos _ao;
-private _size = ["AO_size"] call core_fnc_getConf;
+private _size = ["AO_size"] call core_fnc_getParam;
 //spawn units
 private _units = [_coord, _size] call AO_fnc_placeEnemies;
 
@@ -24,8 +24,8 @@ _trigger setTriggerStatements ["this","",""];
 private _radioTower = [_coord, _size, _trigger] call AO_fnc_placeRadioTower;
 
 //create markers
-private _circle = ["ia", "ao", "circle"] call BIS_fnc_GetCfgData;
-private _label = ["ia", "ao", "label"] call BIS_fnc_GetCfgData;
+private _circle = ["ia", "ao", "circle"] call core_fnc_getSetting;
+private _label = ["ia", "ao", "label"] call core_fnc_getSetting;
 private _color = ["colorBLUFOR", "colorOPFOR"] select (PLAYER_SIDE isEqualTo west);
 createMarker [_circle, _coord];
 _circle setMarkerColor _color;
@@ -42,16 +42,16 @@ _label = nil;
 _color = nil;
 
 //start messages
-[format[(["ia", "ao", "newHint"] call BIS_fnc_GetCfgData), _ao]] remoteExec ["common_fnc_globalHint", 0, false];
+[format[(["ia", "ao", "newHint"] call core_fnc_getSetting), _ao]] remoteExec ["common_fnc_globalHint", 0, false];
 ["NewMain", _ao] remoteExec ["common_fnc_globalNotification", 0, false];
-["NewSub", (["ia", "ao", "radioTower", "newNotif"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalNotification", 0, false];
+["NewSub", (["ia", "ao", "radioTower", "newNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
 
 //spawn cas thread
-if ( ["AO_cas"] call core_fnc_getConf ) then {
+if ( ["AO_cas"] call core_fnc_getParam ) then {
 	[_coord, _radioTower] spawn AO_fnc_threadCAS;
 };
 
-private _delay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData; 
+private _delay = ["ia", "checkDelay"] call core_fnc_getSetting; 
 
 //radioTower loop
 waitUntil { 
@@ -61,17 +61,17 @@ waitUntil {
 
 if ( !alive _radioTower ) then {
 	//radioTower has been destroyed
-	private _circle = ["ia", "ao", "radioTower", "circle"] call BIS_fnc_GetCfgData;
-	private _label = ["ia", "ao", "radioTower", "label"] call BIS_fnc_GetCfgData;
+	private _circle = ["ia", "ao", "radioTower", "circle"] call core_fnc_getSetting;
+	private _label = ["ia", "ao", "radioTower", "label"] call core_fnc_getSetting;
 	deleteMarker _circle;
 	deleteMarker _label;
 	_circle = nil;
 	_label = nil;
-	[(["ia", "ao", "radioTower", "endHint"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalHint", 0, false];
-	["CompletedSub", (["ia", "ao", "radioTower", "endNotif"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalNotification", 0, false];
+	[(["ia", "ao", "radioTower", "endHint"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalHint", 0, false];
+	["CompletedSub", (["ia", "ao", "radioTower", "endNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
 };
 
-_unitThreshold  = ["AO_unitThreshold"] call core_fnc_getConf;
+_unitThreshold  = ["AO_unitThreshold"] call core_fnc_getParam;
 //units loop
 waitUntil {
 	sleep _delay;
@@ -80,7 +80,7 @@ waitUntil {
 
 if ( !zeusMission && !AO_stop ) then {
 	//unit threshold has been reached
-	[format[(["ia", "ao", "endHint"] call BIS_fnc_GetCfgData), _ao]] remoteExec ["common_fnc_globalHint", 0, false];
+	[format[(["ia", "ao", "endHint"] call core_fnc_getSetting), _ao]] remoteExec ["common_fnc_globalHint", 0, false];
 	["CompletedMain", _ao] remoteExec ["common_fnc_globalNotification", 0, false];
 };
 //cleanUp

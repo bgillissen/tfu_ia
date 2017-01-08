@@ -8,7 +8,7 @@ Description:
 	it prevent player becoming a renegade by always returning 0 as rating modification
 */
 
-if ( (["noRenegade"] call core_fnc_getConf) == 0 ) exitWith {};
+if ( (["noRenegade"] call core_fnc_getParam) == 0 ) exitWith {};
 
 
 if ( isNil "NR_EH" ) then {

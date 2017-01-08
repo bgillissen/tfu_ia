@@ -1,6 +1,8 @@
 class SIDE {
 	tag = "SIDE";
 	class functions {
+		class serverPostInit { file="feats\ia\SIDE\serverPostInit.sqf"; };
+		class serverDestroy { file="feats\ia\SIDE\serverDestroy.sqf"; };
 		class aaFire { file="feats\ia\SIDE\aaFire.sqf"; };
 		class artiFire { file="feats\ia\SIDE\artiFire.sqf"; };
 		class addAction { file="feats\ia\SIDE\addAction.sqf"; };

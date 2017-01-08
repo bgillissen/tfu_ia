@@ -13,6 +13,6 @@ params ["_mustBeAssigned"];
 
 if ( !isCurator ) exitWith { false };
 
-if ( _mustBeAssigned ) exitWith { isAssigned };
+if ( _mustBeAssigned ) exitWith { isAssigned && isMultiplayer };
 
 !isAssigned

@@ -14,7 +14,7 @@ Description:
 ("side" call BIS_fnc_getParamValue);
 
 //check what is the players side
-missionNamespace setVariable ["PLAYER_SIDE", [east, west, independent] select (["side"] call core_fnc_getConf), true];
+missionNamespace setVariable ["PLAYER_SIDE", [east, west, independent] select (["side"] call core_fnc_getParam), true];
 
 if ( PLAYER_SIDE isEqualTo east ) then {
 #ifdef DEBUG
@@ -24,7 +24,7 @@ if ( PLAYER_SIDE isEqualTo east ) then {
 	missionNamespace setVariable ["PLAYER_SIDEDSP", "OPFOR", true];
 	missionNamespace setVariable ["OPFOR_ARE_ENEMY", false, true];
 	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", true, true];
-	missionNamespace setVariable ["IND_ARE_ENEMY", [false, true] select (["indEnemy"] call core_fnc_getConf), true];
+	missionNamespace setVariable ["IND_ARE_ENEMY", [false, true] select (["indEnemy"] call core_fnc_getParam), true];
 };
 if ( PLAYER_SIDE isEqualTo west ) then {
 #ifdef DEBUG
@@ -34,7 +34,7 @@ if ( PLAYER_SIDE isEqualTo west ) then {
 	missionNamespace setVariable ["PLAYER_SIDEDSP", "BLUFOR", true];
 	missionNamespace setVariable ["OPFOR_ARE_ENEMY", true, true];
 	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", false, true];
-	missionNamespace setVariable ["IND_ARE_ENEMY", [false, true] select (["indEnemy"] call core_fnc_getConf), true];
+	missionNamespace setVariable ["IND_ARE_ENEMY", [false, true] select (["indEnemy"] call core_fnc_getParam), true];
 };
 if ( PLAYER_SIDE isEqualTo independent ) then {
 #ifdef DEBUG
@@ -42,8 +42,8 @@ if ( PLAYER_SIDE isEqualTo independent ) then {
 #endif
 	missionNamespace setVariable ["PLAYER_SIDETXT", "IND", true];
 	missionNamespace setVariable ["PLAYER_SIDEDSP", "INDEPENDENT", true];
-	missionNamespace setVariable ["OPFOR_ARE_ENEMY", [false, true] select (["opforEnemy"] call core_fnc_getConf), true];
-	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", [false, true] select (["bluforEnemy"] call core_fnc_getConf), true];
+	missionNamespace setVariable ["OPFOR_ARE_ENEMY", [false, true] select (["opforEnemy"] call core_fnc_getParam), true];
+	missionNamespace setVariable ["BLUFOR_ARE_ENEMY", [false, true] select (["bluforEnemy"] call core_fnc_getParam), true];
 	missionNamespace setVariable ["IND_ARE_ENEMY", false, true];
 };
 
@@ -93,21 +93,4 @@ if ( IND_ARE_ENEMY ) then {
 #endif
 
 publicVariable "ALLIES";
-publicVariable "ENEMIES";		
-		
-//create player's groups
-{
-	_x params ["_varName", "_groupID", "_color"];
-	_color = _color call {
-		if ( _this isEqualTo "Black" ) exitWith { 1 };
-		if ( _this isEqualTo "Red" ) exitWith { 2 };
-		if ( _this isEqualTo "Green" ) exitWith { 3 };
-		if ( _this isEqualTo "Blue" ) exitWith { 4 };
-		if ( _this isEqualTo "Yellow" ) exitWith { 5 };
-		if ( _this isEqualTo "Orange" ) exitWith { 6 };
-		7;
-	};
-	private _group = createGroup PLAYER_SIDE;
-	_group setGroupIdGlobal [_groupID, format["GroupColor%1", _color]];
-	missionNamespace setVariable [format["SQUAD_%1", _varName], _group, true];
-} count (["squads"] call BIS_fnc_GetCfgData);
+publicVariable "ENEMIES";

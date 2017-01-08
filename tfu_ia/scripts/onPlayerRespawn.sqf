@@ -45,10 +45,10 @@ waitUntil {!isNull player};
 waitUntil {player == player};
 
 //features onRespawn (player side)(local)
-["PLAYER", "onRespawn", [player]] call core_fnc_featEvent;
+["PLAYER", "respawn", [player]] call core_fnc_featEvent;
 
 //features onRespawn (server side)(remote)
-["SERVER", "onRespawn", [player]] call core_fnc_featEvent;
+["SERVER", "respawn", [player]] call core_fnc_featEvent;
 
 #ifdef DEBUG
 diag_log "onPlayerRespawn.sqf END --------------------------------------------------------------------------------------------------------";

@@ -13,7 +13,7 @@ params ["_coord", "_size", "_amount", "_skill", "_patrolSize", "_altitude"];
 
 if ( _amount <= 0 ) exitWith {[]};
 
-private _doLock = true; //( (["ia", "lockVeh"] call BIS_fnc_GetCfgData) == 1 );
+private _doLock = ( (["ia", "lockVeh"] call core_fnc_getSetting) == 1 );
 
 private _groups = [];
 

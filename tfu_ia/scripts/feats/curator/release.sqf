@@ -23,7 +23,7 @@ params ["_player"];
 	};
 } count curatorAssigned;
 
-private _msg = format[(["curator", "descendMsg"] call BIS_fnc_getCfgData), 
+private _msg = format[(["curator", "descendMsg"] call core_fnc_getSetting), 
                       (count curatorAssigned), 
   	  	  	  	  	  TOT_CURATOR, 
   	  	  	  	  	  (name _player)];

@@ -9,7 +9,7 @@ Description:
 
 if ( count(_this) == 0 ) ewitWith {};
 
-if ( !(["vehicleCrew"] call core_fnc_getConf) ) exitWith{};
+if ( !(["vehicleCrew"] call core_fnc_getParam) ) exitWith{};
 
 params ["_when", "_thread"];
 

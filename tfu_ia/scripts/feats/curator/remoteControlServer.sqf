@@ -1,14 +1,12 @@
 params ["_gm", "_player", "_unit", "_ctrl"];
 
-diag_log "SERVER remoteControl";
-
 private "_msg"; 
 
 if ( _ctrl ) then {
-	_msg = ["curator", "takeOverMsg"] call BIS_fnc_getCfgData;	
+	_msg = ["curator", "takeOverMsg"] call core_fnc_getSetting;	
 	curatorUnit = _unit;
 } else {
-	_msg = ["curator", "releaseMsg"] call BIS_fnc_getCfgData;
+	_msg = ["curator", "releaseMsg"] call core_fnc_getSetting;
 	curatorUnit = objNull;
 };
 
@@ -18,8 +16,6 @@ private _target = [];
 {
 	_target append [owner (_x select 2)];
 } count curatorAssigned;
-
-diag_log format["remoteControl systemChat target : %1", _target];
 
 [_target, _msg] call common_fnc_systemChat;
 

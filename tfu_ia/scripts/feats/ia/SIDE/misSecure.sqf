@@ -45,8 +45,8 @@ if ( !isNil "AO_circle" ) then {
 private _baseCoord = getMarkerPos "SZ";
 private _cargoType = "Land_Cargo_House_V3_F";
 private _flatPos = [0,0,0];
-private _minDistFromBase = ["ia", "side", "minDistFromBase"] call BIS_fnc_GetCfgData;
-private _minDistFromAO = ["ia", "side", "minDistFromAO"] call BIS_fnc_GetCfgData;
+private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
+private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
 private _found = false;
 private "_flatPos";
 
@@ -73,16 +73,16 @@ _minDistFromBase = nil;
 _minDistFromAO = nil;
 _found = nil;
 
-//private _isRadar = [false, true] select (random 100 <= (["ia", "side", "secure", "radarProb"] call BIS_fnc_GetCfgData));
+//private _isRadar = [false, true] select (random 100 <= (["ia", "side", "secure", "radarProb"] call core_fnc_getSetting));
 _isRadar = true;
 private ["_title", "_desc", "_pool"];
 //if ( _isRadar ) then {
-	_title = ["ia", "side", "secure", "radar", "title"] call BIS_fnc_GetCfgData;
-	_desc = ["ia", "side", "secure", "radar", "briefing"] call BIS_fnc_GetCfgData;
+	_title = ["ia", "side", "secure", "radar", "title"] call core_fnc_getSetting;
+	_desc = ["ia", "side", "secure", "radar", "briefing"] call core_fnc_getSetting;
 	 _pool = ["Land_Radar_Small_F"];
 /*} else {
-	_title = ["ia", "side", "secure", "chopper", "title"] call BIS_fnc_GetCfgData;
-	_desc = ["ia", "side", "secure", "chopper", "briefing"] call BIS_fnc_GetCfgData;
+	_title = ["ia", "side", "secure", "chopper", "title"] call core_fnc_getSetting;
+	_desc = ["ia", "side", "secure", "chopper", "briefing"] call core_fnc_getSetting;
 	_pool = S_aPatrol;
 };*/
 
@@ -100,7 +100,7 @@ _cargo setDir random 360;
 (getPos _cargo) params ["_cargoX", "_cargoY", "_cargoZ"];
 
 //table, laptop
-private _tableType = ["ia", "side", "table"] call BIS_fnc_GetCfgData;
+private _tableType = ["ia", "side", "table"] call core_fnc_getSetting;
 private _table = _tableType createVehicle [_cargoX, _cargoY, (_cargoZ + 15)];
 _tableType = nil;
 
@@ -109,7 +109,7 @@ _table enableSimulationGlobal true;
 
 sleep 0.5;
 
-private _laptopType = selectRandom (["ia", "side", "laptop"] call BIS_fnc_GetCfgData);
+private _laptopType = selectRandom (["ia", "side", "laptop"] call core_fnc_getSetting);
 private _laptop = _laptopType createVehicle [_cargoX, _cargoY, (_cargoZ + 15)];
 
 _laptopType = nil;
@@ -118,7 +118,7 @@ _laptopType = nil;
 _laptop enableSimulationGlobal false;
 _laptop setDir (getdir _table - 180);
 
-private _action = ["ia", "side", "secure", "action"] call BIS_fnc_GetCfgData;
+private _action = ["ia", "side", "secure", "action"] call core_fnc_getSetting;
 [_laptop, _action] call SIDE_fnc_addAction;
 _action = nil;
 
@@ -134,7 +134,7 @@ _skill = nil;
 private _groups = [];
 
 //spawn units in watch towers
-private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
+private _skill = ["ia", "side", "garrisonSkill"] call core_fnc_getSetting;
 {
 	_groups append [([_x, _skill] call IA_fnc_forcedGarrison)];
 	true
@@ -142,7 +142,7 @@ private _skill = ["ia", "side", "garrisonSkill"] call BIS_fnc_GetCfgData;
 _skill = nil;
 
 //spawn patrols
-private _size = ["ia", "side", "size"] call BIS_fnc_GetCfgData;
+private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 _groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 1, (_size + (random 150))] call SIDE_fnc_placeEnemies);
 
 diag_log "--------------";
@@ -152,7 +152,7 @@ diag_log "--------------";
 //markers
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
 //briefing
-private _briefing = ["ia", "side", "briefing"] call BIS_fnc_GetCfgData;
+private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
 [format[_briefing, _title, _desc]] call common_fnc_globalHint;
 ["NewSideMission", _title] call common_fnc_globalNotification;
 _title = nil;
@@ -160,18 +160,18 @@ _briefing = nil;
 _desc = nil;
 
 
-private _checkDelay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
+private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
 while { true } do {
 	if (!alive _cargo || !alive _obj) exitWith {
-		private _fail = ["ia", "side", "failHint"] call BIS_fnc_GetCfgData;
+		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		[_fail] call common_fnc_globalHint;
 		[false, _flatPos, _size, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
 		//plan message
-		private _planted = ["ia", "side", "secure", "planted"] call BIS_fnc_GetCfgData;
-		private _delay = ["ia", "side", "boomDelay"] call BIS_fnc_GetCfgData;
+		private _planted = ["ia", "side", "secure", "planted"] call core_fnc_getSetting;
+		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
 		[PLAYER_SIDE, "HQ", format[_planted, _delay]] call common_fnc_globalSideChatServer;
 		//time to move away
 		sleep _delay;
@@ -184,7 +184,7 @@ while { true } do {
 		deleteVehicle _table;
 		//give a reward
 		private _reward = call IA_fnc_giveReward;
-		private _hint = ["ia", "side", "successHint"] call BIS_fnc_GetCfgData;
+		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		[format[_hint, _reward]] call common_fnc_globalHint;
 		//cleanup
 		[false, _flatPos, _size, _groups, [_cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;

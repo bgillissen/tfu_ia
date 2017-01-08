@@ -17,12 +17,12 @@ if ( isNil "AO_casGroup") then {
 	AO_casGroup = createGroup ENEMY_SIDE;
 };
 
-private _delay = ["ia", "ao", "checkDelay"] call BIS_fnc_GetCfgData;
-private _checkDelay = ["ia", "ao", "cas", "checkDelay"] call BIS_fnc_GetCfgData; 
-private _cooldown = ["ia", "ao", "cas", "cooldown"] call BIS_fnc_GetCfgData;
-private _infAmmo = ["ia", "ao", "cas", "infiniteAmmo"] call BIS_fnc_GetCfgData;
-private _infFuel = ["ia", "ao", "cas", "infiniteFuel"] call BIS_fnc_GetCfgData;
-private _range = ["ia", "ao", "cas", "searchRadius"] call BIS_fnc_GetCfgData;
+private _delay = ["ia", "ao", "checkDelay"] call core_fnc_getSetting;
+private _checkDelay = ["ia", "ao", "cas", "checkDelay"] call core_fnc_getSetting; 
+private _cooldown = ["ia", "ao", "cas", "cooldown"] call core_fnc_getSetting;
+private _infAmmo = ["ia", "ao", "cas", "infiniteAmmo"] call core_fnc_getSetting;
+private _infFuel = ["ia", "ao", "cas", "infiniteFuel"] call core_fnc_getSetting;
+private _range = ["ia", "ao", "cas", "searchRadius"] call core_fnc_getSetting;
 
 while {(alive _radioTower)} do {
 	if ( !AO_cas ) then {
@@ -39,13 +39,13 @@ while {(alive _radioTower)} do {
 		AO_casGroup setCombatMode "RED";
 		AO_casGroup setBehaviour "COMBAT";
 		AO_casGroup setSpeedMode "FULL";
-		[(units enemyCasGroup), (["ia", "ao", "cas", "skill"] call BIS_fnc_GetCfgData)] call common_fnc_setSkill;
+		[(units enemyCasGroup), (["ia", "ao", "cas", "skill"] call core_fnc_getSetting)] call common_fnc_setSkill;
 		[AO_casGroup, _aoCoord] call BIS_fnc_taskAttack;
 		{
 			_x addCuratorEditableObjects [[_pilot], false];
 			_x addCuratorEditableObjects [[_cas], false];
 		} count allCurators;
-		["EnemyJet", (["ia", "ao", "cas", "newNotif"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalNotification", 0, false];
+		["EnemyJet", (["ia", "ao", "cas", "newNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
 		AO_cas = true;
 		 
 		waitUntil {
@@ -69,7 +69,7 @@ while {(alive _radioTower)} do {
 			deleteVehicle _pilot;
 			deleteVehicle _cas;
 		} else {
-			["EnemyJetDown", (["ia", "ao", "cas", "endNotif"] call BIS_fnc_GetCfgData)] remoteExec ["common_fnc_globalNotification", 0, false];
+			["EnemyJetDown", (["ia", "ao", "cas", "endNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
 		};
 	};
 	[(_cooldown + (random  _cooldown)), _checkDelay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;

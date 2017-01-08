@@ -31,15 +31,15 @@ if ((group _unit) == (group player)) then {
 };
 
 if (format ["%1", _unit getVariable "BTC_need_revive"] == "1") exitWith { 
-	(["mapTracker", "colorNeedRevive"] call BIS_fnc_GetCfgData) 
+	(["mapTracker", "colorNeedRevive"] call core_fnc_getSetting) 
 };
 
 private _c = (side _unit) call {
-	if ( _this == east) exitWith { (["mapTracker", "colorEast"] call BIS_fnc_GetCfgData) };
-	if ( _this == west) exitWith { (["mapTracker", "colorWest"] call BIS_fnc_GetCfgData) };
-	if ( _this == independent) exitWith { (["mapTracker", "colorInd"] call BIS_fnc_GetCfgData) };
-	if ( _this == civilian) exitWith { (["mapTracker", "colorCiv"] call BIS_fnc_GetCfgData) };
-	(["mapTracker", "colorDft"] call BIS_fnc_GetCfgData)
+	if ( _this == east) exitWith { (["mapTracker", "colorEast"] call core_fnc_getSetting) };
+	if ( _this == west) exitWith { (["mapTracker", "colorWest"] call core_fnc_getSetting) };
+	if ( _this == independent) exitWith { (["mapTracker", "colorInd"] call core_fnc_getSetting) };
+	if ( _this == civilian) exitWith { (["mapTracker", "colorCiv"] call core_fnc_getSetting) };
+	(["mapTracker", "colorDft"] call core_fnc_getSetting)
 };
 
 (_c + [_a])

@@ -11,12 +11,12 @@ Description:
 */
 params ["_coord", "_text", "_size"];
 
-private _size = ["ia", "side", "size"] call BIS_fnc_getCfgData;
+private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 private _color = ["colorBLUFOR", "colorOPFOR"] select (PLAYER_SIDE isEqualTo west);
 private _fuzzyCoord = [(((_coord select 0) - (_size/2)) + (random _size)),
 					   (((_coord select 1) - (_size/2)) + (random _size)), 0];
-private _circle = ["ia", "side", "circle"] call BIS_fnc_getCfgData;
-private _label = ["ia", "side", "label"] call BIS_fnc_getCfgData;
+private _circle = ["ia", "side", "circle"] call core_fnc_getSetting;
+private _label = ["ia", "side", "label"] call core_fnc_getSetting;
 
 createMarker [_circle, _fuzzyCoord];
 _circle setMarkerColor _color;

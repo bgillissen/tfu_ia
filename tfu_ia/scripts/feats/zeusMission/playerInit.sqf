@@ -1,6 +1,6 @@
 
-private _start = (["zeusMission", "startAction"] call BIS_fnc_GetCfgData);
-private _stop = (["zeusMission", "stopAction"] call BIS_fnc_GetCfgData); 
+private _start = (["zeusMission", "startAction"] call core_fnc_getSetting);
+private _stop = (["zeusMission", "stopAction"] call core_fnc_getSetting); 
 
 {
 	{

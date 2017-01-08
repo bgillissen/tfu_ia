@@ -30,7 +30,7 @@ if ( isNil "curator_EH" ) then {
 	"curatorUnit" addPublicVariableEventHandler {
 		remoteUnit = _this select 1;
 	};
-	private _doMsg = [false, true] select (["curator", "msgOnTakeOver"] call BIS_fnc_getCfgData);
+	private _doMsg = [false, true] select (["curator", "msgOnTakeOver"] call core_fnc_getSetting);
 	for "_curSlot" from 0 to (TOT_CURATOR - 1) do {
 		private _gm = missionNamespace getVariable format["zeus_%1", _curSlot];   
 		_gm addEventHandler ["CuratorGroupPlaced", {_this call curator_fnc_placeGrpPlayer}];
@@ -45,10 +45,10 @@ if ( isNil "curator_EH" ) then {
 };
 
 //adding actions
-private _request = ["curator", "requestAction"] call BIS_fnc_GetCfgData;
-private _release = ["curator", "releaseAction"] call BIS_fnc_GetCfgData;
-private _web = (["curator", "web"] call BIS_fnc_GetCfgData == 1);
-private _reload  = ["curator", "reloadAction"] call BIS_fnc_GetCfgData;
+private _request = ["curator", "requestAction"] call core_fnc_getSetting;
+private _release = ["curator", "releaseAction"] call core_fnc_getSetting;
+private _web = (["curator", "web"] call core_fnc_getSetting == 1);
+private _reload  = ["curator", "reloadAction"] call core_fnc_getSetting;
 
 {
 	{

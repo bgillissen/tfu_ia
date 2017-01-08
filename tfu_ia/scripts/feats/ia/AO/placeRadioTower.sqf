@@ -30,9 +30,9 @@ _radioTower setVectorUp [0,0,1];
 //randomize marker position, pick the right color, then create them
 private _fuzzyCoord = [((_rtPos select 0) - 300) + (random 600), ((_rtPos select 1) - 300) + (random 600), 0];
 private _color = ["colorBLUFOR", "colorOPFOR"] select (PLAYER_SIDE isEqualTo west);
-private _circle = ["ia", "ao", "radioTower", "circle"] call BIS_fnc_GetCfgData;
-private _label = ["ia", "ao", "radioTower", "label"] call BIS_fnc_GetCfgData;
-private _size =  ["ia", "ao", "radioTower", "size"] call BIS_fnc_GetCfgData;
+private _circle = ["ia", "ao", "radioTower", "circle"] call core_fnc_getSetting;
+private _label = ["ia", "ao", "radioTower", "label"] call core_fnc_getSetting;
+private _size =  ["ia", "ao", "radioTower", "size"] call core_fnc_getSetting;
 createMarker [_circle, _fuzzyCoord];
 _circle setMarkerColor _color;
 _circle setMarkerShape "ELLIPSE";
@@ -48,7 +48,7 @@ _color = nil;
 _fuzzyCoord = nil;
 
 //minefield or not ?
-if ( random 100 < (["AO_minedRTProb"] call core_fnc_getConf) ) then {
+if ( random 100 < (["AO_minedRTProb"] call core_fnc_getParam) ) then {
 	[_rtPos] call AO_fnc_placeMinefield;
 	_label setMarkerText "Radiotower (Minefield)";
 } else {

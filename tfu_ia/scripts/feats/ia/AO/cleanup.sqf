@@ -11,12 +11,12 @@ Description:
 
 params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
 
-deleteMarker (["ia", "ao", "circle"] call BIS_fnc_GetCfgData);
-deleteMarker (["ia", "ao", "label"] call BIS_fnc_GetCfgData);
+deleteMarker (["ia", "ao", "circle"] call core_fnc_getSetting);
+deleteMarker (["ia", "ao", "label"] call core_fnc_getSetting);
 
 if ( !_force ) then {
-	private _delay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
-	private _dist = ["ia", "deleteDistance"] call BIS_fnc_GetCfgData;
+	private _delay = ["ia", "checkDelay"] call core_fnc_getSetting;
+	private _dist = ["ia", "deleteDistance"] call core_fnc_getSetting;
 	waitUntil {
 		sleep _delay;
 		(({((_x distance _aoCoord) < _dist)} count allPlayers) isEqualTo 0)

@@ -24,4 +24,4 @@ if ( isNil "_radio" ) then {
 
 {
 	[_radio, (_forEachIndex + 1), _x] call TFAR_fnc_SetChannelFrequency;
-} forEach (["radioFreq", "shortRange"] call BIS_fnc_GetCfgData);
+} forEach (["radioFreq", "shortRange"] call core_fnc_getSetting);

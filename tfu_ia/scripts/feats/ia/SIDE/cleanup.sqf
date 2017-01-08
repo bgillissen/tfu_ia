@@ -11,12 +11,12 @@ Description:
 
 params ["_force", "_coord", "_radius", "_groups", "_objects"];
 
-deleteMarker (["ia", "side", "circle"] call BIS_fnc_GetCfgData);
-deleteMarker (["ia", "side", "label"] call BIS_fnc_GetCfgData);
+deleteMarker (["ia", "side", "circle"] call core_fnc_getSetting);
+deleteMarker (["ia", "side", "label"] call core_fnc_getSetting);
 
 if ( !_force ) then {
-	private _delay = ["ia", "checkDelay"] call BIS_fnc_GetCfgData;
-	private _dist = ["ia", "deleteDistance"] call BIS_fnc_GetCfgData;
+	private _delay = ["ia", "checkDelay"] call core_fnc_getSetting;
+	private _dist = ["ia", "deleteDistance"] call core_fnc_getSetting;
 	waitUntil {
 		sleep _delay;
 		( ({((_x distance _coord) < _dist)} count allPlayers) isEqualTo 0 )

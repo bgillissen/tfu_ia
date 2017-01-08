@@ -1,6 +1,8 @@
 class mapTracker {
 	tag = "mapTracker";
 	class functions {
+		class playerDestroy { file="feats\mapTracker\playerDestroy.sqf"; };
+		class playerInit { file="feats\mapTracker\playerInit.sqf"; };
 		class iconColor { file="feats\mapTracker\iconColor.sqf"; };
 		class iconType { file="feats\mapTracker\iconType.sqf"; };
 		class iconSize { file="feats\mapTracker\iconSize.sqf"; };
