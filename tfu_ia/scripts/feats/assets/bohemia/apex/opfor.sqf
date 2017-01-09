@@ -43,7 +43,7 @@ private _heli = [];
 private _plane = [];
 private _tank = [];
 
-_out set [AVVO, [_heli, _plane, _tank]];
+_out set [AV_AO, [_heli, _plane, _tank]];
 
 //------------------------------------------------------------ supplyDrop Apex OPFOR
 
@@ -56,7 +56,7 @@ private _ammo = [];
 private _crates = [];
 private _vehicles = [];
 
-_out set [SDVO, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
+_out set [SD_AO, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
 //------------------------------------------------------------ Rewards Apex OPFOR
 

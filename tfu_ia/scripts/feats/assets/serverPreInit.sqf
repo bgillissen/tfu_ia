@@ -17,7 +17,7 @@ MODS = [];
 		_name = (configName _x); 
 	};
 	private _cfgPatch = getText(_x >> "cfgPatch");
-	private _sides = getArray(_x >> "sides");
+	private _sides = (getArray(_x >> "sides") call common_fnc_numberToSide);
 	private _isPresent = true;
 	if ( !(_cfgPatch isEqualto "") ) then {
 		_isPresent = isClass(configFile >> "CfgPatches" >> _cfgPatch);

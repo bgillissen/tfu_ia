@@ -5,8 +5,6 @@ _filters pushback "getNumber( _x >> 'scope' ) isEqualTo 2";
 
 private _cond = format["((%1))", (_filters joinString ") && (")];
 
-diag_log _cond;
-
 if ( isNil "_apply" ) exitWith {
 	 _cond configClasses ( configFile >> _config )
 };

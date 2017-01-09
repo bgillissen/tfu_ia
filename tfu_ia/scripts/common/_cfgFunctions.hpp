@@ -14,7 +14,9 @@ class common {
 		class globalSideChatServer { file="common\globalSideChatServer.sqf"; };
 		class globalSideChatPlayer { file="common\globalSideChatPlayer.sqf"; };
 		class implent { file="common\implent.sqf"; };
+		class isCopilot { file="common\isCopilot.sqf"; };
 		class isBlacklisted { file="common\isBlacklisted.sqf"; };
+		class numberToSide { file="common\numberToSide.sqf"; };
 		class setLoadout { file="common\setLoadout.sqf"; };
 		class setCargo { file="common\setCargo.sqf"; };
 		class setSkill { file="common\setSkill.sqf"; };

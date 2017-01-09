@@ -7,9 +7,9 @@ Description:
 	implent vanilla assets
 */
 
-private _data = [["VC", (call vanilla_fnc_common), [east, west, independent], false],
-                 ["VO", (call vanilla_fnc_opfor), [east]],
-                 ["VB", (call vanilla_fnc_blufor), [west]],
-                 ["VI", (call vanilla_fnc_ind), [independent]]];
+private _data = [["VC", (call vanilla_fnc_common), [0, 1, 2], false],
+                 ["VO", (call vanilla_fnc_opfor), [0]],
+                 ["VB", (call vanilla_fnc_blufor), [1]],
+                 ["VI", (call vanilla_fnc_ind), [2]]];
 
 ["vanilla", _data] call assets_fnc_implent;

@@ -7,5 +7,6 @@ class viewDistance {
 		class open { file="feats\viewDistance\open.sqf"; };
 		class playerGetIn { file="feats\viewDistance\playerGetIn.sqf"; };
 		class playerGetOut { file="feats\viewDistance\playerGetOut.sqf"; };
+		class playerInit { file="feats\viewDistance\playerInit.sqf"; };
 	};
 };

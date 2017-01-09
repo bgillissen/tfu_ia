@@ -27,7 +27,10 @@ private _veh = vehicle player;
 
 if ( _veh isEqualTo player) exitWith { false };
 
-if ( !(driver _veh isEqualTo player) ) exitWith { false };
+private _isDriver = (driver _veh isEqualTo player);
+private _isCopilot = ([_veh, player] call common_fnc_isCopilot);
+
+if ( !_isDriver && !_isCopliot ) exitWith { false };
 
 _isSD = _veh getVariable "supplyDrop";
 if ( isNil "_isSD" ) exitWith { false };

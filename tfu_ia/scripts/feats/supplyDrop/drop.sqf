@@ -32,15 +32,15 @@ Return:
 	nothing
 */
 
-params ["_veh"];
+params ["_target", "_caller", "_id", "_args"];
 
-[_veh] spawn {
-	params ["_veh"];
-	
+_caller spawn {
+	_veh = vehicle _this;
+
 	SD_avail = false;
 	publicVariable "SD_avail";
 	
-	private _doChute = (position (_veh select 2) >= (["supplyDrop", "minChuteAltitude"] call core_fnc_getSetting) ); 
+	private _doChute = ( ((position _veh) select 2) >= (["supplyDrop", "minChuteAltitude"] call core_fnc_getSetting) ); 
 	
 	private _chute = objNull;
 	private ["_crate", "_posCrate"];
@@ -55,20 +55,19 @@ params ["_veh"];
 		
 		_crate = createVehicle [(selectRandom SD_crates), position _chute, [], 0, 'NONE'];
 		_crate attachTo [_chute, [0, 0, -1.3]];
-		_posCrate = position _crate;
 	} else {
-		private _posVeh = (getPos _veh);
-		//TODO need a relative pos (depends on veh, rear for planes, left for choppers
-		_posCrate = [0,0,0];
-		_crate = createVehicle [(selectRandom SD_crates), _posCrate, [], 0, 'NONE'];
+		_crate = createVehicle [(selectRandom SD_crates), [0,0,0], [], 0, 'NONE'];
+		private _relPos = _veh call {
+			if ( _this isKindOf "Helicopter" ) exitWith { [3, 1.5, -1] };
+			[0, -10, 0]
+		};
+		_crate attachTo [_veh, _relPos];
+		 detach _crate;
 		_crate enableSimulationGlobal true;
 	};
+	private _posCrate = position _crate;
 	_crate allowdamage false;
 	
-	private _light = ["supplyDrop", "light"] call core_fnc_getSetting;
-	_light = createVehicle [_light, _posCrate, [], 0, 'NONE'];
-	_light attachTo [_crate,[_posCrate select 0, _posCrate select 1, 5]];
-
 	[_crate, SD_backpacks, SD_items, SD_weapons, SD_ammo] call common_fnc_setCargo;
 
 	private _from = ["supplyDrop", "msgFrom"] call core_fnc_getSetting;
@@ -79,28 +78,31 @@ params ["_veh"];
 	_from = nil;
 	_msg = nil;
 	
-	waitUntil {
-		sleep 0.2;
-		( position _crate select 2 < 1 || isNull _chute )
+	if ( _doChute ) then {
+		waitUntil {
+			sleep 0.2;
+			( position _crate select 2 < 1 || isNull _chute )
+		};
+		detach _crate;
+		_crate enableSimulationGlobal true;
+		//to make it touch the ground next to the crate, it's needed or it never collapse
+		_chute setPos [(_posCrate select 0) + 0.5 , (_posCrate select 1) + 0.5, (_posCrate select 2)];
+	} else {
+		waitUntil {
+			sleep 0.2;
+			(velocity _crate) params ["_x", "_y", "_z"];
+			( _x < 0.1 && _y < 0.1 && _z < 0.1)
+		};
 	};
 	
-	if ( _doChute ) then {
-		detach _crate;
-	};
-
 	_posCrate = position _crate;
 	
-	_crate setPos [(_posCrate select 0), (_posCrate select 1), 0];
-	_crate setVectorUp [0,0,1];
-	//to make it touch the ground next to the crate, it's needed or it never collapse
-	if ( _doChute ) then {
-		_crate enableSimulationGlobal true;
-		_chute setPos [(_posCrate select 0) + 0.5 , (_posCrate select 1) + 0.5, (_posCrate select 2)];
-	};
-
 	private _smoke = ["supplyDrop", "smoke"] call core_fnc_getSetting;
-	_smoke = _smoke createVehicle [_posCrate select 0, _posCrate select 1, 5];
+	_smoke = _smoke createVehicle [_posCrate select 0, _posCrate select 1, 2];
 	
+	private _light = ["supplyDrop", "light"] call core_fnc_getSetting;
+	_light = _light createVehicle [(_posCrate select 0) + 0.5, (_posCrate select 1) + 0.5, 2];
+
 	[[_crate, _light, _smoke], false] call curator_fnc_addEditable;
 	
 	SD_spawnedCrates append [[_crate, _chute, _light, _smoke]];

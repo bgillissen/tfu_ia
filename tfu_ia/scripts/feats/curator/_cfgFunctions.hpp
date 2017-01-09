@@ -13,6 +13,8 @@ class curator {
 		class placeGrpServer { file="feats\curator\placeGrpServer.sqf"; };
 		class placeObjPlayer { file="feats\curator\placeObjPlayer.sqf"; };
 		class placeObjServer { file="feats\curator\placeObjServer.sqf"; };
+		class playerInit { file="feats\curator\playerInit.sqf"; };
+		class playerPostInit { file="feats\curator\playerPostInit.sqf"; };
 		class release { file="feats\curator\release.sqf"; };
 		class reload { file="feats\curator\reload.sqf"; };
 		class remoteControl { file="feats\curator\remoteControl.sqf"; };
