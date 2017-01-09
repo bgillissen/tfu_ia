@@ -16,10 +16,10 @@ BTC_r_med_fa        = 1;											//0 for only first aid kit, 1 if you don't ha
 BTC_r_cpr_time      = 20;
 BTC_r_trans_ratio   = 100;
 BTC_revive_time_min = 3;
-BTC_revive_time_max = ["Revive_bleedout"] call core_fnc_getParam;
-BTC_who_can_revive  = ["revive", "btc", "medicClass"] call core_fnc_getSetting;
+BTC_revive_time_max = (["btc_bleedout"] call core_fnc_getParam);
+BTC_who_can_revive  = (["revive", "btc", "medicClass"] call core_fnc_getSetting);
 BTC_loop_check      = 1;
-BTC_disable_respawn = ["Revive_noRespawn"] call core_fnc_getParam;
+BTC_disable_respawn = (["btc_noRespawn"] call core_fnc_getParam);
 BTC_respawn_gear    = 1;
 BTC_active_lifes    = 10;
 BTC_lifes           = 999;
@@ -34,14 +34,14 @@ BTC_respawn_time    = 3;
 BTC_active_mobile   = 0;											//Active mobile respawn (You have to put in map the vehicle and give it a name. Then you have to add one object per side to move to the mobile (BTC_base_flag_west,BTC_base_flag_east) - (1 = yes, 0 = no))
 BTC_mobile_respawn  = 0;											//Active the mobile respawn fnc (1 = yes, 0 = no)
 BTC_mobile_respawn_time = 30;										//Secs delay for mobile vehicle to respawn
-BTC_need_first_aid = ["Revive_needFaks"] call core_fnc_getParam;		//You need a first aid kit to revive (1 = yes, 0 = no)
+BTC_need_first_aid = (["btc_needFaks"] call core_fnc_getParam);		//You need a first aid kit to revive (1 = yes, 0 = no)
 BTC_pvp = 0; 														//(disable the revive option for the enemy)
 
-call compile preprocessFile "feats\revive\functions.sqf";
+call compile preprocessFile "feats\revive\btc\functions.sqf";
 
 BTC_injured_marker = 0;
-BTC_3d_can_see     = ["revive", "btc", "medicClass"] call core_fnc_getSetting;
-BTC_3d_distance    = ["Revive_distance"] call core_fnc_getParam;
+BTC_3d_can_see     = (["revive", "btc", "medicClass"] call core_fnc_getSetting);
+BTC_3d_distance    = (["btc_distance"] call core_fnc_getParam);
 BTC_3d_icon_size   = 0.5;
 BTC_3d_icon_color  = [1,0,0,1];										// Red
 BTC_dlg_on_respawn = 0;												//1 = Mobile only - 2 Leader group and mobile - 3 = Units group and mobile - 4 = All side units and mobile

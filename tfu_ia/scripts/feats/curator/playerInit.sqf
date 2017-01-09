@@ -21,9 +21,7 @@ if ( isNil "curator_EH" ) then {
 	};
 	isAssigned = false;
 	"curatorAssigned" addPublicVariableEventHandler {
-		diag_log "curatorAssigned EH";
 		curatorAssigned = _this select 1;
-		diag_log curatorAssigned;
 		isAssigned = [player] call curator_fnc_isAssigned;
 	};
 	remoteUnit = objNull;
@@ -36,7 +34,6 @@ if ( isNil "curator_EH" ) then {
 		_gm addEventHandler ["CuratorGroupPlaced", {_this call curator_fnc_placeGrpPlayer}];
 		_gm addEventHandler ["CuratorObjectPlaced", {_this call curator_fnc_placeObjPlayer}];
 		if ( _doMsg ) then {
-			diag_log format["takeOver EH resgistred for %1", _gm];
 			[_gm, "curatorObjectRemoteControlled", {_this call curator_fnc_remoteControl}] call BIS_fnc_addScriptedEventHandler;
 		};
 		true

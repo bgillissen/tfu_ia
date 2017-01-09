@@ -9,9 +9,7 @@ Description:
 	define settings for the revive feature and init it
 */
 
-#ifndef MOD_ace
-
-call compile preprocessFile "feats\revive\common.sqf";
+call compile preprocessFile "feats\revive\btc\common.sqf";
 
 BTC_vehs_mobile_west = [];
 BTC_vehs_mobile_east = [];
@@ -94,5 +92,3 @@ if (BTC_r_new_system == 1) then {
 	BTC_ban_pveh = [];publicVariable "BTC_ban_pveh";
 	BTC_med_pveh = [];publicVariable "BTC_med_pveh";
 };
-
-#endif

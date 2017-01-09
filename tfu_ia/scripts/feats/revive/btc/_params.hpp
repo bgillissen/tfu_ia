@@ -1,5 +1,5 @@
 class btc_distance {
-	title = "Distance from woonded that medic won't see";
+	title = "Distance from wounded that medic won't see";
 	values[] = {100, 200, 300, 500, 1000, 2000};
 	texts[] = {"100m", "200m", "300m", "500m", "1km", "2km"};
 	default = 500;

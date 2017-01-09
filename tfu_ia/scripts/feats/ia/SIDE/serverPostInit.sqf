@@ -13,7 +13,7 @@ SIDE_success = false;
 publicVariable "SIDE_success";
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
-private _cooldown = ["ia", "fob", "cooldown"] call core_fnc_getSetting;
+private _cooldown = ["ia", "side", "cooldown"] call core_fnc_getSetting;
 
 private _missions = [];
 
@@ -23,31 +23,25 @@ if ( isNil "SIDE_EH" ) then {
 
 while { true } do {
 	
-	diag_log "<<<<<<<<<<<<<<<<<<< check and wait";
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
 	if ( SIDE_stop ) exitWith {};
-	diag_log "<<<<<<<<<<<<<<<<<<< no SIDE_stop, no zeusMission";
 	if ( (count _missions) == 0 ) then {
 		_missions = ["ia", "side", "missions"] call core_fnc_getSetting;
 	};
 	//private _type = selectRandom _missions;
-	_type = "secure";
+	private _type = "secure";
 	_missions = _missions - [_type];
 	private _fncName = format["SIDE_fnc_%1", _type];
-	private _code = format["[] spawn SIDE_fnc_%1", _type];
-	diag_log format["<<<<<<<<<<<<<<<<<<< %1", _code];
-	//SIDE_main = call compile _code;
-	SIDE_main = [] spawn SIDE_fnc_secure;
-	diag_log SIDE_main;
+	private _code = compile format["[] spawn SIDE_fnc_%1", _type];
+	SIDE_main = call _code;
+	//SIDE_main = [] spawn SIDE_fnc_secure;
 	waitUntil {
 		sleep _checkDelay;
 		scriptDone SIDE_main
 	};
-	diag_log "SIDE_main has finished";
 	SIDE_success = false;
 	publicVariable "SIDE_success";
 	if ( !zeusMission ) then {
-		diag_log format["<<<<<<<<<<<<<<<<<<< smart sleep (%1min)", _cooldown / 60];
 		[_cooldown, _checkDelay, "SIDE_stop"] call common_fnc_smartSleep;
 		if ( SIDE_stop ) exitWith {};
 	};

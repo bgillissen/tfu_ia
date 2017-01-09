@@ -9,9 +9,7 @@ Description:
 	define settings for the revive feature and init it
 */
 
-#ifndef MOD_ace
-
-call compile preprocessFile "feats\revive\common.sqf";
+call compile preprocessFile "feats\revive\btc\common.sqf";
 
 BTC_dragging = false;
 BTC_respawn_cond = false;
@@ -67,17 +65,17 @@ if (BTC_pvp == 1) then {
 
 	
 if ([player] call BTC_is_class_can_revive) then {
-	player addAction [("<t color=""#ED2744"">") + ("First aid") + "</t>","feats\revive\addAction.sqf",[[],BTC_first_aid], 8, true, true, "", "[] call BTC_check_action_first_aid"];
+	player addAction [("<t color=""#ED2744"">") + ("First aid") + "</t>","feats\revive\btc\addAction.sqf",[[],BTC_first_aid], 8, true, true, "", "[] call BTC_check_action_first_aid"];
 };	
 
 if (BTC_Medical_TruckToggle != 0) then {
 	if (!([player] call BTC_is_class_can_revive)) then {
-		player addAction [("<t color=""#ED2744"">") + (BTC_Medical_Trucks_addActionText) + "</t>","feats\revive\addAction.sqf",[[],BTC_first_aid], 8, true, true, "", "[] call BTC_check_action_HEMTT"];
+		player addAction [("<t color=""#ED2744"">") + (BTC_Medical_Trucks_addActionText) + "</t>","feats\revive\btc\addAction.sqf",[[],BTC_first_aid], 8, true, true, "", "[] call BTC_check_action_HEMTT"];
 	};
 };
-player addAction [("<t color=""#ED2744"">") + ("Drag") + "</t>","feats\revive\addAction.sqf",[[],BTC_drag], 8, true, true, "", "[] call BTC_check_action_drag"];
-player addAction [("<t color=""#ED2744"">") + ("Carry") + "</t>","feats\revive\addAction.sqf",[[],BTC_carry], 8, true, true, "", "[] call BTC_check_action_drag"];
-player addAction [("<t color=""#ED2744"">") + ("Pull out injured") + "</t>","feats\revive\addAction.sqf",[[],BTC_pull_out], 8, true, true, "", "[] call BTC_pull_out_check"];
+player addAction [("<t color=""#ED2744"">") + ("Drag") + "</t>","feats\revive\btc\addAction.sqf",[[],BTC_drag], 8, true, true, "", "[] call BTC_check_action_drag"];
+player addAction [("<t color=""#ED2744"">") + ("Carry") + "</t>","feats\revive\btc\addAction.sqf",[[],BTC_carry], 8, true, true, "", "[] call BTC_check_action_drag"];
+player addAction [("<t color=""#ED2744"">") + ("Pull out injured") + "</t>","feats\revive\btc\addAction.sqf",[[],BTC_pull_out], 8, true, true, "", "[] call BTC_pull_out_check"];
 	
 if (BTC_active_mobile == 1) then {	
 	switch (true) do {
@@ -87,7 +85,7 @@ if (BTC_active_mobile == 1) then {
 										_veh = _x;
 										_spawn = [_x] spawn BTC_mobile_marker;
 										{
-											_x addAction [("<t color=""#ED2744"">") + (west_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
+											_x addAction [("<t color=""#ED2744"">") + (west_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\btc\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
 										} foreach BTC_objects_actions_west;
 									} foreach BTC_vehs_mobile_west_str;
 								   };
@@ -97,7 +95,7 @@ if (BTC_active_mobile == 1) then {
 										_veh = _x;
 										_spawn = [_x] spawn BTC_mobile_marker;
 										{
-											_x addAction [("<t color=""#ED2744"">") + (east_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
+											_x addAction [("<t color=""#ED2744"">") + (east_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\btc\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
 										} foreach BTC_objects_actions_east;
 									} foreach BTC_vehs_mobile_east_str;
 								  };
@@ -107,7 +105,7 @@ if (BTC_active_mobile == 1) then {
 												_veh = _x;
 												_spawn = [_x] spawn BTC_mobile_marker;
 												{
-													_x addAction [("<t color=""#ED2744"">") + (resistance_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
+													_x addAction [("<t color=""#ED2744"">") + (resistance_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\btc\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
 												} foreach BTC_objects_actions_guer;
 											} foreach BTC_vehs_mobile_guer_str;
 										  };
@@ -117,7 +115,7 @@ if (BTC_active_mobile == 1) then {
 											_veh = _x;
 											_spawn = [_x] spawn BTC_mobile_marker;
 											{
-												_x addAction [("<t color=""#ED2744"">") + (civilian_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
+												_x addAction [("<t color=""#ED2744"">") + (civilian_BTC_mobileRespawn_addActionText) + "</t>","feats\revive\btc\addAction.sqf",[[_veh],BTC_move_to_mobile], 8, true, true, "", format ["[""%1""] call BTC_mobile_check",_veh]];
 											} foreach BTC_objects_actions_civ;
 										} foreach BTC_vehs_mobile_civ_str;
 									  };
@@ -138,5 +136,3 @@ if (({player isKindOf _x} count BTC_3d_can_see) > 0) then {
 };
 
 BTC_revive_started = true;
-
-#endif
