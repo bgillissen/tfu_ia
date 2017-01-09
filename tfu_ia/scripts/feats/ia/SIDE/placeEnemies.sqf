@@ -40,57 +40,52 @@ params ["_coord", "_civ", "_inf", "_sniper", "_garrison", "_static", "_aa", "_ta
 private _groups = [];
 private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 
-private _sides = [];
-if ( OPFOR_ARE_ENEMY ) then { _sides append [east]; };
-if ( BLUFOR_ARE_ENEMY ) then { _sides append [west]; };
-if ( IND_ARE_ENEMY ) then { _sides append [independent]; };
-
 private ["_count", "_skill"];
 /*
 _count = _civ;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _groups append ([_coord, _size, _count, _patrolSize] call IA_fnc_placeCivPatrol);
 
 _count = _inf;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "patrolSkill"] call core_fnc_getSetting;
 _groups append ([_coord, _size, _count, _patrolSize, _skill] call IA_fnc_placeInfPatrol);
 
 _count = _sniper;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "sniperSkill"] call core_fnc_getSetting;
 _groups append ([_coord, _size, _count, _skill] call IA_fnc_placeSniper);
-
+*/
 _count = _garrison;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "garrisonSkill"] call core_fnc_getSetting;
-_groups append ([_coord, _size, _count, _skill, true] call IA_fnc_placeGarrison);
+_groups pushback ([_coord, _size, _count, _skill, true] call IA_fnc_placeGarrison);
 
 _count = _static;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "staticSkill"] call core_fnc_getSetting;
 _groups append ([_coord, _size, _count, _skill] call IA_fnc_placeStatic);
 
 _count = _aa;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "aaSkill"] call core_fnc_getSetting;
-_groups append ([_coord, _size, _count, _skill, _patrolSize, (selectRandom S_aa), true] call IA_fnc_placeVehicle);
+_groups append ([_coord, _size, _count, _skill, _patrolSize, "aa", true] call IA_fnc_placeVehicle);
 
 _count = _tank;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "tankSkill"] call core_fnc_getSetting;
-_groups append ([_coord, _size, _count, _skill, _patrolSize, (selectRandom S_tank), true] call IA_fnc_placeVehicle);
+_groups append ([_coord, _size, _count, _skill, _patrolSize, "tank", true] call IA_fnc_placeVehicle);
 
 _count = _apc;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "apcSkill"] call core_fnc_getSetting;
-_groups append ([_coord, _size, _count, _skill, _patrolSize, (selectRandom S_apc), false] call IA_fnc_placeVehicle);
+_groups append ([_coord, _size, _count, _skill, _patrolSize, "apc", false] call IA_fnc_placeVehicle);
 
 _count = _car;
-_count = ((random _count) - (random _count) + (random _count));
+_count = round ((random _count) - (random _count) + (random _count));
 _skill = ["ia", "side", "carSkill"] call core_fnc_getSetting;
-_groups append ([_coord, _size, _count, _skill, _patrolSize, (selectRandom S_car), true] call IA_fnc_placeVehicle);
-*/
+_groups append ([_coord, _size, _count, _skill, _patrolSize, "carArmed", true] call IA_fnc_placeVehicle);
+
 
 _count = _air;
 _count = round ((random _count) - (random _count) + (random _count));

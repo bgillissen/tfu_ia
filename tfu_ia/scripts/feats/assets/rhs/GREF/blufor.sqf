@@ -1,29 +1,29 @@
 /*
-@filename: feats\mods\rhsAFRF\assets.sqf
+@filename: feats\mods\rhsGREF\blufor.sqf
 Author:
 	Ben
 Description:
 run on server,
-	called by feats\mods\rhsAFRF\init.sqf
-	return the RHS AFRF assets
+	called by feats\mods\rhsGREF\init.sqf
+	return the RHS GREF Blufor assets
 */
 
 private _out = [];
 
-//------------------------------------------------------------ Arsenal RHS AFRF
+//------------------------------------------------------------ Arsenal RHS GREF Blufor
 
-A_AFRF = 0;
+A_GREFB = 0;
 
 private _backpacks = [];
 private _items = [];
 private _weapons = [];
 private _ammo = [];
 
-_out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
+_out set [A_GREFB, [_backpacks, _items, _weapons, _ammo]];
 
-//------------------------------------------------------------ Restricted Gear RHS AFRF
+//------------------------------------------------------------ Restricted Gear RHS GREF Blufor
 
-RG_AFRF = A_AFRF + 1;
+RG_GREFB = A_GREFB + 1;
 
 private _launcher = [];
 private _mg = [];
@@ -34,21 +34,21 @@ private _mScope = [];
 private _oScope = [];
 private _backpack = [];
 
-_out set [RG_AFRF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
+_out set [RG_GREFB, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
-//------------------------------------------------------------ Allowed Vehicles RHS AFRF
+//------------------------------------------------------------ Allowed Vehicles RHS GREF Blufor
 
-AV_AFRF = RG_AFRF + 1;
+AV_GREFB = RG_GREFB + 1;
 
 private _heli = [];
 private _plane = [];
 private _tank = [];
 
-_out set [AV_AFRF, [_heli, _plane, _tank]];
+_out set [AV_GREFB, [_heli, _plane, _tank]];
 
-//------------------------------------------------------------ supplyDrop RHS AFRF
+//------------------------------------------------------------ supplyDrop RHS GREF Blufor
 
-SD_AFRF = AV_AFRF + 1;
+SD_GREFB = AV_GREFB + 1;
 
 private _backpacks = [];
 private _items = [];
@@ -57,44 +57,44 @@ private _ammo = [];
 private _crates = [];
 private _vehicles = [];
 
-_out set [SD_AFRF, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
+_out set [SD_GREFB, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
-//------------------------------------------------------------ Rewards RHS AFRF
+//------------------------------------------------------------ Rewards RHS GREF Blufor
 
-R_AFRF = SD_AFRF + 1;
+R_GREFB = SD_GREFB + 1;
 
 private _rewards = [];
 
-_out set [R_AFRF, _rewards];
+_out set [R_GREFB, _rewards];
 
-//------------------------------------------------------------ Spawn RHS AFRF
+//------------------------------------------------------------ Spawn RHS GREF Blufor
 
-S_AFRF = R_AFRF + 1;
+S_GREFB = R_GREFB + 1;
 
 private _rt = [];
 private _crates = [];
-private _pGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"]];
-private _sGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_sniper"]];
-private _pilot = ["rhs_pilot_combat_heli"];
-private _crew = ["rhs_msv_emr_combatcrew"];
+private _pGroups = [];
+private _sGroups = [];
+private _pilot = [];
+private _crew = [];
 private _officer = [];
-private _garrison = ["rhs_msv_emr_grenadier", "rhs_msv_emr_machinegunner"];
-private _aa = ["rhs_zsu234_aa"];
+private _garrison = [];
+private _aa = [];
 private _arti = [];
-private _static = ["RHS_AGS30_Tripod_MSV","rhs_KORD_MSV","RHS_NSV_Tripod_MSV","rhs_Igla_AA_pod_msv","rhs_D30_vdv","rhs_2b14_82mm_vdv"];
+private _static = [];
 private _cas = [];
-private _tank = ["rhs_t72bd_tv","rhs_t80","rhs_t90_tv"];
-private _apc = ["rhs_tigr_sts_msv","rhsgref_BRDM2_HQ_msv","rhs_btr60_msv","rhs_btr70_msv","rhs_btr80_msv","rhs_bmp1_msv","rhs_bmp1d_msv","rhs_bmp1k_msv","rhs_bmp1p_msv","rhs_bmp3_late_msv"];
+private _tank = [];
+private _apc = [];
 private _car = [];
 private _carArmed = [];
-private _aPatrol = ["RHS_Mi24P_vdv", "RHS_Ka52_vvsc"];
+private _aPatrol = [];
 
-_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+_out set [S_GREFB, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
-//------------------------------------------------------------ Vehicles RHS AFRF
+//------------------------------------------------------------ Vehicles RHS GREF Blufor
 
-BV_AFRF = S_AFRF + 1;
+BV_GREFB = S_GREFB + 1;
 
 private _car = [];
 private _carArmed = [];
@@ -121,13 +121,13 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [BV_GREFB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Vehicles Cargo RHS AFRF
+//------------------------------------------------------------ Vehicles Cargo RHS GREF Blufor
 
-VC_AFRF = BV_AFRF + 1;
+VC_GREFB = BV_GREFB + 1;
 
 private _car = [[],[],[],[]];
 private _carArmed = [[],[],[],[]];
@@ -154,13 +154,13 @@ private _fuel = [[],[],[],[]];
 private _ammo = [[],[],[],[]];
 private _quad = [[],[],[],[]];
 
-_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [VC_GREFB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Role Loadout RHS AFRF
+//------------------------------------------------------------ Role Loadout RHS GREF Blufor
 
-RL_AFRF = VC_AFRF + 1;
+RL_GREFB = VC_GREFB + 1;
 
 private _hq = [];
 private _sl = [];
@@ -183,22 +183,20 @@ private _hPilot = [];
 private _jPilot = [];
 private _mortar = [];
 
-_out set [RL_AFRF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
+_out set [RL_GREFB, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _mortar]];
 
-//------------------------------------------------------------ Role Loadout RHS AFRF
+//------------------------------------------------------------ Role Loadout RHS GREF Blufor
 
-BALO_AFRF = RL_AFRF + 1;
+BALO_GREFB = RL_GREFB + 1;
 
 private _medic = [];
 private _gear = [];
 private _support = [];
 private _default = [];
 
-_out set [BALO_AFRF, [_medic, _gear, _support, _default]];
+_out set [BALO_GREFB, [_medic, _gear, _support, _default]];
 
 //------------------------------------------------------------ FINITO, return
           
 _out
-
-

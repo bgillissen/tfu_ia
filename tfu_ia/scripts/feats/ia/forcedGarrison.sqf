@@ -12,17 +12,8 @@ if ( isNil "_positions" ) exitWith {
 	private _debug = format["forcedGarrison: no position defined for %1", typeOf _building];
 	conWhite(_debug);
 #endif	
-	[]
+	grpNull
 };
-
-/*
-if ( count S_garrison == 0 ) exitWith {
-#ifdef DEBUG
-	conWhite("forcedGarrison: spawn pool S_garrison is empty!");
-#endif
-	_group
-};
-*/
 
 (["garrison"] call ia_fnc_randomSide) params ["_side", "_pool"]; 
 

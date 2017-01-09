@@ -143,11 +143,8 @@ _skill = nil;
 
 //spawn patrols
 private _size = ["ia", "side", "size"] call core_fnc_getSetting;
-_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 1, (_size + (random 150))] call SIDE_fnc_placeEnemies);
-
-diag_log "--------------";
-diag_log _groups;
-diag_log "--------------";
+//_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 1, (_size + (random 150))] call SIDE_fnc_placeEnemies);
+_groups append ([_flatPos, 0, 4, 4, 0, 4, 4, 4, 4, 4, 4, (_size + (random 150))] call SIDE_fnc_placeEnemies);
 
 //markers
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;

@@ -7,4 +7,9 @@ Description:
 	implent RHS GREF assets
 */
 
-["rhs", [["GREF", (call rhsGREF_fnc_assets), (["assets", "gref", "sides"] call core_fnc_getSetting)]]] call assets_fnc_implent;
+#define EAST 0
+#define WEST 1
+#define IND 2
+
+["rhs", [["GREFI", (call rhsGREF_fnc_ind), [IND]]]] call assets_fnc_implent;
+["rhs", [["GREFB", (call rhsGREF_fnc_blufor), [WEST]]]] call assets_fnc_implent;

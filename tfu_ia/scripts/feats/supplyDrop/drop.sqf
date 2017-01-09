@@ -83,6 +83,7 @@ _caller spawn {
 			sleep 0.2;
 			( position _crate select 2 < 1 || isNull _chute )
 		};
+		_posCrate = position _crate;
 		detach _crate;
 		_crate enableSimulationGlobal true;
 		//to make it touch the ground next to the crate, it's needed or it never collapse
@@ -93,10 +94,9 @@ _caller spawn {
 			(velocity _crate) params ["_x", "_y", "_z"];
 			( _x < 0.1 && _y < 0.1 && _z < 0.1)
 		};
+		_posCrate = position _crate;
 	};
-	
-	_posCrate = position _crate;
-	
+
 	private _smoke = ["supplyDrop", "smoke"] call core_fnc_getSetting;
 	_smoke = _smoke createVehicle [_posCrate select 0, _posCrate select 1, 2];
 	

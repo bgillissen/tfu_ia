@@ -16,10 +16,6 @@ missionNamespace setVariable ["SERVER_INIT", true, true];
 
 if ( isNil "PARAMETERS" ) then { PARAMETERS = []; };
 
-//those global vars are only needed server side
-BLACKLIST = [[],[],[],[],[],[],[],[]];
-REWARDS = [];
-
 if ( isNil "PV") then {
 	//those public vars are filled by server and then some are broadcasted to players
 	private _vehPools = ["car", "carArmed", "apc", "tank", "aaTank", "planeCAS", "planeAA", "planeTransport", "uav", 
@@ -101,5 +97,7 @@ if ( isNil "FEH_onLeave" ) then {
 	};
 	true
 } count PV;
+
+publicVariable "PARAMETERS";
 
 missionNamespace setVariable ["SERVER_INIT", false, true];

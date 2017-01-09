@@ -9,6 +9,8 @@ Description:
 
 #include "..\..\core\debug.hpp"
 
+BLACKLIST = [[],[],[],[],[],[],[],[]];
+REWARDS = [];
 MODS = [];
 
 {
@@ -33,10 +35,15 @@ MODS = [];
 		if ( !isNil _fnc ) then {
 			private _code = compile format["call %1", _fnc];
 			0 = call _code;
-		};
+		#ifdef DEBUG
+		} else {
+			private _debug = format["assets: function %1 is not defined)", _fnc];
+			conWhite(_debug);
+		#endif	
+		};		
 	#ifdef DEBUG
 	} else {
-		private _debug = format["assets: %1 is not present (%2)", _name, _cfgPatch];
+		private _debug = format["assets: %1 is not present (configFile >> 'CfgPatches' >> '%2')", _name, _cfgPatch];
 		conWhite(_debug);
 	#endif		
 	};
