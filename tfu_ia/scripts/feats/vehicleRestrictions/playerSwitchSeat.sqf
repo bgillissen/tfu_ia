@@ -37,7 +37,7 @@ if ( (["restrictHeli"] call core_fnc_getParam) == 1 ) then {
 			} else {
 			systemChat (["vehicleRestrictions", "H_pilot"] call core_fnc_getSetting);
 			};
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		};
 		if ( (_pos == "Turret") && (_turret isEqualTo [0]) ) exitWith {
 			if (  _JPilot_fly_heli ) then {
@@ -45,7 +45,7 @@ if ( (["restrictHeli"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				systemChat (["vehicleRestrictions", "JH_copilot"] call core_fnc_getSetting);
 			};
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		}; 
 	};
 };
@@ -61,7 +61,7 @@ if ( (["restrictPlane"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				systemChat (["vehicleRestrictions", "J_pilot"] call core_fnc_getSetting);
 			};
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		};
 		if ( (_pos == "Turret") && (_turret isEqualTo [0]) ) exitWith {
 			if ( _HPilot_fly_jet ) then {
@@ -69,7 +69,7 @@ if ( (["restrictPlane"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				systemChat (["vehicleRestrictions", "J_pilot"] call core_fnc_getSetting);
 			};
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		};
 	};
 };
@@ -80,15 +80,15 @@ if ( (["restrictTank"] call core_fnc_getParam) == 1 ) then {
 		if ( _role == "crew" ) exitWith {}; 
 		if ( _pos == "Driver" ) exitWith {
 			systemChat (["vehicleRestrictions", "crew_driver"] call core_fnc_getSetting);
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		};
 		if ( (_pos == "Turret") && (_turret isEqualTo [0]) ) exitWith {
 			systemChat (["vehicleRestrictions", "crew_gunner"] call core_fnc_getSetting);
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		};
 		if (player in [commander _veh]) exitWith {
 			systemChat (["vehicleRestrictions", "crew_commander"] call core_fnc_getSetting);
-			[_veh] call vehicleRestrictions_fnc_kickOut;
+			[_veh, true] call vehicleRestrictions_fnc_kickOut;
 		};
 	};
 };

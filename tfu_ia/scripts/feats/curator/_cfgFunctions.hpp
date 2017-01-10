@@ -25,5 +25,6 @@ class curator {
 		class serverJoin { file="feats\curator\serverJoin.sqf"; };
 		class serverLeave { file="feats\curator\serverLeave.sqf"; };
 		class serverPostInit { file="feats\curator\serverPostInit.sqf"; };
+		class serverRespawn { file="feats\curator\serverRespawn.sqf"; };
 	};
 };

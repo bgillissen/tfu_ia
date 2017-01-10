@@ -9,6 +9,4 @@ Description:
 
 params ["_player"];
 
-{
-	_x addCuratorEditableObjects [[_player], true];
-} forEach allCurators;
+[[_player], true] call curator_fnc_addEditable;

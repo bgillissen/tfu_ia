@@ -1,5 +1,3 @@
-
-
 #define names_idc 99999
 
 class HudNames {
@@ -9,7 +7,7 @@ class HudNames {
 	duration = 10000000000;
 	name= "HudNames";
 	onLoad = "uiNamespace setVariable ['HudNames', _this select 0]";
-	
+
 	class controlsBackground {
 		class HudNames_1:RscStructuredText
 		{

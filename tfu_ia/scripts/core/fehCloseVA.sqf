@@ -16,5 +16,5 @@ VAopen = true;
 		isNull (uiNamespace getVariable ["BIS_fnc_arsenal_cam", objNull])  
 	};
 	VAopen = false;
-	["PLAYER", "onCloseVA", []] call core_fnc_featEvent;
+	["PLAYER", "closeVA", []] call core_fnc_featEvent;
 };

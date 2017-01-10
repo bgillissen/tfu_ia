@@ -43,6 +43,7 @@ for "_x" from 1 to _amount do {
 	_veh flyInHeight _altitude;
 	[_group, _coord, _patrolSize] call BIS_fnc_taskPatrol;
 	[(units _group), _skill] call common_fnc_setSkill;
+	[(units _group), false] call curator_fnc_addEditableServer;
 	_groups pushback _group;
 };
 
