@@ -36,15 +36,13 @@ while { true } do  {
     	private _vehIcon = getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "icon");
     	private _list = format[_cargoNoDsp, _vehIcon, _vehName];
     	if ( _showCargo ) then {
+    		private _toFormat = _cargoFullDsp;
     		private _freeCargo = _veh emptyPositions "cargo";
-    		if ( _freeCargo > 0 ) then {
-    			_list = format[_cargoFreeDsp, _vehIcon, _vehName, _freeCargo];
-    		} else {
-    			_list = format[_cargoFullDsp, _vehIcon, _vehName];
-    		};
+    		if ( _freeCargo > 0 ) then { _toFormat = _cargoFreeDsp; };
+    		_list = format[_toFormat, _vehIcon, _vehName, _freeCargo];
     	};        
     	private _crew = fullcrew _veh;
-    	private _stack = [[],[],[],[], []];
+    	private _stack = [[],[],[],[],[]];
     	{
     		_x params ["_unit", "_role", "_index", "_turretPath", "_personTurret"];
     		if ( !(_unit isEqualTo objNull) ) then {

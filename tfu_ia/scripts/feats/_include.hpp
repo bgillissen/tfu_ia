@@ -95,6 +95,7 @@ class settings {
 	#include "squadHint\_settings.hpp"
 	#include "supplyDrop\_settings.hpp"
 	#include "supportCrate\_settings.hpp"
+	#include "va\_settings.hpp"
 	#include "vehicleCrew\_settings.hpp"
 	#include "vehicleRespawn\_settings.hpp"
 	#include "vehicleRestrictions\_settings.hpp"

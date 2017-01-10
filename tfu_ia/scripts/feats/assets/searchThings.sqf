@@ -11,4 +11,4 @@ if ( isNil "_apply" ) exitWith {
 
 private _code = compile _apply;
 
-_cond configClasses ( configFile >> _config ) apply { [_x, _params] call _code }
+_cond configClasses ( configFile >> _config ) apply { ([_x, _params] call _code) }

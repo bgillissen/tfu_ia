@@ -3,6 +3,7 @@ class asets {
 	class functions {
 		class serverPreInit { file="feats\assets\serverPreInit.sqf"; };
 		class serverInit { file="feats\assets\serverInit.sqf"; };
+		class addMagazine { file="feats\assets\addMagazine.sqf"; };
 		class addWeapon { file="feats\assets\addWeapon.sqf"; };
 		class baseWeapon { file="feats\assets\baseWeapon.sqf"; };
 		class condition { file="feats\assets\condition.sqf"; };
@@ -20,6 +21,7 @@ class asets {
 		class searchThings { file="feats\assets\searchThings.sqf"; };
 		class vehicleFilters { file="feats\assets\vehicleFilters.sqf"; };
 		class weaponFilters { file="feats\assets\weaponFilters.sqf"; };
+		class magazineFilters { file="feats\assets\magazineFilters.sqf"; };
 	};
 };
 
