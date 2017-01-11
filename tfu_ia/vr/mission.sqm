@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=388;
+		nextID=419;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=72;
+		nextID=107;
 	};
 	class Camera
 	{
-		pos[]={7463.0044,9.0845566,7552.2451};
-		dir[]={0.0067909709,-0.60673958,-0.79503012};
-		up[]={0.0051833293,0.79478556,-0.60673285};
-		aside[]={-1.0000664,3.5931507e-006,-0.0085423402};
+		pos[]={7463.1479,8.4783363,7553.6538};
+		dir[]={0.083069935,-0.46229246,-0.88297004};
+		up[]={0.043308422,0.88658863,-0.46032512};
+		aside[]={-0.99570388,4.268154e-006,-0.093677454};
 	};
 };
 binarizationWanted=0;
@@ -184,7 +184,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={7468.1895,5.0014391,7551.6074};
+						position[]={7463.4863,5.0014391,7545.2759};
 					};
 					side="West";
 					flags=7;
@@ -938,7 +938,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={7465.5435,5.0014391,7545.7866};
+						position[]={7465.543,5.0014391,7545.7866};
 					};
 					side="West";
 					flags=4;
@@ -1055,46 +1055,6 @@ class Mission
 		};
 		class Item24
 		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={7462.9658,7.9274998,7551.4839};
-			};
-			side="Empty";
-			flags=5;
-			class Attributes
-			{
-				createAsSimpleObject=1;
-				disableSimulation=1;
-			};
-			id=99;
-			type="Land_dp_bigTank_F";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=1;
-			};
-		};
-		class Item25
-		{
 			dataType="Group";
 			side="West";
 			class Entities
@@ -1193,7 +1153,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={7462.2241,5.0014391,7546.5371};
+						position[]={7462.2241,5.0014391,7546.5366};
 					};
 					side="West";
 					flags=5;
@@ -1255,6 +1215,46 @@ class Mission
 								};
 							};
 							value="Hammer";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item25
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={7462.9658,7.9274998,7551.4839};
+			};
+			side="Empty";
+			flags=5;
+			class Attributes
+			{
+				createAsSimpleObject=1;
+				disableSimulation=1;
+			};
+			id=99;
+			type="Land_dp_bigTank_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
 						};
 					};
 				};

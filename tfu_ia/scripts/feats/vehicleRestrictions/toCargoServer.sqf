@@ -1,7 +1,5 @@
 params ["_veh", "_player"];
 
-diag_log "SERVER toCargo";
-
 private _attempt = 0;
 private _inCargo = false;
 

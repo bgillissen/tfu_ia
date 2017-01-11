@@ -17,6 +17,7 @@ Environment:
 Return:
 	nothing
 */
+
 private _types = (["supportCrate", "types"] call core_fnc_getSetting);
 
 {
