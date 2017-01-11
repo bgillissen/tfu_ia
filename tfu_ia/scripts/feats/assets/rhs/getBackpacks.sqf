@@ -2,6 +2,7 @@ params [["_dlcFilter", 0], ["_kindFilters", []], ["_extFilters", []]];
 
 _kindFilters pushback "B_AssaultPack_Base";
 _kindFilters pushback "B_AssaultPack_rgr";
+_kindFilters pushback "Weapon_Bag_Base";
 
 private _filters = [_dlcFilter, [], _kindFilters, 0, '{true}', _extFilters] call assets_fnc_vehicleFilters;
 

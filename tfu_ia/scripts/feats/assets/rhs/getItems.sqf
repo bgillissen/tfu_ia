@@ -19,6 +19,14 @@
 #define VEST_SLOT 701
 #define UNIFORM_SLOT 801
 #define BACKPACK_SLOT 901
+#define WeaponSlotPrimary 1
+#define WeaponSlotHandGun 2
+#define WeaponSlotSecondary 4
+#define WeaponSlotHandGunItem 16
+#define WeaponSlotItem 256
+#define WeaponSlotBinocular 4096
+#define WeaponHardMounted 65536
+#define WeaponSlotInventory 131072
 
 params [["_dlcFilter", 0], ["_kindFilter", ""], ["_extFilters", []]];
 
@@ -59,23 +67,14 @@ _filters pushback format["getNumber(_x >> 'itemInfo' >> 'type') in %1", _itemSlo
 
 _items = ["CfgWeapons", _filters, "(configName (_this select 0))", []] call rhs_fnc_searchThings;
 
-//an other search
-#define WeaponSlotPrimary 1
-#define WeaponSlotHandGun 2
-#define WeaponSlotSecondary 4
-#define WeaponSlotHandGunItem 16
-#define WeaponSlotItem 256
-#define WeaponSlotBinocular 4096
-#define WeaponHardMounted 65536
-#define WeaponSlotInventory 131072
-
+//an other search for Bino damn
 private _filters = [];
 
 if ( !(_dlcFilter isEqualto 0) ) then {
 	_filters pushback format["getText( _x >> 'dlc' ) isEqualTo '%1'", _dlcFilter];
 };
 
-private _weaponSlots = [WeaponSlotBinocular];//, WeaponSlotItem, WeaponSlotHandGunItem, WeaponHardMounted, WeaponSlotInventory];
+private _weaponSlots = [WeaponSlotBinocular];
 
 _filters pushback format["getNumber(_x >> 'type') in %1", _weaponSlots]; 
 

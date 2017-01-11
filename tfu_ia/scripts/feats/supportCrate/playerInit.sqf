@@ -1,5 +1,5 @@
 /*
-@filename: feats\supportCrate\serverInitThread.sqf
+@filename: feats\supportCrate\playerInit.sqf
 Author:
 	Ben
 Description:

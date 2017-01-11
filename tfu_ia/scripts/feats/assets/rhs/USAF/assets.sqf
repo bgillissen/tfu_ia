@@ -56,8 +56,8 @@ SD_USAF = AV_USAF + 1;
 
 private _backpacks = [];
 private _items = [];
-private _weapons = [["rhs_weap_M136", 5],
-					["rhs_weap_M136_hedp", 5],
+private _weapons = [//["rhs_weap_M136", 5],
+					//["rhs_weap_M136_hedp", 5],
 					["rhs_weap_M136_hp", 5],
 					["rhs_weap_m4a1_blockII", 3]];
 private _ammo = [["30Rnd_556x45_Stanag_Tracer_Red", 40],
@@ -65,8 +65,8 @@ private _ammo = [["30Rnd_556x45_Stanag_Tracer_Red", 40],
 				 ["rhsusf_100Rnd_556x45_M200_soft_pouch", 15],
 				 ["rhs_fim92_mag", 3],
 				 ["rhs_fgm148_magazine_AT", 3],
-				 ["rhsusf_mag_10Rnd_STD_50BMG_M33", 40],
-				 ["rhs_mag_M441_HE", 20],
+				 ["rhsusf_mag_10Rnd_STD_50BMG_M33", 20],
+				 ["rhs_mag_M441_HE", 30],
 				 ["rhs_mag_an_m8hc", 40]];
 private _crates = ["rhsusf_mags_crate"];
 private _vehicles = ["RHS_UH60M", 
