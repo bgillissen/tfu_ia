@@ -4,7 +4,8 @@ Author:
 	Ben
 Description:
 	run on server
-	check which mods are available and init them
+	check which mods are available and init them,
+	broadcast assets list to players
 */
 
 #include "..\..\core\debug.hpp"
@@ -29,3 +30,14 @@ Description:
 		};
 	};
 } count MODS;
+
+//broadcast computed assets to clients
+{
+	_x params ["_prefix", "_vars", "_broadcast"];
+	if ( _broadcast ) then {
+		{
+			publicVariable format["%1_%2", _prefix, _x];
+		} count _vars;
+	};
+	true
+} count PV;

@@ -12,8 +12,6 @@ if ( (["radioFreq"] call core_fnc_getParam) == 0 ) exitWith{};
 
 params ["_unit", "_cont", "_item"]; 
 
-diag_log format["RadioFreq Pickup: %1", _item];
-
 [_item] spawn {
 	params ["_radio"];
 	waitUntil {		

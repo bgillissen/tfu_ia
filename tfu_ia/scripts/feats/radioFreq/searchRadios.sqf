@@ -5,12 +5,6 @@ private _out = [];
 
 private _checkContent = {
 	params ["_tocheck", "_filter", "_isProto"];
-/*
-	diag_log _tocheck;
-	diag_log _filter;
-	diag_log _isProto;
-	diag_log "---------";
-*/
 	private _do = false;
 	if ( _filter isEqualTo "" ) then {
 		{
@@ -42,11 +36,11 @@ private _checkContent = {
 } count ((getItemCargo uniformContainer player) select 0);
 //vest
 {
-	[_x select 0, _radio, _isProto] call _checkContent;
+	[_x, _radio, _isProto] call _checkContent;
 } count ((getItemCargo vestContainer player) select 0);
 //backpack
 {
-	[_x select 0, _radio, _isProto] call _checkContent;
+	[_x, _radio, _isProto] call _checkContent;
 } count ((getItemCargo backpackContainer player) select 0);
 
 _out

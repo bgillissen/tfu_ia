@@ -1,9 +1,10 @@
 /*
-@filename: feats\mods\rhsUSAF\assets.sqf
+@filename: feats\assets\rhs\USAF\assets.sqf
 Author:
 	Ben
 Description:
-	call by feats\mods\rhsUSAF\init.sqf
+	run on server
+	call by feats\assets\rhs\USAF\init.sqf
 	return the RHS USAF assets
 */
 
@@ -44,7 +45,7 @@ _out set [RG_USAF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope,
 
 AV_USAF = RG_USAF + 1;
 
-private _heli = ["RHS_MELB_MH6M", "RHS_MELB_H6M"];
+private _heli = ["RHS_MELB_MH6M"];
 private _plane = [];
 private _tank = [];
 
@@ -89,7 +90,7 @@ _out set [R_USAF, _rewards];
 S_USAF = R_USAF + 1;
 
 private _rt = [];
-private _crates = [];
+private _crates = ["rhsusf_mags_crate"];
 private _pGroups = [];
 private _sGroups = [];
 private _pilot = [];
@@ -99,12 +100,12 @@ private _garrison = [];
 private _aa = [];
 private _arti = [];
 private _static = [];
-private _cas = [];
+private _cas = ["RHS_A10", "RHS_A10_AT"];
 private _tank = [];
 private _apc = [];
 private _car = [];
 private _carArmed = [];
-private _aPatrol = [];
+private _aPatrol = ["RHS_MELB_AH6M_H", "RHS_MELB_AH6M_L", "RHS_MELB_AH6M_M"];
 
 _out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
@@ -140,7 +141,7 @@ private _landMedic = [];
 private _repair = [];
 private _fuel = [];
 private _ammo = [];
-private _quad = ["quad"];
+private _quad = [];
 
 _out set [BV_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
@@ -180,32 +181,179 @@ _out set [VC_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout RHS USAF
-
+/*
+ [uniform, [inUniform]], 
+ [vest, inVest]], 
+ [backpack, [inBackpack]], 
+ [primWeapon, [primWeaponItems]] 
+ [secWeapon, [secWeapItems]], 
+ [handWeapon, handWeapItems]], 
+ helmet, face, comm, terminal, map, bino, nv, watch, compass
+*/
 RL_USAF = VC_USAF + 1;
 
-private _hq = [];
-private _sl = [];
-private _tl = [];
-private _medic = [];
-private _lmg = [];
-private _hmg = [];
-private _assHMG = [];
-private _at = [];
-private _assAT = [];
-private _sniper = [];
-private _marksman = [];
-private _repair = [];
-private _demo = [];
-private _engineer = [];
-private _grenadier = [];
-private _rifleman = [];
-private _jtac = [];
-private _hPilot = [];
+private _uniform = "rhs_uniform_g3_rgr";
+private _backpack = "rhsusf_assault_eagleaiii_coy";
+private _pw = "rhs_weap_m4a1_blockII";
+if ( ("jungle" in MAP_KEYWORDS) || ("wood" in MAP_KEYWORDS) ) then { 
+	_uniform = "rhs_uniform_g3_m81";
+	_pw = "rhs_weap_m4a1_blockII_wd";
+};
+if ( "desert" in MAP_KEYWORDS ) then { 
+	_uniform = "rhs_uniform_g3_tan";
+	_backpack = "rhsusf_assault_eagleaiii_ocp";
+	_pw = "rhs_weap_m4a1_blockII_d";
+};
+if ( "dry" in MAP_KEYWORDS ) then { 
+	_uniform = "rhs_uniform_g3_mc";
+	_backpack = "rhsusf_assault_eagleaiii_ocp";
+	_pw = "rhs_weap_m4a1_blockII_d";
+};
+
+private _hq = [["rhs_uniform_g3_blk", []], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               "", "", "", "", "", "", "", "", ""];
+private _sl = [[_uniform, []], 
+               ["rhsusf_spc_squadleader", [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8]]], 
+               ["", []], 
+               [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+               ["", []], 
+               ["", []], 
+               "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _tl = [[_uniform, []], 
+               ["rhsusf_spc_squadleader", [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8]]], 
+               ["", []], 
+               [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+               ["", []], 
+               ["", []], 
+               "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _medic = [[_uniform, []], 
+                  ["", []], 
+                  ["", []], 
+                  [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                  ["", []], 
+                  ["", []], 
+                  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _lmg = [[_uniform, []], 
+                ["rhsusf_spc_mg", [["rhs_mag_an_m8hc", 4], ["rhs_mag_m67", 4], ["rhsusf_100Rnd_556x45_soft_pouch", 1]]],
+                [_backpack, [["rhs_200rnd_556x45_M_SAW", 2], ["rhsusf_100Rnd_556x45_soft_pouch", 1]]], 
+                ["rhs_weap_m249_pip_S_vfg", ["rhsusf_acc_SpecterDR"]], 
+                ["", []], 
+                ["", []], 
+                "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _hmg = [[_uniform, []], 
+                ["rhsusf_spc_mg", [["rhs_mag_an_m8hc", 4], ["rhs_mag_m67", 4], ["rhsusf_100Rnd_556x45_soft_pouch", 1]]], 
+                ["", []], 
+                ["", []], 
+                ["", []], 
+                ["", []], 
+                "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _assHMG = [[_uniform, []], 
+                   ["", []], 
+                   ["", []], 
+                   [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _at = [[_uniform, []], 
+               ["", []], 
+               ["", []], 
+               [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+               ["", []], 
+               ["", []], 
+               "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _assAT = [[_uniform, []], 
+                  ["", []], 
+                  ["", []], 
+                  [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                  ["", []], 
+                  ["", []], 
+                  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _sniper = [[_uniform, []], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _marksman = [[_uniform, []], 
+                     ["", []], 
+                     ["", []], 
+                     ["", []], 
+                     ["", []], 
+                     ["", []], 
+                     "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _repair = [[_uniform, []], 
+                   ["", []], 
+                   ["", []], 
+                   [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _demo = [[_uniform, []], 
+                 ["", []], 
+                 ["", []], 
+                 [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _engineer = [[_uniform, []], 
+                     ["", []], 
+                     ["", []], 
+                     [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                     ["", []], 
+                     ["", []], 
+                     "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _grenadier = [[_uniform, []], 
+					  ["", []], 
+					  ["", []], 
+					  ["", []], 
+					  ["", []], 
+					  ["", []], 
+					  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _rifleman = [[_uniform, []], 
+                     ["", []], 
+                     ["", []], 
+                     [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                     ["", []], 
+                     ["", []], 
+                     "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _jtac = [[_uniform, []], 
+                 ["", []], 
+                 ["", []], 
+                 [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _hPilot = [[_uniform, []], 
+                   ["rhsusf_spc", [["rhs_mag_an_m8hc", 4]]], 
+                   [_backpack, [["rhsusf_mag_40Rnd_46x30_FMJ", 6], ["rhsusf_m112_mag", 3]]], 
+                   ["rhsusf_weap_MP7A1_base_f", ["rhsusf_acc_eotech_xps3"]], 
+                   ["", []], 
+                   ["", []], 
+                   "rhsusf_hgu56p", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
 private _jPilot = [];
-private _mortar = [];
+private _crew = [[_uniform, []], 
+                 ["", []], 
+                 ["", []], 
+                 [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+private _mortar = [[_uniform, []], 
+                   ["", []], 
+                   ["", []], 
+                   [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
 
 _out set [RL_USAF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
-                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _mortar]];
+                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, _mortar]];
 
 //------------------------------------------------------------ Base Atmosphere Role Loadout RHS USAF
 

@@ -27,3 +27,15 @@ publicVariable "TFAR_SR";
 publicVariable "TFAR_LR";
 
 [TFAR_LR, TFAR_SR, [], []] call assets_fnc_implentArsenal;
+
+ 
+{
+//[uniform, [inUniform]], [vest, inVest]], [backpack, [inBackpack]], [primWeapon, [primWeaponItems]] [secWeapon, [secWeapItems]], [handWeapon, handWeapItems]], helmet, face, comm, terminal, map, bino, nv, watch, compass
+	private _lo = _x call {
+		if ( _this in ["hq", "sl", "tl", "jtac"] ) exitWith {
+			[["", []], ["", []], [(selectRandom TFAR_LR), []], ["", []], ["", []], ["", []], "", "", (TFAR_SR select 0), "", "", "", "", "", ""]
+		};
+		[["", []], ["", []], ["", []], ["", []], ["", []], ["", []], "", "", (TFAR_SR select 0), "", "", "", "", "", ""]
+	};
+	[_forEachIndex, _lo] call assets_fnc_implentRoleLoadout;	
+} forEach ((PV select RL_k) select 1);

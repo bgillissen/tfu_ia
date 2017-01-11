@@ -105,26 +105,72 @@ _out set [BV_VC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _p
 
 VC_VC = BV_VC + 1;
 
-private _car = [[],[],[],[]];
-private _carArmed = [[],[],[],[]];
-private _apc = [[],[],[],[]];
-private _tank = [[],[],[],[]];
-private _aaTank = [[],[],[],[]];
+private _car = [[],
+                [["FirstAidKit", 10]],
+                [],
+                []];
+private _carArmed = [[],
+                     [["FirstAidKit", 10]],
+                     [],
+                     []];
+private _apc = [[],
+                [["FirstAidKit", 15]],
+                [],
+                []];
+private _tank = [[],
+                 [["FirstAidKit", 15]],
+                 [],
+                 []];
+private _aaTank = [[],
+                   [["FirstAidKit", 15]],
+                   [],
+                   []];
 private _planeCAS = [[],[],[],[]];
 private _planeAA = [[],[],[],[]];
-private _planeTransport = [[],[],[],[]];
+private _planeTransport = [[],
+                           [["FirstAidKit", 20]],
+                           [],
+                           []];
 private _uav = [[],[],[],[]];
-private _heliSmall = [[],[],[],[]];
-private _heliSmallArmed = [[],[],[],[]];
-private _heliMedium = [[],[],[],[]];
-private _heliMedEvac = [[],[],[],[]];
-private _heliBig = [[],[],[],[]];
+private _heliSmall = [[],
+                      [["FirstAidKit", 10]],
+                      [],
+                      []];
+private _heliSmallArmed = [[],
+                           [["FirstAidKit", 5]],
+                           [],
+                           []];
+private _heliMedium = [[],
+                       [["FirstAidKit", 10]],
+                       [],
+                       []];
+private _heliMedEvac = [[],
+                        [["FirstAidKit", 30],
+                         ["Medikit", 5]],
+                         [],
+                         []];
+private _heliBig = [[],
+                    [["FirstAidKit", 20]],
+                    [],
+                    []];
 private _heliAttack = [[],[],[],[]];
-private _boatSmall = [[],[],[],[]];
-private _boatAttack = [[],[],[],[]];
-private _boatBig = [[],[],[],[]];
+private _boatSmall = [[],
+                      [["FirstAidKit", 10]],
+                      [],
+                      []];
+private _boatAttack = [[],
+                       [["FirstAidKit", 10]],
+                       [],
+                       []];
+private _boatBig = [[],
+                    [["FirstAidKit", 20]],
+                    [],
+                    []];
 private _sub = [[],[],[],[]];
-private _landMedic = [[],[],[],[]];
+private _landMedic = [[],
+                      [["FirstAidKit", 40]],
+                      [],
+                      []];
 private _repair = [[],[],[],[]];
 private _fuel = [[],[],[],[]];
 private _ammo = [[],[],[],[]];
@@ -134,9 +180,43 @@ _out set [VC_VC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _p
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
+//------------------------------------------------------------ Role Loadout Vanilla Common
+//[uniform, [inUniform]], [vest, inVest]], [backpack, [inBackpack]], [primWeapon, [primWeaponItems]] [secWeapon, [secWeapItems]], [handWeapon, handWeapItems]], helmet, face, comm, terminal, map, bino, nv, watch, compass
+RL_VC = VC_VC + 1;
+
+private _hq = [];
+private _sl = [];
+private _tl = [];
+private _medic = [];
+private _lmg = [];
+private _hmg = [];
+private _assHMG = [];
+private _at = [];
+private _assAT = [];
+private _sniper = [];
+private _marksman = [];
+private _repair = [];
+private _demo = [];
+private _engineer = [];
+private _grenadier = [];
+private _rifleman = [];
+private _jtac = [];
+private _hPilot = [["", []], 
+                   ["", []], 
+                   ["", [["FirstAidKit", 4]]], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _jPilot = [];
+private _crew = [];
+private _mortar = [];
+
+_out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
+                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, _mortar]];
 //------------------------------------------------------------ Base Atmosphere Role Vanilla BLUFOR
 
-BALO_VC = VC_VC + 1;
+BALO_VC = RL_VC + 1;
 
 private _medic = [];
 private _gear = [];

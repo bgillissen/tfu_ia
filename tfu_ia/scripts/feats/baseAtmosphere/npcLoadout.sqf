@@ -10,16 +10,13 @@ Description:
 
 params ["_npc", "_actions"];
 
-if ( "arsenal" in _actions ) exitWith {
-	[_npc, BALO_gear] call common_fnc_setLoadout;
+_lo = _actions call {
+	if ( "arsenal" in _this ) exitWith { BALO_gear };
+	if ( "support" in _this ) exitWith { BALO_support };
+	if ( "medic" in _this ) exitWith { BALO_medic };
+	BALO_default
 };
 
-if ( "support" in _actions ) exitWith {
-	[_npc, BALO_support] call common_fnc_setLoadout;
-};
+_lo params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_f", "_c", "_t", "_m", "_bino", "_n", "_w", "_cp"];
 
-if ( "medic" in _actions ) exitWith {
-	[_npc, BALO_medic] call common_fnc_setLoadout;
-};
-
-[_npc, BALO_default] call common_fnc_setLoadout;
+[_npc, _u, _v, _b, _pw, _sw, _hw, _h, _f, _c, _t, _m, _bino, _n, _w, _cp] call common_fnc_setLoadout;
