@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=452;
+		nextID=495;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=110;
+		nextID=116;
 	};
 	class Camera
 	{
-		pos[]={7458.3726,8.1971197,7547.4204};
-		dir[]={0.87023211,-0.38065666,0.31314525};
-		up[]={0.35827538,0.92452192,0.12892531};
-		aside[]={0.33861667,4.3887194e-006,-0.94100493};
+		pos[]={7447.0713,11.443048,7538.2368};
+		dir[]={0.65390968,-0.4829551,0.58258975};
+		up[]={0.36064687,0.87543201,0.32132092};
+		aside[]={0.66526443,5.8859005e-006,-0.74668515};
 	};
 };
 binarizationWanted=0;
@@ -154,7 +154,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=27;
+		items=29;
 		class Item0
 		{
 			dataType="Group";
@@ -1649,52 +1649,6 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={7464.8691,5.0014391,7553.644};
-						angles[]={0,0.92378533,0};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						init="this setVariable [""role"", ""assHMG""];this setVariable[""groupID"", ""BRAVO""]";
-						description="Rifleman (Ass. MG)";
-						isPlayable=1;
-						class Inventory
-						{
-						};
-					};
-					id=448;
-					type="B_soldier_AAR_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="pitch";
-							expression="_this setpitch _value;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"SCALAR"
-										};
-									};
-									value=0.98000002;
-								};
-							};
-						};
-						nAttributes=1;
-					};
-				};
-				class Item10
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={7465.6309,5.0014391,7552.519};
 						angles[]={0,0.95089024,0};
 					};
@@ -1703,7 +1657,7 @@ class Mission
 					class Attributes
 					{
 						skill=0.60000002;
-						init="this setVariable [""role"", ""hmg""];this setVariable[""groupID"", ""BRAVO""]";
+						init="this setVariable [""role"", ""lmg""];this setVariable[""groupID"", ""BRAVO""]";
 						description="Light MG";
 						isPlayable=1;
 						class Inventory
@@ -1736,7 +1690,7 @@ class Mission
 						nAttributes=1;
 					};
 				};
-				class Item11
+				class Item10
 				{
 					dataType="Object";
 					class PositionInfo
@@ -1782,7 +1736,7 @@ class Mission
 						nAttributes=1;
 					};
 				};
-				class Item12
+				class Item11
 				{
 					dataType="Object";
 					class PositionInfo
@@ -1829,6 +1783,52 @@ class Mission
 						nAttributes=1;
 					};
 				};
+				class Item12
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7464.8691,5.0014391,7553.644};
+						angles[]={0,0.92378533,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""rifleman""];this setVariable[""groupID"", ""BRAVO""]";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=452;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
 			};
 			class Attributes
 			{
@@ -1852,6 +1852,1002 @@ class Mission
 								};
 							};
 							value="Bravo";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item27
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=13;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7461.4819,5.0014391,7554.1973};
+						angles[]={0,4.0497222,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""assAT""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Rifleman (Ass. AT)";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=464;
+					type="B_soldier_AAT_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7460.792,5.0014391,7555.4722};
+						angles[]={0,4.2461243,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""assAT""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Rifleman (Ass. AT)";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=465;
+					type="B_soldier_AAT_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.95999998;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7459.8516,5.0014391,7552.9673};
+						angles[]={0,4.0156536,0};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="SERGEANT";
+						init="this setVariable [""role"", ""sl""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Squad Leader";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=467;
+					type="B_Soldier_SL_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7460.3369,5.0014391,7553.6841};
+						angles[]={0,4.1127114,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""medic""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Medic";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=468;
+					type="B_medic_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7460.8232,5.0014391,7552.9683};
+						angles[]={0,4.1127114,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""medic""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Medic";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=469;
+					type="B_medic_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.02;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7460.8584,5.0014391,7554.5161};
+						angles[]={0,4.1091857,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						init="this setVariable [""role"", ""tl""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Team Leader";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=470;
+					type="B_Soldier_TL_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.95999998;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item6
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7459.9448,5.0014391,7556.5103};
+						angles[]={0,4.1938691,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""at""];this setVariable [""groupID"", ""ALPHA""];";
+						name="b_javelin";
+						description="Missile Specialist AT";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=471;
+					type="B_soldier_AT_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item7
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7461.6968,5.0014391,7552.6338};
+						angles[]={0,4.1132698,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						init="this setVariable [""role"", ""tl""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Team Leader";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=472;
+					type="B_Soldier_TL_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item8
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7464.9756,5.0014391,7548.4204};
+						angles[]={0,3.9742894,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""grenadier""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Grenadier";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=473;
+					type="B_Soldier_GL_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.02;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item9
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7463.9224,5.0014391,7549.6445};
+						angles[]={0,3.9742894,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""rifleman""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Rifleman";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=474;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.02;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item10
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7463.3657,5.0014391,7551.0225};
+						angles[]={0,4.0093527,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""marksman""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Marksman";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=475;
+					type="B_soldier_M_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item11
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7462.6577,5.0014391,7552.2646};
+						angles[]={0,4.0960088,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""assHMG""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Rifleman (Ass. HMG)";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=476;
+					type="B_soldier_AAR_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item12
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7461.9316,5.0014391,7553.4116};
+						angles[]={0,4.1231136,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""hmg""];this setVariable [""groupID"", ""ALPHA""];";
+						description="Heavy MG";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=477;
+					type="B_soldier_AR_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=453;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="groupID";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Alpha ";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item28
+		{
+			dataType="Group";
+			side="West";
+			class Entities
+			{
+				items=7;
+				class Item0
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7458.4834,5.0014391,7550.6699};
+						angles[]={0,1.2440355,0};
+					};
+					side="West";
+					flags=6;
+					class Attributes
+					{
+						rank="LIEUTENANT";
+						init="this setVariable [""role"", ""sl""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="Platoon Leader";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=486;
+					type="B_officer_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7457.6514,5.0014391,7552.2354};
+						angles[]={0,1.3249485,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.44999999;
+						init="this setVariable [""role"", ""mortar""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="Mortar Gunner";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=487;
+					type="B_support_Mort_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7457.813,5.0014391,7551.5894};
+						angles[]={0,1.3626997,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						init="this setVariable [""role"", ""uavopp""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="UAV Operator ";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=488;
+					type="B_soldier_UAV_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.04;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7457.8374,5.0014391,7550.9263};
+						angles[]={0,1.1961958,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""medic""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="Medic";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=489;
+					type="B_medic_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7458.1641,5.0014391,7549.5503};
+						angles[]={0,1.3079488,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""sniper""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="Sniper";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=492;
+					type="B_sniper_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.02;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7458.1406,5.0014391,7550.2026};
+						angles[]={0,1.3213356,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						init="this setVariable [""role"", ""jtac""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="JTAC";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=493;
+					type="B_recon_JTAC_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+				class Item6
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={7458.3384,5.0014391,7548.9058};
+						angles[]={0,1.4174511,0};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						init="this setVariable [""role"", ""spotter""];this setVariable [""groupID"", ""SUPPORT""];";
+						description="Spotter";
+						isPlayable=1;
+						class Inventory
+						{
+						};
+					};
+					id=494;
+					type="B_spotter_F";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						nAttributes=1;
+					};
+				};
+			};
+			class Attributes
+			{
+			};
+			id=478;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="groupID";
+					expression="[_this, _value] call CBA_fnc_setCallsign";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="Support";
 						};
 					};
 				};

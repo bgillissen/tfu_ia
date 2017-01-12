@@ -20,6 +20,12 @@ removeBackpack _unit;
 removeHeadgear _unit;
 removeGoggles _unit;
 
+_pw params ["_weapon", "_acc"];
+if ( !(_weapon isEqualto "") ) then {
+	_unit addWeapon _weapon;
+	{ _unit addPrimaryWeaponItem _x; } count _acc;
+};
+
 _uniform params ["_container", "_content"];
 if ( !(_container isEqualto "") ) then {
 	diag_log _container;
@@ -46,12 +52,6 @@ if ( !(_container isEqualto "") ) then {
 		_x params ["_item", "_qty"];
 		for "_i" from 1 to _qty do { _unit addItemToBackpack _item; };
 	} count _content;
-};
-
-_pw params ["_weapon", "_acc"];
-if ( !(_weapon isEqualto "") ) then {
-	_unit addWeapon _weapon;
-	{ _unit addPrimaryWeaponItem _x; } count _acc;
 };
 
 _sw params ["_weapon", "_acc"];

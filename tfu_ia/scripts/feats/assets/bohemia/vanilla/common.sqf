@@ -211,20 +211,20 @@ private _hq = [["", []],
 private _sl = [["", []], 
                ["", []], 
                ["", [["FirstAidKit", 4]]], 
-               ["", []], 
+               ["", ["optic_Nightstalker"]], 
                ["", []], 
                ["", []], 
                "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
 private _tl = [["", []], 
                ["", []], 
                ["", [["Medikit", 1], ["FirstAidKit", 4]]], 
-               ["", []], 
+               ["", ["optic_Nightstalker"]], 
                ["", []], 
                ["", []], 
                "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _medic = [["", []], 
                   ["", []], 
-                  ["", [["FirstAidKit", 10]]], 
+                  ["", [["Medikit", 1], ["FirstAidKit", 10]]], 
                   ["", []], 
                   ["", []], 
                   ["", []], 
@@ -237,8 +237,8 @@ private _lmg = [["", []],
                 ["", []], 
                 "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _hmg = [["", []], 
+                ["", [["FirstAidKit", 3]]], 
                 ["", []], 
-                ["", [["FirstAidKit", 4]]], 
                 ["", []], 
                 ["", []], 
                 ["", []], 
@@ -313,13 +313,13 @@ private _rifleman = [["", []],
                      ["", []], 
                      ["", []], 
                      "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
-private _jtac = [["", []], 
+private _jtac = [["", [["Laserbatteries", 2]]], 
                  ["", []], 
                  ["", [["FirstAidKit", 4]]], 
                  ["", []], 
                  ["", []], 
                  ["", []], 
-                 "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+                 "", "", "ItemRadio", "ItemGPS", "ItemMap", "Laserdesignator", "", "ItemWatch", "ItemCompass"];
 private _hPilot = [["", []], 
                    ["", []], 
                    ["", [["FirstAidKit", 4]]], 
@@ -348,9 +348,11 @@ private _mortar = [["", []],
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
-
+private _uavopp = [];
+private _spotter = [];
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
-                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, _mortar]];
+                 _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
+                 _mortar, _uavopp, _spotter]];
 //------------------------------------------------------------ Base Atmosphere Role Vanilla BLUFOR
 
 BALO_VC = RL_VC + 1;
