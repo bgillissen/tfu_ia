@@ -16,23 +16,20 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=109;
+		nextID=110;
 	};
 	class Camera
 	{
-		pos[]={7458.0347,11.048782,7550.103};
-		dir[]={0.71068978,-0.65699768,0.25206313};
-		up[]={0.61920148,0.75371957,0.21961886};
-		aside[]={0.33430687,2.1814922e-006,-0.94255614};
+		pos[]={7458.3726,8.1971197,7547.4204};
+		dir[]={0.87023211,-0.38065666,0.31314525};
+		up[]={0.35827538,0.92452192,0.12892531};
+		aside[]={0.33861667,4.3887194e-006,-0.94100493};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
 	"A3_Characters_F",
-	"A3_Weapons_F_Pistols_ACPC2",
-	"A3_Weapons_F",
-	"A3_Characters_F_Exp",
 	"A3_Ui_F",
 	"A3_Modules_F_Curator_Curator",
 	"A3_Structures_F_Ind_DieselPowerPlant"
@@ -41,7 +38,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=6;
+		items=4;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -51,33 +48,19 @@ class AddonsMetaData
 		};
 		class Item1
 		{
-			className="A3_Weapons_F";
-			name="Arma 3 Alpha - Weapons and Accessories";
-			author="Bohemia Interactive";
-			url="http://www.arma3.com";
-		};
-		class Item2
-		{
-			className="A3_Characters_F_Exp";
-			name="Arma 3 Apex - Characters and Clothing";
-			author="Bohemia Interactive";
-			url="http://www.arma3.com";
-		};
-		class Item3
-		{
 			className="A3_Ui_F";
 			name="Arma 3 - User Interface";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item4
+		class Item2
 		{
 			className="A3_Modules_F_Curator";
 			name="Arma 3 Zeus Update - Scripted Modules";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item5
+		class Item3
 		{
 			className="A3_Structures_F_Ind";
 			name="Arma 3 - Industrial Structures";
@@ -196,31 +179,6 @@ class Mission
 						isPlayable=1;
 						class Inventory
 						{
-							class handgun
-							{
-								name="hgun_ACPC2_F";
-								class primaryMuzzleMag
-								{
-									name="9Rnd_45ACP_Mag";
-									ammoLeft=9;
-								};
-							};
-							class uniform
-							{
-								typeName="U_I_C_Soldier_Bandit_4_F";
-								isBackpack=0;
-								class MagazineCargo
-								{
-									items=1;
-									class Item0
-									{
-										name="9Rnd_45ACP_Mag";
-										count=3;
-										ammoLeft=9;
-									};
-								};
-							};
-							map="ItemMap";
 						};
 					};
 					id=1;

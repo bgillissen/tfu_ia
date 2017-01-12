@@ -17,7 +17,6 @@ if ( isNil "_role" ) then {
 private _lo = missionNamespace getVariable format["RL_%1", _role];
 
 if ( !(isNil "_lo") ) then {
-	diag_log _lo;
 	_lo params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_f", "_c", "_t", "_m", "_bino", "_n", "_w", "_cp"];
 	_lo = nil;
 	[player, _u, _v, _b, _pw, _sw, _hw, _h, _f, _c, _t, _m, _bino, _n, _w, _cp] call common_fnc_setLoadout;	

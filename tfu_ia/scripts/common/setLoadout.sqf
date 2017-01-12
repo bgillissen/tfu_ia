@@ -20,7 +20,6 @@ removeBackpack _unit;
 removeHeadgear _unit;
 removeGoggles _unit;
 
-diag_log _uniform;
 _uniform params ["_container", "_content"];
 if ( !(_container isEqualto "") ) then {
 	diag_log _container;

@@ -14,8 +14,17 @@ private _out = [];
 
 A_VC = 0;
 
-private _backpacks = [];
-private _items = ["ItemMap", "ItemRadio", "ItemGPS", "ItemCompass", "ItemWatch", "MineDetector", "FirstAidKit", "Medikit", "ToolKit"];
+private _backpacks = ["B_Parachute"];
+private _items = ["ItemMap", 
+                  "ItemRadio", 
+                  "ItemGPS", 
+                  "ItemCompass", 
+                  "ItemWatch", 
+                  "MineDetector", 
+                  "FirstAidKit", 
+                  "Medikit", 
+                  "ToolKit",
+                  "Binocular"];
 private _weapons = [];
 private _ammo = ["DemoCharge_Remote_Mag",
                  "IEDUrbanSmall_Remote_Mag",
@@ -127,7 +136,7 @@ private _aaTank = [[],
                    []];
 private _planeCAS = [[],[],[],[]];
 private _planeAA = [[],[],[],[]];
-private _planeTransport = [[],
+private _planeTransport = [[["B_Parachute", 10]],
                            [["FirstAidKit", 20]],
                            [],
                            []];
@@ -181,33 +190,143 @@ _out set [VC_VC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _p
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout Vanilla Common
-//[uniform, [inUniform]], [vest, inVest]], [backpack, [inBackpack]], [primWeapon, [primWeaponItems]] [secWeapon, [secWeapItems]], [handWeapon, handWeapItems]], helmet, face, comm, terminal, map, bino, nv, watch, compass
+/*
+ [uniform, [inUniform]], 
+ [vest, inVest]], 
+ [backpack, [inBackpack]], 
+ [primWeapon, [primWeaponItems]] 
+ [secWeapon, [secWeapItems]], 
+ [handWeapon, handWeapItems]], 
+ helmet, face, comm, terminal, map, bino, nv, watch, compass
+*/
 RL_VC = VC_VC + 1;
 
-private _hq = [];
-private _sl = [];
-private _tl = [];
-private _medic = [];
-private _lmg = [];
-private _hmg = [];
-private _assHMG = [];
-private _at = [];
-private _assAT = [];
-private _sniper = [];
-private _marksman = [];
-private _repair = [];
-private _demo = [];
-private _engineer = [];
-private _grenadier = [];
-private _rifleman = [];
-private _jtac = [];
-private _hPilot = [["", []], 
+private _hq = [["", []], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _sl = [["", []], 
+               ["", []], 
+               ["", [["FirstAidKit", 4]]], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _tl = [["", []], 
+               ["", []], 
+               ["", [["Medikit", 1], ["FirstAidKit", 4]]], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _medic = [["", []], 
+                  ["", []], 
+                  ["", [["FirstAidKit", 10]]], 
+                  ["", []], 
+                  ["", []], 
+                  ["", []], 
+                  "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _lmg = [["", []], 
+                ["", []], 
+                ["", [["FirstAidKit", 4]]], 
+                ["", []], 
+                ["", []], 
+                ["", []], 
+                "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _hmg = [["", []], 
+                ["", []], 
+                ["", [["FirstAidKit", 4]]], 
+                ["", []], 
+                ["", []], 
+                ["", []], 
+                "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _assHMG = [["", []], 
+                   ["", []], 
+                   ["", [["FirstAidKit", 4]]], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _at = [["", []], 
+               ["", []], 
+               ["", [["FirstAidKit", 4]]], 
+               ["", []], 
+               ["", []], 
+               ["", []], 
+               "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _assAT = [["", []], 
+                  ["", []], 
+                  ["", [["FirstAidKit", 4]]], 
+                  ["", []], 
+                  ["", []], 
+                  ["", []], 
+                  "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _sniper = [["", []], 
                    ["", []], 
                    ["", [["FirstAidKit", 4]]], 
                    ["", []], 
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _marksman = [["", []], 
+                     ["", []], 
+                     ["", [["FirstAidKit", 4]]], 
+                     ["", []], 
+                     ["", []], 
+                     ["", []], 
+                     "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _repair = [["", []], 
+                   ["", []], 
+                   ["", [["FirstAidKit", 4]]], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _demo = [["", []], 
+                 ["", []], 
+                 ["", [["FirstAidKit", 4]]], 
+                 ["", []], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _engineer = [["", []], 
+                     ["", []], 
+                     ["", [["FirstAidKit", 4]]], 
+                     ["", []], 
+                     ["", []], 
+                     ["", []], 
+                     "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _grenadier = [["", []], 
+                      ["", []], 
+                      ["", [["FirstAidKit", 4]]], 
+                      ["", []], 
+                      ["", []], 
+                      ["", []], 
+                      "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _rifleman = [["", []], 
+                     ["", []], 
+                     ["", [["FirstAidKit", 4]]], 
+                     ["", []], 
+                     ["", []], 
+                     ["", []], 
+                     "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _jtac = [["", []], 
+                 ["", []], 
+                 ["", [["FirstAidKit", 4]]], 
+                 ["", []], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
+private _hPilot = [["", []], 
+                   ["", []], 
+                   ["", [["FirstAidKit", 4]]], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _jPilot = [["", [["FirstAidKit", 2]]], 
                    ["", []], 
                    ["B_Parachute", []], 
@@ -215,8 +334,20 @@ private _jPilot = [["", [["FirstAidKit", 2]]],
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
-private _crew = [];
-private _mortar = [];
+private _crew = [["", []], 
+                 ["", []], 
+                 ["", [["ToolKit", 1],["FirstAidKit", 4]]], 
+                 ["", []], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _mortar = [["", []], 
+                   ["", []], 
+                   ["", [["FirstAidKit", 4]]], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, _mortar]];
