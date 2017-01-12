@@ -192,162 +192,152 @@ _out set [VC_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, 
 */
 RL_USAF = VC_USAF + 1;
 
-private _uniform = "rhs_uniform_g3_rgr";
 private _backpack = "rhsusf_assault_eagleaiii_coy";
-private _pw = "rhs_weap_m4a1_blockII";
-if ( ("jungle" in MAP_KEYWORDS) || ("wood" in MAP_KEYWORDS) ) then { 
-	_uniform = "rhs_uniform_g3_m81";
-	_pw = "rhs_weap_m4a1_blockII_wd";
-};
 if ( "desert" in MAP_KEYWORDS ) then { 
-	_uniform = "rhs_uniform_g3_tan";
 	_backpack = "rhsusf_assault_eagleaiii_ocp";
-	_pw = "rhs_weap_m4a1_blockII_d";
 };
 if ( "dry" in MAP_KEYWORDS ) then { 
-	_uniform = "rhs_uniform_g3_mc";
 	_backpack = "rhsusf_assault_eagleaiii_ocp";
-	_pw = "rhs_weap_m4a1_blockII_d";
 };
 
-private _hq = [["rhs_uniform_g3_blk", []], 
+private _hq = [[(["hq"] call rhsUSAF_fnc_rlUniform), []], 
                ["", []], 
                ["", []], 
                ["", []], 
                ["", []], 
                ["", []], 
                "", "", "", "", "", "", "", "", ""];
-private _sl = [[_uniform, []], 
+private _sl = [[(["sl"] call rhsUSAF_fnc_rlUniform), []], 
                ["rhsusf_spc_squadleader", [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8]]], 
                ["", []], 
-               [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+               [(["sl"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                ["", []], 
                ["", []], 
                "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _tl = [[_uniform, []], 
+private _tl = [[(["tl"] call rhsUSAF_fnc_rlUniform), []], 
                ["rhsusf_spc_squadleader", [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8]]], 
                ["", []], 
-               [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+               [(["tl"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                ["", []], 
                ["", []], 
                "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _medic = [[_uniform, []], 
+private _medic = [[(["medic"] call rhsUSAF_fnc_rlUniform), []], 
                   ["", []], 
                   ["", []], 
-                  [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                  [(["medic"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                   ["", []], 
                   ["", []], 
                   "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _lmg = [[_uniform, []], 
+private _lmg = [[(["lmg"] call rhsUSAF_fnc_rlUniform), []], 
                 ["rhsusf_spc_mg", [["rhs_mag_an_m8hc", 4], ["rhs_mag_m67", 4], ["rhsusf_100Rnd_556x45_soft_pouch", 1]]],
                 [_backpack, [["rhs_200rnd_556x45_M_SAW", 2], ["rhsusf_100Rnd_556x45_soft_pouch", 1]]], 
-                ["rhs_weap_m249_pip_S_vfg", ["rhsusf_acc_SpecterDR"]], 
+                [(["lmg"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_SpecterDR"]], 
                 ["", []], 
                 ["", []], 
                 "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _hmg = [[_uniform, []], 
+private _hmg = [[(["hmg"] call rhsUSAF_fnc_rlUniform), []], 
                 ["rhsusf_spc_mg", [["rhs_mag_an_m8hc", 4], ["rhs_mag_m67", 4], ["rhsusf_100Rnd_556x45_soft_pouch", 1]]], 
                 ["", []], 
-                ["", []], 
+                [(["hmg"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_SpecterDR"]], 
                 ["", []], 
                 ["", []], 
                 "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _assHMG = [[_uniform, []], 
+private _assHMG = [[(["assHMG"] call rhsUSAF_fnc_rlUniform), []], 
                    ["", []], 
                    ["", []], 
-                   [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                   [(["assHMG"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                    ["", []], 
                    ["", []], 
                    "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _at = [[_uniform, []], 
+private _at = [[(["at"] call rhsUSAF_fnc_rlUniform), []], 
                ["", []], 
                ["", []], 
-               [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+               [(["at"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                ["", []], 
                ["", []], 
                "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _assAT = [[_uniform, []], 
+private _assAT = [[(["assAT"] call rhsUSAF_fnc_rlUniform), []], 
                   ["", []], 
                   ["", []], 
-                  [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                  [(["assAT"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                   ["", []], 
                   ["", []], 
                   "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _sniper = [[_uniform, []], 
+private _sniper = [[(["sniper"] call rhsUSAF_fnc_rlUniform), []], 
                    ["", []], 
                    ["", []], 
-                   ["", []], 
+                   [(["sniper"] call rhsUSAF_fnc_rlPrimWeap), []], 
                    ["", []], 
                    ["", []], 
                    "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _marksman = [[_uniform, []], 
+private _marksman = [[(["marksman"] call rhsUSAF_fnc_rlUniform), []], 
                      ["", []], 
                      ["", []], 
-                     ["", []], 
+                     [(["marksman"] call rhsUSAF_fnc_rlPrimWeap), []], 
                      ["", []], 
                      ["", []], 
                      "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _repair = [[_uniform, []], 
+private _repair = [[(["repair"] call rhsUSAF_fnc_rlUniform), []], 
                    ["", []], 
                    ["", []], 
-                   [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                   [(["repair"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                    ["", []], 
                    ["", []], 
                    "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _demo = [[_uniform, []], 
+private _demo = [[(["demo"] call rhsUSAF_fnc_rlUniform), []], 
                  ["", []], 
                  ["", []], 
-                 [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                 [(["demo"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                  ["", []], 
                  ["", []], 
                  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _engineer = [[_uniform, []], 
+private _engineer = [[(["engineer"] call rhsUSAF_fnc_rlUniform), []], 
                      ["", []], 
                      ["", []], 
-                     [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                     [(["engineer"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                      ["", []], 
                      ["", []], 
                      "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _grenadier = [[_uniform, []], 
+private _grenadier = [[(["grenadier"] call rhsUSAF_fnc_rlUniform), []], 
 					  ["", []], 
 					  ["", []], 
-					  ["", []], 
+					  [(["grenadier"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
 					  ["", []], 
 					  ["", []], 
 					  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _rifleman = [[_uniform, []], 
+private _rifleman = [[(["rifleman"] call rhsUSAF_fnc_rlUniform), []], 
                      ["", []], 
                      ["", []], 
-                     [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                     [(["rifleman"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                      ["", []], 
                      ["", []], 
                      "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _jtac = [[_uniform, []], 
+private _jtac = [[(["jtac"] call rhsUSAF_fnc_rlUniform), []], 
                  ["", []], 
                  ["", []], 
-                 [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                 [(["jtac"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                  ["", []], 
                  ["", []], 
                  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _hPilot = [[_uniform, []], 
+private _hPilot = [[(["hPilot"] call rhsUSAF_fnc_rlUniform), []], 
                    ["rhsusf_spc", [["rhs_mag_an_m8hc", 4]]], 
                    [_backpack, [["rhsusf_mag_40Rnd_46x30_FMJ", 6], ["rhsusf_m112_mag", 3]]], 
-                   ["rhsusf_weap_MP7A1_base_f", ["rhsusf_acc_eotech_xps3"]], 
+                   [(["hPilot"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_eotech_xps3"]], 
                    ["", []], 
                    ["", []], 
                    "rhsusf_hgu56p", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
 private _jPilot = [];
-private _crew = [[_uniform, []], 
+private _crew = [[(["crew"] call rhsUSAF_fnc_rlUniform), []], 
                  ["", []], 
                  ["", []], 
-                 [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                 [(["crew"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                  ["", []], 
                  ["", []], 
                  "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
-private _mortar = [[_uniform, []], 
+private _mortar = [[(["mortar"] call rhsUSAF_fnc_rlUniform), []], 
                    ["", []], 
                    ["", []], 
-                   [_pw, ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
+                   [(["mortar"] call rhsUSAF_fnc_rlPrimWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod"]], 
                    ["", []], 
                    ["", []], 
                    "", "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
