@@ -208,7 +208,13 @@ private _hPilot = [["", []],
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
-private _jPilot = [];
+private _jPilot = [["", [["FirstAidKit", 2]]], 
+                   ["", []], 
+                   ["B_Parachute", []], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
 private _crew = [];
 private _mortar = [];
 

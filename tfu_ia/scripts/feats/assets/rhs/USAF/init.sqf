@@ -1,5 +1,5 @@
 /*
-@filename: feats\mods\rhsUSAF\init.sqf
+@filename: feats\assets\rhs\USAF\init.sqf
 Author:
 	Ben
 Description:

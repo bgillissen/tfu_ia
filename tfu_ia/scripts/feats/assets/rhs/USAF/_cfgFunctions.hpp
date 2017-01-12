@@ -4,7 +4,7 @@ class rhsUSAF {
 		class preInit { file="feats\assets\rhs\USAF\preInit.sqf"; };
 		class init { file="feats\assets\rhs\USAF\init.sqf"; };
 		class assets { file="feats\assets\rhs\USAF\assets.sqf"; };
-		class rlUniform { file="feats\assets\rhs\USAF\rlUniform.sqf"; };
-		class rlPrimWeap { file="feats\assets\rhs\USAF\rlPrimWeap.sqf"; };
+		class uniform { file="feats\assets\rhs\USAF\uniform.sqf"; };
+		class primWeap { file="feats\assets\rhs\USAF\primWeap.sqf"; };
 	};
 };
