@@ -24,7 +24,8 @@ private _items = ["ItemMap",
                   "FirstAidKit", 
                   "Medikit", 
                   "ToolKit",
-                  "Binocular"];
+                  "Binocular",
+                  "B_UavTerminal"];
 private _weapons = [];
 private _ammo = ["DemoCharge_Remote_Mag",
                  "IEDUrbanSmall_Remote_Mag",
@@ -348,8 +349,20 @@ private _mortar = [["", []],
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
-private _uavopp = [];
-private _spotter = [];
+private _uavopp = [["", []], 
+                   ["", []], 
+                   ["", [["FirstAidKit", 4]]], 
+                   ["", []], 
+                   ["", []], 
+                   ["", []], 
+                   "", "", "ItemRadio", "B_UavTerminal", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private _spotter = [["", []], 
+                    ["", []], 
+                    ["", [["FirstAidKit", 4]]], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
                  _mortar, _uavopp, _spotter]];
