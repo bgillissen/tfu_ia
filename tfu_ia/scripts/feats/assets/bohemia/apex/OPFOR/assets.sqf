@@ -1,28 +1,28 @@
 /*
-@filename: feats\mods\vanilla\assetOpfor.sqf
+@filename: feats\assets\bohemia\apex\OPFOR\assets.sqf
 Author:
 	Ben
 Description:
-	call by feats\mods\vanilla\init.sqf
-	return the Vanilla OPFOR assets
+	call by feats\assets\bohemia\apex\init.sqf
+	return the Apex OPFOR assets
 */
 
 private _out = [];
 
-//------------------------------------------------------------ Arsenal Vanilla OPFOR
+//------------------------------------------------------------ Arsenal Apex OPFOR
 
-A_VO = 0;
+A_AO = 0;
 
 private _backpacks = [];
 private _items = [];
 private _weapons = [];
 private _ammo = [];
 
-_out set [A_VO, [_backpacks, _items, _weapons, _ammo]];
+_out set [A_AO, [_backpacks, _items, _weapons, _ammo]];
 
-//------------------------------------------------------------ Restricted Gear Vanilla OPFOR
+//------------------------------------------------------------ Restricted Gear Apex OPFOR
 
-RG_VO = A_VO + 1;
+RG_AO = A_AO + 1;
 
 private _launcher = [];
 private _mg = [];
@@ -33,21 +33,21 @@ private _mScope = [];
 private _oScope = [];
 private _backpack = [];
 
-_out set [RG_VO, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
+_out set [RG_AO, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
 
-//------------------------------------------------------------ Allowed Vehicles Vanilla OPFOR
+//------------------------------------------------------------ Allowed Vehicles Apex OPFOR
 
-AV_VO = RG_VO + 1;
+AV_AO = RG_AO + 1;
 
 private _heli = [];
 private _plane = [];
 private _tank = [];
 
-_out set [AV_VO, [_heli, _plane, _tank]];
+_out set [AV_AO, [_heli, _plane, _tank]];
 
-//------------------------------------------------------------ supplyDrop Vanilla OPFOR
+//------------------------------------------------------------ supplyDrop Apex OPFOR
 
-SD_VO = AV_VO + 1;
+SD_AO = AV_AO + 1;
 
 private _backpacks = [];
 private _items = [];
@@ -56,19 +56,19 @@ private _ammo = [];
 private _crates = [];
 private _vehicles = [];
 
-_out set [SD_VO, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
+_out set [SD_AO, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
-//------------------------------------------------------------ Rewards Vanilla OPFOR
+//------------------------------------------------------------ Rewards Apex OPFOR
 
-R_VO = SD_VO + 1;
+R_AO = SD_AO + 1;
 
 private _rewards = [];
 
-_out set [R_VO, _rewards];
+_out set [R_AO, _rewards];
 
-//------------------------------------------------------------ Spawn Vanilla OPFOR
+//------------------------------------------------------------ Spawn Apex OPFOR
 
-S_VO = R_VO + 1;
+S_AO = R_AO + 1;
 
 private _rt = ["Land_TTowerBig_2_F"];
 private _crates = ["Land_CargoBox_V1_F"];
@@ -88,12 +88,12 @@ private _car = [];
 private _carArmed = [];
 private _aPatrol = [];
 
-_out set [S_VO, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+_out set [S_AO, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
-//------------------------------------------------------------ Vehicles Vanilla OPFOR
+//------------------------------------------------------------ Vehicles Apex OPFOR
 
-BV_VO = S_VO + 1;
+BV_AO = S_AO + 1;
 
 private _car = [];
 private _carArmed = [];
@@ -120,13 +120,13 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [BV_VO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [BV_AO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Vehicles Cargo Vanilla OPFOR
+//------------------------------------------------------------ Vehicles Cargo Apex OPFOR
 
-VC_VO = BV_VO + 1;
+VC_AO = BV_AO + 1;
 
 private _car = [[],[],[],[]];
 private _carArmed = [[],[],[],[]];
@@ -153,13 +153,13 @@ private _fuel = [[],[],[],[]];
 private _ammo = [[],[],[],[]];
 private _quad = [[],[],[],[]];
 
-_out set [VC_VO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [VC_AO, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Role Loadout Vanilla OPFOR
+//------------------------------------------------------------ Role Loadout Apex OPFOR
 
-RL_VO = VC_VO + 1;
+RL_AO = VC_AO + 1;
 
 private _hq = [];
 private _sl = [];
@@ -185,20 +185,20 @@ private _mortar = [];
 private _uavopp = [];
 private _spotter = [];
 
-_out set [RL_VO, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
+_out set [RL_AO, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew,
                  _mortar, _uavopp, _spotter]];
 
-//------------------------------------------------------------ Base Atmosphere Role Vanilla BLUFOR
+//------------------------------------------------------------ Base Atmosphere Role Apex OPFOR
 
-BALO_VO = RL_VO + 1;
+BALO_AO = RL_AO + 1;
 
 private _medic = [];
 private _gear = [];
 private _support = [];
 private _default = [];
 
-_out set [BALO_VO, [_medic, _gear, _support, _default]];
+_out set [BALO_AO, [_medic, _gear, _support, _default]];
 
 //------------------------------------------------------------ FINITO, return
           

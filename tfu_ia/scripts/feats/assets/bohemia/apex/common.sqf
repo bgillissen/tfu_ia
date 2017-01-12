@@ -4,7 +4,7 @@ Author:
 	Ben
 Description:
 	run on server,
-	call by feats\mods\Apex\init.sqf
+	call by feats\assets\bohemia\apex\init.sqf
 	return the Apex assets common to all side
 */
 
@@ -15,20 +15,9 @@ private _out = [];
 A_AC = 0;
 
 private _backpacks = [];
-private _items = ["ItemMap", "ItemRadio", "ItemGPS", "ItemCompass", "ItemWatch", "MineDetector", "FirstAidKit", "Medikit", "ToolKit"];
+private _items = [];
 private _weapons = [];
-private _ammo = ["DemoCharge_Remote_Mag",
-                 "IEDUrbanSmall_Remote_Mag",
-                 "IEDLandSmall_Remote_Mag",
-                 "SatchelCharge_Remote_Mag",
-                 "IEDUrbanBig_Remote_Mag",
-                 "IEDLandBig_Remote_Mag",
-                 "ATMine_Range_Mag",
-                 "ClaymoreDirectionalMine_Remote_Mag",
-                 "APERSMine_Range_Mag",
-                 "APERSBoundingMine_Range_Mag",
-                 "SLAMDirectionalMine_Wire_Mag",
-                 "APERSTripMine_Wire_Mag"];
+private _ammo = [];
 
 _out set [A_AC, [_backpacks, _items, _weapons, _ammo]];
 
@@ -47,14 +36,9 @@ _out set [AV_AC, [_heli, _plane, _tank]];
 SD_AC = AV_AC + 1;
 
 private _backpacks = [];
-private _items = [["Laserdesignator", 3],
-                  ["Laserbatteries", 5],
-                  ["FirstAidKit", 20],
-                  ["Medikit", 2],
-                  ["ToolKit", 2]];
+private _items = [];
 private _weapons = [];
-private _ammo = [["SatchelCharge_Remote_Mag", 3],
-                 ["DemoCharge_Remote_Mag", 5]];
+private _ammo = [];
 private _crates = [];
 private _vehicles = [];
 

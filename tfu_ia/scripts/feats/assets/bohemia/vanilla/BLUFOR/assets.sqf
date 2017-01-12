@@ -1,9 +1,9 @@
 /*
-@filename: feats\assets\bohemia\vanilla\blufor.sqf
+@filename: feats\assets\bohemia\vanilla\BLUFOR\assets.sqf
 Author:
 	Ben
 Description:
-	call by feats\assets\vanilla\init.sqf
+	call by feats\assets\bohemia\vanilla\init.sqf
 	return the Vanilla BLUFOR assets
 */
 
