@@ -1,10 +1,10 @@
 /*
-@filename: feats\mods\ace\assets.sqf
+@filename: feats\assets\ace\assets.sqf
 Author:
 	Ben
 Description:
 	run on server
-	call by feats\mods\ace\init.sqf
+	call by feats\assets\ace\init.sqf
 	return ACE assets
 */
 
@@ -15,9 +15,58 @@ _out = [];
 A_ACE = 0;
 
 private _backpacks = [];
-private _items = [];
+private _items = ["ACE_Altimeter",
+                  "ACE_ATragMX",
+                  "ACE_bloodIV",
+                  "ACE_bloodIV_250",
+                  "ACE_bloodIV_500",
+                  "ACE_bodyBag",
+                  "ACE_CableTie",
+                  "ACE_Cellphone",
+                  "ACE_Clacker",
+                  "ACE_DeadManSwitch",
+                  "ACE_DefusalKit",
+                  "ACE_EarPlugs",
+                  "ACE_epinephrine",
+                  "ACE_fieldDressing",
+                  "ACE_IR_Strobe_Item",
+                  "ACE_Kestrel4500",
+                  "ACE_M26_Clacker",
+                  "ACE_MapTools",
+                  "ACE_microDAGR",
+                  "ACE_morphine",
+                  "ACE_RangeTable_82mm",
+                  "ACE_UAVBattery",
+                  "ACE_Vector",
+                  "ACE_wirecutter",
+                  "ACE_NVG_Wide",
+                  "ACE_NVG_Gen1",
+                  "ACE_NVG_Gen2",
+                  "ACE_NVG_Gen4",
+                  "ACE_optic_Arco_2D",
+                  "ACE_optic_Arco_PIP",
+                  "ACE_optic_Hamr_2D",
+                  "ACE_optic_Hamr_PIP",
+                  "ACE_optic_LRPS_2D",
+                  "ACE_optic_LRPS_PIP",
+                  "ACE_optic_SOS_2D",
+                  "ACE_optic_SOS_PIP",
+                  "ACE_optic_MRCO_2D",
+                  "ACE_optic_MRCO_PIP",
+                  "ACE_acc_pointer_green_IR",
+                  "ACE_acc_pointer_green",
+                  "ACE_acc_pointer_red",
+                  "muzzle_snds_H_SW"];
 private _weapons = [];
-private _ammo = [];
+private _ammo = ["ACE_HandFlare_Green",
+                 "ACE_HandFlare_Red",
+                 "ACE_HandFlare_White",
+                 "ACE_HandFlare_Yellow",
+                 "ACE_M84",
+                 "IEDUrbanSmall_Remote_Mag",
+                 "IEDLandSmall_Remote_Mag",
+                 "IEDUrbanBig_Remote_Mag",
+                 "IEDLandBig_Remote_Mag"];
 
 _out set [A_ACE, [_backpacks, _items, _weapons, _ammo]];
 
@@ -26,7 +75,15 @@ _out set [A_ACE, [_backpacks, _items, _weapons, _ammo]];
 SD_ACE = A_ACE + 1;
 
 private _backpacks = [];
-private _items = [];
+private _items = [["ACE_M26_Clacker", 2], 
+                  ["ACE_epinephrine", 20], 
+                  ["ACE_morphine", 40],
+                  ["ACE_fieldDressing", 40],
+                  ["ACE_bloodIV_500", 20],
+                  ["ACE_bloodIV", 20],
+                  ["ACE_bodyBag", 5],
+                  ["ACE_EarPlugs", 10],
+                  ["ACE_IR_Strobe_Item", 10]];
 private _weapons = [];
 private _ammo = [];
 

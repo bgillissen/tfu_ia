@@ -6,5 +6,6 @@ class tfar {
 		class blufor { file="feats\assets\tfar\blufor.sqf"; };
 		class ind { file="feats\assets\tfar\ind.sqf"; };
 		class opfor { file="feats\assets\tfar\opfor.sqf"; };
+		class lrByRole { file="feats\assets\tfar\lrByRole.sqf"; };
 	};
 };
