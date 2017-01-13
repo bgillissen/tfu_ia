@@ -1,10 +1,10 @@
 /*
-@filename: feats\mods\rhsGREF\blufor.sqf
+@filename: feats\assets\rhs\GREF\BLUFOR\assets.sqf
 Author:
 	Ben
 Description:
 run on server,
-	called by feats\mods\rhsGREF\init.sqf
+	called by feats\asstes\rhs\GREF\init.sqf
 	return the RHS GREF Blufor assets
 */
 

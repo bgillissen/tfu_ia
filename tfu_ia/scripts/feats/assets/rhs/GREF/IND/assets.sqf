@@ -1,10 +1,10 @@
 /*
-@filename: feats\mods\rhsGREF\assets.sqf
+@filename: feats\assets\rhs\GREF\IND\assets.sqf
 Author:
 	Ben
 Description:
 run on server,
-	called by feats\mods\rhsGREF\init.sqf
+	called by feats\assets\rhs\GREF\init.sqf
 	return the RHS GREF Independent assets
 */
 
