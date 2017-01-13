@@ -4,8 +4,9 @@ Author:
 	Ben
 Description:
 	run on server
- 	set the npc loadout (only helmet, vest, uniform)
+ 	set the npc loadout
  	loadout depends on linked actions, (arsenal, support, medic)
+ 	now also set the insignia defined as npc in description.ext
 */
 
 params ["_npc", "_actions"];
@@ -20,3 +21,5 @@ _lo = _actions call {
 _lo params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_f", "_c", "_t", "_m", "_bino", "_n", "_w", "_cp"];
 
 [_npc, _u, _v, _b, _pw, _sw, _hw, _h, _f, _c, _t, _m, _bino, _n, _w, _cp] call common_fnc_setLoadout;
+
+[_npc, "npc"] call BIS_fnc_setUnitInsignia;

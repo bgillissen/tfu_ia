@@ -2,7 +2,7 @@ class side {
 	title = "Player side";
 	values[] = {0, 1, 2};
 	texts[] = {"OPFOR", "BLUFOR", "IND"};
-	default = 0;
+	default = 1;
 };
 
 class opforEnemy {

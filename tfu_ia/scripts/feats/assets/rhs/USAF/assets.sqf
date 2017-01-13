@@ -359,10 +359,34 @@ _out set [RL_USAF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sn
 
 BALO_USAF = RL_USAF + 1;
 
-private _medic = [];
-private _gear = [];
-private _support = [];
-private _default = [];
+private _medic = [[(["medic"] call rhsUSAF_fnc_uniform), []], 
+                  [(["medic"] call rhsUSAF_fnc_uniform), []], 
+                  ["", []], 
+                  ["", []], 
+                  ["", []], 
+                  ["", []], 
+                  "", "", "", "", "", "", "", "", ""];
+private _gear = [[(["hq"] call rhsUSAF_fnc_uniform), []], 
+                 ["", []], 
+                 ["", []], 
+                 ["", []], 
+                 ["", []], 
+                 ["", []], 
+                 "", "", "", "", "", "", "", "", ""];
+private _support = [[(["hq"] call rhsUSAF_fnc_uniform), []], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    "", "", "", "", "", "", "", "", ""];
+private _default = [[(["hq"] call rhsUSAF_fnc_uniform), []], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    ["", []], 
+                    "", "", "", "", "", "", "", "", ""];
 
 _out set [BALO_USAF, [_medic, _gear, _support, _default]];
 
