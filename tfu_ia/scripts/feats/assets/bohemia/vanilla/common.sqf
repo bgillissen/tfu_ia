@@ -349,13 +349,26 @@ private _mortar = [["", []],
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+private ["_backpack", "_term"];
+if ( PLAYER_SIDE isEqualTo west ) then {
+	_backpack = "B_UAV_01_backpack_F";
+	_term = "B_UavTerminal";
+};
+if ( PLAYER_SIDE isEqualTo east ) then {
+	_backpack = "O_UAV_01_backpack_F";
+	_term = "O_UavTerminal";
+};
+if ( PLAYER_SIDE isEqualTo independent ) then {
+	_backpack = "I_UAV_01_backpack_F";
+	_term = "I_UavTerminal";
+};
 private _uavopp = [["", []], 
                    ["", [["FirstAidKit", 4]]], 
-                   ["B_UAV_01_backpack_F", []], 
+                   [_backpack, []], 
                    ["", []], 
                    ["", []], 
                    ["", []], 
-                   "", "", "ItemRadio", "B_UavTerminal", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+                   "", "", "ItemRadio", _term, "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _spotter = [["", []], 
                     ["", []], 
                     ["", [["FirstAidKit", 4]]], 
