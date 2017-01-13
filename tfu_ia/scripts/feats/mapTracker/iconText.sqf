@@ -22,10 +22,11 @@ private _t = "";
 if (!isPlayer _veh) then {
 	_au = ["I_UAV_01_F","B_UAV_01_F","O_UAV_01_F","I_UAV_02_F","O_UAV_02_F","I_UAV_02_CAS_F","O_UAV_02_CAS_F","B_UAV_02_F","B_UAV_02_CAS_F","O_UAV_01_F","O_UGV_01_F","O_UGV_01_rcws_F","I_UGV_01_F","B_UGV_01_F","I_UGV_01_rcws_F","B_UGV_01_rcws_F","B_GMG_01_A_F","B_HMG_01_A_F","O_GMG_01_A_F","O_HMG_01_A_F","I_GMG_01_A_F","I_HMG_01_A_F"];
 	if ( (typeOf _veh) in _au ) exitWith {
-		if (isUavConnected _veh) then {	
-			_t = format ["%1 [%2]", (name (UAVControl _veh) select 0), _vdn];
+		if (isUavConnected _veh) then {
+			private _vdn = name ((UAVControl _veh) select 0);
+			_t = format ["%1 [%2]", _vdn, _vn];
 		} else {
-			_t = format ["[AI] [%1]", _vdn];
+			_t = format ["[AI] [%1]", _vn];
 		};
 	};
 } else {
