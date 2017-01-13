@@ -33,7 +33,7 @@ BA_veh = [];
 			BA_obj append [[_thing, _actions, _conf]];
 		} else {
 			if ( _type isEqualto "npc" ) then {
-				//{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
+				{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
 				[_thing, _actions] call baseAtmosphere_fnc_npcLoadout;
 				BA_npc append [[_thing, _actions, _conf]];	
 			} else {

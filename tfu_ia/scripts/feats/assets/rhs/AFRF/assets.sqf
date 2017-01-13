@@ -14,10 +14,10 @@ private _out = [];
 
 A_AFRF = 0;
 
-private _backpacks = [];
-private _items = [];
-private _weapons = [];
-private _ammo = [];
+private _backpacks = ["RHS_AFRF"] call rhs_fnc_getBackpacks;
+private _items = ["RHS_AFRF"] call rhs_fnc_getItems;
+private _weapons = ["RHS_AFRF"] call rhs_fnc_getWeapons;
+private _ammo = ["RHS_AFRF"] call rhs_fnc_getMagazines;
 
 _out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
 
