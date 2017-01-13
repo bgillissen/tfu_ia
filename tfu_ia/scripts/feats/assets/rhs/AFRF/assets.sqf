@@ -1,7 +1,7 @@
 /*
 @filename: feats\mods\rhsAFRF\assets.sqf
 Author:
-	Ben
+	Ben & Rainman
 Description:
 run on server,
 	called by feats\mods\rhsAFRF\init.sqf
@@ -12,12 +12,15 @@ private _out = [];
 
 //------------------------------------------------------------ Arsenal RHS AFRF
 
+//rhs_faction_afrf_wd => jungle, woods MAP_KEYWORDS
+
 A_AFRF = 0;
 
-private _backpacks = [];
-private _items = [];
-private _weapons = [];
-private _ammo = [];
+private _backpacks = ["RHS_AFRF"] call rhs_fnc_getBackpacks;
+private _items = ["RHS_AFRF"] call rhs_fnc_getItems;
+private _weapons = ["RHS_AFRF"] call rhs_fnc_getWeapons;
+private _ammo = ["RHS_AFRF"] call rhs_fnc_getMagazines;
+_ammo append ["rhs_30Rnd_545x39_AK"];
 
 _out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
 
@@ -40,7 +43,7 @@ _out set [RG_AFRF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope,
 
 AV_AFRF = RG_AFRF + 1;
 
-private _heli = [];
+private _heli = ["RHS_Mi8mt_vvs"];
 private _plane = [];
 private _tank = [];
 
@@ -50,12 +53,14 @@ _out set [AV_AFRF, [_heli, _plane, _tank]];
 
 SD_AFRF = AV_AFRF + 1;
 
-private _backpacks = [];
+private _backpacks = [["rhs_assault_umbts", 2]];
 private _items = [];
-private _weapons = [];
-private _ammo = [];
-private _crates = [];
-private _vehicles = [];
+private _weapons = [["rhs_weap_rpg26", 5],
+					["rhs_weap_ak74m_camo_npz", 3]];
+private _ammo = [["rhs_30Rnd_545x39_AK", 40]];
+
+private _crates = [rhsusf_mags_crate];
+private _vehicles = [RHS_Mi8mt_vvs];
 
 _out set [SD_AFRF, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
@@ -72,7 +77,7 @@ _out set [R_AFRF, _rewards];
 S_AFRF = R_AFRF + 1;
 
 private _rt = [];
-private _crates = [];
+private _crates = [rhsusf_mags_crate];
 private _pGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"]];
 private _sGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_sniper"]];
 private _pilot = ["rhs_pilot_combat_heli"];
@@ -89,7 +94,7 @@ private _car = [];
 private _carArmed = [];
 private _aPatrol = ["RHS_Mi24P_vdv", "RHS_Ka52_vvsc"];
 
-_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison,
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles RHS AFRF
@@ -121,8 +126,8 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav,
+                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo RHS AFRF
@@ -154,23 +159,87 @@ private _fuel = [[],[],[],[]];
 private _ammo = [[],[],[],[]];
 private _quad = [[],[],[],[]];
 
-_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav,
+                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout RHS AFRF
 
+/*
+ [uniform, [inUniform]],
+ [vest, inVest]],
+ [backpack, [inBackpack]],
+ [primWeapon, [primWeaponItems]]
+ [secWeapon, [secWeapItems]],
+ [handWeapon, handWeapItems]],
+ helmet, face, comm, terminal, map, bino, nv, watch, compass
+*/
+
 RL_AFRF = VC_AFRF + 1;
 
-private _hq = [];
-private _sl = [];
-private _tl = [];
-private _medic = [];
-private _lmg = [];
-private _hmg = [];
-private _assHMG = [];
-private _at = [];
-private _assAT = [];
+private _hq = [[(["hq"] call rhsAFRF_fnc_uniform), []],
+               ["", []],
+               ["", []],
+               ["", []],
+               ["", []],
+               ["", []],
+               (["hq"] call rhsAFRF_fnc_helmet), "", "", "", "", "", "", "", ""];
+private _sl = [[(["sl"] call rhsAFRF_fnc_uniform), []],
+              [(["sl"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["sl"] call rhsAFRF_fnc_backpack), []],
+              [(["sl"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["sl"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _tl = [[(["tl"] call rhsAFRF_fnc_uniform), []],
+              [(["tl"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["tl"] call rhsAFRF_fnc_backpack), []],
+              [(["tl"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["tl"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _medic = [[(["medic"] call rhsAFRF_fnc_uniform), []],
+              [(["medic"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["medic"] call rhsAFRF_fnc_backpack), []],
+              [(["medic"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["medic"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _lmg = [[(["lmg"] call rhsAFRF_fnc_uniform), []],
+              [(["lmg"] call rhsAFRF_fnc_vest), [["rhs_100Rnd_762x54mmR", 2], ["rhs_mag_rdg2_white", 2]]],
+              [(["lmg"] call rhsAFRF_fnc_backpack), [["rhs_100Rnd_762x54mmR", 2]]],
+              [(["lmg"] call rhsAFRF_fnc_primWeap), ["rhs_acc_pkas", "rhs_100Rnd_762x54mmR"]],
+              ["", []],
+              ["", []],
+              (["lmg"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _hmg = [[(["hmg"] call rhsAFRF_fnc_uniform), []],
+              [(["hmg"] call rhsAFRF_fnc_vest), [["rhs_100Rnd_762x54mmR", 2], ["rhs_mag_rdg2_white", 2]]],
+              [(["hmg"] call rhsAFRF_fnc_backpack), [["rhs_100Rnd_762x54mmR", 2]]],
+              [(["hmg"] call rhsAFRF_fnc_primWeap), ["rhs_acc_pkas", "rhs_100Rnd_762x54mmR"]],
+              ["", []],
+              ["", []],
+              (["hmg"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _assHMG = [[(["assHMG"] call rhsAFRF_fnc_uniform), []],
+              [(["assHMG"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["assHMG"] call rhsAFRF_fnc_backpack), [["rhs_100Rnd_762x54mmR", 3]]],
+              [(["assHMG"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["assHMG"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _at = [[(["at"] call rhsAFRF_fnc_uniform), []],
+               [(["at"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+               [(["at"] call rhsAFRF_fnc_backpack), [["rhs_rpg7_PG7VR_mag", 3]]],
+               [(["at"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+               ["rhs_weap_rpg7", []],
+               ["", []],
+               (["at"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _assAT = [[(["assAT"] call rhsAFRF_fnc_uniform), []],
+              [(["assAT"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["assAT"] call rhsAFRF_fnc_backpack), [["rhs_rpg7_PG7VR_mag", 3]]],
+              [(["assAT"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["assAT"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
 private _sniper = [];
 private _marksman = [];
 private _repair = [];
@@ -202,7 +271,5 @@ private _default = [];
 _out set [BALO_AFRF, [_medic, _gear, _support, _default]];
 
 //------------------------------------------------------------ FINITO, return
-          
+
 _out
-
-
