@@ -29,17 +29,15 @@ if ( isNil "PV") then {
 	AV_k = 3;
 	BV_k = 4;
 	VC_k = 5;
-	BA_k = 6;
-	BALO_k = 7;
-	S_k = 8;
-	RL_k = 9;
+	BALO_k = 6;
+	S_k = 7;
+	RL_k = 8;
 	PV = [["RG", ["launcher", "mg", "sRifle", "mRifle", "sScope", "mScope", "oScope", "backpack"], true],
 	      ["A", ["backpacks", "items", "weapons", "ammo"], true],
 	      ["SD", ["backpacks", "items", "weapons", "ammo", "crates", "vehicles"], true],
 	      ["AV", ["heli", "plane", "tank"], true],
 	      ["BV", _vehPools, false],
 	      ["VC", _vehPools, false],
-	      ["BA", ["veh", "npc", "obj"], true],
 	      ["BALO", ["medic", "gear", "support", "default"], false],
 	      ["S", ["radioTower", "crates", "pGroups", "sGroups", "pilot", "crew", "officer", "garrison",
 	             "aa", "arti", "static", "cas", "tank", "apc", "car", "carArmed", "aPatrol"], false],

@@ -28,7 +28,7 @@ for "_x" from 1 to _amount do {
 	if ( isClass(_cfgPath) ) then {
 		private _class = selectRandom (_cfgPath call Bis_fnc_getCfgSubClasses);
 		if ( isClass(_cfgPath >> _class) ) then {
-			diag_log format["infPatrol: %1", (_cfgPath >> _class)];
+			//diag_log format["infPatrol: %1", (_cfgPath >> _class)];
 			private _group = [_randomPos, _side, (_cfgPath >> _class)] call BIS_fnc_spawnGroup;
 			[_group, _coord, _patrolSize] call BIS_fnc_taskPatrol;
 			[(units _group), _skill] call common_fnc_setSkill;

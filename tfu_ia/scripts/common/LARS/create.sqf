@@ -751,7 +751,7 @@ private _fnc_spawnObject = {
 		_position = [ _veh, _position, _rotation, _ATLOffset, _randomStartPos, _needsSurfaceUP, _placementRadius ] call _fnc_setPositionAndRotation;
 		
 		//enable simulation	if not disabled	
-		_veh enableSimulationGlobal !_disableSimu;
+		_veh enableSimulationGlobal (!_disableSimu);
 
 		if ( typeOf _veh isKindOf "Man" ) then {
 			( waypoints ( group _veh )) select 0 setWaypointPosition [ getPos _veh, 0 ];

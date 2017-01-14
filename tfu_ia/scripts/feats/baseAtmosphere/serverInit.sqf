@@ -45,3 +45,7 @@ BA_veh = [];
 #endif
 	};
 } count BA;
+
+publicVariable "BA_npc";
+publicVariable "BA_obj";
+publicVariable "BA_veh";
