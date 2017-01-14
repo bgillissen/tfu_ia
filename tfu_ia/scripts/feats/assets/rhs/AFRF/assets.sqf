@@ -71,10 +71,32 @@ _out set [R_AFRF, _rewards];
 
 S_AFRF = R_AFRF + 1;
 
-private _rt = [];
+private _rt = ["rhs_p37", "rhs_prv13"];
 private _crates = [];
-private _pGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"]];
-private _sGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_sniper"]];
+private _pGroups = [["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_flora"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_mflora"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_recon"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon"]];
+private _sGroups = [["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_mg_sniper"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_sniper"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr", "rhs_group_rus_msv_infantry_emr_squad_mg_sniper"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr", "rhs_group_rus_msv_infantry_emr_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry", "rhs_group_rus_vdv_infantry_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry", "rhs_group_rus_vdv_infantry_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_flora", "rhs_group_rus_vdv_infantry_flora_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_flora", "rhs_group_rus_vdv_infantry_flora_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_mflora", "rhs_group_rus_vdv_infantry_mflora_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_mflora", "rhs_group_rus_vdv_infantry_mflora_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_recon", "rhs_group_rus_vdv_infantry_recon_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_recon", "rhs_group_rus_vdv_infantry_recon_squad_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry", "rhs_group_rus_vmf_infantry_squad_mg_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry", "rhs_group_rus_vmf_infantry_squad_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon", "rhs_group_rus_vmf_infantry_recon_squad_mg_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon", "rhs_group_rus_vmf_infantry_recon_squad_sniper"]];
 private _pilot = ["rhs_pilot_combat_heli"];
 private _crew = ["rhs_msv_emr_combatcrew"];
 private _officer = [];

@@ -41,7 +41,7 @@ if ( isNil "PV") then {
 	      ["VC", _vehPools, false],
 	      ["BA", ["veh", "npc", "obj"], true],
 	      ["BALO", ["medic", "gear", "support", "default"], false],
-	      ["S", ["radioTower", "crates", "pGroup", "sGroup", "pilot", "crew", "officer", "garrison",
+	      ["S", ["radioTower", "crates", "pGroups", "sGroups", "pilot", "crew", "officer", "garrison",
 	             "aa", "arti", "static", "cas", "tank", "apc", "car", "carArmed", "aPatrol"], false],
 	      ["RL", ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", 
 	              "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", 
