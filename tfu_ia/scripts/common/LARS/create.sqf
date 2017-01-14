@@ -38,7 +38,6 @@ switch ( true ) do {
 	//Get original composition position
 	case ( _compPos isEqualType [] && { count _compPos isEqualTo 0 } ) : {
 		_compPos = getArray( missionConfigFile >> "CfgCompositions" >> _compName >> "center" );
-		diag_log _compPos;
 		_compPos = [ _compPos select 0, _compPos select 2, _compPos select 1 ];
 		_asPlaced = true;
 	};
@@ -430,9 +429,9 @@ private _fnc_CustomAttributes = {
 				_value = getArray( _x >> 'Value' >> 'data' >> 'value' );
 			};
 		};
-		_header = "params[ '_this', '_value' ];";
-		[ _obj, _value ] call compile format[ "%1%2", _header, _expression ];
-	}forEach ( "true" configClasses ( _cfg >> 'CustomAttributes' ) );
+		_header = "params['_value', '_this'];";
+		[ _value, _obj] call compile format[ "%1%2", _header, _expression ];
+	} forEach ( "true" configClasses ( _cfg >> 'CustomAttributes' ) );
 };
 
 _ids = [];
@@ -555,7 +554,9 @@ private _fnc_getUnitInventory = {
 	}forEach [ "uniform", "vest", "backpack" ];
 		
 	_nul = _loadout pushBack getText( _invCfg >> "headgear" );
-	_nul = _loadout pushBack getText( _invCfg >> "goggles" );
+	if ( isText(_invCfg >> "goggles" ) ) then {
+		_nul = _loadout pushBack getText( _invCfg >> "goggles" );
+	};
 	_nul = _loadout pushBack ( "binocular" call _fnc_getWeaponDetails );
 	
 	//linked Items
@@ -568,7 +569,9 @@ private _fnc_getUnitInventory = {
 		getText( _invCfg >> "hmd" )
 	];
 	
+	//diag_log _loadout;
 	_unit setUnitLoadout _loadout;
+	//if !( isText(_invCfg >> "goggles" ) ) then { removeGoggles _unit; };
 };
 
 //******
@@ -629,14 +632,15 @@ private _fnc_spawnObject = {
 	
 	_presence = [ ( _cfg >> "Attributes" >> "presence" ), "NUM", 1 ] call _fnc_getCfgValue;
 	_preCondition = [ ( _cfg >> "Attributes" >> "presenceCondition" ), "TXT", "true" ] call _fnc_getCfgValue; //TODO: does this need defering
+	_isSimple = [ ( _cfg >> "Attributes" >> "createAsSimpleObject" ), "BOOL", false ] call _fnc_getCfgValue;
 	
 	if ( random 1 <= _presence && { call compile _preCondition } ) then {
 		private[ "_type", "_ATLOffset" ];
 		
 		_type = getText( _cfg >> "type" );
+		//_ATLOffset = getNumber( _cfg >> "atlOffset" );
+		_ATLOffset = 0;
 		
-		_ATLOffset = getNumber( _cfg >> "atlOffset" );
-				
 		switch ( true ) do {
 			
 			case ( _type isKindOf "Man" ) : {
@@ -658,13 +662,15 @@ private _fnc_spawnObject = {
 				if ( isClass( _cfg >> "Attributes" >> "Inventory" ) ) then {
 					[ _cfg >> "Attributes" >> "Inventory", _veh ] call _fnc_getUnitInventory;
 				};
-
 			};
 		
 			case ( _type isKindOf "LandVehicle" ) : {
 				private[ "_lock", "_fuel" ];
-				
-				_veh = createVehicle [ _type, [0,0,500], [], 0, "CAN_COLLIDE" ];
+				if ( _isSimple ) then {
+					_veh = createSimpleObject [_type, [0,0,500]];
+				} else {
+					_veh = createVehicle [_type, [0,0,500], [], 0, "CAN_COLLIDE" ]; 
+				};
 				_veh enableSimulationGlobal false;
 				
 				_lock = getText( _cfg >> "Attributes" >> "lock" );
@@ -703,7 +709,12 @@ private _fnc_spawnObject = {
 			};
 			
 			default {
-				_veh = createVehicle [ _type, [0,0,500], [], 0, "CAN_COLLIDE" ];
+				//_needsSurfaceUP = _isSimple;
+				if ( _isSimple ) then {
+					_veh = createSimpleObject [_type, [0,0,500]];
+				} else {
+					_veh = createVehicle [_type, [0,0,500], [], 0, "CAN_COLLIDE" ]; 
+				};
 				_veh enableSimulationGlobal false;
 			};
 		};
@@ -738,9 +749,8 @@ private _fnc_spawnObject = {
 		_rotation = [ ( _cfg >> "PositionInfo" >> "angles" ), "ARRAY", [0,0,0] ] call _fnc_getCfgValue;
 		_randomStartPos = getArray( _cfg >> "randomStartPositions" );
 		_placementRadius = getNumber( _cfg >> "Attributes" >> "placementRadius" );
-		
+			
 		_position = [ _veh, _position, _rotation, _ATLOffset, _randomStartPos, _needsSurfaceUP, _placementRadius ] call _fnc_setPositionAndRotation;
-
 		
 		if ( typeOf _veh isKindOf "Man" ) then {
 			( waypoints ( group _veh )) select 0 setWaypointPosition [ getPos _veh, 0 ];

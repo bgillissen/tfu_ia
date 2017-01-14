@@ -1,5 +1,5 @@
 
-params["_config", "_filters", "_apply", "_params"];
+params["_config", "_filters", "_apply", ["_params", ""]];
 
 _filters pushback "getNumber( _x >> 'scope' ) isEqualTo 2";
 

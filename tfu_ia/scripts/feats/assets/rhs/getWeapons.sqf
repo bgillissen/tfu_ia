@@ -5,8 +5,6 @@ private _filters = [_dlcFilter, _kindFilter, _extFilters] call assets_fnc_weapon
 
 private _weapons = [];
 
-diag_log _filters;
-
 0 = ["CfgWeapons", _filters, "[_this select 0, _this select 1] call assets_fnc_addWeapon", _weapons] call rhs_fnc_searchThings;
 /*
 diag_log "RHS WEAPONS >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";

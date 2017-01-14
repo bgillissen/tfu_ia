@@ -17,18 +17,9 @@ BA_obj = [];
 BA_veh = [];
 
 {
-	_x params ["_type", "_actions", "_name", "_flags", "_conf"];
-	_flags params ["_damage", "_simu", "_simple"];
-	_flags = nil;
+	_x params ["_type", "_actions", "_name", "_conf"];
 	if ( !(isNil _name) ) then {
 		private _thing = missionNamespace getVariable _name;
-		_thing allowDamage _damage;
-		_thing enableSimulationGlobal _simu;
-		if ( _simple ) then { 
-			//should not be used in MP :(, not optimised, got to be created as simpleObject!, but gonna try anyway ;)
-			//if it really kills the server/clients, gonnna tweak LARs to support it... 
-			[_thing] call BIS_fnc_replaceWithSimpleObject;
-		};
 		if ( _type isEqualTo "obj" ) then { 
 			BA_obj append [[_thing, _actions, _conf]];
 		} else {
@@ -42,6 +33,7 @@ BA_veh = [];
 					clearMagazineCargoGlobal _thing;
 					clearItemCargoGlobal _thing;
 					clearBackpackCargoGlobal _thing;
+					_veh lock 3;
 					BA_veh append [[_thing, _actions, _conf]];
 				};
 			};

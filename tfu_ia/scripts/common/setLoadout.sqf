@@ -28,7 +28,6 @@ if ( !(_weapon isEqualto "") ) then {
 
 _uniform params ["_container", "_content"];
 if ( !(_container isEqualto "") ) then {
-	diag_log _container;
 	_unit forceAddUniform _container;
 	{
 		_x params ["_item", "_qty"];
@@ -68,7 +67,7 @@ if ( !(_weapon isEqualto "") ) then {
 
 if ( !(_helmet isEqualto "") ) then { _unit addHeadgear _helmet; };
 
-if ( !(_face isEqualto "") ) then { _unit addGoggles  _face; };
+if ( !(_face isEqualto "") ) then { _unit addGoggles _face; };
 
 if ( !(_comm isEqualto "") ) then { _unit linkItem _comm; };
 

@@ -8,12 +8,17 @@ Description:
 	return the RHS USAF assets
 */
 
+private _isDesert = ( "jungle" in MAP_KEYWORDS || "wood" in MAP_KEYWORDS );
+private _isWood = ( "desert" in MAP_KEYWORDS || "dry" in MAP_KEYWORDS );
+
+private _factions = [];
+
+if ( _isDesert )  then { _factions pushback "rhs_faction_usarmy_wd"; };
+if ( _isWood ) then { _factions pushback "rhs_faction_usarmy_d"; };
+
 private _out = [];
 
 //------------------------------------------------------------ Arsenal RHS USAF
-
-//rhs_faction_usarmy_wd => jungle, woods MAP_KEYWORDS
-//rhs_faction_usarmy_d => desert, dry MAP_KEYWORDS
 
 A_USAF = 0;
 
@@ -30,12 +35,12 @@ _out set [A_USAF, [_backpacks, _items, _weapons, _ammo]];
 
 RG_USAF = A_USAF + 1;
 
-private _launcher = [];
+private _launcher = ["rhs_weap_fgm148"];
 private _mg = [];
 private _sRifle = [];
 private _mRifle = [];
-private _sScope = [];
-private _mScope = [];
+private _sScope = ["rhsusf_acc_LEUPOLDMK4_2"];
+private _mScope = ["rhsusf_acc_LEUPOLDMK4"];
 private _oScope = [];
 private _backpack = [];
 
@@ -91,19 +96,21 @@ private _rt = [];
 private _crates = ["rhsusf_mags_crate"];
 private _pGroups = [];
 private _sGroups = [];
-private _pilot = [];
+private _pilot = ["rhsusf_airforce_jetpilot"];
 private _crew = [];
 private _officer = [];
 private _garrison = [];
-private _aa = [];
-private _arti = [];
-private _static = [];
+private _aa = ["RHS_M6"];
+if ( _isWood ) then { _aa = "RHS_M6_wd"; };
+private _arti = ["RHS_USAF", _factions, "MBT_01_arty_base_F", true] call rhs_fnc_getVehicles;
+private _static = ["RHS_USAF", _factions, "StaticWeapon", true] call rhs_fnc_getVehicles;
 private _cas = ["RHS_A10", "RHS_A10_AT"];
-private _tank = [];
-private _apc = [];
-private _car = [];
-private _carArmed = [];
-private _aPatrol = ["RHS_MELB_AH6M_H", "RHS_MELB_AH6M_L", "RHS_MELB_AH6M_M"];
+private _tank = ["RHS_USAF", _factions, "MBT_01_base_F", true] call rhs_fnc_getVehicles;
+private _apc = ["RHS_USAF", _factions, ["APC_Tracked_03_base_F", "Wheeled_APC_F"], true] call rhs_fnc_getVehicles;
+private _car = ["RHS_USAF", _factions, "MRAP_01_base_F", false] call rhs_fnc_getVehicles;
+private _carArmed = ["RHS_USAF", _factions, "MRAP_01_base_F", true] call rhs_fnc_getVehicles;
+private _aPatrol = ["RHS_USAF", _factions, "Heli_Attack_01_base_F", true] call rhs_fnc_getVehicles;
+		_aPatrol append ["RHS_MELB_AH6M_H", "RHS_MELB_AH6M_L", "RHS_MELB_AH6M_M"];
 
 _out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
@@ -112,13 +119,13 @@ _out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _g
 
 BV_USAF = S_USAF + 1;
 
-private _car = [];
-private _carArmed = ["rhsusf_m1025_w_m2"];
-private _apc = [];
-private _tank = [];
-private _aaTank = [];
+//private _car = [];
+//private _carArmed = [];
+//private _apc = [];
+//private _tank = [];
+//private _aaTank = [];
 private _planeCAS = ["RHS_A10", "RHS_A10_AT"];
-private _planeAA = [];
+private _planeAA = ["rhsusf_f22"];
 private _planeTransport = ["RHS_C130J"];
 private _uav = [];
 private _heliSmall = ["RHS_MELB_MH6M", "RHS_MELB_H6M"];
@@ -129,19 +136,19 @@ private _heliMedium = ["RHS_UH60M"];
 private _heliMedEvac = ["RHS_UH60M_MEV", "RHS_UH60M_MEV2"];
 private _heliBig = ["RHS_CH_47F_10", 
 					"rhsusf_CH53E_USMC_D"];
-//private _heliAttack = ["RHS_USAF", ["rhs_faction_usarmy_wd", "rhs_faction_usmc_wd"], "Helicopter", true] call rhs_fnc_getVehicles;
-private _heliAttack = [];
+private _heliAttack = ["RHS_USAF", _factions, "Heli_Attack_01_base_F", true] call rhs_fnc_getVehicles;
 private _boatSmall = [];
 private _boatAttack = [];
-private _boatBig = [];
+private _boatBig = ["rhsusf_mkvsoc"];
 private _sub = [];
-private _landMedic = [];
+private _landMedic = ["rhsusf_m113_usarmy_medical"];
+if ( _isDesert ) then { _landMedic = ["rhsusf_m113d_usarmy_medical", "rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy"]; };
 private _repair = [];
 private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [BV_USAF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [BV_USAF, [_car, _carArmed, _apc, _tank, _aa, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 

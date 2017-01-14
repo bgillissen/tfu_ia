@@ -1,6 +1,4 @@
 
-diag_log "hehe";
-
 params [["_dlcFilter", 0], ["_factionFilters", []], ["_kindFilters", []], ["_isArmed", 0], ["_isArmedFunction", "{true}"], ["_extFilters", []]];
 
 private _filters = [];
