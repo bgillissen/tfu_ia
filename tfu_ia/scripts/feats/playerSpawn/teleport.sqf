@@ -17,4 +17,9 @@ player setDir (markerDir _marker);
 
 (getMarkerPos _marker) params ["_x", "_y", "_z"];
 
-player setPos [(_x + (random 4)), (_y + (random 4)), _z];
+private _xRand = random 3.5;
+if ( (random 1) < 0.5 ) then { _xRand = (_xRand - (2 * _xRand )); };
+private _yRand = random 3.5;
+if ( (random 1) < 0.5 ) then { _yRand = (_yRand - (2 * _yRand)); };
+
+player setPos [(_x + _xRand), (_y + _yRand), _z];

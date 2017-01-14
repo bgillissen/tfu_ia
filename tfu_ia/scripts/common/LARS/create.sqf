@@ -377,10 +377,7 @@ private _fnc_setPositionAndRotation = {
 		//Set Object rotation
 		_obj setVectorDirAndUp [ _dir, _up ];
 
-		//enable simulation		
-		if !( simulationEnabled _obj ) then {
-			_obj enableSimulationGlobal true;
-		};
+		
 
 	};
 	
@@ -633,6 +630,7 @@ private _fnc_spawnObject = {
 	_presence = [ ( _cfg >> "Attributes" >> "presence" ), "NUM", 1 ] call _fnc_getCfgValue;
 	_preCondition = [ ( _cfg >> "Attributes" >> "presenceCondition" ), "TXT", "true" ] call _fnc_getCfgValue; //TODO: does this need defering
 	_isSimple = [ ( _cfg >> "Attributes" >> "createAsSimpleObject" ), "BOOL", false ] call _fnc_getCfgValue;
+	_disableSimu = [ ( _cfg >> "Attributes" >> "disableSimulation" ), "BOOL", false ] call _fnc_getCfgValue;
 	
 	if ( random 1 <= _presence && { call compile _preCondition } ) then {
 		private[ "_type", "_ATLOffset" ];
@@ -752,6 +750,9 @@ private _fnc_spawnObject = {
 			
 		_position = [ _veh, _position, _rotation, _ATLOffset, _randomStartPos, _needsSurfaceUP, _placementRadius ] call _fnc_setPositionAndRotation;
 		
+		//enable simulation	if not disabled	
+		_veh enableSimulationGlobal !_disableSimu;
+
 		if ( typeOf _veh isKindOf "Man" ) then {
 			( waypoints ( group _veh )) select 0 setWaypointPosition [ getPos _veh, 0 ];
 		}; 

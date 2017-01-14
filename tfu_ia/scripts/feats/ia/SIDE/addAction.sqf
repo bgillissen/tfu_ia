@@ -7,6 +7,4 @@ Description:
 	ask players to add the action needed to finish the side mission
 */
 
-diag_log "Server addAction";
-
 _this remoteExec ["SIDE_fnc_addActionPlayer", PLAYER_SIDE, true];
