@@ -17,7 +17,11 @@ BV = [["heliSmall", 		20, "BV_lb1"],
       ["planeCAS", 			20, "BV_cas"],
       ["planeTransport",	20, "BV_c130"],
       ["carArmed", 			20, "BV_car1"],
-      ["carArmed", 			20, "BV_car2"]];
+      ["carArmed", 			20, "BV_car2"],
+      ["heliBig", 			20, "BV_hb1"],
+      ["heliBig", 			20, "BV_hb2"],
+      ["apc", 				20, "BV_apc1"],
+      ["tank", 				20, "BV_tank1"]];
 
 //------------------------------------------------------------ Base atmosphere
 

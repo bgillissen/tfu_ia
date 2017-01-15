@@ -15,9 +15,14 @@ _args append (missionNamespace getVariable format["VC_%1", _poolName]);
 _args call common_fnc_setCargo;
 
 //add supplyDrop support
-if (_type in SD_vehicles) then {
-	_veh setVariable ["supplyDrop", true, true];
-};
+//if (_type in SD_vehicles) then {
+//	_veh setVariable ["supplyDrop", true, true];
+//};
+{
+	if (_type isKindOf _x) then {
+		_veh setVariable ["supplyDrop", true, true];
+	};
+} count SD_vehicles;
 
 //UAV respawn fixer
 if (_type in BV_uav) then {
@@ -29,8 +34,6 @@ if (_type in BV_uav) then {
 };
 
 //add to Zeus
-{
-	_x addCuratorEditableObjects [[_veh],false];
-} count allCurators;
+[[_veh], false] call curator_fnc_addEditable;
 
 true

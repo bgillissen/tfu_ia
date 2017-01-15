@@ -166,7 +166,7 @@ while { true } do {
 		[false, _flatPos, _size, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
-		//plan message
+		//plant message
 		private _planted = ["ia", "side", "secure", "planted"] call core_fnc_getSetting;
 		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
 		[PLAYER_SIDE, "HQ", format[_planted, _delay]] call common_fnc_globalSideChatServer;
