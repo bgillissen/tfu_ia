@@ -10,19 +10,18 @@ Description:
 */
 
 params ["_coord", "_size", "_amount", "_patrolSize"];
-private _groups = [];
 
-if ( _amount <= 0 ) exitWith{_groups};
+if ( _amount <= 0 ) exitWith { [] };
+
+private _groups = [];
 
 for "_x" from 1 to _amount do {
 	private _group = createGroup civilian;
 	private _randomPos = [[[_coord, (_size / 1.2)],[]],["water","out"]] call BIS_fnc_randomPos;
 	(selectRandom S_civ) createUnit [_randomPos, _group];
 	[_group, _coord, _patrolSize] call BIS_fnc_taskPatrol;
-	{
-		_x addCuratorEditableObjects [units _group, false];
-	} count allCurators;
-	_groups append [_group];
+	[(units _group), false] call curator_fnc_addEditable;
+	_groups pushback _group;
 };
 
 _groups

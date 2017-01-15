@@ -110,8 +110,9 @@ private _apc = ["rhs_tigr_sts_msv","rhsgref_BRDM2_HQ_msv","rhs_btr60_msv","rhs_b
 private _car = [];
 private _carArmed = [];
 private _aPatrol = ["RHS_Mi24P_vdv", "RHS_Ka52_vvsc"];
+private _civ = [];
 
-_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ,
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles RHS AFRF

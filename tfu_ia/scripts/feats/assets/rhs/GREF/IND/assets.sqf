@@ -88,8 +88,8 @@ private _apc = ["rhsgref_cdf_btr60", "rhsgref_cdf_btr70"];
 private _car = ["rhsgref_cdf_reg_uaz_open", "rhsgref_cdf_reg_uaz"];
 private _carArmed = ["rhsgref_cdf_reg_uaz_spg9", "rhsgref_cdf_reg_uaz_dshkm", "rhsgref_cdf_reg_uaz_ags"];
 private _aPatrol = ["rhsgref_mi24g_CAS", "rhsgref_mi24g_FAB", "rhsgref_mi24g_UPK23", "rhsgref_cdf_Mi35", "rhsgref_cdf_Mi35_UPK"];
-
-_out set [S_GREFI, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+private _civ = [];
+_out set [S_GREFI, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ,
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles RHS GREF Independent

@@ -50,12 +50,12 @@ _count = _inf;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));
 _skill = ["ia", "side", "patrolSkill"] call core_fnc_getSetting;
 _groups append ([_coord, _size, _count, _patrolSize, _skill] call IA_fnc_placeInfPatrol);
-/*
+
 _count = _sniper;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));
 _skill = ["ia", "side", "sniperSkill"] call core_fnc_getSetting;
 _groups append ([_coord, _size, _count, _skill] call IA_fnc_placeSniper);
-*/
+
 _count = _garrison;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));
 _skill = ["ia", "side", "garrisonSkill"] call core_fnc_getSetting;

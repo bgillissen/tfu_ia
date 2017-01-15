@@ -111,8 +111,9 @@ private _car = ["RHS_USAF", _factions, "MRAP_01_base_F", false] call rhs_fnc_get
 private _carArmed = ["RHS_USAF", _factions, "MRAP_01_base_F", true] call rhs_fnc_getVehicles;
 private _aPatrol = ["RHS_USAF", _factions, "Heli_Attack_01_base_F", true] call rhs_fnc_getVehicles;
 		_aPatrol append ["RHS_MELB_AH6M_H", "RHS_MELB_AH6M_L", "RHS_MELB_AH6M_M"];
+private _civ = [];
 
-_out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+_out set [S_USAF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ, 
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles RHS USAF

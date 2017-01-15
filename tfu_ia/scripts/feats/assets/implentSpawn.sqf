@@ -14,7 +14,7 @@ params ["_index", "_toAdd", "_side"];
 private _filter = _index call {
 	if ( _this <= 1 ) exitWith { "object" };
 	if ( _this >= 1 && _this < 4 ) exitWith { "group" };
-	if ( _this >= 4 && _this < 8 ) exitWith { "unit" };
+	if ( _this >= 4 && _this < 9 ) exitWith { "unit" };
 	"vehicle"
 };
 
