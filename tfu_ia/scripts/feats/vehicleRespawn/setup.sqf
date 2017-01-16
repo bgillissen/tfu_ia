@@ -3,7 +3,8 @@
 Author:
 	Ben
 Description:
-	run by server each time a destroyed vehicle respawn.
+	run on server,
+	call by feats\vehicleRespawn\initServer.sqf each time a base vehicle (re)spawn.
 */
 
 params ["_veh", "_poolName"];
@@ -14,10 +15,6 @@ private _args = [_veh];
 _args append (missionNamespace getVariable format["VC_%1", _poolName]);
 _args call common_fnc_setCargo;
 
-//add supplyDrop support
-//if (_type in SD_vehicles) then {
-//	_veh setVariable ["supplyDrop", true, true];
-//};
 {
 	if (_type isKindOf _x) then {
 		_veh setVariable ["supplyDrop", true, true];
