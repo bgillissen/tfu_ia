@@ -26,7 +26,7 @@ while { true } do {
 	sleep _delay;
 
 	{	
-		_x params ["_veh", "_delay", "_poolName", "_pos", "_dir"];
+		_x params ["_veh", "_delay", "_poolName", "_pos", "_dir", "_actions"];
 
 		private _inqueue = false;
 		{
@@ -60,7 +60,7 @@ while { true } do {
 							private _debug = format["VehicleRespawn: veh %1 has been added to queue (alone)", _forEachIndex];
 							conWhite(_debug);
 #endif
-							_queue append [[_forEachIndex, (time + _delay)]];
+							_queue pushback [_forEachIndex, (time + _delay)];
 						};
 					};
 				};

@@ -7,7 +7,7 @@ Description:
 	respawn an abandoned/destroyed vehicle
 */
 
-params ["_veh", "_poolName", "_pos", "_dir"];
+params ["_veh", "_poolName", "_pos", "_dir", "_actions"];
 
 if (!isNull _veh) then {
 	if ( alive _veh ) then {
@@ -37,7 +37,7 @@ if (!isNull _veh) then {
 	_veh = createVehicle [(selectRandom _pool), [0,0,0], [], 0, "NONE"];
 	_veh setDir _dir;
 	_veh setPos _pos;
-	[_veh, _poolName] call vehicleRespawn_fnc_setup;
+	[_veh, _poolName, _actions] call vehicleRespawn_fnc_setup;
 };
 
 _veh

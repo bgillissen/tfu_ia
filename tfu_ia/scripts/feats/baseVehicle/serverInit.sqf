@@ -10,14 +10,25 @@ Description:
 
 #include "..\..\core\debug.hpp"
 
+BA_veh = [];
+
 {
-	_x params ["_poolName", "_delay", "_marker"];
+	_x params ["_poolName", "_marker", "_delay", "_actions"];
 	_pool = missionNamespace getVariable format["BV_%1", _poolName];
 	if ( !isNil "_pool" ) then {
 		if ( count _pool > 0 ) then {
 			private _veh = (selectRandom _pool) createVehicle (getMarkerPos _marker);
 			_veh setDir (markerDir _marker);
-			[_veh, _delay, _poolName] call vehicleRespawn_fnc_monitor;
+			if ( _delay >= 0 ) then {
+				[_veh, _delay, _poolName, _actions] call vehicleRespawn_fnc_monitor;
+			} else {
+				_veh lock 3;
+				clearWeaponCargoGlobal _veh;
+				clearMagazineCargoGlobal _veh;
+				clearItemCargoGlobal _veh;
+				clearBackpackCargoGlobal _veh;
+				BA_veh pushback [_veh, _actions];
+			};
 #ifdef DEBUG
 		} else {
 			private _debug = format["basevehicle: pool %1 is empty!", _poolName];
@@ -32,4 +43,4 @@ Description:
 	};
 } count BV;
 
-
+publicVariable "BA_veh";

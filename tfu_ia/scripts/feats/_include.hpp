@@ -48,6 +48,7 @@ class features {
 	#include "baseProtection\_feature.hpp"
 	#include "baseVehicle\_feature.hpp"
 	#include "billboards\_feature.hpp"
+	#include "cleanUp\_feature.hpp"
 	#include "curator\_feature.hpp"
 	#include "earPlugs\_feature.hpp"
 	#include "fatigue\_feature.hpp"

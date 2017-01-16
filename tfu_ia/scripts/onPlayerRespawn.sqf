@@ -15,10 +15,6 @@ CTXT_PLAYER = hasInterface;
 
 if ( !CTXT_PLAYER ) exitWith {};
 
-#ifdef DEBUG
-diag_log "onPlayerRespawn.sqf START --------------------------------------------------------------------------------------------------------";
-#endif
-
 waitUntil {
 	sleep 1;
 #ifdef DEBUG
@@ -44,12 +40,5 @@ conWhite(">>>> start onPlayerRespawn");
 waitUntil {!isNull player};
 waitUntil {player == player};
 
-//features onRespawn (player side)(local)
 ["PLAYER", "respawn", [player]] call core_fnc_featEvent;
-
-//features onRespawn (server side)(remote)
 ["SERVER", "respawn", [player]] call core_fnc_featEvent;
-
-#ifdef DEBUG
-diag_log "onPlayerRespawn.sqf END --------------------------------------------------------------------------------------------------------";
-#endif

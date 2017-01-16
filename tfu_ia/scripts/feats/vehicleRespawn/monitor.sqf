@@ -8,8 +8,8 @@ Description:
 	add the given vehicle to the vehicle monitored by vehicleRespawn thread
 */
 
-params ["_veh", "_delay", "_poolName"];
+params ["_veh", "_delay", "_poolName", "_actions"];
 
-VR append [[_veh, _delay, _poolName, (getPosATL _veh), (getDir _veh)]];
+VR append [[_veh, _delay, _poolName, (getPosATL _veh), (getDir _veh), _actions]];
 
-[_veh, _poolName] call vehicleRespawn_fnc_setup;
+[_veh, _poolName, _actions] call vehicleRespawn_fnc_setup;

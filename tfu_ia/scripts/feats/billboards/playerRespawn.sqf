@@ -14,9 +14,13 @@ if ( isNil "DB_list" ) then {
 };
 
 {
-	_x params ["_thing", "_actions", "_mode"];
-	if ( "billboard" in _actions ) then {
-		[_thing, _mode] call billboards_fnc_setTexture;
-	};
+	_x params ["_thing", "_actions"];
+	{
+		_x params ["_action", "_mode"];
+		if ( "billboard" isEqualTo _action ) then { 
+			[_thing, _mode] call billboards_fnc_setTexture;
+		};
+		true
+	} count _actions;
 	true
 } count BA_obj;

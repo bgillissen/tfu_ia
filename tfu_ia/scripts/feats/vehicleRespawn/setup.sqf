@@ -7,7 +7,7 @@ Description:
 	call by feats\vehicleRespawn\initServer.sqf each time a base vehicle (re)spawn.
 */
 
-params ["_veh", "_poolName"];
+params ["_veh", "_poolName", "_actions"];
 
 private _type = typeOf _veh;
 

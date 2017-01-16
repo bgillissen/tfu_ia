@@ -1,18 +1,15 @@
 
-
 private _entries = ["hallOfShame", "entries"] call core_fnc_getSetting;
 private _path = ["hallOfShame", "path"] call core_fnc_getSetting;
 
-private _c = 0;
-{
-	_x params ["_thing", "_actions", "_mode"];
-	if ( "hos" in _actions ) then {
-		if ( _c < count _entries ) then {
-			_thing setObjectTextureGlobal [0, format[_path, _entries select _c]];
-			_c = _c + 1;
+for "_x" from 0 to 99 do {
+	private _name = format["BA_hos%1", _x];
+	private _obj = missionNamespace getVariable _name;
+	if !( isNil "_obj" ) then {
+		if ( _x < count _entries ) then {
+			_obj setObjectTextureGlobal [0, format[_path, (_entries select _x)]];
 		} else {
-			hideObjectGlobal _thing;
+			hideObjectGlobal _obj;
 		};
 	};
-	true
-} count BA_obj;
+};

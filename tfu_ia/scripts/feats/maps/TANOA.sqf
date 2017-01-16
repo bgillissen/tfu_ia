@@ -10,7 +10,6 @@ Description:
 MAP_PREFIX = "T";
 MAP_FOLDER = "Tanoa";
 MAP_KEYWORDS = ["jungle", "water", "apex"];
-TOT_CURATOR = 4;
 TO_HC = 3;
 
 

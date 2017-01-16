@@ -15,12 +15,4 @@ CTXT_SERVER = true;
 CTXT_HEADLESS = false;
 CTXT_PLAYER = false;
 
-#ifdef DEBUG
-diag_log "initServer.sqf START --------------------------------------------------------------------------------------------------------";
-#endif
-
 call core_fnc_initServer;
-
-#ifdef DEBUG
-diag_log "initServer.sqf END --------------------------------------------------------------------------------------------------------";
-#endif
