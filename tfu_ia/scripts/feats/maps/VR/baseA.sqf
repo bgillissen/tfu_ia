@@ -27,7 +27,7 @@ BV = [["heliSmall", 		"BV_lb1",			20, 	[]],
       ["repair",			"BV_planeRepair1",	-1, 	[]],
       ["fuel",				"BV_planeRepair2",	-1, 	[]],
       ["repair",			"BV_heliRepair",	-1, 	[]],
-      ["sub",				"BV_sub1",			20,		[["paint", "yellow"]]]
+      ["sub",				"BV_sub1",			20,		[["paint", "#(argb,8,8,3)color(1,1,0,0.8)"]]]
      ];
 
 //------------------------------------------------------------ Base atmosphere
@@ -42,5 +42,6 @@ BA = [["npc",	"BA_leftVA",	[["arsenal"], ["vd"]]],
       ["obj",	"BA_frVA",		[["arsenal"], ["vd"]]],
       ["obj",	"BA_screen",	[["curator"], ["billboard", "random"]]],
       ["obj",	"BA_leftBB",	[["billboard", "tfar"]]],
-      ["obj",	"BA_rightBB",	[["billboard", "random"]]]
+      ["obj",	"BA_rightBB",	[["billboard", "random"]]],
+      ["obj",	"BA_flag",		[["flag", "tfu"]]]
      ];

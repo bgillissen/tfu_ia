@@ -21,6 +21,17 @@ _args call common_fnc_setCargo;
 	};
 } count SD_vehicles;
 
+//Actions
+{
+	_x params ["_action", "_conf"];
+	if ( _action isEqualTo "paint" ) then {
+		_veh setObjectTextureGlobal [0, _conf];
+	};
+	true
+} count _actions;
+
+
+
 //UAV respawn fixer
 if (_type in BV_uav) then {
 	{

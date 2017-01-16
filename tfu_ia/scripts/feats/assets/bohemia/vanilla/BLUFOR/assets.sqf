@@ -114,12 +114,12 @@ private _heliAttack = [];
 private _boatSmall = [];
 private _boatAttack = [];
 private _boatBig = [];
-private _sub = [];
+private _sub = ["B_SDV_01_F"];
 private _landMedic = [];
 private _repair = [];
 private _fuel = [];
 private _ammo = [];
-private _quad = ["quad"];
+private _quad = ["B_T_Quadbike_01_F"];
 
 _out set [BV_VB, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                  _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 

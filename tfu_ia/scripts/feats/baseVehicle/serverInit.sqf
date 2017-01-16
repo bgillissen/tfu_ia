@@ -23,6 +23,7 @@ BA_veh = [];
 				[_veh, _delay, _poolName, _actions] call vehicleRespawn_fnc_monitor;
 			} else {
 				_veh lock 3;
+				_veh allowDamage false;
 				clearWeaponCargoGlobal _veh;
 				clearMagazineCargoGlobal _veh;
 				clearItemCargoGlobal _veh;
@@ -41,6 +42,7 @@ BA_veh = [];
 		conRed(_debug);
 #endif				
 	};
+	true
 } count BV;
 
 publicVariable "BA_veh";
