@@ -23,13 +23,17 @@ private _types = (["supportCrate", "types"] call core_fnc_getSetting);
 {
 	{
 		_x params ["_thing", "_actions"];
-		if ( "support" in _actions ) then {
-			{
-				private _action = ["supportCrate", "actions", _x] call core_fnc_getSetting;
-				_thing addAction [_action, {call supportCrate_fnc_spawn}, _x, 0, false, true, '', 'call supportCrate_fnc_condition', 4];
-				true
-			} count _types;
-		};
+		{
+			_x params ["_action", "_conf"];
+			if ( "support" isEqualTo _action ) then {
+				{
+					private _action = ["supportCrate", "actions", _x] call core_fnc_getSetting;
+					_thing addAction [_action, {call supportCrate_fnc_spawn}, _x, 0, false, true, '', 'call supportCrate_fnc_condition', 4];
+					true
+				} count _types;
+			};
+			true
+		} count _actions;
 		true
 	} count _x;
 	true

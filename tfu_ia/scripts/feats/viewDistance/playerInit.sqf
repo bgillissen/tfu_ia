@@ -12,7 +12,7 @@ tawvd_car = ["viewDistance", "car"] call core_fnc_getSetting;
 tawvd_air = ["viewDistance", "air"] call core_fnc_getSetting;
 tawvd_addon_disable = true;
 
-private _action = ["viewDistance", "action"] call core_fnc_getSetting;
+private _act = ["viewDistance", "action"] call core_fnc_getSetting;
 
 {
 	{
@@ -20,7 +20,7 @@ private _action = ["viewDistance", "action"] call core_fnc_getSetting;
 		{
 			_x params ["_action", "_conf"];
 			if ( "vd" isEqualTo _action ) then {
-				_thing addAction [_action, {call viewDistance_fnc_open}, [], 0, false, true, "", "true", 4];
+				_thing addAction [_act, {call viewDistance_fnc_open}, [], 0, false, true, "", "true", 4];
 			};
 			true
 		} count _actions;

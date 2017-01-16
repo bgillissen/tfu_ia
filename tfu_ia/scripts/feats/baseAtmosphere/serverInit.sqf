@@ -34,6 +34,7 @@ BA_obj = [];
 		conRed(_debug);
 #endif
 	};
+	true
 } count BA;
 
 publicVariable "BA_npc";

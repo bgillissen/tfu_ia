@@ -8,8 +8,8 @@ Description:
 	return the RHS USAF assets
 */
 
-private _isDesert = ( "jungle" in MAP_KEYWORDS || "wood" in MAP_KEYWORDS );
-private _isWood = ( "desert" in MAP_KEYWORDS || "dry" in MAP_KEYWORDS );
+private _isDesert = (["desert", "dry"] call maps_fnc_keyWords);
+private _isWood = (["jungle", "wood"] call maps_fnc_keyWords);
 
 private _factions = [];
 
@@ -100,8 +100,9 @@ private _pilot = ["rhsusf_airforce_jetpilot"];
 private _crew = [];
 private _officer = [];
 private _garrison = [];
-private _aa = ["RHS_M6"];
-if ( _isWood ) then { _aa = "RHS_M6_wd"; };
+private _aa = [];
+if ( _isWood ) then { _aa pushback "RHS_M6_wd"; };
+if ( _isDesert ) then { _aa pushback "RHS_M6"; };
 private _arti = ["RHS_USAF", _factions, "MBT_01_arty_base_F", true] call rhs_fnc_getVehicles;
 private _static = ["RHS_USAF", _factions, "StaticWeapon", true] call rhs_fnc_getVehicles;
 private _cas = ["RHS_A10", "RHS_A10_AT"];
@@ -142,8 +143,9 @@ private _boatSmall = [];
 private _boatAttack = [];
 private _boatBig = ["rhsusf_mkvsoc"];
 private _sub = [];
-private _landMedic = ["rhsusf_m113_usarmy_medical"];
-if ( _isDesert ) then { _landMedic = ["rhsusf_m113d_usarmy_medical", "rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy"]; };
+private _landMedic = [];
+if ( _isWood ) then { _landMedic pushback "rhsusf_m113_usarmy_medical"; };
+if ( _isDesert ) then { _landMedic append ["rhsusf_m113d_usarmy_medical", "rhsusf_M1083A1P2_B_M2_d_Medical_fmtv_usarmy"]; };
 private _repair = [];
 private _fuel = [];
 private _ammo = [];

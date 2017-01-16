@@ -4,7 +4,7 @@ Author:
 	Ben
 Description:
 	run on server,
-	call by feats\vehicleRespawn\initServer.sqf each time a base vehicle (re)spawn.
+	called each time a base vehicle (re)spawn.
 */
 
 params ["_veh", "_poolName", "_actions"];

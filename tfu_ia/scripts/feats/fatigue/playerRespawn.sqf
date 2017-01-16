@@ -1,5 +1,5 @@
 /*
-@filename: feats\fatigue\playerOnRespawn.sqf
+@filename: feats\fatigue\playerRespawn.sqf
 Author:
 	Ben
 Description:

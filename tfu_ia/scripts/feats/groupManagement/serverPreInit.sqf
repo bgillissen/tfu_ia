@@ -25,4 +25,5 @@ SQUADS = [];
 	_group setGroupIdGlobal [_name, format["GroupColor%1", _color]];
 	missionNamespace setVariable [format["SQUAD_%1", _id], _group, true];
 	SQUADS pushback _group;
+	true
 } count ("true" configClasses (missionConfigFile >> "settings" >> "groupManagement"));

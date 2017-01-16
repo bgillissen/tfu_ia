@@ -13,7 +13,7 @@ private _filtered = ( ["filterArsenal"] call core_fnc_getParam == 1 );
 		_x params ["_thing", "_actions"];
 		{
 			_x params ["_action", "_conf"];
-			if ( isNil "_conf" ) then { _conf = _filtered; }
+			if ( isNil "_conf" ) then { _conf = _filtered; };
 			if ( "arsenal" isEqualTo _action ) then { [_thing, _conf] call va_fnc_add; };
 			true
 		} count _actions;
