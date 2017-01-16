@@ -23,7 +23,9 @@ private _out = [];
 A_USAF = 0;
 
 private _backpacks = ["RHS_USAF"] call rhs_fnc_getBackpacks;
+_backpacks pushback "B_UAV_01_backpack_F";
 private _items = ["RHS_USAF"] call rhs_fnc_getItems;
+_items pushback "B_UavTerminal";
 private _weapons = ["RHS_USAF"] call rhs_fnc_getWeapons;
 private _ammo = ["RHS_USAF"] call rhs_fnc_getMagazines;
 //single shot launcher ammo, those are needed but got scope=1 :(
@@ -97,9 +99,12 @@ private _crates = ["rhsusf_mags_crate"];
 private _pGroups = [];
 private _sGroups = [];
 private _pilot = ["rhsusf_airforce_jetpilot"];
-private _crew = [];
-private _officer = [];
-private _garrison = [];
+private _crew = ["rhsusf_usmc_marpat_wd_combatcrewman"];
+if ( _isDesert ) then { _crew = ["rhsusf_usmc_marpat_d_combatcrewman"]; };
+private _officer = ["rhsusf_usmc_marpat_wd_officer"];
+if ( _isDesert ) then { _officer = ["rhsusf_usmc_marpat_d_officer"]; };
+private _garrison = ["rhsusf_usmc_marpat_wd_grenadier", "rhsusf_usmc_marpat_wd_machinegunner"];
+if ( _isDesert ) then { _garrison = ["rhsusf_usmc_marpat_d_grenadier", "rhsusf_usmc_marpat_d_machinegunner"]; };
 private _aa = ["RHS_M6_wd"];
 if ( _isDesert ) then { _aa = ["RHS_M6"]; };
 private _arti = ["RHS_USAF", _factions, "MBT_01_arty_base_F", true] call rhs_fnc_getVehicles;
@@ -133,10 +138,11 @@ private _heliSmall = ["RHS_MELB_MH6M", "RHS_MELB_H6M"];
 private _heliSmallArmed = ["RHS_MELB_AH6M_H", 
                            "RHS_MELB_AH6M_L",
                            "RHS_MELB_AH6M_M"];
-private _heliMedium = ["RHS_UH60M"];
+private _heliMedium = ["RHS_UH60M", "RHS_UH1Y_UNARMED"];
 private _heliMedEvac = ["RHS_UH60M_MEV", "RHS_UH60M_MEV2"];
-private _heliBig = ["RHS_CH_47F_10", 
-					"rhsusf_CH53E_USMC_D"];
+private _heliBig = ["rhsusf_CH53E_USMC_D"];
+if ( _isDesert ) then { _heliBig pushback "RHS_CH_47F_light"; };
+if ( _isWood ) then { _heliBig pushback "RHS_CH_47F_10"; };
 private _heliAttack = ["RHS_USAF", _factions, "Heli_Attack_01_base_F", true] call rhs_fnc_getVehicles;
 private _boatSmall = [];
 private _boatAttack = [];
@@ -350,11 +356,11 @@ private _mortar = [[(["mortar"] call rhsUSAF_fnc_uniform), []],
                    (["mortar"] call rhsUSAF_fnc_helmet), "", "", "", "", "lerca_1200_black", "rhsusf_ANPVS_15", "", ""];
 private _uavopp = [[(["uavopp"] call rhsUSAF_fnc_uniform), []], 
                    [(["uavopp"] call rhsUSAF_fnc_vest), [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8], ["rhs_mag_an_m8hc", 4]]], 
-                   ["", []], 
+                   ["B_UAV_01_backpack_F", []], 
                    [(["uavopp"] call rhsUSAF_fnc_primWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod", "rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"]], 
                    ["", []], 
                    ["", []], 
-                   (["uavopp"] call rhsUSAF_fnc_helmet), "", "", "", "", "", "rhsusf_ANPVS_15", "", ""];
+                   (["uavopp"] call rhsUSAF_fnc_helmet), "", "", "B_UavTerminal", "", "", "rhsusf_ANPVS_15", "", ""];
 private _spotter = [[(["spotter"] call rhsUSAF_fnc_uniform), []], 
                     [(["spotter"] call rhsUSAF_fnc_vest), [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8], ["rhs_mag_an_m8hc", 4]]], 
                     [(["spotter"] call rhsUSAF_fnc_backpack), [["rhsusf_mag_10Rnd_STD_50BMG_M33", 5]]], 
@@ -362,6 +368,7 @@ private _spotter = [[(["spotter"] call rhsUSAF_fnc_uniform), []],
                     ["", []], 
                     ["", []], 
                     (["spotter"] call rhsUSAF_fnc_helmet), "", "", "", "", "lerca_1200_black", "rhsusf_ANPVS_15", "", ""];
+
 _out set [RL_USAF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
                  _mortar, _uavopp, _spotter]];
@@ -371,7 +378,7 @@ _out set [RL_USAF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sn
 BALO_USAF = RL_USAF + 1;
 
 private _medic = [[(["medic"] call rhsUSAF_fnc_uniform), []], 
-                  [(["medic"] call rhsUSAF_fnc_uniform), []], 
+                  [(["medic"] call rhsUSAF_fnc_vest), []], 
                   ["", []], 
                   ["", []], 
                   ["", []], 

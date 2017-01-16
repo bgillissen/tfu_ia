@@ -6,7 +6,8 @@ Description:
 	this run on server,
 	it keep track of the active SIDE mission thread, and spawn a new one when needed 
 */
-if ( (["SIDE"] call core_fnc_getParam) == 0 ) exitWith {};
+
+if ( (["sideMission"] call core_fnc_getParam) == 0 ) exitWith {};
 
 SIDE_stop = false;
 SIDE_success = false;
@@ -22,7 +23,7 @@ if ( isNil "SIDE_EH" ) then {
 };
 
 while { true } do {
-	
+	diag_log "SIDE inLoop";	
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
 	if ( SIDE_stop ) exitWith {};
 	if ( (count _missions) == 0 ) then {
@@ -33,8 +34,8 @@ while { true } do {
 	_missions = _missions - [_type];
 	private _fncName = format["SIDE_fnc_%1", _type];
 	private _code = compile format["[] spawn SIDE_fnc_%1", _type];
+	diag_log _code;
 	SIDE_main = call _code;
-	//SIDE_main = [] spawn SIDE_fnc_secure;
 	waitUntil {
 		sleep _checkDelay;
 		scriptDone SIDE_main

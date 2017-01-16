@@ -16,7 +16,7 @@ _args append (missionNamespace getVariable format["VC_%1", _poolName]);
 _args call common_fnc_setCargo;
 
 {
-	if (_type isKindOf _x) then {
+	if ( (_type isKindOf _x) && !(_type in BV_heliMedEvac) ) then {
 		_veh setVariable ["supplyDrop", true, true];
 	};
 } count SD_vehicles;

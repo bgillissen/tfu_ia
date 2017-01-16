@@ -26,6 +26,7 @@ Description:
 #include "maps\_cfgFunctions.hpp"
 #include "mapTracker\_cfgFunctions.hpp"
 #include "noRenegade\_cfgFunctions.hpp"
+#include "oneLifeOnly\_cfgFunctions.hpp"
 #include "playerSide\_cfgFunctions.hpp"
 #include "playerSpawn\_cfgFunctions.hpp"
 #include "radioFreq\_cfgFunctions.hpp"

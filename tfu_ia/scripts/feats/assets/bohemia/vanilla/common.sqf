@@ -25,7 +25,9 @@ private _items = ["ItemMap",
                   "Medikit", 
                   "ToolKit",
                   "Binocular",
-                  "B_UavTerminal"];
+                  "Laserdesignator",
+                  "Laserdesignator_02",
+                  "Laserdesignator_03"];
 private _weapons = [];
 private _ammo = ["DemoCharge_Remote_Mag",
                  "IEDUrbanSmall_Remote_Mag",
@@ -178,7 +180,8 @@ private _boatBig = [[],
                     []];
 private _sub = [[],[],[],[]];
 private _landMedic = [[],
-                      [["FirstAidKit", 40]],
+                      [["FirstAidKit", 30],
+                       ["Medikit", 5]],
                       [],
                       []];
 private _repair = [[],[],[],[]];
@@ -350,25 +353,14 @@ private _mortar = [["", []],
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private ["_backpack", "_term"];
-if ( PLAYER_SIDE isEqualTo west ) then {
-	_backpack = "B_UAV_01_backpack_F";
-	_term = "B_UavTerminal";
-};
-if ( PLAYER_SIDE isEqualTo east ) then {
-	_backpack = "O_UAV_01_backpack_F";
-	_term = "O_UavTerminal";
-};
-if ( PLAYER_SIDE isEqualTo independent ) then {
-	_backpack = "I_UAV_01_backpack_F";
-	_term = "I_UavTerminal";
-};
+
 private _uavopp = [["", []], 
                    ["", [["FirstAidKit", 4]]], 
-                   [_backpack, []], 
                    ["", []], 
                    ["", []], 
                    ["", []], 
-                   "", "", "ItemRadio", _term, "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+                   ["", []], 
+                   "", "", "ItemRadio", "", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _spotter = [["", []], 
                     ["", []], 
                     ["", [["FirstAidKit", 4]]], 
@@ -376,6 +368,7 @@ private _spotter = [["", []],
                     ["", []], 
                     ["", []], 
                     "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
                  _mortar, _uavopp, _spotter]];

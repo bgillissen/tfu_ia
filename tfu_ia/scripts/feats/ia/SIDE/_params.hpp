@@ -1,5 +1,5 @@
-class SideMission {
-	title = "Enable Side Objectives?";
+class sideMission {
+	title = "Side Missions";
 	values[] = {1,0};
 	texts[] = {"Enabled","Disabled"};
 	default = 1;
