@@ -1,3 +1,11 @@
+/*
+@filename: feats\cleanUp\serverInit.sqf
+Author:
+	Ben
+Description:
+	run on server
+	cleanup garbage
+*/
 
 while { true } do {
 	
