@@ -18,7 +18,7 @@ private _backpacks = ["RHS_AFRF"] call rhs_fnc_getBackpacks;
 private _items = ["RHS_AFRF"] call rhs_fnc_getItems;
 private _weapons = ["RHS_AFRF"] call rhs_fnc_getWeapons;
 private _ammo = ["RHS_AFRF"] call rhs_fnc_getMagazines;
-		_ammo puchback "rhs_rpg26_mag";
+		_ammo pushback "rhs_rpg26_mag";
 
 _out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
 
@@ -108,11 +108,11 @@ private _arti = [];
 private _static = ["RHS_AFRF", nil, "StaticWeapon", true] call rhs_fnc_getVehicles;
 private _cas = [];
 //private _tank = ["rhs_t72bd_tv","rhs_t80","rhs_t90_tv"];
-private _tank = ["RHS_AFRF", nil, "MBT_01_base_F", true] call rhs_fnc_getVehicles;
+private _tank = ["RHS_AFRF", nil, ["rhs_a3spruttank_base", "rhs_tank_base"], true] call rhs_fnc_getVehicles;
 //private _apc = ["rhs_tigr_sts_msv","rhsgref_BRDM2_HQ_msv","rhs_btr60_msv","rhs_btr70_msv","rhs_btr80_msv","rhs_bmp1_msv","rhs_bmp1d_msv","rhs_bmp1k_msv","rhs_bmp1p_msv","rhs_bmp3_late_msv"];
-private _apc = ["RHS_AFRF", nil, ["APC_Tracked_03_base_F", "Wheeled_APC_F"], true] call rhs_fnc_getVehicles;
-private _car = ["RHS_AFRF", nil, "MRAP_01_base_F", false] call rhs_fnc_getVehicles;
-private _carArmed = ["RHS_AFRF", nil, "MRAP_01_base_F", true] call rhs_fnc_getVehicles;
+private _apc = ["RHS_AFRF", nil, ["rhs_bmp1tank_base", "rhs_bmd_base"], true] call rhs_fnc_getVehicles;
+private _car = ["RHS_AFRF", nil, ["Offroad_01_base_F", "MRAP_02_base_F"], false] call rhs_fnc_getVehicles;
+private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "MRAP_01_base_F"], true] call rhs_fnc_getVehicles;
 private _aPatrol = ["RHS_Mi24P_vdv", "RHS_Ka52_vvsc"];
 private _civ = [];
 
