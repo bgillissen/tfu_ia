@@ -7,18 +7,25 @@ Description:
 	cleanup garbage
 */
 
+private _sz = getMarkerPos "SZ";
+private _fr = getMarkerPos "FR";
+
 while { true } do {
 	
-	sleep 300;
-	
+	sleep 120;
+	diag_log "<<<<<<<<<<<<<< CLEANUP";
 	{
 		private _pos = getPos _x;
-		//in base
-		if ( _pos distance SZ <= SZ_RADIUS ) then { deleteVehicle _x };
-		//in fireRange
-		if ( _pos distance FR <= FR_RADIUS ) then { deleteVehicle _x };
-		//no player close
-		if ( ({_pos distance _x <= 1500} count allPlayers) == 0 ) then { deleteVehicle _x };
+		private _ok = true;
+		if ( _x isKindOf "StaticWeapon" ) then { _ok = ( count (crew _x) == 0 ); };
+		if ( _ok ) then {
+			//in base
+			if ( _pos distance _sz <= SZ_RADIUS ) then { deleteVehicle _x };
+			//in fireRange
+			if ( _pos distance _fr <= FR_RADIUS ) then { deleteVehicle _x };
+			//no player close
+			if ( ({_pos distance _x <= 1500} count allPlayers) == 0 ) then { deleteVehicle _x };
+		};
 		true
 	} count ((allMissionObjects "CraterLong") +
         	 (allMissionObjects "WeaponHolder") +
@@ -33,4 +40,6 @@ while { true } do {
 		};
 		true
 	} count allGroups;
+	
+	diag_log ">>>>>>>>>>>>>>>> CLEANUP";
 };

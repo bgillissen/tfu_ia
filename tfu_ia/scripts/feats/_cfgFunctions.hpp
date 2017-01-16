@@ -15,6 +15,7 @@ Description:
 #include "cleanUp\_cfgFunctions.hpp"
 #include "curator\_cfgFunctions.hpp"
 #include "earPlugs\_cfgFunctions.hpp"
+#include "flags\_cfgFunctions.hpp"
 #include "fatigue\_cfgFunctions.hpp"
 #include "gearRestrictions\_cfgFunctions.hpp"
 #include "groupManagement\_cfgFunctions.hpp"
