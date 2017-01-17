@@ -1,9 +1,9 @@
 #define addf(fname) class fname {headerType = -1;}
 
 createShortcuts = 1;
-class tcb_ais {
+class tcb {
 	tag = "tcb";
-	class ais {
+	class functions {
 		file = "feats\revive\ais\func";
 		addf(handleDamage2);
 		addf(keyUnbind);

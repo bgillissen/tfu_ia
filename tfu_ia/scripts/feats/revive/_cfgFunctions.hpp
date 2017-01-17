@@ -5,3 +5,5 @@ class revive {
 		class serverInit  { file="feats\revive\serverInit.sqf"; };
 	};
 };
+
+#include "ais\_cfgFunctions.hpp"
