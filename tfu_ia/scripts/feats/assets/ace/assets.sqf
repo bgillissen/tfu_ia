@@ -89,7 +89,7 @@ private _ammo = [];
 
 _out set [SD_ACE, [_backpacks, _items, _weapons, _ammo, [], []]];
 
-//------------------------------------------------------------ Vehicles Cargo Vanilla BLUFOR
+//------------------------------------------------------------ Vehicles Cargo ACE
 
 VC_ACE = SD_ACE + 1;
 
@@ -122,7 +122,7 @@ _out set [VC_ACE, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _
                    _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                    _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
-//------------------------------------------------------------ Role Loadout Vanilla BLUFOR
+//------------------------------------------------------------ Role Loadout ACE
 
 RL_ACE = VC_ACE + 1;
 
@@ -145,10 +145,14 @@ private _rifleman = [];
 private _jtac = [];
 private _hPilot = [];
 private _jPilot = [];
+private _crew = [];
 private _mortar = [];
+private _uavopp = [];
+private _spotter = [};
 
 _out set [RL_ACE, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
-                   _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _mortar]];
+                   _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
+                   _mortar, _uavopp, _spotter]];
 
 //------------------------------------------------------------ FINITO, return
 _out;

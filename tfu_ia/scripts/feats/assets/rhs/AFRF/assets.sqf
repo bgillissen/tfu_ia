@@ -18,7 +18,7 @@ private _backpacks = ["RHS_AFRF"] call rhs_fnc_getBackpacks;
 private _items = ["RHS_AFRF"] call rhs_fnc_getItems;
 private _weapons = ["RHS_AFRF"] call rhs_fnc_getWeapons;
 private _ammo = ["RHS_AFRF"] call rhs_fnc_getMagazines;
-		_ammo pushback "rhs_rpg26_mag";
+		_ammo append ["rhs_rpg26_mag", "rhs_rshg2_mag", "rhs_mag_9x19_17", "rhs_mag_9x18_8_57N181S", "rhs_mag_9x18_12_57N181S"];
 
 _out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
 

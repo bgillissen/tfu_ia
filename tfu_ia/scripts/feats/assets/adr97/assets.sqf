@@ -8,12 +8,6 @@ Description:
 	return ADR-97 assets
 */
 
-_out = [];
-
-//------------------------------------------------------------ Arsenal ADR-97
-
-A_ADR97 = 0;
-
 private _backpacks = [];
 private _items = ["muzzle_snds_570"];
 private _weapons = ["SMG_03_black",
@@ -34,6 +28,4 @@ private _weapons = ["SMG_03_black",
         			"SMG_03C_TR_khaki"];
 private _ammo = ["50Rnd_570x28_SMG_03"];
 
-_out set [A_ADR97, [_backpacks, _items, _weapons, _ammo]];
-
-_out;
+[_backpacks, _items, _weapons, _ammo]

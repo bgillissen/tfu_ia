@@ -38,7 +38,7 @@ while { true } do {
 				conWhite(_debug);
 #endif
 				private _entry = VR select _qid;
-				private _new = [_entry select 0, _entry select 2, _entry select 3, _entry select 4] call vehicleRespawn_fnc_spawn;
+				private _new = [_entry select 0, _entry select 2, _entry select 3, _entry select 4, _entry select 5] call vehicleRespawn_fnc_spawn;
 				_entry set [0,_new];
 				VR set [_qid, _entry];
 				_queue = _queue - [_x];

@@ -7,4 +7,6 @@ Description:
 	implent ace blacklist (backpack, item, weapon, ammo, veh, unit, group, object)
 */
 
-[[], ACE_blacklist, [], [], [], [], [], [], []] call common_fnc_blacklistAssets;
+private _items = ["mediKit", "firstAidKit"];
+
+[[], _items, [], [], [], [], [], [], []] call common_fnc_blacklistAssets;
