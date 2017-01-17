@@ -56,7 +56,7 @@ private _items = [];
 private _weapons = [];
 private _ammo = [];
 private _crates = [];
-private _vehicles = [];
+private _vehicles = ["RHS_Mi8_base"];
 
 _out set [SD_AFRF, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
@@ -109,8 +109,8 @@ private _cas = ["RHS_AFRF", nil, "O_Plane_CAS_02_F", true] call rhs_fnc_getVehic
 private _tank = ["RHS_AFRF", nil, ["rhs_a3spruttank_base", "rhs_tank_base"], true] call rhs_fnc_getVehicles;
 private _apc = ["RHS_AFRF", nil, ["rhs_bmp1tank_base", "rhs_bmd_base"], true] call rhs_fnc_getVehicles;
 private _car = ["RHS_AFRF", nil, ["Offroad_01_base_F", "MRAP_02_base_F"], false] call rhs_fnc_getVehicles;
-private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "MRAP_01_base_F"], true] call rhs_fnc_getVehicles;
-private _aPatrol = ["RHS_Mi24P_vdv", "RHS_Ka52_vvsc"];
+private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "MRAP_01_base_F", "MRAP_02_base_F"], true] call rhs_fnc_getVehicles;
+private _aPatrol = ["RHS_AFRF", nil, "Heli_Attack_02_base_F"] call rhs_fnc_getVehicles;
 private _civ = [];
 
 _out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ,
@@ -128,21 +128,21 @@ BV_AFRF = S_AFRF + 1;
 //private _planeCAS = [];
 private _planeAA = [];
 private _planeTransport = [];
-private _uav = [];
+private _uav = ["rhs_pchela1t_vvs", "rhs_pchela1t_vvsc"];
 private _heliSmall = [];
 private _heliSmallArmed = [];
-private _heliMedium = [];
+private _heliMedium = ["rhs_ka60_c", "rhs_ka60_grey"];
 private _heliMedEvac = [];
-private _heliBig = [];
-private _heliAttack = [];
+private _heliBig = ["RHS_AFRF", nil, "RHS_Mi8_base"] call rhs_fnc_getVehicles;
+private _heliAttack = ["RHS_AFRF", nil, "Heli_Attack_02_base_F"] call rhs_fnc_getVehicles;
 private _boatSmall = [];
 private _boatAttack = [];
 private _boatBig = [];
 private _sub = [];
-private _landMedic = [];
-private _repair = [];
-private _fuel = [];
-private _ammo = [];
+private _landMedic = ["rhs_gaz66_ap2_vdv"];
+private _repair = ["rhs_gaz66_repair_vdv"];
+private _fuel = ["RHS_Ural_Fuel_MSV_01"];
+private _ammo = ["rhs_gaz66_ammo_msv"];
 private _quad = [];
 
 _out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav, 
