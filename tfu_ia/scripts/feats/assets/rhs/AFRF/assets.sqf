@@ -100,16 +100,13 @@ private _sGroups = [["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "r
                     ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon", "rhs_group_rus_vmf_infantry_recon_squad_sniper"]];
 private _pilot = ["rhs_pilot_combat_heli"];
 private _crew = ["rhs_msv_emr_combatcrew"];
-private _officer = [];
+private _officer = ["rhs_msv_emr_officer"];
 private _garrison = ["rhs_msv_emr_grenadier", "rhs_msv_emr_machinegunner"];
-private _aa = ["rhs_zsu234_aa"];
-private _arti = [];
-//private _static = ["RHS_AGS30_Tripod_MSV","rhs_KORD_MSV","RHS_NSV_Tripod_MSV","rhs_Igla_AA_pod_msv","rhs_D30_vdv","rhs_2b14_82mm_vdv"];
+private _aa = ["rhs_zsu234_aa", "rhs_gaz66_zu23_vdv", "RHS_Ural_Zu23_VDV_01"];
+private _arti = ["rhs_2s3_tv", "RHS_BM21_VDV_01"];
 private _static = ["RHS_AFRF", nil, "StaticWeapon", true] call rhs_fnc_getVehicles;
-private _cas = [];
-//private _tank = ["rhs_t72bd_tv","rhs_t80","rhs_t90_tv"];
+private _cas = ["RHS_AFRF", nil, "O_Plane_CAS_02_F", true] call rhs_fnc_getVehicles;
 private _tank = ["RHS_AFRF", nil, ["rhs_a3spruttank_base", "rhs_tank_base"], true] call rhs_fnc_getVehicles;
-//private _apc = ["rhs_tigr_sts_msv","rhsgref_BRDM2_HQ_msv","rhs_btr60_msv","rhs_btr70_msv","rhs_btr80_msv","rhs_bmp1_msv","rhs_bmp1d_msv","rhs_bmp1k_msv","rhs_bmp1p_msv","rhs_bmp3_late_msv"];
 private _apc = ["RHS_AFRF", nil, ["rhs_bmp1tank_base", "rhs_bmd_base"], true] call rhs_fnc_getVehicles;
 private _car = ["RHS_AFRF", nil, ["Offroad_01_base_F", "MRAP_02_base_F"], false] call rhs_fnc_getVehicles;
 private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "MRAP_01_base_F"], true] call rhs_fnc_getVehicles;
@@ -128,7 +125,7 @@ BV_AFRF = S_AFRF + 1;
 //private _apc = [];
 //private _tank = [];
 //private _aaTank = [];
-private _planeCAS = [];
+//private _planeCAS = [];
 private _planeAA = [];
 private _planeTransport = [];
 private _uav = [];
@@ -148,7 +145,7 @@ private _fuel = [];
 private _ammo = [];
 private _quad = [];
 
-_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _planeCAS, _planeAA, _planeTransport, _uav, 
+_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 

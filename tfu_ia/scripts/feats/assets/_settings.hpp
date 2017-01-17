@@ -28,4 +28,8 @@ class assets {
 		cfgPatch = "task_force_radio";
 		sides[] = {EAST, WEST, IND};
 	};
+	class adr97 {
+		cfgPatch = "A3_Weapons_F_Mod";
+		sides[] = {EAST, WEST, IND};
+	};
 };
