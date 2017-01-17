@@ -240,20 +240,104 @@ private _assAT = [[(["assAT"] call rhsAFRF_fnc_uniform), []],
               ["", []],
               ["", []],
               (["assAT"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
-private _sniper = [];
-private _marksman = [];
-private _repair = [];
-private _demo = [];
-private _engineer = [];
-private _grenadier = [];
-private _rifleman = [];
-private _jtac = [];
-private _hPilot = [];
-private _jPilot = [];
-private _crew = [];
-private _mortar = [];
-private _uavopp = [];
-private _spotter = [];
+private _sniper = [[(["sniper"] call rhsAFRF_fnc_uniform), []],
+              [(["sniper"] call rhsAFRF_fnc_vest), [["rhs_10Rnd_762x54mmR_7N1", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["sniper"] call rhsAFRF_fnc_backpack), []],
+              [(["sniper"] call rhsAFRF_fnc_primWeap), ["rhs_acc_pso1m21"]],
+              ["", []],
+              ["", []],
+              (["sniper"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _marksman = [[(["marksman"] call rhsAFRF_fnc_uniform), []],
+               [(["marksman"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+               [(["marksman"] call rhsAFRF_fnc_backpack), []],
+               [(["marksman"] call rhsAFRF_fnc_primWeap), ["rhs_acc_uuk", "rhs_acc_perst1ik_ris", "rhs_acc_1p78", "rhs_acc_grip_ffg2"]],
+               ["", []],
+               ["", []],
+               (["marksman"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _repair = [[(["repair"] call rhsAFRF_fnc_uniform), []],
+              [(["repair"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["repair"] call rhsAFRF_fnc_backpack), []],
+              [(["repair"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["repair"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _demo = [[(["demo"] call rhsAFRF_fnc_uniform), []],
+              [(["demo"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["demo"] call rhsAFRF_fnc_backpack), []],
+              [(["demo"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["demo"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _engineer = [[(["engineer"] call rhsAFRF_fnc_uniform), []],
+              [(["engineer"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["engineer"] call rhsAFRF_fnc_backpack), []],
+              [(["engineer"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["engineer"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _grenadier = [[(["grenadier"] call rhsAFRF_fnc_uniform), []],
+              [(["grenadier"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["grenadier"] call rhsAFRF_fnc_backpack), [["rhs_VOG25", 20]]],
+              [(["grenadier"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["grenadier"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _rifleman = [[(["rifleman"] call rhsAFRF_fnc_uniform), []],
+              [(["rifleman"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["rifleman"] call rhsAFRF_fnc_backpack), []],
+              [(["rifleman"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["rifleman"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _jtac = [[(["jtac"] call rhsAFRF_fnc_uniform), []],
+              [(["jtac"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["jtac"] call rhsAFRF_fnc_backpack), []],
+              [(["jtac"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["jtac"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _hPilot = [[(["hPilot"] call rhsAFRF_fnc_uniform), []],
+              [(["hPilot"] call rhsAFRF_fnc_vest), []],
+              [(["hPilot"] call rhsAFRF_fnc_backpack), []],
+              [(["hPilot"] call rhsAFRF_fnc_primWeap), []],
+              ["", []],
+              ["", []],
+              (["hPilot"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _jPilot = [[(["jPilot"] call rhsAFRF_fnc_uniform), []],
+              [(["jPilot"] call rhsAFRF_fnc_vest), []],
+              [(["jPilot"] call rhsAFRF_fnc_backpack), []],
+              [(["jPilot"] call rhsAFRF_fnc_primWeap), []],
+              ["", []],
+              ["", []],
+              (["jPilot"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _crew = [[(["crew"] call rhsAFRF_fnc_uniform), []],
+              [(["crew"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["crew"] call rhsAFRF_fnc_backpack), []],
+              [(["crew"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["crew"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _mortar = [[(["mortar"] call rhsAFRF_fnc_uniform), []],
+              [(["mortar"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["mortar"] call rhsAFRF_fnc_backpack), []],
+              [(["mortar"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["mortar"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _uavopp = [[(["uavopp"] call rhsAFRF_fnc_uniform), []],
+              [(["uavopp"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["uavopp"] call rhsAFRF_fnc_backpack), []],
+              [(["uavopp"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["uavopp"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
+private _spotter = [[(["spotter"] call rhsAFRF_fnc_uniform), []],
+              [(["spotter"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 4]]],
+              [(["spotter"] call rhsAFRF_fnc_backpack), []],
+              [(["spotter"] call rhsAFRF_fnc_primWeap), ["rhs_acc_dtk3", "rhs_acc_perst1ik", "rhs_acc_rakursPM", "rhs_30Rnd_545x39_AK"]],
+              ["", []],
+              ["", []],
+              (["spotter"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
 
 _out set [RL_AFRF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew,
