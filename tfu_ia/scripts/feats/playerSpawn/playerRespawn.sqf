@@ -11,6 +11,8 @@ if ( isNil "FIRST_SPAWN" ) exitWith {
 	FIRST_SPAWN = false;
 };
 
+//not needed for btc
+if ( (["revive_script"] call core_fnc_getParam) == 0 ) exitWith {};
 
 private _role = player getVariable "role";
 
