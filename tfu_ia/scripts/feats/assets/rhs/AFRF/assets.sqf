@@ -1,7 +1,7 @@
 /*
 @filename: feats\mods\rhsAFRF\assets.sqf
 Author:
-	Ben & Rainman
+	Ben
 Description:
 run on server,
 	called by feats\mods\rhsAFRF\init.sqf
@@ -12,15 +12,13 @@ private _out = [];
 
 //------------------------------------------------------------ Arsenal RHS AFRF
 
-//rhs_faction_afrf_wd => jungle, woods MAP_KEYWORDS
-
 A_AFRF = 0;
 
 private _backpacks = ["RHS_AFRF"] call rhs_fnc_getBackpacks;
 private _items = ["RHS_AFRF"] call rhs_fnc_getItems;
 private _weapons = ["RHS_AFRF"] call rhs_fnc_getWeapons;
 private _ammo = ["RHS_AFRF"] call rhs_fnc_getMagazines;
-_ammo append ["rhs_rpg26_mag", "rhs_rshg2_mag", "rhs_mag_9x19_17", "rhs_mag_9x18_8_57N181S", "rhs_mag_9x18_12_57N181S", "rhs_30Rnd_545x39_AK"];
+		_ammo append ["rhs_rpg26_mag", "rhs_rshg2_mag", "rhs_mag_9x19_17", "rhs_mag_9x18_8_57N181S", "rhs_mag_9x18_12_57N181S"];
 
 _out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
 
@@ -43,7 +41,7 @@ _out set [RG_AFRF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope,
 
 AV_AFRF = RG_AFRF + 1;
 
-private _heli = ["RHS_Mi8mt_vvs"];
+private _heli = [];
 private _plane = [];
 private _tank = [];
 
@@ -53,14 +51,12 @@ _out set [AV_AFRF, [_heli, _plane, _tank]];
 
 SD_AFRF = AV_AFRF + 1;
 
-private _backpacks = [["rhs_assault_umbts", 2]];
+private _backpacks = [];
 private _items = [];
-private _weapons = [["rhs_weap_rpg26", 5],
-					["rhs_weap_ak74m_camo_npz", 3]];
-private _ammo = [["rhs_30Rnd_545x39_AK", 40]];
-
-private _crates = [rhsusf_mags_crate];
-private _vehicles = ["RHS_Mi8mt_vvs", "RHS_Mi8_base"];
+private _weapons = [];
+private _ammo = [];
+private _crates = [];
+private _vehicles = ["RHS_Mi8_base"];
 
 _out set [SD_AFRF, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
@@ -77,7 +73,7 @@ _out set [R_AFRF, _rewards];
 S_AFRF = R_AFRF + 1;
 
 private _rt = ["rhs_p37", "rhs_prv13"];
-private _crates = ["rhsusf_mags_crate"];
+private _crates = [];
 private _pGroups = [["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"],
                     ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr"],
                     ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry"],
@@ -149,8 +145,8 @@ private _fuel = ["RHS_Ural_Fuel_MSV_01"];
 private _ammo = ["rhs_gaz66_ammo_msv"];
 private _quad = [];
 
-_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav,
-                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
+_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav, 
+                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo RHS AFRF
@@ -182,21 +178,11 @@ private _fuel = [[],[],[],[]];
 private _ammo = [[],[],[],[]];
 private _quad = [[],[],[],[]];
 
-_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav,
-                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
+_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
+                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout RHS AFRF
-
-/*
- [uniform, [inUniform]],
- [vest, inVest]],
- [backpack, [inBackpack]],
- [primWeapon, [primWeaponItems]]
- [secWeapon, [secWeapItems]],
- [handWeapon, handWeapItems]],
- helmet, face, comm, terminal, map, bino, nv, watch, compass
-*/
 
 RL_AFRF = VC_AFRF + 1;
 
@@ -378,5 +364,7 @@ private _default = [];
 _out set [BALO_AFRF, [_medic, _gear, _support, _default]];
 
 //------------------------------------------------------------ FINITO, return
-
+          
 _out
+
+
