@@ -9,16 +9,6 @@ Description:
 	letting the server know the player did it.
 */
 
-diag_log "Player addAction";
-
 params ["_obj", "_label"];
 
 _obj addAction[_label, {_this call SIDE_fnc_doAction}, [], 6, true, true, "", "true", 2, false];
-
-/*
-_obj spawn {
-	sleep 10;
-	(getPos _this) params ["_x", "_y"];
-	player setPos [(_x + 15), (_y + 15) , 0];
-};
-*/

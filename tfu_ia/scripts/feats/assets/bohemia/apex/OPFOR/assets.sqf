@@ -87,8 +87,9 @@ private _apc = [];
 private _car = [];
 private _carArmed = [];
 private _aPatrol = [];
+private _civ = [];
 
-_out set [S_AO, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, 
+_out set [S_AO, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ,
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles Apex OPFOR

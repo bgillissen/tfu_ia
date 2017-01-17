@@ -41,9 +41,12 @@ conWhite(_debug);
 	};
 	if ( !([_toFilter, _filter] call common_fnc_isBlacklisted) ) then {
 		if ( isNil "_sub" ) then {
-			(missionNamespace getVariable _target) append [_x];
+			(missionNamespace getVariable _target) pushback _x;
 		} else {
-			((missionNamespace getVariable _target) select _sub) append [_x];
-		}
+			((missionNamespace getVariable _target) select _sub) pushback _x;
+		};
 	};
+	true
 } count _list;
+
+true

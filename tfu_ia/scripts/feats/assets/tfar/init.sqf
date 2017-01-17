@@ -34,5 +34,5 @@ publicVariable "TFAR_LR";
 	private _lo = _x call {
 		[["", []], ["", []], [([_x] call tfar_fnc_lrByRole), []], ["", []], ["", []], ["", []], "", "", (TFAR_SR select 0), "", "", "", "", "", ""]
 	};
-	[_forEachIndex, _lo] call assets_fnc_implentRoleLoadout;	
+	["player", _forEachIndex, _lo] call assets_fnc_implentRoleLoadout;	
 } forEach ((PV select RL_k) select 1);

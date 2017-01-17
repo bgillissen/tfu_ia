@@ -26,7 +26,7 @@ while { true } do {
 	sleep _delay;
 
 	{	
-		_x params ["_veh", "_delay", "_poolName", "_pos", "_dir"];
+		_x params ["_veh", "_delay", "_poolName", "_pos", "_dir", "_actions"];
 
 		private _inqueue = false;
 		{
@@ -38,7 +38,7 @@ while { true } do {
 				conWhite(_debug);
 #endif
 				private _entry = VR select _qid;
-				private _new = [_entry select 0, _entry select 2, _entry select 3, _entry select 4] call vehicleRespawn_fnc_spawn;
+				private _new = [_entry select 0, _entry select 2, _entry select 3, _entry select 4, _entry select 5] call vehicleRespawn_fnc_spawn;
 				_entry set [0,_new];
 				VR set [_qid, _entry];
 				_queue = _queue - [_x];
@@ -60,7 +60,7 @@ while { true } do {
 							private _debug = format["VehicleRespawn: veh %1 has been added to queue (alone)", _forEachIndex];
 							conWhite(_debug);
 #endif
-							_queue append [[_forEachIndex, (time + _delay)]];
+							_queue pushback [_forEachIndex, (time + _delay)];
 						};
 					};
 				};

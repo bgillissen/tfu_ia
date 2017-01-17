@@ -5,13 +5,13 @@ private _filters = [_dlcFilter, _factionFilters, _kindFilters, _isArmed, "rhs_fn
 
 private _veh = ["CfgVehicles", _filters, "configName (_this select 0)"] call rhs_fnc_searchThings;
 
-
+/*
 diag_log "RHS VEH >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 { 
 	diag_log format["'%1'; //%2", _x, ( getText(configFile >> "CfgVehicles" >> _x >> "displayName"))];
 } count _veh;
 
 diag_log "RHS VEH <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-
+*/
 
 _veh

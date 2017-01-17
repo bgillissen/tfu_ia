@@ -88,14 +88,14 @@ private _restrictEnemyGear = (["restrictEnemyGear"] call core_fnc_getParam == 1)
 		{
 			private _rlK = missionNamespace getVariable format["RL_%1", toUpper(_k)];
 			if ( !isNil "_rlK" ) then {
-				[_forEachIndex, (_src select _rlK select _forEachIndex)] call assets_fnc_implentRoleLoadout;
+				["player", _forEachIndex, (_src select _rlK select _forEachIndex)] call assets_fnc_implentRoleLoadout;
 			};
 		} forEach ((PV select RL_k) select 1);
 		//------------------------------------------------------------ base atmosphere  role loadout
 		{
 			private _baloK = missionNamespace getVariable format["BALO_%1", toUpper(_k)];
 			if ( !isNil "_baloK" ) then {
-				[_forEachIndex, (_src select _baloK select _forEachIndex)] call assets_fnc_implentRoleLoadout;
+				["npc", _forEachIndex, (_src select _baloK select _forEachIndex)] call assets_fnc_implentRoleLoadout;
 			};
 		} forEach ((PV select BALO_k) select 1);
 	};

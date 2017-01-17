@@ -46,7 +46,7 @@ while { true } do {
 			SC_crates = SC_crates - [_crate];
 			publicVariable "SC_crates";
 		};
-		[_from, _msg] call common_fnc_globalSideChatServer;
+		[PLAYER_SIDE, _from, _msg] call common_fnc_globalSideChatServer;
 		SC_avail = true;
 		publicVariable "SC_avail";
 	};

@@ -57,11 +57,7 @@ _caller spawn {
 		_crate attachTo [_chute, [0, 0, -1.3]];
 	} else {
 		_crate = createVehicle [(selectRandom SD_crates), [0,0,0], [], 0, 'NONE'];
-		private _relPos = _veh call {
-			if ( _this isKindOf "Helicopter" ) exitWith { [3, 1.5, -1] };
-			[0, -10, 0]
-		};
-		_crate attachTo [_veh, _relPos];
+		_crate attachTo [_veh, (_veh call supplyDrop_fnc_relPos)];
 		 detach _crate;
 		_crate enableSimulationGlobal true;
 	};

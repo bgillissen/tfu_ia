@@ -16,6 +16,7 @@ class featGetIn_base : featEvent_base { enable = 1; };
 class featSwitchSeat_base : featEvent_base { enable = 1; };
 class featGetOut_base : featEvent_base { enable = 1; };
 class featTake_base : featEvent_base { enable = 1; };
+class featKilled_base : featEvent_base { enable = 1; };
 class featDestroy_base : featEvent_base { enable = 1; };
 
 class featContext_base {
@@ -28,6 +29,7 @@ class featContext_base {
 class featServer_base : featContext_base {
 	class join : featEvent_base {};
 	class respawn : featEvent_base {};
+	class killed : featEvent_base {};
 	class leave : featEvent_base {};
 };
 
@@ -39,6 +41,7 @@ class featPlayer_base : featContext_base {
 	class switchSeat : featEvent_base {};
 	class getOut : featEvent_base {};
 	class take : featEvent_base {};
+	class killed : featEvent_base {};
 };
 
 class featHeadless_base : featContext_base {};

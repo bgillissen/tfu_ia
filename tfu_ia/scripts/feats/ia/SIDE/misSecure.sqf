@@ -73,18 +73,18 @@ _minDistFromBase = nil;
 _minDistFromAO = nil;
 _found = nil;
 
-//private _isRadar = [false, true] select (random 100 <= (["ia", "side", "secure", "radarProb"] call core_fnc_getSetting));
+private _isRadar = [false, true] select (random 100 <= (["ia", "side", "secure", "radarProb"] call core_fnc_getSetting));
 _isRadar = true;
 private ["_title", "_desc", "_pool"];
-//if ( _isRadar ) then {
+if ( _isRadar ) then {
 	_title = ["ia", "side", "secure", "radar", "title"] call core_fnc_getSetting;
 	_desc = ["ia", "side", "secure", "radar", "briefing"] call core_fnc_getSetting;
 	 _pool = ["Land_Radar_Small_F"];
-/*} else {
+} else {
 	_title = ["ia", "side", "secure", "chopper", "title"] call core_fnc_getSetting;
 	_desc = ["ia", "side", "secure", "chopper", "briefing"] call core_fnc_getSetting;
-	_pool = S_aPatrol;
-};*/
+	(["aPatrol"] call ia_fnc_randomSide) params ["_side", "_pool"];
+};
 
 //spawn objective
 private _obj = (selectRandom _pool) createVehicle ([_flatPos, 25, 35, 10, 0, 0.5, 0] call BIS_fnc_findSafePos);
@@ -143,8 +143,8 @@ _skill = nil;
 
 //spawn patrols
 private _size = ["ia", "side", "size"] call core_fnc_getSetting;
-//_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 1, (_size + (random 150))] call SIDE_fnc_placeEnemies);
-_groups append ([_flatPos, 0, 4, 4, 0, 4, 4, 4, 4, 4, 4, (_size + (random 150))] call SIDE_fnc_placeEnemies);
+//_groups append ([_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 1, (_size + (random 100))] call SIDE_fnc_placeEnemies);
+_groups append ([_flatPos, 0, 4, 4, 0, 4, 4, 4, 4, 4, 4, (_size + (random 100))] call SIDE_fnc_placeEnemies);
 
 //markers
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
@@ -166,7 +166,7 @@ while { true } do {
 		[false, _flatPos, _size, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
-		//plan message
+		//plant message
 		private _planted = ["ia", "side", "secure", "planted"] call core_fnc_getSetting;
 		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
 		[PLAYER_SIDE, "HQ", format[_planted, _delay]] call common_fnc_globalSideChatServer;
@@ -179,6 +179,7 @@ while { true } do {
 		[[_objX, _objY, (_objZ+15)], false] spawn SIDE_fnc_boom;
 		deleteVehicle _laptop;
 		deleteVehicle _table;
+		sleep 2;
 		//give a reward
 		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;

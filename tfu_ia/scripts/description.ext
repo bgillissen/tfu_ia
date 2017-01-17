@@ -34,15 +34,8 @@ RespawnDelay = 4;
 RespawnDialog = 0;
 
 //------------------------- Corps/Wreck cleanup
-corpseManagerMode = 1;
-corpseLimit = 50;
-corpseRemovalMinTime = 1800;
-corpseRemovalMaxTime = 3600;
-wreckManagerMode = 1;
-wreckLimit = 25;
-wreckRemovalMinTime = 1800;
-wreckRemovalMaxTime = 3600;
-minPlayerDistance = 1500;
+corpseManagerMode = 0;
+wreckManagerMode = 0;
 
 //------------------------- Includes
 #include "common\ui.hpp"
@@ -82,5 +75,15 @@ class CfgRemoteExec {
 	class Commands {
 		mode = 1;
 		jip = 1;
+	};
+};
+
+//------------------------- Base NPC insignia
+class CfgUnitInsignia {
+	class npc {
+		displayName = "Task Force Unicorn";
+		author = "Rainman";
+		texture = "media\insignia\tfu.paa";
+		textureVehicle = "";
 	};
 };

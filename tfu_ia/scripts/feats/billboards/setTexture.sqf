@@ -1,5 +1,5 @@
 /*
-@filename: feats\dynBillboards\setTexture.sqf
+@filename: feats\billboards\setTexture.sqf
 Author:
 	Ben
 Description:

@@ -20,7 +20,7 @@ private _backpacks = ["RHS_AFRF"] call rhs_fnc_getBackpacks;
 private _items = ["RHS_AFRF"] call rhs_fnc_getItems;
 private _weapons = ["RHS_AFRF"] call rhs_fnc_getWeapons;
 private _ammo = ["RHS_AFRF"] call rhs_fnc_getMagazines;
-_ammo append ["rhs_30Rnd_545x39_AK"];
+_ammo append ["rhs_rpg26_mag", "rhs_rshg2_mag", "rhs_mag_9x19_17", "rhs_mag_9x18_8_57N181S", "rhs_mag_9x18_12_57N181S", "rhs_30Rnd_545x39_AK"];
 
 _out set [A_AFRF, [_backpacks, _items, _weapons, _ammo]];
 
@@ -60,7 +60,7 @@ private _weapons = [["rhs_weap_rpg26", 5],
 private _ammo = [["rhs_30Rnd_545x39_AK", 40]];
 
 private _crates = [rhsusf_mags_crate];
-private _vehicles = [RHS_Mi8mt_vvs];
+private _vehicles = ["RHS_Mi8mt_vvs", "RHS_Mi8_base"];
 
 _out set [SD_AFRF, [_backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
 
@@ -76,57 +76,80 @@ _out set [R_AFRF, _rewards];
 
 S_AFRF = R_AFRF + 1;
 
-private _rt = [];
-private _crates = [rhsusf_mags_crate];
-private _pGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"]];
-private _sGroups = [["configFile", "CfgGroups", "East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_sniper"]];
+private _rt = ["rhs_p37", "rhs_prv13"];
+private _crates = ["rhsusf_mags_crate"];
+private _pGroups = [["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_flora"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_mflora"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_recon"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon"]];
+private _sGroups = [["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_mg_sniper"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry", "rhs_group_rus_msv_infantry_squad_sniper"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr", "rhs_group_rus_msv_infantry_emr_squad_mg_sniper"],
+                    ["East", "rhs_faction_msv", "rhs_group_rus_msv_infantry_emr", "rhs_group_rus_msv_infantry_emr_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry", "rhs_group_rus_vdv_infantry_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry", "rhs_group_rus_vdv_infantry_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_flora", "rhs_group_rus_vdv_infantry_flora_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_flora", "rhs_group_rus_vdv_infantry_flora_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_mflora", "rhs_group_rus_vdv_infantry_mflora_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_mflora", "rhs_group_rus_vdv_infantry_mflora_squad_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_recon", "rhs_group_rus_vdv_infantry_recon_squad_mg_sniper"],
+                    ["East", "rhs_faction_vdv", "rhs_group_rus_vdv_infantry_recon", "rhs_group_rus_vdv_infantry_recon_squad_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry", "rhs_group_rus_vmf_infantry_squad_mg_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry", "rhs_group_rus_vmf_infantry_squad_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon", "rhs_group_rus_vmf_infantry_recon_squad_mg_sniper"],
+                    ["East", "rhs_faction_vmf", "rhs_group_rus_vmf_infantry_recon", "rhs_group_rus_vmf_infantry_recon_squad_sniper"]];
 private _pilot = ["rhs_pilot_combat_heli"];
 private _crew = ["rhs_msv_emr_combatcrew"];
-private _officer = [];
+private _officer = ["rhs_msv_emr_officer"];
 private _garrison = ["rhs_msv_emr_grenadier", "rhs_msv_emr_machinegunner"];
-private _aa = ["rhs_zsu234_aa"];
-private _arti = [];
-private _static = ["RHS_AGS30_Tripod_MSV","rhs_KORD_MSV","RHS_NSV_Tripod_MSV","rhs_Igla_AA_pod_msv","rhs_D30_vdv","rhs_2b14_82mm_vdv"];
-private _cas = [];
-private _tank = ["rhs_t72bd_tv","rhs_t80","rhs_t90_tv"];
-private _apc = ["rhs_tigr_sts_msv","rhsgref_BRDM2_HQ_msv","rhs_btr60_msv","rhs_btr70_msv","rhs_btr80_msv","rhs_bmp1_msv","rhs_bmp1d_msv","rhs_bmp1k_msv","rhs_bmp1p_msv","rhs_bmp3_late_msv"];
-private _car = [];
-private _carArmed = [];
-private _aPatrol = ["RHS_Mi24P_vdv", "RHS_Ka52_vvsc"];
+private _aa = ["rhs_zsu234_aa", "rhs_gaz66_zu23_vdv", "RHS_Ural_Zu23_VDV_01"];
+private _arti = ["rhs_2s3_tv", "RHS_BM21_VDV_01"];
+private _static = ["RHS_AFRF", nil, "StaticWeapon", true] call rhs_fnc_getVehicles;
+private _cas = ["RHS_AFRF", nil, "O_Plane_CAS_02_F", true] call rhs_fnc_getVehicles;
+private _tank = ["RHS_AFRF", nil, ["rhs_a3spruttank_base", "rhs_tank_base", "rhs_a3t72tank_base"], true] call rhs_fnc_getVehicles;
+private _apc = ["RHS_AFRF", nil, ["rhs_bmp1tank_base", "rhs_bmd_base"], true] call rhs_fnc_getVehicles;
+private _car = ["RHS_AFRF", nil, ["Offroad_01_base_F", "MRAP_02_base_F"], false] call rhs_fnc_getVehicles;
+private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "Offroad_01_base_F", "MRAP_02_base_F"], true] call rhs_fnc_getVehicles;
+private _aPatrol = ["RHS_AFRF", nil, "Heli_Attack_02_base_F"] call rhs_fnc_getVehicles;
+private _civ = [];
 
-_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison,
+_out set [S_AFRF, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ,
                 _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
 
 //------------------------------------------------------------ Vehicles RHS AFRF
 
 BV_AFRF = S_AFRF + 1;
 
-private _car = [];
-private _carArmed = [];
-private _apc = [];
-private _tank = [];
-private _aaTank = [];
-private _planeCAS = [];
+//private _car = [];
+//private _carArmed = [];
+//private _apc = [];
+//private _tank = [];
+//private _aaTank = [];
+//private _planeCAS = [];
 private _planeAA = [];
 private _planeTransport = [];
-private _uav = [];
+private _uav = ["rhs_pchela1t_vvs", "rhs_pchela1t_vvsc"];
 private _heliSmall = [];
 private _heliSmallArmed = [];
-private _heliMedium = [];
+private _heliMedium = ["rhs_ka60_c", "rhs_ka60_grey"];
 private _heliMedEvac = [];
-private _heliBig = [];
-private _heliAttack = [];
+private _heliBig = ["RHS_AFRF", nil, "RHS_Mi8_base"] call rhs_fnc_getVehicles;
+private _heliAttack = ["RHS_AFRF", nil, "Heli_Attack_02_base_F"] call rhs_fnc_getVehicles;
 private _boatSmall = [];
 private _boatAttack = [];
 private _boatBig = [];
 private _sub = [];
-private _landMedic = [];
-private _repair = [];
-private _fuel = [];
-private _ammo = [];
+private _landMedic = ["rhs_gaz66_ap2_vdv"];
+private _repair = ["rhs_gaz66_repair_vdv"];
+private _fuel = ["RHS_Ural_Fuel_MSV_01"];
+private _ammo = ["rhs_gaz66_ammo_msv"];
 private _quad = [];
 
-_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav,
+_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav,
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 

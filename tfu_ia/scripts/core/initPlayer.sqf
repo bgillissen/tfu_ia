@@ -35,10 +35,10 @@ if ( isNil "FEH_join") then {
 
 ["PLAYER", "init"] call core_fnc_featEvent;
 
-//register feature's onCloseVA
 if ( isNil "FEH_closeVA") then {
-	VAopen = false;
-	FEH_closeVA = ["FEH_closeVA", "onEachFrame", {_this call core_fnc_fehCloseVA;}, player] call BIS_fnc_addStackedEventHandler;  
+	//VAopen = false;
+	//FEH_closeVA = ["FEH_closeVA", "onEachFrame", {_this call core_fnc_fehCloseVA;}, player] call BIS_fnc_addStackedEventHandler; 
+	FEH_closeVA = [missionNamespace, "arsenalClosed", {["PLAYER", "closeVA"] call core_fnc_featEvent;}] call BIS_fnc_addScriptedEventHandler
 };
 
 if ( isNil "FEH_getIn") then {
@@ -61,7 +61,12 @@ if ( isNil "FEH_shoot") then {
 	FEH_shoot = player addEventHandler ["Fired", {["PLAYER", "shoot", _this] call core_fnc_featEvent;}];
 };
 
-//features playerPostInit
+if ( isNil "FEH_killed") then {
+	FEH_killed = player addEventHandler ["Killed", {
+			["PLAYER", "killed", _this] call core_fnc_featEvent;
+			["SERVER", "killed", [_this, player]] call core_fnc_featEvent; }];
+};
+
 ["PLAYER", "postInit"] call core_fnc_featEvent;
 
 missionNamespace setVariable ["PLAYER_INIT", false, false];

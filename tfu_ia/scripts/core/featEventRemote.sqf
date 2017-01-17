@@ -9,10 +9,8 @@ Description:
 
 params ["_when", "_param"];
 
-if ( _when isEqualTo "respawn" && CTXT_SERVER) exitWith {
-	["SERVER", _when, _param] call core_fnc_featEvent;
-};
+private _allowed = ["respawn", "join", "killed"]; 
 
-if ( _when isEqualTo "join" && CTXT_SERVER) exitWith {
+if ( (_when in _allowed) && CTXT_SERVER) exitWith {
 	["SERVER", _when, _param] call core_fnc_featEvent;
 };

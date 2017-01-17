@@ -49,3 +49,7 @@ BTC_objects_actions_west = [];					// this is the object name
 BTC_objects_actions_east = [];
 BTC_objects_actions_guer = [];
 BTC_objects_actions_civ  = [];
+
+BTC_Medical_TruckToggle = 1;				// Set to 0 to disable medical truck heal stations
+BTC_Medical_Trucks = (BV_landMedic + BV_heliMedEvac);
+BTC_Medical_Trucks_addActionText = "First Aid (Medical Vehicle)";

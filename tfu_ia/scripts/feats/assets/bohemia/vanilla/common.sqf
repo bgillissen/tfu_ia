@@ -25,7 +25,9 @@ private _items = ["ItemMap",
                   "Medikit", 
                   "ToolKit",
                   "Binocular",
-                  "B_UavTerminal"];
+                  "Laserdesignator",
+                  "Laserdesignator_02",
+                  "Laserdesignator_03"];
 private _weapons = [];
 private _ammo = ["DemoCharge_Remote_Mag",
                  "IEDUrbanSmall_Remote_Mag",
@@ -65,7 +67,7 @@ private _items = [["Laserdesignator", 3],
 private _weapons = [];
 private _ammo = [["SatchelCharge_Remote_Mag", 3],
                  ["DemoCharge_Remote_Mag", 5]];
-private _crates = [];
+private _crates = ["B_supplyCrate_F"];
 private _vehicles = [];
 
 _out set [SD_VC, [ _backpacks, _items, _weapons, _ammo, _crates, _vehicles]];
@@ -100,12 +102,12 @@ private _heliAttack = [];
 private _boatSmall = [];
 private _boatAttack = [];
 private _boatBig = [];
-private _sub = [];
+private _sub = ["B_SDV_01_F"];
 private _landMedic = [];
 private _repair = [];
 private _fuel = [];
 private _ammo = [];
-private _quad = [];
+private _quad = ["C_Quadbike_01_F"];
 
 _out set [BV_VC, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
@@ -178,7 +180,8 @@ private _boatBig = [[],
                     []];
 private _sub = [[],[],[],[]];
 private _landMedic = [[],
-                      [["FirstAidKit", 40]],
+                      [["FirstAidKit", 30],
+                       ["Medikit", 5]],
                       [],
                       []];
 private _repair = [[],[],[],[]];
@@ -281,21 +284,21 @@ private _marksman = [["", []],
                      "", "", "ItemRadio", "ItemGPS", "ItemMap", "", "", "ItemWatch", "ItemCompass"];
 private _repair = [["", []], 
                    ["", []], 
-                   ["", [["FirstAidKit", 4]]], 
+                   ["", [["FirstAidKit", 4], ["ToolKit", 1]]], 
                    ["", []], 
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _demo = [["", []], 
                  ["", []], 
-                 ["", [["FirstAidKit", 4]]], 
+                 ["", [["FirstAidKit", 4], ["ToolKit", 1]]], 
                  ["", []], 
                  ["", []], 
                  ["", []], 
                  "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _engineer = [["", []], 
                      ["", []], 
-                     ["", [["FirstAidKit", 4]]], 
+                     ["", [["FirstAidKit", 4], ["ToolKit", 1]]], 
                      ["", []], 
                      ["", []], 
                      ["", []], 
@@ -350,12 +353,12 @@ private _mortar = [["", []],
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _uavopp = [["", []], 
-                   ["", []], 
                    ["", [["FirstAidKit", 4]]], 
                    ["", []], 
                    ["", []], 
                    ["", []], 
-                   "", "", "ItemRadio", "B_UavTerminal", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+                   ["", []], 
+                   "", "", "ItemRadio", "", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
 private _spotter = [["", []], 
                     ["", []], 
                     ["", [["FirstAidKit", 4]]], 
@@ -363,6 +366,7 @@ private _spotter = [["", []],
                     ["", []], 
                     ["", []], 
                     "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
+
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
                  _mortar, _uavopp, _spotter]];

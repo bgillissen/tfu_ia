@@ -9,7 +9,7 @@ Description:
 
 #include "debug.hpp"
 
-params ["_ctxt", "_when", "_arg"];
+params ["_ctxt", "_when", ["_arg", []]];
 
 if ( isNil "_arg" ) then { _arg = []; };
 if ( isNil "FEAT_THREADS" ) then { FEAT_THREADS = []; };
@@ -22,6 +22,7 @@ conWhite(_debug);
 //some basic checks for cases that can not happend
 if ( CTXT_HEADLESS ) then {
 	if ( _when isEqualTo "respawn" ) exitWith{};	
+	if ( _when isEqualTo "killed" ) exitWith{};
 };
 if ( !CTXT_SERVER ) then {
 	if ( _when isEqualTo "leave" ) exitWith{};

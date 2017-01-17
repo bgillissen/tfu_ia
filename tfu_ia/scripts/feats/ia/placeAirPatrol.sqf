@@ -11,23 +11,20 @@ Description:
 
 params ["_coord", "_size", "_amount", "_skill", "_patrolSize", "_altitude"];
 
-if ( _amount <= 0 ) exitWith {[]};
+if ( _amount <= 0 ) exitWith { [] };
 
 private _doLock = ( (["ia", "lockVeh"] call core_fnc_getSetting) == 1 );
 
 private _groups = [];
 
 for "_x" from 1 to _amount do {
-	
 	(["aPatrol"] call ia_fnc_randomSide) params ["_side", "_pool", "_key"];
-	
 	if ( isNil "_side" ) exitWith { [grpNull] };
-	
-	private _group = createGroup _side;
+	private _group = createGroup _side;	
 	
 	private _randomPos = [[[_coord, (_size / 2)],[]],["water","out"]] call BIS_fnc_randomPos;
 	
-	private _veh = (selectRandom _pool) createVehicle [_randomPos select 0, _randomPos select 1, 5000];
+	private _veh = createVehicle [(selectRandom _pool), [_randomPos select 0, _randomPos select 1, _altitude], [], 0, "FLY"];
 	_veh engineOn true;
 	if ( _doLock ) then { _veh lock 3; };
 	_groups pushback _veh;

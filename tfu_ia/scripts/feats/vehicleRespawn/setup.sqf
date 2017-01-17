@@ -3,10 +3,11 @@
 Author:
 	Ben
 Description:
-	run by server each time a destroyed vehicle respawn.
+	run on server,
+	called each time a base vehicle (re)spawn.
 */
 
-params ["_veh", "_poolName"];
+params ["_veh", "_poolName", "_actions"];
 
 private _type = typeOf _veh;
 
@@ -14,10 +15,22 @@ private _args = [_veh];
 _args append (missionNamespace getVariable format["VC_%1", _poolName]);
 _args call common_fnc_setCargo;
 
-//add supplyDrop support
-if (_type in SD_vehicles) then {
-	_veh setVariable ["supplyDrop", true, true];
-};
+{
+	if ( (_type isKindOf _x) && !(_type in BV_heliMedEvac) ) then {
+		_veh setVariable ["supplyDrop", true, true];
+	};
+} count SD_vehicles;
+
+//Actions
+{
+	_x params ["_action", "_conf"];
+	if ( _action isEqualTo "paint" ) then {
+		_veh setObjectTextureGlobal [0, _conf];
+	};
+	true
+} count _actions;
+
+
 
 //UAV respawn fixer
 if (_type in BV_uav) then {
@@ -29,8 +42,6 @@ if (_type in BV_uav) then {
 };
 
 //add to Zeus
-{
-	_x addCuratorEditableObjects [[_veh],false];
-} count allCurators;
+[[_veh], false] call curator_fnc_addEditable;
 
 true

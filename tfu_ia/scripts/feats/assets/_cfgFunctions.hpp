@@ -29,3 +29,4 @@ class asets {
 #include "bohemia\_cfgFunctions.hpp"
 #include "rhs\_cfgFunctions.hpp"
 #include "tfar\_cfgFunctions.hpp"
+#include "adr97\_cfgFunctions.hpp"

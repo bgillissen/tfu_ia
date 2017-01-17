@@ -9,7 +9,7 @@ Description:
 
 #include "..\..\core\debug.hpp";
 
-params ["_index", "_loadOut"];
+params ["_target", "_index", "_loadOut"];
 
 if ( isNil "_loadout" ) exitWith {};
 if ( count _loadOut == 0 ) exitWith {};
@@ -17,9 +17,15 @@ if ( count _loadOut == 0 ) exitWith {};
 _loadOut params["_uniform", "_vest", "_backpack", "_pw", "_sw", "_hw", "_helmet", "_face", "_comm", "_term", "_map", "_bino", "_nv", "_watch", "_compass"];
 _loadOut = nil;
 
-private _vname = format["%1_%2", ((PV select RL_k) select 0), (((PV select RL_k) select 1) select _index)];
-private _current = missionNamespace getVariable _vname;
-
+private ["_vname", "_current"];
+if ( _target isEqualTo "player" ) then {
+	_vname = format["%1_%2", ((PV select RL_k) select 0), (((PV select RL_k) select 1) select _index)];
+	_current = missionNamespace getVariable _vname;
+};
+if ( _target isEqualTo "npc" ) then {
+	_vname = format["%1_%2", ((PV select BALO_k) select 0), (((PV select BALO_k) select 1) select _index)];
+	_current = missionNamespace getVariable _vname;
+};
 
 //uniform
 private _key = 0;
