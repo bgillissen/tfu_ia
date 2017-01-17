@@ -16,7 +16,6 @@ CTXT_PLAYER = hasInterface;
 if ( !CTXT_PLAYER ) exitWith {};
 
 waitUntil {
-	sleep 1;
 #ifdef DEBUG
 conWhite(">>>> onPlayerRespawn is waiting for server init to end");
 #endif
@@ -26,7 +25,6 @@ conWhite(">>>> onPlayerRespawn is waiting for server init to end");
 conWhite(">>>> onPlayerRespawn server has init");
 #endif
 waitUntil {
-	sleep 1;
 #ifdef DEBUG
 conWhite(">>>> onPlayerRespawn is waiting for player init to end");
 #endif

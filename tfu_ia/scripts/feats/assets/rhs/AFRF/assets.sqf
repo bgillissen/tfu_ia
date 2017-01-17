@@ -308,7 +308,7 @@ private _jtac = [[(["jtac"] call rhsAFRF_fnc_uniform), []],
 private _hPilot = [[(["hPilot"] call rhsAFRF_fnc_uniform), [["rhs_30Rnd_545x39_AK", 1]]],
               [(["hPilot"] call rhsAFRF_fnc_vest), []],
               [(["hPilot"] call rhsAFRF_fnc_backpack), []],
-              [(["hPilot"] call rhsAFRF_fnc_primWeap), []],
+              [(["hPilot"] call rhsAFRF_fnc_primWeap), ["rhs_30Rnd_545x39_AK"]],
               ["", []],
               ["", []],
               (["hPilot"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
