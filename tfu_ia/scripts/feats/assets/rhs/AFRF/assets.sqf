@@ -106,10 +106,10 @@ private _aa = ["rhs_zsu234_aa", "rhs_gaz66_zu23_vdv", "RHS_Ural_Zu23_VDV_01"];
 private _arti = ["rhs_2s3_tv", "RHS_BM21_VDV_01"];
 private _static = ["RHS_AFRF", nil, "StaticWeapon", true] call rhs_fnc_getVehicles;
 private _cas = ["RHS_AFRF", nil, "O_Plane_CAS_02_F", true] call rhs_fnc_getVehicles;
-private _tank = ["RHS_AFRF", nil, ["rhs_a3spruttank_base", "rhs_tank_base"], true] call rhs_fnc_getVehicles;
+private _tank = ["RHS_AFRF", nil, ["rhs_a3spruttank_base", "rhs_tank_base", "rhs_a3t72tank_base"], true] call rhs_fnc_getVehicles;
 private _apc = ["RHS_AFRF", nil, ["rhs_bmp1tank_base", "rhs_bmd_base"], true] call rhs_fnc_getVehicles;
 private _car = ["RHS_AFRF", nil, ["Offroad_01_base_F", "MRAP_02_base_F"], false] call rhs_fnc_getVehicles;
-private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "MRAP_01_base_F", "MRAP_02_base_F"], true] call rhs_fnc_getVehicles;
+private _carArmed = ["RHS_AFRF", nil, ["Wheeled_APC_F", "Offroad_01_base_F", "MRAP_02_base_F"], true] call rhs_fnc_getVehicles;
 private _aPatrol = ["RHS_AFRF", nil, "Heli_Attack_02_base_F"] call rhs_fnc_getVehicles;
 private _civ = [];
 
