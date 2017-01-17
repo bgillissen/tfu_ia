@@ -21,8 +21,6 @@ if ( _role isEqualTo "lmg" ) exitWith { "rhs_weap_pkm" };
 if ( _role isEqualTo "grenadier" ) exitWith { "rhs_weap_ak74m_gp25_npz" };
 if ( _role isEqualTo "sniper" ) exitWith { "rhs_weap_svdp" };
 if ( _role isEqualTo "marksman" ) exitWith { "rhs_weap_ak74m_zenitco01" };
-if ( _role isEqualTo "hPilot" ) exitWith { "rhs_acc_pgs64_74u" };
+if ( _role isEqualTo "hPilot" ) exitWith { "" };
 
-private "_weap";
-
-_weap
+"default_weapon_for_the_other_roles"

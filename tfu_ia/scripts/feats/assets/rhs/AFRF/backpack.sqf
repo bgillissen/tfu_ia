@@ -16,7 +16,7 @@ Return:
 */
 params ["_role"];
 
-if ( _role in ["tl", "sl", "jtac"] ) then { _vest = "tf_rt1523g_big_bwmod"; };
+if ( _role in ["tl", "sl", "jtac"] ) exitWith { "" };
 if ( ("jungle" in MAP_KEYWORDS) || ("wood" in MAP_KEYWORDS) ) exitWith { "rhs_assault_umbts" };
 if ( "desert" in MAP_KEYWORDS || "dry" in MAP_KEYWORDS ) exitWith { "rhs_sidor" };
 

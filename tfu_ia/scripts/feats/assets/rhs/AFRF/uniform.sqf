@@ -16,9 +16,9 @@ Return:
 */
 params ["_role"];
 
-if ( _role in "hq" ) exitWith { "rhs_uniform_m88_patchless" };
+if ( _role isEqualTo "hq" ) exitWith { "rhs_uniform_m88_patchless" };
 
-if ( _role in "jPilot" ) exitWith { "rhs_uniform_df15" };
+if ( _role isEqualTo "jPilot" ) exitWith { "rhs_uniform_df15" };
 
 if ( ("jungle" in MAP_KEYWORDS) || ("wood" in MAP_KEYWORDS) ) exitWith { "rhs_uniform_emr_patchless" };
 
