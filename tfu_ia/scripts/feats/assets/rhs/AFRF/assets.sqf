@@ -145,8 +145,8 @@ private _fuel = ["RHS_Ural_Fuel_MSV_01"];
 private _ammo = ["rhs_gaz66_ammo_msv"];
 private _quad = [];
 
-_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav, 
-                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+_out set [BV_AFRF, [_car, _carArmed, _apc, _tank, _aa, _cas, _planeAA, _planeTransport, _uav,
+                _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
                 _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Vehicles Cargo RHS AFRF
@@ -178,8 +178,8 @@ private _fuel = [[],[],[],[]];
 private _ammo = [[],[],[],[]];
 private _quad = [[],[],[],[]];
 
-_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav, 
-                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack, 
+_out set [VC_AFRF, [_car, _carArmed, _apc, _tank, _aaTank, _planeCAS, _planeAA, _planeTransport, _uav,
+                 _heliSmall, _heliSmallArmed, _heliMedium, _heliMedEvac, _heliBig, _heliAttack,
                  _boatSmall, _boatAttack, _boatBig, _sub, _landMedic, _repair, _fuel, _ammo, _quad]];
 
 //------------------------------------------------------------ Role Loadout RHS AFRF
@@ -305,7 +305,7 @@ private _jtac = [[(["jtac"] call rhsAFRF_fnc_uniform), []],
               ["", []],
               ["", []],
               (["jtac"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
-private _hPilot = [[(["hPilot"] call rhsAFRF_fnc_uniform), []],
+private _hPilot = [[(["hPilot"] call rhsAFRF_fnc_uniform), [["rhs_30Rnd_545x39_AK", 1]]],
               [(["hPilot"] call rhsAFRF_fnc_vest), []],
               [(["hPilot"] call rhsAFRF_fnc_backpack), []],
               [(["hPilot"] call rhsAFRF_fnc_primWeap), []],
@@ -364,7 +364,5 @@ private _default = [];
 _out set [BALO_AFRF, [_medic, _gear, _support, _default]];
 
 //------------------------------------------------------------ FINITO, return
-          
+
 _out
-
-
