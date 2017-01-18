@@ -8,8 +8,6 @@ private _dragee	= _args;
 detach _dragger;
 detach _dragee;
 
-_dragee setVariable ["dragger", ObjNull, true];
-
 //_dragee playMove "AinjPpneMstpSnonWrflDb_release";
 [_dragee, "AinjPpneMstpSnonWrflDb_release"] call common_fnc_playMove;
 //_dragger playMove "amovpknlmstpsraswrfldnon"; //_dragger playAction "released";
@@ -17,9 +15,13 @@ _dragee setVariable ["dragger", ObjNull, true];
 
 if (!isNil {_dragger getVariable "drop_action"}) then {
 	_dragger removeAction (_dragger getVariable "drop_action");
-	_dragger setVariable ["drop_action",nil];
+	_dragger setVariable ["drop_action", nil];
 };
+/*
 if (!isNil {_dragger getVariable "carry_action"}) then {
 	_dragger removeAction (_dragger getVariable "carry_action");
 	_dragger setVariable ["carry_action",nil];
 };
+*/
+_dragee setVariable ["dragger", ObjNull, true];
+_dragee setVariable ["carrier", ObjNull, true];

@@ -23,7 +23,10 @@ _injuredperson attachTo [_dragger, [0, 1, 0.08]];
 [_dragger, "grabDrag"] call common_fnc_playAction;
 sleep 1;
 
-tcb_ais_dropAction = _dragger addAction [format["<t color='#FC9512'>Drop %1</t>",name _injuredperson], {_this spawn tcb_fnc_drop},_injuredperson, 0, false, true];
-tcb_ais_carryAction = _dragger addAction [format["<t color='#FC9512'>Carry %1</t>",name _injuredperson], {_this spawn tcb_fnc_carry},_injuredperson, 0, false, true];
-_dragger setVariable ["drop_action", tcb_ais_dropAction];
-_dragger setVariable ["carry_action", tcb_ais_carryAction];
+private _action = _dragger addAction [format["<t color='#FC9512'>Drop %1</t>",name _injuredperson], {_this spawn tcb_fnc_drop},_injuredperson, 0, false, true];
+_dragger setVariable ["drop_action", _action];
+
+//tcb_ais_dropAction = _dragger addAction [format["<t color='#FC9512'>Drop %1</t>",name _injuredperson], {_this spawn tcb_fnc_drop},_injuredperson, 0, false, true];
+//tcb_ais_carryAction = _dragger addAction [format["<t color='#FC9512'>Carry %1</t>",name _injuredperson], {_this spawn tcb_fnc_carry},_injuredperson, 0, false, true];
+//_dragger setVariable ["drop_action", tcb_ais_dropAction];
+//_dragger setVariable ["carry_action", tcb_ais_carryAction];

@@ -6,7 +6,9 @@ class tcb {
 	class functions {
 		file = "feats\revive\ais\func";
 		addf(handleDamage2);
-		addf(keyUnbind);
+		addf(keyDown);
+		addf(keyUp);
+		addf(mouseUnbind);
 		addf(firstAid);
 		addf(isHealable);
 		addf(progressBar);

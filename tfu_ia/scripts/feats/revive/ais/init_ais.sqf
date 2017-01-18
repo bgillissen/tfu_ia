@@ -31,22 +31,24 @@ _unit setVariable ["tcb_ais_aisInit",true];
 			if (local player) then {[side _unit,"HQ"] sideChat format ["%1 is down and needs help at %2!",name _unit, mapGridPosition _unit]};
 			
 			if (isNil {_unit getVariable ["fa_action", Nil]}) then {
-				_fa_action = _unit addAction [format["<t color='#F00000'>First Aid to %1</t>",name _unit],{_this spawn tcb_fnc_firstAid},_unit,100,false,true,"",
-					"{not isNull (_target getVariable _x)} count ['healer','dragger'] == 0 && {alive _target} && {vehicle _target == _target}
-				"];
+				_fa_action = _unit addAction [format["<t color='#F00000'>First Aid to %1</t>",name _unit], {_this spawn tcb_fnc_firstAid},_unit, 100, false, true, "",
+					"{not isNull (_target getVariable _x)} count ['healer','dragger','carrier'] == 0 && {alive _target} && {vehicle _target == _target}"];
 				_unit setVariable ["fa_action", _fa_action];
 			};
 			if (isNil {_unit getVariable ["drag_action", Nil]}) then {
-				_drag_action = _unit addAction [format["<t color='#FC9512'>Drag %1</t>",name _unit],{_this spawn tcb_fnc_drag},_unit,99,false,true,"",
-					"{not isNull (_target getVariable _x)} count ['healer','dragger','helper'] == 0 && {alive _target} && {vehicle _target == _target}
-				"];
+				_drag_action = _unit addAction [format["<t color='#FC9512'>Drag %1</t>",name _unit], {_this spawn tcb_fnc_drag},_unit, 99, false, true, "",
+					"{not isNull (_target getVariable _x)} count ['healer','dragger','helper','carrier'] == 0 && {alive _target} && {vehicle _target == _target}"];
 				_unit setVariable ["drag_action", _drag_action];
+			};
+			if (isNil {_unit getVariable ["carry_action", Nil]}) then {
+				_carry_action = _unit addAction [format["<t color='#FC9512'>Carry %1</t>",name _unit], {_this spawn tcb_fnc_carry}, _unit, 98, false, true, "",
+				    "{not isNull (_target getVariable _x)} count ['healer','dragger','helper','carrier'] == 0 && {alive _target} && {vehicle _target == _target}"                                   ];
+				_unit setVariable ["carry_action", _carry_action];
 			};
 			if (tcb_ais_medical_education >= 1) then {
 				if (isNil {_unit getVariable ["help_action", Nil]}) then {
-					_help_action = _unit addAction [format["<t color='#FC9512'>Press on the wound</t>",name _unit],{_this spawn tcb_fnc_help},_unit,98,false,true,"",
-						"{not isNull (_target getVariable _x)} count ['healer','dragger','helper'] == 0 && {alive _target} && {vehicle _target == _target}
-					"];
+					_help_action = _unit addAction [format["<t color='#FC9512'>Press on the wound</t>",name _unit], {_this spawn tcb_fnc_help}, _unit, 97, false, true, "",
+						"{not isNull (_target getVariable _x)} count ['healer','dragger','helper','carrier'] == 0 && {alive _target} && {vehicle _target == _target}"];
 					_unit setVariable ["help_action", _help_action];
 				};
 			};
@@ -58,12 +60,14 @@ _unit setVariable ["tcb_ais_aisInit",true];
 			_unit removeAction (_unit getVariable "fa_action");
 			_unit removeAction (_unit getVariable "drag_action");
 			_unit removeAction (_unit getVariable "carry_action");
+			_unit removeAction (_unit getVariable "drop_action");
 			_unit removeAction (_unit getVariable "help_action");
 			_unit setVariable ["fa_action",nil];
 			_unit setVariable ["drag_action",nil];
 			_unit setVariable ["carry_action",nil];
+			_unit setVariable ["drop_action",nil];
 			_unit setVariable ["help_action",nil];
-
+			/*
 			if (!isNil {_unit getVariable "drag_action"}) then {
 				_unit removeAction (_unit getVariable "drop_action");
 				_unit setVariable ["drop_action",nil];
@@ -82,6 +86,7 @@ _unit setVariable ["tcb_ais_aisInit",true];
 					_unit setVariable ["help_action",nil];
 				};
 			};
+			*/
 		};
 	};
 };
@@ -140,9 +145,13 @@ if (tcb_ais_bloodParticle) then {
 	execFSM (TCB_AIS_PATH+"fsm\pulse.fsm");
 };
 
-if (isPlayer _unit) then {
+if (_unit == player) then {
+//if (isPlayer _unit) then {
+	tcb_ais_FreeHeadMove = false;
 	waitUntil {!isNull (findDisplay 46)};
-	(findDisplay 46) displayAddEventHandler ["KeyDown", {_this call tcb_fnc_keyUnbind}];
+	(findDisplay 46) displayAddEventHandler ["KeyDown", {_this call tcb_fnc_keyDown}];
+	(findDisplay 46) displayAddEventHandler ["KeyUp", {_this call tcb_fnc_keyUp}];
+	(findDisplay 46) displayAddEventHandler ["MouseMoving", {_this call tcb_fnc_mouseUnbind}];
 };
 
 

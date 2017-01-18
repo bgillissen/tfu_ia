@@ -1,14 +1,14 @@
-/*%FSM<COMPILE "scriptedFSM.cfg, ais">*/
+/*%FSM<COMPILE "Z:\Programme\Steam\SteamApps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, ais">*/
 /*%FSM<HEAD>*/
 /*
 item0[] = {"start",0,250,-609.394836,-334.812927,-555.514771,-300.866486,0.000000,"start"};
 item1[] = {"_",8,218,-389.901001,-332.848480,-342.710327,-302.246521,0.000000,""};
 item2[] = {"healthy",2,250,-121.197121,-346.219635,-23.077042,-290.459534,0.000000,"healthy"};
 item3[] = {"fall_in_agony",4,218,-117.047508,-259.680817,-27.047356,-209.680801,0.000000,"fall in agony"};
-item4[] = {"agony",2,250,-123.965309,-24.655529,-22.604576,41.624901,0.000000,"agony"};
+item4[] = {"agony",2,4346,-123.965309,-24.655529,-22.604576,41.624901,0.000000,"agony"};
 item5[] = {"dead",4,218,101.743843,-175.030121,206.412582,-110.048569,100.000000,"dead"};
 item6[] = {"healed",4,218,-228.072388,-166.228516,-175.571960,-134.978012,50.000000,"healed"};
-item7[] = {"die___clean_up",2,4346,122.001694,-247.638123,188.334717,-215.044495,0.000000,"die &" \n "clean up"};
+item7[] = {"die___clean_up",2,250,122.001694,-247.638123,188.334717,-215.044495,0.000000,"die &" \n "clean up"};
 item8[] = {"is_playable",4,218,118.492813,-343.494995,190.724411,-293.914337,0.000000,"is" \n "playable"};
 item9[] = {"un_anim",2,250,-390.007019,-162.277451,-341.908752,-138.116821,0.000000,"un-anim"};
 item10[] = {"dragged",4,218,60.306198,153.701035,113.991310,188.337036,10.000000,"dragged"};
@@ -82,8 +82,8 @@ link42[] = {31,34};
 link43[] = {32,33};
 link44[] = {33,24};
 link45[] = {34,4};
-globals[] = {0.000000,0,0,0,0,640,480,1,52,6316128,1,-730.974731,530.608337,425.800232,-515.014465,1585,1182,1};
-window[] = {0,-1,-1,-32000,-32000,1830,254,3035,476,1,1603};
+globals[] = {0.000000,0,0,0,0,640,480,1,52,6316128,1,-626.941345,426.576294,472.782776,-620.303589,852,884,1};
+window[] = {2,-1,-1,-1,-1,893,156,1415,156,3,870};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -107,9 +107,9 @@ class FSM
                          "		if (_unit in switchableUnits) then {true} else {false};" \n
                          "	};" \n
                          "" \n
-                         "_unit setVariable [""healer"", ObjNull, true];" \n
+                         "" \n
                          "_unit setVariable [""dragger"", ObjNull, true];" \n
-                         "_unit setVariable [""carrier"", ObjNull, true];" \n
+                         "_unit setVariable [""healer"", ObjNull, true];" \n
                          "_unit setVariable [""helper"", ObjNull, true];"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
@@ -205,7 +205,6 @@ class FSM
                          "		if (_black_in && {_unit == player}) then {titleCut ["""",""BLACK IN"", 8]; _black_in = false};" \n
                          "	};" \n
                          "};" \n
-                         "_unit setVariable [""carrier"", ObjNull, true];" \n
                          "_unit setVariable [""dragger"", ObjNull, true];" \n
                          "_unit setVariable [""healer"", ObjNull, true];" \n
                          "" \n
@@ -239,30 +238,28 @@ class FSM
                          "		[false] call tcb_fnc_toggleTFAR;" \n
                          "	};" \n
                          "" \n
-                         "	if(/*isServer && */_unit != player) then {" \n
-                         "		if (isNil {_unit getVariable [""fa_action"", Nil]}) then {" \n
-                         "			_fa_action = _unit addAction [format[""<t color='#F00000'>First Aid to %1</t>"",name _unit],{_this spawn tcb_fnc_firstAid},_unit,100,false,true,""""," \n
-                         "				""{not isNull (_target getVariable _x)} count ['healer','dragger','carrier'] == 0 && {alive _target} && {vehicle _target == _target}""];" \n
-                         "			_unit setVariable [""fa_action"", _fa_action];" \n
-                         "		};" \n
-                         "		if (isNil {_unit getVariable [""drag_action"", Nil]}) then {" \n
-                         "			_drag_action = _unit addAction [format[""<t color='#FC9512'>Drag %1</t>"",name _unit],{_this spawn tcb_fnc_drag},_unit,99,false,true,""""," \n
-                         "				""{not isNull (_target getVariable _x)} count ['healer','dragger','carrier','helper'] == 0 && {alive _target} && {vehicle _target == _target}""];" \n
+                         "		if(/*isServer && */_unit != player) then {" \n
+                         "			if (isNil {_unit getVariable [""fa_action"", Nil]}) then {" \n
+                         "				_fa_action = _unit addAction [format[""<t color='#F00000'>First Aid to %1</t>"",name _unit],{_this spawn tcb_fnc_firstAid},_unit,100,false,true,""""," \n
+                         "					""{not isNull (_target getVariable _x)} count ['healer','dragger'] == 0 && {alive _target} && {vehicle _target == _target}" \n
+                         "				""];" \n
+                         "				_unit setVariable [""fa_action"", _fa_action];" \n
+                         "			};" \n
+                         "			if (isNil {_unit getVariable [""drag_action"", Nil]}) then {" \n
+                         "				_drag_action = _unit addAction [format[""<t color='#FC9512'>Drag %1</t>"",name _unit],{_this spawn tcb_fnc_drag},_unit,99,false,true,""""," \n
+                         "					""{not isNull (_target getVariable _x)} count ['healer','dragger','helper'] == 0 && {alive _target} && {vehicle _target == _target}" \n
+                         "				""];" \n
                          "				_unit setVariable [""drag_action"", _drag_action];" \n
-                         "		};" \n
-                         "		if (isNil {_unit getVariable [""carry_action"", Nil]}) then {" \n
-                         "			_carry_action = _unit addAction [format[""<t color='#FC9512'>Carry %1</t>"",name _unit], {_this spawn tcb_fnc_carry},_unit, 98, false, true, """"," \n
-                         "			    ""{not isNull (_target getVariable _x)} count ['healer','dragger','helper', 'carrier'] == 0 && {alive _target} && {vehicle _target == _target}""                                   ];" \n
-                         "			_unit setVariable [""carry_action"", _carry_action];" \n
-                         "		};" \n
-                         "		if (tcb_ais_medical_education >= 1) then {" \n
-                         "			if (isNil {_unit getVariable [""help_action"", Nil]}) then {" \n
-                         "				_help_action = _unit addAction [format[""<t color='#FC9512'>press on the wound</t>"",name _unit],{_this spawn tcb_fnc_help},_unit,97,false,true,""""," \n
-                         "					""{not isNull (_target getVariable _x)} count ['healer','dragger','carrier','helper'] == 0 && {alive _target} && {vehicle _target == _target}""];" \n
-                         "				_unit setVariable [""help_action"", _help_action];" \n
+                         "			};" \n
+                         "			if (tcb_ais_medical_education >= 1) then {" \n
+                         "				if (isNil {_unit getVariable [""help_action"", Nil]}) then {" \n
+                         "					_help_action = _unit addAction [format[""<t color='#FC9512'>press on the wound</t>"",name _unit],{_this spawn tcb_fnc_help},_unit,98,false,true,""""," \n
+                         "						""{not isNull (_target getVariable _x)} count ['healer','dragger','helper'] == 0 && {alive _target} && {vehicle _target == _target}" \n
+                         "					""];" \n
+                         "					_unit setVariable [""help_action"", _help_action];" \n
+                         "				};" \n
                          "			};" \n
                          "		};" \n
-                         "	};" \n
                          "" \n
                          "	if (!isPlayer _unit) then {" \n
                          "		_unit stop true;" \n
@@ -376,26 +373,39 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"if (alive _unit) then {_unit setDamage 1};" \n
                          "" \n
                          "_unit setVariable [""dragger"", ObjNull, true];" \n
-                         "_unit setVariable [""carrier"", ObjNull, true];" \n
-                         "_unit setVariable [""healer"", ObjNull, true];" \n
-                         "" \n
+                         "_unit setVariable [""healer"", ObjNull,true];" \n
                          "disableUserInput false;" \n
                          " " \n
-                         "tcb_ais_in_agony = [_unit, false];" \n
+                         "tcb_ais_in_agony = [_unit,false];" \n
                          "publicVariable ""tcb_ais_in_agony"";" \n
                          "if (tcb_ais_bloodParticle) then {[_unit] call tcb_fnc_resetBleeding};" \n
                          "" \n
                          "if (!isPlayer _unit) then {" \n
                          "	_unit removeAction (_unit getVariable ""fa_action"");" \n
                          "	_unit removeAction (_unit getVariable ""drag_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""carry_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""drop_action"");" \n
                          "	_unit removeAction (_unit getVariable ""help_action"");" \n
-                         "	_unit setVariable [""fa_action"", nil];" \n
-                         "	_unit setVariable [""drag_action"", nil];" \n
-                         "	_unit setVariable [""carry_action"", nil];" \n
-                         "	_unit setVariable [""drop_action"", nil];" \n
-                         "	_unit setVariable [""help_action"", nil];" \n
+                         "	_unit setVariable [""fa_action"",nil];" \n
+                         "	_unit setVariable [""drag_action"",nil];" \n
+                         "	_unit setVariable [""help_action"",nil];" \n
+                         "" \n
+                         "" \n
+                         "	if (!isNil {_unit getVariable ""drag_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""drop_action"");" \n
+                         "		_unit setVariable [""drop_action"",nil];" \n
+                         "	};" \n
+                         "	if (!isNil {_unit getVariable ""carry_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""carry_action"");" \n
+                         "		_unit setVariable [""carry_action"",nil];" \n
+                         "	};" \n
+                         "	if (!isNil {_unit getVariable ""help_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""help_action"");" \n
+                         "		_unit setVariable [""help_action"",nil];" \n
+                         "	};" \n
+                         "	if (!isNil {_unit getVariable ""fa_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""fa_action"");" \n
+                         "		_unit setVariable [""fa_action"",nil];" \n
+                         "	};" \n
+                         "" \n
                          "	_unit stop false;" \n
                          "	_unit enableAI ""MOVE"";" \n
                          "	_unit enableAI ""TARGET"";" \n
@@ -404,12 +414,10 @@ class FSM
                          "};" \n
                          "" \n
                          "detach _unit;" \n
-                         "" \n
                          "_unit setVariable [""tcb_ais_agony"", false];" \n
                          "_unit setVariable [""unit_is_unconscious"", false];" \n
                          "_unit setCaptive false;" \n
                          "_unit_is_in_vehicle = false;" \n
-                         "" \n
                          "if (_unit == player) then {showHud true};" \n
                          "" \n
                          "_unit call tcb_fnc_restoreKits;"/*%FSM</STATEINIT""">*/;
@@ -464,17 +472,30 @@ class FSM
                          "if (!isPlayer _unit) then {" \n
                          "	_unit removeAction (_unit getVariable ""fa_action"");" \n
                          "	_unit removeAction (_unit getVariable ""drag_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""carry_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""drop_action"");" \n
                          "	_unit removeAction (_unit getVariable ""help_action"");" \n
-                         "	_unit setVariable [""fa_action"", nil];" \n
-                         "	_unit setVariable [""drag_action"", nil];" \n
-                         "	_unit setVariable [""carry_action"", nil];" \n
-                         "	_unit setVariable [""drop_action"", nil];" \n
-                         "	_unit setVariable [""help_action"", nil];" \n
+                         "	_unit setVariable [""fa_action"",nil];" \n
+                         "	_unit setVariable [""drag_action"",nil];" \n
+                         "	_unit setVariable [""help_action"",nil];" \n
+                         "" \n
+                         "" \n
+                         "	if (!isNil {_unit getVariable ""drag_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""drop_action"");" \n
+                         "		_unit setVariable [""drop_action"",nil];" \n
+                         "	};" \n
+                         "	if (!isNil {_unit getVariable ""carry_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""carry_action"");" \n
+                         "		_unit setVariable [""carry_action"",nil];" \n
+                         "	};" \n
+                         "	if (!isNil {_unit getVariable ""help_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""help_action"");" \n
+                         "		_unit setVariable [""help_action"",nil];" \n
+                         "	};" \n
+                         "	if (!isNil {_unit getVariable ""fa_action""}) then {" \n
+                         "		_unit removeAction (_unit getVariable ""fa_action"");" \n
+                         "		_unit setVariable [""fa_action"",nil];" \n
+                         "	};" \n
                          "" \n
                          "};" \n
-                         "" \n
                          "detach _unit;" \n
                          "_unit setCaptive false;" \n
                          "if (_unit == player) then {showHud true};" \n
