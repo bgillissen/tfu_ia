@@ -17,16 +17,19 @@ detach _injuredperson;
 
 _pos = _dragger ModelToWorld [0,1.9,0];
 _injuredperson setPos _pos;
-_injuredperson playActionNow "grabCarried";
+//_injuredperson playActionNow "grabCarried";
+[_injuredperson,"grabCarried", true] call common_fnc_playAction;
 sleep 2;
 if (!isPlayer _injuredperson) then {_injuredperson disableAI "ANIM"};
-_dragger playAction "grabCarry";
+//_dragger playAction "grabCarry";
+[_dragger, "grabCarry"] call common_fnc_playAction;
 
 _timenow = time;
 waitUntil {!alive _injuredperson || {!alive _dragger} || {_dragger getVariable "tcb_ais_agony"} || {time > _timenow + 16}};
 if (!alive _injuredperson || {!alive _dragger} || {(_dragger getVariable "tcb_ais_agony")}) then {
 	if (alive _injuredperson) then {
-		_injuredperson playActionNow "agonyStart";
+		//_injuredperson playActionNow "agonyStart";
+		[_injuredperson,"agonyStart", true] call common_fnc_playAction;
 	} else {
 		if (!isNil {_dragger getVariable "tcb_ais_dropAction"}) then {
 			_dragger removeAction (_dragger getVariable "tcb_ais_dropAction");
@@ -34,7 +37,8 @@ if (!alive _injuredperson || {!alive _dragger} || {(_dragger getVariable "tcb_ai
 		};
 	};
 	if (alive _dragger && {!(_dragger getVariable "tcb_ais_agony")}) then {
-		_dragger playMoveNow "amovpknlmstpsraswrfldnon";
+		//_dragger playMoveNow "amovpknlmstpsraswrfldnon";
+		[_dragger,"amovpknlmstpsraswrfldnon", true] call common_fnc_playMove;
 	};
 } else {
 	_injuredperson attachTo [_dragger, [-0.6, 0.28, -0.05]];
@@ -44,7 +48,8 @@ _dragger = _injuredperson getVariable "dragger";
 waitUntil {!alive _injuredperson || {!alive _dragger} || {_dragger getVariable "tcb_ais_agony"} || {isNull _dragger}};
 if (isNull _dragger) exitWith {};
 if (alive _injuredperson) then {
-	_injuredperson playActionNow "agonyStart";
+	//_injuredperson playActionNow "agonyStart";
+	[_injuredperson,"agonyStart", true] call common_fnc_playAction;
 } else {
 	if (!isNil {_dragger getVariable "drop_action"}) then {
 		_dragger removeAction (_dragger getVariable "drop_action");
@@ -52,5 +57,6 @@ if (alive _injuredperson) then {
 	};
 };
 if (alive _dragger && {!(_dragger getVariable "tcb_ais_agony")}) then {
-	_dragger playMoveNow "amovpknlmstpsraswrfldnon";
+	//_dragger playMoveNow "amovpknlmstpsraswrfldnon";
+	[_dragger,"amovpknlmstpsraswrfldnon", true] call common_fnc_playMove;
 };

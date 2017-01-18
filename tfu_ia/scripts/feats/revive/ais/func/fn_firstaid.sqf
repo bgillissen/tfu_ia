@@ -136,7 +136,8 @@ _old_damage = damage _injuredperson;
 if (!tcb_healerStopped) then {
 	_isMedic = _healer call tcb_fnc_isMedic;
 	_healed = switch (true) do {
-		case (_isMedic && {(items _healer) find "Medikit" > -1}) : {0.15};
+		//case (_isMedic && {(items _healer) find "Medikit" > -1}) : {0.15};
+		case (_isMedic && {(items _healer) find "Medikit" > -1}) : {_healer removeItem "FirstAidKit"; 0};
 		case (_isMedic && {(items _healer) find "FirstAidKit" >= 0}) : {_healer removeItem "FirstAidKit"; 0.25};
 		case (!_isMedic && {(items _healer) find "FirstAidKit" >= 0}) : {_healer removeItem "FirstAidKit"; 0.4};
 		default {0.6};

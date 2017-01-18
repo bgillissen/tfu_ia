@@ -5,8 +5,9 @@ _bool = false;
 
 _bool = switch (tcb_ais_medical_education) do {
 	case (0) : {true};
-	case (1) : {(items _healer) find "FirstAidKit" >= 0 || {(items _healer) find "Medikit" >= 0}};
+	case (1) : { ((items _healer) find "FirstAidKit" >= 0) && ((items _healer) find "Medikit" >= 0) };
 	case (2) : {_healer call tcb_fnc_isMedic};
+	case (3) : { (_healer call tcb_fnc_isMedic) && ((items _healer) find "FirstAidKit" >= 0) && ((items _healer) find "Medikit" >= 0) };
 	default {true};
 };
 

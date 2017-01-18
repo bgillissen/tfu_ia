@@ -33,6 +33,10 @@ if ((group _unit) == (group player)) then {
 if (format ["%1", _unit getVariable "BTC_need_revive"] == "1") exitWith { 
 	(["mapTracker", "colorNeedRevive"] call core_fnc_getSetting) 
 };
+if ( _unit getVariable "tcb_ais_agony" ) exitWith {
+	(["mapTracker", "colorNeedRevive"] call core_fnc_getSetting)
+};
+
 
 private _c = (side _unit) call {
 	if ( _this == east) exitWith { (["mapTracker", "colorEast"] call core_fnc_getSetting) };

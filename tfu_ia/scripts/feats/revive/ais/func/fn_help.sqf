@@ -13,7 +13,8 @@ _injuredperson setVariable ["helper", _helper, true];
 tcb_helperStopped = false;
 _helper selectWeapon primaryWeapon _helper;
 sleep 1;
-_helper playMove "AinvPknlMstpSlayWrflDnon_1";	
+//_helper playMove "AinvPknlMstpSlayWrflDnon_1";	
+[_helper, "AinvPknlMstpSlayWrflDnon_1"] call common_fnc_playMove;
 
 tcb_animDelay = time + 2;
 
@@ -52,6 +53,7 @@ detach _injuredperson;
 
 if (alive _helper && {!(_helper getVariable "tcb_ais_agony")}) then {
 	_helper playMove "AinvPknlMstpSlayWrflDnon_AmovPknlMstpSrasWrflDnon";
+	[_helper, "AinvPknlMstpSlayWrflDnon_AmovPknlMstpSrasWrflDnon"] call common_fnc_playMove;
 };
 
 if (!alive _injuredperson) exitWith {["He was killed in action." call tcb_ais_font,0, 0.035 * safezoneH + safezoneY,5,0.3] spawn BIS_fnc_dynamicText};

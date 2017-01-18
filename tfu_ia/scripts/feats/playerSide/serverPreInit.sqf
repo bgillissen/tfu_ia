@@ -48,6 +48,8 @@ if ( PLAYER_SIDE isEqualTo independent ) then {
 };
 
 //change friendship according to parameters
+civilian setFriend [PLAYER_SIDE, 1];
+PLAYER_SIDE setFriend [civilian, 1];
 if ( (PLAYER_SIDE isEqualTo east) || (PLAYER_SIDE isEqualTo west) ) then {
 	independent setFriend [west, [0, 1] select BLUFOR_ARE_ENEMY];
 	west setFriend [independent, [0, 1] select BLUFOR_ARE_ENEMY];	

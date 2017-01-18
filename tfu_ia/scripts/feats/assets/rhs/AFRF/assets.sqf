@@ -315,7 +315,7 @@ private _hPilot = [[(["hPilot"] call rhsAFRF_fnc_uniform), [["rhs_30Rnd_545x39_A
 private _jPilot = [[(["jPilot"] call rhsAFRF_fnc_uniform), []],
               [(["jPilot"] call rhsAFRF_fnc_vest), []],
               [(["jPilot"] call rhsAFRF_fnc_backpack), []],
-              [(["jPilot"] call rhsAFRF_fnc_primWeap), []],
+              ["", []],
               ["", []],
               ["", []],
               (["jPilot"] call rhsAFRF_fnc_helmet), "", "", "", "", "rhs_pdu4", "rhs_1PN138", "", ""];
