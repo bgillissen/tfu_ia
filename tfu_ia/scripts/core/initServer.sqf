@@ -19,8 +19,11 @@ if ( isNil "PARAMETERS" ) then { PARAMETERS = []; };
 ["SERVER", "init"] call core_fnc_featEvent;
 
 //features leave eventHandler
-if ( isNil "FEH_onLeave" ) then {
-	FEH_onLeave = addMissionEventHandler ["HandleDisconnect", {["SERVER", "leave", _this] call core_fnc_featEvent;}];
+if ( isNil "FEH_leave" ) then {
+	FEH_leave = addMissionEventHandler ["HandleDisconnect", {
+		["SERVER", "leave", _this] call core_fnc_featEvent;
+		["PLAYER", "leave", _this] call core_fnc_featEvent;
+	}];
 };
 
 //features server postInit

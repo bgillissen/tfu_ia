@@ -11,7 +11,6 @@ Description:
 
 params ["_ctxt", "_when", ["_arg", []]];
 
-if ( isNil "_arg" ) then { _arg = []; };
 if ( isNil "FEAT_THREADS" ) then { FEAT_THREADS = []; };
 
 #ifdef DEBUG
@@ -21,11 +20,8 @@ conWhite(_debug);
 
 //some basic checks for cases that can not happend
 if ( CTXT_HEADLESS ) then {
-	if ( _when isEqualTo "respawn" ) exitWith{};	
-	if ( _when isEqualTo "killed" ) exitWith{};
-};
-if ( !CTXT_SERVER ) then {
-	if ( _when isEqualTo "leave" ) exitWith{};
+	if ( _when isEqualTo "respawn" ) exitWith {};	
+	if ( _when isEqualTo "killed" ) exitWith {};
 };
 if ( !CTXT_PLAYER ) then {
 	if ( _when isEqualTo "closeVA" ) exitWith{};
@@ -36,10 +32,12 @@ if ( !CTXT_PLAYER ) then {
 	if ( _when isEqualTo "take" ) exitWith{};
 };
 
-private _remote = false;
-if ( (_ctxt isEqualTo "SERVER") && (!CTXT_SERVER) ) then { _remote = true; };
-if ( (_ctxt isEqualTo "PLAYER") && (!CTXT_PLAYER) ) then { _remote = true; };
-if ( (_ctxt isEqualTo "HEADLESS") && (!CTXT_HEADLESS) ) then { _remote = true; };
+private _remote = call {
+	if ( (_ctxt isEqualTo "SERVER") && (!CTXT_SERVER) ) exitWith { true };
+	if ( (_ctxt isEqualTo "PLAYER") && (!CTXT_PLAYER) ) exitWith { true };
+	if ( (_ctxt isEqualTo "HEADLESS") && (!CTXT_HEADLESS) ) exitWith { true };
+	false
+};
 if ( _remote ) exitWith {
 #ifdef DEBUG
 	conWhite("featEvent: is remote");
@@ -128,3 +126,8 @@ if ( isNil "_pool" ) then {
 	};
 	true
 } count _pool;
+
+if ( CTXT_SERVER && (_when isEqualTo "join") && isMultiplayer ) then {
+	//special case, needed for revive system
+	["PLAYER", "join", _arg] call core_fnc_featEvent; 
+};

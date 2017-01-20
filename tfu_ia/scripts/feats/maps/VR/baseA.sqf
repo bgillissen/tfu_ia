@@ -40,7 +40,7 @@ BA = [["npc",	"BA_leftVA",	[["arsenal"], ["vd"]]],
       ["obj",	"BA_pilotVA",	[["arsenal"], ["vd"]]],
       ["obj",	"BA_fobVA",		[["arsenal"], ["vd"]]],
       ["obj",	"BA_frVA",		[["arsenal"], ["vd"]]],
-      ["obj",	"BA_screen",	[["curator"], ["billboard", "random"]]],
+      ["obj",	"BA_screen",	[["curator"], ["billboard", "zeus"]]],
       ["obj",	"BA_leftBB",	[["billboard", "tfar"]]],
       ["obj",	"BA_rightBB",	[["billboard", "random"]]],
       ["obj",	"BA_flag",		[["flag", "tfu"]]]

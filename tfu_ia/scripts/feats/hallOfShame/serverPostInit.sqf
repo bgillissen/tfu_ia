@@ -7,7 +7,7 @@ for "_x" from 0 to 99 do {
 	private _obj = missionNamespace getVariable _name;
 	if !( isNil "_obj" ) then {
 		if ( _x < count _entries ) then {
-			_obj setObjectTextureGlobal [0, format[_path, (_entries select _x)]];
+			[_obj, 0, format[_path, (_entries select _x)]] call common_fnc_globalSetTexture;
 		} else {
 			hideObjectGlobal _obj;
 		};

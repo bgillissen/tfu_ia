@@ -15,10 +15,6 @@ missionNamespace setVariable ["PLAYER_INIT", true, false];
 ["PLAYER", "preInit"] call core_fnc_featEvent;
 
 waitUntil {
-	sleep 1;
-#ifdef DEBUG
-	conWhite(">>>> core_fnc_initPlayer is waiting for server init");
-#endif
 	((missionNamespace getVariable "SERVER_INIT") isEqualTo false)
 };
 #ifdef DEBUG

@@ -7,12 +7,13 @@ Description:
 	cleanup garbage
 */
 
+private _dist = 15; //1500 in prod
 private _sz = getMarkerPos "SZ";
 private _fr = getMarkerPos "FR";
 
 while { true } do {
 	
-	sleep 300;
+	sleep 30; //300 in prod
 	{
 		private _pos = getPos _x;
 		private _ok = true;
@@ -27,7 +28,7 @@ while { true } do {
 					deleteVehicle _x 
 				} else {
 					//no player close
-					if ( ({_pos distance _x <= 1500} count allPlayers) == 0 ) then { deleteVehicle _x };
+					if ( ({_pos distance _x <= _dist} count allPlayers) == 0 ) then { deleteVehicle _x };
 				};
 			};
 		};

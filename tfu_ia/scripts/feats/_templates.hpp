@@ -34,14 +34,16 @@ class featServer_base : featContext_base {
 };
 
 class featPlayer_base : featContext_base {
+	class join : featEvent_base {};
 	class respawn : featEvent_base {};
+	class killed : featEvent_base {};
+	class leave : featEvent_base {};
 	class closeVA : featEvent_base {};
 	class shoot  : featEvent_base {};
 	class getIn : featEvent_base {};
 	class switchSeat : featEvent_base {};
 	class getOut : featEvent_base {};
 	class take : featEvent_base {};
-	class killed : featEvent_base {};
 };
 
 class featHeadless_base : featContext_base {};

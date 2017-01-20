@@ -9,6 +9,8 @@ Description:
 
 if ( (["sideMission"] call core_fnc_getParam) == 0 ) exitWith {};
 
+if ( true ) exitWith {};
+
 SIDE_stop = false;
 SIDE_success = false;
 publicVariable "SIDE_success";

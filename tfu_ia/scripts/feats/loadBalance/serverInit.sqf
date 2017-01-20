@@ -12,6 +12,8 @@ Description:
 #include "..\..\core\debug.hpp"
 #define DFT_GRP []
 
+if ( true ) exitWith {};
+
 if ( !isMultiplayer ) exitWith {};
 if ( (["headless"] call core_fnc_getParam) == 0 ) exitWith {};
 

@@ -1,0 +1,2 @@
+
+_this allowDamage true

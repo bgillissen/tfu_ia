@@ -15,5 +15,5 @@ if ( _reviveScript == 0 ) exitWith {
 };
 
 if ( _reviveScript == 1 ) exitWith {
-	call compileFinal preprocessFileLineNumbers "feats\revive\ais\init.sqf";
+	call compileFinal preprocessFileLineNumbers "feats\revive\ais\serverInit.sqf";
 };

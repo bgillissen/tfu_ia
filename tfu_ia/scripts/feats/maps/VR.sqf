@@ -32,6 +32,6 @@ FOBS = [["fob_1", "fob_2", "fob_3", "fob_4"],	//zoneA
 
 //------------------------------------------------------------ BASE
 
-BASES = [["baseA", "Virtual Reality Base A", 70, 20],
+BASES = [["baseA", "Virtual Reality Base A", 5, 20],
          ["baseB", "Virtual Reality Base B", 70, 20],
          ["baseC", "Virtual Reality Base C", 70, 20]];

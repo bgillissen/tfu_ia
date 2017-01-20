@@ -16,18 +16,12 @@ CTXT_PLAYER = hasInterface;
 if ( !CTXT_PLAYER ) exitWith {};
 
 waitUntil {
-#ifdef DEBUG
-conWhite(">>>> onPlayerRespawn is waiting for server init to end");
-#endif
 	((missionNamespace getVariable "SERVER_INIT") isEqualTo false)
 };
 #ifdef DEBUG
 conWhite(">>>> onPlayerRespawn server has init");
 #endif
 waitUntil {
-#ifdef DEBUG
-conWhite(">>>> onPlayerRespawn is waiting for player init to end");
-#endif
 	((missionNamespace getVariable "PLAYER_INIT") isEqualTo false)
 };
 

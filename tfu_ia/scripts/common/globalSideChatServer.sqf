@@ -10,6 +10,8 @@ Description:
 	used to send message on the side channel globaly
 */
 
+if ( !isServer ) exitwith {};
+
 params ["_side", "_from", "_msg"];
 
 [_side, _from, _msg] remoteExec ["common_fnc_globalSideChatPlayer", _side, false];

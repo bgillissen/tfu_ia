@@ -26,8 +26,7 @@ if ( remoteUnit isEqualTo objNull ) then {
 
 {
 	private _veh = vehicle _x;
-	//if ( (side _veh == PLAYER_SIDE) || {(captive _x)} ) then {
-	if ( (side _veh) in _sides ) then {
+	if ( ((side _veh) in _sides) || (captive _x) ) then {
 		private _toSkip = ( _isGPS && (_x distance _unit) > MT_gpsDist );
 		if ( !_toSkip ) then {
 			if ( !_isGPS ) then {
