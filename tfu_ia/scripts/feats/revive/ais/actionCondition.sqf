@@ -29,17 +29,9 @@ if ( player distance _wounded > 3 ) exitWith { false };
 if ( player getVariable ["agony", false] ) exitWith { false };
 
 if ( _action isEqualTo "heal" ) exitWith {
-	if !( ("mediKit" in (backpackItems _wounded)) || ("mediKit" in (backpackItems player)) ) exitWith { false };
-	private _gotFaks = {
-		_items = uniformItems _this;
-		if ( "firstAidKit" in _items ) exitWith { true };
-		_items = vestItems _this;
-		if ( "firstAidKit" in _items ) exitWith { true };
-		_items = backpackItems _this;
-		if ( "firstAidKit" in _items ) exitWith { true };
-		false
-	};
-	if !( (_wounded call _gotFaks) || (player call _gotFaks) ) exitWith { false };
+	if ( !([_wounded, "mediKit"] call tcb_fnc_gotItem && !([player, "mediKit"] call tcb_fnc_gotItem) ) exitWith { false };
+	if ( !([_wounded, "firstAidKit"] call tcb_fnc__gotItem) && !([player, "firstAidKit"] call tcb_fnc_gotItem) ) exitWith { false };
+	true
 };
 
 true

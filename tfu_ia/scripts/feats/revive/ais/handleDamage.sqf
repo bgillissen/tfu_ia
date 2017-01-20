@@ -18,18 +18,18 @@ if (_bodypart == "") then {
 
 private _hitDamage = _damage - (_unit getHitIndex _hitIndex);
 
-//Since fire starts to "damage" with minimal damage at a large radio, reduce anything that is less than 1e-7 to zero
+//Since fire starts to "damage" with minimal damage at a large radiuz, reduce anything that is less than 1e-7 to zero
 if (_hitDamage < 1e-7) then { _hitDamage = 0; };
 
 private _return = _hitDamage / tcb_ais_rambofactor;			// damage scaler to make unit more or less tough
 private _revive_factor = (tcb_ais_rambofactor max 1) * 1.5;	// only needed if realistic mode is enabled - calculate chance to die instantly (headshoot or heavy explos)
 private _agony = false;
-private _dead = false;
+private _dead = !(alive _unit);
 private _overallDamage = 0; 
 
-diag_log format ["Hit input ----  part: %1 --- damage: %2 --- return: %3 --- alive: %4", _bodypart, _damage, _return, (alive _unit)];
+//diag_log format ["Hit input ----  part: %1 --- damage: %2 --- alive: %3", _bodypart, _damage, (alive _unit)];
 
-if ( alive _unit ) then {
+if !( _dead ) then {
 	if (tcb_ais_impactEffects) then { _hitDamage call tcb_fnc_sfxImpactEffect; };
 	if (tcb_ais_bloodParticle) then { [_bodyPart, _hitDamage] call tcb_fnc_addUnitBleeding; };
 	private _newDamage = _hitDamage + _return;
@@ -100,6 +100,6 @@ if ( alive _unit ) then {
 	if ( _dead ) then { _overallDamage = 1; };
 };
 
-diag_log format ["Hit output ---  part: %1 --- damage: %2 --- overall: %3 --- agony: %4 --- dead: %5", _bodypart, _damage, _overallDamage, _agony, _dead];
+diag_log format ["Hit output ---  part: %1 (%6) --- damage: %2 --- hitDamage: %7 --- overall: %3 --- agony: %4 --- dead: %5", _bodypart, _damage, _overallDamage, _agony, _dead, _hitIndex, _hitDamage];
 
 _overallDamage
