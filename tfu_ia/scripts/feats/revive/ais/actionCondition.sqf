@@ -3,6 +3,14 @@ params ["_action", "_wounded"];
 
 if !( alive _wounded ) exitWith { false };
 
+if ( player distance _wounded > 3 ) exitWith { false };
+
+if !( isNull(player getVariable ["action", objNull]) ) exitWith { false };
+
+//if !( player getVariable ["agony", false] ) exitWith { false }; should not be needed, as i remove the actions when needed
+
+if ( {!isNull(_wounded getVariable [_x, objNull])} count ["carrier", "dragger", "healer", "helper"] > 0 ) exitWith { false };
+
 if ( _action isEqualTo "load" ) exitwith {
 	if !( (_wounded getVariable['inVeh', objNull]) isEqualTo objNull ) exitWith { false };
 	private _vehs = (position player) nearEntities [["Air", "Car", "Armored"], 5];
@@ -19,14 +27,6 @@ if ( _action isEqualTo "unload" ) exitwith {
 //TODO, so got to check water depth, and use the right treshold... 
 (getPos _wounded) params ["_x", "_y"];
 if ( surfaceIsWater [_x, _y] ) exitwith { false };
-
-if ( {!isNull(_wounded getVariable [_x, objNull])} count ["carrier", "dragger", "healer", "helper"] > 0 ) exitWith { false };
-
-if !( isNull(player getVariable ["action", objNull]) ) exitWith { false };
-
-if ( player distance _wounded > 3 ) exitWith { false };
-
-if ( player getVariable ["agony", false] ) exitWith { false };
 
 if ( _action isEqualTo "heal" ) exitWith {
 	if ( !([_wounded, "mediKit"] call tcb_fnc_gotItem && !([player, "mediKit"] call tcb_fnc_gotItem) ) exitWith { false };
