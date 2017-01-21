@@ -129,5 +129,6 @@ if ( isNil "_pool" ) then {
 
 if ( CTXT_SERVER && (_when isEqualTo "join") && isMultiplayer ) then {
 	//special case, needed for revive system
-	["PLAYER", "join", _arg] call core_fnc_featEvent; 
+	["PLAYER", "join", _arg] call core_fnc_featEvent;
+	["HEADLESS", "join", _arg] call core_fnc_featEvent;
 };

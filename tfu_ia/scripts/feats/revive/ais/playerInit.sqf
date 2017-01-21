@@ -1,21 +1,4 @@
 // by psycho
-
-tcb_ais_path = "feats\revive\ais\";
-tcb_ais_realistic_mode 			= [false, true] select (["revive", "ais", "realistic"] call core_fnc_getSetting);
-tcb_ais_medical_education 		= ["revive", "ais", "education"] call core_fnc_getSetting;
-tcb_ais_rambofactor 			= ["revive", "ais", "resistance"] call core_fnc_getSetting;
-tcb_ais_random_lifetime_factor 	= 900;
-tcb_ais_allways_walk 			= false;
-tcb_ais_delTime 				= 0;
-tcb_ais_toggleTFAR 				= [false, true] select (["revive", "ais", "noTFAR"] call core_fnc_getSetting);
-tcb_ais_noChat 					= [false, true] select (["revive", "ais", "noChat"] call core_fnc_getSetting);
-tcb_ais_show_3d_icons 			= [false, true] select (["revive", "ais", "3dIcons"] call core_fnc_getSetting);
-tcb_ais_dead_dialog 			= true;
-tcb_ais_bloodParticle 			= [false, true] select (["revive", "ais", "blood"] call core_fnc_getSetting);
-tcb_ais_impactEffects 			= [false, true] select (["revive", "ais", "impact"] call core_fnc_getSetting);
-tcb_ais_showCountdown 			= [false, true] select (["revive", "ais", "showTimer"] call core_fnc_getSetting);
-tcb_ais_respawndelay			= getNumber (missionConfigFile/"respawndelay");
-
 {
 	private _fsm = _x execFSM (TCB_AIS_PATH + "fsm\main.fsm");
 	_x setVariable ["fsm", _fsm];
@@ -90,11 +73,7 @@ if ( tcb_ais_dead_dialog ) then {
 	};
 };
 
-if ( (player getVariable "role") isEqualTo "medic" ) then {
-	if ( isNil "tcb_healEquipment" ) then {
-		tcb_healEquipment = [];
-	};
-	if ( isNil "tcb_healEquipmentThread" ) then {
-		tcb_healEquipmentThread = [] spawn { while {true} do { sleep 300;call tcb_fnc_removeHealEquipment; } };
-	};
+if ( isNil "tcb_healEquipment" ) then { tcb_healEquipment = []; };
+if ( isNil "tcb_healEquipmentThread" ) then {
+	tcb_healEquipmentThread = [] spawn { while {true} do { sleep 300;call tcb_fnc_removeHealEquipment; } };
 };

@@ -9,6 +9,7 @@ class tcb {
 		class actionHelp { file="feats\revive\ais\actionHelp.sqf"; };
 		class actionLoad { file="feats\revive\ais\actionLoad.sqf"; };
 		class actionUnload { file="feats\revive\ais\actionUnload.sqf"; };
+		class actionVehHeal { file="feats\revive\ais\actionVehHeal.sqf"; };
 		class callHelp { file="feats\revive\ais\callHelp.sqf"; };
 		class deadCam { file="feats\revive\ais\deadCam.sqf"; };
 		class deadCamQuote { file="feats\revive\ais\deadCamQuote.sqf"; };

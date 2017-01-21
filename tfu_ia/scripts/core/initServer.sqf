@@ -23,6 +23,7 @@ if ( isNil "FEH_leave" ) then {
 	FEH_leave = addMissionEventHandler ["HandleDisconnect", {
 		["SERVER", "leave", _this] call core_fnc_featEvent;
 		["PLAYER", "leave", _this] call core_fnc_featEvent;
+		["HEADLESS", "leave", _this] call core_fnc_featEvent;
 	}];
 };
 

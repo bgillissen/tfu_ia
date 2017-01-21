@@ -22,22 +22,20 @@ class featDestroy_base : featEvent_base { enable = 1; };
 class featContext_base {
 	class preInit : featEvent_base {};
 	class init : featEvent_base {};
-	class postInit : featEvent_base {};
+	class join : featEvent_base {};
 	class destroy : featEvent_base {};
+	class leave : featEvent_base {};
+	class postInit : featEvent_base {};
 };
 
 class featServer_base : featContext_base {
-	class join : featEvent_base {};
 	class respawn : featEvent_base {};
 	class killed : featEvent_base {};
-	class leave : featEvent_base {};
 };
 
 class featPlayer_base : featContext_base {
-	class join : featEvent_base {};
 	class respawn : featEvent_base {};
 	class killed : featEvent_base {};
-	class leave : featEvent_base {};
 	class closeVA : featEvent_base {};
 	class shoot  : featEvent_base {};
 	class getIn : featEvent_base {};

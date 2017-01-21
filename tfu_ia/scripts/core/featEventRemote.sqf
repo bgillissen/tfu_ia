@@ -22,3 +22,10 @@ if ( CTXT_PLAYER ) exitWith {
 		["PLAYER", _when, _param] call core_fnc_featEvent;
 	};
 };
+
+if ( CTXT_HEADLESS ) exitWith {
+	private _allowed = ["leave", "join"]; 
+	if ( _when in _allowed ) exitWith {
+		["HEADLESS", _when, _param] call core_fnc_featEvent;
+	};
+};

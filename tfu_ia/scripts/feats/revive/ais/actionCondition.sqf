@@ -34,4 +34,8 @@ if ( _action isEqualTo "heal" ) exitWith {
 	true
 };
 
+if ( _action isEqualTo "vehHeal" ) exitWith {
+	( count ((getPos player) nearEntities [(BV_medEvac + BV_landMedic), 10]) > 0 )
+};
+
 true
