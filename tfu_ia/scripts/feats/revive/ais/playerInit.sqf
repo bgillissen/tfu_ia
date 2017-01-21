@@ -4,7 +4,7 @@
 	_x setVariable ["fsm", _fsm];
 } forEach ( allPlayers - (entities 'headless_Client_F') );
 
-if (tcb_ais_bloodParticle) then {
+if ( tcb_ais_bloodParticle ) then {
 	execFSM (TCB_AIS_PATH + "fsm\bloodParticles.fsm");
 };
 
