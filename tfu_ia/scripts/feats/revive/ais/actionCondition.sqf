@@ -29,7 +29,7 @@ if ( _action isEqualTo "unload" ) exitwith {
 if ( surfaceIsWater [_x, _y] ) exitwith { false };
 
 if ( _action isEqualTo "heal" ) exitWith {
-	if ( !([_wounded, "mediKit"] call tcb_fnc_gotItem && !([player, "mediKit"] call tcb_fnc_gotItem) ) exitWith { false };
+	if ( !([_wounded, "mediKit"] call tcb_fnc_gotItem) && !([player, "mediKit"] call tcb_fnc_gotItem) ) exitWith { false };
 	if ( !([_wounded, "firstAidKit"] call tcb_fnc__gotItem) && !([player, "firstAidKit"] call tcb_fnc_gotItem) ) exitWith { false };
 	true
 };

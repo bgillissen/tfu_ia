@@ -162,8 +162,8 @@ link88[] = {65,64};
 link89[] = {66,4};
 link90[] = {67,68};
 link91[] = {68,41};
-globals[] = {0.000000,0,0,0,0,640,480,1,139,6316128,1,-737.744141,698.468811,590.836426,-596.736328,1866,1427,1};
-window[] = {0,-1,-1,-32000,-32000,2033,324,3335,434,1,1884};
+globals[] = {0.000000,0,0,0,0,640,480,1,139,6316128,1,-677.313721,758.899292,490.282776,-608.043030,1718,1467,1};
+window[] = {0,-1,-1,-32000,-32000,2047,439,3217,408,1,1736};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -175,10 +175,15 @@ class FSM
                 {
                         name = "start";
                         itemno = 0;
-                        init = /*%FSM<STATEINIT""">*/"" \n
-                         "_unit = _this;" \n
+                        init = /*%FSM<STATEINIT""">*/"_unit = _this;" \n
                          "_uid = getPlayerUID _unit;" \n
-                         "//_name = name _unit;"/*%FSM</STATEINIT""">*/;
+                         "" \n
+                         "_keyEH = -1;" \n
+                         "_shotEH = -1;" \n
+                         "" \n
+                         "_hasMoved = false;" \n
+                         "_hasShot = false;" \n
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -237,7 +242,16 @@ class FSM
                         name = "agony";
                         itemno = 4;
                         init = /*%FSM<STATEINIT""">*/"" \n
-                         "diag_log format[""FSM agony block: %1 --- %2"", _unit, time];"/*%FSM</STATEINIT""">*/;
+                         "diag_log format[""FSM agony block: %1 --- %2"", _unit, time];" \n
+                         "" \n
+                         "if ( _unit isEqualTo player ) exitWith {" \n
+                         "	if ( userInputDisabled ) then { " \n
+                         "		[] spawn {" \n
+                         "			sleep 2;" \n
+                         "			disableUserInput false; " \n
+                         "		};" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -286,8 +300,8 @@ class FSM
                                         priority = 9.000000;
                                         to="notCaptive";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"if ( isNil ""_hasMoved"" ) exitWith { false }; " \n
-                                         "if !( isNil ""_hasShot"" ) exitWith { false }; " \n
+                                        condition=/*%FSM<CONDITION""">*/"if !( _hasMoved ) exitWith { false }; " \n
+                                         "if ( _hasShot ) exitWith { false }; " \n
                                          "(_unit getVariable [""hasShot"", false])"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
@@ -299,7 +313,7 @@ class FSM
                                         priority = 8.000000;
                                         to="allowDamage";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"if !( isNil ""_hasMoved"" ) exitWith { false }; " \n
+                                        condition=/*%FSM<CONDITION""">*/"if ( _hasMoved ) exitWith { false }; " \n
                                          "(getPos _unit) params [""_x"", ""_y""];" \n
                                          "( !(surfaceIsWater [_x, _y]) && (_unit getVariable [""hasMoved"", false]) )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
@@ -386,27 +400,44 @@ class FSM
                          "" \n
                          "if ( isNull _unit ) exitWith {};" \n
                          "" \n
-                         "_unit setCaptive false;" \n
+                         "_hitPoints = _unit getVariable ""hitPoints"";" \n
+                         "{ _unit setHitIndex [_forEachIndex, 0] } forEach _hitPoints;" \n
                          "" \n
-                         "if !(_unit isEqualTo player) then {" \n
-                         "	_unit removeAction (_unit getVariable ""heal_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""vehHeal_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""drag_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""carry_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""drop_action"");" \n
-                         "	_unit removeAction (_unit getVariable ""help_action"");" \n
-                         "	_unit setVariable [""heal_action"", nil];" \n
-                         "	_unit setVariable [""vehHeal_action"", nil];" \n
-                         "	_unit setVariable [""drag_action"", nil];" \n
-                         "	_unit setVariable [""carry_action"", nil];" \n
-                         "	_unit setVariable [""drop_action"", nil];" \n
-                         "	_unit setVariable [""help_action"", nil];" \n
-                         "} else {" \n
+                         "_unit call tcb_fnc_stopUnitBleeding;" \n
+                         "_unit setCaptive false;" \n
+                         "_unit allowDamage true;" \n
+                         "_hasMoved = false;" \n
+                         "_hasShot = false;" \n
+                         "" \n
+                         "if (_unit isEqualTo player) exitWith {" \n
+                         "	diag_log ""FSM died block: player is wounded"";" \n
                          "	_unit call tcb_fnc_stopUnitBleeding;" \n
                          "	player setVariable [""agony"", false, true];" \n
+                         "	player setVariable [""hasMoved"", false, true];" \n
+                         "	player setVariable [""hasShot"", false, true];" \n
+                         "	player setVariable [""tf_unable_to_use_radio"", false];" \n
+                         "	(findDisplay 46) displayRemoveEventHandler [""keyDown"", _keyEH];" \n
+                         "	player removeEventHandler [""FiredMan"", _shotEH];" \n
+                         "	_shotEH = -1;" \n
+                         "	_keyEH = -1;" \n
                          "	showHud true;" \n
+                         "	disableUserInput false; " \n
                          "};" \n
-                         ""/*%FSM</STATEINIT""">*/;
+                         "" \n
+                         "if !( CTXT_PLAYER ) exitWith {};" \n
+                         "" \n
+                         "_unit removeAction (_unit getVariable ""heal_action"");" \n
+                         "_unit removeAction (_unit getVariable ""vehHeal_action"");" \n
+                         "_unit removeAction (_unit getVariable ""drag_action"");" \n
+                         "_unit removeAction (_unit getVariable ""carry_action"");" \n
+                         "_unit removeAction (_unit getVariable ""drop_action"");" \n
+                         "_unit removeAction (_unit getVariable ""help_action"");" \n
+                         "_unit setVariable [""heal_action"", nil];" \n
+                         "_unit setVariable [""vehHeal_action"", nil];" \n
+                         "_unit setVariable [""drag_action"", nil];" \n
+                         "_unit setVariable [""carry_action"", nil];" \n
+                         "_unit setVariable [""drop_action"", nil];" \n
+                         "_unit setVariable [""help_action"", nil];"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -588,8 +619,11 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "diag_log format[""FSM agonyStart block: %1"", _unit];" \n
                          "" \n
-                         "_unit setHit [""hands"", 0.9];" \n
-                         "_unit setHit [""legs"", 0.4];" \n
+                         "_hitPoints = _unit getVariable ""hitPoints"";" \n
+                         "{ _unit setHitIndex [_forEachIndex, 0] } forEach _hitPoints;" \n
+                         "" \n
+                         "//_unit setHit [""hands"", 0.9];" \n
+                         "//_unit setHit [""legs"", 0.4];" \n
                          "_unit setCaptive true;" \n
                          "_unit allowDamage false;" \n
                          "" \n
@@ -601,6 +635,7 @@ class FSM
                          "	execFSM (TCB_AIS_PATH+""fsm\bleedOut.fsm"");" \n
                          "	player switchCamera ""INTERNAL"";" \n
                          "	showHud false;" \n
+                         "	disableUserInput true;" \n
                          "	private _group = group player;" \n
                          "	private _isTL = ( player isEqualto (leader _group) );" \n
                          "	player setVariable[""leader"", _isTL];" \n
@@ -613,7 +648,9 @@ class FSM
                          "		if ( (count _up) == 0 ) then {" \n
                          "			[""HQ"", format[""Squad %1 has been wiped"", groupID _group]] call common_fnc_globalSideChat;" \n
                          "		} else {" \n
-                         "			//todo pick the most graded (rank _unit) => ""PRIVATE"", ""CORPORAL"", ""SERGEANT"", ""LIEUTENANT"", ""CAPTAIN"", ""MAJOR"", ""COLONEL"" " \n
+                         "			//todo pick the most graded " \n
+                         "			//use (rank _unit) for non TFU => ""PRIVATE"", ""CORPORAL"", ""SERGEANT"", ""LIEUTENANT"", ""CAPTAIN"", ""MAJOR"", ""COLONEL"" " \n
+                         "			//later use TFU rank" \n
                          "			(group player) selectLeader (selectRandom _up);" \n
                          "			[""HQ"", format[""%1 is taking command"", name player]] call common_fnc_globalSideChat;" \n
                          "		};" \n
@@ -1225,17 +1262,17 @@ class FSM
                          "private _medEvac = _unit getVariable [""medEvac"", objNull];" \n
                          "" \n
                          "diag_log format [""FSM healFinish block: %1 --- %2 --- %3"", _unit, _healer, _medEvac];" \n
-                         "" \n
+                         "/*" \n
                          "_unit setDamage 0;" \n
                          "{" \n
                          "	_unit setHitIndex [_forEachIndex, 0];" \n
                          "} forEach ((getAllHitPointsDamage _unit) select 1);" \n
-                         "" \n
+                         "*/" \n
                          "_unit call tcb_fnc_stopUnitBleeding;" \n
                          "_unit setCaptive false;" \n
                          "_unit allowDamage true;" \n
-                         "_hasMoved = nil;" \n
-                         "_hasShot = nil;" \n
+                         "_hasMoved = false;" \n
+                         "_hasShot = false;" \n
                          "" \n
                          "if ( _unit isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM healFinish block: player is wounded"";" \n

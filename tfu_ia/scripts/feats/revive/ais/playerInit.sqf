@@ -1,4 +1,8 @@
 // by psycho
+
+private _hitPoints = getAllHitPointsDamage player;
+player setVariable ["hitPoints", (_hitPoints select 2)];
+
 {
 	private _fsm = _x execFSM (TCB_AIS_PATH + "fsm\main.fsm");
 	_x setVariable ["fsm", _fsm];

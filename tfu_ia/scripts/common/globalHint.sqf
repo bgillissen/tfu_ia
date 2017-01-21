@@ -7,4 +7,4 @@ Description:
 	used to ask players ro display a hint
 */
 
-_this  remoteExec ["common_fnc_globalHintPlayer", PLAYER_SIDE, false];
+_this  remoteExec ["common_fnc_globalHintPlayer", 0, false];

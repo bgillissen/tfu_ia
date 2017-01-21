@@ -7,4 +7,4 @@ Description:
 	used to ask players to display a notification
 */
 
-_this remoteExec ["common_fnc_globalNotificationPlayer", PLAYER_SIDE, false];
+_this remoteExec ["common_fnc_globalNotificationPlayer", 0, false];
