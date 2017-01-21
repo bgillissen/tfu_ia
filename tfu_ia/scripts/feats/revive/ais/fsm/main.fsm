@@ -162,8 +162,8 @@ link88[] = {65,64};
 link89[] = {66,4};
 link90[] = {67,68};
 link91[] = {68,41};
-globals[] = {0.000000,0,0,0,0,640,480,1,139,6316128,1,-737.744141,698.468811,590.836426,-596.736328,1704,1409,1};
-window[] = {0,-1,-1,-32000,-32000,1937,604,3360,356,1,1722};
+globals[] = {0.000000,0,0,0,0,640,480,1,139,6316128,1,-737.744141,698.468811,590.836426,-596.736328,1866,1427,1};
+window[] = {0,-1,-1,-32000,-32000,2033,324,3335,434,1,1884};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -621,7 +621,7 @@ class FSM
                          "" \n
                          "};" \n
                          "" \n
-                         "if ( CTXT_HEADLESS )  exitWith {};" \n
+                         "if ( !CTXT_PLAYER )  exitWith {};" \n
                          "" \n
                          "private ""_cond"";" \n
                          "if ( (player getVariable ""role"") isEqualTo ""medic"") then {" \n
@@ -1256,7 +1256,7 @@ class FSM
                          "	player setVariable [""tf_unable_to_use_radio"", false];" \n
                          "};" \n
                          "" \n
-                         "if ( CTXT_HEADLESS )  exitWith {};" \n
+                         "if ( !CTXT_PLAYER )  exitWith {};" \n
                          "" \n
                          "_unit removeAction _actionHeal;" \n
                          "_unit removeAction _actionVehHEal;" \n
@@ -1521,7 +1521,7 @@ class FSM
                          "" \n
                          "diag_log format[""FSM vehAnim block: %1 --- %2"", _unit, _veh];" \n
                          "" \n
-                         "if ( CTXT_HEADLESS ) exitWith {};" \n
+                         "if ( !CTXT_PLAYER ) exitWith {};" \n
                          "" \n
                          "if ( player isEqualTo _unit ) exitWith {" \n
                          "	diag_log ""FSM vehAnim block: player is wounded"";" \n
@@ -1591,7 +1591,7 @@ class FSM
                          "" \n
                          "diag_log format[""FSM eject block: %1 --- %2"", _unit, _veh];" \n
                          "" \n
-                         "if ( CTXT_HEADLESS ) exitWith {};" \n
+                         "if ( !CTXT_PLAYER ) exitWith {};" \n
                          "" \n
                          "private _vName = format[""unload_%1"", owner _unit];" \n
                          "_veh removeAction (_veh getVariable _vName);" \n
