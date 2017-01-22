@@ -14,8 +14,10 @@ private _wasInAgony = _unit getVariable ["agony", false];
 private _hasMoved = _unit getVariable ["hasMoved", false];
 if ( _wasInAgony && !_hasMoved ) exitWith { 0 };
 
+if ( _bodypart isEqualTo "" ) exitWith { _damage };
 
 private _hitPoints = getAllHitPointsDamage _unit;
+/*
 private "_hitIndex";
 if ( _bodypart isEqualTo "" ) then {
 	//can be Face or Arms according to getAllHitPointsDamage docs, lets use arm
@@ -23,7 +25,8 @@ if ( _bodypart isEqualTo "" ) then {
 } else {
 	_hitIndex = (_hitPoints select 1) find _bodyPart;
 };
-
+*/
+private _hitIndex = (_hitPoints select 1) find _bodyPart;
 _hitPoints = player getVariable "hitPoints";
 
 private _hitDamage = _damage - ((_unit getVariable "Hitpoints") select _hitIndex);
@@ -79,7 +82,8 @@ switch ( toLower _bodypart ) do {
 };
 	
 if ( _dead ) exitWith {
-	if !( _unit isEqualTo _source ) then {
+	if !( _source in allPlayers ) exitWith { 1 };
+	if ( (side _unit) isEqualTo (side _source) ) then {
 		tcb_score = [_source, -1];
 		publicVariableServer "tcb_score";
 	};
@@ -109,6 +113,6 @@ if ( _agony ) then {
 };
 
 diag_log format ["Hit output ---  part: %1 (%2) --- was: %3 --- hit: %4 --- new: %5 --- overall: %6 --- agony: %7 --- dead: %8", 
-	                 _bodypart, _hitIndex, _damage, _hitDamage, _newDamage, _overallDamage, _agony, _dead];
+	             _bodypart, _hitIndex, _damage, _hitDamage, _newDamage, _overallDamage, _agony, _dead];
 
 _overallDamage
