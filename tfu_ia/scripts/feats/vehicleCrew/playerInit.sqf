@@ -60,31 +60,22 @@ while { true } do  {
     			};
     			_details params ["_key", "_icon"];
     			private _toFormat = _dsp;
-    			if ( !(_gunName isEqualTo "") ) then { _toFormat = _gunnerDsp; };
-    			if ( !alive _unit ) then {
+    			if !( _gunName isEqualTo "" ) then { _toFormat = _gunnerDsp; };
+    			if !( alive _unit ) then {
     				(_stack select _key) append [format[_toFormat, _icon, "dead body", _gunName]];	
     			} else {
-    				(_stack select _key) append [format [_toFormat, _icon, (name _unit), _gunName]];
+    				if ( _unit getVariable["agony", false] ) then {
+    					(_stack select _key) append [format [_toFormat, _icon, ((name _unit) + " (unconcious)"), _gunName]];
+    				} else {
+    					(_stack select _key) append [format [_toFormat, _icon, (name _unit), _gunName]];
+    				};
     			};
     		};
     		true
     	} count _crew;
     	
     	{ _list = format["%1%2", _list, (_x joinString "")];true } count _stack;
-    	/*
-        {
-        	private _icon = [_veh, _x] call {
-        		params ["_veh", "_crew"];
-        		if ( driver _veh == _crew ) exitWith { _driver };
-        		if ( [_veh, _crew] call common_fnc_isCopilot ) exitWith { _driver };
-        		if ( gunner _veh isEqualTo _crew ) exitWith { _gunner };
-        		if ( commander _veh isEqualTo _crew ) exitWith { _commander };
-        		_cargo
-        	};
-        	_list = format [_dsp, _list, (name _x), _icon];
-        	true
-        } count (crew _veh);
-		*/
+
       	_HudNames ctrlSetStructuredText parseText _list;
       	_HudNames ctrlCommit 0;
     };

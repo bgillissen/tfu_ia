@@ -55,6 +55,6 @@ if ( _type isEqualTo "supply" ) then {
 private _from =  ["supportCrate", "msgFrom"] call core_fnc_getSetting;
 private _msg = (["supportCrate", "msgDeployed"] call core_fnc_getSetting);
 private _cooldown = ["supportCrate_cooldown"] call core_fnc_getParam;
-[_from, format[_msg, profileName, _type, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
+[1, format[_msg, profileName, _type, floor (_cooldown / 60)], [_from, PLAYER_SIDE]] call global_fnc_chat;
 
 [[_crate], false] call curator_fnc_addEditable;

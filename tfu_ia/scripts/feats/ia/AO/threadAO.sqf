@@ -42,9 +42,9 @@ _label = nil;
 _color = nil;
 
 //start messages
-[format[(["ia", "ao", "newHint"] call core_fnc_getSetting), _ao]] remoteExec ["common_fnc_globalHint", 0, false];
-["NewMain", _ao] remoteExec ["common_fnc_globalNotification", 0, false];
-["NewSub", (["ia", "ao", "radioTower", "newNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
+format[(["ia", "ao", "newHint"] call core_fnc_getSetting), _ao] call global_fnc_hint;
+["NewMain", _ao] call global_fnc_notification;
+["NewSub", (["ia", "ao", "radioTower", "newNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 
 //spawn cas thread
 if ( ["AO_cas"] call core_fnc_getParam ) then {
@@ -67,8 +67,8 @@ if ( !alive _radioTower ) then {
 	deleteMarker _label;
 	_circle = nil;
 	_label = nil;
-	[(["ia", "ao", "radioTower", "endHint"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalHint", 0, false];
-	["CompletedSub", (["ia", "ao", "radioTower", "endNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
+	(["ia", "ao", "radioTower", "endHint"] call core_fnc_getSetting) call global_fnc_hint;
+	["CompletedSub", (["ia", "ao", "radioTower", "endNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 };
 
 _unitThreshold  = ["AO_unitThreshold"] call core_fnc_getParam;
@@ -80,8 +80,8 @@ waitUntil {
 
 if ( !zeusMission && !AO_stop ) then {
 	//unit threshold has been reached
-	[format[(["ia", "ao", "endHint"] call core_fnc_getSetting), _ao]] remoteExec ["common_fnc_globalHint", 0, false];
-	["CompletedMain", _ao] remoteExec ["common_fnc_globalNotification", 0, false];
+	format[(["ia", "ao", "endHint"] call core_fnc_getSetting), _ao] call global_fnc_hint;
+	["CompletedMain", _ao] call global_fnc_notification;
 };
 //cleanUp
 [_coord, _trigger, _radioTower, _units, (zeusMission || AO_stop)] spawn AO_fnc_cleanup;

@@ -24,5 +24,5 @@ private _cfgName = ["squadHint", "name"] call core_fnc_getSetting;
 if (_squad isEqualTo _cfgName) then {
 	private _msg = ["squadHint", "msg"] call core_fnc_getSetting;
 	private _url = ["squadHint", "url"] call core_fnc_getSetting;
-	[format[_msg, _squad, _playerName, _url]] call common_fnc_globalHint; 
+	[format[_msg, _squad, _playerName, _url]] call global_fnc_hint; 
 };

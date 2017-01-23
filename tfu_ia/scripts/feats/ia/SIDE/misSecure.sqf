@@ -150,8 +150,8 @@ _groups append ([_flatPos, 0, 4, 4, 0, 4, 4, 4, 4, 4, 4, (_size + (random 100))]
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
 //briefing
 private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
-[format[_briefing, _title, _desc]] call common_fnc_globalHint;
-["NewSideMission", _title] call common_fnc_globalNotification;
+format[_briefing, _title, _desc] call global_fnc_hint;
+["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
 _briefing = nil;
 _desc = nil;
@@ -162,14 +162,14 @@ private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 while { true } do {
 	if (!alive _cargo || !alive _obj) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
-		[_fail] call common_fnc_globalHint;
+		_fail call global_fnc_hint;
 		[false, _flatPos, _size, _groups, [_laptop, _table, _cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
 		//plant message
 		private _planted = ["ia", "side", "secure", "planted"] call core_fnc_getSetting;
 		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
-		[PLAYER_SIDE, "HQ", format[_planted, _delay]] call common_fnc_globalSideChatServer;
+		[1, format[_planted, _delay], ["HQ", PLAYER_SIDE]] call global_chat;
 		//time to move away
 		sleep _delay;
 		//blow objectif and cargo
@@ -183,7 +183,7 @@ while { true } do {
 		//give a reward
 		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
-		[format[_hint, _reward]] call common_fnc_globalHint;
+		format[_hint, _reward] call global_fnc_hint;
 		//cleanup
 		[false, _flatPos, _size, _groups, [_cargo, _obj, _tower1, _tower2, _tower3]] spawn SIDE_fnc_cleanup;
 	};

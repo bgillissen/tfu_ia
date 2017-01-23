@@ -101,8 +101,8 @@ private _title = ["ia", "side", "hqCoast", "title"] call core_fnc_getSetting;
 //briefing
 private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
 private _desc = ["ia", "side", "hqCoast", "briefing"] call core_fnc_getSetting;
-[format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
-["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+format[_briefing, _title, _desc] call global_fnc_hint;
+["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
 _size = nil;
 _briefing = nil;
@@ -113,13 +113,13 @@ private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 while ( true ) do {
 	if (!alive _hq) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
-		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
+		_fail call global_fnc_hint;
 		[false, _flatPos, _groups, [_boat, _trawler, _crate, _hq]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
 		private _planted = ["ia", "side", "hqCoast", "planted"] call core_fnc_getSetting;
 		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
-		["HQ", format[_planted, _delay]] remoteExec ["common_fnc_globalSideChat", 0, false];
+		[1, format[_planted, _delay], ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 		_planted = nil;
 		sleep _delay;
 		_delay = nil;
@@ -127,7 +127,7 @@ while ( true ) do {
 		deleteVehicle _crate;
 		private _reward = call common_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
-		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
+		format[_hint, _reward] call global_fnc_hint;
 		_hint = nil;
 		_reward = nil;
 		[false, _flatPos, _groups, [_boat, _trawler, _hq]] spawn SIDE_fnc_cleanup;

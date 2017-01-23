@@ -28,4 +28,4 @@ private _msg = format[(["curator", "descendMsg"] call core_fnc_getSetting),
   	  	  	  	  	  TOT_CURATOR, 
   	  	  	  	  	  (name _player)];
 
-[PLAYER_SIDE, "HQ", _msg] call common_fnc_globalSideChatServer;
+[1, _msg, ["HQ", PLAYER_SIDE]] call global_fnc_chat;

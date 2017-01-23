@@ -41,7 +41,7 @@ _depotCoord = nil;
 
 private _hint = ["ia", "fob", "newHint"] call core_fnc_getSetting;
 private _maxTime = ["ia", "fob", "maxTime"] call core_fnc_getSetting;
-[format [_hint, (_maxTime / 60)]] remoteExec ["common_fnc_globalHint", 0, false];
+format [_hint, (_maxTime / 60)] call global_fnc_hint;
 
 private _endTime = time + _maxTime;
 private _maxGrp = ["ia", "fob", "maxGroup"] call core_fnc_getSetting;
@@ -117,7 +117,7 @@ while ( true ) do {
 	if (_truck distance _coord <= 10) exitWith {
 		private _reward = call common_fnc_giveReward; 
 		private _hint = ["ia", "fob", "succesHint"] call core_fnc_getSetting;
-		[format[_hint, (_reward select 1)]] remoteExec ["common_fnc_globalHint", 0, false];
+		format[_hint, (_reward select 1)] call global_fnc_hint;
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker] spawn FOB_fnc_cleanup;
 		private _marker = format["%1_success", _fob];
 		createMarker [_marker, _coord];
@@ -131,19 +131,19 @@ while ( true ) do {
 		if ( _done == _avail ) then {
 			sleep 5;
 			_hint = ["ia", "fob", "zoneHint"] call core_fnc_getSetting;
-			[format[_hint]] remoteExec ["common_fnc_globalHint", 0, false];
+			format[_hint] call global_fnc_hint;
 		};
 		
 	};
 	if ( !alive _truck || (time > _endTime) ) exitWith {
 		private _hint = ["ia", "fob", "failHint"] call core_fnc_getSetting;
-		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
+		_hint call global_fnc_hint;
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker, _veh1, _veh2] spawn FOB_fnc_cleanup;
 		//FOB_failed = true;
 	};
 	if ( AO_zone != _aoZone ) exitWith {
 		private _hint = ["ia", "fob", "newZoneHint"] call core_fnc_getSetting;
-		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
+		_hint call global_fnc_hint;
 		[false, _coord, _groups, _vehs, _pad, _truck, _marker, _veh1, _veh2] spawn FOB_fnc_cleanup;
 	};
 	if ( FOB_stop || zeusMission ) exitWith {

@@ -111,6 +111,5 @@ class settings {
 };
 
 #include "intro\_include.hpp"
-#include "revive\_include.hpp"
 #include "viewDistance\_include.hpp"
 

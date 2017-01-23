@@ -69,7 +69,7 @@ _caller spawn {
 	private _from = ["supplyDrop", "msgFrom"] call core_fnc_getSetting;
 	private _msg = ["supplyDrop", "msgDeployed"] call core_fnc_getSetting;
 	private _cooldown = ["supplyDrop_cooldown"] call core_fnc_getParam;
-	[_from, format[_msg, profileName, floor (_cooldown / 60)]] call common_fnc_globalSideChat;
+	[1, format[_msg, profileName, floor (_cooldown / 60)], [_from, PLAYER_SIDE]] call global_fnc_chat;
 	_cooldown = nil;
 	_from = nil;
 	_msg = nil;

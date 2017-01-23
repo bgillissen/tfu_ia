@@ -8,5 +8,5 @@ if (_unit == vehicle _unit) then {
 		_this remoteExec ["common_fnc_doAnimPlayer", _unit, false];
 	};
 } else {
-	_this call common_fnc_globalDoAnim;
+	_this call global_fnc_doAnim;
 };

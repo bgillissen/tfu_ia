@@ -21,7 +21,7 @@ if ( count curatorAssigned >= TOT_CURATOR) exitWith {
 
 if ( !([_player] call curator_fnc_isCurator) ) exitWith {
 	_msg = ["curator", "failedMsg"] call core_fnc_getSetting;
-	[PLAYER_SIDE, "HQ", format[_msg, (name _player)]] call common_fnc_globalSideChatServer;
+	[1, _msg, ["HQ", PLAYER_SIDE]] call global_chatServer;
 };
 
 private "_freeslot";
@@ -48,4 +48,4 @@ if ( !isDedicated ) then {
 };
 
 _msg = ["curator", "ascendMsg"] call core_fnc_getSetting;
-[PLAYER_SIDE, "HQ", format[_msg, (count curatorAssigned), (TOT_CURATOR + 1), (name _player)]] call common_fnc_globalSideChatServer;
+[1, format[_msg, (count curatorAssigned), (TOT_CURATOR + 1), (name _player)], ["HQ", PLAYER_SIDE]] call global_chatServer;

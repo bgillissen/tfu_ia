@@ -1,0 +1,201 @@
+/*%FSM<COMPILE "S:\steam\steamapps\common\Arma 3 Tools\FSMEditor\scriptedFSM.cfg, bleedOut">*/
+/*%FSM<HEAD>*/
+/*
+item0[] = {"start",0,250,-60.367493,-329.083740,5.278137,-291.657715,0.000000,"start"};
+item1[] = {"drawEffect",2,250,-67.052673,-186.767151,12.144207,-147.885529,0.000000,"drawEffect"};
+item2[] = {"sleep",4,218,-60.315407,-101.069572,5.604348,-59.765221,0.000000,"sleep"};
+item3[] = {"healed___died",4,218,116.722412,-113.377907,206.722412,-63.377907,1.000000,"healed /" \n "died"};
+item4[] = {"bleed_of_death",4,218,-259.866211,-120.066917,-155.819397,-75.418060,2.000000,"bleed of death"};
+item5[] = {"death",1,4346,-233.863571,-42.656487,-181.321747,-12.054497,0.000000,"death"};
+item6[] = {"end",1,250,135.627136,-41.209732,185.752930,-7.365551,0.000000,"end"};
+item7[] = {"_",8,218,-53.051743,-256.974182,-2.219849,-224.512131,0.000000,""};
+link0[] = {0,7};
+link1[] = {1,2};
+link2[] = {1,3};
+link3[] = {1,4};
+link4[] = {2,1};
+link5[] = {3,6};
+link6[] = {4,5};
+link7[] = {7,1};
+globals[] = {0.000000,0,0,0,0,640,480,1,21,6316128,1,-380.251343,250.245178,50.662384,-431.059082,1140,871,1};
+window[] = {0,-1,-1,-1,-1,1277,234,2495,234,1,1158};
+*//*%FSM</HEAD>*/
+class FSM
+{
+        fsmName = "bleedOut";
+        class States
+        {
+                /*%FSM<STATE "start">*/
+                class start
+                {
+                        name = "start";
+                        itemno = 0;
+                        init = /*%FSM<STATEINIT""">*/"" \n
+                         "addCamShake [15, 999, 0.7];" \n
+                         "_ppEff = ppEffectCreate [[""radialblur"", 17091], [""colorcorrections"", 1580]];" \n
+                         "{ _x ppEffectEnable true } forEach _ppEff;" \n
+                         "" \n
+                         "private _hitPoints = player getVariable ""hitPoints"";" \n
+                         "_avgDamage = 0;" \n
+                         "{ _avgDamage = _avgDamage + _x; } foreach (_hitPoints);" \n
+                         "_avgDamage = _avgDamage / (count _hitPoints);" \n
+                         "" \n
+                         "_showTimer = [false, true] select ([""reviveShowTimer""] call core_fnc_getParam);" \n
+                         "" \n
+                         "_timeLeft = ([""reviveBleedTime""] call core_fnc_getParam) - ((random _avgDamage) * 10);" \n
+                         "_timeNow = time;" \n
+                         "" \n
+                         "_playerGotMediKit = [player, ""mediKit""] call revive_fnc_gotItem;" \n
+                         "_playerGotFaks = [player, ""firstAidKit""] call revive_fnc_gotItem;" \n
+                         "" \n
+                         "[] spawn revive_fnc_sfxInjuredEffect;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 7;
+                                        priority = 0.000000;
+                                        to="drawEffect";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "drawEffect">*/
+                class drawEffect
+                {
+                        name = "drawEffect";
+                        itemno = 1;
+                        init = /*%FSM<STATEINIT""">*/"" \n
+                         "private _blinkDuration = 1;//0.7 + (random 0.4);" \n
+                         "" \n
+                         "if ( isNull (player getVariable [""healer"", objNull]) && isNull (player getVariable [""helper"", objNull]) ) then {" \n
+                         "	_timeLeft = (_timeLeft - _blinkduration);" \n
+                         "};" \n
+                         "" \n
+                         "//private _timeLeft_normalized = ( 1 - (time - _timeOfAgony + _bleedTime) );" \n
+                         "private _timeLeft_normalized = 1;" \n
+                         "" \n
+                         "player setBleedingRemaining 3;" \n
+                         "" \n
+                         "if ( _showTimer ) then {" \n
+                         "	private _closest = objNull;" \n
+                         "	{" \n
+                         "		if ( (_x getVariable ""role"") isEqualTo ""medic"" ) then {" \n
+                         "			private _canHeal = false;" \n
+                         "			if ( _playerGotMedikit && _playerGotFaks ) then {" \n
+                         "				_canHeal = true;" \n
+                         "			} else {" \n
+                         "				_canHeal = ( ([_x, ""mediKit""] call revive_fnc_gotItem) && ([_x, ""firstAidKit""] call revive_fnc_gotItem) );" \n
+                         "			};" \n
+                         "			if ( _canHeal ) then {" \n
+                         "				if ( (player distance _x) < (player distance _closest) ) then { _closest = _x; };" \n
+                         "			};" \n
+                         "		};" \n
+                         "	} forEach (allPlayers - (entities ""headless_Client_F"") - [player]);" \n
+                         "	private ""_txt"";" \n
+                         "	if ( isNull _closest ) then {" \n
+                         "		_txt = format [""%1 Seconds left, no medic nearby"", floor _timeleft];" \n
+                         "	} else {" \n
+                         "		_txt = format [""%1 Seconds left, %2 is %3m away"", floor _timeleft, (name _closest), (player distance _closest)];" \n
+                         "	};" \n
+                         "	if ( _timeLeft > 3 ) then {" \n
+                         "		titleText [_txt, ""PLAIN DOWN"", 0.2];" \n
+                         "	} else {" \n
+                         "		titleText [""It's too late for you."", ""PLAIN DOWN"", 0.5];" \n
+                         "	};" \n
+                         "};" \n
+                         "" \n
+                         "" \n
+                         "(_ppEff select 1) ppEffectAdjust [_timeLeft_normalized, 1.0, 0.0, random 0.75, 0.0, 0.0, random 0.75, 0.0, 0.0, 1.0, 1.0, 0.199, 0.587, 0.114, 1.0]; " \n
+                         "(_ppEff select 1) ppEffectCommit 0.5;" \n
+                         "" \n
+                         "_timeNow = time;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "bleed_of_death">*/
+                                class bleed_of_death
+                                {
+                                        itemno = 4;
+                                        priority = 2.000000;
+                                        to="death";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"_timeLeft <= 0"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "healed___died">*/
+                                class healed___died
+                                {
+                                        itemno = 3;
+                                        priority = 1.000000;
+                                        to="end";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"( !(player getVariable ""agony"") || !(alive player) )"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                                /*%FSM<LINK "sleep">*/
+                                class sleep
+                                {
+                                        itemno = 2;
+                                        priority = 0.000000;
+                                        to="drawEffect";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"time - _timeNow > _blinkduration"/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "death">*/
+                class death
+                {
+                        name = "death";
+                        itemno = 5;
+                        init = /*%FSM<STATEINIT""">*/"" \n
+                         "if ( alive player ) then { player setDamage 1 };" \n
+                         "" \n
+                         "{_x ppEffectEnable false} forEach _ppEff;" \n
+                         "" \n
+                         "ppEffectDestroy _ppEff;" \n
+                         "" \n
+                         "resetCamShake;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "end">*/
+                class end
+                {
+                        name = "end";
+                        itemno = 6;
+                        init = /*%FSM<STATEINIT""">*/"{_x ppEffectEnable false} forEach _ppEff;" \n
+                         "ppEffectDestroy _ppEff;" \n
+                         "resetCamShake;" \n
+                         "" \n
+                         "player setBleedingRemaining 0;"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                        };
+                };
+                /*%FSM</STATE>*/
+        };
+        initState="start";
+        finalStates[] =
+        {
+                "death",
+                "end",
+        };
+};
+/*%FSM</COMPILE>*/

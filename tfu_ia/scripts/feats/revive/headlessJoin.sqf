@@ -1,15 +1,8 @@
-/*
-@filename: feats\revive\headlessJoin.sqf
-Author:
-	Ben
-Description:
-	run on headless when a player has join,
-*/
+
+params ["_player"];
 
 if ( MOD_ace ) exitWith {};
 
-private _reviveScript = (["revive_script"] call core_fnc_getParam);
+if ( player isEqualTo _player ) exitWith {};
 
-if ( _reviveScript == 1 ) exitWith {
-	_this call compileFinal preprocessFileLineNumbers "feats\revive\ais\headlessJoin.sqf";
-};
+_player execFSM ("feats\revive\fsm\main.fsm");

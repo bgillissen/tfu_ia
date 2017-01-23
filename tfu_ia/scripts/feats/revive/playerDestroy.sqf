@@ -1,19 +1,11 @@
 /*
-@filename: feats\revive\playerDestroy.sqf
+@filename: feats\revive\ais\playerDestroy.sqf
 Author:
 	Ben
 Description:
 	run on player,
+	terminate all FSM
+	terminate healEquipmentThread if is a medic + remove all heal object
 */
 
 if ( MOD_ace ) exitWith {};
-
-private _reviveScript = (["revive_script"] call core_fnc_getParam);
-
-if ( _reviveScript == 0 ) exitWith {
-	call compileFinal preprocessFileLineNumbers "feats\revive\btc\playerDestroy.sqf";
-};
-
-if ( _reviveScript == 1 ) exitWith {
-	call compileFinal preprocessFileLineNumbers "feats\revive\ais\playerDestroy.sqf";
-};

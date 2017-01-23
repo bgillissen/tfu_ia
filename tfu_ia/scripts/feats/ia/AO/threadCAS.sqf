@@ -45,7 +45,7 @@ while {(alive _radioTower)} do {
 			_x addCuratorEditableObjects [[_pilot], false];
 			_x addCuratorEditableObjects [[_cas], false];
 		} count allCurators;
-		["EnemyJet", (["ia", "ao", "cas", "newNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
+		["EnemyJet", (["ia", "ao", "cas", "newNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 		AO_cas = true;
 		 
 		waitUntil {
@@ -69,7 +69,7 @@ while {(alive _radioTower)} do {
 			deleteVehicle _pilot;
 			deleteVehicle _cas;
 		} else {
-			["EnemyJetDown", (["ia", "ao", "cas", "endNotif"] call core_fnc_getSetting)] remoteExec ["common_fnc_globalNotification", 0, false];
+			["EnemyJetDown", (["ia", "ao", "cas", "endNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 		};
 	};
 	[(_cooldown + (random  _cooldown)), _checkDelay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;

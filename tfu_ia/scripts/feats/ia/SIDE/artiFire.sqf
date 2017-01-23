@@ -63,7 +63,7 @@ if ( _target == nullObj ) exitWith {};
 
 if ( ["ArtilleryTargetTickWarning"] call core_fnc_getParam ) then {
 	private _msgs = ["ia", "side", "priority", "arti", "firingMsg"] call core_fnc_getSetting;
-	[(selectRandom _msgs)] remoteExec ["common_fnc_globalSideChat", 0, false];
+	[1, (selectRandom _msgs), ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 	_msgs = nil;
 };
 
