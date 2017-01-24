@@ -12,7 +12,7 @@ item7[] = {"died",2,250,311.848206,-6.263855,378.181213,26.329773,0.000000,"died
 item8[] = {"still_there",4,218,308.512573,-134.117706,380.744202,-84.537109,0.000000,"still there"};
 item9[] = {"dragged",4,218,218.224716,121.383217,271.909821,156.019226,7.000000,"dragged"};
 item10[] = {"dragAnim",2,250,211.853806,216.571564,277.411346,244.224091,0.000000,"dragAnim"};
-item11[] = {"released",4,4314,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
+item11[] = {"released",4,218,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
 item12[] = {"healed",4,218,-393.788635,102.519173,-340.103485,137.155258,4.000000,"healed"};
 item13[] = {"carried",4,218,-27.164322,88.637253,26.520790,123.273247,6.000000,"carried"};
 item14[] = {"healAnim",2,250,-395.747894,213.880890,-336.773926,243.727844,0.000000,"healAnim"};
@@ -50,7 +50,7 @@ item45[] = {"_",8,218,-93.471130,118.042603,-46.280304,148.644531,0.000000,""};
 item46[] = {"healCanceled",2,250,-409.321503,337.182953,-322.530518,367.848083,0.000000,"healCanceled"};
 item47[] = {"helpCanceled",2,250,-175.625244,348.008087,-88.834259,378.673218,0.000000,"helpCanceled"};
 item48[] = {"carryCanceled",2,250,-41.567169,350.765411,45.223816,381.430542,0.000000,"carryCanceled"};
-item49[] = {"dragCanceled",2,250,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
+item49[] = {"dragCanceled",2,4346,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
 item50[] = {"vehHealed",4,218,-338.443512,125.723633,-251.887299,165.416794,3.000000,"vehHealed"};
 item51[] = {"unloaded",4,218,-141.299713,-130.410049,-61.231873,-87.233521,3.000000,"unloaded"};
 item52[] = {"VehAnim",2,250,48.853752,-121.756561,114.411293,-94.104034,0.000000,"VehAnim"};
@@ -479,7 +479,7 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "private _dragger = _unit getVariable ""dragger"";" \n
                          "" \n
-                         "diag_log format [""FSM dragAnim block: %1 --- %2"", _unit, _dragger];" \n
+                         "diag_log format [""FSM dragAnim block: wounded: %1 --- dragger: %2"", _unit, _dragger];" \n
                          "" \n
                          "if ( _dragger isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM dragAnim block: player is dragger"";" \n
@@ -490,7 +490,7 @@ class FSM
                          "	_actionDrop = player addAction [format[_action, (name _unit)], {_this call revive_fnc_actionDrop}, _unit, 0, false, true];" \n
                          "};" \n
                          "" \n
-                         "if ( _unit isEqualTo player )  exitWith {" \n
+                         "if ( _unit isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM dragAnim block: player is wounded"";" \n
                          "	if ( _hasMoved ) then {" \n
                          "		[player, ""AinjPpneMrunSnonWnonDb_grab"", 2] call common_fnc_doAnim;" \n
@@ -1618,12 +1618,14 @@ class FSM
                         name = "dragCanceled";
                         itemno = 49;
                         init = /*%FSM<STATEINIT""">*/"" \n
-                         "private _drager = _unit getVariable ""drager"";" \n
+                         "private _dragger = _unit getVariable ""dragger"";" \n
                          "" \n
                          "diag_log format [""FSM dragCanceled block: %1 --- %2"", _unit, _drager];" \n
                          "" \n
-                         "if ( _drager isEqualTo player ) exitWith {" \n
-                         "	diag_log format[""FSM dragCancled block: player is drager --- %1"", _preAnim];" \n
+                         "_unit setVariable [""dragger"", objNull];" \n
+                         "" \n
+                         "if ( _dragger isEqualTo player ) then {" \n
+                         "	diag_log format[""FSM dragCanceled block: player is dragger --- %1"", _preAnim];" \n
                          "	player setVariable [""action"", ["""", objNull]];" \n
                          "	private _text = [""revive"", ""ripMessage""] call core_fnc_getSetting;" \n
                          "	format[_text, (name _unit)] call revive_fnc_dynamicText;" \n
@@ -1632,10 +1634,14 @@ class FSM
                          "	detach player;" \n
                          "};" \n
                          "" \n
-                         "if ( _unit isEqualTo player ) exitWith {" \n
+                         "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM dragCanceled block: player is wounded"";" \n
-                         "	player setVariable [""dragger"", objNull, true];" \n
                          "	detach player;" \n
+                         "};" \n
+                         "" \n
+                         "_unit spawn {" \n
+                         "	sleep 1;" \n
+                         "	_this setVariable [""dragger"", objNull, true];" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
@@ -1800,7 +1806,9 @@ class FSM
                          "" \n
                          "diag_log format [""FSM dragFall block: %1 --- %2"", _unit, _dragger];" \n
                          "" \n
-                         "if ( _unit isEqualTo player ) exitWith {" \n
+                         "_unit setVariable [""dragger"", objNull];" \n
+                         "" \n
+                         "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM dragFall block: player is wounded"";" \n
                          "	player setVariable [""dragger"", ObjNull, true];" \n
                          "	disableUserInput true;" \n
@@ -1815,7 +1823,11 @@ class FSM
                          "			detach player;" \n
                          "		};" \n
                          "	};" \n
-                         "	" \n
+                         "};" \n
+                         "" \n
+                         "_unit spawn {" \n
+                         "	sleep 1;" \n
+                         "	_this setVariable [""dragger"", objNull, true];" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
