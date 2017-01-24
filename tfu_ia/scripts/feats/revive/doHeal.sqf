@@ -4,7 +4,7 @@ private _defi = "Land_Defibrillator_F" createVehicle _pos;
 _defi setPos _pos;
 _defi setDir (getDir player - 180);
 
-private _lifetime = ["revive", "heal", "garbageLifeTime"] call core_fnc_getSetting;
+private _lifeTime = ["revive", "heal", "garbageLifeTime"] call core_fnc_getSetting;
 reviveHealEquipment = [];
 
 private _hitParts = (getAllHitPointsDamage _unit) select 1;

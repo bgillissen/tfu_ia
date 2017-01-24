@@ -10,10 +10,12 @@ Description:
 private _dist = 15; //1500 in prod
 private _sz = getMarkerPos "SZ";
 private _fr = getMarkerPos "FR";
+private _delay = ["cleanup", "loopDelay"] call core_fnc_getSetting;
 
 while { true } do {
 	
-	sleep 30; //300 in prod
+	sleep 30;
+	//sleep _delay;
 	{
 		private _pos = getPos _x;
 		private _ok = true;

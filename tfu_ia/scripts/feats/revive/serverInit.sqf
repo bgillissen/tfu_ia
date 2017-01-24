@@ -23,8 +23,10 @@ if ( isNil "reviveHealEquipmentPVEH" ) then {
 
 if ( isNil "reviveHealEquipmentThread" ) then {
 	reviveHealEquipmentThread = [] spawn { 
+		private _delay = ["cleanup", "loopDelay"] call core_fnc_getSetting;
 		while {true} do { 
-			sleep 300;//use cleanup feat setting
+			//sleep _delay;
+			sleep 30;
 			call revive_fnc_removeHealEquipment; 
 		}; 
 	};

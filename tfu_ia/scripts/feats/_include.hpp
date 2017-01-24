@@ -85,6 +85,7 @@ class settings {
 	#include "assets\_settings.hpp"
 	#include "baseProtection\_settings.hpp"
 	#include "billboards\_settings.hpp"
+	#include "cleanup\_settings.hpp"
 	#include "curator\_settings.hpp"
 	#include "earPlugs\_settings.hpp"
 	#include "flags\_settings.hpp"

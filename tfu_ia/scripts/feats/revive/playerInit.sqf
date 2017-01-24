@@ -6,7 +6,6 @@ reviveResistance = (["revive", "resistance"] call core_fnc_getSetting);
 reviveImpactEffect = [false, true] select (["revive", "impact"] call core_fnc_getSetting);
 reviveBloodParticle	= [false, true] select (["revive", "bloodParticle"] call core_fnc_getSetting);
 reviveBloodThreshold = ["revive", "bloodThreshold"] call core_fnc_getSetting;
-reviveHealEquipment = [];
 
 private _hitPoints = getAllHitPointsDamage player;
 player setVariable ["hitPoints", (_hitPoints select 2)];
