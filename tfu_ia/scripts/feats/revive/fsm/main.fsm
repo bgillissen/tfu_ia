@@ -12,7 +12,7 @@ item7[] = {"died",2,250,311.848206,-6.263855,378.181213,26.329773,0.000000,"died
 item8[] = {"still_there",4,218,308.512573,-134.117706,380.744202,-84.537109,0.000000,"still there"};
 item9[] = {"dragged",4,218,218.224716,121.383217,271.909821,156.019226,7.000000,"dragged"};
 item10[] = {"dragAnim",2,250,211.853806,216.571564,277.411346,244.224091,0.000000,"dragAnim"};
-item11[] = {"released",4,218,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
+item11[] = {"released",4,4314,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
 item12[] = {"healed",4,218,-393.788635,102.519173,-340.103485,137.155258,4.000000,"healed"};
 item13[] = {"carried",4,218,-27.164322,88.637253,26.520790,123.273247,6.000000,"carried"};
 item14[] = {"healAnim",2,250,-395.747894,213.880890,-336.773926,243.727844,0.000000,"healAnim"};
@@ -38,7 +38,7 @@ item33[] = {"carryAnim",2,250,-32.776443,215.860382,32.781090,243.512909,0.00000
 item34[] = {"helped",4,218,-158.957291,143.883224,-105.272179,178.519226,5.000000,"helped"};
 item35[] = {"dead",4,218,-27.517517,286.417084,29.698639,326.854187,100.000000,"dead"};
 item36[] = {"dead",4,218,215.619690,277.064911,272.835846,317.502014,100.000000,"dead"};
-item37[] = {"releaseAnim",2,4346,83.995102,168.827606,165.436188,196.480133,0.000000,"releaseAnim"};
+item37[] = {"releaseAnim",2,250,83.995102,168.827606,165.436188,196.480133,0.000000,"releaseAnim"};
 item38[] = {"_",8,218,101.558319,113.964897,148.748993,144.566833,0.000000,""};
 item39[] = {"LandAnim",2,250,-287.419434,-154.481628,-206.596710,-127.677193,0.000000,"LandAnim"};
 item40[] = {"_",8,218,-181.394684,-92.794922,-134.204010,-62.192993,0.000000,""};
@@ -529,7 +529,7 @@ class FSM
                                         to="dragFall";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"private _dragger = _unit getVariable [""dragger"", objNull];" \n
-                                         "( 	isNull(_dragger) || !(alive _dragger) || (_dragger getVariable [""agony"", false]) )" \n
+                                         "(	isNull(_dragger) || !(alive _dragger) || (_dragger getVariable [""agony"", false]) )" \n
                                          ""/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
@@ -541,9 +541,9 @@ class FSM
                                         priority = 1.000000;
                                         to="releaseAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) && " \n
+                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) )/* && " \n
                                          "	({ !(alive (_unit getVariable _x)) } count [""dragger"", ""carrier""] == 0) &&" \n
-                                         "	({ (_unit getVariable _x) getVariable [""agony"", false] } count [""dragger"", ""carrier""] == 0) )" \n
+                                         "	({ (_unit getVariable _x) getVariable [""agony"", false] } count [""dragger"", ""carrier""] == 0) )*/" \n
                                          ""/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
@@ -1164,9 +1164,9 @@ class FSM
                                         priority = 1.000000;
                                         to="releaseAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) && " \n
+                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) )/* && " \n
                                          "	({ !(alive (_unit getVariable _x)) } count [""dragger"", ""carrier""] == 0) &&" \n
-                                         "	({ (_unit getVariable _x) getVariable [""agony"", false] } count [""dragger"", ""carrier""] == 0) )" \n
+                                         "	({ (_unit getVariable _x) getVariable [""agony"", false] } count [""dragger"", ""carrier""] == 0) )*/" \n
                                          ""/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
