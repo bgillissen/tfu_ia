@@ -10,3 +10,6 @@ Description:
 class VR_baseA {
 	#include "baseA.sqe"
 };
+class VR_baseB {
+	#include "baseB.sqe"
+};

@@ -18,7 +18,7 @@ _deadcam camCommitPrepared 0;
 (selectRandom reviveQuotes) params ["_quote", "_author"];
 private _respawnDelay = getNumber(missionConfigFile/"respawndelay");
 if ( _respawnDelay <= 0 ) then { _respawnDelay = 1; };
-[_quote, _author, (_respawndelay - 1)] spawn revive_fnc_deadCamQuote;
+[_quote, _author, (_respawnDelay - 1)] spawn revive_fnc_deadCamQuote;
 
 waitUntil { camCommitted _deadcam };
 

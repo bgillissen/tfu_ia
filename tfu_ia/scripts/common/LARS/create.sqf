@@ -273,11 +273,11 @@ private _fnc_setPositionAndRotation = {
 		_newPosY = ( _compPos select 1 ) + ( _cfgOffset select 1 );
 		_newPosASL = getTerrainHeightASL [ _newPosX, _newPosY ];
 		_newPosZ = _newPosASL + ( _cfgOffset select 2 );
-//		if ( _asPlaced ) then {
-//			_pos = [ _newPosX, _newPosY, _newPosZ + _ATLOffset ];
-//		}else{
+		if ( _asPlaced ) then {
+			_pos = [ _newPosX, _newPosY, _newPosZ + _ATLOffset ];
+		}else{
 			_pos = [ _newPosX, _newPosY, _newPosZ ];
-//		};
+		};
 	}else{
 		_pos = ( _compPos vectorAdd _cfgOffset ) vectorAdd [ 0, 0, _ATLOffset ];
 	};
@@ -633,12 +633,10 @@ private _fnc_spawnObject = {
 	_disableSimu = [ ( _cfg >> "Attributes" >> "disableSimulation" ), "BOOL", false ] call _fnc_getCfgValue;
 	
 	if ( random 1 <= _presence && { call compile _preCondition } ) then {
-		private[ "_type", "_ATLOffset" ];
-		
-		_type = getText( _cfg >> "type" );
-		//_ATLOffset = getNumber( _cfg >> "atlOffset" );
-		_ATLOffset = 0;
-		
+	
+		private _type = getText( _cfg >> "type" );
+		private _ATLOffset = getNumber( _cfg >> "atlOffset" );
+	
 		switch ( true ) do {
 			
 			case ( _type isKindOf "Man" ) : {

@@ -21,7 +21,7 @@ if ( _bodypart isEqualTo "" ) exitWith {
 	diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4", diag_tickTime, _damage, _agony, _hasMoved];
 	if ( _damage < THRESHOLD ||  (_agony && _hasMoved) ) exitWith { _damage };
 	if ( _agony && !_hasMoved ) exitWith { damage _unit };
-	( 0.90 + (random 0.08) )	 
+	( 0.80 + (random 0.08) )	 
 };
 
 private _hitIndex = ((getAllHitPointsDamage _unit) select 1) find _bodyPart;

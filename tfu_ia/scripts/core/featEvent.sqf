@@ -127,8 +127,20 @@ if ( isNil "_pool" ) then {
 	true
 } count _pool;
 
+//special case, needed for revive system
 if ( CTXT_SERVER && (_when isEqualTo "join") && isMultiplayer ) then {
-	//special case, needed for revive system
-	["PLAYER", "join", _arg] call core_fnc_featEvent;
-	["HEADLESS", "join", _arg] call core_fnc_featEvent;
+	private _do = true;
+	if !( isDedicated ) then {
+		if ( isNil "FE_JOINED" ) then { 
+			FE_JOINED = [];
+			addMissionEventHandler["PlayerDisconnected", {FE_JOINED = FE_JOINED - [_this select 1];}];
+		};
+		private _uid = getPlayerUID (_arg select 0);
+		_do = !( _uid in FE_JOINED );
+		if ( _do ) then { FE_JOINED pushback _uid; }; 
+	};
+	if ( _do ) then {
+		["PLAYER", "join", _arg] call core_fnc_featEvent;
+		["HEADLESS", "join", _arg] call core_fnc_featEvent;
+	};
 };

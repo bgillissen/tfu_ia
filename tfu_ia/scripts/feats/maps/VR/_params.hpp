@@ -11,5 +11,5 @@ class VR_base {
 	title = "Virtual Reality Base Location";
 	values[] = {0,1,2};
 	texts[] = {"Base A", "Base B", "Base C"};
-	default = 0;
+	default = 1;
 };

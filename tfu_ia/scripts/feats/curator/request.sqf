@@ -48,4 +48,4 @@ if ( !isDedicated ) then {
 };
 
 _msg = ["curator", "ascendMsg"] call core_fnc_getSetting;
-[1, format[_msg, (count curatorAssigned), (TOT_CURATOR + 1), (name _player)], ["HQ", PLAYER_SIDE]] call global_chatServer;
+[1, format[_msg, (count curatorAssigned), (TOT_CURATOR + 1), (name _player)], ["HQ", PLAYER_SIDE]] call global_fnc_chat;

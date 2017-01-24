@@ -6,20 +6,20 @@ class revive {
 	showTimer = 1;			//show bleedout countdown
 	deadCam = 1;			//camera span + quotes when player die
 	class agony {
-		//display a message when a unit enter agony mode (0 disabled, 1 group, 2 side)
-		unitMode = 1;
+		//display a message when a unit enter agony mode (0 disabled, 1 side, 2 group)
+		unitMode = 2;
 		//message to display when a unit enter agony mode (%1 unit name, %2 grid position)
 		unitMsg = "%1 is down, he needs help at %2";
-		//display a message when all the units of a squad are in agony (0 disabled, 1 group, 2 side)
-		squadMode = 2;
+		//display a message when all the units of a squad are in agony (0 disabled, 1 side, 2 group)
+		squadMode = 1;
 		//message to display when a all the units of a squad are in agony (%1 squad name)
 		squadMsg = "%1 has been wiped!";
 		//change the leader of a squad when his leader go down (restore it when he is back up)
 		changeLeader = 1;
-		//display a message when teamleader goes down, disabled if changeLeader is disabled, otherwise (0 disabled, 1 group, 2 side)
-		leadMode = 1;
-		//message to display when teamleader goes down
-		leadMsg = "";
+		//display a message when teamleader goes down, disabled if changeLeader is disabled, otherwise (0 disabled, 1 side, 2 group)
+		leadMode = 2;
+		//message to display when teamleader goes down (%1 new TL)
+		leadMsg = "%1 is taking command";
 	};
 	class actions {
 		drag = "<t color='#FC9512'>Drag %1</t>";

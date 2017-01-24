@@ -7,7 +7,7 @@ if ( _action isEqualTo "drop" ) exitWith { (player isEqualTo _wounded) };
 
 if ( player distance _wounded > 3 ) exitWith { false };
 
-if !( isNull(player getVariable ["action", objNull]) ) exitWith { false };
+if !( isNull((player getVariable ["action", ["", objNull]]) select 1) ) exitWith { false };
 
 //if !( player getVariable ["agony", false] ) exitWith { false }; should not be needed, as i remove the actions when needed
 
@@ -37,7 +37,7 @@ if ( _action isEqualTo "heal" ) exitWith {
 };
 
 if ( _action isEqualTo "vehHeal" ) exitWith {
-	( count ((getPos player) nearEntities [(BV_medEvac + BV_landMedic), 10]) > 0 )
+	//( count ((getPos player) nearEntities [(BV_medEvac + BV_landMedic), 10]) > 0 )
 };
 
 true

@@ -7,8 +7,6 @@
  */
 params ["_quote", "_author", ["_duration", 10]];
 
-if (!isNil {uinamespace getvariable "reviveTitle"}) exitWith {};		// compatibility with original quote
-
 disableSerialization;
 
 private _layer = "reviveDeadLayer" call BIS_fnc_rscLayer;
