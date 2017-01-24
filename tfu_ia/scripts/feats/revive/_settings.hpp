@@ -34,6 +34,7 @@ class revive {
 	class heal {
 		canceled = "";
 		inprogress = "";
+		garbageLifeTime = 600;
 	};
 	ripMessage = "We lost %1, R.I.P";
 	dynamicText = "<t color='#fDCDBF6' font='PuristaMedium'>%1</t>";

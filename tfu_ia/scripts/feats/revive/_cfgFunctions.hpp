@@ -28,7 +28,11 @@ class revive {
 		class gotItem { file="feats\revive\gotItem.sqf"; };
 		class handleDamage { file="feats\revive\handleDamage.sqf"; };
 		class healAnimEH { file="feats\revive\healAnimEH.sqf"; };
-		class healCheck { file="feats\revive\healCheck.sqf"; };
+
+
+		class doHeal { file="feats\revive\doHeal.sqf"; };
+		class stopBleeding { file="feats\revive\stopBleeding.sqf"; };
+
 		class helpAnimEH { file="feats\revive\helpAnimEH.sqf"; };
 		class keyUnbind { file="feats\revive\keyUnbind.sqf"; };
 		class progressBar { file="feats\revive\progressBar.sqf"; };
@@ -38,7 +42,10 @@ class revive {
 		class sfxBloodParticles { file="feats\revive\sfxBloodParticles.sqf"; };
 		class sfxImpactEffect { file="feats\revive\sfxImpactEffect.sqf"; };
 		class sfxInjuredEffect { file="feats\revive\sfxInjuredEffect.sqf"; };
-		class spawnHealEquipment { file="feats\revive\spawnHealEquipment.sqf"; };
+/*
 		class stopUnitBleeding { file="feats\revive\stopUnitBleeding.sqf"; };
+		class healCheck { file="feats\revive\healCheck.sqf"; };
+		class spawnHealEquipment { file="feats\revive\spawnHealEquipment.sqf"; };
+*/
 	};
 };

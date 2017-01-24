@@ -6,6 +6,7 @@ reviveResistance = (["revive", "resistance"] call core_fnc_getSetting);
 reviveImpactEffect = [false, true] select (["revive", "impact"] call core_fnc_getSetting);
 reviveBloodParticle	= [false, true] select (["revive", "bloodParticle"] call core_fnc_getSetting);
 reviveBloodThreshold = ["revive", "bloodThreshold"] call core_fnc_getSetting;
+reviveHealEquipment = [];
 
 private _hitPoints = getAllHitPointsDamage player;
 player setVariable ["hitPoints", (_hitPoints select 2)];
@@ -33,15 +34,6 @@ reviveIconDistance = ["revive", "iconDistance"] call core_fnc_getParam;
 if ( reviveIconDistance > 0 && ((player getVariable "role") isEqualto "medic") ) then {
 	if ( isNil "reviveIconEH" ) then {
 		reviveIconEH  = addMissionEventHandler ["Draw3D", {call revive_fnc_drawIcon3D}];
-	};
-};
-
-if ( isNil "reviveHealEquipment" ) then { 
-	reviveHealEquipment = []; 
-};
-if ( isNil "reviveHealEquipmentThread" ) then {
-	reviveHealEquipmentThread = [] spawn { 
-		while {true} do { sleep 300;call revive_fnc_removeHealEquipment; } 
 	};
 };
 

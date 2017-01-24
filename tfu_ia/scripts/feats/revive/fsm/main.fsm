@@ -42,7 +42,7 @@ item37[] = {"releaseAnim",2,250,83.995102,168.827606,165.436188,196.480133,0.000
 item38[] = {"_",8,218,101.558319,113.964897,148.748993,144.566833,0.000000,""};
 item39[] = {"LandAnim",2,250,-287.419434,-154.481628,-206.596710,-127.677193,0.000000,"LandAnim"};
 item40[] = {"_",8,218,-181.394684,-92.794922,-134.204010,-62.192993,0.000000,""};
-item41[] = {"HealFinish",2,250,-514.396362,142.309082,-435.504303,170.660980,0.000000,"HealFinish"};
+item41[] = {"HealFinish",2,4346,-514.396362,142.309082,-435.504303,170.660980,0.000000,"HealFinish"};
 item42[] = {"_",8,218,-232.513489,122.909050,-185.322662,153.510986,0.000000,""};
 item43[] = {"aborded",4,218,-104.378807,260.042786,-35.987091,295.126495,1.000000,"aborded"};
 item44[] = {"helpAborded",2,250,-107.272186,182.245087,-32.753418,212.092041,0.000000,"helpAborded"};
@@ -69,7 +69,7 @@ item64[] = {"aborded",4,218,130.057159,209.738831,195.571106,249.640930,2.000000
 item65[] = {"dragFall",2,250,168.405197,153.803619,225.602875,178.112274,0.000000,"dragFall"};
 item66[] = {"inTheAir",4,218,-88.255188,-360.572083,-8.422668,-326.053131,2.000000,"inTheAir"};
 item67[] = {"giveChute",2,250,-225.593384,-360.446503,-151.074402,-325.666504,0.000000,"giveChute"};
-item68[] = {"onTheGround",4,4314,-361.399567,-317.658386,-250.157928,-278.152771,1.000000,"onTheGround"};
+item68[] = {"onTheGround",4,218,-361.399567,-317.658386,-250.157928,-278.152771,1.000000,"onTheGround"};
 item69[] = {"dummy_1",2,250,-333.528656,-260.952850,-277.619049,-231.342194,0.000000,"dummy"};
 item70[] = {"_",8,218,58.571442,-66.521301,105.762123,-35.919373,0.000000,""};
 item71[] = {"loaded",4,218,-46.440247,-126.715363,18.642494,-88.860413,10.000000,"loaded"};
@@ -167,7 +167,7 @@ link90[] = {69,58};
 link91[] = {70,4};
 link92[] = {71,52};
 globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-776.185364,659.543396,513.224304,-639.906189,1768,1420,1};
-window[] = {0,-1,-1,-1,-1,1878,286,3788,286,1,1786};
+window[] = {0,-1,-1,-32000,-32000,2043,179,3681,451,1,1786};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -189,6 +189,7 @@ class FSM
                          "" \n
                          "_inVeh = objNull;" \n
                          "_medEvac = objNull;" \n
+                         "_defibrilator = objNull;" \n
                          "" \n
                          "_lockTime = 0;" \n
                          "_preAnim = """";" \n
@@ -567,7 +568,6 @@ class FSM
                          "	player selectWeapon (primaryWeapon player);" \n
                          "	sleep 1;" \n
                          "	[player, ""medicStart""] call common_fnc_doGesture;" \n
-                         "	_unit call revive_fnc_spawnHealEquipment;" \n
                          "	reviveAnimDelay = time + 2;" \n
                          "	private _animEH = player addEventhandler [""AnimChanged"", {_this call revive_fnc_healAnimEH} ];" \n
                          "	player setVariable [""healAnimEH"", _animEH];" \n
@@ -575,25 +575,15 @@ class FSM
                          "	private _dir = 0;" \n
                          "	private _relpos = _healer worldToModel position _unit;" \n
                          "	if( (_relpos select 0) < 0 ) then {" \n
-                         "		_offset=[-0.2,0.7,0];" \n
-                         "		_dir=90;" \n
+                         "		_offset = [-0.2,0.7,0];" \n
+                         "		_dir = 90;" \n
                          "	} else {" \n
-                         "		_offset=[0.2,0.7,0];" \n
-                         "		_dir=270" \n
+                         "		_offset = [0.2,0.7,0];" \n
+                         "		_dir = 270;" \n
                          "	};" \n
                          "	_unit attachTo [player, _offset];" \n
-                         "	_unit setDir _dir;" \n
-                         "	" \n
-                         "	private _skillFactor = 0.2 - (random 0.1);" \n
-                         "	if ( player getVariable ""role"" isEqualto ""medic"" ) then { _skillFactor = 0.5; };" \n
-                         "" \n
-                         "	private _hitPoints = _unit getVariable ""hitPoints"";" \n
-                         "	private _damage = 0;" \n
-                         "	{ _damage = _damage + _x; } forEach _hitPoints;" \n
-                         "	_damage = _damage * _skillFactor;" \n
-                         "	if (_damage < 5) then { _damage = 5; };" \n
-                         "	[_unit, _damage] spawn revive_fnc_healCheck;	" \n
-                         "" \n
+                         "	[_unit, _dir] call common_fnc_setDir;" \n
+                         "	_unit spawn revive_fnc_doHeal;	" \n
                          "	if !( isNull (_unit getVariable [""medEvac"", objNull]) ) then {" \n
                          "		_medEvac = _unit getVariable ""medEvac"";" \n
                          "	};" \n
@@ -963,7 +953,7 @@ class FSM
                         name = "exit";
                         itemno = 27;
                         init = /*%FSM<STATEINIT""">*/"" \n
-                         "diag_log format[""FSM exit block: %1 --- %2"", _uid, _name];"/*%FSM</STATEINIT""">*/;
+                         "diag_log format[""FSM exit block: uid: %1"", _uid];"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -1409,7 +1399,6 @@ class FSM
                          "		_medEvac = objNull;" \n
                          "		_unit setVariable [""medEvac"", objNull, true];" \n
                          "	};" \n
-                         "	call revive_fnc_removeHealEquipment;" \n
                          "	reviveScore = [player, 1];" \n
                          "	publicVariableServer ""reviveScore"";" \n
                          "	detach player;	" \n
@@ -1491,7 +1480,7 @@ class FSM
                          "	player removeEventHandler [""AnimChanged"", (player getVariable ""healAnimEH"")];" \n
                          "	player setVariable [""healAnimEH"", nil];" \n
                          "	private _text = [""revive"", ""ripMessage""] call core_fnc_getSetting;" \n
-                         "	format[_text, (name _unit)] call revive_fnc_dynamicText; " \n
+                         "	format[_text, (name _unit)] call revive_fnc_dynamicText;" \n
                          "	[player, ""medicStop""] call common_fnc_doGesture;" \n
                          "	detach player;" \n
                          "};" \n
