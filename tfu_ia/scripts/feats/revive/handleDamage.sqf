@@ -28,7 +28,7 @@ private _hitIndex = ((getAllHitPointsDamage _unit) select 1) find _bodyPart;
 private _hitPoints = player getVariable "hitPoints";
 private _oldDamage = _hitPoints select _hitIndex;
 private _hitDamage = ( (_damage - _oldDamage) / reviveResistance );
-private _newDamage = _oldDamage + _hitDamage;
+private _newDamage = ( _oldDamage + _hitDamage );
 
 if ( _agony && !_hasMoved ) exitWith { _oldDamage };
 
@@ -37,16 +37,15 @@ if ( reviveImpactEffect ) then {
 };
 
 if ( _newDamage > reviveBloodThreshold && reviveBloodParticle ) then { 
-	[_bodyPart, _hitDamage] call revive_fnc_addUnitBleeding; 
+	_bodyPart call revive_fnc_addUnitBleeding; 
 };
 
-/* TODO use config threshold
 private _threshold = _bodyPart call {
 	if ( "body" isEqualTo _this ) exitWith { getNumber(configFile >> "CfgFirstAid" >> "CriticalBodyHit") };
-	...
+	if ( "head" isEqualTo _this ) exitWith { getNumber(configFile >> "CfgFirstAid" >> "CriticalHeadHit") };
+	if ( _this in DEADLYPARTS ) exitWith { 1 };
+	1.5
 };
- */
-private _threshold = 1;
 
 if ( _agony ) then {
 	_dead = ( (_newDamage >= _threshold) && ((toLower _bodypart) in DEADLYPARTS) );
@@ -77,11 +76,16 @@ if ( _dead ) then {
 	_hitPoints set [_hitIndex, _newDamage];
 	player setVariable ["hitPoints", _hitPoints, true];
 	if !( _agony ) then {
-		{ player setHitIndex [_forEachIndex, _x]; } forEach _hitPoints;
+		{
+			_max = ( (1 - (random 0.12) ) max _x );
+			player setHitIndex [_forEachIndex, _max]; 
+		} forEach _hitPoints;
 	};
 };
-	
-diag_log format ["%1 - Hit | part: %2 (%3) | arg: %4 | old: %5 | hit: %6 | new: %7 | agony: %8 | dead: %9", 
-	             diag_tickTime, _bodypart, _hitIndex, _damage, _oldDamage, _hitDamage, _newDamage, _agony, _dead];
 
-_newDamage
+private _return = ( (1 - (random 0.12)) max _newDamage );
+
+diag_log format ["%1 - Hit | part: %2 (%3) | arg: %4 | old: %5 | hit: %6 | new: %7 | return: %8 | agony: %9 | dead: %10", 
+	             diag_tickTime, _bodypart, _hitIndex, _damage, _oldDamage, _hitDamage, _newDamage, _return, _agony, _dead];
+
+_return

@@ -25,7 +25,7 @@ params ["_player"];
 
 private _msg = format[(["curator", "descendMsg"] call core_fnc_getSetting), 
                       (count curatorAssigned), 
-  	  	  	  	  	  TOT_CURATOR, 
+  	  	  	  	  	  (TOT_CURATOR + 1), 
   	  	  	  	  	  (name _player)];
 
 [1, _msg, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
