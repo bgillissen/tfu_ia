@@ -8,7 +8,7 @@ item3[] = {"fall_in_agony",4,218,37.045509,-347.231659,127.045647,-297.231659,0.
 item4[] = {"agony",2,250,-123.965309,-24.655529,-22.604576,41.624901,0.000000,"agony"};
 item5[] = {"dead",4,218,174.369385,-23.462677,279.038147,41.518860,100.000000,"dead"};
 item6[] = {"aborded",4,218,-243.500366,260.854919,-175.108643,295.938629,2.000000,"aborded"};
-item7[] = {"died",2,250,311.848206,-6.263855,378.181213,26.329773,0.000000,"died"};
+item7[] = {"died",2,4346,311.848206,-6.263855,378.181213,26.329773,0.000000,"died"};
 item8[] = {"still_there",4,218,308.512573,-134.117706,380.744202,-84.537109,0.000000,"still there"};
 item9[] = {"dragged",4,218,218.224716,121.383217,271.909821,156.019226,7.000000,"dragged"};
 item10[] = {"dragAnim",2,250,211.853806,216.571564,277.411346,244.224091,0.000000,"dragAnim"};
@@ -50,7 +50,7 @@ item45[] = {"_",8,218,-93.471130,118.042603,-46.280304,148.644531,0.000000,""};
 item46[] = {"healCanceled",2,250,-409.321503,337.182953,-322.530518,367.848083,0.000000,"healCanceled"};
 item47[] = {"helpCanceled",2,250,-175.625244,348.008087,-88.834259,378.673218,0.000000,"helpCanceled"};
 item48[] = {"carryCanceled",2,250,-41.567169,350.765411,45.223816,381.430542,0.000000,"carryCanceled"};
-item49[] = {"dragCanceled",2,4346,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
+item49[] = {"dragCanceled",2,250,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
 item50[] = {"vehHealed",4,218,-338.443512,125.723633,-251.887299,165.416794,3.000000,"vehHealed"};
 item51[] = {"unloaded",4,218,-141.299713,-130.410049,-61.231873,-87.233521,3.000000,"unloaded"};
 item52[] = {"VehAnim",2,250,48.853752,-121.756561,114.411293,-94.104034,0.000000,"VehAnim"};
@@ -166,7 +166,7 @@ link89[] = {69,54};
 link90[] = {69,58};
 link91[] = {70,4};
 link92[] = {71,52};
-globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-776.185364,659.543396,513.224304,-639.906189,1767,1374,1};
+globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-960.824158,594.585693,523.031921,-686.437805,1767,1374,1};
 window[] = {0,-1,-1,-32000,-32000,2123,156,3658,577,1,1785};
 *//*%FSM</HEAD>*/
 class FSM
@@ -415,8 +415,14 @@ class FSM
                          "	player setVariable [""hasMoved"", false, true];" \n
                          "	player setVariable [""hasShot"", false, true];" \n
                          "	player setVariable [""tf_unable_to_use_radio"", false];" \n
-                         "	(findDisplay 46) displayRemoveEventHandler [""keyDown"", reviveKeyEH];" \n
-                         "	player removeEventHandler [""FiredMan"", reviveShotEH];" \n
+                         "	if !( isNil ""reviveKeyEH"" ) then {" \n
+                         "		(findDisplay 46) displayRemoveEventHandler [""keyDown"", reviveKeyEH];" \n
+                         "		reviveKeyEH = nil;" \n
+                         "	};" \n
+                         "	if !( isNil ""reviveShotEH"" ) then {" \n
+                         "		player removeEventHandler [""FiredMan"", reviveShotEH];" \n
+                         "		reviveShotEH = nil;" \n
+                         "	};" \n
                          "	showHud true;" \n
                          "	disableUserInput false; " \n
                          "};" \n
@@ -436,16 +442,15 @@ class FSM
                          "_actionDrop = -1;" \n
                          "_actionHelp = -1;" \n
                          "" \n
-                         "/*" \n
                          "private _vName = format[""unload_%1"", (owner _unit)];" \n
                          "{" \n
-                         "	private _action = _veh getVariable _vName;" \n
+                         "	private _action = _x getVariable _vName;" \n
                          "	if !( isNil ""_action"" ) then {" \n
                          "		_x removeAction _action;" \n
                          "		_x setVariable [_vName, nil];" \n
                          "	};" \n
-                         "} count allVehicles;" \n
-                         "*/"/*%FSM</STATEINIT""">*/;
+                         "} count vehicles;" \n
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -661,7 +666,6 @@ class FSM
                          "	showHud false;" \n
                          "	disableUserInput true;" \n
                          "	[] spawn {" \n
-                         "		sleep 1;" \n
                          "		reviveKeyEH = (findDisplay 46) displayAddEventHandler [""KeyDown"", {_this call revive_fnc_keyUnbind}];" \n
                          "		reviveShotEH = player addEventHandler [""FiredMan"", {player setVariable [""hasShot"", true, true]}];" \n
                          "	};" \n
