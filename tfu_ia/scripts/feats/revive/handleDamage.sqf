@@ -16,17 +16,18 @@ if ( _dead ) exitWith {	0 };
 private _wasInAgony = _unit getVariable ["agony", false];
 private _hasMoved = _unit getVariable ["hasMoved", false];
 
+private _noDeathDamage = {
+	//80% of threshold  +  12% max of threshold
+	( (THRESHOLD * 0.8) + (THRESHOLD * (random 0.12)) )
+};
+
 if ( _bodypart isEqualTo "" ) exitWith {
-	if ( (_damage < THRESHOLD) || (_wasInAgony && _hasMoved) ) exitWith {
-		diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4 | out: %5", diag_tickTime, _damage, _wasInAgony, _hasMoved, _damage];
-		_damage 
+	private _return = call _noDeathDamage;
+	if ( (_damage < THRESHOLD) || (_wasInAgony && _hasMoved) ) then { 
+		_return = _damage; 
+	} else {
+		if ( _wasInAgony && !_hasMoved ) then { _return = (damage _unit); }; 
 	};
-	if ( _wasInAgony && !_hasMoved ) exitWith {
-		private _return = (damage _unit);
-		diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4 | out: %5", diag_tickTime, _damage, _wasInAgony, _hasMoved, _return];
-		_return 
-	};
-	private _return = ( 0.80 + (random 0.08) );
 	diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4 | out: %5", diag_tickTime, _damage, _wasInAgony, _hasMoved, _return];
 	_return
 };
@@ -66,20 +67,14 @@ private _tkScore = {
 	};
 };
 
-private _noDeathDamage = {
-	//80% of threshold  +  12% max of threshold
-	( (THRESHOLD * 0.8) + (THRESHOLD * (random 0.12)) )
-};
-
 if ( _dead ) exitWith {
 	call _tkScore;
 	_newDamage
 };
 
 private _return = _newDamage;
-if ( _return >= THRESHOLD ) then { 
-	_return = _newDamage call _noDeathDamage; 
-};
+if ( _return >= THRESHOLD ) then { _return = call _noDeathDamage; };
+
 if ( _agony && !_wasInAgony ) then {
 	_unit setVariable ["agony", true, true];
 	call _tkScore;
