@@ -48,7 +48,7 @@ if ( _newDamage > reviveBloodThreshold && reviveBloodParticle ) then {
 
 private _threshold = _bodyPart call {
 	if ( _this in DEADLYPARTS ) exitWith { THRESHOLD };
-	( THRESHOLD + (THRESOLD / 2) )
+	( THRESHOLD + (THRESHOLD / 2) )
 };
 
 if ( _wasInAgony && _hasMoved ) then {
