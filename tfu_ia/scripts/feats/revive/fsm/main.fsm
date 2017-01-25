@@ -24,13 +24,13 @@ item19[] = {"helpAnim",2,250,-165.316299,222.405670,-99.758766,250.058197,0.0000
 item20[] = {"finshed",4,218,-509.660919,211.494629,-441.269165,246.578339,1.000000,"finshed"};
 item21[] = {"dummy",2,250,-128.594116,-312.624390,-72.684509,-283.013733,0.000000,"dummy"};
 item22[] = {"noVeh",4,218,-58.701172,-260.710907,2.878456,-221.104309,10.000000,"noVeh"};
-item23[] = {"unloadAnim",2,250,-138.227722,-190.014008,-63.050720,-160.403351,0.000000,"unloadAnim"};
+item23[] = {"unloadAnim",2,4346,-138.227722,-190.014008,-63.050720,-160.403351,0.000000,"unloadAnim"};
 item24[] = {"waitRespawn",2,250,295.065308,-456.733276,392.030762,-426.133759,0.000000,"waitRespawn"};
 item25[] = {"alive_again",4,218,308.963318,-535.101379,378.275696,-482.961426,0.000000,"alive" \n "again"};
 item26[] = {"disconnected",4,218,392.137939,-15.117661,506.580566,31.510925,1.000000,"disconnected"};
 item27[] = {"exit",1,250,427.189209,-581.186462,472.247192,-546.167419,0.000000,"exit"};
 item28[] = {"setEntity",2,250,195.071350,-522.039734,257.661133,-498.688782,0.000000,"setEntity"};
-item29[] = {"healAborded",2,4346,-246.357178,183.063141,-171.838409,212.910095,0.000000,"healAborded"};
+item29[] = {"healAborded",2,250,-246.357178,183.063141,-171.838409,212.910095,0.000000,"healAborded"};
 item30[] = {"_",8,218,-123.592499,-243.430542,-76.401825,-212.828613,0.000000,""};
 item31[] = {"allowDamage",2,250,-447.308411,-91.307732,-351.609222,-62.071075,0.000000,"allowDamage"};
 item32[] = {"has_moved",4,218,-439.910706,43.573929,-359.842865,86.750458,8.000000,"has moved"};
@@ -164,7 +164,7 @@ link88[] = {68,57};
 link89[] = {69,4};
 link90[] = {70,51};
 globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-805.764343,688.355835,492.288208,-674.807373,1759,1374,1};
-window[] = {0,-1,-1,-32000,-32000,1972,507,3373,426,1,1777};
+window[] = {0,-1,-1,-32000,-32000,1812,497,3363,266,1,1777};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -182,7 +182,6 @@ class FSM
                          "_noTFAR = [false, true] select ([""reviveNoTFAR""] call core_fnc_getParam);" \n
                          "" \n
                          "_inVeh = objNull;" \n
-                         "_medEvac = objNull;" \n
                          "" \n
                          "_lockTime = 0;" \n
                          "_preAnim = """";" \n
@@ -881,11 +880,14 @@ class FSM
                          "" \n
                          "if ( !CTXT_PLAYER ) exitWith {};" \n
                          "" \n
-                         "private _veh = (vehicle _unit);" \n
                          "private _vName = format[""unload_%1"", (owner _unit)];" \n
-                         "private _action = _veh getVariable _vName;" \n
-                         "_veh removeAction _action;" \n
-                         "_veh setVariable [_vName, nil];" \n
+                         "{" \n
+                         "	private _action = _x getVariable _vName;" \n
+                         "	if !( isNil ""_action"" ) then {" \n
+                         "		_x removeAction _action;" \n
+                         "		_x setVariable [_vName, nil];" \n
+                         "	};" \n
+                         "} count vehicles;" \n
                          "" \n
                          "if ( player isEqualTo _unit ) exitWith {" \n
                          "	diag_log ""FSM unloadAnim block: player is wounded"";" \n
@@ -893,7 +895,9 @@ class FSM
                          "	//unAssignVehicle player;" \n
                          "	//player action [""eject"", (vehicle player)];" \n
                          "	moveOut player;" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "};" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
