@@ -14,23 +14,29 @@ private _dead = !(alive _unit);
 if ( _dead ) exitWith {	0 };
 
 private _wasInAgony = _unit getVariable ["agony", false];
-private _agony = _wasInAgony;
 private _hasMoved = _unit getVariable ["hasMoved", false];
 
 if ( _bodypart isEqualTo "" ) exitWith {
-	diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4", diag_tickTime, _damage, _agony, _hasMoved];
-	if ( _damage < THRESHOLD ||  (_agony && _hasMoved) ) exitWith { _damage };
-	if ( _agony && !_hasMoved ) exitWith { damage _unit };
-	( 0.80 + (random 0.08) )	 
+	if ( (_damage < THRESHOLD) || (_wasInAgony && _hasMoved) ) exitWith {
+		diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4 | out: %5", diag_tickTime, _damage, _wasInAgony, _hasMoved, _damage];
+		_damage 
+	};
+	if ( _wasInAgony && !_hasMoved ) exitWith {
+		private _return = (damage _unit);
+		diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4 | out: %5", diag_tickTime, _damage, _wasInAgony, _hasMoved, _return];
+		_return 
+	};
+	private _return = ( 0.80 + (random 0.08) );
+	diag_log format ["%1 - Unit Hit | damage: %2 | agony: %3 | hasMoved: %4 | out: %5", diag_tickTime, _damage, _wasInAgony, _hasMoved, _return];
+	_return
 };
 
 private _hitIndex = ((getAllHitPointsDamage _unit) select 1) find _bodyPart;
-private _hitPoints = player getVariable "hitPoints";
-private _oldDamage = _hitPoints select _hitIndex;
+private _unitHitPoints = _unit getVariable "hitPoints";
+private _unitOldDamage = _unitHitPoints select _hitIndex;
+private _oldDamage = _unit getHitIndex _hitIndex;
 private _hitDamage = ( (_damage - _oldDamage) / reviveResistance );
-private _newDamage = ( _oldDamage + _hitDamage );
-
-if ( _agony && !_hasMoved ) exitWith { _oldDamage };
+private _newDamage = ( _unitOldDamage + _hitDamage );
 
 if ( reviveImpactEffect ) then { 
 	_hitDamage call revive_fnc_sfxImpactEffect; 
@@ -41,17 +47,15 @@ if ( _newDamage > reviveBloodThreshold && reviveBloodParticle ) then {
 };
 
 private _threshold = _bodyPart call {
-	if ( "body" isEqualTo _this ) exitWith { getNumber(configFile >> "CfgFirstAid" >> "CriticalBodyHit") };
-	if ( "head" isEqualTo _this ) exitWith { getNumber(configFile >> "CfgFirstAid" >> "CriticalHeadHit") };
-	if ( _this in DEADLYPARTS ) exitWith { 1 };
-	1.5
+	if ( _this in DEADLYPARTS ) exitWith { THRESHOLD };
+	( THRESHOLD + (THRESOLD / 2) )
 };
 
-if ( _agony ) then {
+if ( _wasInAgony && _hasMoved ) then {
 	_dead = ( (_newDamage >= _threshold) && ((toLower _bodypart) in DEADLYPARTS) );
-} else {
-	_agony = ( _newDamage >= _threshold );
 };
+
+private _agony = (_wasInAgony || (_newDamage >= _threshold) );
 
 private _tkScore = {
 	if ( _source in allPlayers ) then {
@@ -62,30 +66,36 @@ private _tkScore = {
 	};
 };
 
-if ( _dead ) then {
-	_newDamage = _threshold;
-	call _tkScore;
-} else {
-	if ( _agony ) then {
-		_newDamage = _threshold - (random 0.12);
-		if !( _wasInAgony ) then {
-			_unit setVariable ["agony", true, true];
-			call _tkScore;		
-		};
-	};
-	_hitPoints set [_hitIndex, _newDamage];
-	player setVariable ["hitPoints", _hitPoints, true];
-	if !( _agony ) then {
-		{
-			_max = ( (1 - (random 0.12) ) max _x );
-			player setHitIndex [_forEachIndex, _max]; 
-		} forEach _hitPoints;
-	};
+private _noDeathDamage = {
+	//80% of threshold  +  12% max of threshold
+	( (THRESHOLD * 0.8) + (THRESHOLD * (random 0.12)) )
 };
 
-private _return = ( (1 - (random 0.12)) max _newDamage );
+if ( _dead ) exitWith {
+	call _tkScore;
+	_newDamage
+};
 
-diag_log format ["%1 - Hit | part: %2 (%3) | arg: %4 | old: %5 | hit: %6 | new: %7 | return: %8 | agony: %9 | dead: %10", 
+private _return = _newDamage;
+if ( _return >= THRESHOLD ) then { 
+	_return = _newDamage call _noDeathDamage; 
+};
+if ( _agony && !_wasInAgony ) then {
+	_unit setVariable ["agony", true, true];
+	call _tkScore;
+};
+
+_unitHitPoints set [_hitIndex, _newDamage];
+player setVariable ["hitPoints", _unitHitPoints, true];
+
+if !( _agony ) then {
+	{
+		if ( _x >= THRESHOLD ) then { _x = _x call _noDeathDamage; };
+		_unit setHitIndex [_forEachIndex, _x]; 
+	} forEach _unitHitPoints;
+};
+
+diag_log format ["%1 - Hit | part: %2 (%3) | arg: %4 | old: %5 | hit: %6 | new: %7 | out: %8 | agony: %9 | dead: %10", 
 	             diag_tickTime, _bodypart, _hitIndex, _damage, _oldDamage, _hitDamage, _newDamage, _return, _agony, _dead];
 
 _return
