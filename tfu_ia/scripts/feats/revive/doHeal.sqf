@@ -62,7 +62,7 @@ private _stopped = false;
 		sleep 0.2;
 		[_partName, ((((time - _startTime) / _totDamage ) min 1) * 100)] spawn revive_fnc_progressbar;
 	};
-	if ( !(player getVariable ["stopped", false]) && !(player getVariable "agony") && (alive player) && (alive _this) ) then {
+	if ( !(player getVariable ["stopped", false]) && !(player getVariable ["agony", false]) && (alive player) && (alive _this) ) then {
 		[_unit, (_hitParts select _forEachIndex)] call revive_fnc_stopBleeding;
 		_hitPoints set [_forEachIndex, 0];
 	} else {

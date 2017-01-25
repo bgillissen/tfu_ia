@@ -8,7 +8,7 @@ item3[] = {"fall_in_agony",4,218,37.045509,-347.231659,127.045647,-297.231659,0.
 item4[] = {"agony",2,250,-123.965309,-24.655529,-22.604576,41.624901,0.000000,"agony"};
 item5[] = {"dead",4,218,174.369385,-23.462677,279.038147,41.518860,100.000000,"dead"};
 item6[] = {"aborded",4,218,-243.500366,260.854919,-175.108643,295.938629,2.000000,"aborded"};
-item7[] = {"died",2,4346,311.848206,-6.263855,378.181213,26.329773,0.000000,"died"};
+item7[] = {"died",2,250,311.848206,-6.263855,378.181213,26.329773,0.000000,"died"};
 item8[] = {"still_there",4,218,308.512573,-134.117706,380.744202,-84.537109,0.000000,"still there"};
 item9[] = {"dragged",4,218,218.224716,121.383217,271.909821,156.019226,7.000000,"dragged"};
 item10[] = {"dragAnim",2,250,211.853806,216.571564,277.411346,244.224091,0.000000,"dragAnim"};
@@ -34,7 +34,7 @@ item29[] = {"healAborded",2,250,-246.357178,183.063141,-171.838409,212.910095,0.
 item30[] = {"_",8,218,-123.592499,-243.430542,-76.401825,-212.828613,0.000000,""};
 item31[] = {"allowDamage",2,250,-447.308411,-91.307732,-351.609222,-62.071075,0.000000,"allowDamage"};
 item32[] = {"has_moved",4,218,-439.910706,43.573929,-359.842865,86.750458,8.000000,"has moved"};
-item33[] = {"carryAnim",2,250,-32.776443,215.860382,32.781090,243.512909,0.000000,"carryAnim"};
+item33[] = {"carryAnim",2,4346,-32.776443,215.860382,32.781090,243.512909,0.000000,"carryAnim"};
 item34[] = {"helped",4,218,-158.957291,143.883224,-105.272179,178.519226,5.000000,"helped"};
 item35[] = {"dead",4,218,-27.517517,286.417084,29.698639,326.854187,100.000000,"dead"};
 item36[] = {"dead",4,218,215.619690,277.064911,272.835846,317.502014,100.000000,"dead"};
@@ -186,7 +186,6 @@ class FSM
                          "" \n
                          "_inVeh = objNull;" \n
                          "_medEvac = objNull;" \n
-                         "_defibrilator = objNull;" \n
                          "" \n
                          "_lockTime = 0;" \n
                          "_preAnim = """";" \n
@@ -202,6 +201,7 @@ class FSM
                          "_actionLoad = -1;" \n
                          "_actionVehHeal = -1;" \n
                          "" \n
+                         "_healAnimEH = -1;" \n
                          "_dragAnimThread = scriptNull;" \n
                          "_carryAnimThread = scriptNull;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -364,7 +364,7 @@ class FSM
                                         priority = 4.000000;
                                         to="healAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"( !(_unit getVariable [""healer"", []] isEqualTo []) && (isNull (_unit getVariable [""medEvac"", objNull])) )"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"( !(isNull (_unit getVariable [""healer"", objNull])) && (isNull (_unit getVariable [""medEvac"", objNull])) )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -375,7 +375,7 @@ class FSM
                                         priority = 3.000000;
                                         to="healAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"( !(_unit getVariable [""healer"", []] isEqualTo []) && !(isNull (_unit getVariable [""medEvac"", objNull])) )"/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"( !(isNull (_unit getVariable [""healer"", objNull])) && !(isNull (_unit getVariable [""medEvac"", objNull])) )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -579,24 +579,18 @@ class FSM
                          "	sleep 1;" \n
                          "	[player, ""medicStart""] call common_fnc_doGesture;" \n
                          "	reviveAnimDelay = time + 2;" \n
-                         "	private _animEH = player addEventhandler [""AnimChanged"", {_this call revive_fnc_healAnimEH} ];" \n
-                         "	player setVariable [""healAnimEH"", _animEH];" \n
-                         "	private _offset = [0,0,0]; " \n
-                         "	private _dir = 0;" \n
+                         "	_healAnimEH = player addEventhandler [""AnimChanged"", {_this call revive_fnc_healAnimEH} ];" \n
+                         "	private _offset = [0.2, 0.7, 0]; " \n
+                         "	private _dir = 270;" \n
                          "	private _relpos = _healer worldToModel position _unit;" \n
                          "	if( (_relpos select 0) < 0 ) then {" \n
-                         "		_offset = [-0.2,0.7,0];" \n
+                         "		_offset = [-0.2, 0.7, 0];" \n
                          "		_dir = 90;" \n
-                         "	} else {" \n
-                         "		_offset = [0.2,0.7,0];" \n
-                         "		_dir = 270;" \n
                          "	};" \n
                          "	_unit attachTo [player, _offset];" \n
                          "	[_unit, _dir] call common_fnc_setDir;" \n
                          "	_unit spawn revive_fnc_doHeal;	" \n
-                         "	if !( isNull (_unit getVariable [""medEvac"", objNull]) ) then {" \n
-                         "		_medEvac = _unit getVariable ""medEvac"";" \n
-                         "	};" \n
+                         "	_medEvac = _unit getVariable [""medEvac"", objNull];" \n
                          "};" \n
                          "" \n
                          "if ( _unit isEqualTo player ) exitWith {" \n
@@ -1031,10 +1025,13 @@ class FSM
                          "" \n
                          "diag_log format [""FSM healAborded block: %1 --- %2"", _unit, _healer];" \n
                          "" \n
+                         "_unit setVariable [""healer"", objNull];" \n
+                         "" \n
                          "if ( _healer isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM healAborded block: player is healer"";" \n
-                         "	player setVariable [""action"", objNull];" \n
-                         "	player removeEventHandler [""AnimChanged"", player getVariable ""healAnimEH""];" \n
+                         "	player setVariable [""action"", ["""", objNull]];" \n
+                         "	player removeEventHandler _healAnimEH;" \n
+                         "	_healAnimEH = -1;" \n
                          "	""Healing process has been interrupted"" call revive_fnc_dynamictext;" \n
                          "	detach player;" \n
                          "" \n
@@ -1042,6 +1039,10 @@ class FSM
                          "	diag_log ""FSM healAborded block: player is wounded"";" \n
                          "	player setVariable [""healer"", ObjNull, true];" \n
                          "	detach player;" \n
+                         "};" \n
+                         "" \n
+                         "_unit spawn {" \n
+                         "	_this setVariable [""healer"", objNull, true];" \n
                          "};" \n
                          "" \n
                          "" \n
@@ -1136,8 +1137,23 @@ class FSM
                          "		( !(alive player) || !(alive _carrier) || (_carrier getVariable [""agony"", false]) || (time > _limit) )" \n
                          "	};" \n
                          "" \n
-                         "	if ( (alive player) && ( !(alive _carrier) || (_carrier getVariable [""agony"", false]) ) ) then {" \n
+                         "	if ( (alive player) && ( !(alive _carrier) || (_carrier getVariable [""agony"", false]) ) ) exitWith {" \n
                          "		[player, ""agonyStart"", 1] call common_fnc_doGesture;" \n
+                         "	};" \n
+                         "	if ( alive player ) then {" \n
+                         "		_carryAnimThread = _carrier spawn {" \n
+                         "			private _carrier = _this;" \n
+                         "			sleep 1;" \n
+                         "			while { !(isNull _carrier) } do {" \n
+                         "				if ( (speed _carrier) > 0 ) then {" \n
+                         "					//[player, ""AinjPpneMrunSnonWnonDb"", 0] call common_fnc_doAnim;" \n
+                         "				} else {" \n
+                         "					//[player, ""AinjPpneMrunSnonWnonDb_still"", 0] call common_fnc_doAnim;" \n
+                         "				};" \n
+                         "				sleep 2;" \n
+                         "				_carrier = _unit getVariable [""carrier"", objNull];" \n
+                         "			};" \n
+                         "		};" \n
                          "	};" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -1372,7 +1388,7 @@ class FSM
                          "" \n
                          "diag_log format [""FSM healFinish block: %1 --- %2 --- %3"", _unit, _healer, _medEvac];" \n
                          "" \n
-                         "_unit call revive_fnc_stopUnitBleeding;" \n
+                         "_unit call revive_fnc_stopBleeding;" \n
                          "_unit setCaptive false;" \n
                          "_unit allowDamage true;" \n
                          "_hasMoved = false;" \n
@@ -1417,13 +1433,13 @@ class FSM
                          "if ( _healer isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM healFinish block: player is healer"";" \n
                          "	[player, ""medicStop""] call common_fnc_doGesture;" \n
-                         "	player setVariable [""action"", []];" \n
+                         "	player setVariable [""action"", ["""", objNull]];" \n
+                         "	player removeEventHandler _healAnimEH;" \n
+                         "	_healAnimEH = -1;" \n
                          "	_unit setVariable [""healer"", objNull, true];" \n
-                         "	_unit setVariable [""medEvac"", objNull, true];" \n
-                         "	if ( isNull _medEvac ) then { " \n
+                         "	if ( isNull (_unit getVariable [""medEvac"", objNull]) ) then { " \n
                          "		_unit call revive_fnc_removeFaks; " \n
                          "	} else {" \n
-                         "		_medEvac = objNull;" \n
                          "		_unit setVariable [""medEvac"", objNull, true];" \n
                          "	};" \n
                          "	reviveScore = [player, 1];" \n
@@ -1776,7 +1792,11 @@ class FSM
                 {
                         name = "carryFall";
                         itemno = 63;
-                        init = /*%FSM<STATEINIT""">*/"diag_log format [""FSM carryFall block: %1 --- %2"", _unit, _carrier];" \n
+                        init = /*%FSM<STATEINIT""">*/"private _carrier = _unit getVariable [""carrier"", objNull];" \n
+                         "" \n
+                         "diag_log format [""FSM carryFall block: %1 --- %2"", _unit, _carrier];" \n
+                         "" \n
+                         "_unit setVariable [""carrier"", objNull];" \n
                          "" \n
                          "if ( _unit isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM carryFall block: player is wounded"";" \n
@@ -1790,6 +1810,10 @@ class FSM
                          "		[player, ""AinjPfalMstpSnonWrflDnon_carried_Down"", 2] call common_fnc_doAnim;" \n
                          "		_lockTime = 5;" \n
                          "	};" \n
+                         "};" \n
+                         "" \n
+                         "_unit spawn {" \n
+                         "	_this setVariable [""carrier"", objNull, true];" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
