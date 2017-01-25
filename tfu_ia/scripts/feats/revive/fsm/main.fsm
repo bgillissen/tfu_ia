@@ -166,8 +166,8 @@ link89[] = {69,54};
 link90[] = {69,58};
 link91[] = {70,4};
 link92[] = {71,52};
-globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-776.185364,659.543396,513.224304,-639.906189,1768,1420,1};
-window[] = {0,-1,-1,-32000,-32000,1975,187,3689,383,1,1786};
+globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-776.185364,659.543396,513.224304,-639.906189,1767,1374,1};
+window[] = {0,-1,-1,-32000,-32000,2123,156,3658,577,1,1785};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -200,7 +200,10 @@ class FSM
                          "_actionHeal = -1;" \n
                          "_actionHelp = -1;" \n
                          "_actionLoad = -1;" \n
-                         "_actionVehHeal = -1;"/*%FSM</STATEINIT""">*/;
+                         "_actionVehHeal = -1;" \n
+                         "" \n
+                         "_dragAnimThread = scriptNull;" \n
+                         "_carryAnimThread = scriptNull;"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -492,18 +495,21 @@ class FSM
                          "" \n
                          "if ( _unit isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM dragAnim block: player is wounded"";" \n
-                         "	if ( _hasMoved ) then {" \n
-                         "		[player, ""AinjPpneMrunSnonWnonDb_grab"", 2] call common_fnc_doAnim;" \n
-                         "	} else {" \n
-                         "		//got to find an other animation," \n
-                         "		//this one move _wounded to belly before moving it back on the back before grab " \n
-                         "		[player, ""AinjPpneMrunSnonWnonDb_grab"", 2] call common_fnc_doAnim;" \n
-                         "	};" \n
+                         "	[player, ""AinjPpneMrunSnonWnonDb_grab"", 2] call common_fnc_doAnim; //1s" \n
                          "	player attachTo [_dragger,  [0, 1.1, 0.092]];" \n
                          "	[player, 180] call common_fnc_setDir;" \n
-                         "	[] spawn {" \n
+                         "	_dragAnimThread = _dragger spawn {" \n
+                         "		private _dragger = _this;" \n
                          "		sleep 1;" \n
-                         "		[player, ""AinjPpneMrunSnonWnonDb_still"", 0] call common_fnc_doAnim;" \n
+                         "		while { !(isNull _dragger) } do {" \n
+                         "			if ( (speed _dragger) > 0 ) then {" \n
+                         "				[player, ""AinjPpneMrunSnonWnonDb"", 0] call common_fnc_doAnim;" \n
+                         "			} else {" \n
+                         "				[player, ""AinjPpneMrunSnonWnonDb_still"", 0] call common_fnc_doAnim;" \n
+                         "			};" \n
+                         "			sleep 2;" \n
+                         "			_dragger = _unit getVariable [""dragger"", objNull];" \n
+                         "		};" \n
                          "	};" \n
                          "};" \n
                          ""/*%FSM</STATEINIT""">*/;
@@ -1195,6 +1201,7 @@ class FSM
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM releaseAnim block: player is wounded"";" \n
                          "	if ( _isDrag ) then {" \n
+                         "		terminate _dragAnimThread;" \n
                          "		if ( _hasMoved ) then {" \n
                          "			[player, ""AinjPpneMrunSnonWnonDb_release"", 2] call common_fnc_doAnim;" \n
                          "		} else {" \n
@@ -1203,16 +1210,17 @@ class FSM
                          "		detach player;" \n
                          "	};" \n
                          "	if ( _isCarry ) then {" \n
+                         "		terminate _carryAnimThread;" \n
                          "		if ( _hasMoved ) then {" \n
                          "			[player, ""AinjPfalMstpSnonWrflDnon_AmovPpneMstpSrasWrflDnon_injured"", 2] call common_fnc_doAnim;" \n
                          "			detach player;" \n
                          "		} else {" \n
                          "			//[player, ""agonyStart"", 1] call common_fnc_doGesture;" \n
-                         "			[player, ""AinjPfalMstpSnonWrflDnon_carried_Down"", 2] call common_fnc_doAnim;" \n
+                         "			[player, ""AinjPfalMstpSnonWrflDnon_carried_Down"", 2] call common_fnc_doAnim;	//5s" \n
                          "			5 spawn {" \n
                          "				sleep _this;" \n
                          "				[player, ""die"", 1] call common_fnc_doGesture;" \n
-                         "				detach player;" \n
+                         "				detach player;	" \n
                          "			};" \n
                          "		};" \n
                          "	};" \n
@@ -1233,7 +1241,6 @@ class FSM
                          "};" \n
                          "" \n
                          "_unit spawn {" \n
-                         "	sleep 1;" \n
                          "	_this setVariable [""droper"", objNull, true];" \n
                          "	_this setVariable [""carrier"", objNull, true];" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
@@ -1591,6 +1598,7 @@ class FSM
                          "if ( _unit isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM carryCanceled block: player is wounded"";" \n
                          "	player setVariable [""carrier"", objNull, true];" \n
+                         "	terminate _carryAnimThread;" \n
                          "	detach player;" \n
                          "};" \n
                          "" \n
@@ -1636,11 +1644,11 @@ class FSM
                          "" \n
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM dragCanceled block: player is wounded"";" \n
+                         "	terminate _dragAnimThread;" \n
                          "	detach player;" \n
                          "};" \n
                          "" \n
                          "_unit spawn {" \n
-                         "	sleep 1;" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -1811,6 +1819,7 @@ class FSM
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM dragFall block: player is wounded"";" \n
                          "	player setVariable [""dragger"", ObjNull, true];" \n
+                         "	terminate _dragAnimThread;" \n
                          "	disableUserInput true;" \n
                          "	[player, ""AinjPpneMrunSnonWnonDb_release"", 2] call common_fnc_doAnim; //1s" \n
                          "	_lockTime = 1.1;" \n
@@ -1826,7 +1835,6 @@ class FSM
                          "};" \n
                          "" \n
                          "_unit spawn {" \n
-                         "	sleep 1;" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
