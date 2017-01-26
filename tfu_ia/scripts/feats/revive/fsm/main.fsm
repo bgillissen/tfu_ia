@@ -32,7 +32,7 @@ item27[] = {"exit",1,250,427.189209,-581.186462,472.247192,-546.167419,0.000000,
 item28[] = {"setEntity",2,250,195.071350,-522.039734,257.661133,-498.688782,0.000000,"setEntity"};
 item29[] = {"healAborded",2,250,-246.357178,183.063141,-171.838409,212.910095,0.000000,"healAborded"};
 item30[] = {"_",8,218,-123.592499,-243.430542,-76.401825,-212.828613,0.000000,""};
-item31[] = {"weaponCheck",2,4346,-267.774597,-213.004547,-173.983368,-185.352020,0.000000,"weaponCheck"};
+item31[] = {"weaponCheck",2,250,-267.774597,-213.004547,-173.983368,-185.352020,0.000000,"weaponCheck"};
 item32[] = {"allowDamage",2,250,-447.308411,-91.307732,-351.609222,-62.071075,0.000000,"allowDamage"};
 item33[] = {"has_moved",4,218,-439.910706,43.573929,-359.842865,86.750458,8.000000,"has moved"};
 item34[] = {"carryAnim",2,250,-32.776443,215.860382,32.781090,243.512909,0.000000,"carryAnim"};
@@ -789,7 +789,7 @@ class FSM
                          "" \n
                          "diag_log format [""FSM helpAnim block: %1 --- %2"", _unit, _helper];" \n
                          "" \n
-                         "if ( _hepler isEqualTo player ) exitWith {" \n
+                         "if ( _helper isEqualTo player ) exitWith {" \n
                          "	diag_log ""FSM healAnim block: player is helper"";" \n
                          "	player selectWeapon (primaryWeapon player);" \n
                          "	sleep 1;" \n
