@@ -32,7 +32,7 @@ item27[] = {"exit",1,250,427.189209,-581.186462,472.247192,-546.167419,0.000000,
 item28[] = {"setEntity",2,250,195.071350,-522.039734,257.661133,-498.688782,0.000000,"setEntity"};
 item29[] = {"healAborded",2,250,-246.357178,183.063141,-171.838409,212.910095,0.000000,"healAborded"};
 item30[] = {"_",8,218,-123.592499,-243.430542,-76.401825,-212.828613,0.000000,""};
-item31[] = {"weaponCheck",2,250,-267.774597,-213.004547,-173.983368,-185.352020,0.000000,"weaponCheck"};
+item31[] = {"weaponCheck",2,4346,-267.774597,-213.004547,-173.983368,-185.352020,0.000000,"weaponCheck"};
 item32[] = {"allowDamage",2,250,-447.308411,-91.307732,-351.609222,-62.071075,0.000000,"allowDamage"};
 item33[] = {"has_moved",4,218,-439.910706,43.573929,-359.842865,86.750458,8.000000,"has moved"};
 item34[] = {"carryAnim",2,250,-32.776443,215.860382,32.781090,243.512909,0.000000,"carryAnim"};
@@ -43,7 +43,7 @@ item38[] = {"releaseAnim",2,250,83.995102,168.827606,165.436188,196.480133,0.000
 item39[] = {"_",8,218,101.558319,113.964897,148.748993,144.566833,0.000000,""};
 item40[] = {"LandAnim",2,250,-262.786377,-150.234558,-181.963654,-123.430107,0.000000,"LandAnim"};
 item41[] = {"_",8,218,-181.394684,-92.794922,-134.204010,-62.192993,0.000000,""};
-item42[] = {"HealFinish",2,4346,-514.396362,142.309082,-435.504303,170.660980,0.000000,"HealFinish"};
+item42[] = {"HealFinish",2,250,-514.396362,142.309082,-435.504303,170.660980,0.000000,"HealFinish"};
 item43[] = {"_",8,218,-232.513489,122.909050,-185.322662,153.510986,0.000000,""};
 item44[] = {"aborded",4,218,-104.378807,260.042786,-35.987091,295.126495,1.000000,"aborded"};
 item45[] = {"helpAborded",2,250,-107.272186,182.245087,-32.753418,212.092041,0.000000,"helpAborded"};
@@ -52,16 +52,16 @@ item47[] = {"healCanceled",2,250,-351.561340,338.032379,-264.770355,368.697510,0
 item48[] = {"helpCanceled",2,250,-175.625244,348.008087,-88.834259,378.673218,0.000000,"helpCanceled"};
 item49[] = {"carryCanceled",2,250,-41.567169,350.765411,45.223816,381.430542,0.000000,"carryCanceled"};
 item50[] = {"dragCanceled",2,250,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
-item51[] = {"_",8,218,-296.873016,-178.025665,-271.767059,-160.164978,0.000000,""};
+item51[] = {"nextFrame",4,218,-348.734192,-189.170258,-264.316132,-151.512512,11.000000,"nextFrame"};
 item52[] = {"unloaded",4,218,-141.299713,-130.410049,-61.231873,-87.233521,3.000000,"unloaded"};
 item53[] = {"VehAnim",2,250,48.853752,-121.756561,114.411293,-94.104034,0.000000,"VehAnim"};
 item54[] = {"_",8,218,-70.612701,443.984406,-23.421997,474.586334,0.000000,""};
-item55[] = {"onLand",4,218,-267.608459,-270.296051,-177.325836,-224.818909,11.000000,"onLand"};
+item55[] = {"onLand",4,218,-256.856812,-268.341156,-184.167755,-233.615662,11.000000,"onLand"};
 item56[] = {"inVeh",4,218,37.635437,-192.399475,126.364471,-156.296051,10.000000,"inVeh"};
 item57[] = {"found",4,218,190.346344,-473.349335,263.466217,-429.775452,0.000000,"found"};
 item58[] = {"Not_found",4,218,184.983063,-585.954590,266.669739,-540.477051,0.000000,"Not found"};
-item59[] = {"inWater",4,218,-409.430420,-214.249054,-319.147797,-168.771912,12.000000,"inWater"};
-item60[] = {"WaterAnim",2,250,-402.747894,-149.528931,-326.165497,-121.028320,0.000000,"WaterAnim"};
+item59[] = {"inWater",4,218,-433.865967,-219.136139,-362.154327,-183.433167,12.000000,"inWater"};
+item60[] = {"WaterAnim",2,250,-435.980194,-149.528931,-359.397797,-121.028320,0.000000,"WaterAnim"};
 item61[] = {"has_shot",4,218,-325.217529,-12.482407,-245.149689,30.694122,9.000000,"has shot"};
 item62[] = {"notCaptive",2,250,-332.681122,-66.022301,-236.981934,-36.785645,0.000000,"notCaptive"};
 item63[] = {"aborded",4,218,46.650429,208.903076,113.764648,248.829224,2.000000,"aborded"};
@@ -167,8 +167,8 @@ link89[] = {70,55};
 link90[] = {70,59};
 link91[] = {71,4};
 link92[] = {72,53};
-globals[] = {0.000000,0,0,0,0,640,480,1,162,6316128,1,-918.344727,800.935120,580.226685,-762.746765,1759,1374,1};
-window[] = {0,-1,-1,-32000,-32000,2123,311,3177,577,1,1777};
+globals[] = {0.000000,0,0,0,0,640,480,1,163,6316128,1,-918.344727,800.935120,580.226685,-762.746765,1759,1374,1};
+window[] = {0,-1,-1,-32000,-32000,2089,385,3251,543,1,1777};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -1086,29 +1086,34 @@ class FSM
                          "" \n
                          "diag_log ""FSM weaponCheck block: player is wounded"";" \n
                          "	" \n
+                         "_lastTick = 0;" \n
                          "private _primWeapon = primaryWeapon player;" \n
                          "" \n
                          "if ( _primWeapon isEqualTo """" ) exitWith {" \n
                          "	diag_log ""FSM weaponCheck block: giving/switching to FakeWeapon"";" \n
                          "	player addWeapon ""FakeWeapon"";" \n
                          "	player selectWeapon ""FakeWeapon"";" \n
+                         "	_lastTick = diag_tickTime;" \n
                          "};" \n
                          "" \n
                          "if !( _primWeapon isEqualTo (currentWeapon player) ) exitWith {" \n
                          "	diag_log ""FSM weaponCheck block: switching to primary weapon"";" \n
                          "	player selectWeapon _primWeapon;" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "	_lastTick = diag_tickTime;" \n
+                         "};" \n
+                         "" \n
+                         ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
-                                /*%FSM<LINK "_">*/
-                                class _
+                                /*%FSM<LINK "nextFrame">*/
+                                class nextFrame
                                 {
                                         itemno = 51;
-                                        priority = 0.000000;
+                                        priority = 11.000000;
                                         to="LandAnim";
-                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/"(vehicle _unit isEqualTo _unit)"/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"( diag_tickTime > _lastTick )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -1383,7 +1388,6 @@ class FSM
                          "			};" \n
                          "		} forEach _anims;" \n
                          "	};	" \n
-                         "	_lockTime = 0.2 + _animTime;" \n
                          "};" \n
                          "//drag to agony" \n
                          "if ( _action isEqualTo ""drag"" ) then {" \n
@@ -1407,11 +1411,12 @@ class FSM
                          "	if ( _curAnim isEqualTo ""AcinPknlMwlkSrasWrflDb"" ) then {" \n
                          "		[player, ""AcinPknlMwlkSlowWrflDb_death"", 2] call common_fnc_doAnim;" \n
                          "		_animTime = 1;" \n
-                         "	};" \n
-                         "	_lockTime = 0.2 + _animTime;" \n
+                         "	};	" \n
                          "};" \n
                          "" \n
                          "player setVariable [""action"", ["""", objNull]];" \n
+                         "" \n
+                         "_lockTime = 0.2 + _animTime;" \n
                          "" \n
                          "_animTime spawn {" \n
                          "	sleep _this;" \n
@@ -1932,6 +1937,7 @@ class FSM
                          "	player setVariable [""dragger"", ObjNull, true];" \n
                          "	terminate _dragAnimThread;" \n
                          "	disableUserInput true;" \n
+                         "	detach player;" \n
                          "	[player, ""AinjPpneMrunSnonWnonDb_release"", 2] call common_fnc_doAnim; //1s" \n
                          "	_lockTime = 1.1;" \n
                          "	if ( _hasMoved ) then {" \n
@@ -1939,13 +1945,13 @@ class FSM
                          "		[] spawn	{" \n
                          "			sleep 1.1;" \n
                          "			[player, ""AinjPpneMstpSnonWnonDnon_rolltofront"", 2] call common_fnc_doAnim; //0.5s" \n
-                         "			sleep 0.5;" \n
-                         "			detach player;" \n
+                         "			sleep 0.5;		" \n
                          "		};" \n
                          "	};" \n
                          "};" \n
                          "" \n
                          "_unit spawn {" \n
+                         "	sleep 2;" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
                          "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
