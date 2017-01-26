@@ -12,7 +12,7 @@ item7[] = {"died",2,250,311.848206,-6.263855,378.181213,26.329773,0.000000,"died
 item8[] = {"still_there",4,218,308.512573,-134.117706,380.744202,-84.537109,0.000000,"still there"};
 item9[] = {"dragged",4,218,218.224716,121.383217,271.909821,156.019226,7.000000,"dragged"};
 item10[] = {"dragAnim",2,250,211.853806,216.571564,277.411346,244.224091,0.000000,"dragAnim"};
-item11[] = {"released",4,218,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
+item11[] = {"released",4,4314,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
 item12[] = {"healed",4,218,-335.148163,141.623169,-281.463013,176.259262,4.000000,"healed"};
 item13[] = {"carried",4,218,-27.164322,88.637253,26.520790,123.273247,6.000000,"carried"};
 item14[] = {"healAnim",2,250,-337.987732,214.730316,-279.013763,244.577271,0.000000,"healAnim"};
@@ -47,7 +47,7 @@ item42[] = {"HealFinish",2,250,-514.396362,142.309082,-435.504303,170.660980,0.0
 item43[] = {"_",8,218,-232.513489,122.909050,-185.322662,153.510986,0.000000,""};
 item44[] = {"aborded",4,218,-104.378807,260.042786,-35.987091,295.126495,1.000000,"aborded"};
 item45[] = {"helpAborded",2,250,-107.272186,182.245087,-32.753418,212.092041,0.000000,"helpAborded"};
-item46[] = {"_",8,218,-93.471130,118.042603,-46.280304,148.644531,0.000000,""};
+item46[] = {"_",8,218,-92.493713,119.997498,-45.302887,150.599426,0.000000,""};
 item47[] = {"healCanceled",2,250,-351.561340,338.032379,-264.770355,368.697510,0.000000,"healCanceled"};
 item48[] = {"helpCanceled",2,250,-175.625244,348.008087,-88.834259,378.673218,0.000000,"helpCanceled"};
 item49[] = {"carryCanceled",2,250,-41.567169,350.765411,45.223816,381.430542,0.000000,"carryCanceled"};
@@ -168,7 +168,7 @@ link90[] = {70,59};
 link91[] = {71,4};
 link92[] = {72,53};
 globals[] = {0.000000,0,0,0,0,640,480,1,163,6316128,1,-918.344727,800.935120,580.226685,-762.746765,1759,1374,1};
-window[] = {0,-1,-1,-32000,-32000,2089,385,3251,543,1,1777};
+window[] = {0,-1,-1,-32000,-32000,2053,847,3713,507,1,1777};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -500,14 +500,12 @@ class FSM
                          "		while { !isNull(_dragger) } do {" \n
                          "			if ( (speed _dragger) isEqualTo  0 ) then {" \n
                          "				if !( _still ) then {" \n
-                         "					systemChat ""still"";" \n
                          "					[player, ""AinjPpneMrunSnonWnonDb_still"", 1] call common_fnc_doAnim;" \n
                          "					_still = true;" \n
                          "				};" \n
                          "			} else {" \n
                          "				if ( _still || (time > _nextMove) )then {" \n
-                         "					systemchat ""moving"";" \n
-                         "					[player, ""AinjPpneMrunSnonWnonDb"", 1] call common_fnc_doAnim;" \n
+                         "					[player, ""AinjPpneMrunSnonWnonDb"", 1] call common_fnc_doAnim; //1s" \n
                          "					_nextMove = time + 1; " \n
                          "					_still = false;" \n
                          "				};" \n
@@ -516,7 +514,6 @@ class FSM
                          "			_dragger = player getVariable [""dragger"", objNull];" \n
                          "		};" \n
                          "	};" \n
-                         "" \n
                          "};" \n
                          ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -553,10 +550,7 @@ class FSM
                                         priority = 1.000000;
                                         to="releaseAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) )/* && " \n
-                                         "	({ !(alive (_unit getVariable _x)) } count [""dragger"", ""carrier""] == 0) &&" \n
-                                         "	({ (_unit getVariable _x) getVariable [""agony"", false] } count [""dragger"", ""carrier""] == 0) )*/" \n
-                                         ""/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -1048,13 +1042,17 @@ class FSM
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM healAborded block: player is wounded"";" \n
                          "	detach player;" \n
+                         "	player setVariable [""healer"", objNull, true];" \n
+                         "	player setVariable [""medEvac"", objNull, true];" \n
+                         "" \n
                          "};" \n
                          "" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""healer"", objNull, true];" \n
                          "	_this setVariable [""medEvac"", objNull, true];" \n
                          "};" \n
-                         "" \n
+                         "*/" \n
                          "" \n
                          ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -1246,10 +1244,7 @@ class FSM
                                         priority = 1.000000;
                                         to="releaseAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) )/* && " \n
-                                         "	({ !(alive (_unit getVariable _x)) } count [""dragger"", ""carrier""] == 0) &&" \n
-                                         "	({ (_unit getVariable _x) getVariable [""agony"", false] } count [""dragger"", ""carrier""] == 0) )*/" \n
-                                         ""/*%FSM</CONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/"( !(isNull(_unit getVariable [""droper"", objNull])) )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -1300,6 +1295,10 @@ class FSM
                          "			};" \n
                          "		};" \n
                          "	};" \n
+                         "	player setVariable [""droper"", objNull, true];" \n
+                         "	player setVariable [""carrier"", objNull, true];" \n
+                         "	player setVariable [""dragger"", objNull, true];" \n
+                         "" \n
                          "};" \n
                          "" \n
                          "if ( _droper isEqualTo player ) then {" \n
@@ -1317,13 +1316,14 @@ class FSM
                          "	};" \n
                          "	detach player;" \n
                          "};" \n
-                         "" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	sleep 2;" \n
                          "	_this setVariable [""droper"", objNull, true];" \n
                          "	_this setVariable [""carrier"", objNull, true];" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "};" \n
+                         "*/"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -1555,11 +1555,14 @@ class FSM
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM helpAborded block: player is wounded"";" \n
                          "	detach player;" \n
+                         "	player setVariable [""helper"", objNull, true];" \n
                          "};" \n
                          "" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""helper"", objNull, true];" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "};" \n
+                         "*/"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -1604,12 +1607,16 @@ class FSM
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM healCanceled block: player is wounded"";" \n
                          "	detach player;" \n
-                         "};" \n
+                         "	player setVariable [""healer"", objNull, true];" \n
+                         "	player setVariable [""medEvac"", objNull, true];" \n
                          "" \n
+                         "};" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""healer"", objNull, true];" \n
                          "	_this setVariable [""medEvac"", objNull, true];" \n
                          "};" \n
+                         "*/" \n
                          "" \n
                          ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -1654,11 +1661,14 @@ class FSM
                          "if ( _unit isEqualTo player ) then {" \n
                          "	diag_log ""FSM helpCanceled block: player is wounded"";" \n
                          "	detach player;" \n
-                         "};" \n
+                         "	player setVariable [""helper"", objNull, true];" \n
                          "" \n
+                         "};" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""helper"", objNull, true];" \n
                          "};" \n
+                         "*/" \n
                          "" \n
                          ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -1703,11 +1713,14 @@ class FSM
                          "	diag_log ""FSM carryCanceled block: player is wounded"";" \n
                          "	terminate _carryAnimThread;" \n
                          "	detach player;" \n
-                         "};" \n
+                         "	player setVariable [""carrier"", objNull, true];" \n
                          "" \n
+                         "};" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""carrier"", objNull, true];" \n
                          "};" \n
+                         "*/" \n
                          "" \n
                          "" \n
                          ""/*%FSM</STATEINIT""">*/;
@@ -1736,7 +1749,7 @@ class FSM
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "private _dragger = _unit getVariable ""dragger"";" \n
                          "" \n
-                         "diag_log format [""FSM dragCanceled block: %1 --- %2"", _unit, _drager];" \n
+                         "diag_log format [""FSM dragCanceled block: %1 --- %2"", _unit, _dragger];" \n
                          "" \n
                          "_unit setVariable [""dragger"", objNull];" \n
                          "" \n
@@ -1754,11 +1767,14 @@ class FSM
                          "	diag_log ""FSM dragCanceled block: player is wounded"";" \n
                          "	terminate _dragAnimThread;" \n
                          "	detach player;" \n
+                         "	player setVariable [""dragger"", objNull, true];" \n
                          "};" \n
                          "" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "};" \n
+                         "*/"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -1898,11 +1914,14 @@ class FSM
                          "		[player, ""AinjPfalMstpSnonWrflDnon_carried_Down"", 2] call common_fnc_doAnim;" \n
                          "		_lockTime = 5;" \n
                          "	};" \n
-                         "};" \n
+                         "	player setVariable [""carrier"", objNull, true];" \n
                          "" \n
+                         "};" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	_this setVariable [""carrier"", objNull, true];" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "};" \n
+                         "*/"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
@@ -1948,12 +1967,14 @@ class FSM
                          "			sleep 0.5;		" \n
                          "		};" \n
                          "	};" \n
+                         "	player setVariable [""dragger"", objNull, true];" \n
                          "};" \n
-                         "" \n
+                         "/*" \n
                          "_unit spawn {" \n
                          "	sleep 2;" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
-                         "};"/*%FSM</STATEINIT""">*/;
+                         "};" \n
+                         "*/"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {
