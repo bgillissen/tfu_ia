@@ -4,7 +4,7 @@
 item0[] = {"start",0,250,-612.778992,-382.775513,-558.898926,-348.829071,0.000000,"start"};
 item1[] = {"_",8,218,-499.472504,-381.746887,-452.281677,-351.144928,0.000000,""};
 item2[] = {"healthy",2,250,176.483063,-393.754578,274.603149,-337.994476,0.000000,"healthy"};
-item3[] = {"fall_in_agony",4,218,37.045509,-347.231659,127.045647,-297.231659,0.000000,"fall in agony"};
+item3[] = {"fall_in_agony",4,218,34.497292,-363.370514,124.497437,-313.370514,0.000000,"fall in agony"};
 item4[] = {"agony",2,250,-123.965309,-24.655529,-22.604576,41.624901,0.000000,"agony"};
 item5[] = {"dead",4,218,174.369385,-23.462677,279.038147,41.518860,100.000000,"dead"};
 item6[] = {"aborded",4,218,-243.500366,260.854919,-175.108643,295.938629,2.000000,"aborded"};
@@ -24,7 +24,7 @@ item19[] = {"helpAnim",2,250,-165.316299,222.405670,-99.758766,250.058197,0.0000
 item20[] = {"finshed",4,218,-509.660919,211.494629,-441.269165,246.578339,1.000000,"finshed"};
 item21[] = {"dummy",2,250,-128.594116,-312.624390,-72.684509,-283.013733,0.000000,"dummy"};
 item22[] = {"noVeh",4,218,-58.701172,-260.710907,2.878456,-221.104309,10.000000,"noVeh"};
-item23[] = {"unloadAnim",2,4346,-138.227722,-190.014008,-63.050720,-160.403351,0.000000,"unloadAnim"};
+item23[] = {"unloadAnim",2,250,-138.227722,-190.014008,-63.050720,-160.403351,0.000000,"unloadAnim"};
 item24[] = {"waitRespawn",2,250,295.065308,-456.733276,392.030762,-426.133759,0.000000,"waitRespawn"};
 item25[] = {"alive_again",4,218,308.963318,-535.101379,378.275696,-482.961426,0.000000,"alive" \n "again"};
 item26[] = {"disconnected",4,218,392.137939,-15.117661,506.580566,31.510925,1.000000,"disconnected"};
@@ -32,46 +32,48 @@ item27[] = {"exit",1,250,427.189209,-581.186462,472.247192,-546.167419,0.000000,
 item28[] = {"setEntity",2,250,195.071350,-522.039734,257.661133,-498.688782,0.000000,"setEntity"};
 item29[] = {"healAborded",2,250,-246.357178,183.063141,-171.838409,212.910095,0.000000,"healAborded"};
 item30[] = {"_",8,218,-123.592499,-243.430542,-76.401825,-212.828613,0.000000,""};
-item31[] = {"allowDamage",2,250,-447.308411,-91.307732,-351.609222,-62.071075,0.000000,"allowDamage"};
-item32[] = {"has_moved",4,218,-439.910706,43.573929,-359.842865,86.750458,8.000000,"has moved"};
-item33[] = {"carryAnim",2,250,-32.776443,215.860382,32.781090,243.512909,0.000000,"carryAnim"};
-item34[] = {"helped",4,218,-158.957291,143.883224,-105.272179,178.519226,5.000000,"helped"};
-item35[] = {"dead",4,218,-27.517517,286.417084,29.698639,326.854187,100.000000,"dead"};
-item36[] = {"dead",4,218,215.619690,277.064911,272.835846,317.502014,100.000000,"dead"};
-item37[] = {"releaseAnim",2,250,83.995102,168.827606,165.436188,196.480133,0.000000,"releaseAnim"};
-item38[] = {"_",8,218,101.558319,113.964897,148.748993,144.566833,0.000000,""};
-item39[] = {"LandAnim",2,250,-287.419434,-154.481628,-206.596710,-127.677193,0.000000,"LandAnim"};
-item40[] = {"_",8,218,-181.394684,-92.794922,-134.204010,-62.192993,0.000000,""};
-item41[] = {"HealFinish",2,250,-514.396362,142.309082,-435.504303,170.660980,0.000000,"HealFinish"};
-item42[] = {"_",8,218,-232.513489,122.909050,-185.322662,153.510986,0.000000,""};
-item43[] = {"aborded",4,218,-104.378807,260.042786,-35.987091,295.126495,1.000000,"aborded"};
-item44[] = {"helpAborded",2,250,-107.272186,182.245087,-32.753418,212.092041,0.000000,"helpAborded"};
-item45[] = {"_",8,218,-93.471130,118.042603,-46.280304,148.644531,0.000000,""};
-item46[] = {"healCanceled",2,250,-351.561340,338.032379,-264.770355,368.697510,0.000000,"healCanceled"};
-item47[] = {"helpCanceled",2,250,-175.625244,348.008087,-88.834259,378.673218,0.000000,"helpCanceled"};
-item48[] = {"carryCanceled",2,250,-41.567169,350.765411,45.223816,381.430542,0.000000,"carryCanceled"};
-item49[] = {"dragCanceled",2,250,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
-item50[] = {"unloaded",4,218,-141.299713,-130.410049,-61.231873,-87.233521,3.000000,"unloaded"};
-item51[] = {"VehAnim",2,250,48.853752,-121.756561,114.411293,-94.104034,0.000000,"VehAnim"};
-item52[] = {"_",8,218,-70.612701,443.984406,-23.421997,474.586334,0.000000,""};
-item53[] = {"onLand",4,218,-291.392090,-214.234711,-201.109467,-168.757568,11.000000,"onLand"};
-item54[] = {"inVeh",4,218,37.635437,-192.399475,126.364471,-156.296051,10.000000,"inVeh"};
-item55[] = {"found",4,218,190.346344,-473.349335,263.466217,-429.775452,0.000000,"found"};
-item56[] = {"Not_found",4,218,184.983063,-585.954590,266.669739,-540.477051,0.000000,"Not found"};
-item57[] = {"inWater",4,218,-409.430420,-214.249054,-319.147797,-168.771912,12.000000,"inWater"};
-item58[] = {"WaterAnim",2,250,-402.747894,-149.528931,-326.165497,-121.028320,0.000000,"WaterAnim"};
-item59[] = {"has_shot",4,218,-325.217529,-12.482407,-245.149689,30.694122,9.000000,"has shot"};
-item60[] = {"notCaptive",2,250,-332.681122,-66.022301,-236.981934,-36.785645,0.000000,"notCaptive"};
-item61[] = {"aborded",4,218,46.650429,208.903076,113.764648,248.829224,2.000000,"aborded"};
-item62[] = {"carryFall",2,250,14.584763,153.803741,80.142303,181.456268,0.000000,"carryFall"};
-item63[] = {"aborded",4,218,130.057159,209.738831,195.571106,249.640930,2.000000,"aborded"};
-item64[] = {"dragFall",2,250,168.405197,153.803619,225.602875,178.112274,0.000000,"dragFall"};
-item65[] = {"inTheAir",4,218,-88.255188,-360.572083,-8.422668,-326.053131,2.000000,"inTheAir"};
-item66[] = {"giveChute",2,250,-225.593384,-360.446503,-151.074402,-325.666504,0.000000,"giveChute"};
-item67[] = {"onTheGround",4,218,-361.399567,-317.658386,-250.157928,-278.152771,1.000000,"onTheGround"};
-item68[] = {"dummy_1",2,250,-333.528656,-260.952850,-277.619049,-231.342194,0.000000,"dummy"};
-item69[] = {"_",8,218,58.571442,-66.521301,105.762123,-35.919373,0.000000,""};
-item70[] = {"loaded",4,218,-46.440247,-126.715363,18.642494,-88.860413,10.000000,"loaded"};
+item31[] = {"weaponCheck",2,250,-267.774597,-213.004547,-173.983368,-185.352020,0.000000,"weaponCheck"};
+item32[] = {"allowDamage",2,250,-447.308411,-91.307732,-351.609222,-62.071075,0.000000,"allowDamage"};
+item33[] = {"has_moved",4,218,-439.910706,43.573929,-359.842865,86.750458,8.000000,"has moved"};
+item34[] = {"carryAnim",2,250,-32.776443,215.860382,32.781090,243.512909,0.000000,"carryAnim"};
+item35[] = {"helped",4,218,-158.957291,143.883224,-105.272179,178.519226,5.000000,"helped"};
+item36[] = {"dead",4,218,-27.517517,286.417084,29.698639,326.854187,100.000000,"dead"};
+item37[] = {"dead",4,218,215.619690,277.064911,272.835846,317.502014,100.000000,"dead"};
+item38[] = {"releaseAnim",2,250,83.995102,168.827606,165.436188,196.480133,0.000000,"releaseAnim"};
+item39[] = {"_",8,218,101.558319,113.964897,148.748993,144.566833,0.000000,""};
+item40[] = {"LandAnim",2,250,-262.786377,-150.234558,-181.963654,-123.430107,0.000000,"LandAnim"};
+item41[] = {"_",8,218,-181.394684,-92.794922,-134.204010,-62.192993,0.000000,""};
+item42[] = {"HealFinish",2,4346,-514.396362,142.309082,-435.504303,170.660980,0.000000,"HealFinish"};
+item43[] = {"_",8,218,-232.513489,122.909050,-185.322662,153.510986,0.000000,""};
+item44[] = {"aborded",4,218,-104.378807,260.042786,-35.987091,295.126495,1.000000,"aborded"};
+item45[] = {"helpAborded",2,250,-107.272186,182.245087,-32.753418,212.092041,0.000000,"helpAborded"};
+item46[] = {"_",8,218,-93.471130,118.042603,-46.280304,148.644531,0.000000,""};
+item47[] = {"healCanceled",2,250,-351.561340,338.032379,-264.770355,368.697510,0.000000,"healCanceled"};
+item48[] = {"helpCanceled",2,250,-175.625244,348.008087,-88.834259,378.673218,0.000000,"helpCanceled"};
+item49[] = {"carryCanceled",2,250,-41.567169,350.765411,45.223816,381.430542,0.000000,"carryCanceled"};
+item50[] = {"dragCanceled",2,250,200.931946,347.735077,287.722931,378.400208,0.000000,"dragCanceled"};
+item51[] = {"_",8,218,-296.873016,-178.025665,-271.767059,-160.164978,0.000000,""};
+item52[] = {"unloaded",4,218,-141.299713,-130.410049,-61.231873,-87.233521,3.000000,"unloaded"};
+item53[] = {"VehAnim",2,250,48.853752,-121.756561,114.411293,-94.104034,0.000000,"VehAnim"};
+item54[] = {"_",8,218,-70.612701,443.984406,-23.421997,474.586334,0.000000,""};
+item55[] = {"onLand",4,218,-267.608459,-270.296051,-177.325836,-224.818909,11.000000,"onLand"};
+item56[] = {"inVeh",4,218,37.635437,-192.399475,126.364471,-156.296051,10.000000,"inVeh"};
+item57[] = {"found",4,218,190.346344,-473.349335,263.466217,-429.775452,0.000000,"found"};
+item58[] = {"Not_found",4,218,184.983063,-585.954590,266.669739,-540.477051,0.000000,"Not found"};
+item59[] = {"inWater",4,218,-409.430420,-214.249054,-319.147797,-168.771912,12.000000,"inWater"};
+item60[] = {"WaterAnim",2,250,-402.747894,-149.528931,-326.165497,-121.028320,0.000000,"WaterAnim"};
+item61[] = {"has_shot",4,218,-325.217529,-12.482407,-245.149689,30.694122,9.000000,"has shot"};
+item62[] = {"notCaptive",2,250,-332.681122,-66.022301,-236.981934,-36.785645,0.000000,"notCaptive"};
+item63[] = {"aborded",4,218,46.650429,208.903076,113.764648,248.829224,2.000000,"aborded"};
+item64[] = {"carryFall",2,250,14.584763,153.803741,80.142303,181.456268,0.000000,"carryFall"};
+item65[] = {"aborded",4,218,130.057159,209.738831,195.571106,249.640930,2.000000,"aborded"};
+item66[] = {"dragFall",2,250,168.405197,153.803619,225.602875,178.112274,0.000000,"dragFall"};
+item67[] = {"inTheAir",4,218,-88.255188,-360.572083,-8.422668,-326.053131,2.000000,"inTheAir"};
+item68[] = {"giveChute",2,250,-225.593384,-360.446503,-151.074402,-325.666504,0.000000,"giveChute"};
+item69[] = {"onTheGround",4,218,-361.399567,-317.658386,-250.157928,-278.152771,1.000000,"onTheGround"};
+item70[] = {"dummy_1",2,250,-333.528656,-260.952850,-277.619049,-231.342194,0.000000,"dummy"};
+item71[] = {"_",8,218,58.571442,-66.521301,105.762123,-35.919373,0.000000,""};
+item72[] = {"loaded",4,218,-46.440247,-126.715363,18.642494,-88.860413,10.000000,"loaded"};
 link0[] = {0,1};
 link1[] = {1,2};
 link2[] = {2,3};
@@ -81,11 +83,11 @@ link5[] = {4,5};
 link6[] = {4,9};
 link7[] = {4,12};
 link8[] = {4,13};
-link9[] = {4,32};
-link10[] = {4,34};
-link11[] = {4,50};
-link12[] = {4,59};
-link13[] = {4,70};
+link9[] = {4,33};
+link10[] = {4,35};
+link11[] = {4,52};
+link12[] = {4,61};
+link13[] = {4,72};
 link14[] = {5,7};
 link15[] = {6,29};
 link16[] = {7,8};
@@ -93,78 +95,80 @@ link17[] = {7,26};
 link18[] = {8,24};
 link19[] = {9,10};
 link20[] = {10,11};
-link21[] = {10,36};
-link22[] = {10,63};
-link23[] = {11,37};
+link21[] = {10,37};
+link22[] = {10,65};
+link23[] = {11,38};
 link24[] = {12,14};
-link25[] = {13,33};
+link25[] = {13,34};
 link26[] = {14,6};
 link27[] = {14,15};
 link28[] = {14,20};
-link29[] = {15,46};
-link30[] = {16,47};
+link29[] = {15,47};
+link30[] = {16,48};
 link31[] = {17,7};
 link32[] = {18,22};
-link33[] = {18,54};
+link33[] = {18,56};
 link34[] = {19,16};
-link35[] = {19,43};
-link36[] = {20,41};
-link37[] = {21,65};
-link38[] = {21,67};
+link35[] = {19,44};
+link36[] = {20,42};
+link37[] = {21,67};
+link38[] = {21,69};
 link39[] = {22,21};
 link40[] = {23,30};
 link41[] = {24,25};
 link42[] = {25,28};
 link43[] = {26,27};
-link44[] = {28,55};
-link45[] = {28,56};
-link46[] = {29,42};
+link44[] = {28,57};
+link45[] = {28,58};
+link46[] = {29,43};
 link47[] = {30,21};
-link48[] = {31,40};
-link49[] = {32,31};
-link50[] = {33,11};
-link51[] = {33,35};
-link52[] = {33,61};
-link53[] = {34,19};
-link54[] = {35,48};
+link48[] = {31,51};
+link49[] = {32,41};
+link50[] = {33,32};
+link51[] = {34,11};
+link52[] = {34,36};
+link53[] = {34,63};
+link54[] = {35,19};
 link55[] = {36,49};
-link56[] = {37,38};
-link57[] = {38,4};
-link58[] = {39,40};
-link59[] = {40,4};
-link60[] = {41,1};
-link61[] = {42,4};
-link62[] = {43,44};
+link56[] = {37,50};
+link57[] = {38,39};
+link58[] = {39,4};
+link59[] = {40,41};
+link60[] = {41,4};
+link61[] = {42,1};
+link62[] = {43,4};
 link63[] = {44,45};
-link64[] = {45,4};
-link65[] = {46,52};
-link66[] = {47,52};
-link67[] = {48,52};
-link68[] = {49,52};
-link69[] = {50,23};
-link70[] = {51,69};
-link71[] = {52,17};
-link72[] = {53,39};
-link73[] = {54,51};
-link74[] = {55,2};
-link75[] = {56,27};
-link76[] = {57,58};
-link77[] = {58,40};
+link64[] = {45,46};
+link65[] = {46,4};
+link66[] = {47,54};
+link67[] = {48,54};
+link68[] = {49,54};
+link69[] = {50,54};
+link70[] = {51,40};
+link71[] = {52,23};
+link72[] = {53,71};
+link73[] = {54,17};
+link74[] = {55,31};
+link75[] = {56,53};
+link76[] = {57,2};
+link77[] = {58,27};
 link78[] = {59,60};
-link79[] = {60,40};
+link79[] = {60,41};
 link80[] = {61,62};
-link81[] = {62,38};
+link81[] = {62,41};
 link82[] = {63,64};
-link83[] = {64,38};
+link83[] = {64,39};
 link84[] = {65,66};
-link85[] = {66,67};
+link85[] = {66,39};
 link86[] = {67,68};
-link87[] = {68,53};
-link88[] = {68,57};
-link89[] = {69,4};
-link90[] = {70,51};
-globals[] = {0.000000,0,0,0,0,640,480,1,160,6316128,1,-805.764343,688.355835,492.288208,-674.807373,1759,1374,1};
-window[] = {0,-1,-1,-32000,-32000,1812,497,3363,266,1,1777};
+link87[] = {68,69};
+link88[] = {69,70};
+link89[] = {70,55};
+link90[] = {70,59};
+link91[] = {71,4};
+link92[] = {72,53};
+globals[] = {0.000000,0,0,0,0,640,480,1,162,6316128,1,-918.344727,800.935120,580.226685,-762.746765,1759,1374,1};
+window[] = {0,-1,-1,-32000,-32000,2123,311,3177,577,1,1777};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -286,7 +290,7 @@ class FSM
                                 /*%FSM<LINK "loaded">*/
                                 class loaded
                                 {
-                                        itemno = 70;
+                                        itemno = 72;
                                         priority = 10.000000;
                                         to="VehAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -297,7 +301,7 @@ class FSM
                                 /*%FSM<LINK "has_shot">*/
                                 class has_shot
                                 {
-                                        itemno = 59;
+                                        itemno = 61;
                                         priority = 9.000000;
                                         to="notCaptive";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -310,7 +314,7 @@ class FSM
                                 /*%FSM<LINK "has_moved">*/
                                 class has_moved
                                 {
-                                        itemno = 32;
+                                        itemno = 33;
                                         priority = 8.000000;
                                         to="allowDamage";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -345,7 +349,7 @@ class FSM
                                 /*%FSM<LINK "helped">*/
                                 class helped
                                 {
-                                        itemno = 34;
+                                        itemno = 35;
                                         priority = 5.000000;
                                         to="helpAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -367,7 +371,7 @@ class FSM
                                 /*%FSM<LINK "unloaded">*/
                                 class unloaded
                                 {
-                                        itemno = 50;
+                                        itemno = 52;
                                         priority = 3.000000;
                                         to="unloadAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -491,16 +495,28 @@ class FSM
                          "	_dragAnimThread = _dragger spawn {" \n
                          "		private _dragger = _this;" \n
                          "		sleep 1;" \n
-                         "		while { !(isNull _dragger) } do {" \n
-                         "			if ( (speed _dragger) > 0 ) then {" \n
-                         "				[player, ""AinjPpneMrunSnonWnonDb"", 0] call common_fnc_doAnim;" \n
+                         "		private _still = true;" \n
+                         "		private _nextMove = time;" \n
+                         "		while { !isNull(_dragger) } do {" \n
+                         "			if ( (speed _dragger) isEqualTo  0 ) then {" \n
+                         "				if !( _still ) then {" \n
+                         "					systemChat ""still"";" \n
+                         "					[player, ""AinjPpneMrunSnonWnonDb_still"", 1] call common_fnc_doAnim;" \n
+                         "					_still = true;" \n
+                         "				};" \n
                          "			} else {" \n
-                         "				[player, ""AinjPpneMrunSnonWnonDb_still"", 0] call common_fnc_doAnim;" \n
+                         "				if ( _still || (time > _nextMove) )then {" \n
+                         "					systemchat ""moving"";" \n
+                         "					[player, ""AinjPpneMrunSnonWnonDb"", 1] call common_fnc_doAnim;" \n
+                         "					_nextMove = time + 1; " \n
+                         "					_still = false;" \n
+                         "				};" \n
                          "			};" \n
-                         "			sleep 2;" \n
-                         "			_dragger = _unit getVariable [""dragger"", objNull];" \n
+                         "			sleep 0.1;" \n
+                         "			_dragger = player getVariable [""dragger"", objNull];" \n
                          "		};" \n
                          "	};" \n
+                         "" \n
                          "};" \n
                          ""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -509,7 +525,7 @@ class FSM
                                 /*%FSM<LINK "dead">*/
                                 class dead
                                 {
-                                        itemno = 36;
+                                        itemno = 37;
                                         priority = 100.000000;
                                         to="dragCanceled";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -520,7 +536,7 @@ class FSM
                                 /*%FSM<LINK "aborded">*/
                                 class aborded
                                 {
-                                        itemno = 63;
+                                        itemno = 65;
                                         priority = 2.000000;
                                         to="dragFall";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -644,7 +660,15 @@ class FSM
                          "	player switchCamera ""INTERNAL"";" \n
                          "	showHud false;" \n
                          "	disableUserInput true;" \n
+                         "	" \n
+                         "	private _primWeapon = primaryWeapon player;" \n
+                         "	if !( _primWeapon isEqualto (currentWeapon player) ) then {" \n
+                         "		player selectWeapon primaryWeapon _unit" \n
+                         "	};" \n
+                         "	" \n
+                         "" \n
                          "	[] spawn {" \n
+                         "		sleep 1;" \n
                          "		reviveKeyEH = (findDisplay 46) displayAddEventHandler [""KeyDown"", {_this call revive_fnc_keyUnbind}];" \n
                          "		reviveShotEH = player addEventHandler [""FiredMan"", {player setVariable [""hasShot"", true, true]}];" \n
                          "	};" \n
@@ -734,7 +758,7 @@ class FSM
                                 /*%FSM<LINK "inVeh">*/
                                 class inVeh
                                 {
-                                        itemno = 54;
+                                        itemno = 56;
                                         priority = 10.000000;
                                         to="VehAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -807,7 +831,7 @@ class FSM
                                 /*%FSM<LINK "aborded">*/
                                 class aborded
                                 {
-                                        itemno = 43;
+                                        itemno = 44;
                                         priority = 1.000000;
                                         to="helpAborded";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -832,7 +856,7 @@ class FSM
                                 /*%FSM<LINK "inTheAir">*/
                                 class inTheAir
                                 {
-                                        itemno = 65;
+                                        itemno = 67;
                                         priority = 2.000000;
                                         to="giveChute";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -843,14 +867,14 @@ class FSM
                                          "} else {" \n
                                          "	_alt = (getPosATL _unit) select 2;" \n
                                          "};" \n
-                                         "( _alt > 0.5 )"/*%FSM</CONDITION""">*/;
+                                         "( _alt > 50 )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
                                 /*%FSM<LINK "onTheGround">*/
                                 class onTheGround
                                 {
-                                        itemno = 67;
+                                        itemno = 69;
                                         priority = 1.000000;
                                         to="dummy_1";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -861,7 +885,7 @@ class FSM
                                          "} else {" \n
                                          "	_alt = (getPosATL _unit) select 2;" \n
                                          "};" \n
-                                         "( _alt <= 0.5 )"/*%FSM</CONDITION""">*/;
+                                         "( _alt <= 50 )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -980,7 +1004,7 @@ class FSM
                                 /*%FSM<LINK "Not_found">*/
                                 class Not_found
                                 {
-                                        itemno = 56;
+                                        itemno = 58;
                                         priority = 0.000000;
                                         to="exit";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -991,7 +1015,7 @@ class FSM
                                 /*%FSM<LINK "found">*/
                                 class found
                                 {
-                                        itemno = 55;
+                                        itemno = 57;
                                         priority = 0.000000;
                                         to="healthy";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1039,9 +1063,50 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 42;
+                                        itemno = 43;
                                         priority = 0.000000;
                                         to="agony";
+                                        precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
+                                        condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
+                                        action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
+                                };
+                                /*%FSM</LINK>*/
+                        };
+                };
+                /*%FSM</STATE>*/
+                /*%FSM<STATE "weaponCheck">*/
+                class weaponCheck
+                {
+                        name = "weaponCheck";
+                        itemno = 31;
+                        init = /*%FSM<STATEINIT""">*/"" \n
+                         "diag_log format[""FSM weaponCheck block: %1"", _unit];" \n
+                         "" \n
+                         "if !( player isEqualTo _unit ) exitWith {};" \n
+                         "" \n
+                         "diag_log ""FSM weaponCheck block: player is wounded"";" \n
+                         "	" \n
+                         "private _primWeapon = primaryWeapon player;" \n
+                         "" \n
+                         "if ( _primWeapon isEqualTo """" ) exitWith {" \n
+                         "	diag_log ""FSM weaponCheck block: giving/switching to FakeWeapon"";" \n
+                         "	player addWeapon ""FakeWeapon"";" \n
+                         "	player selectWeapon ""FakeWeapon"";" \n
+                         "};" \n
+                         "" \n
+                         "if !( _primWeapon isEqualTo (currentWeapon player) ) exitWith {" \n
+                         "	diag_log ""FSM weaponCheck block: switching to primary weapon"";" \n
+                         "	player selectWeapon _primWeapon;" \n
+                         "};"/*%FSM</STATEINIT""">*/;
+                        precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
+                        class Links
+                        {
+                                /*%FSM<LINK "_">*/
+                                class _
+                                {
+                                        itemno = 51;
+                                        priority = 0.000000;
+                                        to="LandAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/""/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
@@ -1054,7 +1119,7 @@ class FSM
                 class allowDamage
                 {
                         name = "allowDamage";
-                        itemno = 31;
+                        itemno = 32;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "diag_log format[""FSM allowDamage block - %1"", _unit];" \n
                          "" \n
@@ -1072,7 +1137,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 40;
+                                        itemno = 41;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1087,7 +1152,7 @@ class FSM
                 class carryAnim
                 {
                         name = "carryAnim";
-                        itemno = 33;
+                        itemno = 34;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "private _carrier = _unit getVariable ""carrier"";" \n
                          "private _limit = time + 16;" \n
@@ -1148,7 +1213,7 @@ class FSM
                                 /*%FSM<LINK "dead">*/
                                 class dead
                                 {
-                                        itemno = 35;
+                                        itemno = 36;
                                         priority = 100.000000;
                                         to="carryCanceled";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1159,7 +1224,7 @@ class FSM
                                 /*%FSM<LINK "aborded">*/
                                 class aborded
                                 {
-                                        itemno = 61;
+                                        itemno = 63;
                                         priority = 2.000000;
                                         to="carryFall";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1190,7 +1255,7 @@ class FSM
                 class releaseAnim
                 {
                         name = "releaseAnim";
-                        itemno = 37;
+                        itemno = 38;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "private _droper = _unit getVariable ""droper"";" \n
                          "private _isCarry = ( _droper isEqualTo (_unit getVariable [""carrier"", objNull]) );" \n
@@ -1238,7 +1303,9 @@ class FSM
                          "	player removeAction _actionDrop;" \n
                          "	_actionDrop = -1;" \n
                          "	if ( _isDrag ) then {" \n
-                         "		[player, ""amovpknlmstpsraswrfldnon"", 2] call common_fnc_doAnim;" \n
+                         "		//[player, ""amovpknlmstpsraswrfldnon"", 2] call common_fnc_doAnim;" \n
+                         "		[player, _preAnim, 2] call common_fnc_doAnim;" \n
+                         "" \n
                          "	};" \n
                          "	if ( _isCarry ) then {" \n
                          "		[player, ""AcinPercMrunSnonWnonDf_AmovPercMstpSnonWnonDnon"", 2] call common_fnc_doAnim;	" \n
@@ -1247,6 +1314,7 @@ class FSM
                          "};" \n
                          "" \n
                          "_unit spawn {" \n
+                         "	sleep 2;" \n
                          "	_this setVariable [""droper"", objNull, true];" \n
                          "	_this setVariable [""carrier"", objNull, true];" \n
                          "	_this setVariable [""dragger"", objNull, true];" \n
@@ -1257,7 +1325,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 38;
+                                        itemno = 39;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1272,7 +1340,7 @@ class FSM
                 class LandAnim
                 {
                         name = "LandAnim";
-                        itemno = 39;
+                        itemno = 40;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "diag_log format[""FSM landAnim block: %1"", _unit];" \n
                          "" \n
@@ -1281,7 +1349,7 @@ class FSM
                          "diag_log ""FSM landAnim block: player is wounded"";" \n
                          "" \n
                          "(player getVariable [""action"", ["""", objNull]]) params [""_action"", ""_wounded""];" \n
-                         "private _animtime = 0;" \n
+                         "private _animTime = 0;" \n
                          "" \n
                          "//carry to agony" \n
                          "if ( _action isEqualTo ""carry"" ) then {" \n
@@ -1343,6 +1411,8 @@ class FSM
                          "	_lockTime = 0.2 + _animTime;" \n
                          "};" \n
                          "" \n
+                         "player setVariable [""action"", ["""", objNull]];" \n
+                         "" \n
                          "_animTime spawn {" \n
                          "	sleep _this;" \n
                          "	[player, ""die"", 2] call common_fnc_doGesture;" \n
@@ -1353,7 +1423,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 40;
+                                        itemno = 41;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1368,7 +1438,7 @@ class FSM
                 class HealFinish
                 {
                         name = "HealFinish";
-                        itemno = 41;
+                        itemno = 42;
                         init = /*%FSM<STATEINIT""">*/"private _healer = _unit getVariable ""healer"";" \n
                          "private _medEvac = _unit getVariable [""medEvac"", objNull];" \n
                          "" \n
@@ -1396,7 +1466,11 @@ class FSM
                          "	player setVariable [""tf_unable_to_use_radio"", false];" \n
                          "	detach player;" \n
                          "	[player, ""agonyStop"", 1] call common_fnc_doGesture;" \n
-                         "	showHud true; " \n
+                         "	showHud true;" \n
+                         "	private _primWeapon = primaryWeapon player;" \n
+                         "	if ( _primWeapon isEqualTo ""FakeWeapon"" ) then {" \n
+                         "		player removeWeapon ""FakeWeapon"";" \n
+                         "	};" \n
                          "};" \n
                          "" \n
                          "if ( !CTXT_PLAYER )  exitWith {};" \n
@@ -1457,7 +1531,7 @@ class FSM
                 class helpAborded
                 {
                         name = "helpAborded";
-                        itemno = 44;
+                        itemno = 45;
                         init = /*%FSM<STATEINIT""">*/"private _helper = _unit getVariable ""helper"";" \n
                          "" \n
                          "diag_log format [""FSM helpAborded block: %1 --- %2"", _unit, _helper];" \n
@@ -1487,7 +1561,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 45;
+                                        itemno = 46;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1502,7 +1576,7 @@ class FSM
                 class healCanceled
                 {
                         name = "healCanceled";
-                        itemno = 46;
+                        itemno = 47;
                         init = /*%FSM<STATEINIT""">*/"private _healer = _unit getVariable ""healer"";" \n
                          "" \n
                          "diag_log format [""FSM healCanceled block: %1 --- %2"", _unit, _healer];" \n
@@ -1539,7 +1613,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 52;
+                                        itemno = 54;
                                         priority = 0.000000;
                                         to="died";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1554,7 +1628,7 @@ class FSM
                 class helpCanceled
                 {
                         name = "helpCanceled";
-                        itemno = 47;
+                        itemno = 48;
                         init = /*%FSM<STATEINIT""">*/"private _helper = _unit getVariable ""hepler"";" \n
                          "" \n
                          "diag_log format [""FSM heplCanceled block: %1 --- %2"", _unit, _helper];" \n
@@ -1588,7 +1662,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 52;
+                                        itemno = 54;
                                         priority = 0.000000;
                                         to="died";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1603,7 +1677,7 @@ class FSM
                 class carryCanceled
                 {
                         name = "carryCanceled";
-                        itemno = 48;
+                        itemno = 49;
                         init = /*%FSM<STATEINIT""">*/"private _carrier = _unit getVariable ""carrier"";" \n
                          "" \n
                          "diag_log format [""FSM carryCanceled block: %1 --- %2"", _unit, _carrier];" \n
@@ -1638,7 +1712,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 52;
+                                        itemno = 54;
                                         priority = 0.000000;
                                         to="died";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1653,7 +1727,7 @@ class FSM
                 class dragCanceled
                 {
                         name = "dragCanceled";
-                        itemno = 49;
+                        itemno = 50;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "private _dragger = _unit getVariable ""dragger"";" \n
                          "" \n
@@ -1686,7 +1760,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 52;
+                                        itemno = 54;
                                         priority = 0.000000;
                                         to="died";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1701,7 +1775,7 @@ class FSM
                 class VehAnim
                 {
                         name = "VehAnim";
-                        itemno = 51;
+                        itemno = 53;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "_inVeh = (vehicle _unit);" \n
                          "" \n
@@ -1726,7 +1800,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 69;
+                                        itemno = 71;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1741,7 +1815,7 @@ class FSM
                 class WaterAnim
                 {
                         name = "WaterAnim";
-                        itemno = 58;
+                        itemno = 60;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "diag_log format[""FSM waterAnim block: %1"", _unit];" \n
                          "" \n
@@ -1757,7 +1831,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 40;
+                                        itemno = 41;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1772,7 +1846,7 @@ class FSM
                 class notCaptive
                 {
                         name = "notCaptive";
-                        itemno = 60;
+                        itemno = 62;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "diag_log format[""FSM notCaptive block - %1"", _unit];" \n
                          "" \n
@@ -1785,7 +1859,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 40;
+                                        itemno = 41;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1800,7 +1874,7 @@ class FSM
                 class carryFall
                 {
                         name = "carryFall";
-                        itemno = 62;
+                        itemno = 64;
                         init = /*%FSM<STATEINIT""">*/"private _carrier = _unit getVariable [""carrier"", objNull];" \n
                          "" \n
                          "diag_log format [""FSM carryFall block: %1 --- %2"", _unit, _carrier];" \n
@@ -1830,7 +1904,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 38;
+                                        itemno = 39;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1845,7 +1919,7 @@ class FSM
                 class dragFall
                 {
                         name = "dragFall";
-                        itemno = 64;
+                        itemno = 66;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "private _dragger = _unit getVariable [""dragger"", objNull];" \n
                          "" \n
@@ -1880,7 +1954,7 @@ class FSM
                                 /*%FSM<LINK "_">*/
                                 class _
                                 {
-                                        itemno = 38;
+                                        itemno = 39;
                                         priority = 0.000000;
                                         to="agony";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1895,7 +1969,7 @@ class FSM
                 class giveChute
                 {
                         name = "giveChute";
-                        itemno = 66;
+                        itemno = 68;
                         init = /*%FSM<STATEINIT""">*/"" \n
                          "diag_log format[""FSM giveChute block: %1 --- %2"", _unit, time];" \n
                          "" \n
@@ -1927,7 +2001,7 @@ class FSM
                                 /*%FSM<LINK "onTheGround">*/
                                 class onTheGround
                                 {
-                                        itemno = 67;
+                                        itemno = 69;
                                         priority = 1.000000;
                                         to="dummy_1";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
@@ -1938,7 +2012,7 @@ class FSM
                                          "} else {" \n
                                          "	_alt = (getPosATL _unit) select 2;" \n
                                          "};" \n
-                                         "( _alt <= 0.5 )"/*%FSM</CONDITION""">*/;
+                                         "( _alt <= 50 )"/*%FSM</CONDITION""">*/;
                                         action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
                                 };
                                 /*%FSM</LINK>*/
@@ -1949,7 +2023,7 @@ class FSM
                 class dummy_1
                 {
                         name = "dummy_1";
-                        itemno = 68;
+                        itemno = 70;
                         init = /*%FSM<STATEINIT""">*/""/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
@@ -1957,7 +2031,7 @@ class FSM
                                 /*%FSM<LINK "inWater">*/
                                 class inWater
                                 {
-                                        itemno = 57;
+                                        itemno = 59;
                                         priority = 12.000000;
                                         to="WaterAnim";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/"if !( (vehicle _unit) isEqualTo _unit ) exitWith { false };" \n
@@ -1971,9 +2045,9 @@ class FSM
                                 /*%FSM<LINK "onLand">*/
                                 class onLand
                                 {
-                                        itemno = 53;
+                                        itemno = 55;
                                         priority = 11.000000;
-                                        to="LandAnim";
+                                        to="weaponCheck";
                                         precondition = /*%FSM<CONDPRECONDITION""">*/"(vehicle _unit isEqualTo _unit)"/*%FSM</CONDPRECONDITION""">*/;
                                         condition=/*%FSM<CONDITION""">*/"(getPos _unit) params [""_x"", ""_y""];" \n
                                          "!( surfaceIsWater [_x, _y] )"/*%FSM</CONDITION""">*/;

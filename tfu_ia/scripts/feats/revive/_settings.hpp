@@ -1,7 +1,7 @@
 class revive {
 	resistance = 1;			//damage resistance factor, 1 for default, higher to increase, lower to decrease
 	bloodParticle = 1;				//generate extra blood particles
-	bloodThreshold = 0.5	//damage at which a hit part start bleeding
+	bloodThreshold = 0.5;	//damage at which a hit part start bleeding
 	impact = 1;				//visible impact effect (white flash)
 	showTimer = 1;			//show bleedout countdown
 	deadCam = 1;			//camera span + quotes when player die

@@ -1,7 +1,7 @@
 
 params ["_unit", "_anim", ["_priority", 0]];
 
-if (_unit == vehicle _unit) then {
+if (_unit isEqualTo (vehicle _unit) ) then {
 	if ( local _unit ) then {
 		_this call common_fnc_doAnimPlayer;
 	} else {
