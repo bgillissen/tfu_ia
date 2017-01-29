@@ -12,7 +12,7 @@ item7[] = {"died",2,250,311.848206,-6.263855,378.181213,26.329773,0.000000,"died
 item8[] = {"still_there",4,218,308.512573,-134.117706,380.744202,-84.537109,0.000000,"still there"};
 item9[] = {"dragged",4,218,218.224716,121.383217,271.909821,156.019226,7.000000,"dragged"};
 item10[] = {"dragAnim",2,250,211.853806,216.571564,277.411346,244.224091,0.000000,"dragAnim"};
-item11[] = {"released",4,4314,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
+item11[] = {"released",4,218,84.938087,295.128540,164.663818,332.259766,1.000000,"released"};
 item12[] = {"healed",4,218,-335.148163,141.623169,-281.463013,176.259262,4.000000,"healed"};
 item13[] = {"carried",4,218,-27.164322,88.637253,26.520790,123.273247,6.000000,"carried"};
 item14[] = {"healAnim",2,250,-337.987732,214.730316,-279.013763,244.577271,0.000000,"healAnim"};
@@ -61,7 +61,7 @@ item56[] = {"inVeh",4,218,37.635437,-192.399475,126.364471,-156.296051,10.000000
 item57[] = {"found",4,218,190.346344,-473.349335,263.466217,-429.775452,0.000000,"found"};
 item58[] = {"Not_found",4,218,184.983063,-585.954590,266.669739,-540.477051,0.000000,"Not found"};
 item59[] = {"inWater",4,218,-433.865967,-219.136139,-362.154327,-183.433167,12.000000,"inWater"};
-item60[] = {"WaterAnim",2,250,-435.980194,-149.528931,-359.397797,-121.028320,0.000000,"WaterAnim"};
+item60[] = {"WaterAnim",2,4346,-435.980194,-149.528931,-359.397797,-121.028320,0.000000,"WaterAnim"};
 item61[] = {"has_shot",4,218,-325.217529,-12.482407,-245.149689,30.694122,9.000000,"has shot"};
 item62[] = {"notCaptive",2,250,-332.681122,-66.022301,-236.981934,-36.785645,0.000000,"notCaptive"};
 item63[] = {"aborded",4,218,46.650429,208.903076,113.764648,248.829224,2.000000,"aborded"};
@@ -168,7 +168,7 @@ link90[] = {70,59};
 link91[] = {71,4};
 link92[] = {72,53};
 globals[] = {0.000000,0,0,0,0,640,480,1,163,6316128,1,-918.344727,800.935120,580.226685,-762.746765,1759,1374,1};
-window[] = {0,-1,-1,-32000,-32000,2053,847,3713,507,1,1777};
+window[] = {0,-1,-1,-32000,-32000,2052,848,3714,506,1,1777};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -654,13 +654,6 @@ class FSM
                          "	player switchCamera ""INTERNAL"";" \n
                          "	showHud false;" \n
                          "	disableUserInput true;" \n
-                         "	" \n
-                         "	private _primWeapon = primaryWeapon player;" \n
-                         "	if !( _primWeapon isEqualto (currentWeapon player) ) then {" \n
-                         "		player selectWeapon primaryWeapon _unit" \n
-                         "	};" \n
-                         "	" \n
-                         "" \n
                          "	[] spawn {" \n
                          "		sleep 1;" \n
                          "		reviveKeyEH = (findDisplay 46) displayAddEventHandler [""KeyDown"", {_this call revive_fnc_keyUnbind}];" \n
@@ -1082,22 +1075,23 @@ class FSM
                          "" \n
                          "if !( player isEqualTo _unit ) exitWith {};" \n
                          "" \n
-                         "diag_log ""FSM weaponCheck block: player is wounded"";" \n
-                         "	" \n
                          "_lastTick = 0;" \n
                          "private _primWeapon = primaryWeapon player;" \n
+                         "private _curWeapon = currentWeapon player;" \n
+                         "" \n
+                         "diag_log format[""FSM weaponCheck block: player is wounded --- primary: %1 --- current: %2"", _primWeapon, _curWeapon];" \n
                          "" \n
                          "if ( _primWeapon isEqualTo """" ) exitWith {" \n
                          "	diag_log ""FSM weaponCheck block: giving/switching to FakeWeapon"";" \n
                          "	player addWeapon ""FakeWeapon"";" \n
                          "	player selectWeapon ""FakeWeapon"";" \n
-                         "	_lastTick = diag_tickTime;" \n
+                         "	_lastTick = diag_tickTime + 1;" \n
                          "};" \n
                          "" \n
-                         "if !( _primWeapon isEqualTo (currentWeapon player) ) exitWith {" \n
+                         "if !( _primWeapon isEqualTo _curWeapon ) exitWith {" \n
                          "	diag_log ""FSM weaponCheck block: switching to primary weapon"";" \n
                          "	player selectWeapon _primWeapon;" \n
-                         "	_lastTick = diag_tickTime;" \n
+                         "	_lastTick = diag_tickTime + 1;" \n
                          "};" \n
                          "" \n
                          ""/*%FSM</STATEINIT""">*/;
@@ -1415,6 +1409,7 @@ class FSM
                          "};" \n
                          "" \n
                          "player setVariable [""action"", ["""", objNull]];" \n
+                         "player setVariable [""inWater"", false];" \n
                          "" \n
                          "_lockTime = 0.2 + _animTime;" \n
                          "" \n
@@ -1844,8 +1839,24 @@ class FSM
                          "" \n
                          "diag_log ""FSM waterAnim block: player is wounded"";" \n
                          "//TODO find a floating dead gesture, will it sink ?" \n
+                         "player setVariable [""inWater"", true];" \n
                          "_lockTime = 0.2;" \n
-                         "[player, ""die"", 2] call common_fnc_doGesture;"/*%FSM</STATEINIT""">*/;
+                         "//[player, ""die"", 2] call common_fnc_doGesture;" \n
+                         "[player, ""deadstate"", 2] call common_fnc_doAnim;" \n
+                         "" \n
+                         "(getPosASLW player) params [""_x"", ""_y"", ""_z""];" \n
+                         "" \n
+                         "[] spawn {" \n
+                         "	(getPosASLW player) params [""_x"", ""_y"", ""_z""];" \n
+                         "	diag_log format[""FSM waterAnimThread block: -- pos: [%1, %2, %3]"", _x, _y, _z];" \n
+                         "	while { isNull (player getVariable [""inVeh"", objNull]) && " \n
+                         "			  isNull (player getVariable [""dragger"", objNull]) && " \n
+                         "			  isNull (player getVariable [""carrier"", objNull]) && " \n
+                         "			  alive player } do {" \n
+                         "		player setPosASLW [_x, _y, -0.5];" \n
+                         "		sleep 0.1;" \n
+                         "	};" \n
+                         "};"/*%FSM</STATEINIT""">*/;
                         precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
                         class Links
                         {

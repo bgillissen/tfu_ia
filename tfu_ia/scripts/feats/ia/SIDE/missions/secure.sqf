@@ -48,7 +48,6 @@ private _flatPos = [0,0,0];
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
 private _found = false;
-private "_flatPos";
 
 while { !_found } do {
 	_position = [] call BIS_fnc_randomPos;
@@ -169,7 +168,7 @@ while { true } do {
 		//plant message
 		private _planted = ["ia", "side", "secure", "planted"] call core_fnc_getSetting;
 		private _delay = ["ia", "side", "boomDelay"] call core_fnc_getSetting;
-		[1, format[_planted, _delay], ["HQ", PLAYER_SIDE]] call global_chat;
+		[1, format[_planted, _delay], ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 		//time to move away
 		sleep _delay;
 		//blow objectif and cargo

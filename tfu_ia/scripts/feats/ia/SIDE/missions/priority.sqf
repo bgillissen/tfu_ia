@@ -40,13 +40,16 @@ Return:
 	nothing
 */
 
-private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call core_fnc_getSetting);
+private _aoCoord = [0,0,0];
+if ( !isNil "AO_circle" ) then { 
+	_aoCoord = getMarkerPos AO_circle; 
+};
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
-
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
 private _maxDistFromAO = ["ia", "side", "priority", "maxDistFromAO"] call core_fnc_getSetting;
+
 //find a flat position, not too close from base, and not too far, not too close from the active AO (if one)
 while { true } do {
 	_position = [[[_baseCoord, 2000]], ["water","out"]] call BIS_fnc_randomPos;
@@ -165,8 +168,8 @@ _size = nil;
 //briefing
 private _briefing = ["ia", "side", "priority", "briefing"] call core_fnc_getSetting;
 private _desc = ["ia", "side", "priority", _cfg, "briefing"] call core_fnc_getSetting;
-[format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
-["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+format[_briefing, _title, _desc] call global_fnc_hint;
+["NewSideMission", _title] call global_fnc_notification;
 _cfg = nil;
 _title = nil;
 _briefing = nil;
@@ -195,10 +198,10 @@ while ( true ) do {
 	
 	if ( (!alive _tank1) && (!alive _tank2) ) exitWith {
 		private _hint = ["ia", "side", "priority", "success"] call core_fnc_getSetting;
-		[_hint] remoteExec ["common_fnc_globalHint", 0, false];
+		_hint call global_fnc_hint;
 		_hint = nil;
 		private _notif = ["ia", "side", "priority", _cfg, "notification"] call core_fnc_getSetting;
-		["CompletedPriorityTarget", _notif] remoteExec ["common_fnc_globalNotification", 0, false];
+		["CompletedPriorityTarget", _notif] call global_fnc_notification;
 		_notif = nil;
 		[false, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};

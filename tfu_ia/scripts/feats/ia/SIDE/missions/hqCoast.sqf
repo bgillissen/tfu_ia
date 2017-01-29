@@ -34,7 +34,10 @@ Return:
 		nothing 
 */
 
-private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call core_fnc_getSetting);
+private _aoCoord = [0,0,0];
+if ( !isNil "AO_circle" ) then { 
+	_aoCoord = getMarkerPos AO_circle; 
+};
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
@@ -71,7 +74,7 @@ private _crate = (selectRandom S_crates) createVehicle [0,0,0];
 _crate allowDamage false;
 _crate setPos [_hqX, _hqY, (_hqZ + 5)];
 private _action = ["ia", "side", "hqCoast", "action"] call core_fnc_getSetting;
-[_crate, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
+[_crate, _action] call SIDE_fnc_addAction;
 _action =nil;
 
 //ambiance objects

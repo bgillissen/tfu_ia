@@ -7,10 +7,8 @@ Description:
 	must be spawn not call
 	it keeps track of the active AO thread, and create a new one when needed 
 */
-/*
-if ( (["AO"] call core_fnc_getParam) == 0 ) exitWith {};
 
-diag_log "SERVER AO has started";
+if ( (["AO"] call core_fnc_getParam) == 0 ) exitWith {};
 
 AO_stop = false;
 AO_zone = nil;
@@ -40,25 +38,24 @@ while { true } do {
 		_markers = _markers + [_m];
 		_markbuff = _markbuff - [_m];
 	};
-	_m = nil;
 	_markbuff = nil;
 	
 	{
 		[true, "AO_stop"] call zeusMission_fnc_checkAndWait;
 		if ( AO_stop ) exitWith {};
-		sleep _cooldown;
-		if ( AO_stop ) exitWith {};
-		private _ao = missionNamespace getVariable _x;
-		if ( !(isNil "_ao") ) then {
+		private _aoCoord = getMarkerPos _x; 
+		if !( _aoCoord isEqualTo [0,0,0] ) then {
 			AO_main = [_x] spawn AO_fnc_threadAO;
 			waitUntil {
 				sleep _checkDelay;
 				scriptDone AO_main
 			};
+		};
+		if ( !zeusMission ) then {
+			[_cooldown, _checkDelay, "AO_stop"] call common_fnc_smartSleep;
 			if ( AO_stop ) exitWith {};
 		};
 	} count _markers;
-	
+
 	if ( AO_stop ) exitWith {};
 };
-*/

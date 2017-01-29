@@ -16,11 +16,12 @@ if ( _key isEqualTo DIK_H ) exitWith {	//call for Help
 };
 
 private _handled = true;
+private _inWater = player getVariable ["inWater", false];
 private _hasMoved = player getVariable ["hasMoved", false];
 private _inVeh =  ( !(isNull (player getVariable ["inVeh", objNull])) || !((vehicle player) isEqualTo player) );
 private _list = ['ShowMap', 'HideMap', 'Chat', 'LookAround'];
-if ( _hasMoved ) then { _list pushback "personView"; };
-if !( _inVeh ) then { _list pushback 'MoveForward'; };//'MoveSlowForward'
+if ( _hasMoved || _inWater ) then { _list pushback "personView"; };
+if !( _inVeh || _inWater ) then { _list pushback 'MoveForward'; };//'MoveSlowForward'
 
 {
 	if ( _key in (actionKeys _x) ) then {

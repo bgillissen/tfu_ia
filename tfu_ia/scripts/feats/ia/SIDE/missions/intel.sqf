@@ -38,7 +38,10 @@ Return:
 		nothing
 */
 
-private _aoCoord = getMarkerPos (["ia", "ao", "circle"] call core_fnc_getSetting);
+private _aoCoord = [0,0,0];
+if ( !isNil "AO_circle" ) then { 
+	_aoCoord = getMarkerPos AO_circle; 
+};
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _sizeType = "Land_Dome_Small_F";
@@ -114,7 +117,7 @@ if ( _inVehicle ) then {
 [(units _fake2Group), 2] call common_fnc_setSkill;
 
 private _action = ["ia", "side", "intel", "action"] call core_fnc_getSetting;
-[_addActionTo, _action] remoteExec ["SIDE_fnc_addAction", allPlayers - entities "HeadlessClient_F"];
+[_addActionTo, _action] call SIDE_fnc_addAction;
 _addActionTo = nil;
 _action = nil;
 
@@ -143,8 +146,8 @@ _size = nil;
 //briefing
 private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
 private _desc = ["ia", "side", "intel", "briefing"] call core_fnc_getSetting;
-[format[_briefing, _title, _desc]] remoteExec ["common_fnc_globalHint", 0, false];
-["NewSideMission", _title] remoteExec ["common_fnc_globalNotification" ,0 , false];
+format[_briefing, _title, _desc] call global_fnc_hint;
+["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
 _size = nil;
 _briefing = nil;
@@ -163,14 +166,14 @@ while ( true ) do {
 	}
 	if ( !_cond ) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
-		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
+		_fail call global_fnc_hint;
 		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _escaped ) exitWith {
 		private _chat = ["ia", "side", "intel", "fail"] call core_fnc_getSetting;
-		[_chat] remoteExec ["common_fnc_globalSideChat", 0, false];
+		[1, _chat, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
-		[_fail] remoteExec ["common_fnc_globalHint", 0, false];
+		_fail call global_fnc_hint;
 		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _isFleing ) then {
@@ -178,7 +181,7 @@ while ( true ) do {
 	} else {
 		if (_intel call BIS_fnc_enemyDetected) then {
 			private _chat = ["ia", "side", "intel", "spotted"] call core_fnc_getSetting;
-			[_chat] remoteExec ["common_fnc_globalSideChat",0,false];
+			[1, _chat, ["HQ", PLAYER_SIDE] call global_fnc_chat;
 			_chat = nil;
 			if ( !_inVehicle ) then { 
 				[_intel] orderGetIn true;
@@ -195,10 +198,10 @@ while ( true ) do {
 	if ( SIDE_success ) exitWith {
 		
 		private _chat = ["ia", "side", "intel", "secured"] call core_fnc_getSetting;
-		[_chat] remoteExec ["common_fnc_globalSideChat", 0, false];
+		[1, _chat, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 		private _reward = call common_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
-		[format[_hint, _reward]] remoteExec ["common_fnc_globalHint", 0, false];
+		format[_hint, _reward] call global_fnc_hint;
 		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {

@@ -12,11 +12,11 @@ class SIDE {
 		class cleanup { file="feats\ia\SIDE\cleanup.sqf"; };
 		class placeMarkers { file="feats\ia\SIDE\placeMarkers.sqf"; };
 		class placeEnemies { file="feats\ia\SIDE\placeEnemies.sqf"; };
-		class hqCoast { file="feats\ia\SIDE\misHQCoast.sqf"; };
-		class urban { file="feats\ia\SIDE\misUrban.sqf"; };
-		class research { file="feats\ia\SIDE\misResearch.sqf"; };
-		class priority { file="feats\ia\SIDE\misPriority.sqf"; };
-		class intel { file="feats\ia\SIDE\misIntel.sqf"; };
-		class secure { file="feats\ia\SIDE\misSecure.sqf"; };
+		class hqCoast { file="feats\ia\SIDE\misssions\hqCoast.sqf"; };
+		class urban { file="feats\ia\SIDE\misssions\urban.sqf"; };
+		class research { file="feats\ia\SIDE\misssions\research.sqf"; };
+		class priority { file="feats\ia\SIDE\misssions\priority.sqf"; };
+		class intel { file="feats\ia\SIDE\misssions\intel.sqf"; };
+		class secure { file="feats\ia\SIDE\misssions\secure.sqf"; };
 	};
 };

@@ -9,4 +9,4 @@ Description:
 
 private _items = ["mediKit", "firstAidKit"];
 
-[[], _items, [], [], [], [], [], [], []] call common_fnc_blacklistAssets;
+[[], _items, [], [], [], [], [], [], []] call common_fnc_addToBlacklist;

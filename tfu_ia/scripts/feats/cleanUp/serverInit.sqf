@@ -7,7 +7,7 @@ Description:
 	cleanup garbage
 */
 
-private _dist = 15; //1500 in prod
+private _dist = 1500; //1500 in prod
 private _sz = getMarkerPos "SZ";
 private _fr = getMarkerPos "FR";
 private _delay = ["cleanup", "loopDelay"] call core_fnc_getSetting;

@@ -25,7 +25,6 @@ if ( isNil "SIDE_EH" ) then {
 };
 
 while { true } do {
-	diag_log "SIDE inLoop";	
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
 	if ( SIDE_stop ) exitWith {};
 	if ( (count _missions) == 0 ) then {
@@ -36,7 +35,6 @@ while { true } do {
 	_missions = _missions - [_type];
 	private _fncName = format["SIDE_fnc_%1", _type];
 	private _code = compile format["[] spawn SIDE_fnc_%1", _type];
-	diag_log _code;
 	SIDE_main = call _code;
 	waitUntil {
 		sleep _checkDelay;
