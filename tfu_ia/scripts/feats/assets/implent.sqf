@@ -126,7 +126,10 @@ private _restrictEnemyGear = (["restrictEnemyGear"] call core_fnc_getParam == 1)
 		{
 			private _sK = missionNamespace getVariable format["S_%1", toUpper(_k)];
 			if ( !isNil "_sK" ) then {
-				[_forEachIndex, (_src select _sK select _forEachIndex), (_sides select 0)] call assets_fnc_implentSpawn;
+				private _index = _forEachIndex;
+				{
+					[_index, (_src select _sK select _index), _x] call assets_fnc_implentSpawn;
+				} forEach _sides;
 			};
 			true
 		} forEach (PV select S_k select 1);

@@ -48,7 +48,13 @@ if ( _remote ) exitWith {
 		if ( _ctxt isEqualTo "PLAYER" ) exitWith { (allPlayers - entities "HeadlessClient_F") };
 		(entities "HeadlessClient_F")
 	};
-	[_when, _arg] remoteExec ["core_fnc_featEventRemote", _target];
+	private _do = true;
+	if ( typeName _target isEqualTo "ARRAY" ) then {
+		_do = ( (count _target) > 0 ); 
+	};
+	if ( _do ) then {
+		[_when, _arg] remoteExec ["core_fnc_featEventRemote", _target];
+	};
 };
 
 //not defined yet, we initialize it

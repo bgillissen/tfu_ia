@@ -9,10 +9,12 @@ Description:
 	it remove the objects spawned for an AO if no players are near 
 */
 
-params ["_aoCoord", "_trigger", "_radioTower", "_units", "_force"];
+params ["_aoCoord", "_triggers", "_radioTower", "_units", "_force"];
 
 deleteMarker (["ia", "ao", "circle"] call core_fnc_getSetting);
 deleteMarker (["ia", "ao", "label"] call core_fnc_getSetting);
+
+[_triggers] call common_fnc_deleteObjects;
 
 if ( !_force ) then {
 	private _delay = ["ia", "checkDelay"] call core_fnc_getSetting;
@@ -23,8 +25,7 @@ if ( !_force ) then {
 	};
 };
 
-deleteVehicle _trigger;
-[_radioTower] call common_fnc_deleteObjects;
+[[_radioTower]] call common_fnc_deleteObjects;
 [AO_minefield] call common_fnc_deleteObjects;
 [_units] call common_fnc_deleteObjects;
 {

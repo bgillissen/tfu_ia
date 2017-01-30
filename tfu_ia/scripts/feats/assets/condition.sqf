@@ -27,7 +27,7 @@ private _out = true;
 
 if ( _conf isEqualTo 1 ) then {
 	if ( _isEnemy ) then {
-		_out = ( ({_x in ALLIES} count _sides) == 0 ); 
+		_out = ( ({_x in ENEMIES} count _sides) > 0 ); 
 	} else {
 		_out = ( (PLAYER_SIDE in (_sides call common_fnc_numberToSide)) );
 		

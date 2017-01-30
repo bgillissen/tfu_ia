@@ -19,9 +19,9 @@ private _filter = _index call {
 };
 
 private _pool = _side call {
-	if ( _this isEqualTo east ) exitWith { OPFOR_ENEMY_KEY };
-	if ( _this isEqualTo west ) exitWith { BLUFOR_ENEMY_KEY };
-	IND_ENEMY_KEY
+	if ( _this isEqualTo east && !(isNil "OPFOR_ENEMY_KEY") ) exitWith { OPFOR_ENEMY_KEY };
+	if ( _this isEqualTo west && !(isNil "BLUFOR_ENEMY_KEY") ) exitWith { BLUFOR_ENEMY_KEY };
+	if ( !(isNil "IND_ENEMY_KEY") ) exitWith { IND_ENEMY_KEY };
 };
 
 private _target = format["%1_%2", ((PV select S_k) select 0), (((PV select S_k) select 1) select _index)];

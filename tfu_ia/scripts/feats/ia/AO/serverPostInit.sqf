@@ -7,6 +7,7 @@ Description:
 	must be spawn not call
 	it keeps track of the active AO thread, and create a new one when needed 
 */
+AO_coord = [0,0,0];
 
 if ( (["AO"] call core_fnc_getParam) == 0 ) exitWith {};
 
@@ -43,8 +44,8 @@ while { true } do {
 	{
 		[true, "AO_stop"] call zeusMission_fnc_checkAndWait;
 		if ( AO_stop ) exitWith {};
-		private _aoCoord = getMarkerPos _x; 
-		if !( _aoCoord isEqualTo [0,0,0] ) then {
+		AO_coord = getMarkerPos _x; 
+		if !( AO_coord isEqualTo [0,0,0] ) then {
 			AO_main = [_x] spawn AO_fnc_threadAO;
 			waitUntil {
 				sleep _checkDelay;

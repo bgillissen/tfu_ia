@@ -30,4 +30,4 @@ if ( count _pools > 0 ) exitWith { selectRandom _pools };
 	conRed(_debug);
 #endif	
 
-nil
+[]

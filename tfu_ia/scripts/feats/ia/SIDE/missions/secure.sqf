@@ -38,10 +38,6 @@ Return:
 		nothing
 */
 
-private _aoCoord = [0,0,0];
-if ( !isNil "AO_circle" ) then { 
-	_aoCoord = getMarkerPos AO_circle; 
-};
 private _baseCoord = getMarkerPos "SZ";
 private _cargoType = "Land_Cargo_House_V3_F";
 private _flatPos = [0,0,0];
@@ -57,16 +53,15 @@ while { !_found } do {
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _cargoType, 0, false];
 	};
 	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
-		if ( _aoCoord isEqualTo [0,0,0] ) then {
+		if ( AO_coord isEqualTo [0,0,0] ) then {
 			_found = true;
 		} else {
-			if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) then {
+			if ( (_flatPos distance AO_coord) >= _minDistFromAO ) then {
 				_found = true;
 			};
 		};
 	};
 };
-_aoCoord = nil;
 _baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;

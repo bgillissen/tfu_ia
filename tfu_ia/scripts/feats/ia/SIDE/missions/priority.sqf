@@ -40,18 +40,15 @@ Return:
 	nothing
 */
 
-private _aoCoord = [0,0,0];
-if ( !isNil "AO_circle" ) then { 
-	_aoCoord = getMarkerPos AO_circle; 
-};
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
 private _maxDistFromAO = ["ia", "side", "priority", "maxDistFromAO"] call core_fnc_getSetting;
+private _found = false;
 
 //find a flat position, not too close from base, and not too far, not too close from the active AO (if one)
-while { true } do {
+while { !_found } do {
 	_position = [[[_baseCoord, 2000]], ["water","out"]] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [5, 0, 0.2, 5, 0, false];
 	while {(count _flatPos) < 2} do {
@@ -59,17 +56,19 @@ while { true } do {
 		_flatPos = _position isFlatEmpty [5, 0, 0.2, 5, 0, false];
 	};
 	if ((_flatPos distance _baseCoord) > _mindistFromBase) then {
-		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {}; //TODO to test
-		if ((_flatPos distance _aoCoord) <= _maxDistFromAO) then {
-			if ((_flatPos distance _aoCoord) >= _minDistFromAO) exitWith {};
+		if ( AO_coord isEqualTo [0,0,0] ) then {
+			_found = true;
+		};
+		if ((_flatPos distance AO_coord) <= _maxDistFromAO) then {
+			_found = ( (_flatPos distance AO_coord) >= _minDistFromAO );
 		};
 	};
 };
-_aoCoord = nil;
 _baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 _maxDistFromAO = nil;
+_found = nil;
 
 (getPos _flatPos) params["_cX", "_cY", "_cZ"];
 
@@ -163,7 +162,6 @@ _groups append [_flatPos, 0, 4, 2, 0, 0, ([0,2] select (_isArti)), 2, 2, 3, 0, (
 private _cfg  = ["aa", "arti"] select (_isArti);
 private _title = ["ia", "side", "priority", _cfg, "title"] call core_fnc_getSetting;
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
-_size = nil;
 
 //briefing
 private _briefing = ["ia", "side", "priority", "briefing"] call core_fnc_getSetting;
@@ -203,10 +201,10 @@ while ( true ) do {
 		private _notif = ["ia", "side", "priority", _cfg, "notification"] call core_fnc_getSetting;
 		["CompletedPriorityTarget", _notif] call global_fnc_notification;
 		_notif = nil;
-		[false, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _flatPos, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
+		[true, _flatPos, _size, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _isArti ) then {
 		[[_tank1, _tank2], [_baseCoord, _frCoord]] call SIDE_fnc_artiFire;

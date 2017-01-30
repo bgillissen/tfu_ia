@@ -36,10 +36,6 @@ Return:
 		nothing
 */
 
-private _aoCoord = [0,0,0];
-if ( !isNil "AO_circle" ) then { 
-	_aoCoord = getMarkerPos AO_circle; 
-};
 private _baseCoord = getMarkerPos "SZ";
 private _hqType = ["ia", "side", "research", "hqType"] call core_fnc_getSetting;
 private _flatPos = [0,0,0];
@@ -56,16 +52,15 @@ while { !_found } do {
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, sizeOf _hqType, 0, false];
 	};
 	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
-		if ( _aoCoord isEqualTo [0,0,0] ) then {
+		if ( AO_coord isEqualTo [0,0,0] ) then {
 			_found = true;
 		} else {
-			if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) then {
+			if ( (_flatPos distance AO_coord) >= _minDistFromAO ) then {
 				_found = true;
 			};
 		};
 	};
 };
-_aoCoord = nil;
 _baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
@@ -81,16 +76,18 @@ _hqType = nil;
 
 //objective table, laptop
 private _tableType = ["ia", "side", "table"] call core_fnc_getSetting;
-private _table = _tableType createVehicle [_hqX, _hqY, (_hqZ+1)];
-_table enableSimulation true;
+private _table = _tableType createVehicle [_hqX, _hqY, (_hqZ + 5)];
+[_hq, _table, [5, 2, 0.59]] call BIS_fnc_relPosObject;
+_table enableSimulationGlobal false;
 _tableType = nil;
 
 private _laptopType = ["ia", "side", "laptop"] call core_fnc_getSetting;
-private _laptop = _laptopType createVehicle [_hqX, _hqY, (_hqZ+5)];
+private _laptop = (selectRandom _laptopType) createVehicle [_hqX, _hqY, (_hqZ+5)];
 _laptopType = nil;
 
 [_table, _laptop, [0,0,0.80]] call BIS_fnc_relPosObject;
 _laptop enableSimulationGlobal false;
+_laptop setDir (getdir _table - 180);
 
 private _action = ["ia", "side", "research", "action"] call core_fnc_getSetting;
 [_laptop, _action] call SIDE_fnc_addAction;
@@ -100,7 +97,7 @@ _action = nil;
 private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 private _skill = ["ia", "side", "garrisonSkill"] call core_fnc_getSetting;
 private _groups = [_flatPos, 0, 4, 2, 0, 2, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
-_groups append ([_hq, _skill] call IA_fnc_forcedGarrison);
+_groups pushback ([_hq, _skill] call IA_fnc_forcedGarrison);
 _skill = nil;
 
 
@@ -113,13 +110,12 @@ private _desc = ["ia", "side", "research", "briefing"] call core_fnc_getSetting;
 format[_briefing, _title, _desc] call global_fnc_hint;
 ["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
-_size = nil;
 _briefing = nil;
 _desc = nil;
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
-while ( true ) do {
+while { true } do {
 	if (!alive _hq) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		_fail call global_fnc_hint;
@@ -133,13 +129,13 @@ while ( true ) do {
 		[[_hqX, _hqY, (_hqZ+2)], false] spawn SIDE_fnc_boom;
 		deleteVehicle _laptop;
 		deleteVehicle _table;
-		private _reward = call common_fnc_giveReward;
+		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		format[_hint, _reward] call global_fnc_hint;
-		[false, _flatPos, _groups, [_hq]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_hq]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _flatPos, _groups, [_laptop, _table, _hq]] spawn SIDE_fnc_cleanup;
+		[true, _flatPos, _size, _groups, [_laptop, _table, _hq]] spawn SIDE_fnc_cleanup;
 	};
 	sleep _checkDelay;
 };

@@ -370,7 +370,8 @@ private _spotter = [["", []],
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
                  _mortar, _uavopp, _spotter]];
-//------------------------------------------------------------ Base Atmosphere Role Vanilla BLUFOR
+
+//------------------------------------------------------------ Base Atmosphere Role Vanilla Common
 
 BALO_VC = RL_VC + 1;
 
@@ -380,6 +381,33 @@ private _support = [];
 private _default = [];
 
 _out set [BALO_VC, [_medic, _gear, _support, _default]];
+
+//------------------------------------------------------------ Spawn Vanilla Common
+
+S_VC = BALO_VC + 1;
+
+private _rt = ["Land_TTowerBig_2_F"];
+private _crates = ["Land_CargoBox_V1_F"];
+private _pGroups = [];
+private _sGroups = [];
+private _pilot = [];
+private _crew = [];
+private _officer = [];
+private _garrison = [];
+private _aa = [];
+private _arti = [];
+private _static = [];
+private _cas = [];
+private _tank = [];
+private _apc = [];
+private _car = [];
+private _carArmed = [];
+private _aPatrol = [];
+private _civ = [];
+
+_out set [S_VC, [_rt, _crates, _pGroups, _sGroups, _pilot, _crew, _officer, _garrison, _civ,
+                _aa, _arti, _static, _cas, _tank, _apc, _car, _carArmed, _aPatrol]];
+
 
 //------------------------------------------------------------ FINITO, return
 

@@ -15,13 +15,18 @@ private _size = ["AO_size"] call core_fnc_getParam;
 private _units = [_coord, _size] call AO_fnc_placeEnemies;
 
 //create detection trigger
-private _trigger = createTrigger ["EmptyDetector", _coord];
-_trigger setTriggerArea [_size, _size, 0, false];
-_trigger setTriggerActivation [ENEMY_SIDETXT, "PRESENT", false];
-_trigger setTriggerStatements ["this","",""];
+private _triggers = [];
+{
+	private _trigger = createTrigger ["EmptyDetector", _coord];
+	_trigger setTriggerArea [_size, _size, 0, false];
+	_trigger setTriggerActivation [toUpper (str _x), "PRESENT", false];
+	_trigger setTriggerStatements ["this","",""];
+	_triggers pushback _trigger;
+} foreach ENEMIES;
+
 
 //spawn radioTower
-private _radioTower = [_coord, _size, _trigger] call AO_fnc_placeRadioTower;
+private _radioTower = [_coord, _size, _triggers] call AO_fnc_placeRadioTower;
 
 //create markers
 private _circle = ["ia", "ao", "circle"] call core_fnc_getSetting;
@@ -47,7 +52,8 @@ format[(["ia", "ao", "newHint"] call core_fnc_getSetting), _ao] call global_fnc_
 ["NewSub", (["ia", "ao", "radioTower", "newNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 
 //spawn cas thread
-if ( ["AO_cas"] call core_fnc_getParam ) then {
+private _doCAS = [false, true] select (["AO_cas"] call core_fnc_getParam);
+if ( _doCAS ) then {
 	[_coord, _radioTower] spawn AO_fnc_threadCAS;
 };
 
@@ -71,11 +77,16 @@ if ( !alive _radioTower ) then {
 	["CompletedSub", (["ia", "ao", "radioTower", "endNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 };
 
-_unitThreshold  = ["AO_unitThreshold"] call core_fnc_getParam;
+private _unitThreshold  = ["AO_unitThreshold"] call core_fnc_getParam;
 //units loop
 waitUntil {
 	sleep _delay;
-	((count list _trigger < _unitThreshold) || zeusMission || AO_stop)
+	private _sum = 0;
+	{
+		_sum = _sum + (count list _x);
+	} forEach _triggers;
+	diag_log format["AO unit check: threshold: %1 --- current: %2", _unitThreshold, _sum];
+	( (_sum < _unitThreshold) || zeusMission || AO_stop )
 };
 
 if ( !zeusMission && !AO_stop ) then {
@@ -84,4 +95,4 @@ if ( !zeusMission && !AO_stop ) then {
 	["CompletedMain", _ao] call global_fnc_notification;
 };
 //cleanUp
-[_coord, _trigger, _radioTower, _units, (zeusMission || AO_stop)] spawn AO_fnc_cleanup;
+[_coord, _triggers, _radioTower, _units, (zeusMission || AO_stop)] spawn AO_fnc_cleanup;

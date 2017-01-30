@@ -34,31 +34,33 @@ Return:
 		nothing 
 */
 
-private _aoCoord = [0,0,0];
-if ( !isNil "AO_circle" ) then { 
-	_aoCoord = getMarkerPos AO_circle; 
-};
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
+private _found = false;
+private _limit = time + 20;
 
 //find a flat position, near coast
-while {!_accepted} do {
+while { !_found } do {
 	private _position = [[[] call BIS_fnc_worldArea],["water","out"]] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [2,0,0.3,1,1,true];
 	while {(count _flatPos) < 2} do {
 		_position = [[[] call BIS_fnc_worldArea],["water","out"]] call BIS_fnc_randomPos;
 		_flatPos = _position isFlatEmpty [2,0,0.3,1,1,true];
 	};
-
 	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
-		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {};
-		if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) exitWith {};
+		if ( AO_coord isEqualTo [0,0,0] ) then {
+			_found = true;
+		} else {
+			if ( (_flatPos distance AO_coord) >= _minDistFromAO ) then {
+				_found = true;
+			};
+		};
 	};
+	if ( !_found && time > _limit ) exitWith {};
 };
-_aoCoord = nil;
-_szCoord = nil;
+_baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 
@@ -70,7 +72,8 @@ _hq setVectorUp [0,0,1];
 (getPos _hq) params["_hqX", "_hqY", "_hqZ"];
 
 //objective crate
-private _crate = (selectRandom S_crates) createVehicle [0,0,0];
+(["crates"] call ia_fnc_randomSide) params ["_side", "_pool", "_key"];
+private _crate = (selectRandom _pool) createVehicle [0,0,0];
 _crate allowDamage false;
 _crate setPos [_hqX, _hqY, (_hqZ + 5)];
 private _action = ["ia", "side", "hqCoast", "action"] call core_fnc_getSetting;
@@ -107,13 +110,12 @@ private _desc = ["ia", "side", "hqCoast", "briefing"] call core_fnc_getSetting;
 format[_briefing, _title, _desc] call global_fnc_hint;
 ["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
-_size = nil;
 _briefing = nil;
 _desc = nil;
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting; 
 
-while ( true ) do {
+while { true } do {
 	if (!alive _hq) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		_fail call global_fnc_hint;
@@ -128,15 +130,15 @@ while ( true ) do {
 		_delay = nil;
 		[getPos _crate, true] spawn SIDE_fnc_boom;
 		deleteVehicle _crate;
-		private _reward = call common_fnc_giveReward;
+		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		format[_hint, _reward] call global_fnc_hint;
 		_hint = nil;
 		_reward = nil;
-		[false, _flatPos, _groups, [_boat, _trawler, _hq]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_boat, _trawler, _hq]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _flatPos, _groups, [_boat, _trawler, _crate, _hq]] spawn SIDE_fnc_cleanup;
+		[true, _flatPos, _size, _groups, [_boat, _trawler, _crate, _hq]] spawn SIDE_fnc_cleanup;
 	};
 	sleep _checkDelay;
 };

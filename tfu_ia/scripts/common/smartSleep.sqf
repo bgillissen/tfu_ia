@@ -8,7 +8,7 @@ Description:
 	it checks each _checkDelay
 */
 
-params ["_duration", "_checkDelay", "_condition"];
+params [["_duration", 30], ["_checkDelay", 10], ["_condition", "false"]];
 
 private _end = (time + _duration);
 private _code = compile _condition;

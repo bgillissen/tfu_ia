@@ -70,8 +70,8 @@ _out set [R_VB, _rewards];
 
 S_VB = R_VB + 1;
 
-private _rt = ["Land_TTowerBig_2_F"];
-private _crates = ["Land_CargoBox_V1_F"];
+private _rt = [];
+private _crates = [];
 private _pGroups = [];
 private _sGroups = [];
 private _pilot = [];

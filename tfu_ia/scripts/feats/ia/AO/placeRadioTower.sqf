@@ -9,17 +9,24 @@ Description:
 	it spawn the radioTower inside the given coordonate 
 */
 
-params ["_aoCoord", "_aoSize", "_aoTrigger"];
+params ["_aoCoord", "_aoSize", "_aoTriggers"];
 
 //find a flat position inside AO
 private _rtPos = [];
 while {(count _rtPos) < 1} do {
-	private _pos = [[[_aoCoord, _aoSize], _aoTrigger], ["water","out"]] call BIS_fnc_randomPos;
+	private _pos = [[[_aoCoord, _aoSize], (_aoTriggers select 0)], ["water","out"]] call BIS_fnc_randomPos;
 	_rtPos = _pos isFlatEmpty[3, 1, 0.3, 30, 0, false];
 };
 
 //spawn the radioTower
-private _radioTower = (selectRandom S_radioTower) createVehicle _rtPos;
+(["radioTower"] call ia_fnc_randomSide) params ["_side", ["_vehPool", []], "_key"];
+
+if ( (count _vehPool) == 0 ) exitWith {
+	diag_log "No radio towers found in pool!";
+	objNull;
+};
+
+private _radioTower = (selectRandom _vehPool) createVehicle _rtPos;
 _radioTower setVectorUp [0,0,1];
 
 //add to zeus

@@ -9,8 +9,6 @@ Description:
 
 if ( (["sideMission"] call core_fnc_getParam) == 0 ) exitWith {};
 
-if ( true ) exitWith {};
-
 SIDE_stop = false;
 SIDE_success = false;
 publicVariable "SIDE_success";
@@ -31,7 +29,7 @@ while { true } do {
 		_missions = ["ia", "side", "missions"] call core_fnc_getSetting;
 	};
 	//private _type = selectRandom _missions;
-	private _type = "secure";
+	private _type = "intel";
 	_missions = _missions - [_type];
 	private _fncName = format["SIDE_fnc_%1", _type];
 	private _code = compile format["[] spawn SIDE_fnc_%1", _type];

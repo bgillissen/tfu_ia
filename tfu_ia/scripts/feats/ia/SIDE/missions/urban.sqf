@@ -62,10 +62,6 @@ if ( (count URBAN_pool) == 0 ) then {
 	URBAN_pool = URBAN_markers;
 };
 
-private _aoCoord = [0,0,0];
-if ( !isNil "AO_circle" ) then { 
-	_aoCoord = getMarkerPos AO_circle; 
-};
 private _baseCoord = getMarkerPos "SZ";
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
@@ -76,18 +72,18 @@ while { !_accepted } do {
 	{
 		_coord = getMarkerPos _x;
 		if ( (_coord distance _baseCoord) > _minDistFromBase ) then {
-			if ( (_coord distance _aoCoord) > _minDistFromAO ) exitWith {
+			if ( (_coord distance AO_coord) > _minDistFromAO ) exitWith {
 				_accepted = true;
 				URBAN_pool = URBAN_pool - [_x];
 			};
 		};
 	} count URBAN_pool;
 };
-_aoCoord = nil;
-_szCoord = nil;
+_baseCoord = nil;
 _accepted = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
+_accepted = nil;
 
 //objective crate
 private _crate = (selectRandom S_crates) createVehicle _coord;
@@ -110,7 +106,6 @@ private _desc = ["ia", "side", "urban", "briefing"] call core_fnc_getSetting;
 format[_briefing, _title, _desc] call global_fnc_hint;
 ["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
-_size = nil;
 _briefing = nil;
 _desc = nil;
 
@@ -126,15 +121,15 @@ while ( true ) do {
 		_delay = nil;
 		[getPos _crate, false] spawn SIDE_fnc_boom;
 		deleteVehicle _crate;
-		private _reward = call common_fnc_giveReward;
+		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		format[_hint, _reward] call global_fnc_hint;
 		_hint = nil;
 		_reward = nil;
-		[false, _coord, _groups, []] spawn SIDE_fnc_cleanup;
+		[false, _coord, _size, _groups, []] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _coord, _groups, []] spawn SIDE_fnc_cleanup;
+		[true, _coord, _size, _groups, []] spawn SIDE_fnc_cleanup;
 	};
 	sleep _checkDelay;
 };

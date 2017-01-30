@@ -15,7 +15,6 @@ diag_log format["Placing %1 vehicle from pool %2", _amount, _poolName];
 
 private _groups = [];
 
-if ( count _pool == 0 ) exitWith { _groups };
 if ( _amount <= 0 ) exitWith { _groups };
 
 for "_x" from 1 to _amount do {

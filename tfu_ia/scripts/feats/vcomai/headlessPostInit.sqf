@@ -63,5 +63,5 @@ while { true } do {
 			VcomAI_ActiveList pushback _x;
 		};
 	} forEach allUnits;
-	sleep loopDelay;
+	sleep _loopDelay;
 };

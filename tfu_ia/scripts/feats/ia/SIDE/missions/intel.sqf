@@ -38,17 +38,14 @@ Return:
 		nothing
 */
 
-private _aoCoord = [0,0,0];
-if ( !isNil "AO_circle" ) then { 
-	_aoCoord = getMarkerPos AO_circle; 
-};
 private _baseCoord = getMarkerPos "SZ";
 private _flatPos = [0,0,0];
 private _sizeType = "Land_Dome_Small_F";
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
+private _found = false;
 //find a flat position
-while ( true ) do {
+while { !_found } do {
 	_position = [] call BIS_fnc_randomPos;
 	_flatPos = _position isFlatEmpty [5, 1, 0.2, (sizeOf _sizeType), 0, false];
 	while {(count _flatPos) < 2} do {
@@ -56,44 +53,67 @@ while ( true ) do {
 		_flatPos = _position isFlatEmpty [10, 1, 0.2, (sizeOf _sizeType), 0, false];
 	};
 	if ( (_flatPos distance _baseCoord) >= _minDistFromBase ) then {
-		if ( _aoCoord isEqualTo [0,0,0] ) exitWith {};
-		if ( (_flatPos distance _aoCoord) >= _minDistFromAO ) exitWith{};
+		if ( AO_coord isEqualTo [0,0,0] ) then {
+			_found = true;
+		} else {
+			_found = ( (_flatPos distance AO_coord) >= _minDistFromAO );
+		};
 	};
 };
 _baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 _sizeType = nil;
+_found = nil;
 
-
-private _inVehicle = [false, true] select (random 100 <= (["ia", "side", "intel", "vehicleProb"] call core_fnc_getSetting));
+private _inVehicle = (random 100 <= (["ia", "side", "intel", "vehicleProb"] call core_fnc_getSetting));
 
 private _pos1 = [_flatPos, 2, random 360] call BIS_fnc_relPos;
 private _pos2 = [_flatPos, 10, random 360] call BIS_fnc_relPos;
 private _pos3 = [_flatPos, 15, random 360] call BIS_fnc_relPos;
 
 //Intel
-private _intelGroup = createGroup ENEMY_SIDE;
-private _intel = (selectRandom S_officer) createUnit [_pos1, _intelGroup];
+(["officer"] call ia_fnc_randomSide) params ["_side", "_pool", "_key"];
+private _intelGroup = createGroup _side;
+diag_log _pool;
+private _intel = (selectRandom _pool) createUnit [_pos1, _intelGroup];
+diag_log _intel;
+_intel setVariable ["NOAI", true, true];
 removeAllWeapons _intel;
-private _intelDriver = (selectRandom S_crew) createUnit [_flatPos, _intelGroup];
-private _intelCar = (selectRandom S_car) createVehicle _flatPos;
+private _intelDriver = (selectRandom (S_crew select _key)) createUnit [_flatPos, _intelGroup];
+private _intelCar = (selectRandom (S_car select _key)) createVehicle _flatPos;
 _intelCar setDir (random 360);
 _intel assignAsCargo _intelCar;
 _intelDriver assignAsDriver _intelCar;
 _intelDriver moveInDriver _intelCar;
 //Fake 1
-private _fake1Group = createGroup ENEMY_SIDE;
-private _fake1Driver = (selectRandom S_crew) createUnit [_pos2, _fake1Group];
-private _fake1Car = (selectRandom S_car) createVehicle _pos2;
+private _fake1Group = createGroup _side;
+private _fake1Driver = (selectRandom (S_crew select _key)) createUnit [_pos2, _fake1Group];
+private _fake1Car = (selectRandom (S_car select _key)) createVehicle _pos2;
 _fake1Driver assignAsDriver _fake1Car;
 _fake1Driver moveInDriver _fake1Car;
 //Fake 2
-private _fake2Group = createGroup ENEMY_SIDE;
-private _fake2Driver = (selectRandom S_crew) createUnit [_pos3, _fake2Group];
-private _fake2Car = (selectRandom S_car) createVehicle _pos3;
+private _fake2Group = createGroup _side;
+private _fake2Driver = (selectRandom (S_crew select _key)) createUnit [_pos3, _fake2Group];
+private _fake2Car = (selectRandom (S_car select _key)) createVehicle _pos3;
 _fake2Driver assignAsDriver _fake2Car;
 _fake2Driver moveInDriver _fake2Car;
+
+private ["_guard1", "_guard2", "_addActionTo", "_toclean"];
+if ( _inVehicle ) then {
+	_intel moveInCargo _intelCar;
+	_addActionTo = _intelCar;
+} else {
+	_guard1 = (selectRandom _pool) createUnit [_pos1, _intelGroup];
+	_guard1 setVariable ["NOAI", true, true];
+	_guard2 = (selectRandom _pool) createUnit [_pos1, _intelGroup];
+	_guard2 setVariable ["NOAI", true, true];
+	_addActionTo = _intel;
+};
+
+[(units _intelGroup), 2] call common_fnc_setSkill;
+[(units _fake1Group), 2] call common_fnc_setSkill;
+[(units _fake2Group), 2] call common_fnc_setSkill;
 
 _intelDriver = nil;
 _fake1Driver = nil;
@@ -101,20 +121,6 @@ _fake2Driver = nil;
 _pos1 = nil;
 _pos2 = nil;
 _pos3 = nil;
-
-private ["_guard1", "_guard2", "_addActionTo", "_toclean"];
-if ( _inVehicle ) then {
-	_intel moveInCargo _intelCar;
-	_addActionTo = _intelCar;
-} else {
-	_guard1 = (selectRandom S_officer) createUnit [_pos1, _intelGroup];
-	_guard2 = (selectRandom S_officer) createUnit [_pos1, _intelGroup];
-	_addActionTo = _intel;
-};
-
-[(units _intelGroup), 2] call common_fnc_setSkill;
-[(units _fake1Group), 2] call common_fnc_setSkill;
-[(units _fake2Group), 2] call common_fnc_setSkill;
 
 private _action = ["ia", "side", "intel", "action"] call core_fnc_getSetting;
 [_addActionTo, _action] call SIDE_fnc_addAction;
@@ -125,9 +131,9 @@ _action = nil;
 private _trigger = createTrigger ["EmptyDetector", getPos _intel];
 private _size = ["ia", "side", "intel", "triggerSize"] call core_fnc_getSetting;
 _trigger setTriggerArea [_size, _size, 0, false];
-_trigger setTriggerActivation [PLAYER_SIDETXT, "PRESENT", false];
-_trigger setTriggerStatements ["this","",""];
-_trigger attachTo [_intel,[0,0,0]];
+_trigger setTriggerActivation [toUpper (str PLAYER_SIDE), "PRESENT", false];
+_trigger setTriggerStatements ["this", "", ""];
+_trigger attachTo [_intel, [0,0,0]];
 
 private _groups = [];
 _groups append [_intelGroup];
@@ -141,7 +147,6 @@ _groups append [_flatPos, 0, 4, 0, 0, 0, 1, 0, 2, 2, 0, (_size - (random 50))] c
 //markers
 private _title = ["ia", "side", "intel", "title"] call core_fnc_getSetting;
 [_flatPos, _title, _size] call SIDE_fnc_placeMarkers;
-_size = nil;
 
 //briefing
 private _briefing = ["ia", "side", "briefing"] call core_fnc_getSetting;
@@ -149,7 +154,6 @@ private _desc = ["ia", "side", "intel", "briefing"] call core_fnc_getSetting;
 format[_briefing, _title, _desc] call global_fnc_hint;
 ["NewSideMission", _title] call global_fnc_notification;
 _title = nil;
-_size = nil;
 _briefing = nil;
 _desc = nil;
 
@@ -167,21 +171,21 @@ while ( true ) do {
 	if ( !_cond ) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		_fail call global_fnc_hint;
-		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _escaped ) exitWith {
 		private _chat = ["ia", "side", "intel", "fail"] call core_fnc_getSetting;
 		[1, _chat, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		_fail call global_fnc_hint;
-		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _isFleing ) then {
 		_escaped = (count list _trigger < 1);
 	} else {
 		if (_intel call BIS_fnc_enemyDetected) then {
 			private _chat = ["ia", "side", "intel", "spotted"] call core_fnc_getSetting;
-			[1, _chat, ["HQ", PLAYER_SIDE] call global_fnc_chat;
+			[1, _chat, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 			_chat = nil;
 			if ( !_inVehicle ) then { 
 				[_intel] orderGetIn true;
@@ -196,16 +200,15 @@ while ( true ) do {
 			_isFleing = true;
 	};
 	if ( SIDE_success ) exitWith {
-		
 		private _chat = ["ia", "side", "intel", "secured"] call core_fnc_getSetting;
 		[1, _chat, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
-		private _reward = call common_fnc_giveReward;
+		private _reward = call IA_fnc_giveReward;
 		private _hint = ["ia", "side", "successHint"] call core_fnc_getSetting;
 		format[_hint, _reward] call global_fnc_hint;
-		[false, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _flatPos, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
+		[true, _flatPos, _size, _groups, [_intelCar, _fake1Car, _fake2Car, _trigger]] spawn SIDE_fnc_cleanup;
 	};
 	sleep _checkDelay;
 };
