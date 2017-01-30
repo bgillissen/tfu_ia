@@ -14,7 +14,7 @@ if ((_VCOM_InCover) || {_VCOM_MovedRecentlyCover} || {_Unit getVariable "VCOMAI_
 
 
 //systemchat format ["H %1",_Unit];
-_NearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+_NearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 if (isNil "_NearestEnemy" || _NearestEnemy isEqualTo [0,0,0]) exitWith {};
 
 _ClosestCover = [];

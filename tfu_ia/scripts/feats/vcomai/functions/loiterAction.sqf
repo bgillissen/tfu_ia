@@ -29,7 +29,7 @@ While {_Unit getvariable ["VCOM_LOITERING",true] && alive _Unit} do
 			case 2: 
 			{
 				_Unit setVariable ["VCOM_LOITERINGACT",2];
-				_ClosestUnit = [(_UnitGroup - [_Unit]),_Unit] call VCOMAI_ClosestObject;
+				_ClosestUnit = [(_UnitGroup - [_Unit]),_Unit] call vcomai_fnc_closestObject;
 				_ClosestUnit setVariable ["VCOM_LOITERINGACT",2];
 				
 				_rnd = random 10;
@@ -64,7 +64,7 @@ While {_Unit getvariable ["VCOM_LOITERING",true] && alive _Unit} do
 			case 3:
 			{
 				_Unit setVariable ["VCOM_LOITERINGACT",3];
-				_ClosestUnit = [(_UnitGroup - [_Unit]),_Unit] call VCOMAI_ClosestObject;
+				_ClosestUnit = [(_UnitGroup - [_Unit]),_Unit] call vcomai_fnc_closestObject;
 				_ClosestUnit setVariable ["VCOM_LOITERINGACT",3];
 			
 				_rnd = random 10;

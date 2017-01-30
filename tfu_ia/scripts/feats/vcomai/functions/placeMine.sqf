@@ -10,7 +10,7 @@ if (_MineType isEqualTo []) exitWith {};
 
 
 //systemchat format ["I %1",_Unit];
-_NearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+_NearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 if (_NearestEnemy isEqualTo [] || {isNil "_NearestEnemy"}) exitWith {};
 
 _mine = [];
@@ -24,7 +24,7 @@ else
 	_NearRoads = _Unit nearRoads 50;
 	if (count _NearRoads > 0) then 
 	{
-		_ClosestRoad = [_NearRoads,_Unit] call VCOMAI_ClosestObject;
+		_ClosestRoad = [_NearRoads,_Unit] call vcomai_fnc_closestObject;
 		_Unit doMove (getpos _ClosestRoad);
 		waitUntil {!(alive _Unit) || _Unit distance _ClosestRoad < 6};
 		_mine = createMine [_MineType,getposATL _ClosestRoad, [], 0];
@@ -54,7 +54,7 @@ if (_mine isEqualTo []) exitWith {};
 		} foreach allUnits;
 		
 		
-		_ClosestEnemy = [_Array1,_Mine] call VCOMAI_ClosestObject;
+		_ClosestEnemy = [_Array1,_Mine] call vcomai_fnc_closestObject;
 		if (_ClosestEnemy distance _Mine < 2.5) then {_NotSafe = false;};
 		sleep 0.1;	
 	};

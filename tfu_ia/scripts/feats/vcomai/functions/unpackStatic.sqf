@@ -17,7 +17,7 @@ _CurrentBackPack = backpack _Unit;
 
 if (!(isNil "_CurrentBackPack")) then 
 {
-  _class = [_CurrentBackPack] call VCOMAI_Classvehicle;
+  _class = [_CurrentBackPack] call vcomai_fnc_classvehicle;
   if (!(isNil "_class")) then 
   {
     _parents = [_class,true] call BIS_fnc_returnParents;
@@ -37,7 +37,7 @@ _myNearestEnemy = _Unit findNearestEnemy (getPosASL _Unit);
 
 if (isNull _myNearestEnemy) then 
 {
-		_myNearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+		_myNearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 };
 
 

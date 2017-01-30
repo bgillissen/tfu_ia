@@ -53,7 +53,7 @@ _CheckStatus = assignedItems _Unit;
 
 if (_NoFlanking || {_GrabVariable} || {!("ItemRadio" in _CheckStatus)}) exitWith {if (VCOM_AIDEBUG isEqualTo 1) then {systemChat format ["Exited ClosestAllyWarn2..: %1",_UnitGroup];};};
 
-_Array1 = _Unit call VCOMAI_FriendlyArray;
+_Array1 = _Unit call vcomai_fnc_friendlyArray;
 _Array1 = _Array1 - ArtilleryArray;
 
 if (VCOM_AIDEBUG isEqualTo 1) then
@@ -93,7 +93,7 @@ if (_aliveCount > 0) then
 						if ((count (waypoints _group)) < 2) then 
 						{
 							
-							_WaypointCheck = _group call VCOMAI_Waypointcheck;
+							_WaypointCheck = _group call vcomai_fnc_waypointcheck;
 							if (count _WaypointCheck < 1) then 
 							{
 							

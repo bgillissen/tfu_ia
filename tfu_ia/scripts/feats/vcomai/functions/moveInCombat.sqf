@@ -36,7 +36,7 @@ else
 		if (_Unit isEqualTo (leader _Unit)) then
 		{
 			_GroupDudes = units (group _Unit);
-			_NearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+			_NearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 			if (isNil "_NearestEnemy" || _NearestEnemy isEqualTo [0,0,0]) then {_NearestEnemy = _WPPosition;};
 			//systemchat format ["_NearestEnemy: %1",_NearestEnemy];	
 			_VCOM_MovedRecentlyRETURN = true;
@@ -56,7 +56,7 @@ else
 					_NearestEnemy = _this select 6;
 					
 					
-					_MoveToPos = [_Unit,_Pos,_NearestEnemy] call VCOMAI_FragmentMove;
+					_MoveToPos = [_Unit,_Pos,_NearestEnemy] call vcomai_fnc_fragmentMove;
 					//systemchat format ["_MoveToPos: %1",_MoveToPos];	
 					if !((vehicle _Unit) isEqualTo _Unit) exitWith
 					{
@@ -64,7 +64,7 @@ else
 						_Unit doMove _Pos;
 						
 					};			
-					_CoverPos = [_Unit,_MoveToPos,_VCOM_GARRISONED,_VCOM_MovedRecentlyCover,_VCOMAI_ActivelyClearing,_VCOMAI_StartedInside,_NearestEnemy] call VCOMAI_FindCoverPos;
+					_CoverPos = [_Unit,_MoveToPos,_VCOM_GARRISONED,_VCOM_MovedRecentlyCover,_VCOMAI_ActivelyClearing,_VCOMAI_StartedInside,_NearestEnemy] call vcomai_fnc_findCoverPos;
 					//systemchat format ["_CoverPos: %1",_CoverPos];	
 					if !(isNil "_CoverPos") then
 					{

@@ -15,18 +15,18 @@ removeBackpackGlobal _this;
 while {alive _UAVCreated} do
 {
 	//systemchat format ["C %1",_Unit];
-	_myNearestEnemy = _UAVCreated call VCOMAI_ClosestEnemy;
+	_myNearestEnemy = _UAVCreated call vcomai_fnc_closestEnemy;
 	if (isNil "_myNearestEnemy") exitWith {};
 	if !(_myNearestEnemy isEqualTo []) then
 	{
 		_UAVCreated doMove (getpos _myNearestEnemy);
-		_FriendlyArray = _UAVCreated call VCOMAI_FriendlyArray;
-		_ClosestFriendly = [_FriendlyArray,_UAVCreated] call VCOMAI_ClosestObject;
+		_FriendlyArray = _UAVCreated call vcomai_fnc_friendlyArray;
+		_ClosestFriendly = [_FriendlyArray,_UAVCreated] call vcomai_fnc_closestObject;
 		if (isNil "_ClosestFriendly") then {_ClosestFriendly = _UAVCreated};
 		[_UAVCreated] join (group _ClosestFriendly);
 		if (_myNearestEnemy distance _UAVCreated < 600) then
 		{
-			_Array1 = _UAVCreated call VCOMAI_FriendlyArray;
+			_Array1 = _UAVCreated call vcomai_fnc_friendlyArray;
 			{
 				(group _x) reveal [_myNearestEnemy, 4];
 			} foreach _Array1;

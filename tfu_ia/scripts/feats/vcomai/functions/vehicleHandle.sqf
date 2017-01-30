@@ -9,7 +9,7 @@ _myNearestEnemy = _this select 1;
 if (isNil "_myNearestEnemy" || {_myNearestEnemy isEqualTo []}) exitWith {};
 
 _UnitSide = side _Unit;
-_SideCheck = _Unit call VCOMAI_FriendlyArray;
+_SideCheck = _Unit call vcomai_fnc_friendlyArray;
 
 _UnitGroup = group _Unit;
 _GroupUnits = units _UnitGroup;

@@ -33,7 +33,7 @@ if ((diag_tickTime - _TimeShot) > 10) then
 		_pos = getPosATL _pos;
 	};
 	
-	_Point = _Unit call VCOMAI_ClosestEnemy;
+	_Point = _Unit call vcomai_fnc_closestEnemy;
 	if (_Point isEqualTo [] || {isNil "_Point"}) exitWith {};
 	
 	_ArrayCheck = typeName _Point;

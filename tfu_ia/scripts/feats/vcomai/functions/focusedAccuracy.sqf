@@ -8,13 +8,13 @@ _VCOM_DiagLastCheck = diag_ticktime;
 if (_TargetPosition isEqualTo [0,0,0]) then
 {
 	//_target = assignedTarget _unit;
-	_target = _Unit call VCOMAI_ClosestEnemy;if (_target isEqualTo [0,0,0]) exitwith {};
+	_target = _Unit call vcomai_fnc_closestEnemy;if (_target isEqualTo [0,0,0]) exitwith {};
 	_TargetPosition = getpos _target;
 }
 else
 {
 	//_target = assignedTarget _unit;
-	_target = _Unit call VCOMAI_ClosestEnemy;if (_target isEqualTo [0,0,0]) exitwith {};
+	_target = _Unit call vcomai_fnc_closestEnemy;if (_target isEqualTo [0,0,0]) exitwith {};
 	_NewPosition = getpos _Target;
 	
 
@@ -38,7 +38,7 @@ else
 	}
 	else
 	{
-		_RankReturn = _Unit call VCOMAI_RankAndSkill;
+		_RankReturn = _Unit call vcomai_fnc_rankAndSkill;
 		_Accuracy = _Unit skill "aimingAccuracy";
 		_Shake = _Unit skill "aimingShake";
 		_Speed = _Unit skill "aimingSpeed";

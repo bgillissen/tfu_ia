@@ -7,7 +7,7 @@ _Unit = _this;
 //_Point = _Unit getVariable "VCOM_CLOSESTENEMY";
 
 //systemchat format ["D %1",_Unit];
-_Point = _Unit call VCOMAI_ClosestEnemy;
+_Point = _Unit call vcomai_fnc_closestEnemy;
 if (_Point isEqualTo [] || {isNil "_Point"}) exitWith {};
 
 _PreviousPosition = (getPosATL _Unit);
@@ -122,7 +122,7 @@ _Unit doMove _PreviousPosition;
 } foreach allUnits;
 while {_NotSafe} do
 {
-	_ClosestFriendly = [_Array1,_PlantPosition] call VCOMAI_ClosestObject;
+	_ClosestFriendly = [_Array1,_PlantPosition] call vcomai_fnc_closestObject;
 	if (_ClosestFriendly distance _PlantPosition > 15) then {_NotSafe = false;};
 	sleep 5;
 };

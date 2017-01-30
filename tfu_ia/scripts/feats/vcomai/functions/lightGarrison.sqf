@@ -12,7 +12,7 @@ _SpecificUnit = _UnitsGroup select 0;
 
 
 //systemchat format ["G %1",_Unit];
-_ClosestEnemy = _Unit call VCOMAI_ClosestEnemy;
+_ClosestEnemy = _Unit call vcomai_fnc_closestEnemy;
 if (isNil "_ClosestEnemy" || {_ClosestEnemy isEqualTo []}) exitWith {};
 
 _nBuilding = nearestBuilding _ClosestEnemy;

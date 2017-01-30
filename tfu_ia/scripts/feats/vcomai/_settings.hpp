@@ -1,5 +1,5 @@
 class vcomai {
-	AISkillEnabled = 1;
+	aiSkillEnabled = 1;
 	debug = 0;
 	useMarkers = 0;
 	noAIForPlayerLeader = 1;
@@ -13,9 +13,7 @@ class vcomai {
 	mineLayingProb = 40;
 	disembark = 1;
 	magLimit = 2;
-	IncreaseAccuracy = 1;
-	sideBasedMovement[] = {0, 1 , 2};
-	sideBasedExecution[] = {0, 1 , 2};
+	increaseAccuracy = 1;
 	warnDistance = 1000;
 	loopDelay = 30;
 	class skills {

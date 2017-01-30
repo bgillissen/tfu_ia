@@ -3,7 +3,7 @@
 _Unit = _this select 0;
 
 
-_NearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+_NearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 if (isNil "_NearestEnemy") exitwith {};
 
 _VCOMAI_LastCStance = _this select 1;

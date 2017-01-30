@@ -8,7 +8,7 @@ _VCOMAI_StartedInside = _this select 3;
 if (_VCOM_MovedRecentlyCover || {_VCOMAI_ActivelyClearing} || {_VCOMAI_StartedInside}) exitWith {_dgn_returnvariable = false;_dgn_returnvariable};
 
 //systemchat format ["A %1",_Unit];
-_Enemy = _Unit call VCOMAI_ClosestEnemy;
+_Enemy = _Unit call vcomai_fnc_closestEnemy;
 if (isNil "_Enemy") exitWith {};
 
 if ((typeName _Enemy) isEqualTo "ARRAY") exitWith {_dgn_returnvariable = false;_dgn_returnvariable};

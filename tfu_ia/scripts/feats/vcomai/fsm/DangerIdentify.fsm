@@ -283,7 +283,7 @@ class FSM
     class InsideVehicle
     {
       name = "InsideVehicle";
-      init = /*%FSM<STATEINIT""">*/"_Unit call VCOMAI_VehicleHandleDanger;" \n
+      init = /*%FSM<STATEINIT""">*/"_Unit call vcomai_fnc_vehicleHandleDanger;" \n
        "" \n
        ""/*%FSM</STATEINIT""">*/;
       precondition = /*%FSM<STATEPRECONDITION""">*/""/*%FSM</STATEPRECONDITION""">*/;
@@ -413,7 +413,7 @@ class FSM
     {
       name = "Threat_Decisions_1";
       init = /*%FSM<STATEINIT""">*/"" \n
-       "//_CurrentStance = _Unit call VCOMAI_CurrentStance;" \n
+       "//_CurrentStance = _Unit call vcomai_fnc_currentStance;" \n
        "" \n
        "private [""_CurrentStance""];" \n
        "" \n
@@ -447,7 +447,7 @@ class FSM
           priority = 100.000000;
           to="Combat_Mode";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"(!(isNull (_Unit call VCOMAI_RecentEnemyDetected))) && !(_CurrentStance isEqualTo ""COMBAT"")"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(!(isNull (_Unit call vcomai_fnc_recentEnemyDetected))) && !(_CurrentStance isEqualTo ""COMBAT"")"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -467,7 +467,7 @@ class FSM
           priority = 80.000000;
           to="Combat_Mode";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"(count (_Unit call VCOMAI_ExplosionDetection)) > 0 &&  !(_CurrentStance isEqualTo ""COMBAT"")"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(count (_Unit call vcomai_fnc_explosionDetection)) > 0 &&  !(_CurrentStance isEqualTo ""COMBAT"")"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -477,7 +477,7 @@ class FSM
           priority = 70.000000;
           to="Combat_Mode";
           precondition = /*%FSM<CONDPRECONDITION""">*/""/*%FSM</CONDPRECONDITION""">*/;
-          condition=/*%FSM<CONDITION""">*/"(( _Unit call VCOMAI_DeadBodyDetection) distance _unit) < 50 &&  !(_CurrentStance isEqualTo ""COMBAT"")"/*%FSM</CONDITION""">*/;
+          condition=/*%FSM<CONDITION""">*/"(( _Unit call vcomai_fnc_deadBodyDetection) distance _unit) < 50 &&  !(_CurrentStance isEqualTo ""COMBAT"")"/*%FSM</CONDITION""">*/;
           action=/*%FSM<ACTION""">*/""/*%FSM</ACTION""">*/;
         };
         /*%FSM</LINK>*/
@@ -498,7 +498,7 @@ class FSM
     class Threat_Decisions_2
     {
       name = "Threat_Decisions_2";
-      init = /*%FSM<STATEINIT""">*/"//_CurrentStance = _Unit call VCOMAI_CurrentStance;" \n
+      init = /*%FSM<STATEINIT""">*/"//_CurrentStance = _Unit call vcomai_fnc_currentStance;" \n
        "" \n
        "private [""_CurrentStance""];" \n
        "" \n

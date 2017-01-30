@@ -11,7 +11,7 @@ _VCOM_GARRISONED = _this select 4;
 if ((count (waypoints (group _Unit))) >= 3) exitWith {};
 _GroupUnit = group _Unit;
 
-_WaypointCheck = _GroupUnit call VCOMAI_Waypointcheck;
+_WaypointCheck = _GroupUnit call vcomai_fnc_waypointcheck;
 if (count _WaypointCheck > 0) exitWith {};
 
 

@@ -20,10 +20,10 @@ if !(_Return) then
 	
 	if ((diag_tickTime - _TimeShot) > 20) then 
 	{
-		_Array1 = _unit call VCOMAI_EnemyArray;
+		_Array1 = _unit call vcomai_fnc_enemyArray;
 		
 		{
-			if ((_x distance _unit) < VCOM_HEARINGDISTANCE && !(_x getVariable "VCOMAI_ShotsFired") && (count ((group _Unit) call VCOMAI_Waypointcheck)) <= 0) then
+			if ((_x distance _unit) < VCOM_HEARINGDISTANCE && !(_x getVariable "VCOMAI_ShotsFired") && (count ((group _Unit) call vcomai_fnc_waypointcheck)) <= 0) then
 			{
 				_x setVariable ["VCOMAI_ShotsFired",true,true];
 				_kv = _x knowsAbout _unit;

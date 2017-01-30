@@ -54,7 +54,6 @@ class vcomai {
 		class suppressingShots { file="feats\vcomai\functions\suppressingShots.sqf"; };
 		class throwGrenade { file="feats\vcomai\functions\throwGrenade.sqf"; };
 		class uavDeploy { file="feats\vcomai\functions\uavDeploy.sqf"; };
-		class unitInit { file="feats\vcomai\functions\unitInit.sqf"; };
 		class unpackStatic { file="feats\vcomai\functions\unpackStatic.sqf"; };
 		class vehicleHandle { file="feats\vcomai\functions\vehicleHandle.sqf"; };
 		class waypointCheck { file="feats\vcomai\functions\waypointCheck.sqf"; };

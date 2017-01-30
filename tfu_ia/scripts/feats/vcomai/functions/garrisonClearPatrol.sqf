@@ -25,7 +25,7 @@ sleep (random 5);
 			
 			
 			//Define the closest position to be edited
-			if (_RefinedBuildingArray isEqualTo []) then {_ClosestPos = [_Locations,_Enemy] call VCOMAI_ClosestObject;} else {_ClosestPos = [_RefinedBuildingArray,_Enemy] call VCOMAI_ClosestObject;};
+			if (_RefinedBuildingArray isEqualTo []) then {_ClosestPos = [_Locations,_Enemy] call vcomai_fnc_closestObject;} else {_ClosestPos = [_RefinedBuildingArray,_Enemy] call vcomai_fnc_closestObject;};
 
 
 if (isNil "_closestpos") exitWith {};
@@ -51,7 +51,7 @@ while {(_Unit distance _ClosestPos) > 3 && alive _Unit} do
 			
 			
 			//Define the closest position to be edited
-			if (_RefinedBuildingArray isEqualTo []) then {_ClosestPos = [_Locations,_Enemy] call VCOMAI_ClosestObject;} else {_ClosestPos = [_RefinedBuildingArray,_Enemy] call VCOMAI_ClosestObject;};
+			if (_RefinedBuildingArray isEqualTo []) then {_ClosestPos = [_Locations,_Enemy] call vcomai_fnc_closestObject;} else {_ClosestPos = [_RefinedBuildingArray,_Enemy] call vcomai_fnc_closestObject;};
 						
 			
 };

@@ -46,7 +46,7 @@ if (side _Unit isEqualTo Resistance) then
 if ((count _Chosen) <= 0) exitWith {};
 
 //player sidechat format ["ARTY CALLED: %1",(vehicle _Unit)];
-_ReturnedSupport = [_Chosen,(vehicle _Unit)] call VCOMAI_ClosestObject;
+_ReturnedSupport = [_Chosen,(vehicle _Unit)] call vcomai_fnc_closestObject;
 if (isNil "_ReturnedSupport") exitWith {};
 
 if !(_ReturnedSupport in ArtilleryArray) exitWith {};

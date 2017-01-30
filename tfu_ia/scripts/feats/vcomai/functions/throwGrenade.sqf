@@ -11,7 +11,7 @@ if (_RandomChance < VCOM_GRENADECHANCE) then
 if (isNil "_Unit" || {isNull _Unit}) exitWith {};
 
 		//systemchat format ["K %1",_Array1];	
-_myNearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+_myNearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 if (isNil "_myNearestEnemy") exitWith {};
 if (typeName _myNearestEnemy isEqualTo "ARRAY") exitWith {};
 

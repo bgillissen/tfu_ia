@@ -9,14 +9,14 @@ _VCOMAI_StartedInside = _this select 4;
 _VCOM_GARRISONED = _Unit getVariable ["VCOM_GARRISONED",false];
 
 //Let's find the nearest enemy to his unit.
-_NearestEnemy = _Unit call VCOMAI_ClosestEnemy;
+_NearestEnemy = _Unit call vcomai_fnc_closestEnemy;
 _DistanceCheck = _NearestEnemy distance _Unit;
 if (isNil "_NearestEnemy" || {(typeName _NearestEnemy isEqualTo "ARRAY")} || {isNil "_Unit"} || {!(alive _NearestEnemy)} || {(_DistanceCheck) > 2000}) exitWith {_Unit forcespeed -1;};
 
 
 
 _MoveToPos = (getpos _Unit);
-_CoverPos = [_Unit,_MoveToPos,_VCOM_GARRISONED,_VCOM_MovedRecentlyCover,false,_VCOMAI_StartedInside,_NearestEnemy] call VCOMAI_FindCoverPos;
+_CoverPos = [_Unit,_MoveToPos,_VCOM_GARRISONED,_VCOM_MovedRecentlyCover,false,_VCOMAI_StartedInside,_NearestEnemy] call vcomai_fnc_findCoverPos;
 
 if !(isNil "_CoverPos") then
 {

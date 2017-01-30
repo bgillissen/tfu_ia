@@ -4,7 +4,7 @@ _Unit = _this;
 _CurrentBackPack = backpack _Unit;
 
 if (isNil "_CurrentBackPack") exitWith {};
-_class = [_CurrentBackPack] call VCOMAI_Classvehicle;
+_class = [_CurrentBackPack] call vcomai_fnc_classVehicle;
 
 _VCOM_HASUAV = false;
 _VCOM_HASSTATIC = false;
