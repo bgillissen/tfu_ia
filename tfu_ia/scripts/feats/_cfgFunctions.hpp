@@ -37,6 +37,7 @@ Description:
 #include "supplyDrop\_cfgFunctions.hpp"
 #include "supportCrate\_cfgFunctions.hpp"
 #include "va\_cfgFunctions.hpp"
+#include "vcomai\_cfgFunctions.hpp"
 #include "vehicleCrew\_cfgFunctions.hpp"
 #include "vehicleRespawn\_cfgFunctions.hpp"
 #include "vehicleRestrictions\_cfgFunctions.hpp"
