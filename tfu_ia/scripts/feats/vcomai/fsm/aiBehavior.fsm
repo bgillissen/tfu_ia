@@ -498,7 +498,7 @@ link282[] = {210,60};
 link283[] = {144,210};
 link284[] = {210,144};
 globals[] = {0.000000,0,0,0,0,640,480,2,522,6316128,1,-1063.460083,1459.845215,961.665161,-1323.661377,1389,1258,1};
-window[] = {0,-1,-1,-1,-1,2159,221,2558,729,1,1407};
+window[] = {0,-1,-1,-1,-1,1664,234,2571,234,1,1407};
 *//*%FSM</HEAD>*/
 class FSM
 {
@@ -512,9 +512,11 @@ class FSM
                         itemno = 0;
                         init = /*%FSM<STATEINIT""">*/"_Unit = _this select 0;" \n
                          "" \n
-                         "if (VCOM_UseMarkers) then {_Unit spawn vcomai_fnc_mapMarkers;};" \n
+                         "if ( VCOM_UseMarkers ) then {" \n
+                         "	_Unit spawn vcomai_fnc_mapMarkers;" \n
+                         "};" \n
                          "" \n
-                         "_IsPLayer = (isPlayer _Unit);" \n
+                         "_IsPLayerCheck = (isPlayer _Unit);" \n
                          "_NoAICheck = (_Unit getVariable [""NOAI"", false]);" \n
                          "/*" \n
                          "_ReturnVariable = [_Unit] call VcomAI_UnitInit;" \n

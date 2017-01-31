@@ -75,12 +75,12 @@ private _pos3 = [_flatPos, 15, random 360] call BIS_fnc_relPos;
 //Intel
 (["officer"] call ia_fnc_randomSide) params ["_side", "_pool", "_key"];
 private _intelGroup = createGroup _side;
-diag_log _pool;
-private _intel = (selectRandom _pool) createUnit [_pos1, _intelGroup];
-diag_log _intel;
+(selectRandom _pool) createUnit [_pos1, _intelGroup];
+private _intel = (units _intelGroup) select 0;
 _intel setVariable ["NOAI", true, true];
 removeAllWeapons _intel;
-private _intelDriver = (selectRandom (S_crew select _key)) createUnit [_flatPos, _intelGroup];
+(selectRandom (S_crew select _key)) createUnit [_flatPos, _intelGroup];
+private _intelDriver = (units _intelGroup) select 1;
 private _intelCar = (selectRandom (S_car select _key)) createVehicle _flatPos;
 _intelCar setDir (random 360);
 _intel assignAsCargo _intelCar;
@@ -88,13 +88,15 @@ _intelDriver assignAsDriver _intelCar;
 _intelDriver moveInDriver _intelCar;
 //Fake 1
 private _fake1Group = createGroup _side;
-private _fake1Driver = (selectRandom (S_crew select _key)) createUnit [_pos2, _fake1Group];
+(selectRandom (S_crew select _key)) createUnit [_pos2, _fake1Group];
+private _fake1Driver = (units _fake1Group) select 0;
 private _fake1Car = (selectRandom (S_car select _key)) createVehicle _pos2;
 _fake1Driver assignAsDriver _fake1Car;
 _fake1Driver moveInDriver _fake1Car;
 //Fake 2
 private _fake2Group = createGroup _side;
-private _fake2Driver = (selectRandom (S_crew select _key)) createUnit [_pos3, _fake2Group];
+(selectRandom (S_crew select _key)) createUnit [_pos3, _fake2Group];
+private _fake2Driver = (units _fake2Group) select 0;
 private _fake2Car = (selectRandom (S_car select _key)) createVehicle _pos3;
 _fake2Driver assignAsDriver _fake2Car;
 _fake2Driver moveInDriver _fake2Car;
@@ -104,9 +106,11 @@ if ( _inVehicle ) then {
 	_intel moveInCargo _intelCar;
 	_addActionTo = _intelCar;
 } else {
-	_guard1 = (selectRandom _pool) createUnit [_pos1, _intelGroup];
+	(selectRandom _pool) createUnit [_pos1, _intelGroup];
+	_guard1 = (units _intelGroup) select 2;
 	_guard1 setVariable ["NOAI", true, true];
-	_guard2 = (selectRandom _pool) createUnit [_pos1, _intelGroup];
+	(selectRandom _pool) createUnit [_pos1, _intelGroup];
+	_guard2 = (units _intelGroup) select 3;
 	_guard2 setVariable ["NOAI", true, true];
 	_addActionTo = _intel;
 };
@@ -161,7 +165,7 @@ private _isFleing = false;
 private _escaped = false;
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
-while ( true ) do {
+while { true } do {
 	private ["_cond"];
 	if ( _inVehicle ) then {
 		_cond = (alive _intelCar);

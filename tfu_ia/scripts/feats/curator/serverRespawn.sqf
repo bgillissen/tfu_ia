@@ -16,3 +16,6 @@ private _puid = (getPlayerUID _player);
 		_player assignCurator _gm; 
 	};
 } forEach curatorAssigned;
+
+
+[_this, false] call curator_fnc_addEditable;
