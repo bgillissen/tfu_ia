@@ -17,7 +17,9 @@ A_TFU = 0;
 private _backpacks = [];
 private _items = ["H_Beret_TFU_Tan_01",
                   "H_Beret_TFU_Black_01",
-                  "H_Beret_TFU_Green_01"];
+                  "H_Beret_TFU_Green_01"
+                  "H_Beret_TFU_Olive_01",
+                  "H_Beret_TFU_Red_01"];
 private _weapons = [];
 private _ammo = [];
 
@@ -56,4 +58,5 @@ _out set [RL_TFU, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sni
                    _mortar, _uavopp, _spotter]];
 
 //------------------------------------------------------------ FINITO, return
-_out;
+
+_out

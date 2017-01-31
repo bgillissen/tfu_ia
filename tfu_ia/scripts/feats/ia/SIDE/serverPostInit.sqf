@@ -38,6 +38,7 @@ while { true } do {
 		sleep _checkDelay;
 		scriptDone SIDE_main
 	};
+	diag_log format["SIDE FINISHED --- %1", SIDE_main];
 	SIDE_success = false;
 	publicVariable "SIDE_success";
 	if ( !zeusMission ) then {

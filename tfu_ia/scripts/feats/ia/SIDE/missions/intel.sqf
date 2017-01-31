@@ -68,7 +68,7 @@ _found = nil;
 
 private _inVehicle = (random 100 <= (["ia", "side", "intel", "vehicleProb"] call core_fnc_getSetting));
 
-private _pos1 = [_flatPos, 2, random 360] call BIS_fnc_relPos;
+private _pos1 = [_flatPos, 3, random 360] call BIS_fnc_relPos;
 private _pos2 = [_flatPos, 10, random 360] call BIS_fnc_relPos;
 private _pos3 = [_flatPos, 15, random 360] call BIS_fnc_relPos;
 
@@ -140,13 +140,13 @@ _trigger setTriggerStatements ["this", "", ""];
 _trigger attachTo [_intel, [0,0,0]];
 
 private _groups = [];
-_groups append [_intelGroup];
-_groups append [_fake1Group];
-_groups append [_fake2Group];
+_groups pushback _intelGroup;
+_groups pushback _fake1Group;
+_groups pushback _fake2Group;
 
 //spawn units
 _size = ["ia", "side", "size"] call core_fnc_getSetting;
-_groups append [_flatPos, 0, 4, 0, 0, 0, 1, 0, 2, 2, 0, (_size - (random 50))] call SIDE_fnc_placeEnemies;
+_groups append ([_flatPos, 0, 4, 0, 0, 0, 1, 0, 2, 2, 0, (_size - (random 50))] call SIDE_fnc_placeEnemies);
 
 //markers
 private _title = ["ia", "side", "intel", "title"] call core_fnc_getSetting;
@@ -166,12 +166,12 @@ private _escaped = false;
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
 while { true } do {
-	private ["_cond"];
+	private "_cond";
 	if ( _inVehicle ) then {
 		_cond = (alive _intelCar);
 	} else {
 		_cond = (alive _intel);
-	}
+	};
 	if ( !_cond ) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		_fail call global_fnc_hint;
@@ -187,7 +187,7 @@ while { true } do {
 	if ( _isFleing ) then {
 		_escaped = (count list _trigger < 1);
 	} else {
-		if (_intel call BIS_fnc_enemyDetected) then {
+		if ( _intel call BIS_fnc_enemyDetected ) then {
 			private _chat = ["ia", "side", "intel", "spotted"] call core_fnc_getSetting;
 			[1, _chat, ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 			_chat = nil;
@@ -196,12 +196,13 @@ while { true } do {
 				sleep 10;
 			};
 			{
-				private _wp = _x addWaypoint [_aoCoord, 100];	
+				private _wp = _x addWaypoint [AO_coord, 100];	
 				_wp setWaypointType "MOVE";
 				_wp setWaypointBehaviour "CARELESS";
 				_wp setWaypointSpeed "FULL";
 			} count [_intelGroup, _fake1Group, _fake2Group];
 			_isFleing = true;
+		};
 	};
 	if ( SIDE_success ) exitWith {
 		private _chat = ["ia", "side", "intel", "secured"] call core_fnc_getSetting;
