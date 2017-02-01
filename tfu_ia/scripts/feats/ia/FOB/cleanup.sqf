@@ -7,7 +7,7 @@ Description:
 	it cleanup an FOB mission 
 */
 
-params ["_force", "_coord", "_groups", "_pad", "_truck", "_marker", "_veh1", "_veh2"];
+params ["_force", "_coord", "_groups", "_vehs", "_pad", "_truck", "_marker", "_veh1", "_veh2"];
 
 deleteMarker _marker;
 deleteVehicle _truck;
@@ -27,14 +27,15 @@ if ( !_force ) then {
 	deleteGroup _x;
 } count (_groups);
 
+{
+	{ deleteVehicle _x; } count (crew _x);
+	deleteVehicle _x;
+} count (_vehs);
+
 deleteVehicle _truck;
 deleteVehicle _pad;
 
-if ( count _this > 5 ) then {
+if ( count _this > 7 ) then {
 	 deleteVehicle _veh1;
 	 deleteVehicle _veh2;
 };
-
-{
-	if ((count units _x) == 0) then { deleteGroup _x; };
-} count allGroups;

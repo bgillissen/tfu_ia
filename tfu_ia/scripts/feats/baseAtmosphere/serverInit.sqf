@@ -21,11 +21,19 @@ BA_obj = [];
 		private _thing = missionNamespace getVariable _name;
 		if ( _type isEqualTo "obj" ) then { 
 			BA_obj pushback [_thing, _actions];
+			{
+				_x params ["_action", "_mode"];
+				if ( "markerColor" isEqualTo _action ) then {
+					_thing setMarkerColor (call common_fnc_getMarkerColor); 
+				};
+				true
+			} count _actions;
 		} else {
 			if ( _type isEqualto "npc" ) then {
 				{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
+				_thing setVariable ["NOAI", true, true];
 				[_thing, _actions] call baseAtmosphere_fnc_npcLoadout;
-				BA_npc pushback [_thing, _actions];	
+				BA_npc pushback [_thing, _actions];
 			};
 		};
 #ifdef DEBUG

@@ -36,7 +36,7 @@ createMarker [_circle, _coord];
 _circle setMarkerColor _color;
 _circle setMarkerShape "ELLIPSE";
 _circle setMarkerSize [_size, _size];
-_circle setMarkerBrush "Border";
+_circle setMarkerBrush "FDiagonal";
 createMarker [_label, _coord];
 _label setMarkerColor _color;
 _label setMarkerShape "ICON";

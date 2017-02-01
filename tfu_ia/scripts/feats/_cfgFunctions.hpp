@@ -40,6 +40,7 @@ Description:
 #include "va\_cfgFunctions.hpp"
 #include "vcomai\_cfgFunctions.hpp"
 #include "vehicleCrew\_cfgFunctions.hpp"
+#include "vehicleRepair\_cfgFunctions.hpp"
 #include "vehicleRespawn\_cfgFunctions.hpp"
 #include "vehicleRestrictions\_cfgFunctions.hpp"
 #include "viewDistance\_cfgFunctions.hpp"

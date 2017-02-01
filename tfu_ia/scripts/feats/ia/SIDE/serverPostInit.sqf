@@ -40,8 +40,7 @@ while { true } do {
 	if ( (count _missions) == 0 ) then {
 		_missions = _sideMissions;
 	};
-	//private _type = selectRandom _missions;
-	private _type = "intel";
+	private _type = selectRandom _missions;
 	_missions = _missions - [_type];
 	private _fncName = format["SIDE_fnc_%1", _type];
 	private _code = compile format["[] spawn SIDE_fnc_%1", _type];

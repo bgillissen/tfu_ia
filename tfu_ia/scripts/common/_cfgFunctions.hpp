@@ -10,6 +10,7 @@ class common {
 		class doGesturePlayer { file="common\doGesturePlayer.sqf"; };
 		class garrisonUnit { file="common\garrisonUnit.sqf"; };
 		class getFriends { file="common\getFriends.sqf"; };
+		class getMarkerColor { file="common\getMarkerColor.sqf"; };
 		class implent { file="common\implent.sqf"; };
 		class isBlacklisted { file="common\isBlacklisted.sqf"; };
 		class isCopilot { file="common\isCopilot.sqf"; };

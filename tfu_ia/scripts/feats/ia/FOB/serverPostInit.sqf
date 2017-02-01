@@ -7,38 +7,54 @@ Description:
 	it keeps track of the active FOB thread, and spawn a new one when needed 
 */
 
-if ( (["FOB"] call core_fnc_getParam) == 0 ) exitWith {};
+if ( (["FOBMission"] call core_fnc_getParam) == 0 ) exitWith {};
+
+#define EMPTYARRAY []
 
 FOB_stop = false;
 FOB_deployed = [];
-FOB_main = nil;
+{
+	FOB_deployed set [_forEachIndex, EMPTYARRAY];
+} forEach FOBS;
+
+FOB_main = scriptNull;
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 private _cooldown = ["ia", "fob", "cooldown"] call core_fnc_getSetting;
 private _markers = [];
 private _types = [];
 
+diag_log "FOB loop start";
+
 while { true } do {
-	
+	diag_log "FOB inloop";
 	[false, "FOB_stop"] call zeusMission_fnc_checkAndWait;
-	[_cooldown, _checkDelay, "FOB_stop"] call common_smartSleep;
 	if ( FOB_stop ) exitWith {};
-	waitUntil {
-		sleep _checkDelay;
-		( !(isNil AO_zone) && (count (FOB_markers select AO_zone) != 0 ) )
+	
+	if ( (["AO"] call core_fnc_getParam) == 0 ) then {
+		AO_zone = round (random (count FOBS));
+	} else {
+		diag_log "Waiting for an AO_zone with FOBS";
+		waitUntil {
+			sleep _checkDelay;
+			private _out = false;
+			if !( isNil "AO_zone") then {
+				diag_log format["Waiting for an AO_zone with FOBS: %1 (%2)", AO_zone, count (FOBS select AO_zone)];
+				_out = ( count (FOBS select AO_zone) != 0 );
+			};
+			( _out || FOB_stop )
+		};
+		if ( FOB_stop ) exitWith {};
 	};
-	if ( FOB_stop ) exitWith {};
+	
 	if ( count _markers == 0 ) then {
-		_markers = FOB_markers select AO_zone;
+		_markers = FOBS select AO_zone;
+		diag_log format["FOBS markers in active zone: %1 ", _markers];
 	};
 	if ( count _types == 0 ) then {
 		_types = ["ia", "fob", "pool"] call core_fnc_getSetting;
 	};
 	if ( count _markers > 0 ) then {
-		
-		if ( isNil (FOB_deployed select AO_zone) ) then {
-			FOB_deployed set [AO_zone, []];
-		};
 		private _pool = [];
 		{
 			if ( !(_x in (FOB_deployed select AO_zone)) ) then { _pool append [_x]; };
@@ -57,4 +73,6 @@ while { true } do {
 			};
 		};
 	};
+	[_cooldown, _checkDelay, "FOB_stop"] call common_fnc_smartSleep;
+	if ( FOB_stop ) exitWith {};
 };

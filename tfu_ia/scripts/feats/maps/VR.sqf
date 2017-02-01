@@ -11,7 +11,6 @@ Description:
 MAP_PREFIX = "VR";
 MAP_FOLDER = "VR";
 MAP_KEYWORDS = [];
-MAP_URBAN  = 4;
 TOT_HC = 3;
 
 //------------------------------------------------------------ AO
