@@ -13,20 +13,32 @@ SIDE_stop = false;
 SIDE_success = false;
 publicVariable "SIDE_success";
 
-private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
-private _cooldown = ["ia", "side", "cooldown"] call core_fnc_getSetting;
+private _sideMissions = ["ia", "side", "missions"] call core_fnc_getSetting;
+{
+	private _mission = _x;
+	private _keyWords = ["ia", "side", _x, "mapKeywords"] call core_fnc_getSetting;
+	{
+		if !( _x in MAP_KEYWORDS ) then {
+			_sideMissions = _sideMissions - [_mission];
+		}
+	} forEach _keyWords;
+} forEach _sideMissions;
 
-private _missions = [];
+diag_log format["Available Side missions : %1", _sideMissions];
 
 if ( isNil "SIDE_EH" ) then {
 	SIDE_EH = "SIDE_success" addPublicVariableEventHandler { SIDE_success = true; };
 };
 
+private _missions = [];
+private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
+private _cooldown = ["ia", "side", "cooldown"] call core_fnc_getSetting;
+
 while { true } do {
 	[false, "SIDE_stop"] call zeusMission_fnc_checkAndWait;
 	if ( SIDE_stop ) exitWith {};
 	if ( (count _missions) == 0 ) then {
-		_missions = ["ia", "side", "missions"] call core_fnc_getSetting;
+		_missions = _sideMissions;
 	};
 	//private _type = selectRandom _missions;
 	private _type = "intel";
@@ -38,7 +50,6 @@ while { true } do {
 		sleep _checkDelay;
 		scriptDone SIDE_main
 	};
-	diag_log format["SIDE FINISHED --- %1", SIDE_main];
 	SIDE_success = false;
 	publicVariable "SIDE_success";
 	if ( !zeusMission ) then {

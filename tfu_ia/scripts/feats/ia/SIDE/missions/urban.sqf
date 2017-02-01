@@ -72,7 +72,7 @@ while { !_accepted } do {
 	{
 		_coord = getMarkerPos _x;
 		if ( (_coord distance _baseCoord) > _minDistFromBase ) then {
-			if ( (_coord distance AO_coord) > _minDistFromAO ) exitWith {
+			if ( (_coord distance AO_coord) > _minDistFromAO ) then {
 				_accepted = true;
 				URBAN_pool = URBAN_pool - [_x];
 			};
@@ -129,7 +129,7 @@ while ( true ) do {
 		[false, _coord, _size, _groups, []] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _coord, _size, _groups, []] spawn SIDE_fnc_cleanup;
+		[true, _coord, _size, _groups, [_crate]] spawn SIDE_fnc_cleanup;
 	};
 	sleep _checkDelay;
 };
