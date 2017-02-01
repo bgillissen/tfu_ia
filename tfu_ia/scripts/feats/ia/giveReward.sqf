@@ -1,8 +1,9 @@
 
 if ( count REWARDS == 0 ) exitWith {
-	"nop";
+	"noReward";
 };
 
+//TODO base/side change 
 if ( isNil "REWARD_markers" ) then {
 	REWARD_markers = [];
 	REWARD_markerPool = [];
@@ -13,6 +14,10 @@ if ( isNil "REWARD_markers" ) then {
 			REWARD_markers pushback _markerName; 
 		};
 	};
+};
+
+if ( count REWARD_markers == 0 ) exitWith {
+	"noMarkers";
 };
 
 if ( count REWARD_markerPool == 0 ) then {

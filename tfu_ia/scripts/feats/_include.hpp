@@ -13,6 +13,7 @@ Description:
 
 class Params {
 	#include "assets\_params.hpp"
+	#include "baseDefence\_params.hpp"
 	#include "baseProtection\_params.hpp"
 	#include "earPlugs\_params.hpp"
 	#include "fatigue\_params.hpp"
@@ -45,6 +46,7 @@ class Params {
 class features {
 	#include "assets\_feature.hpp"
 	#include "baseAtmosphere\_feature.hpp"
+	#include "baseDefence\_feature.hpp"
 	#include "baseProtection\_feature.hpp"
 	#include "baseVehicle\_feature.hpp"
 	#include "billboards\_feature.hpp"
@@ -85,6 +87,7 @@ class features {
 class settings {
 	#include "assets\_settings.hpp"
 	#include "baseProtection\_settings.hpp"
+	#include "baseDefence\_settings.hpp"
 	#include "billboards\_settings.hpp"
 	#include "cleanup\_settings.hpp"
 	#include "curator\_settings.hpp"

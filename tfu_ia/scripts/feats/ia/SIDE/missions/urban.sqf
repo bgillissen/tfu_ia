@@ -1,5 +1,5 @@
 /*
-@filename: feats\ia\SIDE\misUrban.sqf
+@filename: feats\ia\SIDE\missions\urban.sqf
 Credit:
 	Quiksilver
 Author:
@@ -12,7 +12,6 @@ Params:
 	none
 Environment:
 	missionNamespace:
-		MAP_URBAN
 		URBAN_MARKERS
 		S_crates
 		SIDE_stop
@@ -38,12 +37,6 @@ Return:
 if ( MAP_URBAN isEqualTo 0 ) exitWith {};
 
 if ( isNil "URBAN_markers" ) then {
-	/*
-	URBAN_markers = [];
-	for "_x" from 1 to MAP_URBAN do { 
-		URBAN_markers append [format["Urban_%1", _x]]; 
-	};
-	*/
 	URBAN_markers = [];
 	for "_x" from 1 to 99 do { 
 		private _markerName = format["Urban_%1", _x];
@@ -55,30 +48,26 @@ if ( isNil "URBAN_markers" ) then {
 
 if ( (count URBAN_markers) == 0 ) exitWith {};
 
-if ( isNil "URBAN_pool" ) then {
-	URBAN_pool = URBAN_markers;
-};
-if ( (count URBAN_pool) == 0 ) then {
-	URBAN_pool = URBAN_markers;
-};
+if ( isNil "URBAN_pool" ) then { URBAN_pool = []; };
+if ( (count URBAN_pool) == 0 ) then { URBAN_pool = URBAN_markers; };
 
 private _baseCoord = getMarkerPos "SZ";
 private _minDistFromBase = ["ia", "side", "minDistFromBase"] call core_fnc_getSetting;
 private _minDistFromAO = ["ia", "side", "minDistFromAO"] call core_fnc_getSetting;
-private _accepted = false;
 private _coord = [0,0,0];
 
-while { !_accepted } do {
-	{
-		_coord = getMarkerPos _x;
-		if ( (_coord distance _baseCoord) > _minDistFromBase ) then {
-			if ( (_coord distance AO_coord) > _minDistFromAO ) then {
-				_accepted = true;
-				URBAN_pool = URBAN_pool - [_x];
-			};
+{
+	_coord = getMarkerPos _x;
+	if ( (_coord distance _baseCoord) > _minDistFromBase ) then {
+		if ( (_coord distance AO_coord) > _minDistFromAO ) then {
+			_accepted = true;
+			URBAN_pool = URBAN_pool - [_x];
 		};
-	} count URBAN_pool;
-};
+	};
+} count URBAN_pool;
+
+if ( _coord isEqualTo [0,0,0] ) exitWith {};
+
 _baseCoord = nil;
 _accepted = nil;
 _minDistFromBase = nil;
