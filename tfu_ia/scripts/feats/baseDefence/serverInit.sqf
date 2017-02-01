@@ -15,7 +15,7 @@ BD_active = false;
 BD_stop = false;
 
 if ( _mode isEqualTo 1 ) exitWith {
-	[objNull] spawn baseDefence_spawn;
+	[objNull] spawn baseDefence_fnc_spawn;
 };
 
 publicVariable "BD_availAt";

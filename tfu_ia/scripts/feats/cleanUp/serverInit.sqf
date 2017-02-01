@@ -44,7 +44,7 @@ while { true } do {
 	
 	{
 		if !( _x in SQUADS ) then {
-			if ( (count (units _x)) == 0 ) then { deleteGroup _x };
+			if ( {alive _x} count (units _x) == 0 ) then { deleteGroup _x; };
 		};
 		true
 	} count allGroups;

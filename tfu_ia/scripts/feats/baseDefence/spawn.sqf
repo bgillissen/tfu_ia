@@ -22,7 +22,11 @@ for "_x" from 1 to 99 do {
 };
 
 if ( count _locations == 0 ) exitWith {
-	[1, "No baseDefence locations found in this base", ["HQ", PLAYER_SIDE]] call global_fnc_chat;
+	if ( isNull _player ) then {
+		diag_log "No baseDefence locations found in active base";
+	} else {
+		[1, "No baseDefence locations found in this base", ["HQ", PLAYER_SIDE]] call global_fnc_chat;
+	};
 };
 
 BD_active = true;
@@ -53,14 +57,14 @@ private _cleanupStack = [_group];
 	};
 	_cleanupStack pushback _veh;
 	_crew createUnit [_pos, _group];
-	private _commander = units select (count (units _group));
+	private _commander = (units _group) select (count (units _group));
 	_commander assignAsCommander _veh;
 	_commander moveInCommander _veh;
 	_commander setVariable["NOAI", true, true];
 	[_commander, _skill] call common_fnc_setSkill;
 	_cleanupStack pushback _commander;
 	_crew createUnit [_pos, _group];
-	private _gunner = units select (count (units _group));
+	private _gunner = (units _group) select (count (units _group));
 	_gunner assignAsGunner _veh;
 	_gunner moveInGunner _veh;
 	_gunner setVariable["NOAI", true, true];
