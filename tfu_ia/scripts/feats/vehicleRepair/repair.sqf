@@ -3,33 +3,19 @@ params["_veh", "_type"];
 
 if ( (_veh isKindOf "ParachuteBase") || !(alive _veh) ) exitWith {};
 
-if ( _type isEqualTo "boat" ) then {
-	if !( _veh isKindOf "Ship" ) exitWith {
-		_veh vehicleChat (["vehicleRepair", "notBoat"] call core_fnc_getSetting);
-	};
-};
-if ( _type isEqualTo "land" ) then {
-	if !( _veh isKindOf "LandVehicle" ) exitWith {
-		_veh vehicleChat (["vehicleRepair", "notLand"] call core_fnc_getSetting);
-	};
-	
-};
-if ( _type isEqualTo "plane" ) then {
-	if !( _veh isKindOf "Plane" ) exitWith {
-		_veh vehicleChat (["vehicleRepair", "notPlane"] call core_fnc_getSetting);
-	};
-};
-if ( _type isEqualTo "uav" ) then {
-	if !( (typeOf _veh) in BV_uav ) exitWith {
-		_veh vehicleChat (["vehicleRepair", "notUAV"] call core_fnc_getSetting);
-	};
-};
-if ( _type isEqualTo "heli" ) then {
-	if !( _veh isKindOf "Helicopter" ) exitWith {
-		_veh vehicleChat (["vehicleRepair", "notHeli"] call core_fnc_getSetting);
-	};
+private _ok = _type call {
+	if ( _this isEqualTo "uav" ) exitWith { ( (typeOf _veh) in BV_uav ) };
+	if ( _this isEqualTo "boat" ) exitWith { ( _veh isKindOf "Ship" ) };
+	if ( _this isEqualTo "land" ) exitWith { ( _veh isKindOf "LandVehicle" ) };
+	if ( _type isEqualTo "heli" ) exitWith { ( _veh isKindOf "Helicopter" ) };
+	if ( _this isEqualTo "plane" ) exitWith { ( _veh isKindOf "Plane" ) };
+	false
 };
 
+if !( _ok ) exitWith {
+	_veh vehicleChat (["vehicleRepair", _type, "badType"] call core_fnc_getSetting);
+};
+		
 private _vName = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "DisplayName");
 
 _veh vehicleChat format [(["vehicleRepair", "start"] call core_fnc_getSetting), _vName];
@@ -71,7 +57,8 @@ _veh vehicleChat "Refuelled.";
 
 sleep 2;
 
-private _mags = getArray(configFile >> "CfgVehicles" >> (typeOf _veh) >> "magazines");
+private _vType = (typeOf _veh);
+private _mags = getArray(configFile >> "CfgVehicles" >> _vType >> "magazines");
 
 if (count _mags > 0) then {
 	_removed = [];
@@ -88,12 +75,12 @@ if (count _mags > 0) then {
 	} forEach _mags;
 };
 
-_count = count (configFile >> "CfgVehicles" >> (typeOf _veh) >> "Turrets");
+_count = count (configFile >> "CfgVehicles" >> _vType >> "Turrets");
 
 if (_count > 0) then {
 	for "_i" from 0 to (_count - 1) do {
 		scopeName "xx_reload2_xx";
-		_config = (configFile >> "CfgVehicles" >> (typeOf _veh) >> "Turrets") select _i;
+		_config = (configFile >> "CfgVehicles" >> _vType >> "Turrets") select _i;
 		private _mags = getArray(_config >> "magazines");
 		_removed = [];
 		{
@@ -133,8 +120,8 @@ if (_count > 0) then {
 
 _veh setVehicleAmmo 1;
 
-if ( (typeOf _veh) in BV_repair ) then { _veh setRepairCargo 1; };
-if ( (typeOf _veh) in BV_ammo ) then { _veh setAmmoCargo 1; };
-if ( (typeOf _veh) in BV_fuel ) then { _veh setFuelCargo 1; };
+if ( _vType in BV_repair ) then { _veh setRepairCargo 1; };
+if ( _vType in BV_ammo ) then { _veh setAmmoCargo 1; };
+if ( _vType in BV_fuel ) then { _veh setFuelCargo 1; };
 
 _veh vehicleChat format [(["vehicleRepair", "end"] call core_fnc_getSetting), _vName];

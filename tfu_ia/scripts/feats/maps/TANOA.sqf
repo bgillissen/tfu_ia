@@ -99,4 +99,4 @@ FOBS = [["","","","","","","","",""],	//bala
 
 //------------------------------------------------------------ BASE
 
-BASES = [["tuvanaka", "Tuvanaka Military Airfield", "400", "200"]];
+BASES = [["tuvanaka", "Tuvanaka Military Airfield", "400", "100"]];

@@ -10,4 +10,5 @@ class gearRestrictions {
 	backpack = "Only AT/AA soldier may use this backpack, backpack removed.";
 	uav = "Only UAV operator may use this item, UAV terminal removed.";
 	duration = 5;
+	loopDelay = 10;
 };
