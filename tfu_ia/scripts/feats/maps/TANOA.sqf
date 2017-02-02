@@ -90,10 +90,10 @@ AO_markers = [["Bala Airstrip",		//bala
 
 //------------------------------------------------------------ FOB
 
-FOBS = [["","","","","","","","",""],	//bala
-        ["","","","","","","","",""],	//main
+FOBS = [[],	//bala
+        ["fob_1","fob_2","fob_3","fob_4","fob_5","fob_6"],	//main
         [],								//ravi-ta
-        ["","","","","","","","",""],	//saintgeorge
+        ["fob_7","fob_8","fob_9"],	//saintgeorge
         [],								//sosovu
         []];							//tuvanaka
 

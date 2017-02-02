@@ -79,5 +79,5 @@ BA = [["npc",	"BA_support",	[["support"]]],
       ["obj",	"BAmarker_1",	[["markerColor"]]],
       ["obj",	"BAmarker_2",	[["markerColor"]]],
       ["obj",	"BAmarker_3",	[["markerColor"]]],
-      ["obj",	"BAmarker_4",	[["markerColor"]]],
+      ["obj",	"BAmarker_4",	[["markerColor"]]]
      ];
