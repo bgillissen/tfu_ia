@@ -39,6 +39,8 @@ private _crew = ["baseDefence", "crew"] call core_fnc_getSetting;
 private _group = createGroup PLAYER_SIDE;
 private _cleanupStack = [_group];
 
+RL_crew params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_f", "_c", "_t", "_m", "_bino", "_n", "_w", "_cp"];
+
 {	
 	private _class = selectRandom BV_aaTank;
 	private _pos = getMarkerPos _x;
@@ -59,6 +61,8 @@ private _cleanupStack = [_group];
 	_crew createUnit [_pos, _group];
 	diag_log (units _group);
 	private _commander = (units _group) select (count (units _group) - 1);
+	[_commander, _u, _v, _b, _pw, _sw, _hw, _h, _f, _c, _t, _m, _bino, _n, _w, _cp] call common_fnc_setLoadout;
+	_commander allowDamage false;
 	_commander assignAsCommander _veh;
 	_commander moveInCommander _veh;
 	_commander setVariable["NOAI", true, true];
@@ -66,6 +70,8 @@ private _cleanupStack = [_group];
 	_cleanupStack pushback _commander;
 	_crew createUnit [_pos, _group];
 	private _gunner = (units _group) select (count (units _group) - 1);
+	[_gunner, _u, _v, _b, _pw, _sw, _hw, _h, _f, _c, _t, _m, _bino, _n, _w, _cp] call common_fnc_setLoadout;
+	_gunner allowDamage false;
 	_gunner assignAsGunner _veh;
 	_gunner moveInGunner _veh;
 	_gunner setVariable["NOAI", true, true];

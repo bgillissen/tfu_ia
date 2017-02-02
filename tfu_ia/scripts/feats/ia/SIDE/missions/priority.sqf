@@ -70,7 +70,7 @@ _minDistFromAO = nil;
 _maxDistFromAO = nil;
 _found = nil;
 
-(getPos _flatPos) params["_cX", "_cY", "_cZ"];
+_flatPos params["_cX", "_cY", "_cZ"];
 
 private _tankCoords = [[_cX - 2, _cY - 2, _cZ], [_cX + 2, _cY + 2, _cZ]];
 private _tankDir = (random 360);

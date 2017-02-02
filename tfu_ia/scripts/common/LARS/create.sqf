@@ -262,12 +262,12 @@ private _fnc_setPositionAndRotation = {
 //		if !( canSuspend ) exitWith {
 //			_this spawn _fnc_setPositionAndRotation;
 //		};
-//	};	
-		
+//	};
+	private _PRE = _cfgOffset select 1;
 	_cfgOffset = [ _cfgOffset select 0, _cfgOffset select 2 , _cfgOffset select 1 ];
 	_cfgOffset = [ _cfgOffset, 360 - _compRot ] call BIS_fnc_rotateVector2D;
 	_cfgOffset = _cfgOffset vectorAdd ( [ _compOffset, 360 - _compRot ] call BIS_fnc_rotateVector2D ) ;
-	
+	private _POST = _cfgOffset select 2;
 	if ( _compAlign && !_asPlaced ) then {
 	//if ( _compAlign ) then {
 		_newPosX = ( _compPos select 0 ) + ( _cfgOffset select 0 );
@@ -308,12 +308,13 @@ private _fnc_setPositionAndRotation = {
 		createVehicle [ "Sign_Arrow_Green_F", ASLToATL _pos, [], 0, "CAN_COLLIDE" ];
 	};
 	
-		
 	if !( isNull _obj ) then {
 		
 		//Move object to its world position
 		_obj setPosWorld _pos;
-
+		(getPosATL _obj) params ["_atlX", "_atlY"];
+		_obj setPosATL [_atlX, _atlY, _pos select 2];
+		
 		//Turn composition angles to degrees
 		_CfgRot params[ "_P", "_Y", "_R" ];
 		
@@ -381,7 +382,7 @@ private _fnc_setPositionAndRotation = {
 		
 
 	};
-	
+	//diag_log format["%4 --- pre:%1 --- post: %2 --- end: %3 --- ATL: %5 --- World: %6", _PRE, _POST, _pos select 2, _obj, (getPosATL _obj) select 2, (getPosWorld _obj) select 2];
 	_pos
 };
 
