@@ -7,6 +7,6 @@ Description:
 		include available base compositions on Tanoa map
 */
 
-class tuvanaka {
+class T_tuvanaka {
 	#include "tuvanaka.sqe"
 };

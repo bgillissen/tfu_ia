@@ -17,7 +17,7 @@ BA_veh = [];
 	_pool = missionNamespace getVariable format["BV_%1", _poolName];
 	if ( !isNil "_pool" ) then {
 		if ( count _pool > 0 ) then {
-			private _veh = (selectRandom _pool) createVehicle (getMarkerPos _marker);
+			private _veh = createVehicle [(selectRandom _pool), (getMarkerPos _marker), [], 0, "CAN_COLLIDE"];
 			_veh setDir (markerDir _marker);
 			if ( _delay >= 0 ) then {
 				[_veh, _delay, _poolName, _actions] call vehicleRespawn_fnc_monitor;
@@ -30,17 +30,17 @@ BA_veh = [];
 				clearBackpackCargoGlobal _veh;
 				BA_veh pushback [_veh, _actions];
 			};
-#ifdef DEBUG
+		#ifdef DEBUG
 		} else {
 			private _debug = format["basevehicle: pool %1 is empty!", _poolName];
 			conRed(_debug);
-#endif	
+		#endif	
 		};
-#ifdef DEBUG
+	#ifdef DEBUG
 	} else {
 		private _debug = format["basevehicle: pool %1 is nil!", _poolName];
 		conRed(_debug);
-#endif				
+	#endif				
 	};
 	true
 } count BV;

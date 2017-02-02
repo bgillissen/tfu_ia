@@ -30,3 +30,4 @@ class asets {
 #include "rhs\_cfgFunctions.hpp"
 #include "tfar\_cfgFunctions.hpp"
 #include "adr97\_cfgFunctions.hpp"
+#include "srvBlacklist\_cfgFunctions.hpp"

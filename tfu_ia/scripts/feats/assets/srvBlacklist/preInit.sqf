@@ -25,4 +25,4 @@ private _unit = [];
 private _group = [];
 private _object = [];
 
-[_backpacks, _items, _weapons, _ammo, _veh, _unit, _group, _object] call common_fnc_addToBlacklist;
+[_backpacks, _items, _weapons, _ammo, _veh, _unit, _group, _object] call common_fnc_addToBlacklists;

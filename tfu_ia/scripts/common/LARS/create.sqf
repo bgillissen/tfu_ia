@@ -269,16 +269,17 @@ private _fnc_setPositionAndRotation = {
 	_cfgOffset = _cfgOffset vectorAdd ( [ _compOffset, 360 - _compRot ] call BIS_fnc_rotateVector2D ) ;
 	
 	if ( _compAlign && !_asPlaced ) then {
+	//if ( _compAlign ) then {
 		_newPosX = ( _compPos select 0 ) + ( _cfgOffset select 0 );
 		_newPosY = ( _compPos select 1 ) + ( _cfgOffset select 1 );
 		_newPosASL = getTerrainHeightASL [ _newPosX, _newPosY ];
 		_newPosZ = _newPosASL + ( _cfgOffset select 2 );
 		if ( _asPlaced ) then {
 			_pos = [ _newPosX, _newPosY, _newPosZ + _ATLOffset ];
-		}else{
+		} else {
 			_pos = [ _newPosX, _newPosY, _newPosZ ];
 		};
-	}else{
+	} else {
 		_pos = ( _compPos vectorAdd _cfgOffset ) vectorAdd [ 0, 0, _ATLOffset ];
 	};
 	

@@ -4,27 +4,27 @@ class vehicleRepair {
 	end = "%1 successfully serviced.";
 	class boat {
 		text = "Boat Service";
-		icon = "triangle";
+		icon = "mil_triangle";
 		badType = "This area is for boat service only, soldier!";
 	};
 	class land {
 		text = "Land Service";
-		icon = "triangle";
+		icon = "mil_triangle";
 		badType = "This area is for land vehicle service only, soldier!";
 	};
 	class plane {
 		text = "Plane Service";
-		icon = "triangle";
+		icon = "mil_triangle";
 		badType = "This area is for plane service only, soldier!";
 	};
 	class heli {
 		text = "Helicopter Service";
-		icon = "triangle";
+		icon = "mil_triangle";
 		badType = "This area is for Helicopter service only, soldier!";
 	};
 	class uav {
 		text = "UAV Service";
-		icon = "triangle";
+		icon = "mil_triangle";
 		badType = "This area is for UAV service only, soldier!";
 	};
 };

@@ -24,7 +24,8 @@ private _randomPos = [[[_coord, (_size / 2)],[]],["water","out"]] call BIS_fnc_r
 private _group = createGroup _side;
 
 for "_x" from 1 to _amount do {
-	_unit = (selectRandom _pool) createUnit [_randomPos, _group];
+	(selectRandom _pool) createUnit [_randomPos, _group];
+	private _unit = (units _group) select (count (units _group) - 1);
 	[_unit, (selectRandom _buildings), _canPatrol] call common_fnc_garrisonUnit;
 };
 

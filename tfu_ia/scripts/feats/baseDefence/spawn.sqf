@@ -40,7 +40,7 @@ private _group = createGroup PLAYER_SIDE;
 private _cleanupStack = [_group];
 
 {	
-	private _class = selectRandom BV_aa;
+	private _class = selectRandom BV_aaTank;
 	private _pos = getMarkerPos _x;
 	private _dir = MarkerDir _x;
 	private _veh = _class createVehicle _pos;
@@ -53,18 +53,19 @@ private _cleanupStack = [_group];
 	clearItemCargoGlobal _veh;
 	clearBackpackCargoGlobal _veh;
 	if ( _infAmmo ) then {
-		_veh addEventHandler ["Fired", {(_this select 0) setAmmo 1;}];
+		_veh addEventHandler ["Fired", {(_this select 0) setVehicleAmmo 1;}];
 	};
 	_cleanupStack pushback _veh;
 	_crew createUnit [_pos, _group];
-	private _commander = (units _group) select (count (units _group));
+	diag_log (units _group);
+	private _commander = (units _group) select (count (units _group) - 1);
 	_commander assignAsCommander _veh;
 	_commander moveInCommander _veh;
 	_commander setVariable["NOAI", true, true];
 	[_commander, _skill] call common_fnc_setSkill;
 	_cleanupStack pushback _commander;
 	_crew createUnit [_pos, _group];
-	private _gunner = (units _group) select (count (units _group));
+	private _gunner = (units _group) select (count (units _group) - 1);
 	_gunner assignAsGunner _veh;
 	_gunner moveInGunner _veh;
 	_gunner setVariable["NOAI", true, true];

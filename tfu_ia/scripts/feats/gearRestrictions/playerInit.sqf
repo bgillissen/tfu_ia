@@ -29,7 +29,7 @@ while { true }  do {
 		_wasInFR = true; 
 	} else {
 		if ( _wasInFR ) then {
-			call gearRestrictions_fnc_checkGears
+			call gearRestrictions_fnc_checkGears;
 			_wasInFR = false;
 		};
 	};

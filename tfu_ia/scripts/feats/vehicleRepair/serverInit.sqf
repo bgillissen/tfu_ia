@@ -7,8 +7,8 @@ private _size = ["vehicleRepair", "triggerSize"] call core_fnc_getSetting;
 private _color = call common_fnc_getMarkerColor;
 
 {
-	private _markerName = format["RV_%1", _x];
-	private _coord = getMarkerPos _merkerName;
+	private _markerName = format["VR_%1", _x];
+	private _coord = getMarkerPos _markerName;
 	if !( _coord isEqualTo [0,0,0] ) then { 
 		private _trigger = createTrigger ["EmptyDetector", _coord];
 		_trigger setTriggerArea [_size, _size, 0, false, -1];
@@ -17,7 +17,7 @@ private _color = call common_fnc_getMarkerColor;
 		                               format["0 = [(thisList select 0), '%1'] spawn vehicleRepair_fnc_repair;", _x],
 		                               ""];
 		VR_triggers pushback _trigger;
-		private _marker = format["RV_marker_%1", _x];
+		private _marker = format["VR_marker_%1", _x];
 		createMarker [_marker, _coord];
 		_marker setMarkerColor _color;
 		_marker setMarkerShape "ICON";

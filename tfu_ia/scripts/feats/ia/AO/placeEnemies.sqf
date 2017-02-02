@@ -27,7 +27,7 @@ _units append ([_aoCoord, _aoSize, _count, _skill] call IA_fnc_placeSniper);
 _count = ["AO_garrison"] call core_fnc_getParam;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));
 _skill = ["ia", "ao", "garrisonSkill"] call core_fnc_getSetting;
-_units pushback ([_aoCoord, _aoSize, _count, _skill, true] call IA_fnc_placeGarrison);
+_units pushback ([_aoCoord, _aoSize, _count, _skill, 0] call IA_fnc_placeGarrison);
 
 _count = ["AO_static"] call core_fnc_getParam;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));

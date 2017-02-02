@@ -98,7 +98,7 @@ _coord = nil;
 private _size = ["ia", "side", "size"] call core_fnc_getSetting;
 private _skill = ["ia", "side", "garrisonSkill"] call core_fnc_getSetting;
 private _groups = [_flatPos, 0, 4, 2, 0, 1, 1, 1, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
-_groups append ([_hq, _skill] call IA_fnc_forcedGarrison);
+_groups pushback ([_hq, _skill] call IA_fnc_forcedGarrison);
 _skill = nil;
 
 //markers

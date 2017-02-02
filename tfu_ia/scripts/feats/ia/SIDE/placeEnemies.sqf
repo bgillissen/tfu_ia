@@ -59,7 +59,7 @@ _groups append ([_coord, _size, _count, _skill] call IA_fnc_placeSniper);
 _count = _garrison;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));
 _skill = ["ia", "side", "garrisonSkill"] call core_fnc_getSetting;
-_groups pushback ([_coord, _size, _count, _skill, true] call IA_fnc_placeGarrison);
+_groups pushback ([_coord, _size, _count, _skill, 0] call IA_fnc_placeGarrison);
 
 _count = _static;
 _count = round ( _count - (random (_count / 2)) + (random (_count / 2)));
