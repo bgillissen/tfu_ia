@@ -8,13 +8,13 @@ Description:
 	it checks each _checkDelay
 */
 
-params [["_duration", 30], ["_checkDelay", 10], ["_condition", "false"]];
+params [["_duration", 30], ["_checkDelay", 10], ["_condition", "false"], ["_ctxt", ""]];
 
 private _end = (time + _duration);
 private _code = compile _condition;
 
 waitUntil {
 	sleep _checkDelay;
-	if ( call _code ) exitWith {};
-	(time > _end);
+	//diag_log format["smartSleep: %3 | %1 --- %2", (call _code), (time > _end), _ctxt];
+	( (call _code) || (time > _end) );
 };

@@ -29,7 +29,7 @@ params ["_batteries", "_szCoords"];
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 private _ammo = ((_batteries select 0) magazinesTurret [0]) select 0;
-private _target = nullObj;
+private _target = objNull;
 private "_targetPos";
 private _accepted = false;
 

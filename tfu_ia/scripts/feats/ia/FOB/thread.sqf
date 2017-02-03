@@ -57,6 +57,7 @@ private _maxVeh  = ["ia", "fob", "maxVehicle"] call core_fnc_getSetting;
 private _spawnDelay = ["ia", "fob", "waveDelay"] call core_fnc_getSetting;
 private _lockVeh = ["ia", "lockVeh"] call core_fnc_getSetting;
 private _loopDelay = ["ia", "loopDelay"] call core_fnc_getSetting;
+private _minDistToDepot = ["ia", "fob", "minDistToDepot"] call core_fnc_getSetting;
 private _nextSpawn = time + _spawnDelay;
 private _lastSpawnTime = time;
 private _lastSpawnCoord = [0,0,0];
@@ -66,7 +67,7 @@ private _vehs = [];
 while { true } do {
 	if ( (count _groups) <= _maxGrp ) then {
 		if ( time > _nextSpawn ) then {
-			if ( (_truck distance _depotCoord > FOB_minDistToDepot)  && (_truck distance _coord > 100) ) then {
+			if ( (_truck distance _depotCoord > _minDistToDepot)  && (_truck distance _coord > 100) ) then {
 				private _distance = 100 + (random 100);
 				private _spawnCoord = [_truck, _distance, getDir (_truck)] call BIS_fnc_relPos;
 				private _spawnVeh = false;

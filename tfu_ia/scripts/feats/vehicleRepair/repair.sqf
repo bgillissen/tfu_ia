@@ -18,14 +18,15 @@ if !( _ok ) exitWith {
 		
 private _vName = getText(configFile >> "CfgVehicles" >> typeOf _veh >> "DisplayName");
 
-_veh vehicleChat format [(["vehicleRepair", "start"] call core_fnc_getSetting), _vName];
-
+//_veh vehicleChat format [(["vehicleRepair", "start"] call core_fnc_getSetting), _vName];
+[4, format[(["vehicleRepair", "start"] call core_fnc_getSetting), _vName], _veh] call global_fnc_chat;
 private _damage = getDammage _veh;
 
 while { _damage > 0 } do {
 	sleep 0.5;
 	private _prct = 100 - (_damage * 100);
-	_veh vehicleChat format ["Repairing (%1%)...", floor _prct];
+	//_veh vehicleChat format ["Repairing (%1%)...", floor _prct];
+	[4, format["Repairing (%1%)...", floor _prct], _veh] call global_fnc_chat; 
 	if ( (_damage - 0.01) <= 0 ) then {
 		_veh setDamage 0;
 		_damage = 0;
@@ -35,8 +36,8 @@ while { _damage > 0 } do {
 	};
 };
 
-_veh vehicleChat "Repaired.";
-
+//_veh vehicleChat "Repaired.";
+[4, "Repaired.", _veh] call global_fnc_chat;
 sleep 2;
 
 private _fuel = fuel _veh;
@@ -44,7 +45,8 @@ private _fuel = fuel _veh;
 while { _fuel < 1 } do {
 	sleep 0.5;
 	private _prct = (_fuel * 100);
-	_veh vehicleChat format["Refuelling (%1%)...", floor _prct];
+	//_veh vehicleChat format["Refuelling (%1%)...", floor _prct];
+	[4,  format["Refuelling (%1%)...", floor _prct], _veh] call global_fnc_chat;
 	if ( (_fuel + 0.01) >= 1 ) then {
 		_veh setFuel 1;
 		_fuel = 1;
@@ -53,7 +55,8 @@ while { _fuel < 1 } do {
 	};
 };
 
-_veh vehicleChat "Refuelled.";
+//_veh vehicleChat "Refuelled.";
+[4, "Refuelled.", _veh] call global_fnc_chat;
 
 sleep 2;
 
@@ -90,7 +93,8 @@ if (_count > 0) then {
 			};
 		} forEach _mags;
 		{
-			_veh vehicleChat format ["Reloading %1", _x];
+			//_veh vehicleChat format ["Reloading %1", _x];
+			 [4, format["Reloading %1", _x], _veh] call global_fnc_chat;
 			sleep 0.05;
 			_veh addMagazine _x;
 			sleep 0.05;
@@ -108,7 +112,8 @@ if (_count > 0) then {
 					};
 				} forEach _mags;
 				{
-					_veh vehicleChat format ["Reloading %1", _x]; 
+					//_veh vehicleChat format ["Reloading %1", _x];
+					[4, format["Reloading %1", _x], _veh] call global_fnc_chat;
 					sleep 0.05;
 					_veh addMagazine _x;
 					sleep 0.05;
@@ -124,4 +129,5 @@ if ( _vType in BV_repair ) then { _veh setRepairCargo 1; };
 if ( _vType in BV_ammo ) then { _veh setAmmoCargo 1; };
 if ( _vType in BV_fuel ) then { _veh setFuelCargo 1; };
 
-_veh vehicleChat format [(["vehicleRepair", "end"] call core_fnc_getSetting), _vName];
+//_veh vehicleChat format [(["vehicleRepair", "end"] call core_fnc_getSetting), _vName];
+[4, format [(["vehicleRepair", "end"] call core_fnc_getSetting), _vName], _veh] call global_fnc_chat;

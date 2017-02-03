@@ -65,14 +65,14 @@ waitUntil {
 	(!alive _radioTower || zeusMission || AO_stop)
 };
 
-if ( !alive _radioTower ) then {
-	//radioTower has been destroyed
-	private _circle = ["ia", "ao", "radioTower", "circle"] call core_fnc_getSetting;
-	private _label = ["ia", "ao", "radioTower", "label"] call core_fnc_getSetting;
-	deleteMarker _circle;
-	deleteMarker _label;
-	_circle = nil;
-	_label = nil;
+//radioTower has been destroyed
+private _circle = ["ia", "ao", "radioTower", "circle"] call core_fnc_getSetting;
+private _label = ["ia", "ao", "radioTower", "label"] call core_fnc_getSetting;
+deleteMarker _circle;
+deleteMarker _label;
+_circle = nil;
+_label = nil;
+if !( alive _radioTower ) then {
 	(["ia", "ao", "radioTower", "endHint"] call core_fnc_getSetting) call global_fnc_hint;
 	["CompletedSub", (["ia", "ao", "radioTower", "endNotif"] call core_fnc_getSetting)] call global_fnc_notification;
 };
@@ -85,7 +85,6 @@ waitUntil {
 	{
 		_sum = _sum + (count list _x);
 	} forEach _triggers;
-	diag_log format["AO unit check: threshold: %1 --- current: %2", _unitThreshold, _sum];
 	( (_sum < _unitThreshold) || zeusMission || AO_stop )
 };
 

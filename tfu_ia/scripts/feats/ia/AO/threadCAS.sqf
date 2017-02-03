@@ -13,8 +13,12 @@ if ( isNil "AO_cas" ) then {
 	AO_cas = false;
 };
 
-if ( isNil "AO_casGroup") then {
+if ( isNil "AO_casGroup" ) then {
 	AO_casGroup = createGroup (selectRandom ENEMIES);
+} else {
+	if ( AO_casGroup isEqualTo grpNull ) then {
+		AO_casGroup = createGroup (selectRandom ENEMIES);
+	};
 };
 
 private _delay = ["ia", "checkDelay"] call core_fnc_getSetting;
@@ -28,10 +32,11 @@ while { alive _radioTower } do {
 	if ( !AO_cas ) then {
 		(["cas"] call ia_fnc_randomSide) params ["_side", "_vehPool", "_key"];
 		private _spawnPos = [(random 30000),(random 30000),3000];
-		private _pilot = AO_casGroup createUnit [(selectRandom (S_pilot select _key)), [0,0,(1000 + (random 1000))], [], 0, "NONE"];
+		AO_casGroup createUnit [(selectRandom (S_pilot select _key)), [0,0,(1000 + (random 1000))], [], 0, "NONE"];
+		private _pilot = (units AO_casGroup) select (count (units AO_casGroup) - 1); 
 		private _cas = createVehicle [(selectRandom _vehPool), _spawnPos, [] , 0, "NONE"];
 		_cas engineOn TRUE;
-		_cas allowCrewInImmobile TRUE;
+		_cas allowCrewInImmobile true;
 		_cas flyInHeight 1000;
 		_cas lock 2;
 		_pilot assignAsDriver _cas;
@@ -50,20 +55,14 @@ while { alive _radioTower } do {
 		AO_cas = true;
 		 
 		waitUntil {
-			if ( _InfAmmo ) then {
-				_cas setVehicleAmmo 1;
-			};
-			if ( _InfFuel ) then {
-				_cas setFuel 1;
-			};
+			if ( _InfAmmo ) then { _cas setVehicleAmmo 1; };
+			if ( _InfFuel ) then { _cas setFuel 1; };
 			_cas flyInHeight (200 + (random 850));
 			private _casPos = getPosATL _cas;
 			private _targets = _casPos nearEntities [["Air"], _range];
-			{
-				AO_casGroup reveal [_x, 4];
-			} count _targets;
-			[_checkDelay, _delay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;
-			(!alive _cas || zeusMission || AO_stop)
+			{ AO_casGroup reveal [_x, 4]; } count _targets;
+			[_checkDelay, 5, "(zeusMission || AO_stop)", "CAS"] call common_fnc_smartSleep;
+			( !alive _cas || zeusMission || AO_stop )
 		};
 		AO_cas = false;
 		if ( alive _cas ) then {
@@ -74,4 +73,5 @@ while { alive _radioTower } do {
 		};
 	};
 	[(_cooldown + ((random  _cooldown) / 2)), _checkDelay, "(zeusMission || AO_stop)"] call common_fnc_smartSleep;
+	if ( zeusMission || AO_stop ) exitWith {};
 };
