@@ -30,6 +30,17 @@ if ( isNil "SIDE_EH" ) then {
 	SIDE_EH = "SIDE_success" addPublicVariableEventHandler { SIDE_success = true; };
 };
 
+if ( isNil "URBAN_markers" ) then {
+	URBAN_markers = [];
+	for "_x" from 1 to 99 do { 
+		private _markerName = format["Urban_%1", _x];
+		if !( getMarkerPos _markerName isEqualTo [0,0,0] ) then {
+			_markerName setMarkerAlpha 0;
+			URBAN_markers pushback _markerName; 
+		};
+	};
+};
+
 private _missions = [];
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 private _cooldown = ["ia", "side", "cooldown"] call core_fnc_getSetting;

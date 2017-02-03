@@ -34,18 +34,6 @@ Return:
 		nothing 
 */
 
-if ( MAP_URBAN isEqualTo 0 ) exitWith {};
-
-if ( isNil "URBAN_markers" ) then {
-	URBAN_markers = [];
-	for "_x" from 1 to 99 do { 
-		private _markerName = format["Urban_%1", _x];
-		if !( getMarkerPos _markerName isEqualTo [0,0,0] ) then { 
-			URBAN_markers pushback _markerName; 
-		};
-	};
-};
-
 if ( (count URBAN_markers) == 0 ) exitWith {};
 
 if ( isNil "URBAN_pool" ) then { URBAN_pool = []; };
