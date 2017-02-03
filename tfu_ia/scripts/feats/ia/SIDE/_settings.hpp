@@ -69,7 +69,7 @@ class side {
 			briefing = "The enemy is setting up an anti-air battery to hit you guys damned hard! We've picked up their positions with thermal imaging scans and have marked it on your map.<br/><br/>This is a priority target, boys!";
 			notification = "Anti-Air Battery Neutralised";
 			range = 4000;
-			minAltitde = 25;
+			minAltitude = 25;
 		};
 	};
 	class secure {

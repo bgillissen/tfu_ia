@@ -43,9 +43,9 @@ private _pad = "Land_HelipadSquare_F" createVehicle _coord;
 _pad setDir (markerDir _fob);
 
 private _truck = (selectRandom (missionNamespace getVariable format["BV_%1", _type])) createVehicle _depotCoord;
+_truck setDir (markerDir "FOB_depot");
 ([_truck] + (missionNamespace getVariable format["VC_%1", _type])) call common_fnc_setCargo;
 [[_truck], false] call curator_fnc_addEditable;
-_depotCoord = nil;
 
 private _hint = ["ia", "fob", "newHint"] call core_fnc_getSetting;
 private _maxTime = ["ia", "fob", "maxTime"] call core_fnc_getSetting;

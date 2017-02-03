@@ -20,20 +20,20 @@ Return:
 params ["_batteries"];
 
 private _pos = getPos (_batteries select 0);
-private _rangee = ["ia", "side", "priority", "aa", "range"] call core_fnc_getSetting;
+private _range = ["ia", "side", "priority", "aa", "range"] call core_fnc_getSetting;
 
 //find a target
 private _targetList = _pos nearEntities [["Air"], _range];
 _range = nil;
 
-if ((count _targetList) <= 0) exitWith {};
+if ( (count _targetList) <= 0 ) exitWith {};
 
 private _goodTargets = [];
 private _minAlt = ["ia", "side", "priority", "aa", "minAltitude"] call core_fnc_getSetting;
 {
 	if ( (side _x) isEqualTo PLAYER_SIDE ) then {
 		if ((getPos _x select 2) > _minAlt ) then {
-			_goodTargets append [_x];
+			_goodTargets pushback _x;
 		};
 	};
 } count _targetList;

@@ -58,13 +58,13 @@ while { !_found } do {
 	if ((_flatPos distance _baseCoord) > _mindistFromBase) then {
 		if ( AO_coord isEqualTo [0,0,0] ) then {
 			_found = true;
-		};
-		if ((_flatPos distance AO_coord) <= _maxDistFromAO) then {
-			_found = ( (_flatPos distance AO_coord) >= _minDistFromAO );
+		} else {
+			if ((_flatPos distance AO_coord) <= _maxDistFromAO) then {
+				_found = ( (_flatPos distance AO_coord) >= _minDistFromAO );
+			};
 		};
 	};
 };
-_baseCoord = nil;
 _minDistFromBase = nil;
 _minDistFromAO = nil;
 _maxDistFromAO = nil;
@@ -77,56 +77,74 @@ private _tankDir = (random 360);
 private _truckCoord = [_cX + 20, _cY + random 20, _cZ];
 
 //arti or AA ?
-private _isArti  = [true, false] select (random 100 <= (["ia", "side", "priority", "artiProb"] call core_fnc_getSetting));
+private _isArti  = (random 100 <= (["ia", "side", "priority", "artiProb"] call core_fnc_getSetting));
 
+private "_poolName";
+if ( _isArti ) then {
+	_poolName = "arti";
+} else {
+	_poolName = "aa";
+};
+
+([_poolName] call ia_fnc_randomSide) params ["_side", "_pool", "_key"];
+
+if ( (count _pool) == 0 ) exitWith {
+	diag_log "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  Priority empty pool!";
+};
 //spawn objective vehicles
-private _pool = [S_aaTank, S_arti] select (isArti);
 private _tank1 = (selectRandom _pool) createVehicle (_tankCoords select 0);
 _tank1 setDir _tankDir;
 private _tank2 = (selectRandom _pool) createVehicle (_tankCoords select 1);
 _tank2 setDir _tankDir;
 _pool = nil;
+/*
 //spawn an ammo truck
-private _truck = (selectRandom S_ammo) createVehicle _truckCoord;
+private _truck = (selectRandom (S_ammo select _key)) createVehicle _truckCoord;
 _truck setDir (random 360);
-
+*/
 {
 	_x lock 3;
 	_x allowCrewInImmobile true;
-} count [_truck, _tank2, _tank1];
+} forEach [_tank2, _tank1];
 
 //spawn tanks crew
 private _groups = [];
-_group = createGroup ENEMY_SIDE;
+_group = createGroup _side;
 for "_x" from 1 to 4 do {
-	(selectRandom S_crew) createUnit [_flatPos, _group];
+	(selectRandom (S_crew select _key)) createUnit [_flatPos, _group];
 };
 ((units _group) select 0) assignAsCommander _tank1;
 ((units _group) select 0) moveInCommander _tank1;
+((units _group) select 0) setVariable ["NOAI", true, true];
 ((units _group) select 1) assignAsCommander _tank2;
 ((units _group) select 1) moveInCommander _tank2;
-((units _group) select 2) assignAsGunner tank1;
+((units _group) select 1) setVariable ["NOAI", true, true];
+((units _group) select 2) assignAsGunner _tank1;
 ((units _group) select 2) moveInGunner _tank1;
+((units _group) select 2) setVariable ["NOAI", true, true];
 ((units _group) select 3) assignAsGunner _tank2;
 ((units _group) select 3) moveInGunner _tank2;
-[(units _group), 4] call common_fnc_setSkill;
+((units _group) select 3) setVariable ["NOAI", true, true];
+[(units _group), 6] call common_fnc_setSkill;
 _group setBehaviour "COMBAT";
 _group setCombatMode "RED";	
 _group allowFleeing 0;
 _groups append [_group];
-_group = nil;
-
-{
-	_x addCuratorEditableObjects [[_tank1, _tank2, _truck] + (units _group), false];
-} foreach allCurators;
 
 _tank1 engineOn true;
 _tank2 engineOn true;
-_tank1 doWatch _aoCoord;
-_tank2 doWatch _aoCoord;
+if ( AO_coord isEqualTo [0,0,0] ) then {
+	_tank1 doWatch (getMarkerPos "SZ");
+	_tank2 doWatch (getMarkerPos "SZ");
+} else {
+	_tank1 doWatch AO_coord;
+	_tank2 doWatch AO_coord;
+};
 
-private _infAmmo = ["ia", "side", "priority", "infiniteAmmo"] call core_fnc_getSetting;
-private _stronger = ["ia", "side", "priority", "extraHealth"] call core_fnc_getSetting;
+[[_tank1, _tank2] + (units _group), false] call curator_fnc_addEditable;
+
+private _infAmmo = [false, true] select (["ia", "side", "priority", "infiniteAmmo"] call core_fnc_getSetting);
+private _stronger = [false, true] select (["ia", "side", "priority", "extraHealth"] call core_fnc_getSetting);
 if ( _infAmmo ) then {
 	_tank1 setVariable ["fired_EH", (_tank1 addEventHandler ["Fired",{ (_this select 0) setVehicleAmmo 1 }])];
 	_tank2 setVariable ["fired_EH", (_tank2 addEventHandler ["Fired",{ (_this select 0) setVehicleAmmo 1 }])];
@@ -156,7 +174,9 @@ _protect = nil;
 
 //spawn units
 private _size = ["ia", "side", "size"] call core_fnc_getSetting;
-_groups append [_flatPos, 0, 4, 2, 0, 0, ([0,2] select (_isArti)), 2, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies;
+private _aaCount = 0;
+if ( _isArti ) then { _aaCount = 2; };
+_groups append ([_flatPos, 0, 4, 2, 0, 0, _aaCount, 2, 2, 3, 0, (_size + (random 150))] call SIDE_fnc_placeEnemies);
 
 //markers
 private _cfg  = ["aa", "arti"] select (_isArti);
@@ -182,7 +202,7 @@ if ( _isArti ) then {
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 
-while ( true ) do {
+while { true } do {
 	{
 		if (!alive _x) then {
 			if ( _stronger ) then {
@@ -192,7 +212,7 @@ while ( true ) do {
 				_x removeEventHandler ["Fired", (_x getVariable "fired_EH")];
 			};
 		};
-	} count [_tank1, _tank2];
+	} forEach [_tank1, _tank2];
 	
 	if ( (!alive _tank1) && (!alive _tank2) ) exitWith {
 		private _hint = ["ia", "side", "priority", "success"] call core_fnc_getSetting;
@@ -201,10 +221,10 @@ while ( true ) do {
 		private _notif = ["ia", "side", "priority", _cfg, "notification"] call core_fnc_getSetting;
 		["CompletedPriorityTarget", _notif] call global_fnc_notification;
 		_notif = nil;
-		[false, _flatPos, _size, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {
-		[true, _flatPos, _size, _groups, [_truck, _tank1, _tank2]] spawn SIDE_fnc_cleanup;
+		[true, _flatPos, _size, _groups, [_tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _isArti ) then {
 		[[_tank1, _tank2], [_baseCoord, _frCoord]] call SIDE_fnc_artiFire;
@@ -215,13 +235,12 @@ while ( true ) do {
 			_tick = (_tickMax + (random (_tickMax - _tickMin)));
 		};
 		private _end = time + _tick;
-		while ( true ) do {
-			if ( time >= _end ) exitWith {};
-			if ( SIDE_stop || zeusMission ) exitWith {};
+		waitUntil {
 			sleep _checkDelay;
+			( (time >= _end) || SIDE_stop || zeusMission )
 		};
 	} else {
-		[_tank1, _tank2] call SIDE_fnc_aaFire;
+		[[_tank1, _tank2]] call SIDE_fnc_aaFire;
 	};
 	sleep _checkDelay;
 };

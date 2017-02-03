@@ -26,6 +26,7 @@ private _group = createGroup _side;
 for "_x" from 1 to _amount do {
 	(selectRandom _pool) createUnit [_randomPos, _group];
 	private _unit = (units _group) select (count (units _group) - 1);
+	_unit setVariable ["NOAI", true, true];
 	[_unit, (selectRandom _buildings), _canPatrol] call common_fnc_garrisonUnit;
 };
 

@@ -119,7 +119,7 @@ while { true } do {
 	if (!alive _hq) exitWith {
 		private _fail = ["ia", "side", "failHint"] call core_fnc_getSetting;
 		_fail call global_fnc_hint;
-		[false, _flatPos, _groups, [_laptop, _table, _hq]] spawn SIDE_fnc_cleanup;
+		[false, _flatPos, _size, _groups, [_laptop, _table, _hq]] spawn SIDE_fnc_cleanup;
 	};
 	if ( SIDE_success ) exitWith {
 		private _planted = ["ia", "side", "research", "planted"] call core_fnc_getSetting;
