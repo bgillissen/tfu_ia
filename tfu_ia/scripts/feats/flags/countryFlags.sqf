@@ -5,7 +5,9 @@ if !( isNil "countryFlags" ) then {
 
 countryFlags = [];
 
-if ( count countryFlagMarkers == 0 ) exitWith {};
+diag_log format["count countryFlagMarkers: %1", (count countryFlagMarkers)];
+
+if ( (count countryFlagMarkers) == 0 ) exitWith {};
 
 private _countries = [];
 
@@ -21,7 +23,7 @@ if ( (count _countries) == 0 ) exitWith {};
 private _path = ["flags", "countries"] call core_fnc_getSetting;
 
 {
-	private _flag = "" createVehicle (getMarkerPos (contryFlagMarkers select _forEachIndex)));
+	private _flag = "FlagPole_F" createVehicle (getMarkerPos (countryFlagMarkers select _forEachIndex));
 	_flag allowDamage false;
 	[_flag, format[_path, toLower(_x)]] call global_fnc_setFlagTexture;
 	countryFlags pushback _flag;

@@ -14,7 +14,7 @@ private _path = ["flags", "path"] call core_fnc_getSetting;
 	true
 } count BA_obj;
 
-private countryFlagMarkers = [];
+countryFlagMarkers = [];
 
 for "_i" from 1 to 99 do {
 	private _marker = format["countryFlag_%1", _i];
@@ -23,7 +23,7 @@ for "_i" from 1 to 99 do {
 	};
 };
 
-[] spawn flags_fnc_countryFlags;
+call flags_fnc_countryFlags;
 
 if ( isNil "flagPVEH" ) then {
 	flagPVEH = "memberData" addPublicVariableEventHandler {

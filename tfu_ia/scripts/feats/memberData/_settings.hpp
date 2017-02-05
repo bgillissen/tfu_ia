@@ -22,39 +22,39 @@ class memberData {
 		};
 	};
 	class ranks {
-		rank0 {
+		class rank0 {
 			displayName = "";
 			shortName = "";
 		};
-		rank1 {
+		class rank1 {
 			displayName = "Applicant";
 			shortName = "A";
 		};
-		rank2 {
+		class rank2 {
 			displayName = "Recruit";
 			shortName = "R";
 		};
-		rank3 {
+		class rank3 {
 			displayName = "Private";
 			shortName = "Pvt";
 		};
-		rank4 {
+		class rank4 {
 			displayName = "Private Firstclass";
 			shortName = "Pfc";
 		};
-		rank5 {
+		class rank5 {
 			displayName = "Corporal";
 			shortName = "Cpl";
 		};
-		rank6 {
+		class rank6 {
 			displayName = "Sergeant";
 			shortName = "Sgt";
 		};
-		rank7 {
+		class rank7 {
 			displayName = "Lieutenant";
 			shortName = "Lt";
 		};
-		rank8 {
+		class rank8 {
 			displayName = "Captain";
 			shortName = "Cpt";
 		};

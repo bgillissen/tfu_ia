@@ -1,7 +1,7 @@
 class memberData {
 	tag = "memberData";
 	class functions {
-		class playerPreInit { file="feats\memberData\playerPreInit.sqf"; };
+		class playerInit { file="feats\memberData\playerInit.sqf"; };
 		class serverPreInit { file="feats\memberData\serverPreInit.sqf"; };
 		class baseProtection { file="feats\memberData\baseProtection.sqf"; };
 		class gearRestrictions { file="feats\memberData\gearRestrictions.sqf"; };

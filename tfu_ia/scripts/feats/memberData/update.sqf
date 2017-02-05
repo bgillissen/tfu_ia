@@ -25,7 +25,7 @@ private _data = "";
 if ( _dynMode == 1 ) then { _data = loadFile _dynSrc; };
 if ( _dynMode == 2 ) then { _data = [_dynSrc] call common_fnc_fetchUrlReturn; };
 
-private _lines = _data splitString "\n";
+private _lines = _data splitString (toString[10]);
 _data = nil;
 
 {
@@ -36,8 +36,8 @@ _data = nil;
 	private _GR = parseNumber (_data select 3);
 	private _BP = parseNumber (_data select 4);
 	private _VR = parseNumber (_data select 5);
-	private _country = _data select 6;
-	
+	private _country = (_data select 6);
+
 	private _key = -1;
 	{
 		if ( _uid isEqualTo (_x select 0) ) then { _key = _forEachIndex; };
