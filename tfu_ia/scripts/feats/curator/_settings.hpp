@@ -1,8 +1,4 @@
 class curator {
-	//		ben				 	 adam				  rainman			   Big
-	uids[]={"76561198030235789", "76561198078550099", "76561197971304076", "76561197974133116"};
-	web = 1;
-	url = "http://taskforcunicorn.com/api/curators";
 	notification = 0;
 	thermalVision = 1;
 	msgOnTakeOver = 1;

@@ -2,7 +2,6 @@ class curator {
 	tag = "curator";
 	class functions {
 		class actionRelease { file="feats\curator\actionRelease.sqf"; };
-		class actionReload { file="feats\curator\actionReload.sqf"; };
 		class actionRequest { file="feats\curator\actionRequest.sqf"; };
 		class addEditable { file="feats\curator\addEditable.sqf"; };
 		class addEditableServer { file="feats\curator\addEditableServer.sqf"; };
@@ -16,7 +15,7 @@ class curator {
 		class playerInit { file="feats\curator\playerInit.sqf"; };
 		class playerPostInit { file="feats\curator\playerPostInit.sqf"; };
 		class release { file="feats\curator\release.sqf"; };
-		class reload { file="feats\curator\reload.sqf"; };
+		class update { file="feats\curator\update.sqf"; };
 		class remoteControl { file="feats\curator\remoteControl.sqf"; };
 		class remoteControlServer { file="feats\curator\remoteControlServer.sqf"; };
 		class request { file="feats\curator\request.sqf"; };

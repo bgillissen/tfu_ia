@@ -1,4 +1,6 @@
 
+if !( player call memberData_fnc_gearRestrictions ) exitWith {};
+
 params [["_container", objNull]];
 
 private _drop = !(isNull _container);

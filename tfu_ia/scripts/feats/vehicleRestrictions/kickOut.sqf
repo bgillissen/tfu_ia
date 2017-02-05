@@ -7,9 +7,7 @@ Description:
 	kickout player from the vehicle seat he is in,
 	if vehicle is moving move him to crago, else kick out.
 */
-params ["_veh", "_wasIn"];
-
-if ( isNil "_wasIn" ) then { _wasIn = false; };
+params ["_veh", ["_wasIn", false]];
 
 if ( !_wasIn ) exitWith {
 	player action ["getOut", _veh];

@@ -42,8 +42,6 @@ if ( isNil "curator_EH" ) then {
 //adding actions
 private _request = ["curator", "requestAction"] call core_fnc_getSetting;
 private _release = ["curator", "releaseAction"] call core_fnc_getSetting;
-private _web = (["curator", "web"] call core_fnc_getSetting == 1);
-private _reload  = ["curator", "reloadAction"] call core_fnc_getSetting;
 
 {
 	{
@@ -53,9 +51,6 @@ private _reload  = ["curator", "reloadAction"] call core_fnc_getSetting;
 			if ( "curator" isEqualTo _action ) then {
 				_thing addAction [_request, {call curator_fnc_actionRequest}, [], 0, false, true, '', '[false] call curator_fnc_condition', 2];
 				_thing addAction [_release, {call curator_fnc_actionRelease}, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
-				if ( _web ) then {
-					_thing addAction [_reload, {call curator_fnc_actionReload}, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
-				};
 			};
 			true
 		} count _actions;

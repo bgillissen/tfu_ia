@@ -9,6 +9,8 @@ Description:
 
 if ( !BP_inBase ) exitWith {};
 
+if !( player call memberData_fnc_baseProtection ) exitWith {};
+
 deleteVehicle (_this select 6);
 
 hintC (["baseProtection", "msg"] call core_fnc_getSetting);

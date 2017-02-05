@@ -14,6 +14,8 @@ if ( _pos == "Cargo" ) exitWith{};
 
 if ( _veh isKindOf "ParachuteBase" ) exitWith {};
 
+if !( player call memberData_fnc_vehicleRestrictions ) exitWith {};
+
 private _role = _unit getVariable "role";
 
 private _HPilot_fly_jet = ((["HPilot_fly_jet"] call core_fnc_getParam) == 1); 

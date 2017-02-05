@@ -41,8 +41,6 @@ curatorAssigned append [[(getPlayerUID _player), _freeSlot, _player]];
 
 publicVariable "curatorAssigned";
 
-//(owner _player) publicVariableClient "curatorAssigned";
-
 if ( !isDedicated ) then { 
 	isAssigned = [player] call curator_fnc_isAssigned; 
 };

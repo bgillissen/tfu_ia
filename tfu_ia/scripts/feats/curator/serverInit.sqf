@@ -20,5 +20,10 @@ if ( isNil "TOT_CURATOR" ) then {
 	publicVariable "TOT_CURATOR";
 };
 
-//grabing the list of squad members with zeus access
-call curator_fnc_reload;
+if ( isNil "curatorMemberDataPVEH" ) then {
+	curatorMemberDataPVEH = "memberData" addPublicVariableEventHandler {
+		call curator_fnc_update;
+	};
+};
+
+call curator_fnc_update;
