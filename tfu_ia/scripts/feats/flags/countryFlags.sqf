@@ -22,6 +22,7 @@ private _path = ["flags", "countries"] call core_fnc_getSetting;
 
 {
 	private _flag = "" createVehicle (getMarkerPos (contryFlagMarkers select _forEachIndex)));
+	_flag allowDamage false;
 	[_flag, format[_path, toLower(_x)]] call global_fnc_setFlagTexture;
 	countryFlags pushback _flag;
 } forEach _countries;
