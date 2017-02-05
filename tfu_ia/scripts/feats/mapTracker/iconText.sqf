@@ -35,7 +35,7 @@ if !( isPlayer _veh ) then {
 		};
 	};
 } else {
-	private _vdn = name ((crew _veh) select 0);
+	private _vdn = ((crew _veh) select 0) getVariable ["MD_name", (name ((crew _veh) select 0))];
 	private _n = 0;
 	_n = ((count crew _veh) - 1);
 	if (_n > 0) then {
