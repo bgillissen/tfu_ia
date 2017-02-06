@@ -1,5 +1,4 @@
 class TANOA {
-	folder = "Tanoa";
 	keywords[] = {"jungle", "water", "apex"};
 	headless = 3;
 	class bases {

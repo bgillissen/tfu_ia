@@ -18,6 +18,7 @@ if ( !isMultiplayer ) exitWith {};
 if ( (["headless"] call core_fnc_getParam) == 0 ) exitWith {};
 
 private _delay = ["loadBalance", "loopDelay"] call core_fnc_getSetting;
+private _totHC = getNumber(missionConfingFile >> "settings" >> "maps" >> toUpper(worldName) >> "headless");
 
 while { true } do {
 
@@ -28,7 +29,7 @@ while { true } do {
 	private _HCfail = 0;
 	private _HCmoved = 0;
 	
-	for "_i" from 0 to (TOT_HC - 1) do {
+	for "_i" from 0 to (_totHC - 1) do {
 		private _name = format["HC_%1", (_i + 1)];
 		private _id = [_name] call loadBalance_fnc_getClientID;
 		if (_id != -1 ) then {
