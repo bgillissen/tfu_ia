@@ -17,8 +17,8 @@ class tuvanaka {
 	};
 	class arsenals {
 		class things {
-			class BAinfVA_1 { type = "npc";balo = "arsenal"; };
-			class BAinfVA_2 { type = "npc";balo = "arsenal"; };
+			class BAinfVA_1 { type = "npc";balo = "gear"; };
+			class BAinfVA_2 { type = "npc";balo = "gear"; };
 			class BA_crewVA { type = "obj"; };
 			class BA_hPilotVA { type = "obj"; };
 			class BA_jPilotVA { type = "obj"; };

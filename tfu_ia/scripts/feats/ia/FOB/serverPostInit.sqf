@@ -62,7 +62,7 @@ while { true } do {
 			if !( _x in (FOB_deployed select AO_key) ) then { 
 				_pool pushback _x; 
 			};
-		} count _markers;
+		} forEach _markers;
 	
 		if ( count _pool > 0 ) then {
 			private _marker =  selectRandom _pool;
