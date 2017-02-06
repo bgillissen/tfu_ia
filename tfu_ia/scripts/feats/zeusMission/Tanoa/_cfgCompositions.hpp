@@ -1,4 +1,4 @@
-class ZM_T_comp0 {
+class ZM_TANOA_comp0 {
 	author = "Tinman";
 	name = "";
 	//include ""

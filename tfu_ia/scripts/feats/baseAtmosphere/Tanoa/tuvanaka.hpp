@@ -39,6 +39,7 @@ class tuvanaka {
 		};
 		class actions {
 			class curator {};
+			class memberData {};
 			class billboard {
 				mode = "fixed";
 				texture = "zeus";

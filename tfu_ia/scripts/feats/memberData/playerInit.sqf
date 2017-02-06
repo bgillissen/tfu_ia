@@ -23,13 +23,9 @@ private _action = (["memberData", "dynamic", "action"] call core_fnc_getSetting)
 	{
 		_x params ["_thing", "_actions"];
 		{
-			_x params ["_action", "_mode"];
-			if ( "memberData" isEqualTo _action ) then {
+			if ( (configName _x) isEqualTo "memberData" ) then {
 				_thing addAction [_action, {call memberData_fnc_update}, [], 0, false, true, '', '( (player getVariable["MD_rank", 0]) >= 6 )', 2];
 			};
-			true
-		} count _actions;
-		true
-	} count _x;
-	true
-} count [BA_veh, BA_npc, BA_obj];
+		} forEach _actions;
+	} forEach _x;
+} forEach [BA_veh, BA_npc, BA_obj];

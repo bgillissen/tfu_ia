@@ -5,9 +5,8 @@ class memberData {
 		  Otherwise loadFile will not load any files outside your mission folder.
 		  For more info see CMA:DevelopmentSetup (since Arma 3 1.49+).
 		*/
-		mode = 1;	//0: disabled, 1: loadFile, 2: fetchUrl extension
-		//src = "http://taskforcunicorn.com/api/srvData";
-		src = "mbrData.txt";
+		mode = 2;	//0: disabled, 1: loadFile, 2: fetchUrl extension
+		src = "http://taskforceunicorn.com/api/index.php?do=srvData";
 		action = "Reload Member Data";
 	};
 	class static {

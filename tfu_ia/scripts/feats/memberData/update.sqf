@@ -23,7 +23,7 @@ private _dynSrc = (["memberData", "dynamic", "src"] call core_fnc_getSetting);
 private _data = "";
 
 if ( _dynMode == 1 ) then { _data = loadFile _dynSrc; };
-if ( _dynMode == 2 ) then { _data = [_dynSrc] call common_fnc_fetchUrlReturn; };
+if ( _dynMode == 2 ) then { _data = [_dynSrc] call common_fnc_urlFetchReturn; };
 
 private _lines = _data splitString (toString[10]);
 _data = nil;
