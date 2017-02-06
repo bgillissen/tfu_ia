@@ -4,7 +4,7 @@ private _uid = getPlayerUID player;
 {
 	if ( _uid isEqualTo (_x select 0) ) exitWith {
 		player setVariable["MD_rank", (_x select 1), true];
-		private _shortRank = getText(missionConfigFile >> "memberData" >> "ranks" >> format["rank%1", (_x select 1)] >> "shortName");
+		private _shortRank = getText(missionConfigFile >> "settings" >> "memberData" >> "ranks" >> format["rank%1", (_x select 1)] >> "shortName");
 		player setVariable["MD_name", format["%1. %2", _shortRank, (name player)], true];
 	};
 } forEach memberData;

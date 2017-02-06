@@ -15,11 +15,13 @@ private _coord = getMarkerPos "SZ";
 
 BP_inBase = true;
 
-waitUntil {
-	!BLACKSCREEN
-};
+waitUntil { !BLACKSCREEN };
 
 while { true } do {
-	BP_inBase = [false, true] select ((player distance _coord) < SZ_RADIUS);
+	if !( player call memberData_fnc_baseProtection ) then {
+		BP_inBase = false; 	
+	} else {
+		BP_inBase = ((player distance _coord) < SZ_RADIUS);
+	};
 	sleep _delay;
 };

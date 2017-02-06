@@ -10,6 +10,7 @@ class memberData {
 		action = "Reload Member Data";
 	};
 	class static {
+		/*
 		class ben {
 			uid = "76561198030235789";
 			rank = 7;
@@ -19,6 +20,7 @@ class memberData {
 			vehicleRestrictions = 1;
 			country = "BE";
 		};
+		*/
 	};
 	class ranks {
 		class rank0 {
