@@ -1,7 +1,7 @@
 class tuvanaka {
 	class support {
 		class things {
-			class BA_support { type = "npc"; role = "support"; };
+			class BA_support { type = "npc";balo = "support"; };
 		};
 		class actions {
 			class support {};
@@ -9,7 +9,7 @@ class tuvanaka {
 	};
 	class medic {
 		class things {
-			class BA_medic { type = "npc";role = "medic"; };
+			class BA_medic { type = "npc";balo = "medic"; };
 		};
 		class actions {
 			class medic {};
@@ -17,8 +17,8 @@ class tuvanaka {
 	};
 	class arsenals {
 		class things {
-			class BAinfVA_1 { type = "npc";role = "arsenal"; };
-			class BAinfVA_2 { type = "npc";role = "arsenal"; };
+			class BAinfVA_1 { type = "npc";balo = "arsenal"; };
+			class BAinfVA_2 { type = "npc";balo = "arsenal"; };
 			class BA_crewVA { type = "obj"; };
 			class BA_hPilotVA { type = "obj"; };
 			class BA_jPilotVA { type = "obj"; };

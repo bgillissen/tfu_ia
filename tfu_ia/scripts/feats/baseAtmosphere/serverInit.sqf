@@ -82,9 +82,9 @@ BA_veh = [];
 						BA_obj pushback [_thing, _actions];
 					} else {
 						if ( _type isEqualto "npc" ) then {
-							{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET"];
 							_thing setVariable ["NOAI", true, true];
-							[_thing, getText(_x >> "loadout")] call baseAtmosphere_fnc_npcLoadout;
+							[_thing, getText(_x >> "balo")] call baseAtmosphere_fnc_npcLoadout;
+							{ _thing disableAI _x; } count ["MOVE", "TARGET", "AUTOTARGET", "CHECKVISIBLE"];
 							BA_npc pushback [_thing, _actions];
 						};
 					};
