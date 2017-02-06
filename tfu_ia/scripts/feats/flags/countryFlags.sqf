@@ -23,7 +23,10 @@ if ( (count _countries) == 0 ) exitWith {};
 private _path = ["flags", "countries"] call core_fnc_getSetting;
 
 {
-	private _flag = "FlagPole_F" createVehicle (getMarkerPos (countryFlagMarkers select _forEachIndex));
+	if ( _forEachIndex >= (count countryFlagMArkers) ) exitWith {
+		diag_log format["No enough countryFlagMarkers for the amount of countries, got: %1, needed: %2", count countryFlagMarkers, count _countries];
+	};
+	private _flag = createVehicle ["FlagPole_F", (getMarkerPos (countryFlagMarkers select _forEachIndex)), [], 0, "CAN_COLLIDE"];
 	_flag allowDamage false;
 	[_flag, format[_path, toLower(_x)]] call global_fnc_setFlagTexture;
 	countryFlags pushback _flag;

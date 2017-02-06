@@ -227,7 +227,7 @@ while { true } do {
 		[true, _flatPos, _size, _groups, [_tank1, _tank2]] spawn SIDE_fnc_cleanup;
 	};
 	if ( _isArti ) then {
-		[[_tank1, _tank2], [_baseCoord, _frCoord]] call SIDE_fnc_artiFire;
+		[[_tank1, _tank2], [[_baseCoord, SZ_RADIUS], [_frCoord, FR_RADIUS]]] call SIDE_fnc_artiFire;
 		private "_tick"; 
 		if (_tickMax <= _tickMin) then {
 			_tick = _tickMin;

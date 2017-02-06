@@ -29,25 +29,29 @@ params ["_batteries", "_szCoords"];
 
 private _checkDelay = ["ia", "checkDelay"] call core_fnc_getSetting;
 private _ammo = ((_batteries select 0) magazinesTurret [0]) select 0;
+
+private _targets = allPlayers - (entities "headless_Client_F");
 private _target = objNull;
-private "_targetPos";
+private _targetPos = [0,0,0];
 private _accepted = false;
 
 while { !_accepted } do {
-	_target = playableUnits select (floor (random (count playableUnits)));
-	if ( !(isNull _target) ) then {
-		if ( (side _target) isEqualTo PLAYER_SIDE ) then {
-			_targetPos = getPos _target;
-			_accepted = true;
-			{
-				_x params ["_pos", "_radius"];
-				if ((_targetPos distance _pos) < _radius) then { 
-					_accepted = false; 
-				};
-			} count sz_Coords;
-			if ( _accepted ) then {
-				if ( _targetPos inRangeOfArtillery [_batteries, _ammo] ) then { _accepted = true; };			
+	if ( (count _targets) == 0 ) exitWith {};
+	_target = selectRandom _targets;
+	_targets = _targets - [_target];
+	if ( (side _target) isEqualTo PLAYER_SIDE ) then {
+		_targetPos = getPos _target;
+		_accepted = true;
+		{
+			_x params ["_pos", "_radius"];
+			if ((_targetPos distance _pos) < _radius) then { 
+				_accepted = false; 
 			};
+		} count sz_Coords;
+		if ( _accepted ) then {
+			if !( _targetPos inRangeOfArtillery [_batteries, _ammo] ) then { 
+				_accepted = false; 
+			};			
 		};
 	};
 	if ( SIDE_stop || zeusMission ) exitWith {};

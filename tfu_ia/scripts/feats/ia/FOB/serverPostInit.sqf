@@ -40,7 +40,7 @@ while { true } do {
 			sleep _checkDelay;
 			private _out = false;
 			if !( isNil "AO_zone") then {
-				diag_log format["Waiting for an AO_zone with FOBS: %1 (%2)", AO_zone, count getArray(AO_zone >> "fobs")];
+				//diag_log format["Waiting for an AO_zone with FOBS: %1 (%2)", AO_zone, count getArray(AO_zone >> "fobs")];
 				_out = ( (count getArray(AO_zone >> "fobs")) != 0 );
 			};
 			( _out || FOB_stop )
