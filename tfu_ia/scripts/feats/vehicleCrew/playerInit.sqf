@@ -64,11 +64,11 @@ while { true } do  {
     			if !( alive _unit ) then {
     				(_stack select _key) append [format[_toFormat, _icon, "dead body", _gunName]];	
     			} else {
+    				private _name = _unit getVariable ["MD_name", (name _unit)];
     				if ( _unit getVariable["agony", false] ) then {
-    					(_stack select _key) append [format [_toFormat, _icon, ((name _unit) + " (unconcious)"), _gunName]];
-    				} else {
-    					(_stack select _key) append [format [_toFormat, _icon, (name _unit), _gunName]];
+    					_name = _name + " (unconcious)";
     				};
+    				(_stack select _key) append [format [_toFormat, _icon, _name, _gunName]];
     			};
     		};
     		true
