@@ -13,6 +13,7 @@ Description:
 
 class Params {
 	#include "assets\_params.hpp"
+	#include "baseAtmosphere\_params.hpp"
 	#include "baseDefence\_params.hpp"
 	#include "baseProtection\_params.hpp"
 	#include "earPlugs\_params.hpp"
@@ -22,7 +23,6 @@ class Params {
 	#include "ia\_params.hpp"
 	#include "intro\_params.hpp"
 	#include "loadBalance\_params.hpp"
-	#include "maps\_params.hpp"
 	#include "mapTracker\_params.hpp"
 	#include "noRenegade\_params.hpp"
 	#include "oneLifeOnly\_params.hpp"
@@ -61,7 +61,6 @@ class features {
 	#include "ia\_feature.hpp"
 	#include "intro\_feature.hpp"
 	#include "loadBalance\_feature.hpp"
-	#include "maps\_feature.hpp"
 	#include "mapTracker\_feature.hpp"
 	#include "memberData\_feature.hpp"
 	#include "noRenegade\_feature.hpp"
@@ -88,8 +87,10 @@ class features {
 
 class settings {
 	#include "assets\_settings.hpp"
-	#include "baseProtection\_settings.hpp"
+	#include "baseAtmosphere\_settings.hpp"
 	#include "baseDefence\_settings.hpp"
+	#include "baseProtection\_settings.hpp"
+	#include "baseVehicle\_settings.hpp"
 	#include "billboards\_settings.hpp"
 	#include "cleanup\_settings.hpp"
 	#include "curator\_settings.hpp"
@@ -101,6 +102,7 @@ class settings {
 	#include "ia\_settings.hpp"
 	#include "loadBalance\_settings.hpp"
 	#include "mapTracker\_settings.hpp"
+	#include "maps\_settings.hpp"
 	#include "memberData\_settings.hpp"
 	#include "playerSpawn\_settings.hpp"
 	#include "radioFreq\_settings.hpp"

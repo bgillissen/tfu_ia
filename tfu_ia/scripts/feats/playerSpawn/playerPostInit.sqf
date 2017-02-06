@@ -12,8 +12,8 @@ if ( !BLACKSCREEN ) exitWith {};
 waitUntil {
 	!PLAYER_INIT
 };
-
-"welcome" cutText [format["Welcome to %1, you are %2", BASE_NAME, PLAYER_SIDEDSP], "BLACK", 1, true];
+private _name = getText(missionConfigFile >> "settings" >> "maps" >> toUpper(worldName) >> "bases" >> BASE_NAME >> "name");
+"welcome" cutText [format["Welcome to %1, you are %2", _name, PLAYER_SIDEDSP], "BLACK", 1, true];
 
 sleep 1;
 

@@ -47,14 +47,11 @@ private _release = ["curator", "releaseAction"] call core_fnc_getSetting;
 	{
 		_x params ["_thing", "_actions"];
 		{
-			_x params ["_action", "_mode"];
-			if ( "curator" isEqualTo _action ) then {
+			if ( (configName _x) isEqualTo "curator" ) then {
 				_thing addAction [_request, {call curator_fnc_actionRequest}, [], 0, false, true, '', '[false] call curator_fnc_condition', 2];
 				_thing addAction [_release, {call curator_fnc_actionRelease}, [], 0, false, true, '', '[true] call curator_fnc_condition', 2];
 			};
 			true
-		} count _actions;
-		true
-	} count _x;
-	true
-} count [BA_veh, BA_npc, BA_obj];
+		} forEach _actions;
+	} forEach _x;
+} forEach [BA_npc, BA_obj, BA_veh];

@@ -14,6 +14,7 @@ Description:
 #define dftSpawn [[],[]]
 #define dftVal []
 
+MAP_KEYWORDS = getArray(missionConfigFile >> "maps" >> toUpper(worldName) >> "keywords");
 BLACKLIST = [[],[],[],[],[],[],[],[]];
 REWARDS = [];
 MODS = [];

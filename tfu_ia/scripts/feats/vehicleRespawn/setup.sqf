@@ -23,12 +23,10 @@ _args call common_fnc_setCargo;
 
 //Actions
 {
-	_x params ["_action", "_conf"];
-	if ( _action isEqualTo "paint" ) then {
-		_veh setObjectTextureGlobal [0, _conf];
+	if ( configName(_x) isEqualTo "paint" ) then {
+		_veh setObjectTextureGlobal [0, getText(_x >> "color")];
 	};
-	true
-} count _actions;
+} forEach _actions;
 
 
 

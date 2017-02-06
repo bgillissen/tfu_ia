@@ -7,20 +7,16 @@ Description:
 	It changes the texture displayed on the billboards with a mode set to random.
 */
 
-if ( isNil "DB_list" ) then {
-	DB_list = [];
-	private _tot = (["billboards", "totRandom"] call core_fnc_getSetting);
-	for "_x" from 1 to  _tot do { DB_list pushback _x; };
-};
-
 {
 	_x params ["_thing", "_actions"];
 	{
-		_x params ["_action", "_mode"];
-		if ( "billboard" isEqualTo _action ) then { 
-			[_thing, _mode] call billboards_fnc_setTexture;
+		if ( (configName _x) isEqualTo "billboard" ) then {
+			if ( getText(_x >> "mode") isEqualTo "random" ) then {
+				if ( (count DB_queue) == 0 ) then { DB_queue = DB_list; };
+				private _texture = selectRandom DB_queue;
+				DB_queue = DB_queue - [_texture];
+				[_thing, _texture] call billboards_fnc_setTexture;
+			};
 		};
-		true
-	} count _actions;
-	true
-} count BA_obj;
+	} forEach _actions;
+} forEach BA_obj;

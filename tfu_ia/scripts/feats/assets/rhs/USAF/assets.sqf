@@ -8,8 +8,8 @@ Description:
 	return the RHS USAF assets
 */
 
-private _isDesert = (["desert", "dry"] call maps_fnc_keyWords);
-private _isWood = (["jungle", "wood"] call maps_fnc_keyWords);
+private _isDesert = (["desert", "dry"] call assets_fnc_mapKeywords);
+private _isWood = (["jungle", "wood"] call assets_fnc_mapKeywords);
 
 private _factions = [];
 

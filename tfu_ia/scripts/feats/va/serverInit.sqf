@@ -7,17 +7,20 @@ Description:
 	add arsenal to the things in base with an arsenal action
 */
 
-private _filtered = ( ["filterArsenal"] call core_fnc_getParam == 1 );
+private _param = ( ["filterArsenal"] call core_fnc_getParam == 1 );
 {
 	{
 		_x params ["_thing", "_actions"];
 		{
-			_x params ["_action", "_conf"];
-			if ( isNil "_conf" ) then { _conf = _filtered; };
-			if ( "arsenal" isEqualTo _action ) then { [_thing, _conf] call va_fnc_add; };
-			true
-		} count _actions;
-		true
-	} count _x;
-	true
-} count [BA_veh, BA_npc, BA_obj];
+			if ( (configName _x) isEqualTo "arsenal" ) then {
+				private _filtered = getNumber(_x >> "filtered");
+				if ( _filtered == -1 ) then { 
+					_filtered = _param; 
+				} else {
+					_filtered = [false, true] select _filtered;
+				};
+				[_thing, _filtered] call va_fnc_add;
+			};
+		} forEach _actions;
+	} forEach _x;
+} forEach [BA_npc, BA_obj, BA_veh];

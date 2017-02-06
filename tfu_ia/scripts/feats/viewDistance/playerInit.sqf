@@ -18,13 +18,9 @@ private _act = ["viewDistance", "action"] call core_fnc_getSetting;
 	{
 		_x params ["_thing", "_actions"];
 		{
-			_x params ["_action", "_conf"];
-			if ( "vd" isEqualTo _action ) then {
+			if ( (configName _x) isEqualTo "viewDistance" ) then {
 				_thing addAction [_act, {call viewDistance_fnc_open}, [], 0, false, true, "", "true", 4];
 			};
-			true
-		} count _actions;
-		true
-	} count _x;
-	true
-} count [BA_veh, BA_npc, BA_obj];
+		} forEach _actions;
+	} forEach _x;
+} forEach [BA_npc, BA_obj, BA_veh];

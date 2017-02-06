@@ -10,39 +10,41 @@ Description:
 
 #include "..\..\core\debug.hpp"
 
-BA_veh = [];
+if ( BASE_NAME isEqualTo "" ) exitWith {};
+
+private _vehConf = ( missionConfigFile >> "settings" >> "baseVehicle" >> toUpper(worldName) >> BASE_NAME);
+
+if !( isClass _vehConf ) exitWith {
+	#ifdef DEBUG
+	private _debug = format["baseVehicle: vehicle settings not found for base %1!", BASE_NAME];
+	conRed(_debug);
+	#endif
+};
+
 
 {
-	_x params ["_poolName", "_marker", "_delay", "_actions"];
+	private _poolName = getText(_x >> "pool");
 	_pool = missionNamespace getVariable format["BV_%1", _poolName];
 	if ( !isNil "_pool" ) then {
 		if ( count _pool > 0 ) then {
-			private _veh = createVehicle [(selectRandom _pool), (getMarkerPos _marker), [], 0, "CAN_COLLIDE"];
-			_veh setDir (markerDir _marker);
-			if ( _delay >= 0 ) then {
+			private _delay = getNumber(_x >> "respawnDelay");
+			private _actions = "true" configClasses (_x >> "actions");
+			{
+				private _veh = createVehicle [(selectRandom _pool), (getMarkerPos _x), [], 0, "CAN_COLLIDE"];
+				_veh setDir (markerDir _x);
 				[_veh, _delay, _poolName, _actions] call vehicleRespawn_fnc_monitor;
-			} else {
-				_veh lock 3;
-				_veh allowDamage false;
-				clearWeaponCargoGlobal _veh;
-				clearMagazineCargoGlobal _veh;
-				clearItemCargoGlobal _veh;
-				clearBackpackCargoGlobal _veh;
-				BA_veh pushback [_veh, _actions];
-			};
+			} forEach getArray(_x >> "markers");
 		#ifdef DEBUG
 		} else {
-			private _debug = format["basevehicle: pool %1 is empty!", _poolName];
+			private _debug = format["baseVehicle: pool %1 is empty!", _poolName];
 			conRed(_debug);
 		#endif	
 		};
 	#ifdef DEBUG
 	} else {
-		private _debug = format["basevehicle: pool %1 is nil!", _poolName];
+		private _debug = format["baseVehicle: pool %1 is nil!", _poolName];
 		conRed(_debug);
 	#endif				
 	};
 	true
-} count BV;
-
-publicVariable "BA_veh";
+} forEach ("true" configClasses _vehConf);

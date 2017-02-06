@@ -50,7 +50,7 @@ class CfgFunctions {
 
 //------------------------- Compositions
 class CfgCompositions {
-	#include "feats\maps\_cfgCompositions.hpp"
+	#include "feats\_cfgCompositions.hpp"
 };
 
 //------------------------- Notifications

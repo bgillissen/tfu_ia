@@ -136,9 +136,9 @@ while { true } do {
 		_marker setMarkerShape "ICON";
 		_marker setMarkerType "mil_flag";
 		if ( isNil "FOB_success" ) then {  };
-		(FOB_deployed select _aoZone) append [_fob];
-		private _done = count (FOB_deployed select _aoZone); 
-		private _avail = count (FOBS select _aoZone);
+		(FOB_deployed select AO_key) pushback _fob;
+		private _done = count (FOB_deployed select AO_key); 
+		private _avail = count (getArray(AO_zone >> "fobs"));
 		if ( _done == _avail ) then {
 			sleep 5;
 			_hint = ["ia", "fob", "zoneHint"] call core_fnc_getSetting;

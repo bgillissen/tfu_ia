@@ -33,7 +33,7 @@ private _target = objNull;
 private "_targetPos";
 private _accepted = false;
 
-while ( true ) do {
+while { !_accepted } do {
 	_target = playableUnits select (floor (random (count playableUnits)));
 	if ( !(isNull _target) ) then {
 		if ( (side _target) isEqualTo PLAYER_SIDE ) then {
@@ -46,20 +46,17 @@ while ( true ) do {
 				};
 			} count sz_Coords;
 			if ( _accepted ) then {
-				if ( _targetPos inRangeOfArtillery [_batteries, _ammo] ) exitWith  { 
-					_accepted = true; 
-				};			
+				if ( _targetPos inRangeOfArtillery [_batteries, _ammo] ) then { _accepted = true; };			
 			};
 		};
 	};
-	if ( SIDE_stop || zeusMission ) exitWith { _target = nullObj; };
-	if ( _accepted ) exitWith {};
+	if ( SIDE_stop || zeusMission ) exitWith {};
 	sleep _checkDelay;
 };
 _accepted = nil;
 _sleepDelay = nil;
 
-if ( _target == nullObj ) exitWith {};
+if ( _target isEqualTo objNull ) exitWith {};
 
 if ( ["ArtilleryTargetTickWarning"] call core_fnc_getParam ) then {
 	private _msgs = ["ia", "side", "priority", "arti", "firingMsg"] call core_fnc_getSetting;

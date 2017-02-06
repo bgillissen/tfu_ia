@@ -18,6 +18,7 @@ class asets {
 		class implentSpawn { file="feats\assets\implentSpawn.sqf"; };
 		class implentSupplyDrop { file="feats\assets\implentSupplyDrop.sqf"; };
 		class implentVehicleCargo { file="feats\assets\implentVehicleCargo.sqf"; };
+		class mapKeywords { file="feats\assets\mapKeywords.sqf"; };
 		class searchThings { file="feats\assets\searchThings.sqf"; };
 		class vehicleFilters { file="feats\assets\vehicleFilters.sqf"; };
 		class weaponFilters { file="feats\assets\weaponFilters.sqf"; };

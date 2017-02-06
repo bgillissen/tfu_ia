@@ -9,18 +9,12 @@ Description:
  	now also set the insignia defined as npc in description.ext
 */
 
-params ["_npc", "_actions"];
+params ["_npc", "_loadout"];
 
-_lo = _actions call {
-	private _out = BALO_default;
-	{
-		_x params ["_action", "_conf"];
-		if ( "arsenal" isEqualTo _action ) exitWith { _out = BALO_gear; };
-		if ( "support" isEqualTo _action ) exitWith { _out = BALO_support; };
-		if ( "medic" isEqualTo _action ) exitWith { _out = BALO_medic; };
-		true
-	} count _actions;
-	_out
+private _lo = missionNamespace getVariable [format["BALO_%1", _loadout], []];
+
+if ( count _lo == 0 ) exitWith {
+	diag_log format["NPC loadout not found : BALO_%1", _loadout];
 };
 
 _lo params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_f", "_c", "_t", "_m", "_bino", "_n", "_w", "_cp"];

@@ -15,7 +15,7 @@ FOB_stop = false;
 FOB_deployed = [];
 {
 	FOB_deployed set [_forEachIndex, EMPTYARRAY];
-} forEach FOBS;
+} forEach AO_zones;
 
 FOB_main = scriptNull;
 
@@ -32,23 +32,25 @@ while { true } do {
 	if ( FOB_stop ) exitWith {};
 	
 	if ( (["AO"] call core_fnc_getParam) == 0 ) then {
-		AO_zone = round (random (count FOBS));
+		AO_zone = selectRandom AO_zones;
+		AO_key = AO_zones find AO_zone;
 	} else {
 		diag_log "Waiting for an AO_zone with FOBS";
 		waitUntil {
 			sleep _checkDelay;
 			private _out = false;
 			if !( isNil "AO_zone") then {
-				diag_log format["Waiting for an AO_zone with FOBS: %1 (%2)", AO_zone, count (FOBS select AO_zone)];
-				_out = ( count (FOBS select AO_zone) != 0 );
+				diag_log format["Waiting for an AO_zone with FOBS: %1 (%2)", AO_zone, count getArray(AO_zone >> "fobs")];
+				_out = ( (count getArray(AO_zone >> "fobs")) != 0 );
 			};
 			( _out || FOB_stop )
 		};
 		if ( FOB_stop ) exitWith {};
+		AO_key = AO_zones find AO_zone;
 	};
 	
 	if ( count _markers == 0 ) then {
-		_markers = FOBS select AO_zone;
+		_markers = getArray(AO_zone >> "fobs");
 		diag_log format["FOBS markers in active zone: %1 ", _markers];
 	};
 	if ( count _types == 0 ) then {
@@ -57,7 +59,9 @@ while { true } do {
 	if ( count _markers > 0 ) then {
 		private _pool = [];
 		{
-			if ( !(_x in (FOB_deployed select AO_zone)) ) then { _pool append [_x]; };
+			if !( _x in (FOB_deployed select AO_key) ) then { 
+				_pool pushback _x; 
+			};
 		} count _markers;
 	
 		if ( count _pool > 0 ) then {
