@@ -80,5 +80,5 @@ while { true } do  {
       	_HudNames ctrlCommit 0;
     };
     sleep _updateDelay;
-  };  
+};  
   
