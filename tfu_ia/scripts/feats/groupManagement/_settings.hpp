@@ -12,7 +12,7 @@ class groupManagement {
 		color = Black;
 	};
 	class HORNET {
-		name = "Hornet";
+		name = "Eagle";
 		color = "Blue";
 	};
 	class HAMMER {
