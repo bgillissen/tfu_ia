@@ -39,9 +39,10 @@ private _remote = call {
 	false
 };
 if ( _remote ) exitWith {
-#ifdef DEBUG
-	conWhite("featEvent: is remote");
-#endif
+	#ifdef DEBUG
+	private _msg = format["featEvent: %1 %2 is remote", _ctxt, _when];
+	conWhite(_msg);
+	#endif
 	//so it's a remote event to propagate
 	_target = call {
 		if ( _ctxt isEqualTo "SERVER" ) exitWith { 2 };

@@ -10,9 +10,13 @@ Description:
 #include "core\debug.hpp"
 
 if ( !isMultiplayer ) exitWith {};
-
+/*
 CTXT_SERVER = false;
 CTXT_HEADLESS = !hasInterface;
+CTXT_PLAYER = hasInterface;
+*/
+CTXT_SERVER = isServer;
+CTXT_HEADLESS = (!isDedicated && !hasInterface);
 CTXT_PLAYER = hasInterface;
 
 if ( CTXT_HEADLESS ) then {

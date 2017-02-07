@@ -47,7 +47,7 @@ while { !_accepted } do {
 			if ((_targetPos distance _pos) < _radius) then { 
 				_accepted = false; 
 			};
-		} count sz_Coords;
+		} count _szCoords;
 		if ( _accepted ) then {
 			if !( _targetPos inRangeOfArtillery [_batteries, _ammo] ) then { 
 				_accepted = false; 

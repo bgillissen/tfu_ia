@@ -9,8 +9,7 @@ class memberData {
 		src = "http://taskforceunicorn.com/api/index.php?do=srvData";
 		action = "Reload Member Data";
 	};
-	class static {
-		/*
+	class fixed {
 		class ben {
 			uid = "76561198030235789";
 			rank = 7;
@@ -20,7 +19,15 @@ class memberData {
 			vehicleRestrictions = 1;
 			country = "BE";
 		};
-		*/
+		class rainman {
+			uid = "76561197971304076";
+			rank = 8;
+			isZeus = 1;
+			gearRestrictions = 1;
+			baseProtection = 1;
+			vehicleRestrictions = 1;
+			country = "SE";
+		};
 	};
 	class ranks {
 		class rank0 {
