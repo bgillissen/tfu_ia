@@ -96,8 +96,14 @@ S_USAF = R_USAF + 1;
 
 private _rt = [];
 private _crates = ["rhsusf_mags_crate"];
-private _pGroups = [];
-private _sGroups = [];
+private _pGroups = [["West", "rhs_faction_usarmy_wd", "rhs_group_nato_usarmy_wd_infantry"]];
+if ( _isDesert ) then { 
+	_pGroups = [["West", "rhs_faction_usarmy_d", "rhs_group_nato_usarmy_d_infantry"]];
+};
+private _sGroups = [["West", "rhs_faction_usarmy_wd", "rhs_group_nato_usarmy_wd_infantry", "rhs_group_nato_usarmy_wd_infantry_squad_sniper"]];
+if ( _isDesert ) then { 
+	_sGroups = [["West", "rhs_faction_usarmy_d", "rhs_group_nato_usarmy_d_infantry", "rhs_group_nato_usarmy_d_infantry_squad_sniper"]];
+};
 private _pilot = ["rhsusf_airforce_jetpilot"];
 private _crew = ["rhsusf_usmc_marpat_wd_combatcrewman"];
 if ( _isDesert ) then { _crew = ["rhsusf_usmc_marpat_d_combatcrewman"]; };

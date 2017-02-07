@@ -10,6 +10,5 @@ class curator {
 	releaseMsg = "%1 has released %2 (%3)";
 	requestAction = "Request Zeus powers";
 	releaseAction = "Withdraw Zeus powers";
-	reloadAction = "Refresh Zeus power list";
 };
 
