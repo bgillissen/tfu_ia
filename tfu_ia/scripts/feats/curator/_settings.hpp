@@ -2,13 +2,14 @@ class curator {
 	notification = 0;
 	thermalVision = 1;
 	msgOnTakeOver = 1;
-	noSlotMsg = "No more free Zeus slot available (%1 / %2).";
-	ascendMsg = "%3 has ascend, %1 / %2 Zeus slot in use.";
-	failedMsg = "%1 has tryed to ascend.";
-	descendMsg = "%3 has descend, %1 / %2 Zeus slot in use.";
-	takeOverMsg = "%1 has taking over %2 (%3)";
-	releaseMsg = "%1 has release %2 (%3)";
-	requestAction = "Request Zeus Power";
-	releaseAction = "Release Zeus Power";
-	reloadAction = "Reload Allowed Zeus List";
+	noSlotMsg = "No more free Zeus slots available (%1 / %2).";
+	ascendMsg = "%3 has ascended, %1 / %2 Zeus slots in use.";
+	failedMsg = "%1 has tried to ascend.";
+	descendMsg = "%3 has descended, %1 / %2 Zeus slots in use.";
+	takeOverMsg = "%1 has taken over %2 (%3)";
+	releaseMsg = "%1 has released %2 (%3)";
+	requestAction = "Request Zeus powers";
+	releaseAction = "Withdraw Zeus powers";
+	reloadAction = "Refresh Zeus power list";
 };
+
