@@ -100,6 +100,7 @@ class settings {
 	#include "groupManagement\_settings.hpp"
 	#include "hallOfShame\_settings.hpp"
 	#include "ia\_settings.hpp"
+	#include "intro\_settings.hpp"
 	#include "loadBalance\_settings.hpp"
 	#include "mapTracker\_settings.hpp"
 	#include "maps\_settings.hpp"

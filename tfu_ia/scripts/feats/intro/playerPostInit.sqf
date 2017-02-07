@@ -8,18 +8,36 @@ Description:
 Params:
 	none
 Environment:
-	missionParamaters:
+	missionParamaters
 		intro
+	missionSetting
+		intro >> timeout
+	missionNamespace:
+		INTRO_SHOWN
+		BLACKSCREEN
+	ui:
+		SRV_RULES
 Return:
 	nothing	
 */
 
 if ( (["intro"] call core_fnc_getParam) == 0 ) exitWith {};
 
+if !( isNil "INTRO_SHOWN" ) exitWith {};
+
+if ( isNil "INTRO_DELAY" ) then {
+	INTRO_DELAY = 0;
+	private _uid = getPlayerUID player;
+	if ( ({_uid isEqualTo (_x select 0)} count memberData) == 0 ) then {
+		INTRO_DELAY = ["intro", "timeout"] call core_fnc_getSetting;
+	};
+};
+
 [] spawn {
 	waitUntil {
 		sleep 2;
 		!BLACKSCREEN
 	};
-	//[] spawn intro_fnc_show;	
+	INTRO_SHOWN = true;
+	createdialog "SRV_RULES";	
 };

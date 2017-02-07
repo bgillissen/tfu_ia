@@ -9,6 +9,7 @@ class common {
 		class doGesture { file="common\doGesture.sqf"; };
 		class doGesturePlayer { file="common\doGesturePlayer.sqf"; };
 		class garrisonUnit { file="common\garrisonUnit.sqf"; };
+		class getDate { file="common\getDate.sqf"; };
 		class getFriends { file="common\getFriends.sqf"; };
 		class getMarkerColor { file="common\getMarkerColor.sqf"; };
 		class implent { file="common\implent.sqf"; };

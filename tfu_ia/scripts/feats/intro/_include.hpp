@@ -168,7 +168,7 @@ class SRV_RULES {
 			y = 1;
 			w = 1;
 			h = 0.1;
-			action = "closedialog 0";
+			action = "[] spawn { sleep INTRO_DELAY;closeDialog 0; };";
 		};
 		class General_hints: RscFrame {
 			idc = 1801;
