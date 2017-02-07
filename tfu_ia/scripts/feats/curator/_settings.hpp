@@ -12,3 +12,4 @@ class curator {
 	releaseAction = "Withdraw Zeus powers";
 	reloadAction = "Refresh Zeus power list";
 };
+

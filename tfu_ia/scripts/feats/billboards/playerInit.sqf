@@ -21,6 +21,7 @@ if ( isNil "DB_queue" ) then { DB_queue = DB_list; };
 				private _end = getArray(_x >> "end");
 				private _curMonth = 0;//TODO use a extension to get real world date
 				private _curDay = 0;
+				(call common_fnc_getDate) params [["_curYear", 0], ["_curMonth", 0], ["_curDay"], 0];
 				if ( (_curDay >= (_start select 0)) && 
 					 (_curDay <= (_end select 0)) && 
 					 (_curMonth >= (_start select 1)) && 
