@@ -4,6 +4,7 @@ class memberData {
 		  Notice that you will have to activate file patching via -filePatching.
 		  Otherwise loadFile will not load any files outside your mission folder.
 		  For more info see CMA:DevelopmentSetup (since Arma 3 1.49+).
+		  Also for mode 2, the url_fetch extension is required!
 		*/
 		mode = 2;	//0: disabled, 1: loadFile, 2: fetchUrl extension
 		src = "http://taskforceunicorn.com/api/index.php?do=srvData";

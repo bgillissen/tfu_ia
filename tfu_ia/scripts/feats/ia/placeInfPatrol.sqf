@@ -13,6 +13,8 @@ params ["_coord", "_size", "_amount", "_patrolSize", "_skill"];
 
 if ( _amount <= 0 ) exitWith {[]};
 
+diag_log format["Placing %1 infantry patrols", _amount];
+
 private _groups = [];
 
 private _baseCfg = ["configFile", "CfgGroups"];
@@ -32,6 +34,8 @@ for "_x" from 1 to _amount do {
 			[(units _group), false] call curator_fnc_addEditable;
 			_groups pushback _group;
 		};
+	} else {
+		diag_log format["Invalid infantry group: %1", _cfgPath];
 	};
 };
 
