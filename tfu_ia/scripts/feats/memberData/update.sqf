@@ -12,7 +12,7 @@ memberData = [];
 	private _VR = getNumber( _x >> "vehicleRestrictions" );
 	private _country = getText( _x >> "country" );
 	memberData pushback [_uid, _rank, _isZeus, _GR, _BP, _VR, _country];
-} forEach ("true" configClasses ( missionConfigFile >> "memberData" >> "static") );
+} forEach ("true" configClasses ( missionConfigFile >> "settings" >> "memberData" >> "fixed") );
 
 private _dynMode = (["memberData", "dynamic", "mode"] call core_fnc_getSetting);
 
@@ -27,6 +27,8 @@ if ( _dynMode == 2 ) then { _data = [_dynSrc] call common_fnc_urlFetchReturn; };
 
 private _lines = _data splitString (toString[10]);
 _data = nil;
+
+diag_log format["memberData Predyn : %1", memberData];
 
 {
 	private _data = _x splitString ";";
@@ -50,3 +52,5 @@ _data = nil;
 } forEach _lines;
 
 publicVariable "memberData";
+
+diag_log format["memberData Postdyn : %1", memberData];
