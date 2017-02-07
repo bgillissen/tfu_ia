@@ -3,8 +3,8 @@ class roleRestrictions {
 	roles[] = {"hPilot", "jPilot", "sniper"};
 	exceptions[] = {};
 	class messages {
-		hPilot = "Jet pilot slot is restricted to members, please go back to lobby and pick an other slot";
-		jPilot = "Helicopter pilot slot is restricted to members, please go back to lobby and pick an other slot";
-		sniper = "Sniper slot is restricted to members, please go back to lobby and pick an other slot";
+		hPilot = "Fighter pilot slot is restricted to members only, please go back to the lobby and pick another slot";
+		jPilot = "Helicopter pilot slot is restricted to members only, please go back to the lobby and pick another slot";
+		sniper = "Sniper slot is restricted to members only, please go back to the lobby and pick another slot";
 	};
 };

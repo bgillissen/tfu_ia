@@ -46,7 +46,7 @@ class SRV_RULES {
 		};
 		class Rule_1: RscText {
 			idc = 1001;
-			text = "1. Lone wolfing is not allowed, allways coordinate with other players.";
+			text = "1. Lone wolfing is not allowed, always coordinate with other players.";
 			x = 1;
 			y = 0.1;
 			w = 0.6875;
@@ -152,7 +152,7 @@ class SRV_RULES {
 			h = 0.08;
 			SizeEx = 0.03700;
 		};
-		
+
 		class AW_Intro_and_TS_picture: RscPicture {
 			idc = 1200;
 			text = "media\splash.paa";
@@ -201,10 +201,10 @@ class SRV_RULES {
 			SizeEx = 0.05400;
 			colorText[] = {.9,.1,.1,.9};
 		};
-		
+
 		class Hint_1: RscText {
 			idc = 1012;
-			text = "Make sure to have at least one long range radio for each squad.";
+			text = "Make sure to have at least one long range radio in each squad.";
 			x = -0.6875;
 			y = 0.1;
 			w = 0.6125;
@@ -213,7 +213,7 @@ class SRV_RULES {
 		};
 		class Hint_2: RscText {
 			idc = 1013;
-			text = "Coordinate with HQ and support elements over LR radio on 50 MHz.";
+			text = "Coordinate with HQ and support elements over long range radio.";
 			x = -0.6875;
 			y = 0.18;
 			w = 0.6125;
@@ -249,7 +249,7 @@ class SRV_RULES {
 		};
 		class Hint_7: RscText {
 			idc = 1017;
-			text = "Apply for TFU membership at taskforceunicorn.com";
+			text = "Apply for unit membership at taskforceunicorn.com";
 			x = -0.6875;
 			y = 0.50;
 			w = 0.6125;

@@ -1,4 +1,4 @@
 class zeusMission {
-	startAction = "Start a zeus mission";
-	stopAction = "Stop a zeus mission";
+	startAction = "Start a Zeus mission";
+	stopAction = "End a Zeus mission";
 };

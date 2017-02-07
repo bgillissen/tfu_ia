@@ -1,19 +1,19 @@
 
 //------------------------- On Load
 author = ben;
-onLoadName = "TFU - Invade & Annex";
-onLoadMission = "Welcome back to Task Force Unicorn Invade and Annex";
+onLoadName = "Direct Action";
+onLoadMission = "Welcome back to Direct Action by Task Force Unicorn";
 onLoadIntro = "";
 onLoadIntroTime = 0;
 onLoadMissionTime = 0;
 loadScreen = "media\loading.jpg";
-overviewPicture = "media\loading.jpg";	
+overviewPicture = "media\loading.jpg";
 
 class Header {
 	gameType = COOP;
 	minPlayers = 1;
 	maxPlayers = 60;
-}; 
+};
 
 //------------------------- Admin
 enableDebugConsole = 1;

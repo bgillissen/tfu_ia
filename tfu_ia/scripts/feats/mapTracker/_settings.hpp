@@ -18,7 +18,7 @@ class mapTracker {
     	hq = "HQ";
     	sl = "Squad Leader";
     	tl = "Team Leader";
-    	medic ="Medic";
+    	medic ="Combat Life Saver";
     	lmg = "Light Machine Gunner";
     	hmg = "Heavy Machine Gunner";
     	assHMG = "Assistant HMG";
@@ -27,13 +27,13 @@ class mapTracker {
     	sniper = "Sniper";
     	marksman = "Marksman";
     	repair = "Repair Specialist";
-    	demo = "Explosive Specialist";
+    	demo = "Explosives Specialist";
     	engineer = "Engineer";
     	grenadier ="Grenadier";
     	rifleman = "Rifleman";
-    	jtac = "JTAC";
+    	jtac = "Fire Support Specialist";
     	hPilot = "Helicopter Pilot";
-    	jPilot = "Jet Pilot";
+    	jPilot = "Fighter Pilot";
     	crew = "Crew";
     	mortar = "Mortar Gunner";
     	uavopp = "UAV Operator";
