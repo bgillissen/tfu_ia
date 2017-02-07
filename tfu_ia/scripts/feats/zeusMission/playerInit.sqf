@@ -21,7 +21,7 @@ for "_i" from 0 to 99 do {
 				{
 					private _name = getText(missionConfigFile >> "CfgCompositions" >> _x >> "name");
 					private _author = getText(missionConfigFile >> "CfgCompositions" >> _x >> "author");
-					private _action = format["Spawn Composition: %1 (%2)", _name, _author];
+					private _action = format["Spawn: %1 (%2)", _name, _author];
 					_thing addAction [_action, {call zeusMission_fnc_spawnCompo}, _x, 0, false, true, "", "[false] call zeusMission_fnc_condition", 2];
 				} forEach _compos;
 			};

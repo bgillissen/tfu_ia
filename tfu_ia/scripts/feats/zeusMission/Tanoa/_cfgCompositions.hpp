@@ -1,5 +1,5 @@
 class ZM_TANOA_comp0 {
 	author = "Tinman";
-	name = "";
+	name = "Just a test";
 	//include ""
 };
