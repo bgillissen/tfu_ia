@@ -27,15 +27,19 @@ if ( !([_player] call curator_fnc_isCurator) ) exitWith {
 private "_freeslot";
 
 for "_curSlot" from 0 to (TOT_CURATOR - 1) do {
-	private _inuse = false;
-	{
-		if ( _x select 1 == _curSlot) then { _inuse = true; };
-	} count curatorAssigned;
-	if ( !_inuse ) then { _freeSlot = _curSlot };
+	if ( isNil "_freeSlot" ) then {
+		private _inuse = false;
+		{
+			if ( _x select 1 == _curSlot) then { _inuse = true; };
+		} count curatorAssigned;
+		if ( !_inuse ) then { _freeSlot = _curSlot };
+	};
 };
 
 private _gm = missionNamespace getVariable format["zeus_%1", _freeSlot];
 _player assignCurator _gm;
+
+diag_log format["Player %1 is now assigned to slot %2", _player, _freeSlot];
 
 curatorAssigned append [[(getPlayerUID _player), _freeSlot, _player]];
 
