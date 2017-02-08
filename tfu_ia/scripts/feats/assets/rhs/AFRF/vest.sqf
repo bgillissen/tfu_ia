@@ -19,13 +19,11 @@ params ["_role"];
 _vest = "rhs_6b13_EMR_6sh92";
 
 if ( _role in ["jPilot", "hPilot"] ) exitWith { "" };
-if ( _role in ["tl", "sl"] ) then { _vest = "rhs_6b13_EMR_6sh92_radio"; };
+if ( _role in ["tl", "sl", "grenadier"] ) then { _vest = "rhs_6b13_EMR_6sh92_vog"; };
 if ( _role in ["hPilot", "crew"] ) then { _vest = "rhs_vydra_3m"; };
-if ( _role isEqualTo "grenadier" ) then { _vest = "rhs_6b13_EMR_6sh92_vog"; };
 if ( "desert" in MAP_KEYWORDS ) then {
 	_vest = "rhs_6b23_ML_6sh92";
-	if ( _role in ["tl", "sl"] ) then { _vest = "rhs_6b23_ML_6sh92_radio"; };
-	if ( _role isEqualTo "grenadier" ) then { _vest = "rhs_6b23_ML_6sh92_vog"; };
+	if ( _role in ["tl", "sl", "grenadier"] ) then { _vest = "rhs_6b23_ML_6sh92_vog"; };
 	if ( _role isEqualTo "medic" ) then { _vest = "rhs_6b23_ML_medic"; };
 };
 
