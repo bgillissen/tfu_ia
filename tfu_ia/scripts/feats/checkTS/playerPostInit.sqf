@@ -1,6 +1,8 @@
 
 if !( isMultiplayer ) exitWith {};
 
+if !( MOD_tfar ) exitWith {};
+
 if ( (["checkTS"] call core_fnc_getParam) == 0 ) exitWith {};
 
 waitUntil { !PLAYER_INIT };
