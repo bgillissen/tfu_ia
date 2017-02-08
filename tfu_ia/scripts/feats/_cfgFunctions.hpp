@@ -13,6 +13,7 @@ Description:
 #include "baseProtection\_cfgFunctions.hpp"
 #include "baseVehicle\_cfgFunctions.hpp"
 #include "billboards\_cfgFunctions.hpp"
+#include "checkTS\_cfgFunctions.hpp"
 #include "cleanUp\_cfgFunctions.hpp"
 #include "curator\_cfgFunctions.hpp"
 #include "earPlugs\_cfgFunctions.hpp"
