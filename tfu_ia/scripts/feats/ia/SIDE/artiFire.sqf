@@ -62,7 +62,7 @@ _sleepDelay = nil;
 
 if ( _target isEqualTo objNull ) exitWith {};
 
-if ( ["ArtilleryTargetTickWarning"] call core_fnc_getParam ) then {
+if ( (["ArtilleryTargetTickWarning"] call core_fnc_getParam) == 1 ) then {
 	private _msgs = ["ia", "side", "priority", "arti", "firingMsg"] call core_fnc_getSetting;
 	[1, (selectRandom _msgs), ["HQ", PLAYER_SIDE]] call global_fnc_chat;
 	_msgs = nil;

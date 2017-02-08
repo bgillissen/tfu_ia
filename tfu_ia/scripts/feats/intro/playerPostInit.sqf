@@ -31,10 +31,10 @@ if ( ({_uid isEqualTo (_x select 0)} count memberData) > 0 ) exitWith {};
 INTRO_DELAY = ["intro", "timeout"] call core_fnc_getSetting;
 
 [] spawn {
-	if !( isNil "LOCKED" ) then {
+	if !( isNil "DOLOCK" ) then {
 		waitUntil {
 			sleep 1;
-			!LOCKED
+			!DOLOCK
 		};
 	};
 	waitUntil {

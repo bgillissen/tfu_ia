@@ -11,15 +11,6 @@ class memberData {
 		action = "Reload Member Data";
 	};
 	class fixed {
-		class ben {
-			uid = "76561198030235789";
-			rank = 7;
-			isZeus = 1;
-			gearRestrictions = 1;
-			baseProtection = 1;
-			vehicleRestrictions = 1;
-			country = "BE";
-		};
 		class rainman {
 			uid = "76561197971304076";
 			rank = 8;
@@ -28,6 +19,15 @@ class memberData {
 			baseProtection = 1;
 			vehicleRestrictions = 1;
 			country = "SE";
+		};
+		class ben {
+			uid = "76561198030235789";
+			rank = 7;
+			isZeus = 1;
+			gearRestrictions = 1;
+			baseProtection = 1;
+			vehicleRestrictions = 1;
+			country = "BE";
 		};
 	};
 	class ranks {

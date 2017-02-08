@@ -22,9 +22,9 @@ while { !_expired || _ok } do {
 	private _inChannel = (_playerChannel in _channels);
 	_ok = ( _isOnServer && _TSPlugin && _inChannel );
 	_expired = ( time > _limit );
-	LOCKED = true;
-	BLACKSCREEN = false;
-	if ( _ok && _first ) exiWith {};
+	
+	if ( _ok && _first ) exitWith {};
+	DOLOCK = true;
 	private _msg = "";
 	if ( _ok && !_first ) then { _msg = "Thanks."; };
 	if !( _isOnServer ) then { 
@@ -50,6 +50,5 @@ if !( _ok ) then {
 }  else {
 	if ( _first ) exitWith {};
 	"noTS" cutFadeOut 1;
-	BLACKSCREEN = true;
-	LOCKED = false;
+	DOLOCK = false;
 };

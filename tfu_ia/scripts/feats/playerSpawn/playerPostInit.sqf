@@ -7,10 +7,16 @@ Description:
 	remove blackscreen, and tell player where he is and on which side
 */
 
-if ( !BLACKSCREEN ) exitWith {};
-
 waitUntil {
+	sleep 1;
 	!PLAYER_INIT
+};
+
+if !( isNil "DOLOCK" ) then {
+	waitUntil {
+		sleep 1;
+		!DOLOCK
+	};
 };
 private _name = getText(missionConfigFile >> "settings" >> "maps" >> toUpper(worldName) >> "bases" >> BASE_NAME >> "name");
 "welcome" cutText [format["Welcome to %1, you are %2", _name, PLAYER_SIDEDSP], "BLACK", 1, true];
