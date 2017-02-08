@@ -44,7 +44,7 @@ if ( isNil "PV") then {
 	             "civ", "aa", "arti", "static", "cas", "tank", "apc", "car", "carArmed", "aPatrol"], false],
 	      ["RL", ["hq", "sl", "tl", "medic", "lmg", "hmg", "assHMG", "at", "assAT", "sniper", 
 	              "marksman", "repair", "demo", "engineer", "grenadier", "rifleman", "jtac", 
-	              "hPilot", "jPilot", "crew", "mortar", "uavopp", "spotter"], true]];
+	              "hPilot", "jPilot", "crew", "mortar", "uavOp", "spotter"], true]];
 };
 
 //initialize/reset assets public vars

@@ -10,7 +10,7 @@ private _mg = (_role == "mg");
 private _sniper = (_role == "sniper");
 private _marksman = (_role == "marksman");
 private _officer = ((_role == "hq") || (_role == "sl") || (_role == "tl"));
-private _uavopp = (_role == "uavopp");
+private _uavOp = (_role == "uavOp");
 _role = nil;
 
 if ( (["restrictLauncher"] call core_fnc_getParam) == 1 ) then {
@@ -124,7 +124,7 @@ if ( (["restrictBackpack"] call core_fnc_getParam) == 1 ) then {
 };
 
 if ( (["restrictUAV"] call core_fnc_getParam) == 1 ) then {
-	if ( !_uavopp ) then {
+	if ( !_uavOp ) then {
     	private _items = assignedItems player;
     	if (({"B_UavTerminal" == _x} count _items) > 0) then {
     		//player unassignItem "B_UavTerminal";

@@ -184,12 +184,12 @@ private _hPilot = [];
 private _jPilot = [];
 private _crew = [];
 private _mortar = [];
-private _uavopp = [];
+private _uavOp = [];
 private _spotter = [];
 
 _out set [RL_GREFB, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew,
-                 _mortar, _uavopp, _spotter]];
+                 _mortar, _uavOp, _spotter]];
 
 //------------------------------------------------------------ Role Loadout RHS GREF Blufor
 

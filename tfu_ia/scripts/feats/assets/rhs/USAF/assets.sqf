@@ -360,13 +360,13 @@ private _mortar = [[(["mortar"] call rhsUSAF_fnc_uniform), []],
                    ["", []], 
                    ["", []], 
                    (["mortar"] call rhsUSAF_fnc_helmet), "", "", "", "", "lerca_1200_black", "rhsusf_ANPVS_15", "", ""];
-private _uavopp = [[(["uavopp"] call rhsUSAF_fnc_uniform), []], 
-                   [(["uavopp"] call rhsUSAF_fnc_vest), [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8], ["rhs_mag_an_m8hc", 4]]], 
+private _uavOp = [[(["uavOp"] call rhsUSAF_fnc_uniform), []], 
+                   [(["uavOp"] call rhsUSAF_fnc_vest), [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8], ["rhs_mag_an_m8hc", 4]]], 
                    ["B_UAV_01_backpack_F", []], 
-                   [(["uavopp"] call rhsUSAF_fnc_primWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod", "rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"]], 
+                   [(["uavOp"] call rhsUSAF_fnc_primWeap), ["rhsusf_acc_anpeq15side", "rhsusf_acc_SpecterDR", "rhsusf_acc_harris_bipod", "rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"]], 
                    ["", []], 
                    ["", []], 
-                   (["uavopp"] call rhsUSAF_fnc_helmet), "", "", "B_UavTerminal", "", "", "rhsusf_ANPVS_15", "", ""];
+                   (["uavOp"] call rhsUSAF_fnc_helmet), "", "", "B_UavTerminal", "", "", "rhsusf_ANPVS_15", "", ""];
 private _spotter = [[(["spotter"] call rhsUSAF_fnc_uniform), []], 
                     [(["spotter"] call rhsUSAF_fnc_vest), [["rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red", 8], ["rhs_mag_an_m8hc", 4]]], 
                     [(["spotter"] call rhsUSAF_fnc_backpack), [["rhsusf_mag_10Rnd_STD_50BMG_M33", 5]]], 
@@ -377,7 +377,7 @@ private _spotter = [[(["spotter"] call rhsUSAF_fnc_uniform), []],
 
 _out set [RL_USAF, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
-                 _mortar, _uavopp, _spotter]];
+                 _mortar, _uavOp, _spotter]];
 
 //------------------------------------------------------------ Base Atmosphere Role Loadout RHS USAF
 

@@ -9,5 +9,6 @@ class rhsAFRF {
 		class backpack { file="feats\assets\rhs\AFRF\backpack.sqf"; };
 		class helmet { file="feats\assets\rhs\AFRF\helmet.sqf"; };
 		class primWeap { file="feats\assets\rhs\AFRF\primWeap.sqf"; };
+		class handWeap { file="feats\assets\rhs\AFRF\handWeap.sqf"; };
 	};
 };

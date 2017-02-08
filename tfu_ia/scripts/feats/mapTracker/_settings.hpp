@@ -36,7 +36,7 @@ class mapTracker {
     	jPilot = "Fighter Pilot";
     	crew = "Crew";
     	mortar = "Mortar Gunner";
-    	uavopp = "UAV Operator";
+    	uavOp = "UAV Operator";
     	spotter = "Spotter";
     };
 };
