@@ -24,6 +24,7 @@ waitUntil { !PLAYER_INIT };
 if ( (_role in _roles) && !(_squad isEqualTo _cfgSquad) ) then {
 	private _exceptions = ["roleRestrictions", "exceptions"] call core_fnc_getSetting;
 	if !( (getPlayerUID player) in _exceptions ) then {
+		LOCKED = true;
 		BLACKSCREEN = false;
 		private _msg = ["roleRestrictions", "messages", _role] call core_fnc_getSetting;
 		"roleRestrictions" cutText [_msg, "BLACK", 0.1, true];

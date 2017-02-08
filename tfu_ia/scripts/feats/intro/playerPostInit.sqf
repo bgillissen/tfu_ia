@@ -34,10 +34,17 @@ if ( isNil "INTRO_DELAY" ) then {
 };
 
 [] spawn {
+	if !( isNil "LOCKED" ) then {
+		waitUntil {
+			sleep 1;
+			!LOCKED
+		};
+	};
 	waitUntil {
-		sleep 2;
+		sleep 1;
 		!BLACKSCREEN
 	};
 	INTRO_SHOWN = true;
+	sleep 3;
 	createdialog "SRV_RULES";	
 };
