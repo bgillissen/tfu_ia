@@ -1,4 +1,4 @@
 class core_fnc_featEventRemote {
-	allowedTargets=2;
+	allowedTargets=0;
 	jip=0;
 };

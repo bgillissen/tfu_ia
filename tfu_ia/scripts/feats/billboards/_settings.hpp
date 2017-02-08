@@ -1,4 +1,4 @@
 class billboards {
-	totRandom = 5;
+	totRandom = 6;
 	path = "media\billboards\%1.paa";
 };

@@ -24,7 +24,7 @@ private _needDate = false;
 if !( _needDate ) exitWith {};
 
 "serverDate" addPublicVariableEventHandler {
-	(_this select 1) params [["_curYear", 0], ["_curMonth", 0], ["_curDay"], 0];;
+	(_this select 1) params [["_curYear", 0], ["_curMonth", 0], ["_curDay", 0]];
 	{
 		_x params ["_thing", "_actions"];
 		{

@@ -70,15 +70,22 @@ class tuvanaka {
 			};
 		};
 	};
-	class flags {
+	class flagTFU {
 		class things {
 			class BAflag_1 { type = "obj"; };
-			class BAflag_3 { type = "obj"; };
-			class BAflag_4 { type = "obj"; };
 			class BAflag_5 { type = "obj"; };
 		};
 		class actions {
 			class flag { texture = "tfu"; };
+		};
+	};
+	class flagBDA {
+		class things {
+			class BAflag_3 { type = "obj"; };
+			class BAflag_4 { type = "obj"; };
+		};
+		class actions {
+			class flag { texture = "bda"; };
 		};
 	};
 	class markers {

@@ -8,7 +8,7 @@ reviveBloodParticle	= [false, true] select (["revive", "bloodParticle"] call cor
 reviveBloodThreshold = ["revive", "bloodThreshold"] call core_fnc_getSetting;
 
 private _hitPoints = getAllHitPointsDamage player;
-player setVariable ["hitPoints", (_hitPoints select 2)];
+player setVariable ["hitPoints", (_hitPoints select 2), true];
 if ( isNil "reviveDamageEH" ) then {
 	[] spawn {
 		waitUntil {
