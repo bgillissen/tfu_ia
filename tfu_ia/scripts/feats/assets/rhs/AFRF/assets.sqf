@@ -201,7 +201,7 @@ private _hq = [[(["hq"] call rhsAFRF_fnc_uniform), []],
                ["", []],
                ["", []],
                ["", []],
-
+							 ["", []],
                (["hq"] call rhsAFRF_fnc_helmet), "", "", "", "", "", "", "", ""];
 private _sl = [[(["sl"] call rhsAFRF_fnc_uniform), [["rhs_mag_f1", 2], ["rhs_mag_9x19_17", 1]]],
               [(["sl"] call rhsAFRF_fnc_vest), [["rhs_30Rnd_545x39_AK", 8], ["rhs_mag_rdg2_white", 2], ["rhs_VOG25", 6]]],
