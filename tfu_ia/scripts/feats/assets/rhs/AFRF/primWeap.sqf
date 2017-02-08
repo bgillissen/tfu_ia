@@ -16,9 +16,9 @@ Return:
 */
 params['_role'];
 
+if ( _role in ["tl", "sl", "grenadier"] ) exitWith { "rhs_weap_ak74m_gp25_npz" };
 if ( _role isEqualTo "hmg" ) exitWith { "rhs_weap_pkp" };
 if ( _role isEqualTo "lmg" ) exitWith { "rhs_weap_pkm" };
-if ( _role isEqualTo "grenadier" ) exitWith { "rhs_weap_ak74m_gp25_npz" };
 if ( _role isEqualTo "sniper" ) exitWith { "rhs_weap_svdp" };
 if ( _role isEqualTo "marksman" ) exitWith { "rhs_weap_ak74m_zenitco01" };
 if ( _role isEqualTo "hPilot" ) exitWith { "rhs_weap_aks74u" };

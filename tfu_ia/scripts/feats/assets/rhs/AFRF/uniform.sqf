@@ -26,4 +26,4 @@ if ( "desert" in MAP_KEYWORDS ) exitWith { "rhs_uniform_emr_des_patchless" };
 
 if ( "dry" in MAP_KEYWORDS ) exitWith { "rhs_uniform_flora_patchless" };
 
-"rhs_uniform_gorka_r_g"
+"rhs_uniform_emr_patchless"

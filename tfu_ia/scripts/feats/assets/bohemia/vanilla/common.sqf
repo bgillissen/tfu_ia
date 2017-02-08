@@ -352,7 +352,7 @@ private _mortar = [["", []],
                    ["", []], 
                    ["", []], 
                    "", "", "ItemRadio", "ItemGPS", "ItemMap", "Binocular", "", "ItemWatch", "ItemCompass"];
-private _uavopp = [["", []], 
+private _uavOp = [["", []], 
                    ["", [["FirstAidKit", 4]]], 
                    ["", []], 
                    ["", []], 
@@ -369,7 +369,7 @@ private _spotter = [["", []],
 
 _out set [RL_VC, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                  _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 
-                 _mortar, _uavopp, _spotter]];
+                 _mortar, _uavOp, _spotter]];
 
 //------------------------------------------------------------ Base Atmosphere Role Vanilla Common
 

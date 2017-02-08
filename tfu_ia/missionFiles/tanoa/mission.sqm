@@ -2477,7 +2477,7 @@ class Mission
 					{
 						skill=0.60000002;
 						rank="CORPORAL";
-						init="this setVariable[""role"", ""uavopp""]; this setVariable[""groupId"", ""SUPPORT""];";
+						init="this setVariable[""role"", ""uavOp""]; this setVariable[""groupId"", ""SUPPORT""];";
 						description="UAV Operator";
 						isPlayable=1;
 						class Inventory
