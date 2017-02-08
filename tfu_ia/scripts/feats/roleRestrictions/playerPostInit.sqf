@@ -6,8 +6,6 @@ Description:
 	run on player
 */
 
-
-
 private _roles = ["roleRestrictions", "roles"] call core_fnc_getSetting;
 private _role = player getVariable "role";
 private _cfgSquad = ["roleRestrictions", "squadName"] call core_fnc_getSetting;
@@ -19,12 +17,14 @@ if !( isNil "_infoSquad" ) then {
 	_squad = _infoSquad select 1; 
 };
 
-waitUntil { !PLAYER_INIT };
-
 if ( (_role in _roles) && !(_squad isEqualTo _cfgSquad) ) then {
 	private _exceptions = ["roleRestrictions", "exceptions"] call core_fnc_getSetting;
 	if !( (getPlayerUID player) in _exceptions ) then {
-		BLACKSCREEN = false;
+		DOLOCK = true;
+		waitUntil {
+			sleep 1;
+			!PLAYER_INIT 
+		};
 		private _msg = ["roleRestrictions", "messages", _role] call core_fnc_getSetting;
 		"roleRestrictions" cutText [_msg, "BLACK", 0.1, true];
 		sleep 10;
