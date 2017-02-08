@@ -74,7 +74,7 @@ private _radius = ["ia", "side", "priority", "arti", "radius"] call core_fnc_get
 {
 	if ( alive _x ) then {
 		for "_c" from 1 to _salve do {
-			_targertPos params ["_targetX", "_targetY"];
+			_targetPos params ["_targetX", "_targetY"];
 			private _pos = [(_targetX - _radius + (2 * random _radius)),
 							(_targetY - _radius + (2 * random _radius)),
 							0
