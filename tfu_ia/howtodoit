@@ -250,7 +250,7 @@ new feature respawnMessage (server)
 	???? has respawn in base
 	
 new feature, environment
-	disabled when a curator is assigned!  
+	disabled when a zeusMission is started!  
 	clearFog 	=> all members
 	clearRain	=> above recruit
 	dawn	  	=> above pfc
