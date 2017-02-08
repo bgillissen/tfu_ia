@@ -16,8 +16,6 @@ private _factions = [];
 if ( _isDesert )  then { _factions pushback "rhs_faction_usarmy_d"; };
 if ( _isWood ) then { _factions pushback "rhs_faction_usarmy_wd"; };
 
-diag_log format["RHSUSAF FACTIONS : %1", _factions];
-
 private _out = [];
 
 //------------------------------------------------------------ Arsenal RHS USAF
