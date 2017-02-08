@@ -44,6 +44,7 @@ while { !_expired || _ok } do {
 	};
 	"noTS" cutText [_msg, "BLACK", 0.1, true];
 	_first = false;
+	sleep 5;
 };
 
 if !( _ok ) then {
