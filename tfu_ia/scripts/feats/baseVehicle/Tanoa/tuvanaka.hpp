@@ -2,13 +2,13 @@ class tuvanaka {
 	class littlebird {
 		pool = "heliSmall";
 		respawnDelay = 20;
-		markers[] = {"BV_lb1"};
+		markers[] = {"BV_lb"};
 		class actions {};
 	};
 	class pawnee {
 		pool = "heliSmallArmed";
 		respawnDelay = 20;
-		markers[] = {"BV_lb2"};
+		markers[] = {"BV_lbAttack"};
 		class actions {};
 	};
 	class blackhawk {
@@ -96,6 +96,12 @@ class tuvanaka {
 		pool = "boatAttack";
 		respawnDelay = 20;
 		markers[] = {"BV_boatAttack1", "BV_boatAttack2"};
+		class actions {};
+	};
+	class mkv {
+		pool = "boatBig";
+		respawnDelay = 20;
+		markers[] = {"BV_mkv"};
 		class actions {};
 	};
 	class quads {
