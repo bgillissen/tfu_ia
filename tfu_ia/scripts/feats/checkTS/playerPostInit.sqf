@@ -1,6 +1,8 @@
 
 if !( isMultiplayer ) exitWith {};
 
+if !( MOD_tfar ) exitWith {};
+
 if ( (["checkTS"] call core_fnc_getParam) == 0 ) exitWith {};
 
 waitUntil { !PLAYER_INIT };
@@ -42,6 +44,7 @@ while { !_expired || _ok } do {
 	};
 	"noTS" cutText [_msg, "BLACK", 0.1, true];
 	_first = false;
+	sleep 5;
 };
 
 if !( _ok ) then {
