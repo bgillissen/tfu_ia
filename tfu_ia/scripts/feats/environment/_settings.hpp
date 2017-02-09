@@ -3,31 +3,23 @@ class environment {
 		rank = 4;
 		class real {
 			time[] = {};
-			action = "Set time to real world time";
-		};
-		class sunrise {
-			time[] = {6,30};
-			action = "Set time to sunrise";
+			action = "Set time to GMT+1";
 		};
 		class midday {
-			time[] = {13,0};
-			action = "Set time to midday";
-		};
-		class sunset {
-			time[] = {18,30};
-			action = "Set time to sunset";
+			time[] = {11,59};
+			action = "Set time to noon";
 		};
 		class night {
-			time[] = {23,0};
-			action = "Set time to night";
+			time[] = {23,59};
+			action = "Set time to midnight";
 		};
 	};
 	class clearFog {
 		rank = 1;
-		action = "clear fog";
+		action = "Clear fog";
 	};
 	class clearRain {
 		rank = 2;
-		action = "stop rain";
+		action = "Stop rain";
 	};
 };
