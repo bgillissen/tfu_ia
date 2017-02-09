@@ -6,7 +6,6 @@ private _date = ("real_date" callExtension "");
 if ( isNil "_date" ) then {
 	serverDate = [];
 } else {
-	diag_log format["getDate: %1 --- %2", _date, (typeName _date)];
 	if ( (typeName _date) isEqualTo "STRING" ) then { 
 		serverDate = call compile _date; 
 	} else {
