@@ -34,6 +34,7 @@ Description:
 #include "playerSpawn\_cfgFunctions.hpp"
 #include "radioFreq\_cfgFunctions.hpp"
 #include "revive\_cfgFunctions.hpp"
+#include "sentences\_cfgFunctions.hpp"
 #include "skipBriefing\_cfgFunctions.hpp"
 #include "squadHint\_cfgFunctions.hpp"
 #include "startTime\_cfgFunctions.hpp"
