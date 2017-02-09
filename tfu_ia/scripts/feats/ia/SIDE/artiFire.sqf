@@ -44,7 +44,7 @@ while { !_accepted } do {
 		_accepted = true;
 		{
 			_x params ["_pos", "_radius"];
-			if ((_targetPos distance _pos) < _radius) then { 
+			if ( (_targetPos distance _pos) <= _radius ) then { 
 				_accepted = false; 
 			};
 		} count _szCoords;

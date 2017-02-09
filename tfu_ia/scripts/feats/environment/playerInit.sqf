@@ -8,6 +8,7 @@ private _hours = "true" configClasses (missionConfigFile >> "settings" >> "envir
 		_x params ["_thing", "_actions"];
 		{
 			if ( (configName _x) isEqualTo "environment" ) then {
+				diag_log format["adding environment action to %1", _thing];
 				{
 					private _action = getText(_x >> "action");
 					_thing addAction [_action, {_this call environment_fnc_setTime}, getArray(_x >> "time"), 0, false, true, "", "'setTime' call environment_fnc_condition", 2];
