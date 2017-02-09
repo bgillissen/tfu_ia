@@ -77,6 +77,7 @@ class tuvanaka {
 		};
 		class actions {
 			class flag { texture = "tfu"; };
+			class environment {};
 		};
 	};
 	class flagBDA {
