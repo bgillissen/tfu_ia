@@ -28,7 +28,7 @@ while { !_expired && !_ok } do {
 	_ok = ( _isOnServer && _TSPlugin && _inChannel );
 	_expired = ( _now >= _limit );
 
-	diag_log format["checkTS LOOP --- first: %1 --- ok: %2 --- expired: %3 --- now: %4", _first, _ok, _expired, _now];
+	diag_log format["checkTS LOOP --- server: %1 --- plugin: %2 --- channel: %3", _isOnServer, _TSPlugin, _inChannel];
 	
 	if ( _ok && _first ) exitWith {
 		diag_log "checkTS exit --- ok && first";
@@ -40,21 +40,19 @@ while { !_expired && !_ok } do {
 	} else {
 		if !( _isOnServer ) then { 
 			_msg = ["checkTS", "messages", "notOnServer"] call core_fnc_getSetting;
-			_msg = format["%1 ( %2s )", _msg, round (_limit - _now)];
 		} else {
 			if !( _TSPlugin ) then {
 				_msg = ["checkTS", "messages", "noPlugin"] call core_fnc_getSetting;
-				_msg = format["%1 ( %2s )", _msg, round (_limit - _now)];
 			} else {
 				_msg = ["checkTS", "messages", "wrongChannel"] call core_fnc_getSetting;
 				_msg = format[_msg, (_channels select 0)];
-				_msg = format["%1 ( %2s )", _msg, round (_limit - _now)];
 			};
 		};
+		_msg = format["%1 ( %2s )", _msg, round (_limit - _now)];
 	};
 	"noTS" cutText [_msg, "BLACK", 0.1, true];
 	_first = false;
-	sleep 5;
+	sleep 1;
 };
 
 if !( _ok ) then {
