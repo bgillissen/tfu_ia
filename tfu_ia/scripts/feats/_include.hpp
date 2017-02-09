@@ -18,6 +18,7 @@ class Params {
 	#include "baseLight\_params.hpp"
 	#include "baseProtection\_params.hpp"
 	#include "earPlugs\_params.hpp"
+	#include "environment\_params.hpp"
 	#include "checkTS\_params.hpp"
 	#include "fatigue\_params.hpp"
 	#include "gearRestrictions\_params.hpp"
