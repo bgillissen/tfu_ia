@@ -1,6 +1,10 @@
 class environment {
 	class setTime {
 		rank = 4;
+		class real {
+			time[] = {};
+			action = "Set time to real world time";
+		};
 		class sunrise {
 			time[] = {6,30};
 			action = "Set time to sunrise";

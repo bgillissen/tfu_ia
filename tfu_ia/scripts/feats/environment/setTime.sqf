@@ -5,8 +5,8 @@ if ( !isServer ) exitWith {
 
 params ["_thing", "_caller", "_id", "_arg"];
 
-_arg params ["_hour", "_min"];
+serverDate params ["_year", "_month", "_day", "_hour", "_min"];
 
-date params ["_year", "_month", "_day"];
+_arg params [["_hour", _hour], ["_min", _min]];
 
 setDate [_year, _month, _day, _hour, _min];
