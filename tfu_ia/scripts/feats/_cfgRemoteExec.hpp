@@ -1,4 +1,5 @@
 #include "baseDefence\_cfgRemoteExec.hpp"
+#include "baseLight\_cfgRemoteExec.hpp"
 #include "curator\_cfgRemoteExec.hpp"
 #include "environment\_cfgRemoteExec.hpp"
 #include "ia\SIDE\_cfgRemoteExec.hpp"

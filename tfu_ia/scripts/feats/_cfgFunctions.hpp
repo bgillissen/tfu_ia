@@ -10,6 +10,7 @@ Description:
 #include "assets\_cfgFunctions.hpp"
 #include "baseAtmosphere\_cfgFunctions.hpp"
 #include "baseDefence\_cfgFunctions.hpp"
+#include "baseLight\_cfgFunctions.hpp"
 #include "baseProtection\_cfgFunctions.hpp"
 #include "baseVehicle\_cfgFunctions.hpp"
 #include "billboards\_cfgFunctions.hpp"
