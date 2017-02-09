@@ -1,5 +1,5 @@
 class vehicleRepair {
-	triggerSize = 12;
+	triggerSize = 10;
 	start = "Servicing %1. Stand by...";
 	end = "%1 successfully serviced.";
 	class boat {
