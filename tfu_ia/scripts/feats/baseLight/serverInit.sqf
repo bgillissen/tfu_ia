@@ -1,0 +1,3 @@
+
+baseLight = true;
+publicVariable "baseLight";
