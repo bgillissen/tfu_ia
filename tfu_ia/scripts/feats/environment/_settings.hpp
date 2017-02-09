@@ -2,7 +2,7 @@ class environment {
 	class setTime {
 		rank = 4;
 		class sunrise {
-			time[] = {5,0};
+			time[] = {6,30};
 			action = "Set time to sunrise";
 		};
 		class midday {
@@ -10,7 +10,7 @@ class environment {
 			action = "Set time to midday";
 		};
 		class sunset {
-			time[] = {19,0};
+			time[] = {18,30};
 			action = "Set time to sunset";
 		};
 		class night {
