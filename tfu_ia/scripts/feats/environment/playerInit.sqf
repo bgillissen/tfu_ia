@@ -1,7 +1,7 @@
 
 if ( (["environment"] call core_fnc_getParam) == 0 ) exitWith {};
 
-private _hours = ("true" configClasses (missionConfigFile >> "settings" >> "environment" >> "setTime"));
+private _presets = ["environment", "presets"] call core_fnc_getSetting;
 
 {
 	{
@@ -9,9 +9,9 @@ private _hours = ("true" configClasses (missionConfigFile >> "settings" >> "envi
 		{
 			if ( (configName _x) isEqualTo "environment" ) then {
 				{
-					private _action = getText(_x >> "action");
-					_thing addAction [_action, {_this call environment_fnc_setTime}, getArray(_x >> "time"), 0, false, true, "", "'setTime' call environment_fnc_condition", 4];
-				} forEach _hours;
+					private _action = ["environment", "actions", _x] call core_fnc_getSetting;
+					_thing addAction [_action, {_this call environment_fnc_setTime}, _x, 0, false, true, "", "'setTime' call environment_fnc_condition", 4];
+				} forEach _presets;
 				private _action = getText(missionConfigFile >> "settings" >> "environment" >> "clearFog" >> "action");
 				_thing addAction [_action, {call environment_fnc_clearFog}, "", 0, false, true, "", "'clearFog' call environment_fnc_condition", 4];
 				private _action = getText(missionConfigFile >> "settings" >> "environment" >> "clearRain" >> "action");

@@ -4,4 +4,6 @@ if ( !isServer ) exitWith {
 };
 
 0 setRain 0;
+0 setOvercast 0;
+
 forceWeatherChange;

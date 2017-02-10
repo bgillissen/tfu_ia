@@ -1,17 +1,13 @@
 class environment {
 	class setTime {
 		rank = 4;
-		class real {
-			time[] = {};
-			action = "Set time to GMT+1";
-		};
-		class midday {
-			time[] = {11,59};
-			action = "Set time to noon";
-		};
-		class night {
-			time[] = {23,59};
-			action = "Set time to midnight";
+		presets[] = {"real", "sunrise", "noon", "sunset", "midnight"};
+		class actions {
+			real = "Set time to GMT+1";
+			sunrise = "Set time to sunrise";
+			noon = "Set time to noon";
+			sunset = "Set time to sunset";
+			midnight "Set time to midnight";
 		};
 	};
 	class clearFog {
