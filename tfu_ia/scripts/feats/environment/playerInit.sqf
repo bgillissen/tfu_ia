@@ -1,7 +1,7 @@
 
 if ( (["environment"] call core_fnc_getParam) == 0 ) exitWith {};
 
-private _presets = ["environment", "presets"] call core_fnc_getSetting;
+private _presets = ["environment", "setTime", "presets"] call core_fnc_getSetting;
 
 {
 	{
@@ -9,7 +9,7 @@ private _presets = ["environment", "presets"] call core_fnc_getSetting;
 		{
 			if ( (configName _x) isEqualTo "environment" ) then {
 				{
-					private _action = ["environment", "actions", _x] call core_fnc_getSetting;
+					private _action = ["environment", "setTime", "actions", _x] call core_fnc_getSetting;
 					_thing addAction [_action, {_this call environment_fnc_setTime}, _x, 0, false, true, "", "'setTime' call environment_fnc_condition", 4];
 				} forEach _presets;
 				private _action = getText(missionConfigFile >> "settings" >> "environment" >> "clearFog" >> "action");

@@ -7,12 +7,9 @@ params ["_thing", "_caller", "_id", "_arg"];
 
 private ["_hour", "_min"];
 
-(call common_fnc_getDate) params ["_year", "_month", "_hour", "_min"];
+date params ["_year", "_month", "_day", "_hour", "_min"];
+(call common_fnc_getDate) params [["_year", _year], ["_month", _month], ["_day", _day], ["_hour",_hour], ["_min", _min]];
 
-if ( _arg isEqualTo "real" ) then {
-	_hour = serverDate select 3;
-	_min = serverDate select 4;
-};
 if ( _arg isEqualTo "sunrise" ) then {
 	_hour = (serverDate call BIS_fnc_sunriseSunsetTime) select 0;
 	_min = 0;

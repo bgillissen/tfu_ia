@@ -78,12 +78,7 @@ class CfgRemoteExec {
 	};
 };
 
-//------------------------- Base NPC insignia
+//------------------------- Insignia
 class CfgUnitInsignia {
-	class npc {
-		displayName = "Task Force Unicorn";
-		author = "Rainman";
-		texture = "media\insignia\tfu.paa";
-		textureVehicle = "";
-	};
+	#include "feats\_cfgUnitInsignia.hpp"
 };

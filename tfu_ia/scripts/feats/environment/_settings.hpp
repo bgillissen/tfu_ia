@@ -7,7 +7,7 @@ class environment {
 			sunrise = "Set time to sunrise";
 			noon = "Set time to noon";
 			sunset = "Set time to sunset";
-			midnight "Set time to midnight";
+			midnight = "Set time to midnight";
 		};
 	};
 	class clearFog {
