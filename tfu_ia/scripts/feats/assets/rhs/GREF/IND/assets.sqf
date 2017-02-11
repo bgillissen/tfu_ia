@@ -32,9 +32,10 @@ private _mRifle = [];
 private _sScope = [];
 private _mScope = [];
 private _oScope = [];
+private _mbrItem = [];
 private _backpack = [];
 
-_out set [RG_GREFI, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
+_out set [RG_GREFI, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _mbrItem, _backpack]];
 
 //------------------------------------------------------------ Allowed Vehicles RHS GREF Independent
 

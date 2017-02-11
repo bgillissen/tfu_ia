@@ -110,7 +110,8 @@ private _restrictEnemyGear = (["restrictEnemyGear"] call core_fnc_getParam == 1)
 			 (_src select _rgK select RG__MRIFLE), 
 			 (_src select _rgK select RG__SSCOPE), 
 			 (_src select _rgK select RG__MSCOPE), 
-			 (_src select _rgK select RG__OSCOPE), 
+			 (_src select _rgK select RG__OSCOPE),
+			 (_src select _rgK select RG__MBRITEM),
 			 (_src select _rgK select RG__BACKPACK)] call assets_fnc_implentRestrictedGear;
 		};
 	};

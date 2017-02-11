@@ -11,6 +11,8 @@ private _sniper = (_role == "sniper");
 private _marksman = (_role == "marksman");
 private _officer = ((_role == "hq") || (_role == "sl") || (_role == "tl"));
 private _uavOp = (_role == "uavOp");
+private _isMBR = ((player getVariable["MD_rank", 0]) > 1); 
+
 _role = nil;
 
 if ( (["restrictLauncher"] call core_fnc_getParam) == 1 ) then {
@@ -22,7 +24,8 @@ if ( (["restrictLauncher"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				player removeWeapon _secondWeap;
 			};
-			titleText [GR_atMSG, "PLAIN", RG_msgDuration];
+			private _msg = (["gearRestrictions", "at"] call core_fnc_getSetting);
+			titleText [_msg, "PLAIN", RG_msgDuration];
 		};
 	};
 };
@@ -37,7 +40,8 @@ if ( (["restrictMG"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				player removeWeapon _primWeap;
 			};
-			titleText [GR_mgMSG, "PLAIN", RG_msgDuration];
+			private _msg = (["gearRestrictions", "mg"] call core_fnc_getSetting);
+			titleText [_msg, "PLAIN", RG_msgDuration];
 		};
 	};
 };
@@ -52,7 +56,8 @@ if ( (["restrictSniper"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				player removeWeapon _primWeap;
 			};
-    		titleText [GR_sRifle, "PLAIN", RG_msgDuration];
+			private _msg = (["gearRestrictions", "sRifle"] call core_fnc_getSetting);
+    		titleText [_msg, "PLAIN", RG_msgDuration];
     	};
 	};
 	if ( !_marksman ) then {
@@ -62,7 +67,8 @@ if ( (["restrictSniper"] call core_fnc_getParam) == 1 ) then {
 			} else {
 				player removeWeapon _primWeap;
 			};
-			titleText [GR_mRifle, "PLAIN", RG_msgDuration];
+			private _msg = (["gearRestrictions", "mRifle"] call core_fnc_getSetting);
+			titleText [_msg, "PLAIN", RG_msgDuration];
     	};
     };
 };
@@ -85,11 +91,13 @@ if ( (["restrictLRScope"] call core_fnc_getParam) == 1 ) then {
 				player removePrimaryWeaponItem  _x;
 			};
 		} count RG_mSCope;
-		titleText [GR_mScopeMSG, "PLAIN", RG_msgDuration];
+		private _msg = (["gearRestrictions", "mScope"] call core_fnc_getSetting);
+		titleText [_msg, "PLAIN", RG_msgDuration];
    	};
 	if  ( !_sniper && _sScope ) then {
 		{player removePrimaryWeaponItem  _x;} count RG_sScope;
-		titleText [GR_sScopeMSG, "PLAIN", RG_msgDuration];
+		private _msg = (["gearRestrictions", "sScope"] call core_fnc_getSetting);
+		titleText [_msg, "PLAIN", RG_msgDuration];
    	};
 };
 
@@ -102,7 +110,8 @@ if ( (["restrictThermalScope"] call core_fnc_getParam) == 1 ) then {
     				player removePrimaryWeaponItem  _x;
     			};
     		} count _specialisedOptics;
-    		titleText [GR_oScopeMSG, "PLAIN", RG_msgDuration];
+    		private _msg = (["gearRestrictions", "oScope"] call core_fnc_getSetting);
+    		titleText [_msg, "PLAIN", RG_msgDuration];
     	};
 	};
 };
@@ -118,7 +127,8 @@ if ( (["restrictBackpack"] call core_fnc_getParam) == 1 ) then {
 				{ _eBackpack addItemCargoGlobal [_x, 1]; } forEach (backpackItems player);
 			};
 			removeBackpack player;
-			titleText [GR_backpackMSG, "PLAIN", RG_msgDuration];
+			private _msg = (["gearRestrictions", "backpack"] call core_fnc_getSetting);
+			titleText [_msg, "PLAIN", RG_msgDuration];
 		};
 	};
 };
@@ -129,7 +139,26 @@ if ( (["restrictUAV"] call core_fnc_getParam) == 1 ) then {
     	if (({"B_UavTerminal" == _x} count _items) > 0) then {
     		//player unassignItem "B_UavTerminal";
             player removeItem "B_UavTerminal";
-            titleText [GR_uavMSG, "PLAIN", RG_msgDuration];
+            private _msg = (["gearRestrictions", "uav"] call core_fnc_getSetting);
+            titleText [_msg, "PLAIN", RG_msgDuration];
+    	};
+    };
+};
+
+if ( (["restrictMBRItem"] call core_fnc_getParam) == 1 ) then {
+	if ( !_isMBR ) then {
+    	private _items = assignedItems player;
+    	private _removed = false;
+    	{
+    		if ( _x in RG_mbrItems ) then { 
+    			_removed = true;
+    			player removeItem _x;
+    		};
+    		
+    	} forEach _items;
+    	if ( _removed ) then {
+    		private _msg = (["gearRestrictions", "mbrItem"] call core_fnc_getSetting);
+    		titleText [_msg, "PLAIN", RG_msgDuration]; 
     	};
     };
 };

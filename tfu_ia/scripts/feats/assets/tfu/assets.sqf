@@ -25,9 +25,25 @@ private _ammo = [];
 
 _out set [A_TFU, [_backpacks, _items, _weapons, _ammo]];
 
+//------------------------------------------------------------ Restricted Gear TFU
+
+RG_TFU = A_TFU + 1;
+
+private _launcher = [];
+private _mg = [];
+private _sRifle = [];
+private _mRifle = [];
+private _sScope = [];
+private _mScope = [];
+private _oScope = [];
+private _mbrItems = _items;
+private _backpack = [];
+
+_out set [RG_TFU, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope,  _mbrItems, _backpack]];
+
 //------------------------------------------------------------ Role Loadout TFU
 
-RL_TFU = A_TFU + 1;
+RL_TFU = RG_TFU + 1;
 
 private _hq = [];
 private _sl = [];
