@@ -42,8 +42,9 @@ while { true } do {
         	 allDead +
         	 allMissionObjects "StaticWeapon");
 	
+	if ( isNil "AO_casGroup" ) then { AO_casGroup = grpNull; };
 	{
-		if !( _x in SQUADS ) then {
+		if ( !( _x in SQUADS ) && !(_x isEqualTo AO_casGroup) ) then {
 			if ( {alive _x} count (units _x) == 0 ) then { deleteGroup _x; };
 		};
 		true
