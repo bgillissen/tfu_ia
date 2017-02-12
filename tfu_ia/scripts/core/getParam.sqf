@@ -10,10 +10,17 @@ Description:
 
 params ["_conf"];
 
+if ( isNil "PARAMETERS" ) then { PARAMETERS = []; };
+
+private "_value";
 {
-	_x params ["_name", "_value"];
-	if ( _name isEqualTo _conf ) exitWith { _value };
+	_x params ["_name", "_val"];
+	if ( _name isEqualTo _conf ) exitWith { _value = _val; };
 	
 } count PARAMETERS;
 
-([_conf] call BIS_fnc_getParamValue)
+if ( isNil "_value" ) exitWith {
+	([_conf] call BIS_fnc_getParamValue)
+};
+
+_value
