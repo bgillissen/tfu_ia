@@ -14,7 +14,7 @@ private _pools = [[],[],[],[],[],[],[],[]];
 	private _cfg = _x;
 	{
 		private _data = getArray(_cfg >> "blacklist" >> _x);
-		(pools select _forEachIndex) append _data;
+		(_pools select _forEachIndex) append _data;
 	} forEach _types;
 } forEach ("true" configClasses (configFile >> "cfgDirectAction"));
 

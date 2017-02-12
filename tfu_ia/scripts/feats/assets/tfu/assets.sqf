@@ -17,7 +17,7 @@ A_TFU = 0;
 private _backpacks = [];
 private _items = ["H_Beret_TFU_Tan_01",
                   "H_Beret_TFU_Black_01",
-                  "H_Beret_TFU_Green_01"
+                  "H_Beret_TFU_Green_01",
                   "H_Beret_TFU_Olive_01",
                   "H_Beret_TFU_Red_01"];
 private _weapons = [];
@@ -67,7 +67,7 @@ private _jPilot = [];
 private _crew = [];
 private _mortar = [];
 private _uavOp = [];
-private _spotter = [};
+private _spotter = [];
 
 _out set [RL_TFU, [_hq, _sl, _tl, _medic, _lmg, _hmg, _assHMG, _at, _assAT, _sniper, _marksman,
                    _repair, _demo, _engineer, _grenadier, _rifleman, _jtac, _hPilot, _jPilot, _crew, 

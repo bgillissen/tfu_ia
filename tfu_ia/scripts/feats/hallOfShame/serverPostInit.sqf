@@ -13,7 +13,7 @@ private _i = 0;
 	} forEach _entries;
 } forEach ("true" configClasses (configFile >> "cfgDirectAction"));
 
-for "_x" from (_i + 1 ) to 99 do {
+for "_x" from _i to 99 do {
 	private _name = format["BA_hos%1", _x];
 	private _obj = missionNamespace getVariable _name;
 	if !( isNil "_obj" ) then { hideObjectGlobal _obj; };

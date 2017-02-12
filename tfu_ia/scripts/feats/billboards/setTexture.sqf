@@ -12,12 +12,10 @@ params ["_obj", "_type", "_texture"];
 private _path = "";
 {
 	private _cfg = _x >> "billboards" >> _type;
-	{
-		private _data = getArray(_cfg >> "entries");
-		if ( _texture in getArray(_cfg >> "entries") ) then {
-			_path = getText(_cfg >> "path");
-		};
-	} forEach _types;
+	private _data = getArray(_cfg >> "entries");
+	if ( _texture in getArray(_cfg >> "entries") ) then {
+		_path = getText(_cfg >> "path");
+	};
 } forEach ("true" configClasses (configFile >> "cfgDirectAction"));
 
 if !( _path isEqualTo "" ) then {

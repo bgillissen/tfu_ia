@@ -6,7 +6,7 @@ private _path = ["flags", "path"] call core_fnc_getSetting;
 	_x params ["_thing", "_actions"];
 	{
 		if ( (configName _x) isEqualTo "flag" ) then { 
-			[_thing, "basic", getText(_x >> "texture")]] call flags_fnc_setTexture;
+			[_thing, "basic", getText(_x >> "texture")] call flags_fnc_setTexture;
 		};
 	} forEach _actions;
 } forEach BA_obj;
