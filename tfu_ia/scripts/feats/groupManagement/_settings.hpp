@@ -1,32 +1,32 @@
 class groupManagement {
 	class HQ {
 		name = "HQ";
-		insignia = "HQ";
+		insignia = "TFUDA_HQ";
 		color = "Orange";
 	};
 	class ALPHA {
 		name = "Alpha";
-		insignia = "ALPHA";
+		insignia = "TFUDA_ALPHA";
 		color = Black;
 	};
 	class BRAVO {
 		name = "Bravo";
-		insignia = "BRAVO";
+		insignia = "TFUDA_BRAVO";
 		color = Black;
 	};
 	class HORNET {
 		name = "Eagle";
-		insignia = "HORNET";
+		insignia = "TFUDA_HORNET";
 		color = "Blue";
 	};
 	class HAMMER {
 		name = "Hammer";
-		insignia = "HAMMER";
+		insignia = "TFUDA_HAMMER";
 		color = "Green";
 	};
 	class SUPPORT {
 		name = "Support";
-		insignia = "SUPPORT";
+		insignia = "TFUDA_SUPPORT";
 		color = "Pink";
 	};
 };

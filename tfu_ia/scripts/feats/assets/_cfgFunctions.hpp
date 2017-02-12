@@ -27,8 +27,9 @@ class asets {
 };
 
 #include "ace\_cfgFunctions.hpp"
+#include "adr97\_cfgFunctions.hpp"
 #include "bohemia\_cfgFunctions.hpp"
+#include "directAction\_cfgFunctions.hpp"
 #include "rhs\_cfgFunctions.hpp"
 #include "tfar\_cfgFunctions.hpp"
-#include "adr97\_cfgFunctions.hpp"
-#include "srvBlacklist\_cfgFunctions.hpp"
+#include "tfu\_cfgFunctions.hpp"

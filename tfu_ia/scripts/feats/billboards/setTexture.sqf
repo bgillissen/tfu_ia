@@ -7,8 +7,19 @@ Description:
 	It changes the texture displayed on the billboards.
 */
 
-params ["_obj", "_texture"];
+params ["_obj", "_type", "_texture"];
 
-private _path = ["billboards", "path"] call core_fnc_getSetting;
+private _path = "";
+{
+	private _cfg = _x >> "billboards" >> _type;
+	{
+		private _data = getArray(_cfg >> "entries");
+		if ( _texture in getArray(_cfg >> "entries") ) then {
+			_path = getText(_cfg >> "path");
+		};
+	} forEach _types;
+} forEach ("true" configClasses (configFile >> "cfgDirectAction"));
 
-_obj setObjectTexture [0, format[_path, _texture]];
+if !( _path isEqualTo "" ) then {
+	_obj setObjectTexture [0, format[_path, _texture]];
+};

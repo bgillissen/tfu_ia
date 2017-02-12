@@ -77,8 +77,3 @@ class CfgRemoteExec {
 		jip = 1;
 	};
 };
-
-//------------------------- Insignia
-class CfgUnitInsignia {
-	#include "feats\_cfgUnitInsignia.hpp"
-};
