@@ -5,6 +5,7 @@
 class assets {
 	class vanilla {};
 	class apex {};
+	class directAction {};
 	class ace {
 		cfgPatch = "ace_main";
 		sides[] = {EAST, WEST, IND};
@@ -36,5 +37,4 @@ class assets {
 		cfgPatch = "A3_Weapons_F_Mod";
 		sides[] = {EAST, WEST, IND};
 	};
-	class srvBlacklist {};
 };

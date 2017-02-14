@@ -21,4 +21,7 @@ _lo params["_u", "_v", "_b", "_pw", "_sw", "_hw", "_h", "_f", "_c", "_t", "_m", 
 
 [_npc, _u, _v, _b, _pw, _sw, _hw, _h, _f, _c, _t, _m, _bino, _n, _w, _cp] call common_fnc_setLoadout;
 
-[_npc, "npc"] call BIS_fnc_setUnitInsignia;
+private _insignia = (["baseAtmosphere", "npcInsignia"] call core_fnc_getSetting);
+if !( isNil "_insignia" ) then {
+	[_npc, _insignia] call BIS_fnc_setUnitInsignia;	
+};

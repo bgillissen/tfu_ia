@@ -33,7 +33,7 @@ if ( isNil "PV") then {
 	BALO_k = 6;
 	S_k = 7;
 	RL_k = 8;
-	PV = [["RG", ["launcher", "mg", "sRifle", "mRifle", "sScope", "mScope", "oScope", "backpack"], true],
+	PV = [["RG", ["launcher", "mg", "sRifle", "mRifle", "sScope", "mScope", "oScope", "mbrItem", "backpack"], true],
 	      ["A", ["backpacks", "items", "weapons", "ammo"], true],
 	      ["SD", ["backpacks", "items", "weapons", "ammo", "crates", "vehicles"], true],
 	      ["AV", ["heli", "plane", "tank"], true],

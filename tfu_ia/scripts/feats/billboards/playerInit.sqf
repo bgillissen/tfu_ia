@@ -1,8 +1,9 @@
 
 if ( isNil "DB_list" ) then {
 	DB_list = [];
-	private _tot = (["billboards", "totRandom"] call core_fnc_getSetting);
-	for "_x" from 1 to  _tot do { DB_list pushback _x; };
+	{
+		DB_list append getArray(_x >> "billboards" >> "randoms" >> "entries");
+	} forEach ("true" configClasses (configFile >> "cfgDirectAction"));
 };
 
 if ( isNil "DB_queue" ) then { DB_queue = DB_list; };
@@ -14,7 +15,7 @@ private _needDate = false;
 	{
 		if ( (configName _x) isEqualTo "billboard" ) then {
 			if ( getText(_x >> "mode") isEqualTo "fixed" ) then {
-				[_thing, getText(_x >> "texture")] call billboards_fnc_setTexture;
+				[_thing, "fixed", getText(_x >> "texture")] call billboards_fnc_setTexture;
 			};
 		};
 		if ( (configName _x) isEqualTo "dateBillboard" ) then { _needDate = true; };
@@ -36,7 +37,7 @@ if !( _needDate ) exitWith {};
 						 (_curDay <= (_end select 0)) && 
 						 (_curMonth >= (_start select 1)) && 
 						 (_curMonth <= (_end select 1)) ) then {
-						[_thing, getText(_x >> "texture")] call billboards_fnc_setTexture;
+						[_thing, "byDate", getText(_x >> "texture")] call billboards_fnc_setTexture;
 					};	
 				} forEach ("true" configClasses _x);
 			};

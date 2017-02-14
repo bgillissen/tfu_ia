@@ -44,9 +44,10 @@ private _mRifle = [];
 private _sScope = ["rhsusf_acc_LEUPOLDMK4_2"];
 private _mScope = ["rhsusf_acc_LEUPOLDMK4"];
 private _oScope = [];
+private _mbrItem = [];
 private _backpack = [];
 
-_out set [RG_USAF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _backpack]];
+_out set [RG_USAF, [_launcher, _mg, _sRifle, _mRifle, _sScope, _mScope, _oScope, _mbrItem, _backpack]];
 
 //------------------------------------------------------------ Allowed Vehicles RHS USAF
 

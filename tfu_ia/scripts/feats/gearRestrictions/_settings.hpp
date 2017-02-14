@@ -8,6 +8,7 @@ class gearRestrictions {
 	mOptic = "Only snipers/markmen may use this optic, optic removed.";
 	oOptic = "Only squad or team leader may use thermal optics, optic removed.";
 	backpack = "Only AT/AA soldier may use this backpack, backpack removed.";
+	mbrItem = "Only TFU members are allowed to use this item, item removed";
 	uav = "Only UAV operator may use this item, UAV terminal removed.";
 	duration = 5;
 	loopDelay = 10;

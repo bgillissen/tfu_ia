@@ -9,4 +9,6 @@ Description:
 
 if ( (["groupManagement"] call core_fnc_getParam) == 0 ) exitWith {};
 
-["Initialize", [true]] call BIS_fnc_dynamicGroups;
+if ( ["IsInitialized"] call BIS_fnc_dynamicGroups ) exitWith {};
+
+["Initialize"] call BIS_fnc_dynamicGroups;

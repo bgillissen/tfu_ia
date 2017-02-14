@@ -67,3 +67,10 @@ class restrictArti {
 	texts[] = {"Disabled","Enabled"};
 	default = 1;
 };
+
+class restrictMBRItem {
+	title = "Member's items restriction";
+	values[] = {0,1};
+	texts[] = {"Disabled","Enabled"};
+	default = 1;
+};

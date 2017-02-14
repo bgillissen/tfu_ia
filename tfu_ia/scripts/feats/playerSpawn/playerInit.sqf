@@ -24,8 +24,4 @@ if ( !(isNil "_lo") ) then {
 	diag_log format["Role loadout is not set for 'RL_%1'", _role];
 };
 
-if ( !isMultiplayer ) then {
-	[player, "npc"] call BIS_fnc_setUnitInsignia;
-};
-
 [] call playerSpawn_fnc_teleport;

@@ -12,6 +12,8 @@ private _sz = getMarkerPos "SZ";
 private _fr = getMarkerPos "FR";
 private _delay = ["cleanup", "loopDelay"] call core_fnc_getSetting;
 
+if ( isNil "AO_casGroup" ) then { AO_casGroup = grpNull; };
+
 while { true } do {
 	
 	sleep 30;
@@ -42,8 +44,9 @@ while { true } do {
         	 allDead +
         	 allMissionObjects "StaticWeapon");
 	
+	
 	{
-		if !( _x in SQUADS ) then {
+		if ( !( _x in SQUADS ) && !(_x isEqualTo AO_casGroup) ) then {
 			if ( {alive _x} count (units _x) == 0 ) then { deleteGroup _x; };
 		};
 		true

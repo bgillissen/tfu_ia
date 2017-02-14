@@ -82,8 +82,7 @@ class tuvanaka {
 		respawnDelay = 20;
 		markers[] = {"BV_sub1", "BV_sub2"};
 		class actions {
-			/*class paint { color = "#(argb,8,8,3)color(0.98,0.68,0.22,1)"; };*/
-			class paint { color = "#(argb,8,8,3)color(0.82,0.50,0.08,1)"; };
+			class paint { color = "#(argb,8,8,3)color(0.75,0.49,0.09,1)"; };
 		};
 	};
 	class rhibs {
